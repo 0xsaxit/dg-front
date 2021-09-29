@@ -1,32 +1,36 @@
 import React, { useState } from 'react';
+import cn from 'classnames';
 import { Modal, Button } from 'semantic-ui-react';
-import styles from './ModalUpgradePending.module.scss';
-import MetamaskAction, { ActionLine } from 'components/common/MetamaskAction';
+import styles from './ActivateWearableModal.module.scss';
+import { FAQPageJsonLd } from 'next-seo';
 
-const ModalUpgradePending = props => {
+const ActivateWearableModal = props => {
   const [open, setOpen] = useState(true);
-
-  // metamask actions
-  const [authorizeICE, setAuthorizeICE] = useState('initial');
-  const [authorizeDG, setAuthorizeDG] = useState('initial');
-  const [authorizeNFT, setAuthorizeNFT] = useState('initial');
-  const [authorizeTransaction, setAuthorizeTransaction] = useState('initial');
 
   return (
     <>
       <Modal
-        className={styles.withdraw_modal}
-        onClose={() => setOpen(false)}
-        onOpen={() => setOpen(true)}
+        className={styles.dgactivate_modal}
+        onClose={() => {
+          setOpen(false);
+          props.setPending(false);
+        }}
+        onOpen={() => {
+          setOpen(true);
+        }}
         open={open}
         close
-        trigger={<Button className={styles.open_button}>Upgrade</Button>}
+        trigger={
+          <Button className={styles.open_button}>
+            Activate Wearable (0.5 DG)
+          </Button>
+        }
       >
         <div
-          className={styles.header_buttons}
+          className={styles.top_buttons}
           onClick={() => {
             setOpen(false);
-            props.setUpgrade(0);
+            props.setPending(false);
           }}
         >
           <span className={styles.button_close}>
@@ -77,71 +81,62 @@ const ModalUpgradePending = props => {
           </span>
         </div>
 
-        <div
-          style={{
-            color: 'white',
-            display: 'flex',
-            justifyContent: 'center',
-            textAlign: 'center',
-          }}
-        >
-          <div className={styles.upgrade_container}>
-            <p className={styles.header}>
-              <img
-                className={styles.logo}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
-              />
-              Upgrade Pending
-            </p>
+        <div className={styles.title}>
+          <img
+            className={styles.metamask}
+            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
+          />
+          Activate Wearable
+        </div>
+        <div className={styles.desc}>
+          To activate your ICE wearable, you’ll have to complete 2 transactions
+          in metamask.
+        </div>
 
-            <p className={styles.description}>
-              To upgrade your wearable, you will have to complete 4 transactions
-              in metamask.
-            </p>
-
-            <div className={styles.steps_container}>
-              <MetamaskAction
-                primaryText="Authorize ICE"
-                secondaryText="Enables ICE Transaction"
-                onClick={() => setAuthorizeICE('done')}
-                actionState={authorizeICE}
-              />
-              <ActionLine previousAction={authorizeICE} />
-              <MetamaskAction
-                primaryText="Authorize DG"
-                secondaryText="Enables DG Transaction"
-                onClick={() => setAuthorizeDG('done')}
-                actionState={authorizeDG}
-                disabled={authorizeICE != 'done'}
-              />
-              <ActionLine previousAction={authorizeDG} />
-              <MetamaskAction
-                primaryText="Authorize NFT"
-                secondaryText="Enables NFT Transaction"
-                onClick={() => setAuthorizeNFT('done')}
-                actionState={authorizeNFT}
-                disabled={authorizeDG != 'done'}
-              />
-              <ActionLine previousAction={authorizeNFT} />
-              <MetamaskAction
-                primaryText="Send ICE, DG & NFT"
-                secondaryText="Transaction to upgrade wearable"
-                onClick={() => setAuthorizeTransaction('done')}
-                actionState={authorizeTransaction}
-                disabled={authorizeNFT != 'done'}
-              />
+        <div className={styles.progress}>
+          <div className={styles.status}>
+            <div className={styles.checkmark}>
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="16" cy="16" r="16" fill="#35AB3A" />
+                <path
+                  d="M14.7197 23.5601C15.4375 23.5601 15.9941 23.3037 16.375 22.7471L23.084 12.8594C23.3477 12.4712 23.4648 12.0684 23.4648 11.7095C23.4648 10.6841 22.6445 9.90771 21.5898 9.90771C20.8794 9.90771 20.4106 10.1641 19.9785 10.8452L14.6904 19.0483L12.105 16.1553C11.7388 15.7378 11.2993 15.54 10.7134 15.54C9.65137 15.54 8.86768 16.3164 8.86768 17.3491C8.86768 17.8252 8.99219 18.1914 9.39502 18.6455L13.1523 22.8862C13.5698 23.355 14.0825 23.5601 14.7197 23.5601Z"
+                  fill="white"
+                />
+              </svg>
             </div>
+            <div className={styles.right}>
+              <div className={styles.top}>Authorize DG</div>
+              <div className={styles.bottom}>Enables DG Transaction</div>
+            </div>
+          </div>
 
-            <Button
-              className={styles.next_button}
-              onClick={() => {
-                setOpen(false);
-                props.setUpgrade(3);
-              }}
-              disabled={authorizeTransaction != 'done'}
-            >
-              Go to Success
-            </Button>
+          <div className={styles.linebar} />
+
+          <div className={styles.status}>
+            <div className={styles.threedot}>
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="16" cy="16" r="16" fill="#35AB3A" />
+                <circle cx="16" cy="15.7" r="2.7" fill="white" />
+                <circle cx="8.7" cy="15.7" r="2.7" fill="white" />
+                <circle cx="23.3001" cy="15.7" r="2.7" fill="white" />
+              </svg>
+            </div>
+            <div className={styles.right}>
+              <div className={styles.top}>Pay For Activation</div>
+              <div className={styles.bottom}>Payment with DG</div>
+            </div>
           </div>
         </div>
       </Modal>
@@ -149,4 +144,4 @@ const ModalUpgradePending = props => {
   );
 };
 
-export default ModalUpgradePending;
+export default ActivateWearableModal;

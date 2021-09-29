@@ -104,15 +104,15 @@ const ModalEthAuth = props => {
         </div>
 
         <p className={styles.description}>
-          To mint your wearable, confirm your purchase and sign the metamask transaction. We’ll cover the gas.
+          To mint your wearable, confirm your purchase and sign the metamask
+          transaction. We’ll cover the gas.
         </p>
 
         <div className={styles.upgrade_inner_container}>
-
           <div className={styles.eth_container}>
             <span style={{ display: 'flex', flexDirection: 'row' }}>
               <p className={styles.eth_amount}> 0.1 ETH </p>
-              <img 
+              <img
                 className={styles.eth_img}
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/v1625014714/ETH_kzfhxr.png"
               />
@@ -123,10 +123,7 @@ const ModalEthAuth = props => {
             {state.userBalances[2][3]} ETH Available
           </div>
 
-          <div className={styles.eth_description_two}>
-            (On Polygon)
-          </div>
-
+          <div className={styles.eth_description_two}>(On Polygon)</div>
 
           <MetamaskAction
             actionState={
@@ -161,7 +158,10 @@ const ModalEthAuth = props => {
     setMinting(true);
     setButtonMessage('Minting Token...');
 
-    const json = await Fetch.MINT_TOKEN(tokenID);
+    const json = await Fetch.MINT_TOKEN(
+      tokenID,
+      Global.ADDRESSES.COLLECTION_V2_ADDRESS
+    );
 
     if (json.status) {
       // update global state token authorizations
@@ -173,6 +173,8 @@ const ModalEthAuth = props => {
       });
 
       setOpenMintSuccess(true);
+      setOpen(false);
+      props.close();
     } else if (!json.status) {
       setButtonMessage('Token Minting Error');
       console.log(json.result);

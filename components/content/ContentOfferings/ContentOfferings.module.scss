@@ -1,4 +1,4 @@
-@import "styles/base.scss";
+@import 'styles/base.scss';
 
 .header {
   width: calc(100vw - 337px);
@@ -20,7 +20,7 @@
     letter-spacing: 0.3px;
 
     a {
-      color: #509BFF;
+      color: #509bff;
       text-decoration: underline !important;
 
       &:hover {
@@ -85,38 +85,31 @@
     align-items: center;
     border-radius: 12px;
     box-sizing: border-box;
-    padding: 34px 18px 75px 18px;
+    padding: 18px 18px 75px 18px;
     min-width: 228px;
     height: 100%;
 
-    .p2e_enabled {
-      position: absolute;
-      top: 5px;
-      width: calc(100% - 36px);
-      display: flex;
-      justify-content: center;
-      z-index: 1;
+    .wear_box_purple {
+      position: relative;
+      width: 100%;
+      border-radius: 16px;
+      margin-top: 12px;
 
-      div {
-        position: relative;
-        width: 180px;
-
-        .p2e_enabled_img {
-          width: 100%;
-        }
-  
-        .p2e_info_img {
-          position: absolute;
-          top: 18.5px;
-          right: 51px;
-        }
+      .p2e_enabled {
+        position: absolute;
+        top: -45px;
+        cursor: pointer;
       }
+
+      // @include mq($until: medium) {
+      //   height: 100%;
+      //   width: 100%;
+      // }
     }
 
     .nft_image {
       width: 100%;
       border-radius: 12px;
-      position: relative;
       margin-top: 5px;
 
       .p2e_enabled {
@@ -188,7 +181,7 @@
         font-size: 20px;
         margin-top: 10px;
         margin-bottom: 4px;
-        color: rgba(255, 255, 255) !important; 
+        color: rgba(255, 255, 255) !important;
       }
     }
 
@@ -358,44 +351,202 @@
             max-height: 300px;
           }
         }
+
+        .wear_box_purple {
+          img {
+            width: 80%;
+          }
+
+          .IceP2EEnabledTooltip_tooltip {
+            right: 200px !important;
+          }
+
+          .p2e_enabled {
+            position: absolute;
+            top: -300px;
+            height: 70px;
+          }
+        }
+      }
+    }
+
+    @include mq($until: medium) {
+      margin-left: 30px;
+
+      .outter_games_container {
+        width: calc(100vw - 140px);
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+
+        .games_container {
+          height: 460px;
+          // .p2e_enabled {
+          //   width: 100%;
+          // }
+
+          .wear_box_purple {
+            .p2e_enabled {
+              position: absolute;
+              top: -45px;
+              height: 100px;
+            }
+          }
+
+          .nft_image {
+            .product_image {
+              min-height: 220px;
+              max-height: 220px;
+            }
+          }
+
+          .nft_description {
+            .nft_other_h3 {
+              font-size: 10px;
+              margin-top: 10px;
+            }
+
+            .nft_other_p {
+              font-size: 20px;
+            }
+
+            .nfts_info {
+              font-size: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.fullDiv {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+
+  .imgDiv {
+    position: absolute;
+    width: 240px;
+    top: -25px !important;
+
+    .img {
+      width: 100%;
+    }
+
+    .tooltip {
+      position: absolute;
+      right: 70px !important;
+      width: 12px !important;
+      top: 24.5px;
+      cursor: pointer;
+    }
+  }
+}
+
+.popup {
+  margin-right: -13px !important;
+  margin-bottom: 13px !important;
+  height: auto !important;
+
+  .tooltipContent {
+    width: 240px;
+    padding-top: 8px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+
+    .popup_info {
+      width: 17px !important;
+      position: absolute !important;
+      top: 17px !important;
+    }
+
+    .popup_content {
+      font-size: 13px;
+      line-height: 18px;
+      letter-spacing: 0.5px;
+      margin-left: 30px;
+      font-weight: 700;
+    }
+  }
+  &::before {
+    background-color: #1f1f1f !important;
+    box-shadow: 1px 1px 0 0 #1f1f1f !important;
+    display: block !important;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .fullDiv {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0px;
+
+    .imgDiv {
+      position: absolute;
+      width: 200px !important;
+      top: -30px !important;
+
+      .img {
+        width: 100%;
+      }
+
+      .tooltip {
+        position: absolute;
+        right: 58px !important;
+        top: 20.5px !important;
+        width: 10px !important;
       }
     }
   }
 
-  @include mq($until: medium) {
-    margin-left: 30px;
+  .popup {
+    margin-right: -15px !important;
+    margin-bottom: 8px !important;
 
-    .outter_games_container {
-      width: calc(100vw - 140px);
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    .tooltipContent {
+      width: 240px;
+      padding-top: 8px;
+      padding-right: 5px;
+      padding-bottom: 5px;
 
-      .games_container {
-        height: 460px;
-        .p2e_enabled {
-          width: 100%;
-        }
+      .popup_info {
+        width: 17px !important;
+        position: absolute !important;
+        top: 17px !important;
+      }
 
-        .nft_image {
-          .product_image {
-            min-height: 220px;
-            max-height: 220px;
-          }
-        }
+      .popup_content {
+        font-size: 13px;
+        line-height: 18px;
+        letter-spacing: 0.3px;
+        margin-left: 30px;
+      }
+    }
+    &::before {
+      background-color: #1f1f1f !important;
+      box-shadow: 1px 1px 0 0 #1f1f1f !important;
+    }
+  }
+}
 
-        .nft_description {  
-          .nft_other_h3 {
-            font-size: 10px;
-            margin-top: 10px;
-          }
-  
-          .nft_other_p {
-            font-size: 20px;
-          }
-  
-          .nfts_info {
-            font-size: 10px;
-          }
-        }
+@include mq($until: medium) {
+  .fullDiv {
+    .imgDiv {
+      position: absolute;
+      width: 260px !important;
+
+      .img {
+        width: 80% !important;
+        position: absolute;
+        right: 30px;
+      }
+
+      .tooltip {
+        position: absolute;
+        right: 87px !important;
+        top: 21px !important;
+        width: 12px !important;
       }
     }
   }
