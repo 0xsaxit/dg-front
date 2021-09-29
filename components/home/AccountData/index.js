@@ -176,7 +176,7 @@ const AccountData = (props) => {
                 {/* <img className={styles.token_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/image_23_nm4wev.png" /> */}
                 <div className={styles.tokenBalance} >
                   <p className={styles.title}> ICE Mined <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631365915/w706j6tiotm1gdp0p8nu.svg" /> </p>
-                  <p className={styles.amount} > 0 </p>
+                  <p className={styles.amount} > {state.iceAmount} </p>
                 </div>
               </div>
               <div className={styles.token_container}>
