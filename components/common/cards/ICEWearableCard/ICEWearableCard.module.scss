@@ -1,8 +1,6 @@
 @import "styles/base.scss";
 
 .card_container {
-  width: 288px;
-  height: 508px;
   margin: 0 auto;
 }
 
@@ -86,7 +84,8 @@
     }
 
     @include mq($until: medium) {
-      border: 2px solid #2a2a2a;
+      border: 1px solid #2a2a2a;
+      padding-top: 36px;
     }
   }
 
@@ -149,7 +148,7 @@
     .wear_box {
       .wear_box_purple {
         img {
-          width: 80%;
+          width: 100%;
         }
 
         .p2e_enabled {
@@ -157,23 +156,6 @@
           top: -30px;
           height: 70px;
         }
-      }
-
-      .card_body {
-        .card {
-          padding: 5px;
-          font-size: 11px;
-        }
-      }
-    }
-    .card_title {
-      font-size: 18px;
-    }
-    .button_area {
-      .upgrade_button {
-        font-size: 10.5px !important;
-        padding-left: 6px;
-        padding-right: 6px;
       }
     }
   }
@@ -188,23 +170,6 @@
           top: -45px;
           height: 100px;
         }
-      }
-
-      .card_body {
-        .card {
-          padding: 5px 15px;
-          font-size: 13px;
-        }
-      }
-    }
-    .card_title {
-      font-size: 24px;
-    }
-    .button_area {
-      .upgrade_button {
-        font-size: 15px !important;
-        padding-left: 6px;
-        padding-right: 6px;
       }
     }
   }

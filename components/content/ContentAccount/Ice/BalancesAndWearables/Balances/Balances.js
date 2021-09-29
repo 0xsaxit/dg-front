@@ -45,7 +45,7 @@ const Balances = ({ state }) => {
       <div className={cn('row', styles.content_container)}>
         <div
           className={cn(
-            'col-lg-8 col-md-8 col-sm-12 col-xs-12',
+            'col-lg-8 col-md-12 col-sm-12 col-xs-12',
             styles.balance_column
           )}
         >
@@ -101,7 +101,7 @@ const Balances = ({ state }) => {
         </div>
         <div
           className={cn(
-            'col-lg-4 col-md-4 col-sm-12 col-xs-12',
+            'col-lg-4 col-md-12 col-sm-12 col-xs-12',
             styles.reward_column
           )}
         >

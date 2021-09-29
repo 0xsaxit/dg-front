@@ -1,10 +1,27 @@
 @import 'styles/base.scss';
 
+.wearableSection {
+    max-width: 1010px;
+    margin: 0 auto;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    @include mq($until: medium) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    
+    @media screen and (max-width: 600px) {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+}
+
 .wearable {
   .wearable_card_container {
     display: flex;
     justify-content: space-between;
-    max-width: 980px;
+    max-width: 1010px;
     margin: auto;
 
     .wearable_card {
@@ -90,15 +107,6 @@
   }
 }
 
-@media screen and (max-width: 1000px) {
-  .wearable {
-    .wearable_card_container {
-      padding-left: 10px;
-      padding-right: 10px;
-    }
-  }
-}
-
 @include mq($until: medium) {
   .wearable {
     .wearable_card_container {
@@ -120,9 +128,10 @@
 }
 
 .wearableHeader {
-  max-width: 960px;
-  margin-top: 30px;
   margin: auto;
+  margin-top: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
   display: flex;
   justify-content: space-between;
 
@@ -172,16 +181,11 @@
   }
 }
 
-@media screen and (max-width: 1000px) {
-  .wearableHeader {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-}
-
 @include mq($until: medium) {
   .wearableHeader {
-    padding-left: 0px;
+    padding-left: 0px !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
     padding-right: 0px;
 
     & h2 {
@@ -203,11 +207,16 @@
 .wearables_grid {
   display: grid;
   gap: 24px;
-  grid-auto-rows: 508px;
   grid-template-columns: repeat(auto-fill, minmax(288px, 1fr));
 }
 
 .grid_container {
-  max-width: 988px;
   margin-top: 24px;
+  margin-left: 10px;
+  margin-right: 10px;
+
+  @include mq($until: medium) {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
 }
