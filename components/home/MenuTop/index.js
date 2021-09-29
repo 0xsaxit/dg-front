@@ -142,18 +142,36 @@ const MenuTop = props => {
     return isMobile ? (
       <Link href="/">
         <img
-          className={styles.menu_logo}
+          className={cn(
+            // AMNESIA_COMMENT: remove the amnesia logo class
+            styles.menu_logo,
+            state.isAmnesiaPage && styles.amnesia_logo
+          )}
           alt="Decentral Games Logo"
-          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png"
+          src={
+            // AMNESIA_COMMENT: remove the amnesia logo
+            state.isAmnesiaPage
+              ? 'https://res.cloudinary.com/dnzambf4m/image/upload/v1632943973/amnesia/amnesia_dg_logo_uvqb6x.png'
+              : 'https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png'
+          }
         />
       </Link>
     ) : (
       <>
         <Link href="/">
           <img
-            className={styles.menu_logo}
+            className={cn(
+              // AMNESIA_COMMENT: remove the amnesia logo class
+              styles.menu_logo,
+              state.isAmnesiaPage && styles.amnesia_logo
+            )}
             alt="Decentral Games Logo"
-            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png"
+            src={
+              // AMNESIA_COMMENT: remove the amnesia logo
+              state.isAmnesiaPage
+                ? 'https://res.cloudinary.com/dnzambf4m/image/upload/v1632943973/amnesia/amnesia_dg_logo_uvqb6x.png'
+                : 'https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png'
+            }
           />
         </Link>
         &nbsp; Decentral Games
@@ -330,6 +348,8 @@ const MenuTop = props => {
       <span>
         <div
           className={cn(
+            // AMNESIA_COMMENT: amnesia header class should be removed after we are done with amnesia
+            state.isAmnesiaPage && styles.amnesia_header,
             styles.dashboard_menu_container,
             open || scrollState !== 'top' || router.asPath !== '/'
               ? styles.dark
