@@ -13,7 +13,6 @@ import ModalWearable from 'components/modal/ModalWearable';
 import ActivateWearableModal from '../ActivateWearableModal';
 
 const ICEDWearableCard = props => {
-
   const [pending, setPending] = useState(false);
 
   return (
@@ -58,10 +57,11 @@ const ICEDWearableCard = props => {
               </span>
             ) : props.state == 2 ? (
               props.balance > 0.5 ? (
-                  <ActivateWearableModal setPending={setPending} />
-                ) : (
-                  <NeedMoreDGActivateModal balance={props.balance} />
-                )
+                <ActivateWearableModal setPending={setPending} />
+              ) : (
+                // <ActivateWearableModal setPending={setPending} />
+                <NeedMoreDGActivateModal balance={props.balance} />
+              )
             ) : (
               <ModalWithdrawDelegation />
             )}
