@@ -59,7 +59,7 @@ function ICEAttributes() {
         const collectionV2Contract = new maticWeb3.eth.Contract(
           ABI_COLLECTION_V2,
           Global.ADDRESSES.COLLECTION_V2_ADDRESS
-        );       
+        );
         setCollectionV2Contract(collectionV2Contract);
 
         setInstances(true); // contract instantiation complete
@@ -104,14 +104,17 @@ function ICEAttributes() {
               return {
                 index: item.index,
                 tokenID: item.tokenID,
-                meta_data: Object.keys(meta_json).length === 0? null : meta_json,
+                meta_data:
+                  Object.keys(meta_json).length === 0 ? null : meta_json,
               };
             })
           );
 
-          iceWearableItems = iceWearableItems.filter(item => item.meta_data!=null);
+          iceWearableItems = iceWearableItems.filter(
+            item => item.meta_data != null
+          );
           console.log('iceWearableItems: ', iceWearableItems);
-          
+
           dispatch({
             type: 'ice_wearable_items',
             data: iceWearableItems,
@@ -161,7 +164,8 @@ function ICEAttributes() {
           type: 'token_amounts',
           data: tokenAmounts,
         });
-        console.log('instances completed!');
+
+        console.log('Token status updates completed!');
       })();
     }
   }, [instances, state.refreshTokenAuth]);
@@ -169,12 +173,8 @@ function ICEAttributes() {
   // anytime user authorizes NFTs on /ice pages this code will execute
   useEffect(() => {
     if (state.iceWearableItems.length) {
-      console.log('wearables 1...');
-
       (async function () {
         let authArray = [];
-
-        console.log('wearables 2...');
 
         state.iceWearableItems.map(async (item, i) => {
           try {
@@ -182,8 +182,6 @@ function ICEAttributes() {
               collectionV2Contract,
               item.tokenID
             );
-
-            console.log('wearables 3...');
 
             authArray.push({
               tokenID: item.tokenID,
@@ -194,6 +192,7 @@ function ICEAttributes() {
           }
         });
 
+        console.log('NFT authorizations...');
         console.log(authArray);
 
         dispatch({

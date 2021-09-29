@@ -32,11 +32,22 @@ const apiCall = {
   },
 
   MINT_TOKEN: (tokenID, collectionAddr) => {
+    console.log('/ice/mintToken/' + tokenID + '/' + collectionAddr);
+
     return call(
       `${API_BASE_URL}/ice/mintToken/${tokenID}/${collectionAddr}`,
       'GET'
     );
   },
+
+  // MINT_TOKEN: (tokenID, collectionAddr) => {
+  //   console.log('/ice/mintToken/' + tokenID + '/' + collectionAddr);
+
+  //   return call(`${EST_API_BASE_URL}/ce/mintToken`, 'POST', true, {
+  //     tokenID,
+  //     collectionAddr,
+  //   });
+  // },
 
   GET_METADATA_FROM_TOKEN_URI: (contractAddr, tokenID) => {
     return call(
