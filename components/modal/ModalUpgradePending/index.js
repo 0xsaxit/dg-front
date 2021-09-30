@@ -43,6 +43,9 @@ const ModalUpgradePending = props => {
   // initialize Web3 providers and create token contract instance
   useEffect(() => {
     if (state.userStatus >= 4) {
+      console.log('token id xxx: ' + props.tokenID);
+      console.log('item ID xxx: ' + props.itemID);
+
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
 
@@ -154,7 +157,7 @@ const ModalUpgradePending = props => {
 
         <ActionLine previousAction={authStatusDG ? 'done' : 'initial'} />
 
-        {/* <MetamaskAction
+        <MetamaskAction
           primaryText="Authorize NFT"
           secondaryText="Enables NFT Transaction"
           onClick={() => (!authStatusNFT ? metaTransactionNFT() : null)}
@@ -168,9 +171,9 @@ const ModalUpgradePending = props => {
               : null
           }
           disabled={!authStatusDG}
-        /> */}
+        />
 
-        {/* <ActionLine previousAction={authStatusNFT ? 'done' : 'initial'} /> */}
+        <ActionLine previousAction={authStatusNFT ? 'done' : 'initial'} />
 
         <MetamaskAction
           primaryText="Upgrade Wearable"
@@ -185,7 +188,7 @@ const ModalUpgradePending = props => {
               ? 'clicked'
               : null
           }
-          // disabled={!authStatusNFT}
+          disabled={!authStatusNFT}
         />
       </div>
     );
@@ -247,21 +250,6 @@ const ModalUpgradePending = props => {
     }
   }
 
-  // function pendingOrSuccessButton() {
-  //   return (
-  //     <Button
-  //       className={styles.next_button}
-  //       onClick={() => {
-  //         setOpen(false);
-  //         props.setUpgrade(3);
-  //       }}
-  //       disabled={authorizeTransaction != 'done'}
-  //     >
-  //       Go to Success
-  //     </Button>
-  //   );
-  // }
-
   async function metaTransactionToken(token) {
     console.log('Meta-transaction: ' + token);
     let tokenContract = {};
@@ -304,12 +292,6 @@ const ModalUpgradePending = props => {
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
-        // if (token === 'ICE') {
-        //   setAuthStatusICE(true);
-        // } else if (token === 'DG') {
-        //   setAuthStatusDG(true);
-        // }
-
         // update global state token authorizations
         const refresh = !state.refreshTokenAuth;
 
@@ -330,6 +312,9 @@ const ModalUpgradePending = props => {
     console.log('Meta-transaction NFT: ' + props.tokenID);
     console.log('Spender address: ' + spenderAddress);
     setClickedNFT(true);
+
+    // Global.ADDRESSES.ICE_REGISTRANT_ADDRESS, props.tokenID
+    // '0xBF79cE2fbd819e5aBC2327563D02a200255B7Cb3', '2'
 
     try {
       // get function signature and send Biconomy API meta-transaction
@@ -392,9 +377,9 @@ const ModalUpgradePending = props => {
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
-        console.log('Request upgradre transaction complete');
+        // setAuthStatusUpgrade(true);
 
-        setAuthStatusUpgrade(true);
+        // upgradeToken(requestIndex)
       }
     } catch (error) {
       setClickedUpgrade(false);
@@ -402,6 +387,42 @@ const ModalUpgradePending = props => {
       console.log('Upgrade NFT error: ' + error);
     }
   }
+
+  // send-off the API request to upgrade the user's wearable
+  async function upgradeToken(requestIndex) {
+    const json = await Fetch.UPGRADE_TOKEN(requestIndex, props.itemID);
+
+    if (json.status) {
+      setAuthStatusUpgrade(true);
+
+      // pendingOrSuccessButton();
+
+      setOpen(false);
+    } else if (!json.status) {
+      setClickedUpgrade(false);
+
+      console.log(json.result);
+    } else if (json.status === 'error') {
+      setClickedUpgrade(false);
+
+      console.log(json.result);
+    }
+  }
+
+  // function pendingOrSuccessButton() {
+  //   return (
+  //     <Button
+  //       className={styles.next_button}
+  //       onClick={() => {
+  //         setOpen(false);
+  //         props.setUpgrade(3);
+  //       }}
+  //       disabled={authorizeTransaction != 'done'}
+  //     >
+  //       Go to Success
+  //     </Button>
+  //   );
+  // }
 
   return (
     <Modal
