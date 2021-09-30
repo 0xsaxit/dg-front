@@ -140,6 +140,8 @@ const initialState = {
   dgWarningMsg: false,
   toastMessage: '',
   selectedLang: 0,
+  iceAmount: 0,
+  isAmnesiaPage: false,
 };
 
 const reducer = (state, action) => {
@@ -269,7 +271,11 @@ const reducer = (state, action) => {
         ...state,
         iceWearableItems: action.data,
       };
-
+    case 'set_IceAmount':
+      return {
+        ...state,
+        iceAmount: action.data,
+      };
     case 'nft_authorizations':
       return {
         ...state,
@@ -435,6 +441,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         userLoggedIn: action.data,
+      };
+    case 'set_amnesia':
+      return {
+        ...state,
+        isAmnesiaPage: action.data,
       };
     default:
       throw new Error('Wrong action type got dispatched');

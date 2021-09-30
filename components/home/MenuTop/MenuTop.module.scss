@@ -76,6 +76,11 @@
       cursor: pointer;
     }
 
+    // AMNESIA_COMMENT: remove the amnesia logo class
+    .amnesia_logo {
+      transform: rotate(3deg)
+    }
+
     .menu_items_to_hide {
       display: flex;
       align-items: center;
@@ -121,5 +126,11 @@
     opacity: 1;
     background-color: black !important;
     border-bottom: 1px solid rgb(42, 42, 42);
+  }
+
+  // AMNESIA_COMMENT: amnesia header class should be removed after we are done with amnesia
+  &.amnesia_header {
+    background-color: transparent !important;
+    border: none !important;
   }
 }

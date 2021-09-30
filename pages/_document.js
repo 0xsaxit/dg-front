@@ -4,6 +4,7 @@ import Global from 'components/Constants';
 export default class MyDocument extends Document {
   static async getServerSideProps(ctx) {
     const initialProps = await Document.getServerSideProps(ctx);
+    console.log(ctx);
     return { ...initialProps };
   }
 
@@ -14,15 +15,8 @@ export default class MyDocument extends Document {
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#000000" />
           <meta name="description" content={Global.CONSTANTS.DESCRIPTION} />
-          <link
-            rel="shortcut icon"
-            href="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630041/favicon_wuwh9j.ico"
-          />
-          <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/apple-touch-icon_xrz57z.png"
-          />
+          <link rel="shortcut icon" />
+          <link rel="apple-touch-icon" sizes="180x180" />
           <link
             rel="icon"
             type="image/png"
