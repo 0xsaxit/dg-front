@@ -7,6 +7,9 @@ import Global from '../../components/Constants';
 import Images from '../../common/Images';
 import styles from './Amnesia.module.scss';
 import { Button } from 'semantic-ui-react';
+import cn from 'classnames';
+import images from 'common/Images';
+
 
 // AMNESIA_COMMENT: this whole file should be deleted after we are done with amnesia
 const Amnesia = () => {
@@ -39,7 +42,12 @@ const Amnesia = () => {
                 <Button className={styles.black_button}>Newsletter</Button>
               </a>
 
-              <Button className={styles.blue_button}>RSVP</Button>
+              <a
+                href="https://events.decentraland.org/event/?id=b4c581ab-aeca-4604-8c2e-519eade0d04e"
+                target="_blank"
+              >
+                <Button className={styles.blue_button}>RSVP</Button>
+              </a>
             </div>
           </div>
         </section>
@@ -84,27 +92,89 @@ const Amnesia = () => {
 
             <div className={styles.partners_container}>
               <h2 className={styles.title}>Launch Partners</h2>
-              <div className={styles.launch_partners_contanier}>
-                <img
-                  className={styles.djenerates}
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632958336/amnesia/DJenerates_hrh2r5.png"
-                />
-                <img
-                  className={styles.decrypto}
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632958336/amnesia/decrypto_ygrabn.png"
-                />
-                <img
-                  className={styles.binance}
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632958336/amnesia/Binance_SC_onyia7.png"
-                />
-                <img
-                  className={styles.coingecko}
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632958336/amnesia/CoinGecko_fgiu6i.png"
-                />
-                <img
-                  className={styles.theta}
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632958336/amnesia/theta_wpc4kb.png"
-                />
+
+              <div className={styles.partner_images}>
+                <div
+                  className={cn(
+                    styles.image_section,
+                    ' d-flex justify-content-center mb-5'
+                  )}
+                >
+                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632958336/amnesia/DJenerates_hrh2r5.png" />
+                </div>
+                <div
+                  className={cn(
+                    styles.image_section,
+                    ' d-flex justify-content-center mb-5'
+                  )}
+                >
+                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632958336/amnesia/decrypto_ygrabn.png" />
+                </div>
+                <div
+                  className={cn(
+                    styles.image_section,
+                    ' d-flex justify-content-center mb-5'
+                  )}
+                >
+                  <img src={images.BINANCE} />
+                </div>
+                <div
+                  className={cn(
+                    styles.image_section,
+                    ' d-flex justify-content-center mb-5'
+                  )}
+                >
+                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632958336/amnesia/CoinGecko_fgiu6i.png" />
+                </div>
+                <div
+                  className={cn(
+                    styles.image_section,
+                    ' d-flex justify-content-center mb-5'
+                  )}
+                >
+                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632958336/amnesia/theta_wpc4kb.png" />
+                </div>
+                <div
+                  className={cn(
+                    styles.image_section,
+                    ' d-flex justify-content-center mb-5'
+                  )}
+                >
+                  <img src={images.POLYGON} alt="POLYGON" />
+                </div>
+                <div
+                  className={cn(
+                    styles.image_section,
+                    ' d-flex justify-content-center mb-5'
+                  )}
+                  style={{ width: '5%', height: '5%', alignSelf: 'center' }}
+                >
+                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1633021946/Logo-White-NFT4metaverse_udey6z.png" />
+                </div>
+                <div
+                  className={cn(
+                    styles.image_section,
+                    ' d-flex justify-content-center mb-5'
+                  )}
+                >
+                  <img src={images.BAYC} alt="BORED APE YACHT CLUB" />
+                </div>
+                <div
+                  className={cn(
+                    styles.image_section,
+                    ' d-flex justify-content-center mb-5'
+                  )}
+                >
+                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1633023892/Landvault_White_pgrnkn.png" />
+                </div>
+                <div
+                  className={cn(
+                    styles.image_section,
+                    ' d-flex justify-content-center mb-5'
+                  )}
+                >
+                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1633024121/Imtoken_tni8m9.png" />
+                </div>
               </div>
 
               <h2 className={styles.title}>Media Partners</h2>
@@ -124,6 +194,7 @@ const Amnesia = () => {
               </div>
             </div>
 
+
             <div className={styles.dates_container}>
               <img
                 className={styles.phase_1}
@@ -142,7 +213,12 @@ const Amnesia = () => {
                   <Button className={styles.black_button}>Newsletter</Button>
                 </a>
 
-                <Button className={styles.blue_button}>RSVP</Button>
+                <a
+                  href="https://events.decentraland.org/event/?id=b4c581ab-aeca-4604-8c2e-519eade0d04e"
+                  target="_blank"
+                >
+                  <Button className={styles.blue_button}>RSVP</Button>
+                </a>
               </div>
             </div>
 

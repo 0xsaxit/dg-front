@@ -4,16 +4,19 @@
   background: black;
 
   .top_section {
-    height: 1080px;
+    height: 100vh;
+    max-height: 800px;
+    min-height: 600px;
     background-image: url('https://res.cloudinary.com/dnzambf4m/image/upload/v1632927780/amnesia/Amnesia-Background_1_nzqzri.png');
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    padding: 160px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     @media screen and (max-width: 1200px) {
       background-size: initial;
       background-position: center;
-      height: 800px;
     }
 
     .central_container {
@@ -62,7 +65,7 @@
     background-image: url('https://res.cloudinary.com/dnzambf4m/image/upload/v1632927968/amnesia/amnesia_stars_background.png');
     background-size: 100% 100%;
     overflow: hidden;
-    padding: 0 54px 237px;
+    padding: 150px 54px 0px;
 
     .clouds_top {
       position: absolute;
@@ -93,15 +96,16 @@
         justify-content: space-between;
         height: 282px;
         width: 100%;
+        margin-bottom: 120px;
 
-        @include mq($until: medium) {
+        @include mq($until: 1040px) {
           flex-direction: column;
           align-items: center;
           justify-content: flex-start;
           height: 800px;
         }
         
-        @include mq($from: medium, $until: large) {
+        @include mq($from: 1040px, $until: large) {
           flex-direction: column;
           align-items: center;
           justify-content: flex-start;
@@ -119,7 +123,7 @@
           font-size: 36px;
           line-height: 46px;
 
-          @include mq($until: large) {
+          @include mq($until: 1040px) {
             text-align: center;
             margin: 0;
           }
@@ -128,11 +132,11 @@
         .artists {
           width: 490px;
 
-          @include mq($until: medium) {
+          @include mq($until: 1040px) {
             margin-top: 60px;
           }
 
-          @include mq($from: medium, $until: large) {
+          @include mq($from: 1040px, $until: large) {
             margin-top: 30px;
             height: 305px;
           }
@@ -148,7 +152,7 @@
             justify-content: space-between;
             height: 100%;
 
-            @include mq($until: medium) {
+            @include mq($until: 1040px) {
               height: 300px;
               flex-direction: column;
               align-items: center;
@@ -166,7 +170,7 @@
               margin: auto 0 0;
               z-index: 4;
 
-              @include mq($until: medium) {
+              @include mq($until: 1040px) {
                 margin: 0 auto 0 110px;
               }
             }
@@ -175,7 +179,7 @@
               margin: 0 0 0 -43px;
               z-index: 3;
 
-              @include mq($until: medium) {
+              @include mq($until: 1040px) {
                 margin: -43px 110px 0 auto;
               }
             }
@@ -184,7 +188,7 @@
               margin: auto 0 0 -43px;
               z-index: 2;
 
-              @include mq($until: medium) {
+              @include mq($until: 1040px) {
                 margin: -43px auto 0 110px;
               }
             }
@@ -192,14 +196,14 @@
             .luciano {
               margin: 0 0 0 -43px;
               z-index: 1;
-              @include mq($until: medium) {
+              @include mq($until: 1040px) {
                 margin: -43px 110px 0 auto;
               }
             }
             
             .paul {
               margin: auto 0 0 -43px;
-              @include mq($until: medium) {
+              @include mq($until: 1040px) {
                 margin: -43px auto 0 110px;
               }
               
@@ -226,13 +230,14 @@
           letter-spacing: 0em;
           text-align: center;
           margin: 0;
+          margin-bottom: 50px;
 
           @include mq($until: medium) {
             margin-top: 130px;
           }
 
           &:nth-of-type(2) {
-            margin: 186px 0 0;
+            margin: 216px 0 30px;
 
             @include mq($until: medium) {
             margin-top: 130px;
@@ -240,52 +245,17 @@
           }
         }
 
-        .launch_partners_contanier {
-          width: 100%;
+        .partner_images {
           display: flex;
-          justify-content: space-between;
-          margin-top: 47px;
-          padding: 0 93px;
-          
-          @media screen and (max-width: 1200px) {
-            flex-direction: column;
-            align-items: center;
-            margin-top: 30px;
-          }
+          flex-wrap: wrap;
+          justify-content: center;
 
-          img {
-            @media screen and (max-width: 1200px) {
-              margin-top: 20px;
-
-              &:first-of-type {
-                margin-top: 0;
-              }
-            }
-          }
-
-          .djenerates {
-            height: 61px;
-            width: 186px;
-          }
-
-          .decrypto {
-            height: 42px;
-            width: 232px;
-          }
-
-          .binance {
-            height: 46px;
-            width: 188px;
-          }
-
-          .coingecko {
-            height: 58px;
-            width: 211px;
-          }
-
-          .theta {
-            height: 47px;
-            width: 167px;
+          .image_section {
+            height: 15%;
+            width: 15%;
+            align-self: center;
+            margin: 20px 20px 20px 20px;
+            min-width: 180px;
           }
         }
       }
@@ -297,7 +267,7 @@
         margin-top: 47px;
         margin-left: 35px;
 
-        @include mq($until: large) {
+        @include mq($until: medium) {
           flex-direction: column;
           align-items: center;
           padding: 0;
@@ -307,13 +277,17 @@
 
         .eightbtc {
           height: 44px;
+
+          @include mq($until: medium) {
+            margin-top: 40px;
+          }
         }
 
         .chinanews {
           margin: 0 50px;
 
-          @include mq($until: large) {
-            margin-top: 30px;
+          @include mq($until: medium) {
+            margin-top: 50px;
           }
         }
 
@@ -321,8 +295,8 @@
           margin-top: -34px;
           height: 78px;
 
-          @include mq($until: large) {
-            margin-top: 30px;
+          @include mq($until: medium) {
+            margin-top: 40px;
           }
         }
       }

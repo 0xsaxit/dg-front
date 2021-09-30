@@ -186,100 +186,106 @@ const ContentOfferings = props => {
   // loop through the NFT details object
   function buyICE() {
     return (
-      <span className={styles.test}>
-        <div className={styles.header}>
-          <h1>ICE Wearables Marketplace</h1>
-          <p className={styles.marketplace_p}>
-            ICE Wearables give you table access to free to play, play-to-earn
-            poker. Learn more by <a href="/">clicking here.</a>
-          </p>
-          <h3>DG Suit</h3>
-        </div>
-        <div className={styles.outter_games_container}>
-          {Object.keys(props.detailsICE).map((item, i) => (
-            <div className={styles.games_container}>
-              <div className={styles.wear_box_purple}>
-                <div className={styles.fullDiv}>
-                  <div className={styles.imgDiv}>
-                    <img
-                      className={styles.img}
-                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640051/p2e_enabled_wgqui5.svg"
-                    />
-                    <Popup
-                      trigger={
-                        <img
-                          className={styles.tooltip}
-                          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
-                        />
-                      }
-                      position="top left"
-                      hideOnScroll={true}
-                      className={cn('p2e_enabled_tooltip', styles.popup)}
-                    >
-                      <Popup.Content className={styles.tooltipContent}>
-                        <img
-                          className={styles.popup_info}
-                          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
-                        />
-                        <p className={styles.popup_content}>
-                          P2E Enabled (aka Play-to-Earn)
-                          <br /> wearables allow you to earn real
-                          <br /> cash value from free-to-play ICE
-                          <br /> poker tables.
-                        </p>
-                      </Popup.Content>
-                    </Popup>
+      <div>
+      {state.userStatus < 20 ? (
+        null
+      ) : (
+        <span className={styles.test}>
+          <div className={styles.header}>
+            <h1>ICE Wearables Marketplace</h1>
+            <p className={styles.marketplace_p}>
+              ICE Wearables give you table access to free to play, play-to-earn
+              poker. Learn more by <a href="/">clicking here.</a>
+            </p>
+            <h3>DG Suit</h3>
+          </div>
+          <div className={styles.outter_games_container}>
+            {Object.keys(props.detailsICE).map((item, i) => (
+              <div className={styles.games_container}>
+                <div className={styles.wear_box_purple}>
+                  <div className={styles.fullDiv}>
+                    <div className={styles.imgDiv}>
+                      <img
+                        className={styles.img}
+                        src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640051/p2e_enabled_wgqui5.svg"
+                      />
+                      <Popup
+                        trigger={
+                          <img
+                            className={styles.tooltip}
+                            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
+                          />
+                        }
+                        position="top left"
+                        hideOnScroll={true}
+                        className={cn('p2e_enabled_tooltip', styles.popup)}
+                      >
+                        <Popup.Content className={styles.tooltipContent}>
+                          <img
+                            className={styles.popup_info}
+                            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
+                          />
+                          <p className={styles.popup_content}>
+                            P2E Enabled (aka Play-to-Earn)
+                            <br /> wearables allow you to earn real
+                            <br /> cash value from free-to-play ICE
+                            <br /> poker tables.
+                          </p>
+                        </Popup.Content>
+                      </Popup>
+                    </div>
                   </div>
                 </div>
+
+                <img
+                  className={styles.nft_image}
+                  src={props.detailsICE[item][0]}
+                />
+
+                <div className={styles.nft_description}>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                    <p className={styles.nft_info}>{props.detailsICE[item][3]}</p>
+                    <p className={styles.nft_info}>{props.detailsICE[item][4]}</p>
+                  </span>
+                  <p className={styles.nft_other_p}>
+                    {props.detailsICE[item][2]}
+                  </p>
+                  <h3 className={styles.nft_other_h3}>
+                    {props.detailsICE[item][1]}
+                  </h3>
+                </div>
+
+                <div
+                  style={{
+                    position: 'absolute',
+                    bottom: '20px',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  {state.userStatus && state.userLoggedIn ? (
+                    <ModalMintWearable
+                      index={i}
+                      className={styles.right_button}
+                      wearableImg={props.detailsICE[item][0]}
+                      wearableBodyType={props.detailsICE[item][3]}
+                      wearableBodyImg={props.detailsICE[item][5]}
+                      wearableName={props.detailsICE[item][1]}
+                    />
+                  ) : (
+                    <ModalLoginICE />
+                  )}
+
+                  {/* <ModalMintActivation /> */}
+                  {/* <ActivateWearableModal /> */}
+                  {/* <ModalActivationSuccess setPending={false} /> */}
+                </div>
               </div>
-
-              <img
-                className={styles.nft_image}
-                src={props.detailsICE[item][0]}
-              />
-
-              <div className={styles.nft_description}>
-                <span style={{ display: 'flex', justifyContent: 'center' }}>
-                  <p className={styles.nft_info}>{props.detailsICE[item][3]}</p>
-                  <p className={styles.nft_info}>{props.detailsICE[item][4]}</p>
-                </span>
-                <p className={styles.nft_other_p}>
-                  {props.detailsICE[item][2]}
-                </p>
-                <h3 className={styles.nft_other_h3}>
-                  {props.detailsICE[item][1]}
-                </h3>
-              </div>
-
-              <div
-                style={{
-                  position: 'absolute',
-                  bottom: '20px',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                }}
-              >
-                {state.userStatus && state.userLoggedIn ? (
-                  <ModalMintWearable
-                    index={i}
-                    className={styles.right_button}
-                    wearableImg={props.detailsICE[item][0]}
-                    wearableBodyType={props.detailsICE[item][3]}
-                    wearableBodyImg={props.detailsICE[item][5]}
-                    wearableName={props.detailsICE[item][1]}
-                  />
-                ) : (
-                  <ModalLoginICE />
-                )}
-
-                {/* <ModalMintActivation /> */}
-                {/* <ActivateWearableModal /> */}
-                {/* <ModalActivationSuccess setPending={false} /> */}
-              </div>
-            </div>
-          ))}
-        </div>
-      </span>
+            ))}
+          </div>
+        </span>
+        )}
+      </div>
     );
   }
 

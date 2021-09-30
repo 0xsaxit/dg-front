@@ -6,10 +6,16 @@ import BalancesAndWearables from './BalancesAndWearables';
 function ICE({ state }) {
   return (
     <Aux>
-      {state.userStatus && !!state.iceWearableItems.length ? (
-        <BalancesAndWearables />
+      {state.userStatus < 20 ? (
+        null
       ) : (
-        <NoWearablesSplash />
+        <div>
+          {state.userStatus && !!state.iceWearableItems.length ? (
+            <BalancesAndWearables />
+          ) : (
+            <NoWearablesSplash />
+          )}
+        </div>
       )}
     </Aux>
   );

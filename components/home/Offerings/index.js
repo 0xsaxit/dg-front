@@ -484,7 +484,7 @@ const Offerings = (props) => {
                   </div>
                 </Link>
 
-                <Link href="/games/ice">
+                {/*<Link href="/games/ice">
                   <div className={styles.menu_item}>
                     <svg width="24" height="24" viewBox="0 0 22 20" style={{ margin: '0px 1px 0px -1px' }} fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
@@ -493,7 +493,7 @@ const Offerings = (props) => {
                       />
                     </svg>
                   </div>
-                </Link>
+                </Link>*/}
 
                 <Link href="/games/shop">
                   <div className={styles.menu_item}>
@@ -761,7 +761,7 @@ const Offerings = (props) => {
                   </div>
                 </Link>
 
-                <Link href="/games/ice">
+                {/*<Link href="/games/ice">
                   <div
                     className={
                       gameState === 'ice'
@@ -777,7 +777,7 @@ const Offerings = (props) => {
                     </svg>
                     <div className={styles.menu_title}>ICE Wearables</div>
                   </div>
-                </Link>
+                </Link>*/}
 
                 <Link href="/games/shop">
                   <div
