@@ -81,8 +81,8 @@ function UserStatus() {
       if (!jsonStatus.status) return false;
 
       return jsonStatus.status;
-    } catch {
-      console.log('Unregistered wallet: User Status');
+    } catch (e) {
+      console.log('Unregistered wallet: UserStatus2');
 
       return false;
     }

@@ -1,0 +1,209 @@
+@import 'styles/base.scss';
+
+
+.lower {
+  padding: 28px;
+  border: 1px solid rgba(42, 42, 42, 1);
+  border-radius: 16px;
+  min-width: 285px;
+  width: 285px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+  margin-top: 60px;
+  height: 100%;
+
+  .lower_value {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .DG_value {
+      font-family: Larsseit-Bold;
+      font-size: 41px;
+      margin-right: 12px;
+      margin-bottom: 0;
+    }
+
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .price {
+    font-family: Larsseit-Bold;
+    font-size: 20px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5) !important;
+    margin-bottom: 16px;
+  }
+
+  .claim_DG {
+    margin-top: 0;
+    margin-bottom: 14px;
+  }
+
+  .lower_header {
+    font-family: Larsseit-Bold;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .lower_header_two {
+    font-family: Larsseit-Bold;
+    font-size: 20px;
+  }
+
+  .lower_img {
+    width: 175px;
+    align-self: center;
+    margin-top: 0px;
+    margin-bottom: 14px;
+  }
+
+  .apy_text {
+    font-family: Larsseit-Bold;
+    font-size: 14px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5) !important;
+    margin-bottom: 0px;
+  }
+
+  .stake_text {
+    font-family: Larsseit-Regular;
+    font-size: 12px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5) !important;
+    margin-bottom: 0px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .apy_percent {
+    font-family: Larsseit-Bold;
+    font-size: 41px;
+    text-align: center;
+    margin-bottom: 14px;
+    margin-top: -4px;
+  }
+
+  .lower_text {
+    font-family: Larsseit-Regular;
+    text-align: center;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .button_stake {
+    margin-top: 20px;
+    width: 47.5%;
+    background: #006eff;
+    color: white;
+    border-radius: 10px;
+    height: 40px;
+    font-family: Larsseit-Bold;
+    font-size: 14px;
+
+    &:hover {
+      color: white;
+      background: #006eff;
+      filter: brightness(0.9) !important;
+    }
+  }
+
+  .lower_button {
+    margin-top: 20px;
+    width: 100%;
+    background: #006eff;
+    color: white;
+    border-radius: 10px;
+    height: 40px;
+    font-family: Larsseit-Bold;
+    font-size: 14px;
+  }
+
+  .lower_button {
+    background: rgb(31, 31, 31);
+    color: white;
+
+    &:hover {
+      color: white;
+      background: rgb(31, 31, 31);
+      filter: brightness(0.9) !important;
+    }
+  }
+
+  .governance_container {
+    display: flex;
+    margin-bottom: 20px;
+
+    .state_box {
+      background: rgba(31, 31, 31);
+      border-radius: 14px;
+      height: 48px;
+      min-width: 48px;
+      display: flex;
+      justify-content: center;
+      align-self: center;
+
+      .state {
+        color: #19c785 !important;
+        font-size: 10px;
+        font-family: Larsseit-bold;
+        text-transform: uppercase;
+        align-self: center;
+      }
+
+      .state_closed {
+        color: #ea3943 !important;
+        font-size: 10px;
+        font-family: Larsseit-bold;
+        text-transform: uppercase;
+        align-self: center;
+      }
+    }
+
+    .gov_right {
+      display: flex;
+      padding-left: 18px;
+
+      .gov_top {
+        font-family: Larsseit-Bold;
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.5) !important;
+        margin-bottom: 0px;
+      }
+
+      .gov_title {
+        font-family: Larsseit-Bold;
+        font-size: 14px;
+        margin-top: 2px;
+        line-height: 18px;
+      }
+    }
+  }
+
+  .button_span {
+    margin-top: 23px;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    align-items: flex-end;
+
+    .button_gov {
+      padding: 0px;
+      align-self: center;
+      margin-bottom: 0px;
+      height: 41px;
+      border-radius: 10px;
+      font-family: Larsseit-Bold;
+      background: rgb(31, 31, 31);
+      font-size: 14px;
+      width: 47.5%;
+      color: white;
+    }
+  }
+}

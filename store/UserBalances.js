@@ -16,8 +16,10 @@ function UserBalances() {
   let maticWeb3 = {};
   let binance = {};
   let balances = [];
+  let ethBalances = '';
 
   useEffect(() => {
+
     if (state.userStatus >= 4) {
       web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
@@ -37,6 +39,32 @@ function UserBalances() {
       fetchData();
     }
   }, [state.userStatus, state.refreshTokens]);
+
+
+  useEffect(() => {
+
+    if (state.userStatus >= 4) {
+      web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+
+      async function fetchDataEth() {
+
+        ethBalances = await getEthBalance();
+
+        dispatch({
+          type: 'update_eth_balance',
+          data: ethBalances,
+        });
+      }
+
+      fetchDataEth();
+    }
+  }, [state.userStatus, state.refreshTokens]);
+
+
+  async function getEthBalance() {
+    const amountETH = await web3.eth.getBalance(state.userAddress);
+    return (amountETH / 1000000000000000000);
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////

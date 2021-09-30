@@ -1,11 +1,13 @@
 import { Provider } from '../store';
 import App from 'next/app';
+// import './i18n';
+
 import 'semantic-ui-css/semantic.min.css';
-import '../static/css/main.css';
-import '../static/css/agate.css';
-import '../static/css/blog.css';
-import '../static/css/spinner.css';
-import '../static/css/mobile.css';
+import 'public/static/css/main.css';
+import 'public/static/css/agate.css';
+import 'public/static/css/blog.css';
+import 'public/static/css/spinner.css';
+import 'public/static/css/mobile.css';
 import '../styles/bootstrap-overrides.scss';
 import Segment from '../components/Segment';
 import UserStatus from '../store/UserStatus';
@@ -22,18 +24,54 @@ import PricesBreakdown from '../store/PricesBreakdown';
 import NFTSPOAPS from '../store/NFTSPOAPS';
 import EventsData from '../store/EventsData';
 import SubgraphQuery from '../store/SubgraphQuery';
+import ICEAttributes from '../store/ICEAttributes';
 
-class Application extends App {
-  render() {
-    const { Component, pageProps, store } = this.props;
+import Spinner from 'components/Spinner';
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 
-    return (
-      <Provider store={store}>
-        <style jsx global>{`
-          body {
-            background: black;
-          }
-        `}</style>
+function Application({ Component, pageProps, store }) {
+
+  const router = useRouter();
+  const [pageLoading, setPageLoading] = useState(true);
+
+  useEffect(() => {
+    setPageLoading(true);
+    const timer = setTimeout(() => {
+      console.log('This will run after 3 second on first load!');
+      setPageLoading(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleStart = () => {
+      console.log("1. Page Loading is started.");
+      setPageLoading(true);
+    };
+    const handleComplete = () => {
+      console.log("2. Page Loading is completed.");
+      setPageLoading(false);
+    };
+
+    router.events.on('routeChangeStart', handleStart);
+    router.events.on('routeChangeComplete', handleComplete);
+    router.events.on('routeChangeError', handleComplete);
+  }, [router]);
+
+  return (
+    <Provider store={store}>
+      <style jsx global>{`
+        body {
+          background: black;
+        }
+      `}</style>
+
+      {pageLoading ? (
+        <Spinner background={1} />
+      ) : null}
+
+      <div>
         <Segment />
         <UserStatus />
         <UserBalances />
@@ -49,11 +87,14 @@ class Application extends App {
         <NFTSPOAPS />
         <EventsData />
         <SubgraphQuery />
+        <ICEAttributes />
 
         <Component {...pageProps} />
-      </Provider>
-    );
-  }
+      </div>
+
+    </Provider>
+  );
+  // }
 }
 
 export default Application;

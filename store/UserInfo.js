@@ -19,13 +19,21 @@ function UserInfo() {
     (async function () {
       // get coin prices
       let json = await Fetch.MANA_PRICE();
-      setManaPrice(json.market_data.current_price.usd);
+      if (json && json.market_data) {
+        setManaPrice(json.market_data.current_price.usd);
+      }
 
       let json2 = await Fetch.ETH_PRICE();
-      setEthPrice(json2.market_data.current_price.usd);
+      if (json2 && json2.market_data) {
+        setEthPrice(json2.market_data.current_price.usd);
+      }
 
       let json3 = await Fetch.ATRI_PRICE();
-      setAtriPrice(json3.market_data.current_price.usd);
+      if (json3 && json3.market_data) {
+        setAtriPrice(json3.market_data.current_price.usd);
+      }
+
+
     })();
   }, [manaPrice, ethPrice, atriPrice]);
 
@@ -35,7 +43,7 @@ function UserInfo() {
       (async function () {
         const jsonInfo = await Fetch.PLAYER_INFO(state.userAddress);
 
-        if (jsonInfo._id) {
+        if (jsonInfo && jsonInfo._id) {
           const name = jsonInfo.avatarName;
           const id = jsonInfo._id.slice(-6);
           const balancePLAY = jsonInfo.playBalance.toLocaleString();

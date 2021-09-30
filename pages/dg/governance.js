@@ -1,6 +1,6 @@
 import { GlobalContext } from '../../store';
 import { useContext } from 'react';
-import Farming from '../../components/home/Farming';
+import DAO from '../../components/home/DAO';
 import Layout from '../../components/Layout.js';
 import Header from '../../components/Header';
 import Global from '../../components/Constants';
@@ -19,7 +19,7 @@ const Governance = () => {
       />
 
       {state.userStatus ? (
-        <Farming DGState={'governance'} />
+        <DAO DGState={'governance'} />
       ) : (
         <div className="account-other-inner-p">
           You must connect your wallet to view this page

@@ -34,7 +34,11 @@ const call = (url, method, withToken = true, data = {}) => {
     data,
   };
 
-  return axios.request(options).then(res => res.data);
+  return axios.request(options)
+    .then(res => res.data)
+    .catch(error => {
+      console.log("Error:", error);
+    });
 };
 
 export default call;

@@ -1,0 +1,28 @@
+import { Popup } from 'semantic-ui-react';
+import styles from './IceMintETHTooltip.module.scss';
+
+const IceMintETHTooltip = () => {
+  return (
+    <Popup
+      trigger={
+        <img
+          className={styles.stackedTooltip}
+          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
+        />
+      }
+      position='top center'
+      on="click"
+      hideOnScroll={true}
+      className={styles.popup}
+    >
+      <Popup.Content className={styles.tooltipContent}>
+        <img className={styles.popup_info} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg" />
+        <p className={styles.popup_content}>
+          You must have your ETH on Polygon<br /> to mint this wearable. You can<br /> bridge your ETH from Mainnet to<br /> Polygon <a href="/">here.</a>
+        </p>
+      </Popup.Content>
+    </Popup>
+  );
+};
+
+export default IceMintETHTooltip;

@@ -1,6 +1,6 @@
 import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../../store';
-import Biconomy from '@biconomy/mexa';
+import { Biconomy } from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button, Divider, Loader, Icon } from 'semantic-ui-react';
 import MetaTx from '../../common/MetaTx';
@@ -9,7 +9,7 @@ import Aux from '../_Aux';
 import Images from '../../common/Images';
 import Global from '../Constants';
 
-const ContentMining = (props) => {
+const ContentMining = props => {
   // get user's status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -258,7 +258,7 @@ const ContentMining = (props) => {
                     }}
                   >
                     <p className="earned-text">Roulette Rate / 1 DG</p>
-                    <p className="earned-amount stat">17,700</p>
+                    <p className="earned-amount stat">24,300</p>
                   </span>
                 </span>
 
@@ -277,7 +277,7 @@ const ContentMining = (props) => {
                     }}
                   >
                     <p className="earned-text">Blackjack Rate / 1 DG</p>
-                    <p className="earned-amount stat">60,000</p>
+                    <p className="earned-amount stat">82,000</p>
                   </span>
                 </span>
               </div>
@@ -349,7 +349,7 @@ const ContentMining = (props) => {
                     }}
                   >
                     <p className="earned-text">Roulette Rate / 1 DG</p>
-                    <p className="earned-amount stat">9,700</p>
+                    <p className="earned-amount stat">22,000</p>
                   </span>
                 </span>
 
@@ -368,7 +368,7 @@ const ContentMining = (props) => {
                     }}
                   >
                     <p className="earned-text">Blackjack Rate / 1 DG</p>
-                    <p className="earned-amount stat">33,000</p>
+                    <p className="earned-amount stat">74,000</p>
                   </span>
                 </span>
               </div>
@@ -439,7 +439,7 @@ const ContentMining = (props) => {
                     }}
                   >
                     <p className="earned-text">Roulette Rate / 1 DG</p>
-                    <p className="earned-amount stat">139,000</p>
+                    <p className="earned-amount stat">400,000</p>
                   </span>
                 </span>
 
@@ -458,7 +458,7 @@ const ContentMining = (props) => {
                     }}
                   >
                     <p className="earned-text">Blackjack Rate / 1 DG</p>
-                    <p className="earned-amount stat">472,000</p>
+                    <p className="earned-amount stat">1,350,000</p>
                   </span>
                 </span>
               </div>
@@ -527,7 +527,7 @@ const ContentMining = (props) => {
                     }}
                   >
                     <p className="earned-text">Roulette Rate / 1 DG</p>
-                    <p className="earned-amount stat">5</p>
+                    <p className="earned-amount stat">7</p>
                   </span>
                 </span>
 
@@ -546,7 +546,7 @@ const ContentMining = (props) => {
                     }}
                   >
                     <p className="earned-text">Blackjack Rate / 1 DG</p>
-                    <p className="earned-amount stat">15</p>
+                    <p className="earned-amount stat">23</p>
                   </span>
                 </span>
               </div>

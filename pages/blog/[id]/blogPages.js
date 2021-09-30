@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from 'react';
 import Screen from '../../../components/blogdetail/screen';
 import { GlobalContext } from '../../../store';
-import { Segment, Modal } from 'semantic-ui-react';
+import { Segment } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 import ButterCMS from '../../../common/ButterCMS';
 
-const BlogDetail = ({ page_title, featured_image, page_summary }) => {
+const BlogDetail = () => {
   const router = useRouter();
   const [state, dispatch] = useContext(GlobalContext);
   const slug = router.query.id;
@@ -23,7 +23,7 @@ const BlogDetail = ({ page_title, featured_image, page_summary }) => {
 
   useEffect(() => {
     const getPages = async () => {
-      const { data } = await ButterCMS.post.list({ page_size: 50 });
+      const { data } = await ButterCMS.post.list({ page_size: 60 });
       dispatch({
         type: 'update_pages',
         data,
@@ -33,7 +33,7 @@ const BlogDetail = ({ page_title, featured_image, page_summary }) => {
   }, []);
 
   return (
-    <Segment vertical style={{ top: '36px' }}>
+    <Segment vertical style={{ top: '180px' }}>
       {currentPage && (
         <Screen
           slug={currentPage.slug}
@@ -54,7 +54,7 @@ const BlogDetail = ({ page_title, featured_image, page_summary }) => {
 
 BlogDetail.getInitialProps = async ({ query }) => {
   const slug = query.id;
-  const { data } = await Butter.instance.post.list({ page_size: 50 });
+  const { data } = await Butter.instance.post.list({ page_size: 60 });
   const currentPage = data.data.find((page) => page.slug === slug);
   var currentPage_title = currentPage.title;
   currentPage_title = currentPage_title.replace(': ', ':');

@@ -68,7 +68,7 @@ const ContentAirdrop = (props) => {
 
   return (
     <Aux>
-      <div className="DG-liquidity-container">
+      <div className="DG-liquidity-container" style={{ marginTop: '60px' }}>
         <div className="DG-column unclaimed">
           <p className="earned-amount">Unclaimed</p>
 

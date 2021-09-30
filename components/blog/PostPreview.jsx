@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import { Container } from 'semantic-ui-react';
-// import Global from '../Constants';
 import Images from '../../common/Images';
 
 const PostPreview = ({
@@ -10,7 +9,6 @@ const PostPreview = ({
   categories,
   created,
   featured_image,
-  // url,
   slug,
 }) => {
   return (

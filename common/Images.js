@@ -24,7 +24,7 @@ const Images = {
   ETH_CIRCLE:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1625014714/ETH_kzfhxr.png',
   PLAY_CIRCLE:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1621629997/Group_8_tvdkqo.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1628852507/coinPLAY_mcijhu.png',
   USDT_CIRCLE:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1620413765/TETHER_xhvz1p.png',
   ATRI_CIRCLE:
@@ -36,7 +36,7 @@ const Images = {
   SNAPSHOT_ICON:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1601537777/spaces_-MG4Ulnnabb2Xz3Lei9__avatar-1598893807850_ex4fgh.png',
   FEATURED_IMAGE:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1624046027/pic3_qzgm2l.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1630503315/ICE_Poker_DG_kf28sl.png',
   DG_COIN_LOGO:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1602117903/Group_14_Copy_2_afhe39.png',
   METAMASK:
@@ -57,7 +57,7 @@ const Images = {
   ATARI:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1625819988/image_46_Traced_jtgu8c.svg',
   DECENTRALAND:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1625819988/Group_221_dvg97e.svg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1628251343/logo-mono_jx3qy2.svg',
   MAKER:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1625819988/image_44_Traced_cgbhf3.svg',
   BICONOMY:
@@ -70,6 +70,14 @@ const Images = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1625837406/Full_Screen_Background_Animation_uo9h6b_tgv9jq.gif',
   HASHKEY:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1626533037/image_55_Traced_p39kac.svg',
+  VEGAS:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1627992075/image_oxwbsc.png',
+  BAYC: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1628251329/download_bzvaxj.png',
+  BINANCE:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1629728293/image_56_Traced_ywmz23.png',
+  // AMNESIA_COMMENT: remove this image when we are done with amnesia
+  AMNESIA_SOCIAL_SHARE:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1632943973/amnesia/amnesia_dg_logo_uvqb6x.png',
 };
 
 export default Images;

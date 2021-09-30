@@ -3,11 +3,14 @@ import Link from 'next/link';
 import { Popup, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
 import Global from 'components/Constants';
-
+import { useRouter } from 'next/router';
+// import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
 const ModalPopup = () => {
+  //const { t, i18n } = useTranslation();
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
+  const router = useRouter();
 
   // define local variables
   const [copied, setCopied] = useState(false);
@@ -15,6 +18,38 @@ const ModalPopup = () => {
   const [binance, setBinance] = useState(false);
   const [meatamaskEnabled, setMetamaskEnabled] = useState(false);
   const [isToastShow, setIsToastShow] = useState(false);
+
+  const [visibleStatus, setVisibleStatus] = useState(false);
+
+  useEffect(() => {
+    const showStatus = () => {
+      setVisibleStatus(true);
+    };
+    const hideStatus = () => {
+      setTimeout(() => {
+        setVisibleStatus(false);
+
+        //reset
+        dispatch({
+          type: 'set_dgLoading',
+          data: 0,
+        });
+
+        dispatch({
+          type: 'set_openModal',
+          data: {
+            resumeID: 0,
+            lockID: 0,
+          },
+        });
+      }, 5000);
+    };
+
+    showStatus();
+    if (state.dgLoading === 2) {
+      hideStatus();
+    }
+  }, [state.dgLoading]);
 
   const onCopy = () => {
     navigator.clipboard.writeText(state.userAddress);
@@ -26,6 +61,16 @@ const ModalPopup = () => {
 
     // track 'Affiliate Link' button click event
     analytics.track('Clicked AFFILIATE LINK button');
+  };
+
+  const disconnect = () => {
+    // update "login" status in store and LS
+    dispatch({
+      type: 'set_userLoggedIn',
+      data: false,
+    });
+
+    localStorage.removeItem('loggedIn');
   };
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -64,27 +109,74 @@ const ModalPopup = () => {
         position="bottom right"
         className="account-popup"
         trigger={
-          <Button
-            className="account-button"
-            style={{ paddingLeft: '24px', paddingRight: '24px' }}
-          >
-            <span>
-              <svg
-                style={{ marginRight: '6px', marginBottom: '-2px' }}
-                width="20"
-                height="19"
-                viewBox="0 0 20 19"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+          <div>
+            {visibleStatus > 0 && state.dgLoading > 0 && (
+              <div
+                style={{
+                  background: state.dgLoading > 1 ? '#007d39' : '#1c70c3',
+                  display: 'flex',
+                  alignItems: 'center',
+                  padding: '6px',
+                  borderRadius: '11px',
+                  position: 'absolute',
+                  marginTop: '-21px',
+                  marginLeft: '80px',
+                  fontSize: '13px',
+                  cursor: 'pointer',
+                  zIndex: 9999,
+                }}
+                className="account-transfer"
+                onClick={event => {
+                  event.stopPropagation();
+
+                  const pathURL = window.location.pathname;
+                  if (pathURL !== '/account') {
+                    router.push('/account');
+                  }
+                  const currentModal = state.openModal;
+                  console.log('dgLoading: =>', state.dgLoading);
+                  console.log('currentModal: =>', currentModal);
+
+                  dispatch({
+                    type: 'set_dgShow',
+                    data: true,
+                  });
+                }}
               >
-                <path
-                  d="M9.88965 18.9707C14.9961 18.9707 19.1973 14.7695 19.1973 9.66309C19.1973 4.54785 14.9961 0.34668 9.88086 0.34668C4.76562 0.34668 0.573242 4.54785 0.573242 9.66309C0.573242 14.7695 4.77441 18.9707 9.88965 18.9707ZM9.88965 12.7832C7.68359 12.7832 5.96094 13.5479 4.95898 14.5322C3.72852 13.2842 2.97266 11.5615 2.97266 9.66309C2.97266 5.82227 6.04883 2.7373 9.88086 2.7373C13.7129 2.7373 16.8066 5.82227 16.8066 9.66309C16.8066 11.5615 16.0508 13.2842 14.8115 14.5322C13.8096 13.5479 12.0957 12.7832 9.88965 12.7832ZM9.88965 11.4297C11.6123 11.4385 12.9395 9.96191 12.9395 8.08984C12.9395 6.32324 11.5947 4.82031 9.88965 4.82031C8.18457 4.82031 6.82227 6.32324 6.83984 8.08984C6.83984 9.96191 8.16699 11.4209 9.88965 11.4297Z"
-                  fill="white"
-                />
-              </svg>
-            </span>
-            <span>My Account</span>
-          </Button>
+                {state.dgLoading > 1 ? 'Transfer Complete' : 'Transfer Pending'}
+              </div>
+            )}
+            <Button
+              className="account-button"
+              style={{
+                paddingLeft: '24px',
+                paddingRight: '24px',
+                marginTop: 0,
+                marginRight: 0,
+                zIndex: 1,
+              }}
+            >
+              <span>
+                <svg
+                  style={{ marginRight: '6px', marginBottom: '-2px' }}
+                  width="20"
+                  height="19"
+                  viewBox="0 0 20 19"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9.88965 18.9707C14.9961 18.9707 19.1973 14.7695 19.1973 9.66309C19.1973 4.54785 14.9961 0.34668 9.88086 0.34668C4.76562 0.34668 0.573242 4.54785 0.573242 9.66309C0.573242 14.7695 4.77441 18.9707 9.88965 18.9707ZM9.88965 12.7832C7.68359 12.7832 5.96094 13.5479 4.95898 14.5322C3.72852 13.2842 2.97266 11.5615 2.97266 9.66309C2.97266 5.82227 6.04883 2.7373 9.88086 2.7373C13.7129 2.7373 16.8066 5.82227 16.8066 9.66309C16.8066 11.5615 16.0508 13.2842 14.8115 14.5322C13.8096 13.5479 12.0957 12.7832 9.88965 12.7832ZM9.88965 11.4297C11.6123 11.4385 12.9395 9.96191 12.9395 8.08984C12.9395 6.32324 11.5947 4.82031 9.88965 4.82031C8.18457 4.82031 6.82227 6.32324 6.83984 8.08984C6.83984 9.96191 8.16699 11.4209 9.88965 11.4297Z"
+                    fill="white"
+                  />
+                </svg>
+              </span>
+              <span>
+                {/* {t('navMenu.MYACCOUNT')} */}
+                My Account
+              </span>
+            </Button>
+          </div>
         }
       >
         <span>
@@ -199,6 +291,9 @@ const ModalPopup = () => {
                 My Account{' '}
               </p>
             </Link>
+            {/*<Link href="/account/ice">
+              <p className="account-dropdown-item"> Play to Earn </p>
+            </Link>*/}
             <Link href="/account/items">
               <p className="account-dropdown-item"> My Items </p>
             </Link>
@@ -208,12 +303,12 @@ const ModalPopup = () => {
             <Link href="/account/referrals">
               <p className="account-dropdown-item"> Referrals </p>
             </Link>
-            {/*<a onClick={() => disconnectMetaMask()}>
+            <a onClick={disconnect}>
               <p className="account-dropdown-item"> Disconnect </p>
-            </a>*/}
+            </a>
             <Button
               className={binance ? 'buy-dg-button binance' : 'buy-dg-button'}
-              href="https://info.uniswap.org/pair/0x44c21F5DCB285D92320AE345C92e8B6204Be8CdF"
+              href="https://app.uniswap.org/#/swap?outputCurrency=0xee06a81a695750e71a662b51066f2c74cf4478a0"
               target="_blank"
             >
               Buy $DG
@@ -223,7 +318,7 @@ const ModalPopup = () => {
       </Popup>
 
       {copied ? (
-        <div className={copied ? 'copied-toast' : 'copied-toast hidden'}>
+        <div className={copied ? 'copied-toast show' : 'copied-toast'}>
           <h3 className="copied-text">Wallet address copied!</h3>
         </div>
       ) : null}
@@ -232,3 +327,4 @@ const ModalPopup = () => {
 };
 
 export default ModalPopup;
+

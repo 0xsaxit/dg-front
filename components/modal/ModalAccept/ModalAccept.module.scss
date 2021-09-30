@@ -8,6 +8,10 @@
 	font-size: 18px;
 	font-family: Larsseit-Bold;
 	background: #006EFF;
+
+	&:hover {
+		filter: brightness(0.9) !important;
+	}
 }
 
 .terms_modal {
@@ -59,5 +63,9 @@
 		font-size: 18px;
 		font-family: Larsseit-Bold;
 		background: #006EFF;
+
+		&:hover {
+			filter: brightness(0.9) !important;
+		}
 	}
 }

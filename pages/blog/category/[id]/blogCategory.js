@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../../../store';
-import { Divider } from 'semantic-ui-react';
 import _ from 'lodash';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -14,7 +13,7 @@ function blogCategory() {
 
   useEffect(() => {
     const getPages = async () => {
-      const { data } = await ButterCMS.post.list({ page_size: 50 });
+      const { data } = await ButterCMS.post.list({ page_size: 60 });
       dispatch({
         type: 'update_pages',
         data,
@@ -30,8 +29,8 @@ function blogCategory() {
         <div style={{ marginLeft: '0px' }}>
           <span className="account-other-p" style={{ display: 'flex' }}>
             <span style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-              <span 
-                style={{ 
+              <span
+                style={{
                   margin: '100px 0px 0px 0px',
                   fontSize: '24px',
                   fontFamily: 'Larsseit-ExtraBold',
@@ -63,7 +62,7 @@ function blogCategory() {
                   <div className="post-info">
                     <span
                       className="bottom-info"
-                      style={{ display: 'flex' }}
+                      style={{ display: 'flex', justifyContent: 'center' }}
                     >
                       <div
                         className="post-category"
@@ -74,7 +73,7 @@ function blogCategory() {
                             page.categories[0].name}
                         </span>
                       </div>
-                      <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)', marginTop: '-1px' }}>  • </span>
+                      <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)', marginTop: '-1px' }} />
                       <div className="post-date">
                         <span>
                           {new Date(page.created).toLocaleDateString(
@@ -90,21 +89,24 @@ function blogCategory() {
                     </span>
                     <div className="bottom">
                       <div className="blog-title">
-                          <h4
-                            style={{
-                              fontSize: '24px',
-                              fontfamily: 'LarsseitBold',
-                            }}
-                          >
-                            {page.title}
-                          </h4>
-                          <p
-                            style={{
-                              fontFamily: 'Larsseit-Regular',
-                              fontSize: '18px',
-                              paddingTop: '8px',
-                            }}
-                          >
+                        <h4
+                          style={{
+                            fontSize: '20px',
+                            fontfamily: 'LarsseitBold',
+                            marginTop: '10px',
+                            textAlign: 'center'
+                          }}
+                        >
+                          {page.title}
+                        </h4>
+                        <p
+                          style={{
+                            fontFamily: 'Larsseit-Regular',
+                            fontSize: '15px',
+                            paddingTop: '15px',
+                            textAlign: 'center'
+                          }}
+                        >
                           {page.summary.split('.', 1)[0]}
                         </p>
                       </div>

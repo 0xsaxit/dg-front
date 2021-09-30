@@ -1,0 +1,159 @@
+@import 'styles/base.scss';
+
+.history_container {
+  margin: auto;
+
+  @include mq($until: extra-large) {
+    width: 100%;
+  }
+
+  @include mq($from: extra-large) {
+    width: 75%;
+  }
+
+  .title {
+    font-size: 24px;
+    font-family: Larsseit-ExtraBold;
+    margin: 60px 0px 24px 0px;
+  }
+
+  .history_column {
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    height: 68px;
+    padding: 19px 40px 30px 40px;
+  }
+
+  .row_type {
+    font-size: 18px;
+    font-family: Larsseit-Bold;
+    margin: -38px 0px -30px 40px;
+  }
+
+  .row_date {
+    font-size: 14px;
+    font-family: Larsseit-Bold;
+    color: rgba(255, 255, 255, 0.75) !important;
+    margin: 28px 0px 0px 40px;
+  }
+
+  .error_container {
+    padding-top: 20px;
+  }
+
+  .error_state {
+    font-family: Larsseit-Bold;
+    font-size: 18px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6) !important;
+  }
+
+  .session_history {
+    background-color: rgba(255, 255, 255, 0);
+    font-size: 18px;
+    font-weight: bold;
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    color: white;
+    height: 40px;
+    padding: 0 12px;
+    line-height: 0px;
+    opacity: 100%;
+    text-transform: capitalize;
+  
+    &:hover,
+    &:focus{
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+  }
+}
+
+.menu_info_modal {
+  padding: 40px 54px;
+  width: 584px !important;
+
+  .button_close {
+    color: white;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    background: black;
+    border-radius: 100%;
+    padding: 8px 10px 8px 10px;
+    position: absolute;
+    left: 0;
+    top: -44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .title {
+    font-weight: 800;
+    font-size: 32px;
+    text-align: center;
+    line-height: 44px;
+  }
+
+  .date {
+    font-weight: 400;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .your_hand {
+    width: 85px;
+    margin-right: 50px;
+  }
+
+  .table_cards {
+    width: 170px;
+    margin-right: 50px;
+  }
+
+  .pay_out {
+    width: 120px;
+  }
+
+  .main_wrapper {
+    max-height: 500px;
+    overflow: auto;
+  }
+
+  .pay_out_call {
+    color: white;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    height: 48px;
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 24px;
+      height: 24px;
+      margin-right: 12px;
+    }
+  }
+
+  .subtitle {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    color: white;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .hand_row {
+    display: flex;
+    justify-content: center;
+  }
+
+  img {
+    width: 34px;
+    height: 48px;
+  }
+}

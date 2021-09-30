@@ -3,14 +3,64 @@ import cn from 'classnames';
 import { useMediaQuery } from 'hooks';
 import Aux from 'components/_Aux';
 import styles from './DG.module.scss';
+// import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
 function SectionTwo() {
   const mobile = useMediaQuery('(max-width: 767px)');
   const tablet = useMediaQuery('(max-width: 992px)');
+  // const { t, i18n } = useTranslation();
 
   return (
     <Aux>
       <div className={cn(styles.section_two, 'container-fluid')}>
+
+        <div className={styles.tout_container}>
+          <h1 className={styles.tout_h1}>Wear NFTs, Play Poker, Earn ICE</h1>
+          <p className={styles.tout_p}>
+            Play to earn with free play poker in the metaverse. Coming this October.
+          </p> 
+          <div>
+            {!mobile && (
+              <img
+                className={styles.tout_image}
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632060620/Group_805_gxueoj.png"
+                type="video/mp4"
+              ></img>
+            )}
+            {mobile && (
+              <img
+                className={styles.tout_image}
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632060620/Group_805_gxueoj.png"
+                alt="img"
+              />
+            )}
+          </div>
+          <span
+            className={styles.tout_span}
+          >
+            <Button
+              className={styles.grey_button}
+              href="/blog/decentral-games-announces-play-to-earn-metaverse-poker-ice-token-rollout"
+              target="_blank"
+            >
+            {mobile ?
+              'Blog' :
+              'Announcement'
+            }
+            </Button>
+            <Button
+              className={styles.blue_button}
+              href="https://ice.decentral.games"
+              target="_blank"
+            >
+            {mobile ?
+              'Info' :
+              'White Paper'
+            }
+            </Button>
+          </span>
+        </div>
+
         <div
           className={cn(
             'row flex-md-row flex-column-reverse',
@@ -26,30 +76,39 @@ function SectionTwo() {
             )}
             style={{ position: 'relative', zIndex: '3' }}
           >
-            <h1 className={styles.section_h1}>Play to Earn</h1>
+            <h1 className={styles.section_h1}>
+              {/* {t('Home.PLAYTOEARN')} */}
+              Play to Earn
+            </h1>
             <p className={styles.section_p}>
-              Play games in the metaverse and earn rewards of up to 50% of your
-              expected losses back in the $DG token.
+              {/* {t('Home.PLAY_GAMES_META')} */}
+              Play games in the metaverse and earn $DG token win or lose. Get up to 50% of your expected losses back in $DG.
             </p>
 
             <span
-              className={cn(
-                mobile ? 'w-100 d-flex justify-content-center' : ''
-              )}
+              className={styles.button_span}
             >
               <Button
                 className={styles.grey_button}
                 href="https://docs.decentral.games/"
                 target="_blank"
               >
-                Learn More
+              {mobile ?
+                'Info' //t('Home.INFO') 
+                :
+                'Learn More' //t('Home.LEARNMORE')
+              }
               </Button>
               <Button
                 className={styles.blue_button}
                 href="/games"
                 target="_blank"
               >
-                See Games
+              {mobile ?
+                'Games' // t('Home.GAMES') 
+                :
+                'See Games' // t('Home.SEEGAMES')
+              }
               </Button>
             </span>
           </div>
@@ -121,29 +180,39 @@ function SectionTwo() {
             )}
             style={{ position: 'relative', zIndex: '3' }}
           >
-            <h1 className={styles.section_h1}>Earn APY%</h1>
-            <p className={styles.section_p_two}>
-              Stake $DG in governance and earn up to 40% in yeild rewards.
+            <h1 className={styles.section_h1}>
+              {/* {t('Home.EARNAPY')} */}
+              Earn APY%
+            </h1>
+            <p className={styles.section_p}>
+              {/* {t('Home.STAKE_DG_GOVERNANCE')} */}
+              Stake $DG in governance and earn up to 40% in yield rewards.
             </p>
 
             <span
-              className={cn(
-                mobile ? 'w-100 d-flex justify-content-center' : ''
-              )}
+              className={styles.button_span}
             >
               <Button
                 className={styles.grey_button}
                 href="https://docs.decentral.games/"
                 target="_blank"
               >
-                Learn More
+              {mobile ?
+                'Info' //t('Home.INFO')
+                :
+                'Learn More' //t('Home.LEARNMORE')
+              }
               </Button>
               <Button
                 className={styles.blue_button}
                 href="https://docs.decentral.games/getting-started/earn-dg-gov-rewards"
                 target="_blank"
               >
-                Earn APY%
+              {mobile ?
+                'Earn' //t('Home.EARN') 
+                :
+                'Earn APY%' //t('Home.EARNAPY')
+              }
               </Button>
             </span>
           </div>
@@ -167,27 +236,35 @@ function SectionTwo() {
             style={{ position: 'relative', zIndex: '3' }}
           >
             <h1 className={styles.section_h1}>
-              Vote in the DAO <br /> (Be The House)
+            Vote in the DAO {/* {t('Home.VOTE_IN_THE_DAO')}  */}
+              <br /> 
+              (Be The House) {/* {t('Home.BE_THE_HOUSE')} */}
             </h1>
             <p className={styles.section_p}>
-              With the $DG DAO, you own the casino, You control the profits. You
-              vote for new games and proposals.
+              {/* {t('Home.WITH_THE_DG_DAO')} */}
+              With the $DG DAO, you own the casino. Control the profits, vote for new games, and decide on feature proposals.
             </p>
 
             <span
-              className={cn(
-                mobile ? 'w-100 d-flex justify-content-center' : ''
-              )}
+              className={styles.button_span}
             >
               <Button
                 className={styles.grey_button}
                 href="https://docs.decentral.games/"
                 target="_blank"
               >
-                Learn More
+              {mobile ?
+                'Info' // t('Home.INFO') 
+                :
+                'Learn More '// t('Home.LEARNMORE')
+              }
               </Button>
               <Button className={styles.blue_button} href="/dg/">
-                {tablet ? 'Explore' : 'Explore Treasury'}
+                {tablet ? 
+                  'Explore' // t('Home.EXPLORER')
+                  : 
+                  'Explore Treasury' // t('Home.EXPLORER_THREASURY')
+                }
               </Button>
             </span>
           </div>
@@ -224,3 +301,4 @@ function SectionTwo() {
 }
 
 export default SectionTwo;
+

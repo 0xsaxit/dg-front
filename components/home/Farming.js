@@ -61,8 +61,10 @@ const Farming = props => {
   // fetch circulating supply
   useEffect(() => {
     (async function () {
-      const json = await Fetch.DG_SUPPLY_GECKO();
-      setPrice(json.market_data.current_price.usd);
+      const json = await Fetch.DG_SUPPLY_GECKO();      
+      if(json && json.market_data) {
+        setPrice(json.market_data.current_price.usd);
+      }
     })();
   }, []);
 
@@ -215,7 +217,7 @@ const Farming = props => {
   // helper functions
   function submenu() {
     return (
-      <div style={{ margin: '120px 0px 00px 0px' }}>
+      <div style={{ margin: '270px 0px 00px 0px' }}>
         <div className="account-other-tabs">
           {DGState === 'treasury' ? (
             <p className="account-other-p" style={{ width: '100%' }}>

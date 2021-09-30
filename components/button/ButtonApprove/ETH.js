@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../../store';
-import Biconomy from '@biconomy/mexa';
+import { Biconomy } from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
 import ABI_CHILD_TOKEN_WETH from '../../ABI/ABIChildTokenWETH';
@@ -17,20 +17,6 @@ function ETH({ passed = false }) {
   const [tokenContract, setTokenContract] = useState({});
   const [web3, setWeb3] = useState({});
   const [spenderAddress, setSpenderAddress] = useState('');
-  // const [value, setValue] = useState(0);
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // if the user has also authorized MANA set status value to 8, otherwise 6
-  // useEffect(() => {
-  //   if (state.userStatus >= 4) {
-  //     if (state.userStatus === 7) {
-  //       setValue(8);
-  //     } else {
-  //       setValue(6);
-  //     }
-  //   }
-  // }, [state.userStatus]);
 
   useEffect(() => {
     if (state.userStatus >= 4) {
@@ -78,11 +64,6 @@ function ETH({ passed = false }) {
       type: 'active_status',
       data: true,
     });
-
-    // dispatch({
-    //   type: 'update_status',
-    //   data: value,
-    // });
 
     // update user's token array in database
     console.log("Updating user's token array in database: ETH");

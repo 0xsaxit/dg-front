@@ -1,6 +1,6 @@
 import { GlobalContext } from '../../store';
 import { useContext } from 'react';
-import Farming from '../../components/home/Farming';
+import DAO from '../../components/home/DAO';
 import Layout from '../../components/Layout.js';
 import Header from '../../components/Header';
 import Global from '../../components/Constants';
@@ -19,9 +19,9 @@ const Mining = () => {
       />
 
       {state.userStatus ? (
-        <Farming DGState={'mining'} />
+        <DAO DGState={'mining'} />
       ) : (
-        <div className="account-other-inner-p">
+        <div className="account-other-inner-p" style={{ marginTop: '150px' }}>
           You must connect your wallet to view this page
         </div>
       )}

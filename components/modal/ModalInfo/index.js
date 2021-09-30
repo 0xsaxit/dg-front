@@ -6,6 +6,7 @@ import styles from './ModalInfo.module.scss';
 import cn from 'classnames';
 import Global from '../../Constants';
 
+
 const ModalInfo = () => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -49,8 +50,10 @@ const ModalInfo = () => {
   useEffect(() => {
     (async function () {
       const json = await Fetch.DG_SUPPLY_GECKO();
-      setSupply(json.market_data.circulating_supply);
-      setDGPrice(json.market_data.current_price.usd);
+      if(json && json.market_data) {
+        setSupply(json.market_data.circulating_supply);
+        setDGPrice(json.market_data.current_price.usd);
+      }
     })();
   }, []);
 
@@ -82,7 +85,7 @@ const ModalInfo = () => {
       trigger={
         <span>
           {!state.DGBalances.BALANCE_KEEPER_DG ? (
-            <Button className="account-button">
+            <Button className="account-button" style={{ marginTop: 0 }}>
               <p className="right-menu-text bnb">
                 <Loader
                   active
@@ -98,7 +101,7 @@ const ModalInfo = () => {
               </p>
             </Button>
           ) : state.DGBalances.BALANCE_KEEPER_DG == 10 ? null : (
-            <Button className="account-button">
+            <Button className="account-button" style={{ marginTop: 0 }}>
               <p className="right-menu-text bnb">
                 {DGTotal.toLocaleString()} DG
               </p>

@@ -10,14 +10,12 @@ import Global from '../components/Constants';
 import Images from '../common/Images';
 import Spinner from '../components/Spinner';
 
-
 const Wildcard = () => {
   // dispatch affiliate referral address to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
   const [affiliateAddress, setAffiliateAddress] = useState(true);
-  const [isErrorMessage, setIsErrorMessage] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   const router = useRouter();
@@ -42,14 +40,6 @@ const Wildcard = () => {
     setIsLoading(false);
   }, [router]);
 
-  useEffect(() => {
-    if (!state.userStatus) {
-      setIsErrorMessage(true);
-    } else {
-      setIsErrorMessage(false);
-    }
-  }, [state.userStatus]);
-
   return (
     <Layout>
       {affiliateAddress == true ? (
@@ -60,11 +50,7 @@ const Wildcard = () => {
             image={Images.SOCIAL_SHARE_2}
           />
 
-          {isLoading === true ? (
-            <Spinner background={1} />
-          ) : (
-            <GetStarted />
-          )}
+          {isLoading === true ? <Spinner background={1} /> : <GetStarted />}
         </Aux>
       ) : (
         <Aux>
