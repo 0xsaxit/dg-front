@@ -349,7 +349,10 @@ const MenuTop = props => {
         <div
           className={cn(
             // AMNESIA_COMMENT: amnesia header class should be removed after we are done with amnesia
-            state.isAmnesiaPage && styles.amnesia_header,
+            state.isAmnesiaPage &&
+              scrollState === 'top' &&
+              !open &&
+              styles.amnesia_header,
             styles.dashboard_menu_container,
             open || scrollState !== 'top' || router.asPath !== '/'
               ? styles.dark
