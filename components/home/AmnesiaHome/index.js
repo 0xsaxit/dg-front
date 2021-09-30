@@ -107,8 +107,9 @@ const AmnesiaHome = () => {
                     styles.image_section,
                     ' d-flex justify-content-center mb-5'
                   )}
+                  style={{ maxWidth: '90px' }}
                 >
-                  <img src={images.BINANCE} />
+                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1633030501/chain-smart-bsc-v_2x_1_Traced_crhqky.png" />
                 </div>
                 <div
                   className={cn(
@@ -139,7 +140,7 @@ const AmnesiaHome = () => {
                     styles.image_section,
                     ' d-flex justify-content-center mb-5'
                   )}
-                  style={{ width: '5%', height: '5%', alignSelf: 'center' }}
+                  style={{ width: '10%', height: '10%', alignSelf: 'center' }}
                 >
                   <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1633021946/Logo-White-NFT4metaverse_udey6z.png" />
                 </div>
@@ -166,6 +167,15 @@ const AmnesiaHome = () => {
                   )}
                 >
                   <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1633024121/Imtoken_tni8m9.png" />
+                </div>
+                <div
+                  className={cn(
+                    styles.image_section,
+                    ' d-flex justify-content-center mb-5'
+                  )}
+                  style={{ maxWidth: '72px' }}
+                >
+                  <img src={images.DECENTRALAND} alt="DECENTRALAND" />
                 </div>
               </div>
 
