@@ -204,7 +204,7 @@ const AmnesiaHome = () => {
               />
               <img
                 className={styles.dates}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632937729/amnesia/dates_phase_1_uaoubf.png"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1633031982/image_5_a5ximv.png"
               />
 
               <div className={styles.buttons_container}>
