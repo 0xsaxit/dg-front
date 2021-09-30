@@ -1,6 +1,6 @@
+@import 'styles/base.scss';
+
 .container {
-  // height: 2810px;
-  // background: gray;
   background: black;
 
   .top_section {
@@ -9,6 +9,12 @@
     background-repeat: no-repeat;
     background-size: 100% 100%;
     padding: 160px 0 0;
+
+    @media screen and (max-width: 1200px) {
+      background-size: initial;
+      background-position: center;
+      height: 800px;
+    }
 
     .central_container {
       margin: 0 auto;
@@ -34,8 +40,7 @@
           width: 140px;
           height: 48px;
           color: white;
-          font-family: Larsseit-Regular;
-          font-weight: 700;
+          font-family: Larsseit-Bold;
           font-size: 17px;
           background: #181818;
         }
@@ -44,8 +49,7 @@
           width: 140px;
           height: 48px;
           color: white;
-          font-family: Larsseit-Regular;
-          font-weight: 700;
+          font-family: Larsseit-Bold;
           font-size: 17px;
           background: #9e1869;
         }
@@ -54,12 +58,11 @@
   }
 
   .bottom_section {
-    height: 1807px;
     position: relative;
     background-image: url('https://res.cloudinary.com/dnzambf4m/image/upload/v1632927968/amnesia/amnesia_stars_background.png');
     background-size: 100% 100%;
     overflow: hidden;
-    padding: 170px 54px 237px;
+    padding: 0 54px 237px;
 
     .clouds_top {
       position: absolute;
@@ -67,7 +70,6 @@
       left: 54px;
       height: 836px;
       width: 1114px;
-      // background-color: tomato;
       background-image: url('https://res.cloudinary.com/dnzambf4m/image/upload/v1632928095/amnesia/amnesia_clouds_1_nvigwg.png');
     }
 
@@ -78,7 +80,6 @@
       top: 600px;
       height: 1125px;
       width: 1500px;
-      // background-color: tomato;
       background-image: url('https://res.cloudinary.com/dnzambf4m/image/upload/v1632928095/amnesia/amnesia_clouds_2_umlwrv.png');
     }
 
@@ -90,63 +91,118 @@
       .artists_container {
         display: flex;
         justify-content: space-between;
-        height: 364px;
-        width: 1064px;
+        height: 282px;
+        width: 100%;
+
+        @include mq($until: medium) {
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-start;
+          height: 800px;
+        }
+        
+        @include mq($from: medium, $until: large) {
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-start;
+          height: 400px;
+        }
+
+        @media screen and (min-width: 1200px) {
+          width: 1070px;
+        } 
 
         .artists_text {
           margin-top: 108px;
           color: white;
-          font-family: Larsseit-Regular;
+          font-family: Larsseit-Bold;
           font-size: 36px;
-          font-weight: 700;
           line-height: 46px;
-          text-align: left;
+
+          @include mq($until: large) {
+            text-align: center;
+            margin: 0;
+          }
         }
 
         .artists {
           width: 490px;
+
+          @include mq($until: medium) {
+            margin-top: 60px;
+          }
+
+          @include mq($from: medium, $until: large) {
+            margin-top: 30px;
+            height: 305px;
+          }
+
           .background_asset_1 {
           }
 
           .background_asset_2 {
           }
 
-          img {
-            width: 132px;
-            height: 166px;
-            filter: drop-shadow(0px 3.35506px 5.87136px rgba(0, 0, 0, 0.4));
-            border-radius: 20px;
-          }
-
-          .artists_top {
-            padding: 0 89px;
+          .artists_cards {
             display: flex;
             justify-content: space-between;
+            height: 100%;
+
+            @include mq($until: medium) {
+              height: 300px;
+              flex-direction: column;
+              align-items: center;
+              width: 100%;
+            }
 
             img {
-              &:nth-of-type(1) {
-                z-index: 3;
-              }
+              width: 132px;
+              height: 166px;
+              filter: drop-shadow(0px 3.35506px 5.87136px rgba(0, 0, 0, 0.4));
+              border-radius: 20px;
+            }
 
-              &:nth-of-type(2) {
-                z-index: 1;
+            .anifisia {
+              margin: auto 0 0;
+              z-index: 4;
+
+              @include mq($until: medium) {
+                margin: 0 auto 0 110px;
               }
             }
-          }
 
-          .artists_bottom {
-            margin-top: -50px;
-            display: flex;
-            justify-content: space-between;
+            .luciano1 {
+              margin: 0 0 0 -43px;
+              z-index: 3;
 
-            img {
-              &:nth-of-type(1) {
-                z-index: 4;
+              @include mq($until: medium) {
+                margin: -43px 110px 0 auto;
               }
+            }
+            
+            .benny {
+              margin: auto 0 0 -43px;
+              z-index: 2;
 
-              &:nth-of-type(2) {
-                z-index: 2;
+              @include mq($until: medium) {
+                margin: -43px auto 0 110px;
               }
+            }
+            
+            .luciano {
+              margin: 0 0 0 -43px;
+              z-index: 1;
+              @include mq($until: medium) {
+                margin: -43px 110px 0 auto;
+              }
+            }
+            
+            .paul {
+              margin: auto 0 0 -43px;
+              @include mq($until: medium) {
+                margin: -43px auto 0 110px;
+              }
+              
             }
           }
         }
@@ -159,26 +215,114 @@
         flex-direction: column;
         align-items: center;
 
+        @include mq($until: medium) {
+          margin-top: 80px;
+        }
+
         .title {
-          font-family: Larsseit-Regular;
+          font-family: Larsseit-Bold;
           font-size: 36px;
-          font-weight: 700;
           line-height: 49px;
           letter-spacing: 0em;
           text-align: center;
           margin: 0;
 
+          @include mq($until: medium) {
+            margin-top: 130px;
+          }
+
           &:nth-of-type(2) {
             margin: 186px 0 0;
+
+            @include mq($until: medium) {
+            margin-top: 130px;
+          }
           }
         }
 
-        img {
+        .launch_partners_contanier {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
           margin-top: 47px;
+          padding: 0 93px;
+          
+          @media screen and (max-width: 1200px) {
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+          }
 
-          &:nth-of-type(2) {
-            height: 217px;
-            width: 564px;
+          img {
+            @media screen and (max-width: 1200px) {
+              margin-top: 20px;
+
+              &:first-of-type {
+                margin-top: 0;
+              }
+            }
+          }
+
+          .djenerates {
+            height: 61px;
+            width: 186px;
+          }
+
+          .decrypto {
+            height: 42px;
+            width: 232px;
+          }
+
+          .binance {
+            height: 46px;
+            width: 188px;
+          }
+
+          .coingecko {
+            height: 58px;
+            width: 211px;
+          }
+
+          .theta {
+            height: 47px;
+            width: 167px;
+          }
+        }
+      }
+
+      .media_partners_container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 47px;
+        margin-left: 35px;
+
+        @include mq($until: large) {
+          flex-direction: column;
+          align-items: center;
+          padding: 0;
+          margin-top: 30px;
+          margin-left: 0;
+        }
+
+        .eightbtc {
+          height: 44px;
+        }
+
+        .chinanews {
+          margin: 0 50px;
+
+          @include mq($until: large) {
+            margin-top: 30px;
+          }
+        }
+
+        .edm {
+          margin-top: -34px;
+          height: 78px;
+
+          @include mq($until: large) {
+            margin-top: 30px;
           }
         }
       }
@@ -191,6 +335,10 @@
         flex-direction: column;
         align-items: center;
 
+        @include mq($until: large) {
+          margin-top: 180px;
+        }
+
         .phase_1 {
           height: 46px;
           width: 348px;
@@ -199,6 +347,11 @@
         .dates {
           height: 69px;
           width: 614px;
+
+          @include mq($until: medium) {
+            height: 30px;
+            width: 300px;
+          }
         }
 
         .buttons_container {
@@ -216,8 +369,7 @@
             width: 140px;
             height: 48px;
             color: white;
-            font-family: Larsseit-Regular;
-            font-weight: 700;
+            font-family: Larsseit-Bold;
             font-size: 17px;
             background: #181818;
           }
@@ -226,8 +378,7 @@
             width: 140px;
             height: 48px;
             color: white;
-            font-family: Larsseit-Regular;
-            font-weight: 700;
+            font-family: Larsseit-Bold;
             font-size: 17px;
             background: #9e1869;
           }

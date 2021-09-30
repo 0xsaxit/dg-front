@@ -29,7 +29,7 @@ const Amnesia = () => {
       <main className={styles.container}>
         <section className={styles.top_section}>
           <div className={styles.central_container}>
-            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632930108/amnesia/amnesia_splash_wuozco.png" />
+            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632955194/AMNESIA_3x_einmb6.png" />
 
             <div className={styles.buttons_container}>
               <a
@@ -57,37 +57,26 @@ const Amnesia = () => {
                 <div className={styles.artists_background_asset_1} />
                 <div className={styles.artists_background_asset_2} />
 
-                <div className={styles.artists_top}>
+                <div className={styles.artists_cards}>
                   <img
-                    src={
-                      'https://res.cloudinary.com/dnzambf4m/image/upload/v1632934438/amnesia/Luciano1_vwgk8u.jpg'
-                    }
+                    className={styles.anifisia}
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632934438/amnesia/Anfisia_Letyago_uw8q0f.jpg"
                   />
-
                   <img
-                    src={
-                      'https://res.cloudinary.com/dnzambf4m/image/upload/v1632934439/amnesia/Luciano_fndcro.jpg'
-                    }
+                    className={styles.luciano1}
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632934438/amnesia/Luciano1_vwgk8u.jpg"
                   />
-                </div>
-
-                <div className={styles.artists_bottom}>
                   <img
-                    src={
-                      'https://res.cloudinary.com/dnzambf4m/image/upload/v1632934438/amnesia/Anfisia_Letyago_uw8q0f.jpg'
-                    }
+                    className={styles.benny}
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632934438/amnesia/Benny_Benassi_itii6q.jpg"
                   />
-
                   <img
-                    src={
-                      'https://res.cloudinary.com/dnzambf4m/image/upload/v1632934438/amnesia/Benny_Benassi_itii6q.jpg'
-                    }
+                    className={styles.luciano}
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632934439/amnesia/Luciano_fndcro.jpg"
                   />
-
                   <img
-                    src={
-                      'https://res.cloudinary.com/dnzambf4m/image/upload/v1632934438/amnesia/Paul_Van_Dyk_eowhes.jpg'
-                    }
+                    className={styles.paul}
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632934438/amnesia/Paul_Van_Dyk_eowhes.jpg"
                   />
                 </div>
               </div>
@@ -95,10 +84,44 @@ const Amnesia = () => {
 
             <div className={styles.partners_container}>
               <h2 className={styles.title}>Launch Partners</h2>
-              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632937137/amnesia/launch_partners_bhfroa.png" />
+              <div className={styles.launch_partners_contanier}>
+                <img
+                  className={styles.djenerates}
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632958336/amnesia/DJenerates_hrh2r5.png"
+                />
+                <img
+                  className={styles.decrypto}
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632958336/amnesia/decrypto_ygrabn.png"
+                />
+                <img
+                  className={styles.binance}
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632958336/amnesia/Binance_SC_onyia7.png"
+                />
+                <img
+                  className={styles.coingecko}
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632958336/amnesia/CoinGecko_fgiu6i.png"
+                />
+                <img
+                  className={styles.theta}
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632958336/amnesia/theta_wpc4kb.png"
+                />
+              </div>
 
               <h2 className={styles.title}>Media Partners</h2>
-              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632937365/amnesia/media_partners_j265hc.png" />
+              <div className={styles.media_partners_container}>
+                <img
+                  className={styles.eightbtc}
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632959145/amnesia/8btc_atozbz.png"
+                />
+                <img
+                  className={styles.chinanews}
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632959894/amnesia/chainnews_ksvetu.png"
+                />
+                <img
+                  className={styles.edm}
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632959146/amnesia/edm_zklmni.png"
+                />
+              </div>
             </div>
 
             <div className={styles.dates_container}>
