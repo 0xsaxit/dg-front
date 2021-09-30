@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import Web3 from 'web3';
-import BigNumber from 'bignumber.js'
+import BigNumber from 'bignumber.js';
 
 import ABI_ICE_REGISTRANT from '../components/ABI/ABIICERegistrant.json';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
@@ -26,7 +26,6 @@ function ICEAttributes() {
   const [ICEMaticContract, setICEMaticContract] = useState({});
   const [collectionV2Contract, setCollectionV2Contract] = useState({});
   const [iceTokenContract, setIceTokenContract] = useState({});
-
 
   // const userWalletAddress = '0x7146cae915f1Cd90871ecc69999BEfFdcaf38ff9'; // temporary
 
@@ -135,7 +134,9 @@ function ICEAttributes() {
             .balanceOf(state.userAddress)
             .call();
 
-          const actual_amount = new BigNumber(ice_amount).div(new BigNumber(10).pow(18)).toString(10);          
+          const actual_amount = new BigNumber(ice_amount)
+            .div(new BigNumber(10).pow(18))
+            .toString(10);
           dispatch({
             type: 'set_IceAmount',
             data: actual_amount,
@@ -160,14 +161,9 @@ function ICEAttributes() {
         });
 
         // get the user's one-hour cool-down status
-        console.log(
-          ' ==== <Before getCoolDownStatus> ===='
-        );
+        console.log(' ==== <Before getCoolDownStatus> ====');
         const canPurchase = await getCoolDownStatus();
-        console.log(
-          '==== <After canPurchase> ==== ',
-          canPurchase
-        );
+        console.log('==== <After canPurchase> ==== ', canPurchase);
 
         dispatch({
           type: 'can_purchase',
@@ -176,10 +172,7 @@ function ICEAttributes() {
 
         // update global state token amounts/authorization status
         const tokenAmounts = await getTokenAmounts();
-        console.log(
-          '==== <tokenAmounts> ==== ',
-          tokenAmounts
-        );
+        console.log('==== <tokenAmounts> ==== ', tokenAmounts);
 
         dispatch({
           type: 'token_amounts',
@@ -193,9 +186,12 @@ function ICEAttributes() {
 
   // anytime user authorizes NFTs on /ice pages this code will execute
   useEffect(() => {
-    if (state.iceWearableItems.length) {
+    if (instances && state.iceWearableItems.length) {
       (async function () {
         let authArray = [];
+
+        // console.log('ice wearables...');
+        // console.log(state.iceWearableItems);
 
         state.iceWearableItems.map(async (item, i) => {
           try {
@@ -213,8 +209,8 @@ function ICEAttributes() {
           }
         });
 
-        console.log('NFT authorizations...');
-        console.log(authArray);
+        // console.log('NFT authorizations...');
+        // console.log(authArray);
 
         dispatch({
           type: 'nft_authorizations',
@@ -222,7 +218,7 @@ function ICEAttributes() {
         });
       })();
     }
-  }, [state.iceWearableItems, state.refreshNFTAuth]);
+  }, [instances, state.iceWearableItems, state.refreshNFTAuth]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////

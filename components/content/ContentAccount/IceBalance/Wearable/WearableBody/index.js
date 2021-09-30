@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import cn from 'classnames';
 import Aux from 'components/_Aux';
 import styles from './WearableBody.module.scss';
@@ -11,8 +11,37 @@ import { ItemExtra } from 'semantic-ui-react';
 
 function WearableBody({ state }) {
   // define local variables
+  const [itemLimitsArray, setItemLimitsArray] = useState([
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+  ]);
 
-  console.log("state.DGBalances.BALANCE_CHILD_DG ============================= ", state.DGBalances.BALANCE_CHILD_DG);
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  console.log(
+    'state.DGBalances.BALANCE_CHILD_DG ============================= ',
+    state.DGBalances.BALANCE_CHILD_DG
+  );
+
+  useEffect(() => {
+    const itemLimit0 = state.itemLimits[0];
+    const itemLimit5 = state.itemLimits[1];
+    const itemLimit10 = state.itemLimits[2];
+    const itemLimit15 = state.itemLimits[3];
+    const itemLimit20 = state.itemLimits[4];
+
+    let itemLimitsArray = [];
+    itemLimitsArray.push(itemLimit0);
+    itemLimitsArray.push(itemLimit5);
+    itemLimitsArray.push(itemLimit10);
+    itemLimitsArray.push(itemLimit15);
+    itemLimitsArray.push(itemLimit20);
+
+    setItemLimitsArray(itemLimitsArray);
+  }, [state.itemLimits]);
 
   return (
     <Aux>
@@ -29,6 +58,7 @@ function WearableBody({ state }) {
               >
                 <ICEDWearableCard
                   tokenID={item.tokenID}
+                  itemID={itemLimitsArray[index][1]}
                   url={item.meta_data.image}
                   desc={item.meta_data.description}
                   text={item.meta_data.name}
@@ -36,13 +66,20 @@ function WearableBody({ state }) {
                   rank="Rank x"
                   bonus="+15%"
                   balance={state.DGBalances.BALANCE_CHILD_DG}
-                  state={index+1}
+                  state={index + 1}
                 />
               </div>
             ))}
 
-            <div className={cn("col-lg-4 col-md-4 col-sm-6 col-xs-12", styles.wearable_card)}>
-               <ICEDWearableCard
+            <div
+              className={cn(
+                'col-lg-4 col-md-4 col-sm-6 col-xs-12',
+                styles.wearable_card
+              )}
+            >
+              <ICEDWearableCard
+                tokenID="abc"
+                itemID="5"
                 url="https://res.cloudinary.com/dnzambf4m/image/upload/v1630855008/bg_6_bc0ssa.png"
                 desc="20% Max ICE Bonus"
                 rank="Rank 5"
@@ -52,8 +89,15 @@ function WearableBody({ state }) {
               />
             </div>
 
-            <div className={cn("col-lg-4 col-md-4 col-sm-6 col-xs-12", styles.wearable_card)}>
+            <div
+              className={cn(
+                'col-lg-4 col-md-4 col-sm-6 col-xs-12',
+                styles.wearable_card
+              )}
+            >
               <ICEDWearableCard
+                tokenID="def"
+                itemID="10"
                 url="https://res.cloudinary.com/dnzambf4m/image/upload/v1632102994/bg_6_nhrkwr.svg"
                 address="0x23.."
                 desc="30% Max ICE Bonus"
@@ -65,8 +109,15 @@ function WearableBody({ state }) {
               />
             </div>
 
-            <div className={cn("col-lg-4 col-md-4 col-sm-6 col-xs-12", styles.wearable_card)}>
+            <div
+              className={cn(
+                'col-lg-4 col-md-4 col-sm-6 col-xs-12',
+                styles.wearable_card
+              )}
+            >
               <ICEDWearableCard
+                tokenID="ghi"
+                itemID="15"
                 url="https://res.cloudinary.com/dnzambf4m/image/upload/v1632102985/bg_6_g3d93e.svg"
                 address="0x23.."
                 desc="30% Max ICE Bonus"
