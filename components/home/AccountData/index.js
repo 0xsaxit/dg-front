@@ -77,7 +77,7 @@ const AccountData = (props) => {
     return (
       <Aux>
 
-        {/*<div style={{ position: 'relative', zIndex: '0', paddingTop: '120px' }}>
+                <div style={{ position: 'relative', zIndex: '0', paddingTop: '120px' }}>
           <span style={{ display: 'flex', flexDirection: 'column' }}>
             <span
               className="avatar-picture"
@@ -104,10 +104,10 @@ const AccountData = (props) => {
               </a>
             </span>
           </span>
-        </div>*/}
+        </div>
 
-        <div className={cn('row', styles.player_card)}>
-          <div className={cn("col-lg-4", "col-md-4", "col-sm-12", "col-xs-12", styles.player_avatar)} style={{ display: 'flex', justifyContent: 'center' }}>
+        {/*<div className={styles.player_card}>
+          <div>
             <span
               className="avatar-picture"
               style={{ alignSelf: 'center' }}
@@ -132,13 +132,18 @@ const AccountData = (props) => {
               </a>
             </span>
           </div>
-          <div className={cn("col-lg-8", "col-md-8", "col-sm-12", "col-xs-12", styles.player_name)} style={{ display: 'flex', flexDirection: 'column', flex: 1, marginLeft: 30 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', flex: 1, marginLeft: 30 }}>
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <Link href="/account">
-                <h4 style={{ paddingLeft: '8px', marginTop: '-4px' }}>
-                  {state.userInfo.name === null || state.userInfo.name === ' ' ? 'Unnamed'
-                    : state.userInfo.name}
-                </h4>
+                {state.userInfo.name === null || state.userInfo.name === '' ? (
+                  <h4 style={{ paddingLeft: '8px', marginTop: '-4px' }}>
+                    Unnamed
+                  </h4>
+                ) : (
+                  <h4 style={{ paddingLeft: '8px', marginTop: '-4px' }}>
+                    {state.userInfo.name}
+                  </h4>
+                )}
               </Link>
               <span
                 className="account-copy"
@@ -166,43 +171,31 @@ const AccountData = (props) => {
                 </p>
               </span>
             </span>
-
             <div style={{ display: 'flex' }}>
               <div className={styles.token_container}>
-                <div className={styles.tokenImgDiv}>
-                  <img className={styles.token_background} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/image_24_geei7u.png" />
-                  <img className={styles.token_ice_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" />
-                </div>
-                {/* <img className={styles.token_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/image_23_nm4wev.png" /> */}
+                <img className={styles.token_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/image_23_nm4wev.png" />
                 <div className={styles.tokenBalance} >
-                  <p className={styles.title}> ICE Mined <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631365915/w706j6tiotm1gdp0p8nu.svg" /> </p>
-                  <p className={styles.amount} > {state.iceAmount} </p>
+                  <p className={styles.title}> ICE Mined </p>
+                  <p className={styles.amount} > 0 </p>
                 </div>
               </div>
               <div className={styles.token_container}>
-                <div className={styles.tokenImgDiv}>
-                  <img className={styles.token_xp_background} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/image_24_geei7u.png" />
-                  <img className={styles.token_xp_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_XP_ICN_f9w2se.svg" />
-                </div>
-                {/* <img className={styles.token_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/Group_175_hajl2h.png" /> */}
+                <img className={styles.token_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/Group_175_hajl2h.png" />
                 <div className={styles.tokenBalance} >
-                  <p className={styles.title}> Unused XP <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631365915/w706j6tiotm1gdp0p8nu.svg" /> </p>
+                  <p className={styles.title}> Unused XP </p>
                   <p className={styles.amount}> 0 </p>
                 </div>
               </div>
               <div className={styles.token_container}>
-                <div className={styles.tokenImgDiv}>
-                  <img className={styles.token_DG_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631325895/dgNewLogo_hkvlps.png" />
-                </div>
+                <img className={styles.token_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/image_22_w5ecsu.png" />
                 <div className={styles.tokenBalance} >
-                  <p className={styles.title}> DG Mined <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631365915/w706j6tiotm1gdp0p8nu.svg" /> </p>
+                  <p className={styles.title}> DG Mined</p>
                   <p className={styles.amount}> 0 </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
         {/*<div className={styles.card_container}>
           <img className={styles.avatar_img} src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`} />
           <a 
