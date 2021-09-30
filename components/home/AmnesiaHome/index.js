@@ -1,10 +1,7 @@
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from 'store/Context.js';
-import Layout from '../../components/Layout.js';
-import Header from '../../components/Header';
 import Footer from 'components/home/Footer';
-import Global from '../../components/Constants';
-import Images from '../../common/Images';
+import Global from '../../../components/Constants';
 import styles from './Amnesia.module.scss';
 import { Button } from 'semantic-ui-react';
 import cn from 'classnames';
@@ -12,7 +9,7 @@ import images from 'common/Images';
 
 
 // AMNESIA_COMMENT: this whole file should be deleted after we are done with amnesia
-const Amnesia = () => {
+const AmnesiaHome = () => {
   const [_, dispatch] = useContext(GlobalContext);
 
   useEffect(() => {
@@ -22,12 +19,7 @@ const Amnesia = () => {
   }, []);
 
   return (
-    <Layout>
-      <Header
-        title={Global.CONSTANTS.TITLE + ' | Amnesia'}
-        description={Global.CONSTANTS.DESCRIPTION}
-        image={Images.AMNESIA_SOCIAL_SHARE}
-      />
+    <div>
 
       <main className={styles.container}>
         <section className={styles.top_section}>
@@ -228,8 +220,8 @@ const Amnesia = () => {
         </section>
         <Footer />
       </main>
-    </Layout>
+    </div>
   );
 };
 
-export default Amnesia;
+export default AmnesiaHome;
