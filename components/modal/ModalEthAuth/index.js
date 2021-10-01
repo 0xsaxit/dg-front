@@ -10,7 +10,6 @@ import Fetch from '../../../common/Fetch';
 import Aux from '../../_Aux';
 import Global from '../../Constants';
 import MetamaskAction from './MetamaskAction';
-import MetamaskLogo from './MetamaskLogo';
 import ModalMintSuccess from '../ModalMintSuccess';
 
 const ModalEthAuth = props => {
@@ -28,9 +27,6 @@ const ModalEthAuth = props => {
   const [minting, setMinting] = useState(false);
   const [buttonMessage, setButtonMessage] = useState('Proceed to Mint');
   const [clicked, setClicked] = useState(false);
-
-  // metamask step states
-  // const [payForActivationState, setpayForActivationState] = useState('initial');
 
   /////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////
@@ -125,7 +121,8 @@ const ModalEthAuth = props => {
 
           <div className={styles.eth_description_two}>(On Polygon)</div>
 
-          <MetamaskAction
+          {/* ok11 */}
+          {/* <MetamaskAction
             actionState={
               authStatus
                 ? 'done'
@@ -138,7 +135,9 @@ const ModalEthAuth = props => {
             onClick={metaTransaction}
             primaryText="Authorize ETH"
             secondaryText="Enables ETH Transaction"
-          />
+          /> */}
+
+          
 
           {/** TODO: add correct on click action here */}
           {/* <MetamaskAction
@@ -154,12 +153,13 @@ const ModalEthAuth = props => {
   }
 
   // send-off the API request to mint the user's Level 1 wearable
-  async function mintToken(tokenID) {
+  async function mintToken() {
+    console.log('Minting NFT item ID: ' + props.itemID);
     setMinting(true);
     setButtonMessage('Minting Token...');
 
     const json = await Fetch.MINT_TOKEN(
-      tokenID,
+      props.itemID,
       Global.ADDRESSES.COLLECTION_V2_ADDRESS
     );
 
@@ -189,8 +189,10 @@ const ModalEthAuth = props => {
   // Biconomy API meta-transaction. User must authorize WETH token contract to access their funds
   async function metaTransaction() {
     try {
+      console.log(
+        'WETH authorization amount: ' + state.tokenAmounts.WETH_COST_AMOUNT
+      );
       setClicked(true);
-      console.log('authorize amount: ' + state.tokenAmounts.WETH_COST_AMOUNT);
 
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = tokenContract.methods
@@ -206,8 +208,9 @@ const ModalEthAuth = props => {
       );
 
       if (txHash === false) {
-        setClicked(false);
         console.log('Biconomy meta-transaction failed');
+
+        setClicked(false);
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
@@ -220,8 +223,9 @@ const ModalEthAuth = props => {
         });
       }
     } catch (error) {
-      setClicked(false);
       console.log('WETH authorization error: ' + error);
+
+      setClicked(false);
     }
   }
 
@@ -309,12 +313,19 @@ const ModalEthAuth = props => {
           <div className={styles.upgrade_container}>
             {approveWETH()}
 
-            {!minting ? (
-              authStatus ? (
+            {!minting ? (              
                 canPurchase ? (
                   <Button
                     className={styles.proceed_button}
-                    onClick={() => mintToken(props.itemID)}
+
+                    onClick={() =>{
+                        if(!authStatus) {
+                          metaTransaction();
+                        }
+                        mintToken()
+                      }
+                    }
+
                   >
                     {buttonMessage}
                   </Button>
@@ -323,11 +334,7 @@ const ModalEthAuth = props => {
                     {buttonMessage}
                   </Button>
                 )
-              ) : (
-                <Button disabled className={styles.proceed_button}>
-                  {buttonMessage}
-                </Button>
-              )
+              
             ) : (
               <Button disabled className={styles.proceed_button}>
                 {buttonMessage}

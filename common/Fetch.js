@@ -40,16 +40,16 @@ const apiCall = {
   //   );
   // },
 
-  MINT_TOKEN: (tokenID, collectionAddr) => {
+  MINT_TOKEN: (itemID, collectionAddr) => {
     return call(
-      `${API_BASE_URL}/ice/mintToken/${tokenID}/${collectionAddr}`,
+      `${API_BASE_URL}/ice/mintToken/${itemID}/${collectionAddr}`,
       'GET'
     );
   },
 
-  UPGRADE_TOKEN: (requestIndex, itemID) => {
+  UPGRADE_TOKEN: (collectionAddr, tokenID) => {
     return call(
-      `${API_BASE_URL}/ice/requestUpgrade/${requestIndex}/${itemID}`,
+      `${API_BASE_URL}/ice/requestUpgrade/${collectionAddr}/${tokenID}`,
       'GET'
     );
   },

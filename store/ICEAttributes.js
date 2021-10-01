@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import Web3 from 'web3';
 import BigNumber from 'bignumber.js';
-
 import ABI_ICE_REGISTRANT from '../components/ABI/ABIICERegistrant.json';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
 import ABI_CHILD_TOKEN_WETH from '../components/ABI/ABIChildTokenWETH';
@@ -19,15 +18,12 @@ function ICEAttributes() {
 
   // define local variables
   const [instances, setInstances] = useState(false);
-
   const [ICERegistrantContract, setICERegistrantContract] = useState({});
   const [DGMaticContract, setDGMaticContract] = useState({});
   const [WETHMaticContract, setWETHMaticContract] = useState({});
   const [ICEMaticContract, setICEMaticContract] = useState({});
   const [collectionV2Contract, setCollectionV2Contract] = useState({});
   const [iceTokenContract, setIceTokenContract] = useState({});
-
-  // const userWalletAddress = '0x7146cae915f1Cd90871ecc69999BEfFdcaf38ff9'; // temporary
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -189,9 +185,6 @@ function ICEAttributes() {
     if (instances && state.iceWearableItems.length) {
       (async function () {
         let authArray = [];
-
-        // console.log('ice wearables...');
-        // console.log(state.iceWearableItems);
 
         state.iceWearableItems.map(async (item, i) => {
           try {
