@@ -53,7 +53,7 @@ const ICEDWearableCard = props => {
                   bonus={props.bonus}
                 />
 
-                <ModalWearable tokenID={props.tokenID} />
+                <ModalWearable tokenID={props.tokenID} itemID={props.itemID} />
               </span>
             ) : props.state == 2 ? (
               props.balance > 0.5 ? (

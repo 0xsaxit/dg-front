@@ -2,8 +2,12 @@ import Head from 'next/head';
 import { NextSeo } from 'next-seo';
 import Aux from './_Aux';
 import Global from './Constants';
+import { useContext } from 'react';
+import { GlobalContext } from 'store';
 
 const Header = props => {
+  const [state, dispatch] = useContext(GlobalContext);
+
   function segmentSnippet() {
     // create a queue, but don't obliterate an existing one
     var analytics = (window.analytics = window.analytics || []);
@@ -98,7 +102,64 @@ const Header = props => {
           content={'@' + Global.CONSTANTS.SOCIAL_HANDLE}
         />
         <meta name="robots" content="index, follow" />
-
+        // AMNESIA_COMMENT: remove this whole conditional chunk after we are
+        done with amnesia
+        {state.isAmnesiaPage ? (
+          <>
+            <link
+              rel="apple-touch-icon"
+              sizes="180x180"
+              href="https://res.cloudinary.com/dnzambf4m/image/upload/v1632944120/amnesia/amnesia_favicon_zqlqyz.ico"
+            />
+            <link
+              rel="icon"
+              type="image/png"
+              sizes="32x32"
+              href="https://res.cloudinary.com/dnzambf4m/image/upload/v1632944120/amnesia/amnesia_favicon_zqlqyz.ico"
+            />
+            <link
+              rel="icon"
+              type="image/png"
+              sizes="16x16"
+              href="https://res.cloudinary.com/dnzambf4m/image/upload/v1632944120/amnesia/amnesia_favicon_zqlqyz.ico"
+            />
+            <link
+              rel="manifest"
+              href="https://res.cloudinary.com/dnzambf4m/image/upload/v1632944120/amnesia/amnesia_favicon_zqlqyz.ico"
+            />
+            <link
+              rel="mask-icon"
+              href="https://res.cloudinary.com/dnzambf4m/image/upload/v1632944120/amnesia/amnesia_favicon_zqlqyz.ico"
+              color="#5bbad5"
+            />
+          </>
+        ) : (
+          <>
+            <link
+              rel="apple-touch-icon"
+              sizes="180x180"
+              href="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/apple-touch-icon_xrz57z.png"
+            />
+            <link
+              rel="icon"
+              type="image/png"
+              sizes="32x32"
+              href="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/favicon-32x32_uljekk.png"
+            />
+            <link
+              rel="icon"
+              type="image/png"
+              sizes="16x16"
+              href="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/favicon-16x16_qjnn8u.png"
+            />
+            <link rel="manifest" href="/static/js/site.webmanifest" />
+            <link
+              rel="mask-icon"
+              href="https://res.cloudinary.com/dnzambf4m/image/upload/v1593959829/safari-pinned-tab_brhtah.svg"
+              color="#5bbad5"
+            />
+          </>
+        )}
         {typeof window !== 'undefined' ? (
           typeof window.analytics === 'undefined' ? (
             <script dangerouslySetInnerHTML={{ __html: segmentSnippet() }} />
