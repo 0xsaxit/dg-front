@@ -121,7 +121,8 @@ const ModalEthAuth = props => {
 
           <div className={styles.eth_description_two}>(On Polygon)</div>
 
-          <MetamaskAction
+          {/* ok11 */}
+          {/* <MetamaskAction
             actionState={
               authStatus
                 ? 'done'
@@ -134,7 +135,9 @@ const ModalEthAuth = props => {
             onClick={metaTransaction}
             primaryText="Authorize ETH"
             secondaryText="Enables ETH Transaction"
-          />
+          /> */}
+
+          
 
           {/** TODO: add correct on click action here */}
           {/* <MetamaskAction
@@ -310,12 +313,19 @@ const ModalEthAuth = props => {
           <div className={styles.upgrade_container}>
             {approveWETH()}
 
-            {!minting ? (
-              authStatus ? (
+            {!minting ? (              
                 canPurchase ? (
                   <Button
                     className={styles.proceed_button}
-                    onClick={() => mintToken()}
+
+                    onClick={() =>{
+                        if(!authStatus) {
+                          metaTransaction();
+                        }
+                        mintToken()
+                      }
+                    }
+
                   >
                     {buttonMessage}
                   </Button>
@@ -324,11 +334,7 @@ const ModalEthAuth = props => {
                     {buttonMessage}
                   </Button>
                 )
-              ) : (
-                <Button disabled className={styles.proceed_button}>
-                  {buttonMessage}
-                </Button>
-              )
+              
             ) : (
               <Button disabled className={styles.proceed_button}>
                 {buttonMessage}
