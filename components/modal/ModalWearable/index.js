@@ -235,7 +235,11 @@ const ModalWearable = props => {
       )}
 
       {upgrade == 2 && (
-        <ModalUpgradePending setUpgrade={setUpgrade} tokenID={props.tokenID} />
+        <ModalUpgradePending
+          setUpgrade={setUpgrade}
+          tokenID={props.tokenID}
+          itemID={props.itemID}
+        />
       )}
 
       {upgrade == 3 && <ModalUpgradeSuccess setUpgrade={setUpgrade} />}

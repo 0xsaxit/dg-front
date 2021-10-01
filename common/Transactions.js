@@ -188,8 +188,15 @@ async function NFTApproved(tokenContract, tokenID) {
       .getApproved(tokenID)
       .call();
 
+    // console.log(
+    //   'ice registrant address: ' + Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
+    // );
+    // console.log('token address: ' + tokenAddress);
+
     let tokenApproved = false;
-    if (tokenAddress === Global.ADDRESSES.ICE_REGISTRANT_ADDRESS) {
+    if (
+      tokenAddress.toLowerCase() === Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
+    ) {
       tokenApproved = true;
     }
 

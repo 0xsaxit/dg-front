@@ -31,23 +31,28 @@ const apiCall = {
     return call(`${API_BASE_URL}/admin/getUsersList`, 'GET');
   },
 
-  MINT_TOKEN: (tokenID, collectionAddr) => {
-    console.log('/ice/mintToken/' + tokenID + '/' + collectionAddr);
+  // MINT_TOKEN: (tokenID, collectionAddr) => {
+  //   console.log('/ice/mintToken/' + tokenID + '/' + collectionAddr);
 
+  //   return call(
+  //     `${API_BASE_URL}/ice/mintToken/${tokenID}/${collectionAddr}`,
+  //     'GET'
+  //   );
+  // },
+
+  MINT_TOKEN: (tokenID, collectionAddr) => {
     return call(
       `${API_BASE_URL}/ice/mintToken/${tokenID}/${collectionAddr}`,
       'GET'
     );
   },
 
-  // MINT_TOKEN: (tokenID, collectionAddr) => {
-  //   console.log('/ice/mintToken/' + tokenID + '/' + collectionAddr);
-
-  //   return call(`${EST_API_BASE_URL}/ce/mintToken`, 'POST', true, {
-  //     tokenID,
-  //     collectionAddr,
-  //   });
-  // },
+  UPGRADE_TOKEN: (txHash, itemID) => {
+    return call(
+      `${API_BASE_URL}/ice/requestUpgrade/${txHash}/${itemID}`,
+      'GET'
+    );
+  },
 
   GET_METADATA_FROM_TOKEN_URI: (contractAddr, tokenID) => {
     return call(
