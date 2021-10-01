@@ -20,6 +20,11 @@
       color: black;
       margin-top: 12px;
     }
+
+    // AMNESIA_COMMENT: amnesia_button class should be removed after we are done with amnesia
+    &.amnesia_button {
+      background-color: #9E1869 !important;
+    }
   }
 
   .metamask_icon {

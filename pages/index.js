@@ -30,7 +30,7 @@ const Index = () => {
             alignItems: 'center',
             justifyContent: 'center'}}
           >
-          You are not team member for dev server!
+          You don’t have permission to view this page!
         </div>
       )}
     </>

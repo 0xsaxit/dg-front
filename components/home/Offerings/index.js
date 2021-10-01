@@ -340,10 +340,10 @@ const Offerings = (props) => {
                 <path
                   d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
                   stroke="white"
-                  stroke-width="1"
+                  strokeWidth="1"
                   stroke-opacity="0.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </div>
@@ -368,9 +368,9 @@ const Offerings = (props) => {
                         rx="2.83333"
                         fill="black"
                         stroke={gameState === 'games' ? 'white' : '#808080'}
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <circle
                         cx="13.0888"
@@ -404,9 +404,9 @@ const Offerings = (props) => {
                         r="4.5"
                         fill="black"
                         stroke={gameState === 'casinos' ? 'white' : '#808080'}
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <rect
                         x="1"
@@ -416,9 +416,9 @@ const Offerings = (props) => {
                         rx="1.57678"
                         fill="black"
                         stroke={gameState === 'casinos' ? 'white' : '#808080'}
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <rect
                         x="6.86035"
@@ -428,9 +428,9 @@ const Offerings = (props) => {
                         rx="1.57678"
                         fill="black"
                         stroke={gameState === 'casinos' ? 'white' : '#808080'}
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <rect
                         x="3.1"
@@ -440,9 +440,9 @@ const Offerings = (props) => {
                         rx="1.9"
                         fill="black"
                         stroke={gameState === 'casinos' ? 'white' : '#808080'}
-                        stroke-width="1.8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
                   </div>
@@ -464,9 +464,9 @@ const Offerings = (props) => {
                         height="20"
                         rx="2.83333"
                         stroke={gameState === 'nfts' ? 'white' : '#808080'}
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M9.1678 7.66675V14.3334H7.67634L5.58141 10.8763L5.34863 10.4096V14.3334H3.85718V7.66675H5.34863L7.43495 11.162L7.67634 11.6382V7.66675H9.1678Z"
@@ -508,23 +508,23 @@ const Offerings = (props) => {
                       <path
                         d="M4 1L1 5V19C1 19.5304 1.21071 20.0391 1.58579 20.4142C1.96086 20.7893 2.46957 21 3 21H17C17.5304 21 18.0391 20.7893 18.4142 20.4142C18.7893 20.0391 19 19.5304 19 19V5L16 1H4Z"
                         stroke={gameState === 'shop' ? 'white' : '#808080'}
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M1 5H19"
                         stroke={gameState === 'shop' ? 'white' : '#808080'}
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M14 9C14 10.0609 13.5786 11.0783 12.8284 11.8284C12.0783 12.5786 11.0609 13 10 13C8.93913 13 7.92172 12.5786 7.17157 11.8284C6.42143 11.0783 6 10.0609 6 9"
                         stroke={gameState === 'shop' ? 'white' : '#808080'}
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
                   </div>
@@ -547,7 +547,7 @@ const Offerings = (props) => {
                         height="9"
                         rx="1"
                         stroke={gameState === 'leaderboard' ? 'white' : '#808080'}
-                        stroke-width="2"
+                        strokeWidth="2"
                       />
                       <rect
                         x="7.75"
@@ -556,7 +556,7 @@ const Offerings = (props) => {
                         height="16"
                         rx="1"
                         stroke={gameState === 'leaderboard' ? 'white' : '#808080'}
-                        stroke-width="2"
+                        strokeWidth="2"
                       />
                       <rect
                         x="15"
@@ -565,7 +565,7 @@ const Offerings = (props) => {
                         height="13"
                         rx="1"
                         stroke={gameState === 'leaderboard' ? 'white' : '#808080'}
-                        stroke-width="2"
+                        strokeWidth="2"
                       />
                     </svg>
                   </div>
@@ -590,10 +590,10 @@ const Offerings = (props) => {
                   <path
                     d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
                     stroke="white"
-                    stroke-width="1"
+                    strokeWidth="1"
                     stroke-opacity="0.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
               </div>
@@ -631,9 +631,9 @@ const Offerings = (props) => {
                         rx="2.83333"
                         fill="black"
                         stroke={gameState === 'games' ? 'white' : '#808080'}
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <circle
                         cx="13.0888"
@@ -673,9 +673,9 @@ const Offerings = (props) => {
                         r="4.5"
                         fill="black"
                         stroke={gameState === 'casinos' ? 'white' : '#808080'}
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <rect
                         x="1"
@@ -685,9 +685,9 @@ const Offerings = (props) => {
                         rx="1.57678"
                         fill="black"
                         stroke={gameState === 'casinos' ? 'white' : '#808080'}
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <rect
                         x="6.86035"
@@ -697,9 +697,9 @@ const Offerings = (props) => {
                         rx="1.57678"
                         fill="black"
                         stroke={gameState === 'casinos' ? 'white' : '#808080'}
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <rect
                         x="3.1"
@@ -709,9 +709,9 @@ const Offerings = (props) => {
                         rx="1.9"
                         fill="black"
                         stroke={gameState === 'casinos' ? 'white' : '#808080'}
-                        stroke-width="1.8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
                     <div className={styles.menu_title}>Scenes</div>
@@ -740,9 +740,9 @@ const Offerings = (props) => {
                         height="20"
                         rx="2.83333"
                         stroke={gameState === 'nfts' ? 'white' : '#808080'}
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M9.1678 7.66675V14.3334H7.67634L5.58141 10.8763L5.34863 10.4096V14.3334H3.85718V7.66675H5.34863L7.43495 11.162L7.67634 11.6382V7.66675H9.1678Z"
@@ -798,23 +798,23 @@ const Offerings = (props) => {
                       <path
                         d="M4 1L1 5V19C1 19.5304 1.21071 20.0391 1.58579 20.4142C1.96086 20.7893 2.46957 21 3 21H17C17.5304 21 18.0391 20.7893 18.4142 20.4142C18.7893 20.0391 19 19.5304 19 19V5L16 1H4Z"
                         stroke={gameState === 'shop' ? 'white' : '#808080'}
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M1 5H19"
                         stroke={gameState === 'shop' ? 'white' : '#808080'}
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M14 9C14 10.0609 13.5786 11.0783 12.8284 11.8284C12.0783 12.5786 11.0609 13 10 13C8.93913 13 7.92172 12.5786 7.17157 11.8284C6.42143 11.0783 6 10.0609 6 9"
                         stroke={gameState === 'shop' ? 'white' : '#808080'}
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
                     <div className={styles.menu_title}>Shop</div>
@@ -844,7 +844,7 @@ const Offerings = (props) => {
                         height="9"
                         rx="1"
                         stroke={gameState === 'leaderboard' ? 'white' : '#808080'}
-                        stroke-width="2"
+                        strokeWidth="2"
                       />
                       <rect
                         x="7.75"
@@ -853,7 +853,7 @@ const Offerings = (props) => {
                         height="16"
                         rx="1"
                         stroke={gameState === 'leaderboard' ? 'white' : '#808080'}
-                        stroke-width="2"
+                        strokeWidth="2"
                       />
                       <rect
                         x="15"
@@ -862,7 +862,7 @@ const Offerings = (props) => {
                         height="13"
                         rx="1"
                         stroke={gameState === 'leaderboard' ? 'white' : '#808080'}
-                        stroke-width="2"
+                        strokeWidth="2"
                       />
                     </svg>
                     <div className={styles.menu_title}>Leaderboard</div>
@@ -916,10 +916,10 @@ const Offerings = (props) => {
               <path
                 d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
                 stroke="white"
-                stroke-width="1.7"
+                strokeWidth="1.7"
                 stroke-opacity="1"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
             {gameSelect}
@@ -935,10 +935,10 @@ const Offerings = (props) => {
               <path
                 d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
                 stroke="white"
-                stroke-width="1.7"
+                strokeWidth="1.7"
                 stroke-opacity="1"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </div>
@@ -956,10 +956,10 @@ const Offerings = (props) => {
               <path
                 d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
                 stroke="white"
-                stroke-width="1.7"
+                strokeWidth="1.7"
                 stroke-opacity="1"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
             {timePeriod.toLowerCase()}
@@ -975,10 +975,10 @@ const Offerings = (props) => {
               <path
                 d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
                 stroke="white"
-                stroke-width="1.7"
+                strokeWidth="1.7"
                 stroke-opacity="1"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </div>

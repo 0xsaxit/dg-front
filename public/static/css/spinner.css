@@ -14,7 +14,7 @@
   height: calc(100vh + 210px);
   top: 0px;
   left: 0px;
-  z-index: 999 !important;
+  z-index: 1999 !important;
 }
 
 .black { 

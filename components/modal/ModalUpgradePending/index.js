@@ -7,11 +7,11 @@ import ABI_CHILD_TOKEN_ICE from '../../../components/ABI/ABIChildTokenICE';
 import ABI_COLLECTION_V2 from '../../../components/ABI/ABICollectionV2';
 import ABI_ICE_REGISTRANT from '../../../components/ABI/ABIICERegistrant.json';
 import MetaTx from '../../../common/MetaTx';
+import Fetch from '../../../common/Fetch';
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './ModalUpgradePending.module.scss';
 import MetamaskAction, { ActionLine } from 'components/common/MetamaskAction';
 import Global from '../../Constants';
-import Transactions from '../../../common/Transactions';
 
 const ModalUpgradePending = props => {
   // fetch tokenAmounts data from the Context API store
@@ -24,15 +24,11 @@ const ModalUpgradePending = props => {
   const [authStatusICE, setAuthStatusICE] = useState(false);
   const [authStatusDG, setAuthStatusDG] = useState(false);
   const [authStatusNFT, setAuthStatusNFT] = useState(false);
-
   const [authStatusUpgrade, setAuthStatusUpgrade] = useState(false);
-
   const [clickedICE, setClickedICE] = useState(false);
   const [clickedDG, setClickedDG] = useState(false);
   const [clickedNFT, setClickedNFT] = useState(false);
-
   const [clickedUpgrade, setClickedUpgrade] = useState(false);
-
   const [tokenContractICE, setTokenContractICE] = useState({});
   const [tokenContractDG, setTokenContractDG] = useState({});
   const [collectionV2Contract, setCollectionV2Contract] = useState({});
@@ -43,6 +39,9 @@ const ModalUpgradePending = props => {
   // initialize Web3 providers and create token contract instance
   useEffect(() => {
     if (state.userStatus >= 4) {
+      console.log('Wearables token ID: ' + props.tokenID);
+      console.log('Wearables item ID: ' + props.itemID);
+
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
 
@@ -92,7 +91,7 @@ const ModalUpgradePending = props => {
     }
   }, [state.userStatus]);
 
-  // get ICE and DG authorization status based on tokenAmounts state object
+  // get ICE and DG authorization status' based on tokenAmounts state object
   useEffect(() => {
     const authStatusICE = state.tokenAmounts.ICE_AUTHORIZATION;
     const authStatusDG = state.tokenAmounts.DG_AUTHORIZATION;
@@ -175,7 +174,7 @@ const ModalUpgradePending = props => {
         <MetamaskAction
           primaryText="Upgrade Wearable"
           secondaryText="Transaction to upgrade wearable"
-          onClick={() => metaTransactionUpgrade()}
+          onClick={() => upgradeToken()}
           actionState={
             authStatusUpgrade
               ? 'done'
@@ -247,21 +246,6 @@ const ModalUpgradePending = props => {
     }
   }
 
-  function pendingOrSuccessButton() {
-    return (
-      <Button
-        className={styles.next_button}
-        onClick={() => {
-          setOpen(false);
-          props.setUpgrade(3);
-        }}
-        // disabled={authorizeTransaction != 'done'}
-      >
-        Go to Success
-      </Button>
-    );
-  }
-
   async function metaTransactionToken(token) {
     console.log('Meta-transaction: ' + token);
     let tokenContract = {};
@@ -303,12 +287,6 @@ const ModalUpgradePending = props => {
         console.log('Biconomy meta-transaction failed');
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
-
-        if (token === 'ICE') {
-          setAuthStatusICE(true);
-        } else if (token === 'DG') {
-          setAuthStatusDG(true);
-        }
 
         // update global state token authorizations
         const refresh = !state.refreshTokenAuth;
@@ -353,6 +331,8 @@ const ModalUpgradePending = props => {
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
+        setAuthStatusNFT(true); // this should get set to true in the hook, but for some reason it's too slow to register
+
         // update global state NFT authorizations
         const refresh = !state.refreshNFTAuth;
 
@@ -368,41 +348,80 @@ const ModalUpgradePending = props => {
     }
   }
 
-  async function metaTransactionUpgrade() {
-    console.log('Meta-transaction Upgrade NFT');
+  // async function metaTransactionUpgrade() {
+  //   console.log('Meta-transaction Upgrade NFT');
+  //   setClickedUpgrade(true);
+
+  //   try {
+  //     // get function signature and send Biconomy API meta-transaction
+  //     let functionSignature = iceRegistrantContract.methods
+  //       .requestUpgrade(Global.ADDRESSES.COLLECTION_V2_ADDRESS, props.tokenID)
+  //       .encodeABI();
+
+  //     const txHash = await MetaTx.executeMetaTransaction(
+  //       11,
+  //       functionSignature,
+  //       iceRegistrantContract,
+  //       state.userAddress,
+  //       web3
+  //     );
+
+  //     if (txHash === false) {
+  //       setClickedUpgrade(false);
+
+  //       console.log('Biconomy meta-transaction failed');
+  //     } else {
+  //       console.log('Biconomy meta-transaction hash: ' + txHash);
+
+  //       upgradeToken(txHash);
+  //     }
+  //   } catch (error) {
+  //     setClickedUpgrade(false);
+
+  //     console.log('Upgrade NFT error: ' + error);
+  //   }
+  // }
+
+  // send the API request to upgrade the user's wearable
+  async function upgradeToken() {
+    console.log('Upgrade NFT transaction. Token ID: ' + props.tokenID);
     setClickedUpgrade(true);
 
-    try {
-      // get function signature and send Biconomy API meta-transaction
-      let functionSignature = iceRegistrantContract.methods
-        .requestUpgrade(Global.ADDRESSES.COLLECTION_V2_ADDRESS, props.tokenID)
-        .encodeABI();
+    const json = await Fetch.UPGRADE_TOKEN(
+      Global.ADDRESSES.COLLECTION_V2_ADDRESS,
+      props.tokenID
+    );
 
-      const txHash = await MetaTx.executeMetaTransaction(
-        11,
-        functionSignature,
-        iceRegistrantContract,
-        state.userAddress,
-        web3
-      );
+    if (json.status) {
+      setAuthStatusUpgrade(true);
 
-      if (txHash === false) {
-        setClickedUpgrade(false);
-
-        console.log('Biconomy meta-transaction failed');
-      } else {
-        console.log('Biconomy meta-transaction hash: ' + txHash);
-
-        console.log('Request upgradre transaction complete');
-
-        setAuthStatusUpgrade(true);
-      }
-    } catch (error) {
+      console.log('NFT upgrade request successful');
+      setOpen(false);
+    } else if (!json.status) {
       setClickedUpgrade(false);
 
-      console.log('Upgrade NFT error: ' + error);
+      console.log('NFT upgrade request error (a): ' + json.result);
+    } else if (json.status === 'error') {
+      setClickedUpgrade(false);
+
+      console.log('NFT upgrade request error (b): ' + json.result);
     }
   }
+
+  // function pendingOrSuccessButton() {
+  //   return (
+  //     <Button
+  //       className={styles.next_button}
+  //       onClick={() => {
+  //         setOpen(false);
+  //         props.setUpgrade(3);
+  //       }}
+  //       disabled={authorizeTransaction != 'done'}
+  //     >
+  //       Go to Success
+  //     </Button>
+  //   );
+  // }
 
   return (
     <Modal
@@ -447,7 +466,8 @@ const ModalUpgradePending = props => {
           </p>
 
           {authButtons()}
-           {pendingOrSuccessButton()} 
+
+          {/* {pendingOrSuccessButton()} ********** do we still need this? ********** */}
         </div>
       </div>
     </Modal>

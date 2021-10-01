@@ -137,22 +137,15 @@ const domainDataTokenDG = {
 };
 
 const domainDataAccessories = {
-  name: 'Decentraland Rarities',
-  version: '1',
+  name: 'Decentraland Collection',
+  version: '2',
   verifyingContract: accessoriesContract,
   salt: '0x' + Global.CONSTANTS.MATIC_NETWORK_ID.toString(16).padStart(64, '0'),
 };
 
-// const domainDataAccessories = {
-//   name: 'Decentraland Rarities',
-//   version: '1',
-//   chainId: Global.CONSTANTS.PARENT_NETWORK_ID,
-//   verifyingContract: accessoriesContract,
-// };
-
 const domainDataICERegistrant = {
   name: 'IceRegistrant',
-  version: 'v1.1',
+  version: 'v1.2',
   chainId: Global.CONSTANTS.PARENT_NETWORK_ID,
   verifyingContract: iceRegistrantAddress,
 };

@@ -309,9 +309,7 @@ const ModalDelegate = props => {
                   {!clicked ? (
                     <Button
                       className={styles.button_upgrade}
-                      onClick={() => {
-                        metaTransaction();
-                      }}
+                      onClick={() => metaTransaction()}
                       disabled={entered === '' || isDelegated}
                     >
                       Delegate Wearable

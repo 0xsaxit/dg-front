@@ -248,6 +248,8 @@ const ButtonConnect = () => {
           <Button
             color="blue"
             className={cn(
+              // AMNESIA_COMMENT: amnesia_button class should be removed after we are done with amnesia
+              state.isAmnesiaPage && styles.amnesia_button,
               styles.metamask_button,
               binance ? styles.binance_top : ''
             )}

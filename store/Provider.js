@@ -141,7 +141,8 @@ const initialState = {
   toastMessage: '',
   selectedLang: 0,
   iceAmount: 0,
-  userVerified: true
+  userVerified: true,
+  isAmnesiaPage: false
 };
 
 const reducer = (state, action) => {
@@ -447,7 +448,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         userLoggedIn: action.data,
-      };    
+      };
+    case 'set_amnesia':
+      return {
+        ...state,
+        isAmnesiaPage: action.data,
+      };
     default:
       throw new Error('Wrong action type got dispatched');
   }
