@@ -28,7 +28,8 @@ import ICEAttributes from '../store/ICEAttributes';
 
 import Spinner from 'components/Spinner';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useEffect, useContext, useState } from 'react';
+import { GlobalContext } from '../store';
 
 function Application({ Component, pageProps, store }) {
 
@@ -39,7 +40,7 @@ function Application({ Component, pageProps, store }) {
     setPageLoading(true);
     const timer = setTimeout(() => {
       console.log('This will run after 3 second on first load!');
-      setPageLoading(false);
+      setPageLoading(false);      
     }, 3000);
     return () => clearTimeout(timer);
   }, []);
@@ -70,28 +71,25 @@ function Application({ Component, pageProps, store }) {
       {pageLoading ? (
         <Spinner background={1} />
       ) : null}
+      
+      <Segment />
+      <UserStatus />
+      <UserBalances />
+      <Transactions />
+      <TreasuryNumbers />
+      <GameRecords />
+      <ActiveStatus />
+      <UserInfo />
+      <AdminBalances />
+      <UsersList />
+      <DGBalances />
+      <PricesBreakdown />
+      <NFTSPOAPS />
+      <EventsData />
+      <SubgraphQuery />
+      <ICEAttributes />
 
-      <div>
-        <Segment />
-        <UserStatus />
-        <UserBalances />
-        <Transactions />
-        <TreasuryNumbers />
-        <GameRecords />
-        <ActiveStatus />
-        <UserInfo />
-        <AdminBalances />
-        <UsersList />
-        <DGBalances />
-        <PricesBreakdown />
-        <NFTSPOAPS />
-        <EventsData />
-        <SubgraphQuery />
-        <ICEAttributes />
-
-        <Component {...pageProps} />
-      </div>
-
+      <Component {...pageProps} />
     </Provider>
   );
   // }
