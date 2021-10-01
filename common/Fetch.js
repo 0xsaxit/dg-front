@@ -47,9 +47,9 @@ const apiCall = {
     );
   },
 
-  UPGRADE_TOKEN: (requestIndex, itemID) => {
+  UPGRADE_TOKEN: (txHash, itemID) => {
     return call(
-      `${API_BASE_URL}/ice/requestUpgrade/${requestIndex}/${itemID}`,
+      `${API_BASE_URL}/ice/requestUpgrade/${txHash}/${itemID}`,
       'GET'
     );
   },
