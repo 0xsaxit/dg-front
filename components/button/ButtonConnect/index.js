@@ -9,6 +9,7 @@ import Aux from 'components/_Aux';
 import { useMediaQuery } from 'hooks';
 import ModalLoginTop from 'components/modal/ModalLoginTop';
 import styles from './ButtonConnect.module.scss';
+import Global from 'components/Constants';
 
 const assignToken = async () => {
   const userAddress = window.ethereum.selectedAddress;
@@ -205,15 +206,28 @@ const ButtonConnect = () => {
 
     localStorage.setItem('loggedIn', true);
   }
+  
+  async function upateVerified(arg) {    
+    if (arg > 0 && 
+      arg < 20 && 
+      window.location.hostname.includes(Global.CONSTANTS.VERIFY_URL
+    )) {
+      dispatch({
+        type: 'user_verify',
+        data: false,
+      });
+    }
+  }
 
   async function getUserStatus() {
-    console.log('Get user status: Connect');
+    console.log('Get user status: Connect6');
 
     try {
       // const responseIP = await Fetch.IP_ADDRESS();
       // const jsonIP = await responseIP.;
 
       const jsonStatus = await Fetch.USER_STATUS(userAddress, '');
+      await upateVerified(jsonStatus.status);
 
       if (!jsonStatus.status) return false;
 

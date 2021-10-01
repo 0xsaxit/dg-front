@@ -305,6 +305,7 @@ const ModalUpgradePending = props => {
   }
 
   async function metaTransactionNFT() {
+    
     console.log('Meta-transaction NFT: ' + props.tokenID);
     console.log('Spender address: ' + spenderAddress);
     setClickedNFT(true);
