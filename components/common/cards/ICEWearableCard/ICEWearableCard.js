@@ -1,7 +1,10 @@
+import { useContext } from 'react';
+import { GlobalContext } from '../../../../store';
 import IceP2EEnabledTooltip from 'components/tooltips/IceP2EEnabledTooltip';
 import IceNeedToActivateTooltip from 'components/tooltips/IceNeedToActivateTooltip';
 import IceWearableBonusTooltip from 'components/tooltips/IceWearableBonusTooltip';
 import ModalDelegate from 'components/modal/ModalDelegate';
+import ActivateWearableModal from 'components/modal/ActivateWearableModal';
 import NeedMoreDGActivateModal from 'components/modal/NeedMoreDGActivateModal';
 import ModalWearable from 'components/modal/ModalWearable';
 import styles from './ICEWearableCard.module.scss';
@@ -23,8 +26,10 @@ const getRank = bonus => {
 };
 
 const ICEWearableCard = ({ data }) => {
-  const { name, description, image, attributes } = data;
+  // get user's status from the Context API store
+  const [state, dispatch] = useContext(GlobalContext);
 
+  const { name, description, image, attributes } = data;
   const rank = getRank(parseInt(attributes.at(-1).value));
 
   return (
@@ -53,7 +58,14 @@ const ICEWearableCard = ({ data }) => {
           </div>
           <div className={styles.button_area}>
             {rank.value === 0 ? (
-              <NeedMoreDGActivateModal />
+              state.DGBalances.BALANCE_CHILD_DG < 0.5 ?
+                <NeedMoreDGActivateModal />
+                :
+                <ActivateWearableModal
+                  image={image}
+                  rank={rank}
+                  description={description}
+                />
             ) : (
               <span className="w-100 d-flex justify-content-between">
                 <ModalDelegate
