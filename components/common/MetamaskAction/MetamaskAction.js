@@ -29,7 +29,7 @@ const MetamaskAction = ({
                 r="14"
                 stroke="white"
                 stroke-opacity="0.25"
-                stroke-width="4"
+                strokeWidth="4"
               />
             </svg>
           )}
