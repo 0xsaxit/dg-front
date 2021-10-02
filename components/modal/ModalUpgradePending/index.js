@@ -174,7 +174,7 @@ const ModalUpgradePending = props => {
         <MetamaskAction
           primaryText="Upgrade Wearable"
           secondaryText="Transaction to upgrade wearable"
-          onClick={() => upgradeToken()}
+          onClick={() => metaTransactionUpgrade()}
           actionState={
             authStatusUpgrade
               ? 'done'
@@ -305,7 +305,6 @@ const ModalUpgradePending = props => {
   }
 
   async function metaTransactionNFT() {
-    
     console.log('Meta-transaction NFT: ' + props.tokenID);
     console.log('Spender address: ' + spenderAddress);
     setClickedNFT(true);
@@ -348,49 +347,46 @@ const ModalUpgradePending = props => {
     }
   }
 
-  // async function metaTransactionUpgrade() {
-  //   console.log('Meta-transaction Upgrade NFT');
-  //   setClickedUpgrade(true);
-
-  //   try {
-  //     // get function signature and send Biconomy API meta-transaction
-  //     let functionSignature = iceRegistrantContract.methods
-  //       .requestUpgrade(Global.ADDRESSES.COLLECTION_V2_ADDRESS, props.tokenID)
-  //       .encodeABI();
-
-  //     const txHash = await MetaTx.executeMetaTransaction(
-  //       11,
-  //       functionSignature,
-  //       iceRegistrantContract,
-  //       state.userAddress,
-  //       web3
-  //     );
-
-  //     if (txHash === false) {
-  //       setClickedUpgrade(false);
-
-  //       console.log('Biconomy meta-transaction failed');
-  //     } else {
-  //       console.log('Biconomy meta-transaction hash: ' + txHash);
-
-  //       upgradeToken(txHash);
-  //     }
-  //   } catch (error) {
-  //     setClickedUpgrade(false);
-
-  //     console.log('Upgrade NFT error: ' + error);
-  //   }
-  // }
-
-  // send the API request to upgrade the user's wearable
-  async function upgradeToken() {
-    console.log('Upgrade NFT transaction. Token ID: ' + props.tokenID);
+  async function metaTransactionUpgrade() {
+    console.log('Meta-transaction Upgrade NFT');
     setClickedUpgrade(true);
 
-    const json = await Fetch.UPGRADE_TOKEN(
-      Global.ADDRESSES.COLLECTION_V2_ADDRESS,
-      props.tokenID
-    );
+    try {
+      // get function signature and send Biconomy API meta-transaction
+      let functionSignature = iceRegistrantContract.methods
+        .requestUpgrade(Global.ADDRESSES.COLLECTION_V2_ADDRESS, props.tokenID)
+        .encodeABI();
+
+      const txHash = await MetaTx.executeMetaTransaction(
+        11,
+        functionSignature,
+        iceRegistrantContract,
+        state.userAddress,
+        web3
+      );
+
+      if (txHash === false) {
+        setClickedUpgrade(false);
+
+        console.log('Biconomy meta-transaction failed');
+      } else {
+        console.log('Biconomy meta-transaction hash: ' + txHash);
+
+        upgradeToken(txHash);
+      }
+    } catch (error) {
+      setClickedUpgrade(false);
+
+      console.log('Upgrade NFT error: ' + error);
+    }
+  }
+
+  // send the API request to upgrade the user's wearable
+  async function upgradeToken(txHash) {
+    console.log('Upgrade NFT transaction. Item ID: ' + props.itemID);
+    setClickedUpgrade(true);
+
+    const json = await Fetch.UPGRADE_TOKEN(txHash);
 
     if (json.status) {
       setAuthStatusUpgrade(true);
