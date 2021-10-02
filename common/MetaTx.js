@@ -180,8 +180,8 @@ function executeMetaTransaction(
     console.log('Verify contract: ' + arrayDomainData[i].verifyingContract);
 
     try {
-      console.log('contract instance...');
-      console.log(contractInstance);
+      // console.log('contract instance...');
+      // console.log(contractInstance);
 
       let nonce = await contractInstance.methods.getNonce(userAddress).call();
 

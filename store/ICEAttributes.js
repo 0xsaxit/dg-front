@@ -130,9 +130,14 @@ function ICEAttributes() {
             .balanceOf(state.userAddress)
             .call();
 
-          const actual_amount = new BigNumber(ice_amount)
-            .div(new BigNumber(10).pow(18))
-            .toString(10);
+          // const actual_amount = new BigNumber(ice_amount)
+          //   .div(new BigNumber(10).pow(18))
+          //   .toString(10);
+
+          const actual_amount = (
+            ice_amount / Global.CONSTANTS.FACTOR
+          ).toString();
+
           dispatch({
             type: 'set_IceAmount',
             data: actual_amount,
