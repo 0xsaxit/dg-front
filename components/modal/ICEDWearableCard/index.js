@@ -56,8 +56,11 @@ const ICEDWearableCard = props => {
                 <ModalWearable tokenID={props.tokenID} itemID={props.itemID} />
               </span>
             ) : props.state == 2 ? (
-              props.balance > 0.5 ? (
-                <ActivateWearableModal setPending={setPending} />
+              props.balance >= 0.1 ? (
+                <ActivateWearableModal
+                  setPending={setPending}
+                  tokenID={props.tokenID}
+                />
               ) : (
                 // <ActivateWearableModal setPending={setPending} />
                 <NeedMoreDGActivateModal balance={props.balance} />
