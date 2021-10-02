@@ -58,14 +58,15 @@ const ICEWearableCard = ({ data }) => {
           </div>
           <div className={styles.button_area}>
             {rank.value === 0 ? (
-              state.DGBalances.BALANCE_CHILD_DG < 0.5 ?
+              state.DGBalances.BALANCE_CHILD_DG < 0.5 ? (
                 <NeedMoreDGActivateModal />
-                :
+              ) : (
                 <ActivateWearableModal
                   image={image}
                   rank={rank}
                   description={description}
                 />
+              )
             ) : (
               <span className="w-100 d-flex justify-content-between">
                 <ModalDelegate

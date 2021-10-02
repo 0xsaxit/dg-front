@@ -47,11 +47,8 @@ const apiCall = {
     );
   },
 
-  UPGRADE_TOKEN: (collectionAddr, tokenID) => {
-    return call(
-      `${API_BASE_URL}/ice/requestUpgrade/${collectionAddr}/${tokenID}`,
-      'GET'
-    );
+  UPGRADE_TOKEN: txHash => {
+    return call(`${API_BASE_URL}/ice/requestUpgrade/${txHash}`, 'GET');
   },
 
   GET_METADATA_FROM_TOKEN_URI: (contractAddr, tokenID) => {
