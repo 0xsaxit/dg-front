@@ -2,11 +2,13 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../../store';
 import { Biconomy } from '@biconomy/mexa';
 import Web3 from 'web3';
+import ABI_DG_TOKEN from '../../../components/ABI/ABIDGToken';
 import ABI_ICE_REGISTRANT from '../../../components/ABI/ABIICERegistrant.json';
 import MetaTx from '../../../common/MetaTx';
+import MetamaskAction from './MetamaskAction';
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './ActivateWearableModal.module.scss';
-import ModalActivationSuccess from '../ModalActivationSuccess';
+// import ModalActivationSuccess from '../ModalActivationSuccess';
 import Global from '../../Constants';
 import Aux from '../../_Aux';
 
@@ -18,9 +20,13 @@ const ActivateWearableModal = props => {
   const [open, setOpen] = useState(true);
   const [pending, setPending] = useState(false);
   const [web3, setWeb3] = useState({});
+  const [spenderAddress, setSpenderAddress] = useState('');
   const [iceRegistrantContract, setIceRegistrantContract] = useState({});
+  const [tokenContractDG, setTokenContractDG] = useState({});
   const [instances, setInstances] = useState(false);
   const [previousOwner, setPreviousOwner] = useState('');
+  const [authStatus, setAuthStatus] = useState(false);
+  const [clicked, setClicked] = useState(false);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -30,6 +36,8 @@ const ActivateWearableModal = props => {
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
 
+      // const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
+
       const biconomy = new Biconomy(
         new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
         {
@@ -38,6 +46,15 @@ const ActivateWearableModal = props => {
         }
       );
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
+
+      const spenderAddress = Global.ADDRESSES.ICE_REGISTRANT_ADDRESS;
+      setSpenderAddress(spenderAddress);
+
+      const tokenContractDG = new getWeb3.eth.Contract(
+        ABI_DG_TOKEN,
+        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DG
+      );
+      setTokenContractDG(tokenContractDG);
 
       const iceRegistrantContract = new getWeb3.eth.Contract(
         ABI_ICE_REGISTRANT,
@@ -60,26 +77,26 @@ const ActivateWearableModal = props => {
   useEffect(() => {
     if (instances) {
       (async function () {
-        // console.log('token ID: ' + props.tokenID);
-
         // update token hash from iceRegistrant contract
         const tokenHash = await iceRegistrantContract.methods
           .getHash(Global.ADDRESSES.COLLECTION_V2_ADDRESS, props.tokenID)
           .call();
-
-        // console.log('token hash: ' + tokenHash);
 
         // get previous owner based on token hash
         const previousOwner = await iceRegistrantContract.methods
           .owners(tokenHash)
           .call();
 
-        // console.log('previous owner: ' + previousOwner);
-
         setPreviousOwner(previousOwner);
       })();
     }
   }, [instances]);
+
+  useEffect(() => {
+    const authStatus = state.tokenAmounts.DG_AUTHORIZATION;
+
+    setAuthStatus(authStatus);
+  }, [state.tokenAmounts]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -152,7 +169,7 @@ const ActivateWearableModal = props => {
         <div className={styles.dgSection}>
           <div className={styles.dgAmount}>
             <div>
-              0.1 DG
+              0.5 DG
               <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631325895/dgNewLogo_hkvlps.png" />
             </div>
           </div>
@@ -161,13 +178,78 @@ const ActivateWearableModal = props => {
             Available <br />
             <abbr>(On Polygon)</abbr>
           </p>
+
+          {approveDG()}
+
           <p>Previous Owner: {previousOwner}</p>
         </div>
       </Aux>
     );
   }
 
-  async function metaTransaction() {
+  function approveDG() {
+    return (
+      <Aux>
+        <div className={styles.upgrade_inner_container}>
+          <MetamaskAction
+            actionState={
+              authStatus
+                ? 'done'
+                : !clicked
+                ? 'initial'
+                : clicked
+                ? 'clicked'
+                : null
+            }
+            onClick={metaTransactionDG}
+            primaryText="Authorize DG"
+            secondaryText="Enables DG Transaction"
+          />
+        </div>
+      </Aux>
+    );
+  }
+
+  // Biconomy API meta-transaction. User must authorize DG token contract to access their funds
+  async function metaTransactionDG() {
+    try {
+      setClicked(true);
+      console.log('DG authorize amount: ' + Global.CONSTANTS.MAX_AMOUNT);
+
+      // get function signature and send Biconomy API meta-transaction
+      let functionSignature = tokenContractDG.methods
+        .approve(spenderAddress, Global.CONSTANTS.MAX_AMOUNT)
+        .encodeABI();
+
+      const txHash = await MetaTx.executeMetaTransaction(
+        9,
+        functionSignature,
+        tokenContractDG,
+        state.userAddress,
+        web3
+      );
+
+      if (txHash === false) {
+        setClicked(false);
+        console.log('Biconomy meta-transaction failed');
+      } else {
+        console.log('Biconomy meta-transaction hash: ' + txHash);
+
+        // update global state token authorizations
+        const refresh = !state.refreshTokenAuth;
+
+        dispatch({
+          type: 'refresh_token_auth',
+          data: refresh,
+        });
+      }
+    } catch (error) {
+      setClicked(false);
+      console.log('DG authorization error: ' + error);
+    }
+  }
+
+  async function metaTransactionReICE() {
     console.log('Meta-transaction NFT Activation');
     console.log('Previous owner: ' + previousOwner);
     console.log('Token ID: ' + props.tokenID);
@@ -241,17 +323,25 @@ const ActivateWearableModal = props => {
       {description()}
 
       {!pending ? (
-        <div className={styles.buttons}>
-          <Button
-            className={styles.primary}
-            onClick={() => {
-              metaTransaction();
-            }}
-          >
-            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
-            Confirm Activation
-          </Button>
-        </div>
+        authStatus ? (
+          <div className={styles.buttons}>
+            <Button
+              className={styles.primary}
+              onClick={() => {
+                metaTransactionReICE();
+              }}
+            >
+              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
+              Confirm Activation
+            </Button>
+          </div>
+        ) : (
+          <div className={styles.buttons}>
+            <Button disabled className={styles.primary}>
+              Confirm Activation
+            </Button>
+          </div>
+        )
       ) : (
         <div className={styles.buttons}>
           <Button className={styles.primary} disabled={true}>

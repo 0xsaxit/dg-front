@@ -206,12 +206,13 @@ const ButtonConnect = () => {
 
     localStorage.setItem('loggedIn', true);
   }
-  
-  async function upateVerified(arg) {    
-    if (arg > 0 && 
-      arg < 20 && 
-      window.location.hostname.includes(Global.CONSTANTS.VERIFY_URL
-    )) {
+
+  async function upateVerified(arg) {
+    if (
+      arg > 0 &&
+      arg < 20 &&
+      window.location.hostname.includes(Global.CONSTANTS.VERIFY_URL)
+    ) {
       dispatch({
         type: 'user_verify',
         data: false,

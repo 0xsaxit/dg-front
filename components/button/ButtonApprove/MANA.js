@@ -99,7 +99,7 @@ function MANA({ passed = false }) {
         data: true,
       });
 
-      console.log('authorize amount: ' + Global.CONSTANTS.MAX_AMOUNT);
+      console.log('MANA authorize amount: ' + Global.CONSTANTS.MAX_AMOUNT);
 
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = tokenContract.methods

@@ -142,7 +142,7 @@ const initialState = {
   selectedLang: 0,
   iceAmount: 0,
   userVerified: true,
-  isAmnesiaPage: false
+  isAmnesiaPage: false,
 };
 
 const reducer = (state, action) => {
