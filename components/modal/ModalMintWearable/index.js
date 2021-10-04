@@ -177,8 +177,11 @@ const ModalMint = props => {
             <div className={styles.button_area}>
               {itemLimitsArray[props.index][0] ? (
                 state.userBalances[2][3] < 0.1 ||
-                state.stakingBalances.BALANCE_USER_GOVERNANCE < 1 ? (
-                  <Button className={styles.button_upgrade} disabled={true}>
+                  state.stakingBalances.BALANCE_USER_GOVERNANCE < 1 ? (
+                  <Button
+                    className={styles.button_upgrade}
+                    disabled={true}
+                  >
                     Mint Wearable
                   </Button>
                 ) : (
@@ -209,6 +212,10 @@ const ModalMint = props => {
         itemID={itemLimitsArray[props.index][1]}
         wearableImg={props.wearableImg}
         show={openETHAuth}
+        back={() => {
+          setOpen(true);
+          setOpenETHAuth(false);
+        }}
         close={() => {
           setOpenETHAuth(false);
         }}

@@ -152,9 +152,7 @@
     gap: 10px;
 
     .primary {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      position: relative;
       height: 90px;
       background: #006EFF;
       font-family: Larsseit-Regular;
@@ -168,8 +166,11 @@
       border-radius: 16px;
 
       img {
-        width: 38px;
+        position: absolute;
+        left: 40px;
+        bottom: 27px;
         margin-right: 24px;
+        width: 38px;
       }
     }
   }
