@@ -67,6 +67,11 @@ function UserInfo() {
             type: 'user_info',
             data: data,
           });
+
+          dispatch({
+            type: 'set_XpAmount',
+            data: jsonInfo.iceXpCurrent
+          })
         }
       })();
     }
