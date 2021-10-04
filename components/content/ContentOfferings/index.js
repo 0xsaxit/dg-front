@@ -73,6 +73,7 @@ const ContentOfferings = props => {
         <div className={styles.outter_games_container}>
           {Object.keys(props.detailsGames).map((item, i) => (
             <a
+              key={i}
               href={props.detailsGames[item][6] + utm}
               target="_blank"
               className={styles.games_container}
@@ -129,6 +130,7 @@ const ContentOfferings = props => {
         <div className={styles.outter_games_container}>
           {Object.keys(props.detailsNFTs).map((item, i) => (
             <a
+              key={i}
               href={props.detailsNFTs[item][6] + utm}
               target="_blank"
               className={styles.games_container}
@@ -197,7 +199,7 @@ const ContentOfferings = props => {
         </div>
         <div className={styles.outter_games_container}>
           {Object.keys(props.detailsICE).map((item, i) => (
-            <div className={styles.games_container}>
+            <div key={i} className={styles.games_container}>
               <div className={styles.wear_box_purple}>
                 <div className={styles.fullDiv}>
                   <div className={styles.imgDiv}>
@@ -291,6 +293,7 @@ const ContentOfferings = props => {
         <div className={styles.outter_games_container}>
           {Object.keys(props.detailsCasinos).map((item, i) => (
             <a
+              key={i}
               href={props.detailsCasinos[item][6] + utm}
               target="_blank"
               className={styles.games_container}
@@ -355,6 +358,7 @@ const ContentOfferings = props => {
         <div className={styles.outter_games_container}>
           {Object.keys(props.detailsShop).map((item, i) => (
             <a
+              key={i}
               href={props.detailsShop[item][6] + utm}
               target="_blank"
               className={styles.games_container}

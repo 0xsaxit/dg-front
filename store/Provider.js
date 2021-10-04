@@ -141,6 +141,7 @@ const initialState = {
   toastMessage: '',
   selectedLang: 0,
   iceAmount: 0,
+  userVerified: true,
   isAmnesiaPage: false,
 };
 
@@ -168,6 +169,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         userAddress: action.data,
+      };
+
+    case 'user_verify':
+      return {
+        ...state,
+        userVerified: action.data,
       };
 
     case 'user_info':

@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import Web3 from 'web3';
-import BigNumber from 'bignumber.js';
+// import BigNumber from 'bignumber.js';
 import ABI_ICE_REGISTRANT from '../components/ABI/ABIICERegistrant.json';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
 import ABI_CHILD_TOKEN_WETH from '../components/ABI/ABIChildTokenWETH';
@@ -130,9 +130,14 @@ function ICEAttributes() {
             .balanceOf(state.userAddress)
             .call();
 
-          const actual_amount = new BigNumber(ice_amount)
-            .div(new BigNumber(10).pow(18))
-            .toString(10);
+          // const actual_amount = new BigNumber(ice_amount)
+          //   .div(new BigNumber(10).pow(18))
+          //   .toString(10);
+
+          const actual_amount = (
+            ice_amount / Global.CONSTANTS.FACTOR
+          ).toString();
+
           dispatch({
             type: 'set_IceAmount',
             data: actual_amount,
@@ -282,6 +287,14 @@ function ICEAttributes() {
       //   const ICE_MOVE_AMOUNT = await ICERegistrantContract.methods
       //   .levels()
       //   .call();
+
+      // console.log(
+      //   'matic dg contract: ' + Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DG
+      // );
+      // console.log('user address: ' + state.userAddress);
+      // console.log(
+      //   'iceRegistrant address: ' + Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
+      // );
 
       const DG_AUTHORIZATION = await Transactions.tokenAuthorization(
         DGMaticContract,

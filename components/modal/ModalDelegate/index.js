@@ -16,18 +16,13 @@ const ModalDelegate = props => {
 
   // define local variables
   const [web3, setWeb3] = useState({});
-  // const [spenderAddress, setSpenderAddress] = useState('');
-  // const [authStatusICE, setAuthStatusICE] = useState(false);
-  // const [authStatusDG, setAuthStatusDG] = useState(false);
-  // const [authStatusNFT, setAuthStatusNFT] = useState(false);
-
   const [clicked, setClicked] = useState(false);
   const [iceRegistrantContract, setIceRegistrantContract] = useState({});
   const [success, setSuccess] = useState(false);
   const [open, setOpen] = useState(false);
   const [entered, setEntered] = useState('');
-
-  const [isDelegated, setIsDelegated] = useState(false); // ********** will need to call smart contract for this value **********
+  const [isDelegated, setIsDelegated] = useState(false);
+  const [instances, setInstances] = useState(false);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -46,26 +41,13 @@ const ModalDelegate = props => {
       );
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
 
-      // const spenderAddress = Global.ADDRESSES.ICE_REGISTRANT_ADDRESS;
-      // setSpenderAddress(spenderAddress);
-
-      // const tokenContractICE = new getWeb3.eth.Contract(
-      //   ABI_CHILD_TOKEN_ICE,
-      //   Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ICE
-      // );
-      // setTokenContractICE(tokenContractICE);
-
-      // const tokenContractDG = new getWeb3.eth.Contract(
-      //   ABI_DG_TOKEN,
-      //   Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DG
-      // );
-      // setTokenContractDG(tokenContractDG);
-
       const iceRegistrantContract = new getWeb3.eth.Contract(
         ABI_ICE_REGISTRANT,
         Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
       );
       setIceRegistrantContract(iceRegistrantContract);
+
+      setInstances(true); // contract instantiation complete
 
       biconomy
         .onEvent(biconomy.READY, () => {
@@ -76,6 +58,19 @@ const ModalDelegate = props => {
         });
     }
   }, [state.userStatus]);
+
+  useEffect(() => {
+    if (instances) {
+      (async function () {
+        // console.log('token ID delegation: ' + props.tokenID);
+
+        // ********** will need to fetch this data from somewhere **********
+        const isDelegated = false;
+
+        setIsDelegated(isDelegated);
+      })();
+    }
+  }, [instances]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -234,6 +229,8 @@ const ModalDelegate = props => {
 
   async function metaTransaction() {
     console.log('Meta-transaction Delegation');
+    console.log('Delegate token ID: ' + props.tokenID);
+    console.log('Delegate address: ' + entered);
     setClicked(true);
 
     try {
@@ -241,7 +238,7 @@ const ModalDelegate = props => {
       let functionSignature = iceRegistrantContract.methods
         .delegateToken(
           Global.ADDRESSES.COLLECTION_V2_ADDRESS,
-          '2', // props.tokenID,
+          props.tokenID,
           entered,
           '70'
         )
@@ -261,14 +258,6 @@ const ModalDelegate = props => {
         console.log('Biconomy meta-transaction failed');
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
-
-        // // update global state NFT authorizations
-        // const refresh = !state.refreshNFTAuth;
-
-        // dispatch({
-        //   type: 'refresh_nft_auth',
-        //   data: refresh,
-        // });
 
         // close this modal and open the success modal
         setOpen(false);
@@ -334,7 +323,7 @@ const ModalDelegate = props => {
           </div>
         </Modal>
       ) : (
-        <ModalSuccessDelegation setSuccess={setSuccess} />
+        <ModalSuccessDelegation setSuccess={setSuccess} address={entered} />
       )}
     </Aux>
   );

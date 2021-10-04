@@ -10,7 +10,6 @@ import Fetch from '../../../common/Fetch';
 import Aux from '../../_Aux';
 import Global from '../../Constants';
 import MetamaskAction from './MetamaskAction';
-import MetamaskLogo from './MetamaskLogo';
 import ModalMintSuccess from '../ModalMintSuccess';
 
 const ModalEthAuth = props => {
@@ -28,9 +27,6 @@ const ModalEthAuth = props => {
   const [minting, setMinting] = useState(false);
   const [buttonMessage, setButtonMessage] = useState('Proceed to Mint');
   const [clicked, setClicked] = useState(false);
-
-  // metamask step states
-  // const [payForActivationState, setpayForActivationState] = useState('initial');
 
   /////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////
@@ -141,7 +137,7 @@ const ModalEthAuth = props => {
             secondaryText="Enables ETH Transaction"
           /> */}
 
-          
+
 
           {/** TODO: add correct on click action here */}
           {/* <MetamaskAction
@@ -157,12 +153,13 @@ const ModalEthAuth = props => {
   }
 
   // send-off the API request to mint the user's Level 1 wearable
-  async function mintToken(tokenID) {
+  async function mintToken() {
+    console.log('Minting NFT item ID: ' + props.itemID);
     setMinting(true);
     setButtonMessage('Minting Token...');
 
     const json = await Fetch.MINT_TOKEN(
-      tokenID,
+      props.itemID,
       Global.ADDRESSES.COLLECTION_V2_ADDRESS
     );
 
@@ -192,8 +189,10 @@ const ModalEthAuth = props => {
   // Biconomy API meta-transaction. User must authorize WETH token contract to access their funds
   async function metaTransaction() {
     try {
+      console.log(
+        'WETH authorization amount: ' + state.tokenAmounts.WETH_COST_AMOUNT
+      );
       setClicked(true);
-      console.log('authorize amount: ' + state.tokenAmounts.WETH_COST_AMOUNT);
 
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = tokenContract.methods
@@ -209,8 +208,9 @@ const ModalEthAuth = props => {
       );
 
       if (txHash === false) {
-        setClicked(false);
         console.log('Biconomy meta-transaction failed');
+
+        setClicked(false);
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
@@ -223,8 +223,9 @@ const ModalEthAuth = props => {
         });
       }
     } catch (error) {
-      setClicked(false);
       console.log('WETH authorization error: ' + error);
+
+      setClicked(false);
     }
   }
 
@@ -240,23 +241,23 @@ const ModalEthAuth = props => {
         open={open}
         close
       >
-        <div
-          className={styles.close_icon}
-          onClick={() => {
-            setOpen(false);
-            props.close();
-          }}
-        >
-          <span className={styles.button_close}>
+        <div className={styles.close_icon}>
+          <span
+            className={styles.button_close}
+            onClick={() => {
+              setOpen(false);
+              props.back();
+            }}
+          >
             <svg
-              width="12"
-              height="12"
-              viewBox="0 0 12 12"
+              width="10"
+              height="15"
+              viewBox="0 0 12 17"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M0.464355 9.65869C0.0952148 10.0344 0.0754395 10.7266 0.477539 11.1221C0.879639 11.5242 1.56519 11.511 1.94092 11.1353L5.65869 7.41748L9.36987 11.1287C9.75879 11.5242 10.4312 11.5176 10.8267 11.1155C11.2288 10.72 11.2288 10.0476 10.8398 9.65869L7.12866 5.94751L10.8398 2.22974C11.2288 1.84082 11.2288 1.16846 10.8267 0.772949C10.4312 0.37085 9.75879 0.37085 9.36987 0.759766L5.65869 4.47095L1.94092 0.753174C1.56519 0.384033 0.873047 0.364258 0.477539 0.766357C0.0820312 1.16846 0.0952148 1.854 0.464355 2.22974L4.18213 5.94751L0.464355 9.65869Z"
+                d="M0.0107422 8.6543C0.0107422 9.11133 0.168945 9.48926 0.555664 9.8584L7.16504 16.3271C7.44629 16.6084 7.78027 16.7402 8.17578 16.7402C8.99316 16.7402 9.65234 16.0811 9.65234 15.2812C9.65234 14.8682 9.48535 14.499 9.17773 14.2002L3.44727 8.64551L9.17773 3.1084C9.48535 2.80078 9.65234 2.43164 9.65234 2.02734C9.65234 1.22754 8.99316 0.568359 8.17578 0.568359C7.78027 0.568359 7.44629 0.708984 7.16504 0.981445L0.555664 7.4502C0.177734 7.81934 0.0107422 8.18848 0.0107422 8.6543Z"
                 fill="white"
               />
             </svg>
@@ -312,26 +313,29 @@ const ModalEthAuth = props => {
           <div className={styles.upgrade_container}>
             {approveWETH()}
 
-            {!minting ? (              
-                canPurchase ? (
-                  <Button
-                    className={styles.proceed_button}
-                    onClick={() =>{
-                        if(!authStatus) {
-                          metaTransaction();
-                        }
-                        mintToken(props.itemID)
-                      }
+            {!minting ? (
+              canPurchase ? (
+                <Button
+                  className={styles.proceed_button}
+
+                  onClick={() => {
+                    if (!authStatus) {
+                      metaTransaction();
                     }
-                  >
-                    {buttonMessage}
-                  </Button>
-                ) : (
-                  <Button disabled className={styles.proceed_button}>
-                    {buttonMessage}
-                  </Button>
-                )
-              
+                    mintToken()
+                  }
+                  }
+
+                >
+                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
+                  {buttonMessage}
+                </Button>
+              ) : (
+                <Button disabled className={styles.proceed_button}>
+                  {buttonMessage}
+                </Button>
+              )
+
             ) : (
               <Button disabled className={styles.proceed_button}>
                 {buttonMessage}

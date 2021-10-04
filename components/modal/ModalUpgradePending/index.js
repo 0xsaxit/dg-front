@@ -381,9 +381,12 @@ const ModalUpgradePending = props => {
     }
   }
 
-  // send-off the API request to upgrade the user's wearable
+  // send the API request to upgrade the user's wearable
   async function upgradeToken(txHash) {
-    const json = await Fetch.UPGRADE_TOKEN(txHash, props.itemID);
+    console.log('Upgrade NFT transaction. Item ID: ' + props.itemID);
+    setClickedUpgrade(true);
+
+    const json = await Fetch.UPGRADE_TOKEN(txHash);
 
     if (json.status) {
       setAuthStatusUpgrade(true);

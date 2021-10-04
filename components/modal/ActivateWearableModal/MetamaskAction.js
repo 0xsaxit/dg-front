@@ -1,4 +1,4 @@
-import styles from './MetamaskAction.module.scss';
+import styles from './ActivateWearableModal.module.scss';
 
 // valid action states are either:
 // 'initial' = blank circle with white outline
@@ -65,9 +65,9 @@ const MetamaskAction = ({
         </>
       </span>
 
-      <div className={styles.action_right}>
-        <p className={styles.action_top_text}>{primaryText}</p>
-        <p className={styles.action_bottom_text}>{secondaryText}</p>
+      <div className={styles.upgrade_right}>
+        <p className={styles.upgrade_top_text}>{primaryText}</p>
+        <p className={styles.upgrade_bottom_text}>{secondaryText}</p>
       </div>
     </div>
   );
