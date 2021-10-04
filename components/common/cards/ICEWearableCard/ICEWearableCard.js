@@ -61,11 +61,7 @@ const ICEWearableCard = ({ data }) => {
               state.DGBalances.BALANCE_CHILD_DG < 0.5 ? (
                 <NeedMoreDGActivateModal />
               ) : (
-                <ActivateWearableModal
-                  image={image}
-                  rank={rank}
-                  description={description}
-                />
+                <ActivateWearableModal />
               )
             ) : (
               <span className="w-100 d-flex justify-content-between">
@@ -73,8 +69,16 @@ const ICEWearableCard = ({ data }) => {
                   imgSrc={image}
                   rank={rank.value}
                   bonus={attributes.at(-1).value}
+                  description={description}
                 />
-                <ModalWearable />
+                <ModalWearable
+                  imgSrc={image}
+                  rank={rank.value}
+                  percentage={rank.percentage}
+                  bonus={attributes.at(-1).value}
+                  description={description}
+                  name={name.split('(ICE')[0].trim()}
+                />
               </span>
             )}
           </div>

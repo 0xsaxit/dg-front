@@ -82,7 +82,7 @@ const ModalDelegate = props => {
           <img src={props.imgSrc} />
         </div>
         <div className={styles.card_body}>
-          <div className={styles.card}>{props.rank}</div>
+          <div className={styles.card}>Rank {props.rank}</div>
           <div className={styles.card}>
             {props.bonus}
             <img
@@ -90,7 +90,9 @@ const ModalDelegate = props => {
               className={styles.img_card}
             />
           </div>
-          <div className={styles.card}>1 of 100</div>
+          <div className={styles.card}>
+            {props.description.split(' ').at(-1).replace('/', ' of ')}
+          </div>
         </div>
       </div>
     );
@@ -304,10 +306,10 @@ const ModalDelegate = props => {
                       Delegate Wearable
                     </Button>
                   ) : (
-                    <Button className={styles.button_upgrade} disabled={true}>
-                      Pending Transaction...
-                    </Button>
-                  )}
+                      <Button className={styles.button_upgrade} disabled={true}>
+                        Pending Transaction...
+                      </Button>
+                    )}
 
                   <Button className={styles.button_close}>Learn More</Button>
                 </div>
@@ -323,8 +325,8 @@ const ModalDelegate = props => {
           </div>
         </Modal>
       ) : (
-        <ModalSuccessDelegation setSuccess={setSuccess} address={entered} />
-      )}
+          <ModalSuccessDelegation setSuccess={setSuccess} address={entered} />
+        )}
     </Aux>
   );
 };
