@@ -17,7 +17,7 @@ const ActivateWearableModal = props => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [pending, setPending] = useState(false);
   const [web3, setWeb3] = useState({});
   const [spenderAddress, setSpenderAddress] = useState('');
@@ -145,7 +145,7 @@ const ActivateWearableModal = props => {
           className={styles.button_close}
           onClick={() => {
             setOpen(false);
-            props.setPending(false);
+            // props.setPending(false);
           }}
         >
           <svg
@@ -177,7 +177,7 @@ const ActivateWearableModal = props => {
         <div className={styles.dgSection}>
           <div className={styles.dgAmount}>
             <div>
-              0.5 DG
+              {state.tokenAmounts.DG_MOVE_AMOUNT}
               <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631325895/dgNewLogo_hkvlps.png" />
             </div>
           </div>
@@ -204,10 +204,10 @@ const ActivateWearableModal = props => {
               authStatus
                 ? 'done'
                 : !clicked
-                  ? 'initial'
-                  : clicked
-                    ? 'clicked'
-                    : null
+                ? 'initial'
+                : clicked
+                ? 'clicked'
+                : null
             }
             onClick={metaTransactionDG}
             primaryText="Authorize DG"
@@ -304,7 +304,7 @@ const ActivateWearableModal = props => {
       className={styles.dgactivate_modal}
       onClose={() => {
         setOpen(false);
-        props.setPending(false);
+        // props.setPending(false);
       }}
       onOpen={() => {
         setOpen(true);
@@ -317,9 +317,7 @@ const ActivateWearableModal = props => {
         </Button>
       }
     >
-      <div
-        className={styles.top_buttons}
-      >
+      <div className={styles.top_buttons}>
         {modalButtons('close')}
         {modalButtons('help')}
       </div>
