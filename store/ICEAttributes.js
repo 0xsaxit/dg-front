@@ -268,9 +268,10 @@ function ICEAttributes() {
 
   async function getTokenAmounts() {
     try {
-      const WETH_COST_AMOUNT = await ICERegistrantContract.methods
+      const wethConstAmount = await ICERegistrantContract.methods
         .mintingPrice()
         .call();
+      const WETH_COST_AMOUNT = wethConstAmount / Global.CONSTANTS.FACTOR;
 
       // const DG_COST_AMOUNT = await ICERegistrantContract.methods
       //   .levels()

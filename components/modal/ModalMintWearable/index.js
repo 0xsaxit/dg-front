@@ -52,6 +52,14 @@ const ModalMint = props => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  function formatPrice(balanceDG, units) {
+    const balanceAdjusted = Number(balanceDG)
+      .toFixed(units)
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+    return balanceAdjusted;
+  }
+
   return (
     <Aux>
       <Modal
@@ -142,7 +150,7 @@ const ModalMint = props => {
                     </span>
                   ) : null}
                   <div className={styles.card}>
-                    0.1 ETH
+                    {state.tokenAmounts.WETH_COST_AMOUNT} ETH
                     <img src={Images.ETH_CIRCLE} className={styles.img_card2} />
                   </div>
                   <div className={styles.description}>
@@ -159,7 +167,11 @@ const ModalMint = props => {
                     </span>
                   ) : null}
                   <div className={styles.card} style={{ width: '150px' }}>
-                    1 DG Staked
+                    {formatPrice(
+                      state.stakingBalances.BALANCE_USER_GOVERNANCE,
+                      3
+                    )}{' '}
+                    DG Staked
                     <img
                       src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631325895/dgNewLogo_hkvlps.png"
                       className={styles.img_card2}
@@ -176,12 +188,10 @@ const ModalMint = props => {
             </div>
             <div className={styles.button_area}>
               {itemLimitsArray[props.index][0] ? (
-                state.userBalances[2][3] < 0.1 ||
-                  state.stakingBalances.BALANCE_USER_GOVERNANCE < 1 ? (
-                  <Button
-                    className={styles.button_upgrade}
-                    disabled={true}
-                  >
+                state.userBalances[2][3] <
+                  state.tokenAmounts.WETH_COST_AMOUNT ||
+                state.stakingBalances.BALANCE_USER_GOVERNANCE < 1 ? (
+                  <Button className={styles.button_upgrade} disabled={true}>
                     Mint Wearable
                   </Button>
                 ) : (
