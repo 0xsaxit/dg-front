@@ -4,13 +4,15 @@ import { GlobalContext } from 'store';
 import styles from './NeedMoreUpgrade.module.scss';
 import { ICEIcon, DGLogo, XP, ExternalLinkArrow } from './Assets';
 
-const NeedMoreUpgrade = ({ setUpgrade, setPropsOpen }) => {
+const NeedMoreUpgrade = ({ upgradeNeedIceAmount, upgradeNeedDgAmount, upgradeNeedXpAmount, setUpgrade, setPropsOpen }) => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
   const [open, setOpen] = useState(true);
   //const [upgradePending, setUpgradePending] = useState(false);
+
+  console.log(state.DGBalances.BALANCE_CHILD_DG, upgradeNeedDgAmount);
 
   return (
     <Modal
@@ -35,8 +37,8 @@ const NeedMoreUpgrade = ({ setUpgrade, setPropsOpen }) => {
         >
           <svg
             width="10"
-            height="17"
-            viewBox="0 0 10 17"
+            height="15"
+            viewBox="0 0 12 15"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -100,7 +102,9 @@ const NeedMoreUpgrade = ({ setUpgrade, setPropsOpen }) => {
             <div className={styles.ice_icon}>
               <ICEIcon />
             </div>
-            <span className={styles.ice_pill}>Need 24,000 more</span>
+            {state.iceAmount < upgradeNeedIceAmount ?
+              <span className={styles.ice_pill}>Need {upgradeNeedIceAmount - state.iceAmount} more</span>
+              : null}
 
             <div className={styles.button_container}>
               <Button className={styles.blue_button}>
@@ -108,7 +112,7 @@ const NeedMoreUpgrade = ({ setUpgrade, setPropsOpen }) => {
                 <ExternalLinkArrow />
               </Button>
 
-              <p className={styles.availability_info}>26,000 ICE Available</p>
+              <p className={styles.availability_info}>{state.iceAmount} ICE Available</p>
             </div>
           </div>
 
@@ -116,6 +120,9 @@ const NeedMoreUpgrade = ({ setUpgrade, setPropsOpen }) => {
             <div className={styles.dg_icon}>
               <DGLogo />
             </div>
+            {state.DGBalances.BALANCE_CHILD_DG < upgradeNeedDgAmount ?
+              <span className={styles.dg_pill}>Need {upgradeNeedDgAmount - parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(1)} more</span>
+              : null}
 
             <div className={styles.button_container}>
               <Button className={styles.blue_button}>
@@ -123,7 +130,7 @@ const NeedMoreUpgrade = ({ setUpgrade, setPropsOpen }) => {
                 <ExternalLinkArrow />
               </Button>
 
-              <p className={styles.availability_info}>2.91 DG Available</p>
+              <p className={styles.availability_info}>{parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(1)} DG Available</p>
             </div>
           </div>
 
@@ -131,7 +138,9 @@ const NeedMoreUpgrade = ({ setUpgrade, setPropsOpen }) => {
             <div className={styles.xp_icon}>
               <XP />
             </div>
-            <span className={styles.xp_pill}>Need 12 more</span>
+            {state.xpAmount < upgradeNeedXpAmount ?
+              <span className={styles.xp_pill}>Need {upgradeNeedXpAmount - state.xpAmount} more</span>
+              : null}
 
             <div className={styles.button_container}>
               <Button className={styles.gray_button}>
@@ -139,7 +148,7 @@ const NeedMoreUpgrade = ({ setUpgrade, setPropsOpen }) => {
                 <span>Gameplay</span>
               </Button>
 
-              <p className={styles.availability_info}>38 XP Available</p>
+              <p className={styles.availability_info}>{state.xpAmount} XP Available</p>
             </div>
           </div>
         </div>
