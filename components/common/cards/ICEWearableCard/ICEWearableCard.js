@@ -25,11 +25,11 @@ const getRank = bonus => {
   }
 };
 
-const ICEWearableCard = ({ data }) => {
+const ICEWearableCard = props => {
   // get user's status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
-  const { name, description, image, attributes } = data;
+  const { name, description, image, attributes } = props.data;
   const rank = getRank(parseInt(attributes.at(-1).value));
 
   console.log(attributes, attributes[4].trait_type);
@@ -53,27 +53,35 @@ const ICEWearableCard = ({ data }) => {
               {description.split(' ').at(-1).replace('/', ' of ')}
             </div>
           </div>
-          <div className={styles.card_meta}>DG SUIT</div>
+          <div className={styles.card_meta}>DG SUIT xxx</div>
           <div className={styles.card_title}>
             <p>{name.split('(ICE')[0].trim()}</p>
             <p>{`(ICE Rank ${rank.value})`}</p>
           </div>
           <div className={styles.button_area}>
             {rank.value === 0 ? (
-              state.DGBalances.BALANCE_CHILD_DG < 0.5 ? (
+              state.DGBalances.BALANCE_CHILD_DG <
+              state.tokenAmounts.DG_MOVE_AMOUNT ? (
                 <NeedMoreDGActivateModal />
               ) : (
-                <ActivateWearableModal />
+                <ActivateWearableModal
+                  tokenID={props.tokenID}
+                  itemID={props.itemID}
+                />
               )
             ) : (
               <span className="w-100 d-flex justify-content-between">
                 <ModalDelegate
+                  tokenID={props.tokenID}
+                  itemID={props.itemID}
                   imgSrc={image}
                   rank={rank.value}
                   bonus={attributes.at(-1).value}
                   description={description}
                 />
                 <ModalWearable
+                  tokenID={props.tokenID}
+                  itemID={props.itemID}
                   imgSrc={image}
                   rank={rank.value}
                   percentage={rank.percentage}
