@@ -141,6 +141,7 @@ const initialState = {
   toastMessage: '',
   selectedLang: 0,
   iceAmount: 0,
+  xpAmount: 0,
   userVerified: true,
   isAmnesiaPage: false,
 };
@@ -283,6 +284,11 @@ const reducer = (state, action) => {
         ...state,
         iceAmount: action.data,
       };
+    case 'set_XpAmount':
+      return {
+        ...state,
+        xpAmount: action.data
+      }
     case 'nft_authorizations':
       return {
         ...state,

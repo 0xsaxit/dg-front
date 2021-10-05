@@ -12,7 +12,7 @@ const Layout = props => {
   const [state, dispatch] = useContext(GlobalContext);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
-
+  
   // define local variables
   // change second "lightTheme" to "darkTheme" when theme jump is fixed
   const themeMode = state.theme === 'light' ? lightTheme : lightTheme;
@@ -34,16 +34,36 @@ const Layout = props => {
 
   return (
     <ThemeProvider theme={themeMode}>
-      <GlobalStyles />
+      <>
+      {state.userVerified ? (
+        <>
+        <GlobalStyles />
 
-      {typeof window === 'undefined' ||
-      typeof window.matchMedia === 'undefined' ? (
-        <></>
+        {typeof window === 'undefined' ||
+        typeof window.matchMedia === 'undefined' ? (
+          <></>
+        ) : (
+          <MenuTop />
+        )}
+  
+        {props.children}
+        </>
       ) : (
-        <MenuTop />
+        <div
+          style={{
+            background: 'gray',
+            textAlign: 'center',
+            fontSize: '18px',
+            height: '35px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          You don’t have permission to view this page!
+        </div>
       )}
-
-      {props.children}
+      </>
     </ThemeProvider>
   );
 };

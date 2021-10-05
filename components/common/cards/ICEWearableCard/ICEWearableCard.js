@@ -13,15 +13,15 @@ const getRank = bonus => {
   if (bonus === 0) {
     return { value: 0, percentage: '0%' };
   } else if (1 <= bonus <= 7) {
-    return { value: 1, percentage: '+1 - 7%' };
+    return { value: 1, percentage: '+' + bonus + '%' };
   } else if (8 <= bonus <= 15) {
-    return { value: 2, percentage: '+8 - 15%' };
+    return { value: 2, percentage: '+' + bonus + '%' };
   } else if (16 <= bonus <= 24) {
-    return { value: 3, percentage: '+16 - 24%' };
+    return { value: 3, percentage: '+' + bonus + '%' };
   } else if (25 <= bonus <= 34) {
-    return { value: 4, percentage: '+25 - 34%' };
+    return { value: 4, percentage: '+' + bonus + '%' };
   } else if (35 <= bonus <= 45) {
-    return { value: 5, percentage: '+35 - 45%' };
+    return { value: 5, percentage: '+' + bonus + '%' };
   }
 };
 
@@ -31,6 +31,8 @@ const ICEWearableCard = ({ data }) => {
 
   const { name, description, image, attributes } = data;
   const rank = getRank(parseInt(attributes.at(-1).value));
+
+  console.log(attributes, attributes[4].trait_type);
 
   return (
     <div className={styles.card_container}>
@@ -61,11 +63,7 @@ const ICEWearableCard = ({ data }) => {
               state.DGBalances.BALANCE_CHILD_DG < 0.5 ? (
                 <NeedMoreDGActivateModal />
               ) : (
-                <ActivateWearableModal
-                  image={image}
-                  rank={rank}
-                  description={description}
-                />
+                <ActivateWearableModal />
               )
             ) : (
               <span className="w-100 d-flex justify-content-between">
@@ -73,8 +71,16 @@ const ICEWearableCard = ({ data }) => {
                   imgSrc={image}
                   rank={rank.value}
                   bonus={attributes.at(-1).value}
+                  description={description}
                 />
-                <ModalWearable />
+                <ModalWearable
+                  imgSrc={image}
+                  rank={rank.value}
+                  percentage={rank.percentage}
+                  bonus={attributes.at(-1).value}
+                  description={description}
+                  name={name.split('(ICE')[0].trim()}
+                />
               </span>
             )}
           </div>
