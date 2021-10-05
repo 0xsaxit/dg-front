@@ -298,7 +298,13 @@ const ModalWearable = props => {
         </Modal>
       )}
       {upgrade == 1 && (
-        <NeedMoreUpgrade setUpgrade={setUpgrade} setPropsOpen={setOpen} />
+        <NeedMoreUpgrade
+          upgradeNeedIceAmount={icePrices[props.rank + 1]}
+          upgradeNeedDgAmount={0.1}
+          upgradeNeedXpAmount={50}
+          setUpgrade={setUpgrade}
+          setPropsOpen={setOpen}
+        />
       )}
 
       {upgrade == 2 && (
