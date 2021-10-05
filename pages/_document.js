@@ -1,29 +1,22 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import Global from '../components/Constants';
-
+import Global from 'components/Constants';
 
 export default class MyDocument extends Document {
   static async getServerSideProps(ctx) {
     const initialProps = await Document.getServerSideProps(ctx);
+    console.log(ctx);
     return { ...initialProps };
   }
 
   render() {
     return (
       <Html lang="en">
-        <Head>       
+        <Head>
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#000000" />
           <meta name="description" content={Global.CONSTANTS.DESCRIPTION} />
-          <link
-            rel="shortcut icon"
-            href="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630041/favicon_wuwh9j.ico"
-          />
-          <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/apple-touch-icon_xrz57z.png"
-          />
+          <link rel="shortcut icon" />
+          <link rel="apple-touch-icon" sizes="180x180" />
           <link
             rel="icon"
             type="image/png"
@@ -51,41 +44,47 @@ export default class MyDocument extends Document {
           />
           <link
             rel="manifest"
-            href="/static/js/manifest.json"
+            href="public/static/js/manifest.json"
             crossOrigin="use-credentials"
           />
           <link
             rel="preload"
-            href="./static/fonts/Larsseit/Larsseit5.ttf"
+            href="public/static/fonts/Larsseit/Larsseit5.ttf"
             as="font"
             crossOrigin=""
           />
           <link
             rel="preload"
-            href="./static/fonts/Larsseit/Larsseit16.otf"
+            href="public/static/fonts/Larsseit/Larsseit16.otf"
             as="font"
             crossOrigin=""
           />
           <link
             rel="preload"
-            href="./static/fonts/Larsseit/Larsseit13.ttf"
+            href="pubic/static/fonts/Larsseit/Larsseit13.ttf"
             as="font"
             crossOrigin=""
           />
           <link
             rel="preload"
-            href="./static/fonts/Larsseit/Larsseit2.ttf"
+            href="public/static/fonts/Larsseit/Larsseit2.ttf"
             as="font"
             crossOrigin=""
           />
           <link
             rel="preload"
-            href="./static/fonts/Larsseit/Larsseit5.ttf"
+            href="public/static/fonts/Larsseit/Larsseit5.ttf"
             as="font"
             crossOrigin=""
           />
-          <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet" />
-          <meta name="facebook-domain-verification" content="ymawpiy7irzznvqvm922lfvr0cph0f" /> 
+          <link
+            href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap"
+            rel="stylesheet"
+          />
+          <meta
+            name="facebook-domain-verification"
+            content="ymawpiy7irzznvqvm922lfvr0cph0f"
+          />
         </Head>
 
         <body>

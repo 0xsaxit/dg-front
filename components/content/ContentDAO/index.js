@@ -67,7 +67,9 @@ const contentDAO = props => {
   useEffect(() => {
     (async function () {
       const json = await Fetch.DG_SUPPLY_GECKO();
-      setPrice(json.market_data.current_price.usd);
+      if(json && json.market_data) {
+        setPrice(json.market_data.current_price.usd);
+      }
     })();
   }, []);
 

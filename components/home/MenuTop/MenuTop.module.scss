@@ -122,4 +122,10 @@
     background-color: black !important;
     border-bottom: 1px solid rgb(42, 42, 42);
   }
+
+  // AMNESIA_COMMENT: amnesia header class should be removed after we are done with amnesia
+  &.amnesia_header {
+    background-color: transparent !important;
+    border: none !important;
+  }
 }

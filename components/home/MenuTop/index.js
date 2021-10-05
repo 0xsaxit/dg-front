@@ -9,11 +9,19 @@ import ModalInfo from 'components/modal/ModalInfo';
 import Fetch from 'common/Fetch';
 import ModalPopup from 'components/modal/ModalPopup';
 import ButtonConnect from '../../button/ButtonConnect/index.js';
+import LanguageModal from 'components/modal/LanguageModal';
 import styles from './MenuTop.module.scss';
 import MessageToast from 'components/home/MessageToast';
+import ReactGA from 'react-ga';
 
+// import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
 const MenuTop = props => {
+  // const { t, i18n } = useTranslation();
+
+  // const changeLanguage = lng => {
+  //   i18n.changeLanguage(lng);
+  // };
 
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -25,10 +33,6 @@ const MenuTop = props => {
   const [scrollState, setScrollState] = useState('top');
   const [ref, setRef] = useState('');
   const [copied, setCopied] = useState(false);
-  const [manaPrice, setManaPrice] = useState(0);
-  const [ethPrice, setEthPrice] = useState(0);
-  const [atriPrice, setAtriPrice] = useState(0);
-  const [casinoBalance, setCasinoBalance] = useState(0);
 
   const router = useRouter();
   let listener = null;
@@ -38,35 +42,14 @@ const MenuTop = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
 
   useEffect(() => {
-    (async function () {
-      // get coin prices
-      let json = await Fetch.MANA_PRICE();
-      setManaPrice(json.market_data.current_price.usd);
-
-      let json2 = await Fetch.ETH_PRICE();
-      setEthPrice(json2.market_data.current_price.usd);
-
-      let json3 = await Fetch.ATRI_PRICE();
-      setAtriPrice(json3.market_data.current_price.usd);
-    })();
-  }, [manaPrice, ethPrice, atriPrice]);
-
-  useEffect(() => {
-    const mana = Number(manaPrice * state.userBalances[1][1]);
-    const eth = Number(ethPrice * state.userBalances[2][3]);
-    const atri = Number(atriPrice * state.userBalances[2][2]);
-    const dai = Number(state.userBalances[0][1]);
-    const usdt = Number(state.userBalances[2][1] * 1000000000000);
-    const balance = mana + eth + atri + dai + usdt;
-
-    setCasinoBalance(balance.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-  }, [
-    state.userBalances[1][1],
-    state.userBalances[2][3],
-    state.userBalances[2][2],
-    state.userBalances[0][1],
-    state.userBalances[2][1],
-  ]);
+    if (state.userStatus >= 4) {
+      ReactGA.event({
+        category: 'Logged In',
+        action: 'User Logged In',
+        label: 'Home Page',
+      });
+    }
+  }, [state.userStatus]);
 
   useEffect(() => {
     linkDocs = document.getElementById('docs-top-menu');
@@ -97,14 +80,14 @@ const MenuTop = props => {
     };
   }, [scrollState]);
 
-  const onCopy = () => {
-    navigator.clipboard.writeText(state.userAddress);
-    setCopied(true);
+  // const onCopy = () => {
+  //   navigator.clipboard.writeText(state.userAddress);
+  //   setCopied(true);
 
-    setTimeout(() => {
-      setCopied(false);
-    }, 3000);
-  };
+  //   setTimeout(() => {
+  //     setCopied(false);
+  //   }, 3000);
+  // };
 
   // close menu automatically if left open for desktop screen sizes
   useEffect(() => {
@@ -159,18 +142,36 @@ const MenuTop = props => {
     return isMobile ? (
       <Link href="/">
         <img
-          className={styles.menu_logo}
+          className={cn(
+            // AMNESIA_COMMENT: remove the amnesia logo class
+            styles.menu_logo,
+            state.isAmnesiaPage && styles.amnesia_logo
+          )}
           alt="Decentral Games Logo"
-          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png"
+          src={
+            // AMNESIA_COMMENT: remove the amnesia logo
+            state.isAmnesiaPage
+              ? 'https://res.cloudinary.com/dnzambf4m/image/upload/v1632943973/amnesia/amnesia_dg_logo_uvqb6x.png'
+              : 'https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png'
+          }
         />
       </Link>
     ) : (
       <>
         <Link href="/">
           <img
-            className={styles.menu_logo}
+            className={cn(
+              // AMNESIA_COMMENT: remove the amnesia logo class
+              styles.menu_logo,
+              state.isAmnesiaPage && styles.amnesia_logo
+            )}
             alt="Decentral Games Logo"
-            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png"
+            src={
+              // AMNESIA_COMMENT: remove the amnesia logo
+              state.isAmnesiaPage
+                ? 'https://res.cloudinary.com/dnzambf4m/image/upload/v1632943973/amnesia/amnesia_dg_logo_uvqb6x.png'
+                : 'https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png'
+            }
           />
         </Link>
         &nbsp; Decentral Games
@@ -182,10 +183,10 @@ const MenuTop = props => {
   function dropdownMenu() {
     return (
       <div className={cn(styles.mobile_menu, open ? styles.open : '')}>
-        <span class="d-flex flex-column w-100">
+        <span className="d-flex flex-column w-100">
           {!isMobile && (
             <Link href={`/${utm}`}>
-              <Menu.Item className={styles.menu_style}>Play</Menu.Item>
+              <Menu.Item className={styles.menu_style}>Play1</Menu.Item>
             </Link>
           )}
           {!isMobile && (
@@ -208,7 +209,10 @@ const MenuTop = props => {
 
           {!isTablet && (
             <Link href="/blog">
-              <Menu.Item className={styles.menu_style}>News & Blog</Menu.Item>
+              <Menu.Item className={styles.menu_style}>
+                {/* {t('navMenu.NEWS_BLOG')} */}
+                News & Blog
+              </Menu.Item>
             </Link>
           )}
 
@@ -218,7 +222,10 @@ const MenuTop = props => {
               id="docs-top-menu"
               target="_blank"
             >
-              <Menu.Item className={styles.menu_style}>Docs</Menu.Item>
+              <Menu.Item className={styles.menu_style}>
+                {/* {t('navMenu.DOCS')} */}
+                Docs
+              </Menu.Item>
             </a>
           )}
         </span>
@@ -232,19 +239,28 @@ const MenuTop = props => {
       <div className={styles.menu_items_to_hide}>
         {isMobile && (
           <Link href={`/${utm}`}>
-            <Menu.Item className={styles.menu_style}>Play</Menu.Item>
+            <Menu.Item className={styles.menu_style}>
+              {/* {t('navMenu.PLAY')} */}
+              Play
+            </Menu.Item>
           </Link>
         )}
 
         {isMobile && (
           <Link href="/dg">
-            <Menu.Item className={styles.menu_style}>DAO</Menu.Item>
+            <Menu.Item className={styles.menu_style}>
+              {/* {t('navMenu.DAO')} */}
+              DAO
+            </Menu.Item>
           </Link>
         )}
 
         {isMobile && (
           <Link href="/games">
-            <Menu.Item className={styles.menu_style}>Offerings</Menu.Item>
+            <Menu.Item className={styles.menu_style}>
+              {/* {t('navMenu.OFFERINGS')} */}
+              Offerings
+            </Menu.Item>
           </Link>
         )}
 
@@ -272,13 +288,19 @@ const MenuTop = props => {
 
         {isTablet && (
           <Link href="/events">
-            <Menu.Item className={styles.menu_style}>Events</Menu.Item>
+            <Menu.Item className={styles.menu_style}>
+              {/* {t('navMenu.EVENTS')} */}
+              Events
+            </Menu.Item>
           </Link>
         )}
 
         {isTablet && (
           <Link href="/blog">
-            <Menu.Item className={styles.menu_style}>News & Blog</Menu.Item>
+            <Menu.Item className={styles.menu_style}>
+              {/* {t('navMenu.NEWS_BLOG')} */}
+              News & Blog
+            </Menu.Item>
           </Link>
         )}
 
@@ -289,37 +311,32 @@ const MenuTop = props => {
             className="d-flex"
             target="_blank"
           >
-            <Menu.Item className={styles.menu_style}>Docs</Menu.Item>
+            <Menu.Item className={styles.menu_style}>
+              {/* {t('navMenu.DOCS')} */}
+              Docs
+            </Menu.Item>
           </a>
         )}
       </div>
     );
   }
 
-  // display token balances and 'ADD TOKENS' button, or 'CONNECT METAMASK' button
+  // display token balances and 'MY ACCOUNT' button, or 'CONNECT METAMASK' button
   function balancesAndButtons() {
     return (
       <>
-        <span
-          className={cn(
-            styles.right_menu_items,
-            state.userStatus >= 4 ? '' : 'd-none'
-          )}
-        >
-          {isSquished ?
-            <ModalInfo /> :
-            null
-          }
-          <ModalPopup />
-        </span>
-        <span
-          className={cn(
-            styles.right_menu_items,
-            state.userStatus < 3 ? '' : 'd-none'
-          )}
-        >
-          <ButtonConnect />
-        </span>
+        {state.userStatus >= 4 && state.userLoggedIn && (
+          <span className={styles.right_menu_items}>
+            {isSquished ? <ModalInfo /> : null}
+            <ModalPopup />
+          </span>
+        )}
+        {(state.userStatus < 3 || !state.userLoggedIn) && (
+          <span className={styles.right_menu_items}>
+            <ButtonConnect />
+          </span>
+        )}
+        {/*<LanguageModal />*/}
       </>
     );
   }
@@ -331,6 +348,11 @@ const MenuTop = props => {
       <span>
         <div
           className={cn(
+            // AMNESIA_COMMENT: amnesia header class should be removed after we are done with amnesia
+            state.isAmnesiaPage &&
+              scrollState === 'top' &&
+              !open &&
+              styles.amnesia_header,
             styles.dashboard_menu_container,
             open || scrollState !== 'top' || router.asPath !== '/'
               ? styles.dark

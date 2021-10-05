@@ -70,12 +70,14 @@ const Images = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1625837406/Full_Screen_Background_Animation_uo9h6b_tgv9jq.gif',
   HASHKEY:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1626533037/image_55_Traced_p39kac.svg',
-  VEGAS: 
+  VEGAS:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1627992075/image_oxwbsc.png',
-  BAYC: 
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1628251329/download_bzvaxj.png',
-  BINANCE: 
+  BAYC: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1628251329/download_bzvaxj.png',
+  BINANCE:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1629728293/image_56_Traced_ywmz23.png',
+  // AMNESIA_COMMENT: remove this image when we are done with amnesia
+  AMNESIA_SOCIAL_SHARE:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1632943973/amnesia/amnesia_dg_logo_uvqb6x.png',
 };
 
 export default Images;

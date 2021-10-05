@@ -22,11 +22,16 @@ function History({ state }) {
   const [openId, setOpenId] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const transactions = dataHistory.filter(
+  const transactions = dataHistory=="false"? [] : (
+    dataHistory.filter(
     h =>
       get(h, 'type', '').includes('Deposit') ||
       get(h, 'type', '').includes('Withdrawal')
+    )
   );
+
+  console.log("->Data History: ", dataHistory);
+  console.log("->Transactions: ", transactions);
 
   const newPokerData = dataPoker.map(poker => {
     const userInfoPlayIDs = map(
@@ -51,6 +56,8 @@ function History({ state }) {
     };
   });
 
+  console.log("->NewPokerData: ", newPokerData);
+
   const playData = [
     ...(dataPlay === 'false'
       ? []
@@ -60,9 +67,12 @@ function History({ state }) {
     ...newPokerData,
   ].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
+  console.log("->PlayData: ", playData);
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
+    console.log("->State.transactions[0]: ", state.transactions[0]);
     if (state.transactions[0].length && state.transactions[1]) {
       setIsLoading(false);
     }
@@ -212,8 +222,7 @@ function History({ state }) {
                   </div>
                 </Grid.Column>
               );
-            })}
-            }
+            })}            
           </Grid>
         )}
       </div>

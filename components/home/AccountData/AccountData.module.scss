@@ -1,13 +1,13 @@
-@import 'styles/base.scss';
+@import "styles/base.scss";
 
 .player_card {
 	position: relative;
-	zIndex: 0;
+	z-index: 0;
 	margin: auto;
 	margin-top: 210px;
 	padding: 28px;
 	width: 600px;
-	border: 1px solid #2A2A2A;
+	border: 1px solid #2a2a2a;
 	border-radius: 28px;
 	display: flex;
 	align-items: center;
@@ -16,6 +16,42 @@
 		flex: 1;
 		text-align: center;
 
+		.tokenImgDiv {
+			position: relative;
+			margin-left: -16px;
+			top: 8px;
+
+			.token_background {
+				width: 35px;
+			}
+
+			.token_ice_img {
+				margin-left: -29px;
+				width: 26px;
+				position: relative;
+				top: -6px;
+			}
+
+			.token_xp_background {
+				width: 35px;
+				margin-left: 25px;
+			}
+
+			.token_xp_img {
+				width: 21px;
+				position: relative;
+				left: -27px;
+				top: -11px;
+			}
+
+			.token_DG_img {
+				width: 35px;
+				position: relative;
+				left: 2px;
+				top: 0px;
+			}
+		}
+
 		.token_img {
 			width: 72px;
 			margin-left: -22px;
@@ -23,7 +59,7 @@
 		}
 
 		.tokenBalance {
-			border: 1px solid #2A2A2A;
+			border: 1px solid #2a2a2a;
 			border-radius: 14px;
 			width: 88px;
 			height: 54px;
@@ -33,16 +69,80 @@
 			justify-content: center;
 
 			.title {
-				font-size: 12px;
-				color: 'white';
+				font-size: 10px;
+				color: "white";
 				opacity: 0.5;
-				margin-bottom: 0;
+				margin-bottom: 0px;
+
+				img {
+					width: 9px;
+					position: relative;
+					margin-left: 1px;
+				}
 			}
 			.amount {
-				font-weight: 'bold';
+				font-weight: "bold";
 				font-size: 18px;
-				color: 'white';
+				color: "white";
 			}
+		}
+	}
+
+	@include mq($until: medium) {
+		max-width: 500px;
+		width: 100%;
+
+		.token_container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+
+			.tokenImgDiv {
+				margin-left: 0px;
+
+				.token_ice_img {
+					margin-left: -28px;
+					top: -5px;
+				}
+			}
+		}
+
+		.player_avatar {
+			margin-left: 0px;
+
+			img {
+				width: 150px !important;
+			}
+		}
+
+		.player_name {
+			margin-left: 0px !important;
+
+			span {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin-top: 15px;
+
+				p {
+					margin-left: 10px;
+				}
+			}
+		}
+
+		.account_hover {
+			font-size: 18px !important;
+			margin-left: 6px !important;
+			margin-right: 12px !important;
+		}
+	}
+	
+	@include mq($until: small) {
+		.account_hover {
+			font-size: 14px !important;
+			margin-left: 5px !important;
+			margin-right: 5px !important;
 		}
 	}
 }

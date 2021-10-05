@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
+import cn from 'classnames';
 import { GlobalContext } from 'store';
 import Link from 'next/link';
 import { Parallax } from 'react-parallax';
@@ -76,7 +77,7 @@ const AccountData = (props) => {
     return (
       <Aux>
 
-        <div style={{ position: 'relative', zIndex: '0', paddingTop: '120px' }}>
+                <div style={{ position: 'relative', zIndex: '0', paddingTop: '120px' }}>
           <span style={{ display: 'flex', flexDirection: 'column' }}>
             <span
               className="avatar-picture"
@@ -170,7 +171,6 @@ const AccountData = (props) => {
                 </p>
               </span>
             </span>
-
             <div style={{ display: 'flex' }}>
               <div className={styles.token_container}>
                 <img className={styles.token_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/image_23_nm4wev.png" />
@@ -196,7 +196,6 @@ const AccountData = (props) => {
             </div>
           </div>
         </div>
-
         {/*<div className={styles.card_container}>
           <img className={styles.avatar_img} src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`} />
           <a 
@@ -271,75 +270,75 @@ const AccountData = (props) => {
           </div>
         </div>*/}
 
-        <div className="account-other-tabs" id="account-mobile-tabs" style={{ marginTop: '0px' }}>
+        <div className={cn("account-other-tabs", styles.account_other_tabs)} id="account-mobile-tabs" style={{ marginTop: '0px' }}>
           <div className="ml-0">
             <span className="account-other-p d-flex justify-content-center">
               {dataType === 'balances' ? (
-                <span className="account-hover active">
+                <span className={cn("account-hover", "active", styles.account_hover)}>
                   Balances
                 </span>
               ) : (
-                <Link href="/account">
-                  <span className="account-hover">
-                    Balances
+                  <Link href="/account">
+                    <span className={cn("account-hover", styles.account_hover)}>
+                      Balances
                   </span>
-                </Link>
-              )}
+                  </Link>
+                )}
 
               {/*{dataType === 'ice' ? (
-                <span className="account-hover active">
+                <span className={cn("account-hover", "active", styles.account_hover)}>
                   ICE
                 </span>
               ) : (
-                state.dgLoading ? (
-                  <span
-                    className="account-hover"
-                    onClick={() => {
-                      dispatch({
-                        type: 'set_dgWarningMsg',
-                        data: true,
-                      });
-                    }}
-                  >
-                    ICE
+                  state.dgLoading ? (
+                    <span
+                      className={cn("account-hover", styles.account_hover)}
+                      onClick={() => {
+                        dispatch({
+                          type: 'set_dgWarningMsg',
+                          data: true,
+                        });
+                      }}
+                    >
+                      ICE
+                    </span>
+                  ) : (<Link href="/account/ice">
+                    <span className={cn("account-hover", styles.account_hover)}>
+                      ICE
                   </span>
-                ) : (<Link href="/account/ice">
-                  <span className="account-hover">
-                    ICE
-                  </span>
-                </Link>)
-              )}*/}
+                  </Link>)
+                )}*/}
 
               {dataType === 'items' ? (
-                <span className="account-hover active">
+                <span className={cn("account-hover", "active", styles.account_hover)}>
                   NFTs
                 </span>
               ) : (
-                state.dgLoading ? (
-                  <span
-                    className="account-hover"
-                    onClick={() => {
-                      dispatch({
-                        type: 'set_dgWarningMsg',
-                        data: true,
-                      });
-                    }}
-                  >
-                    NFTs
+                  state.dgLoading ? (
+                    <span
+                      className={cn("account-hover", styles.account_hover)}
+                      onClick={() => {
+                        dispatch({
+                          type: 'set_dgWarningMsg',
+                          data: true,
+                        });
+                      }}
+                    >
+                      NFTs
+                    </span>
+                  ) : (<Link href="/account/items">
+                    <span className={cn("account-hover", styles.account_hover)}>
+                      NFTs
                   </span>
-                ) : (<Link href="/account/items">
-                  <span className="account-hover">
-                    NFTs
-                  </span>
-                </Link>)
-              )}
+                  </Link>)
+                )}
 
               {dataType === 'history' ? (
-                <span className="account-hover active">
+                <span className={cn("account-hover", "active", styles.account_hover)}>
                   History
                 </span>
               ) : (state.dgLoading ? (
-                <span className="account-hover" onClick={() => {
+                <span className={cn("account-hover", styles.account_hover)} onClick={() => {
                   dispatch({
                     type: 'set_dgWarningMsg',
                     data: true,
@@ -347,19 +346,19 @@ const AccountData = (props) => {
                 }}>
                   History
                 </span>) : (
-                <Link href="/account/history">
-                  <span className="account-hover">
-                    History
+                  <Link href="/account/history">
+                    <span className={cn("account-hover", styles.account_hover)}>
+                      History
                   </span>
-                </Link>)
-              )}
+                  </Link>)
+                )}
 
               {dataType === 'referrals' ? (
-                <span className="account-hover active">
+                <span className={cn("account-hover", "active", styles.account_hover)}>
                   Referrals
                 </span>
               ) : (state.dgLoading ? (
-                <span className="account-hover" onClick={() => {
+                <span className={cn("account-hover", styles.account_hover)} onClick={() => {
                   dispatch({
                     type: 'set_dgWarningMsg',
                     data: true,
@@ -368,11 +367,32 @@ const AccountData = (props) => {
                   Referrals
                 </span>) :
                 (<Link href="/account/referrals">
-                  <span className="account-hover">
+                  <span className={cn("account-hover", styles.account_hover)}>
                     Referrals
                   </span>
                 </Link>)
-              )}
+                )}
+
+
+              {/*{dataType === 'ICE_2' ? (
+                <span className={cn("account-hover", "active", styles.account_hover)}>
+                  ICE_2
+                </span>
+              ) : (state.dgLoading ? (
+                <span className={cn("account-hover", styles.account_hover)} onClick={() => {
+                  dispatch({
+                    type: 'set_dgWarningMsg',
+                    data: true,
+                  });
+                }}>
+                  ICE_2
+                </span>) :
+                (<Link href="/account/ICE_2">
+                  <span className={cn("account-hover", styles.account_hover)}>
+                    ICE_2
+                  </span>
+                </Link>)
+                )}*/}
 
             </span>
           </div>
@@ -503,23 +523,23 @@ const AccountData = (props) => {
       {isLoading ? (
         <Spinner background={1} />
       ) : (
-        <div>
-          <div className="page-container">
-            <div className="account-other-inner-container">
-              {topLinks()}
+          <div>
+            <div className="page-container">
+              <div className="account-other-inner-container">
+                {topLinks()}
 
-              <div id="tx-box-history-2">
-                <ContentAccount content={dataType} dataPage={dataPage} />
+                <div id="tx-box-history-2">
+                  <ContentAccount content={dataType} dataPage={dataPage} />
+                </div>
               </div>
             </div>
+            {copied ? (
+              <div className={copied ? 'copied-toast show' : 'copied-toast'}>
+                <h3 className="copied-text">Wallet address copied!</h3>
+              </div>
+            ) : null}
           </div>
-          {copied ? (
-            <div className={copied ? 'copied-toast show' : 'copied-toast'}>
-              <h3 className="copied-text">Wallet address copied!</h3>
-            </div>
-          ) : null}
-        </div>
-      )}
+        )}
     </div>
   );
 };

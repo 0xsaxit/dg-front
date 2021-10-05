@@ -1,0 +1,553 @@
+@import 'styles/base.scss';
+
+.header {
+  width: calc(100vw - 337px);
+  margin-top: 150px;
+  margin-left: 40px;
+  margin-bottom: -120px;
+
+  h1 {
+    font-size: 24px;
+    font-family: 'Larsseit-Medium';
+    line-height: 32px;
+    letter-spacing: 0.7px;
+  }
+
+  p {
+    font-size: 20px;
+    font-family: 'Larsseit-Regular';
+    line-height: 32px;
+    letter-spacing: 0.3px;
+
+    a {
+      color: #509bff;
+      text-decoration: underline !important;
+
+      &:hover {
+        transition: 0.2s ease-in;
+      }
+    }
+  }
+
+  h3 {
+    font-size: 19px;
+    line-height: 26px;
+    margin-top: 48px;
+  }
+
+  @media (max-width: 1040px) {
+    width: calc(100% - 80px);
+  }
+
+  @include mq($until: medium) {
+    width: calc(100% - 60px);
+    margin-left: 30px;
+
+    h1 {
+      font-size: 18px;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 20px;
+    }
+
+    h3 {
+      font-size: 16px;
+      margin-top: 48px;
+    }
+  }
+}
+
+.outter_games_container {
+  width: calc(100vw - 337px);
+  display: grid;
+  grid-gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(228px, 1fr));
+  margin: 18px 0px 120px 40px;
+  margin-top: 150px;
+
+  @media (max-width: 1040px) {
+    width: calc(100% - 80px);
+  }
+
+  @media (max-width: 768px) {
+    width: calc(100% - 60px);
+    margin-left: 30px;
+    margin-top: 130px;
+  }
+
+  .games_container {
+    position: relative;
+    border: 1px solid #2a2a2a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 12px;
+    box-sizing: border-box;
+    padding: 18px 18px 75px 18px;
+    min-width: 228px;
+    height: 100%;
+
+    .wear_box_purple {
+      position: relative;
+      width: 100%;
+      border-radius: 16px;
+      margin-top: 12px;
+
+      .p2e_enabled {
+        position: absolute;
+        top: -45px;
+        cursor: pointer;
+      }
+
+      // @include mq($until: medium) {
+      //   height: 100%;
+      //   width: 100%;
+      // }
+    }
+
+    .nft_image {
+      width: 100%;
+      border-radius: 12px;
+      margin-top: 5px;
+
+      .p2e_enabled {
+        position: absolute;
+        top: -39px;
+        z-index: 2;
+        left: 0;
+        min-width: 190px;
+        height: 100px;
+      }
+
+      .product_image {
+        height: 100%;
+        min-height: 100%;
+        border-radius: 12px;
+      }
+    }
+
+    .nft_description {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 5px;
+
+      .nft_info {
+        border: 1px solid #2a2a2a;
+        padding: 4px 8px 4px 8px;
+        margin: 8px 4px 0 4px;
+        border-radius: 12px;
+        font-size: 10px;
+        line-height: 12px;
+        font-family: Larsseit-Bold;
+      }
+
+      .nft_other_p {
+        color: rgba(255, 255, 255, 0.5) !important;
+        font-family: Larsseit-Bold;
+        font-size: 10px;
+        line-height: 26px;
+        margin-bottom: 0px;
+        margin-top: 8px;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .nft_p {
+        color: rgba(255, 255, 255) !important;
+        font-family: Larsseit-Regular;
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 0px;
+        margin-top: 8px;
+        text-align: center;
+      }
+
+      .nft_other_h3 {
+        font-family: Larsseit-Bold;
+        text-align: center;
+        font-size: 20px;
+        line-height: 24px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        color: rgba(255, 255, 255) !important;
+      }
+
+      .nft_h3 {
+        font-family: Larsseit-Bold;
+        text-align: center;
+        font-size: 20px;
+        margin-top: 10px;
+        margin-bottom: 4px;
+        color: rgba(255, 255, 255) !important;
+      }
+    }
+
+    .nft_button {
+      background: #006eff !important;
+      width: 197px;
+      height: 34px;
+      border-radius: 8px !important;
+      font-family: Larsseit-Bold;
+      font-size: 12px !important;
+      margin-left: auto;
+      margin-right: auto;
+      color: white !important;
+      margin-top: 24px !important;
+      line-height: 17px !important;
+    }
+  }
+}
+
+.ice_container {
+  display: flex;
+  flex-direction: column;
+  margin: 170px 0 120px 50px;
+
+  & > h1 {
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: -0.7px;
+  }
+
+  & > p {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 32px;
+    font-family: Larsseit-Regular;
+  }
+
+  & > h2 {
+    font-size: 19px;
+    line-height: 25px;
+    letter-spacing: -0.55px;
+    margin-bottom: 19px;
+  }
+
+  .outter_games_container {
+    width: calc(100vw - 337px);
+    display: grid;
+    grid-gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    margin: 30px 0px 0px 0px;
+    padding-top: 5px;
+
+    .games_container {
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      box-sizing: border-box;
+      padding: 45px 18px 18px 18px;
+      min-width: 228px;
+      height: 600px;
+
+      .p2e_enabled {
+        position: absolute;
+        width: 100%;
+        top: -36px;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+      }
+
+      .nft_image {
+        width: 190px;
+        height: 190px;
+        border-radius: 12px;
+        position: relative;
+
+        .product_image {
+          height: 100%;
+          width: 90%;
+          min-height: 350px;
+          max-height: 350px;
+          border-radius: 12px;
+          margin-left: 5%;
+          object-fit: cover;
+        }
+      }
+
+      .nft_description {
+        display: flex;
+        flex-direction: column;
+
+        .nft_other_h3 {
+          font-family: Larsseit-Medium;
+          text-align: center;
+          font-size: 12px;
+          line-height: 16px;
+          margin-top: 16px;
+          margin-bottom: 0;
+          color: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        .nft_other_p {
+          color: white;
+          font-family: Larsseit-Bold;
+          font-size: 24px;
+          line-height: 30px;
+          margin-top: 5px;
+          margin-bottom: 12px;
+          text-align: center;
+        }
+
+        .nfts_info {
+          border: 1px solid #2a2a2a;
+          padding: 6px;
+          margin: 12px 4px 0 4px;
+          border-radius: 12px;
+          font-size: 10px;
+          line-height: 13px;
+          font-family: Larsseit-Bold;
+        }
+
+        button {
+          font-size: 14px !important;
+          line-height: 19px;
+          margin-top: 4px !important;
+          margin-left: 0 !important;
+          width: 100% !important;
+          height: 43px;
+          border-radius: 8px !important;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 1040px) {
+    & > h1 {
+      font-weight: 800;
+      font-size: 20px;
+      line-height: 32px;
+      letter-spacing: -0.7px;
+    }
+
+    .marketplace_p {
+      font-size: 16px;
+      line-height: 20px;
+      margin-top: 5px;
+      width: calc(100vw - 160px);
+    }
+
+    & > h2 {
+      font-size: 20px;
+      line-height: 25px;
+      letter-spacing: -0.55px;
+      margin-top: 10px;
+      margin-bottom: 0px;
+    }
+
+    .outter_games_container {
+      width: calc(100vw - 160px);
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+
+      .games_container {
+        height: 540px;
+        .nft_image {
+          .product_image {
+            min-height: 300px;
+            max-height: 300px;
+          }
+        }
+
+        .wear_box_purple {
+          img {
+            width: 80%;
+          }
+
+          .IceP2EEnabledTooltip_tooltip {
+            right: 200px !important;
+          }
+
+          .p2e_enabled {
+            position: absolute;
+            top: -300px;
+            height: 70px;
+          }
+        }
+      }
+    }
+
+    @include mq($until: medium) {
+      margin-left: 30px;
+
+      .outter_games_container {
+        width: calc(100vw - 140px);
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+
+        .games_container {
+          height: 460px;
+          // .p2e_enabled {
+          //   width: 100%;
+          // }
+
+          .wear_box_purple {
+            .p2e_enabled {
+              position: absolute;
+              top: -45px;
+              height: 100px;
+            }
+          }
+
+          .nft_image {
+            .product_image {
+              min-height: 220px;
+              max-height: 220px;
+            }
+          }
+
+          .nft_description {
+            .nft_other_h3 {
+              font-size: 10px;
+              margin-top: 10px;
+            }
+
+            .nft_other_p {
+              font-size: 20px;
+            }
+
+            .nfts_info {
+              font-size: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.fullDiv {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+
+  .imgDiv {
+    position: absolute;
+    width: 240px;
+    top: -25px !important;
+
+    .img {
+      width: 100%;
+    }
+
+    .tooltip {
+      position: absolute;
+      right: 70px !important;
+      width: 12px !important;
+      top: 24.5px;
+      cursor: pointer;
+    }
+  }
+}
+
+.popup {
+  margin-right: -13px !important;
+  margin-bottom: 13px !important;
+  height: auto !important;
+
+  .tooltipContent {
+    width: 240px;
+    padding-top: 8px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+
+    .popup_info {
+      width: 17px !important;
+      position: absolute !important;
+      top: 17px !important;
+    }
+
+    .popup_content {
+      font-size: 13px;
+      line-height: 18px;
+      letter-spacing: 0.5px;
+      margin-left: 30px;
+      font-weight: 700;
+    }
+  }
+  &::before {
+    background-color: #1f1f1f !important;
+    box-shadow: 1px 1px 0 0 #1f1f1f !important;
+    display: block !important;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .fullDiv {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0px;
+
+    .imgDiv {
+      position: absolute;
+      width: 200px !important;
+      top: -30px !important;
+
+      .img {
+        width: 100%;
+      }
+
+      .tooltip {
+        position: absolute;
+        right: 58px !important;
+        top: 20.5px !important;
+        width: 10px !important;
+      }
+    }
+  }
+
+  .popup {
+    margin-right: -15px !important;
+    margin-bottom: 8px !important;
+
+    .tooltipContent {
+      width: 240px;
+      padding-top: 8px;
+      padding-right: 5px;
+      padding-bottom: 5px;
+
+      .popup_info {
+        width: 17px !important;
+        position: absolute !important;
+        top: 17px !important;
+      }
+
+      .popup_content {
+        font-size: 13px;
+        line-height: 18px;
+        letter-spacing: 0.3px;
+        margin-left: 30px;
+      }
+    }
+    &::before {
+      background-color: #1f1f1f !important;
+      box-shadow: 1px 1px 0 0 #1f1f1f !important;
+    }
+  }
+}
+
+@include mq($until: medium) {
+  .fullDiv {
+    .imgDiv {
+      position: absolute;
+      width: 260px !important;
+
+      .img {
+        width: 80% !important;
+        position: absolute;
+        right: 30px;
+      }
+
+      .tooltip {
+        position: absolute;
+        right: 87px !important;
+        top: 21px !important;
+        width: 12px !important;
+      }
+    }
+  }
+}

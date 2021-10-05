@@ -10,7 +10,6 @@ import { useMediaQuery } from 'hooks';
 import ModalLoginTop from 'components/modal/ModalLoginTop';
 import styles from './ButtonConnect.module.scss';
 
-
 const assignToken = async () => {
   const userAddress = window.ethereum.selectedAddress;
   if (userAddress && document.visibilityState === 'visible') {
@@ -44,6 +43,7 @@ const ButtonConnect = () => {
   const [metamaskEnabled, setMetamaskEnabled] = useState(false);
   const [scrollState, setScrollState] = useState('top');
   const [binance, setBinance] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const router = useRouter();
   let listener = null;
@@ -60,6 +60,14 @@ const ButtonConnect = () => {
 
       if (currentTimestamp > expiredTimestamp) {
         openMetaMask();
+      }
+
+      // if we are on this block and have the loggedIn LS entry, assume a login
+      if (localStorage.getItem('loggedIn')) {
+        dispatch({
+          type: 'set_userLoggedIn',
+          data: true,
+        });
       }
     } else {
       localStorage.removeItem('token');
@@ -102,12 +110,37 @@ const ButtonConnect = () => {
     } else {
       setMetamaskEnabled(false);
     }
+    setLoading(false);
   });
 
   async function openMetaMask() {
     if (metamaskEnabled) {
       // open MetaMask for login then get the user's wallet address
-      await window.ethereum.enable();
+
+      // the only way to be able to click on this button with a user status >= 4 is to have clicked in the "disconnect" button in ModalPopUp
+      if (state.userStatus >= 4) {
+        // will re-prompt to select an account, even if metamask is already enabled in the site
+        // works for users that are "disconnected" but want to switch accounts
+        await window.ethereum.request({
+          method: 'wallet_requestPermissions',
+          params: [
+            {
+              eth_accounts: {},
+            },
+          ],
+        });
+      } else {
+        // otherwise do the usual
+        await window.ethereum.request({
+          method: 'eth_requestAccounts',
+          params: [
+            {
+              eth_accounts: {},
+            },
+          ],
+        });
+      }
+
       userAddress = window.ethereum.selectedAddress;
 
       // track MetaMask connect event
@@ -163,6 +196,14 @@ const ButtonConnect = () => {
         data: value,
       });
     }
+
+    // user will be updated either way, but only if response is truthy (line 150)
+    dispatch({
+      type: 'set_userLoggedIn',
+      data: true,
+    });
+
+    localStorage.setItem('loggedIn', true);
   }
 
   async function getUserStatus() {
@@ -189,10 +230,12 @@ const ButtonConnect = () => {
   return (
     <Aux>
       {metamaskEnabled ? (
-        <span className={styles.main_right_panel}>
+        <div className={styles.main_right_panel}>
           <Button
             color="blue"
             className={cn(
+              // AMNESIA_COMMENT: amnesia_button class should be removed after we are done with amnesia
+              state.isAmnesiaPage && styles.amnesia_button,
               styles.metamask_button,
               binance ? styles.binance_top : ''
             )}
@@ -202,10 +245,7 @@ const ButtonConnect = () => {
               src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
               className={styles.metamask_icon}
             />
-            {tablet ?
-              'Connect' :
-              'Connect Metamask'
-            }
+            {tablet ? 'Connect' : 'Connect Metamask'}
           </Button>
           <a
             href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
@@ -214,7 +254,7 @@ const ButtonConnect = () => {
           >
             ?
           </a>
-        </span>
+        </div>
       ) : (
         <ModalLoginTop />
       )}

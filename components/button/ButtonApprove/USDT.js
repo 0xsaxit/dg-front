@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../../store';
-import Biconomy from '@biconomy/mexa';
+import { Biconomy } from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
 import ABI_CHILD_TOKEN_USDT from '../../ABI/ABIChildTokenUSDT';
@@ -66,11 +66,6 @@ function USDT({ passed = false }) {
       type: 'active_status',
       data: true,
     });
-
-    // dispatch({
-    //   type: 'update_status',
-    //   data: value,
-    // });
 
     // update user's token array in database
     console.log("Updating user's token array in database: USDT");

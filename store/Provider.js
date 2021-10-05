@@ -30,6 +30,7 @@ const initialState = {
     [0, 0, 0, 0],
     [0, 0],
   ],
+  userLoggedIn: false,
   transactions: [{}, {}],
   treasuryNumbers: {},
   txHash: '',
@@ -37,6 +38,7 @@ const initialState = {
   networkID: 0,
   activeStatus: true,
   ethBalance: 0,
+  ethereumBal: 0,
   adminBalances: {
     treasury: [0, 0, 0, 0, 0, 0, ''],
     slots: [0, 0, 0, 0, 0, 0, ''],
@@ -50,8 +52,6 @@ const initialState = {
     BALANCE_BP_DAI: 0,
     BALANCE_ROOT_DG: 0,
     BALANCE_CHILD_DG: 0,
-    // BALANCE_CHILD_MANA: 0,
-    // BALANCE_CHILD_DAI: 0,
     BALANCE_UNISWAP_DG: 0,
     BALANCE_UNISWAP_ETH: 0,
     BALANCE_STAKING_BALANCER_1: 0,
@@ -71,6 +71,7 @@ const initialState = {
     dai: 0,
     atri: 0,
     usdt: 0,
+    dg: 0,
   },
   DGBreakdown: {
     eth: 0,
@@ -96,8 +97,30 @@ const initialState = {
     BALANCE_STAKED_UNISWAP: 0,
     BALANCE_WALLET_UNISWAP: 0,
   },
+  itemLimits: [
+    [0, 0],
+    [0, 5],
+    [0, 10],
+    [0, 15],
+    [0, 20],
+  ],
+  iceWearableItems: [],
+  nftAuthorizations: [],
+  canPurchase: true,
+  tokenAmounts: {
+    WETH_COST_AMOUNT: 0,
+    // DG_COST_AMOUNT: 0,
+    // DG_MOVE_AMOUNT: 0,
+    // ICE_COST_AMOUNT: 0,
+    // ICE_MOVE_AMOUNT: 0,
+    DG_AUTHORIZATION: false,
+    WETH_AUTHORIZATION: false,
+    // ICE_AUTHORIZATION: false
+  },
   refreshTokens: 'Initial',
   refreshBalances: true,
+  refreshTokenAuth: true,
+  refreshNFTAuth: true,
   updateInfo: true,
   affiliateAddress: '',
   stakeTime: 0,
@@ -108,7 +131,6 @@ const initialState = {
   usdtLoading: false,
   atriLoading: false,
   wethLoading: false,
-
   dgLoading: 0,
   dgShow: false,
   openModal: {
@@ -117,6 +139,9 @@ const initialState = {
   },
   dgWarningMsg: false,
   toastMessage: '',
+  selectedLang: 0,
+  iceAmount: 0,
+  isAmnesiaPage: false,
 };
 
 const reducer = (state, action) => {
@@ -155,6 +180,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         userBalances: action.data,
+      };
+
+    case 'update_eth_balance':
+      return {
+        ...state,
+        ethereumBal: action.data,
       };
 
     case 'update_history':
@@ -229,6 +260,40 @@ const reducer = (state, action) => {
         stakingBalances: action.data,
       };
 
+    case 'item_limits':
+      return {
+        ...state,
+        itemLimits: action.data,
+      };
+
+    case 'ice_wearable_items':
+      return {
+        ...state,
+        iceWearableItems: action.data,
+      };
+    case 'set_IceAmount':
+      return {
+        ...state,
+        iceAmount: action.data,
+      };
+    case 'nft_authorizations':
+      return {
+        ...state,
+        nftAuthorizations: action.data,
+      };
+
+    case 'can_purchase':
+      return {
+        ...state,
+        canPurchase: action.data,
+      };
+
+    case 'token_amounts':
+      return {
+        ...state,
+        tokenAmounts: action.data,
+      };
+
     case 'dg_prices':
       return {
         ...state,
@@ -269,6 +334,18 @@ const reducer = (state, action) => {
       return {
         ...state,
         refreshBalances: action.data,
+      };
+
+    case 'refresh_token_auth':
+      return {
+        ...state,
+        refreshTokenAuth: action.data,
+      };
+
+    case 'refresh_nft_auth':
+      return {
+        ...state,
+        refreshNFTAuth: action.data,
       };
 
     case 'update_info':
@@ -354,6 +431,21 @@ const reducer = (state, action) => {
       return {
         ...state,
         toastMessage: action.data,
+      };
+    case 'set_selectedLang':
+      return {
+        ...state,
+        selectedLang: action.data,
+      };
+    case 'set_userLoggedIn':
+      return {
+        ...state,
+        userLoggedIn: action.data,
+      };
+    case 'set_amnesia':
+      return {
+        ...state,
+        isAmnesiaPage: action.data,
       };
     default:
       throw new Error('Wrong action type got dispatched');

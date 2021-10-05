@@ -6,6 +6,7 @@ import styles from './ModalInfo.module.scss';
 import cn from 'classnames';
 import Global from '../../Constants';
 
+
 const ModalInfo = () => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -49,8 +50,10 @@ const ModalInfo = () => {
   useEffect(() => {
     (async function () {
       const json = await Fetch.DG_SUPPLY_GECKO();
-      setSupply(json.market_data.circulating_supply);
-      setDGPrice(json.market_data.current_price.usd);
+      if(json && json.market_data) {
+        setSupply(json.market_data.circulating_supply);
+        setDGPrice(json.market_data.current_price.usd);
+      }
     })();
   }, []);
 

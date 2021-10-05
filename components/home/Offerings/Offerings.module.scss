@@ -8,6 +8,8 @@
 
   @include mq($until: 1040px) {
     width: 80px;
+    min-width: 80px;
+    max-width: 80px;
   }
 
   .burger_icon {
@@ -110,7 +112,9 @@
 
 .tablet_menu_container {
   width: 80px;
-  height: 200vh;
+  min-width: 80px;
+  max-width: 80px;
+  height: 2000vh;
   padding: 4px;
   position: relative;
   z-index: 9;

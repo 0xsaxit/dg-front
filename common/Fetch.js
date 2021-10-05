@@ -1,6 +1,7 @@
 import call from 'common/API';
 // https://api.decentral.games, http://localhost:5000
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+const TEST_API_BASE_URL = 'https://api.testing.decentral.games';
 
 const apiCall = {
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -22,6 +23,44 @@ const apiCall = {
     return call(`${API_BASE_URL}/admin/getTotalRecords`, 'GET', false);
   },
 
+  PLAYER_DATA: () => {
+    return call(`${API_BASE_URL}/admin/getCryptoRecords`, 'GET');
+  },
+
+  USERS_LIST: () => {
+    return call(`${API_BASE_URL}/admin/getUsersList`, 'GET');
+  },
+
+  // MINT_TOKEN: (tokenID, collectionAddr) => {
+  //   console.log('/ice/mintToken/' + tokenID + '/' + collectionAddr);
+
+  //   return call(
+  //     `${API_BASE_URL}/ice/mintToken/${tokenID}/${collectionAddr}`,
+  //     'GET'
+  //   );
+  // },
+
+  MINT_TOKEN: (tokenID, collectionAddr) => {
+    return call(
+      `${API_BASE_URL}/ice/mintToken/${tokenID}/${collectionAddr}`,
+      'GET'
+    );
+  },
+
+  UPGRADE_TOKEN: (requestIndex, itemID) => {
+    return call(
+      `${API_BASE_URL}/ice/requestUpgrade/${requestIndex}/${itemID}`,
+      'GET'
+    );
+  },
+
+  GET_METADATA_FROM_TOKEN_URI: (contractAddr, tokenID) => {
+    return call(
+      `${TEST_API_BASE_URL}/ice/getMetadata/${contractAddr}/${tokenID}`,
+      'GET'
+    );
+  },
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // GET API calls (wallet address necessary)
@@ -30,20 +69,15 @@ const apiCall = {
   },
 
   POKER_DATA: address => {
-    return call(`${API_BASE_URL}/admin/getPokerHandHistory?address=${address}`, 'GET');
-  },
-
-  PLAYER_DATA: address => {
-    return call(`${API_BASE_URL}/admin/getCryptoRecords`, 'GET');
-  },
-
-  USERS_LIST: address => {
-    return call(`${API_BASE_URL}/admin/getUsersList`, 'GET');
+    return call(
+      `${API_BASE_URL}/admin/getPokerHandHistory?address=${address}`,
+      'GET'
+    );
   },
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // POST API calls
+  // POST API calls (no wallet address necessary)
   USER_STATUS: (address, ipAddress) => {
     return call(`${API_BASE_URL}/order/webLogin`, 'POST', true);
   },
@@ -54,6 +88,9 @@ const apiCall = {
     });
   },
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // POST API calls (wallet address necessary)
   UPDATE_TOKEN_ARRAY: (address, index) => {
     return call(`${API_BASE_URL}/order/updateTokenArray`, 'POST', true, {
       address,
