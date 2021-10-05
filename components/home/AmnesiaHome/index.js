@@ -177,6 +177,38 @@ const AmnesiaHome = () => {
                 >
                   <img src={images.DECENTRALAND} alt="DECENTRALAND" />
                 </div>
+                <div
+                  className={cn(
+                    styles.image_section,
+                    ' d-flex justify-content-center mb-5'
+                  )}
+                >
+                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1633456714/image_xkbtnd.png"/>
+                </div>
+                <div
+                  className={cn(
+                    styles.image_section,
+                    ' d-flex justify-content-center mb-5'
+                  )}
+                >
+                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1633456560/Rovi-White_qbba63.png" />
+                </div>
+                <div
+                  className={cn(
+                    styles.image_section,
+                    ' d-flex justify-content-center mb-5'
+                  )}
+                >
+                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1633456561/Apenft-white_txn7pl.png"/>
+                </div>
+                <div
+                  className={cn(
+                    styles.image_section,
+                    ' d-flex justify-content-center mb-5'
+                  )}
+                >
+                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1633456560/Tron-White_xvwbsf.png" />
+                </div>
               </div>
 
               <h2 className={styles.title}>Media Partners</h2>
