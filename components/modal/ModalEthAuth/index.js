@@ -107,7 +107,10 @@ const ModalEthAuth = props => {
         <div className={styles.upgrade_inner_container}>
           <div className={styles.eth_container}>
             <span style={{ display: 'flex', flexDirection: 'row' }}>
-              <p className={styles.eth_amount}> 0.1 ETH </p>
+              <p className={styles.eth_amount}>
+                {' '}
+                {state.tokenAmounts.WETH_COST_AMOUNT} ETH{' '}
+              </p>
               <img
                 className={styles.eth_img}
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/v1625014714/ETH_kzfhxr.png"
@@ -136,8 +139,6 @@ const ModalEthAuth = props => {
             primaryText="Authorize ETH"
             secondaryText="Enables ETH Transaction"
           /> */}
-
-
 
           {/** TODO: add correct on click action here */}
           {/* <MetamaskAction
@@ -190,13 +191,13 @@ const ModalEthAuth = props => {
   async function metaTransaction() {
     try {
       console.log(
-        'WETH authorization amount: ' + state.tokenAmounts.WETH_COST_AMOUNT
+        'WETH authorization amount: ' + state.tokenAmounts.MAX_AMOUNT
       );
       setClicked(true);
 
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = tokenContract.methods
-        .approve(spenderAddress, state.tokenAmounts.WETH_COST_AMOUNT)
+        .approve(spenderAddress, state.tokenAmounts.MAX_AMOUNT)
         .encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(
@@ -317,15 +318,12 @@ const ModalEthAuth = props => {
               canPurchase ? (
                 <Button
                   className={styles.proceed_button}
-
                   onClick={() => {
                     if (!authStatus) {
                       metaTransaction();
                     }
-                    mintToken()
-                  }
-                  }
-
+                    mintToken();
+                  }}
                 >
                   <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
                   {buttonMessage}
@@ -335,7 +333,6 @@ const ModalEthAuth = props => {
                   {buttonMessage}
                 </Button>
               )
-
             ) : (
               <Button disabled className={styles.proceed_button}>
                 {buttonMessage}

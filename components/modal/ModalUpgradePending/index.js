@@ -432,7 +432,7 @@ const ModalUpgradePending = props => {
         className={styles.header_buttons}
         onClick={() => {
           setOpen(false);
-          props.setUpgrade(0);
+          // props.setUpgrade(0);
         }}
       >
         {modalButtons('close')}

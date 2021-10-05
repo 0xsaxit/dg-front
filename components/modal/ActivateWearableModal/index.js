@@ -17,7 +17,7 @@ const ActivateWearableModal = props => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [pending, setPending] = useState(false);
   const [web3, setWeb3] = useState({});
   const [spenderAddress, setSpenderAddress] = useState('');
@@ -145,7 +145,7 @@ const ActivateWearableModal = props => {
           className={styles.button_close}
           onClick={() => {
             setOpen(false);
-            props.setPending(false);
+            // props.setPending(false);
           }}
         >
           <svg
@@ -177,7 +177,7 @@ const ActivateWearableModal = props => {
         <div className={styles.dgSection}>
           <div className={styles.dgAmount}>
             <div>
-              0.5 DG
+              {state.tokenAmounts.DG_MOVE_AMOUNT}
               <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631325895/dgNewLogo_hkvlps.png" />
             </div>
           </div>
@@ -185,16 +185,13 @@ const ActivateWearableModal = props => {
             {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(1)} DG
             Available <br />
             <abbr>(On Polygon)</abbr>
-          </p>
-
-          {approveDG()}
-
-          <p>Previous Owner: {previousOwner}</p>
+          </p>          
         </div>
       </Aux>
     );
   }
 
+  /*
   function approveDG() {
     return (
       <Aux>
@@ -204,10 +201,10 @@ const ActivateWearableModal = props => {
               authStatus
                 ? 'done'
                 : !clicked
-                  ? 'initial'
-                  : clicked
-                    ? 'clicked'
-                    : null
+                ? 'initial'
+                : clicked
+                ? 'clicked'
+                : null
             }
             onClick={metaTransactionDG}
             primaryText="Authorize DG"
@@ -217,6 +214,7 @@ const ActivateWearableModal = props => {
       </Aux>
     );
   }
+  */
 
   // Biconomy API meta-transaction. User must authorize DG token contract to access their funds
   async function metaTransactionDG() {
@@ -250,6 +248,7 @@ const ActivateWearableModal = props => {
           type: 'refresh_token_auth',
           data: refresh,
         });
+        setClicked(false);
       }
     } catch (error) {
       setClicked(false);
@@ -304,7 +303,7 @@ const ActivateWearableModal = props => {
       className={styles.dgactivate_modal}
       onClose={() => {
         setOpen(false);
-        props.setPending(false);
+        // props.setPending(false);
       }}
       onOpen={() => {
         setOpen(true);
@@ -313,40 +312,36 @@ const ActivateWearableModal = props => {
       close
       trigger={
         <Button className={styles.open_button}>
-          Activate Wearable (0.5 DG)
+          Activate Wearable ({state.tokenAmounts.DG_MOVE_AMOUNT} DG)
         </Button>
       }
     >
-      <div
-        className={styles.top_buttons}
-      >
+      <div className={styles.top_buttons}>
         {modalButtons('close')}
         {modalButtons('help')}
       </div>
 
       {description()}
 
-      {!pending ? (
-        authStatus ? (
+      {!pending ? (        
           <div className={styles.buttons}>
             <Button
+              disabled={clicked}
               className={styles.primary}
               onClick={() => {
-                metaTransactionReICE();
+                if(!authStatus) {
+                  metaTransactionDG();
+                                    
+                } else {
+                  metaTransactionReICE();
+                }
               }}
             >
               <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
-              Confirm Activation
+              {authStatus? 'Confirm Activation' : (clicked? 'Authorizing ...':'Authorize DG')}
             </Button>
           </div>
-        ) : (
-          <div className={styles.buttons}>
-            <Button disabled className={styles.primary}>
-              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
-              Confirm Activation
-            </Button>
-          </div>
-        )
+        
       ) : (
         <div className={styles.buttons}>
           <Button className={styles.primary} disabled={true}>

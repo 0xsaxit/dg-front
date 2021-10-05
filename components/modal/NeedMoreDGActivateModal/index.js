@@ -22,7 +22,7 @@ const NeedMoreDGActivateModal = props => {
           close
           trigger={
             <Button className={styles.open_button}>
-              Activate Wearable (0.5 DG)
+              Activate Wearable ({state.tokenAmounts.DG_MOVE_AMOUNT} DG)
             </Button>
           }
         >
@@ -118,7 +118,10 @@ const NeedMoreDGActivateModal = props => {
                   />
                 </svg>
               </Button>
-              <span className={styles.text}>{parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(1)} DG Available</span>
+              <span className={styles.text}>
+                {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(1)} DG
+                Available
+              </span>
             </div>
           </div>
         </Modal>
