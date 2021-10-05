@@ -31,12 +31,12 @@ const ModalWearable = props => {
   ];
 
   const icePrices = [
-    "0",    // Rank 0
-    "0",    // Rank 1
-    "30K",  // Rank 2
-    "40K",  // Rank 3
-    "50K",  // Rank 4
-    "60K"   // Rank 5
+    0,      // Rank 0
+    0,      // Rank 1
+    30000,  // Rank 2
+    40000,  // Rank 3
+    50000,  // Rank 4
+    60000   // Rank 5
   ]
 
   const imgUrls = {
@@ -113,7 +113,7 @@ const ModalWearable = props => {
             <div className={styles.wear_box}>
               <div style={{ width: '240px', display: 'flex', justifyContent: 'center' }}>
                 <div className={styles.wear_box_mark}>
-                  {props.bonus}%
+                  +{props.bonus}%
                   <img
                     src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png"
                     className={styles.img_card}
@@ -126,7 +126,7 @@ const ModalWearable = props => {
               <div className={styles.card_body}>
                 <div className={styles.card}>Rank {props.rank}</div>
                 <div className={styles.card}>
-                  {props.bonus}%
+                  +{props.bonus}%
                   <img
                     src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png"
                     className={styles.img_card}
@@ -199,7 +199,7 @@ const ModalWearable = props => {
                       <span className={styles.not_enough}>Not Enough</span>
                     )}
                     <div className={styles.card}>
-                      {icePrices[props.rank + 1]} ICE
+                      {icePrices[props.rank + 1] / 1000 + "K"} ICE
                       <img
                         src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png"
                         className={styles.img_card1}
