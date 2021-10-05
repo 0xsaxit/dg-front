@@ -276,15 +276,10 @@ function ICEAttributes() {
       //   .levels()
       //   .call();
 
-      //   const DG_MOVE_AMOUNT = await ICERegistrantContract.methods
-      //   .levels()
-      //   .call();
+      const levelsData = await ICERegistrantContract.methods.levels('1').call();
+      const DG_MOVE_AMOUNT = levelsData[2] / Global.CONSTANTS.FACTOR;
 
       //   const ICE_COST_AMOUNT = await ICERegistrantContract.methods
-      //   .levels()
-      //   .call();
-
-      //   const ICE_MOVE_AMOUNT = await ICERegistrantContract.methods
       //   .levels()
       //   .call();
 
@@ -325,7 +320,7 @@ function ICEAttributes() {
       return {
         WETH_COST_AMOUNT: WETH_COST_AMOUNT,
         // DG_COST_AMOUNT: DG_COST_AMOUNT,
-        // DG_MOVE_AMOUNT: DG_MOVE_AMOUNT,
+        DG_MOVE_AMOUNT: DG_MOVE_AMOUNT,
         // ICE_COST_AMOUNT: ICE_COST_AMOUNT,
         // ICE_MOVE_AMOUNT: ICE_MOVE_AMOUNT,
         DG_AUTHORIZATION: DG_AUTHORIZATION,
