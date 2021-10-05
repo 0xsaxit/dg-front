@@ -312,7 +312,7 @@ const ActivateWearableModal = props => {
       close
       trigger={
         <Button className={styles.open_button}>
-          Activate Wearable (0.5 DG)
+          Activate Wearable ({state.tokenAmounts.DG_MOVE_AMOUNT} DG)
         </Button>
       }
     >
