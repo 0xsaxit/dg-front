@@ -185,16 +185,13 @@ const ActivateWearableModal = props => {
             {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(1)} DG
             Available <br />
             <abbr>(On Polygon)</abbr>
-          </p>
-
-          {approveDG()}
-
-          <p>Previous Owner: {previousOwner}</p>
+          </p>          
         </div>
       </Aux>
     );
   }
 
+  /*
   function approveDG() {
     return (
       <Aux>
@@ -217,6 +214,7 @@ const ActivateWearableModal = props => {
       </Aux>
     );
   }
+  */
 
   // Biconomy API meta-transaction. User must authorize DG token contract to access their funds
   async function metaTransactionDG() {
@@ -250,6 +248,7 @@ const ActivateWearableModal = props => {
           type: 'refresh_token_auth',
           data: refresh,
         });
+        setClicked(false);
       }
     } catch (error) {
       setClicked(false);
@@ -326,27 +325,25 @@ const ActivateWearableModal = props => {
 
       {description()}
 
-      {!pending ? (
-        authStatus ? (
+      {!pending ? (        
           <div className={styles.buttons}>
             <Button
+              disabled={clicked}
               className={styles.primary}
               onClick={() => {
-                metaTransactionReICE();
+                if(!authStatus) {
+                  metaTransactionDG();
+                                    
+                } else {
+                  metaTransactionReICE();
+                }
               }}
             >
               <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
-              Confirm Activation
+              {authStatus? 'Confirm Activation' : (clicked? 'Authorizing ...':'Authorize DG')}
             </Button>
           </div>
-        ) : (
-          <div className={styles.buttons}>
-            <Button disabled className={styles.primary}>
-              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
-              Confirm Activation
-            </Button>
-          </div>
-        )
+        
       ) : (
         <div className={styles.buttons}>
           <Button className={styles.primary} disabled={true}>
