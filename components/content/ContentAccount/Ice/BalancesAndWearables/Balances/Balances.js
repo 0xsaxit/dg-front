@@ -24,7 +24,7 @@ const Balances = ({ state }) => {
       icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_XP_ICN_f9w2se.svg',
       name: 'Gameplay XP',
       type: 'XP',
-      model: '0 XP',
+      model: state.xpAmount,
       price: '0.00',
     },
     {
