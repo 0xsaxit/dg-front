@@ -109,16 +109,24 @@ const initialState = {
   canPurchase: true,
   tokenAmounts: {
     WETH_COST_AMOUNT: 0,
-    // DG_COST_AMOUNT: 0,
-    // DG_MOVE_AMOUNT: 0,
-    // ICE_COST_AMOUNT: 0,
-    // ICE_MOVE_AMOUNT: 0,
+    DG_MOVE_AMOUNT: 0,
+    DG_COST_AMOUNT_2: 0,
+    ICE_COST_AMOUNT_2: 0,
+    DG_COST_AMOUNT_3: 0,
+    ICE_COST_AMOUNT_3: 0,
+    DG_COST_AMOUNT_4: 0,
+    ICE_COST_AMOUNT_4: 0,
+    DG_COST_AMOUNT_5: 0,
+    ICE_COST_AMOUNT_5: 0,
+  },
+  tokenAuths: {
     DG_AUTHORIZATION: false,
+    ICE_AUTHORIZATION: false,
     WETH_AUTHORIZATION: false,
-    // ICE_AUTHORIZATION: false
   },
   refreshTokens: 'Initial',
   refreshBalances: true,
+  refreshTokenAmounts: true,
   refreshTokenAuth: true,
   refreshNFTAuth: true,
   updateInfo: true,
@@ -287,8 +295,8 @@ const reducer = (state, action) => {
     case 'set_XpAmount':
       return {
         ...state,
-        xpAmount: action.data
-      }
+        xpAmount: action.data,
+      };
     case 'nft_authorizations':
       return {
         ...state,
@@ -305,6 +313,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         tokenAmounts: action.data,
+      };
+
+    case 'token_auths':
+      return {
+        ...state,
+        tokenAuths: action.data,
       };
 
     case 'dg_prices':
@@ -349,10 +363,16 @@ const reducer = (state, action) => {
         refreshBalances: action.data,
       };
 
-    case 'refresh_token_auth':
+    case 'refresh_token_auths':
       return {
         ...state,
-        refreshTokenAuth: action.data,
+        refreshTokenAuths: action.data,
+      };
+
+    case 'refresh_token_amounts':
+      return {
+        ...state,
+        refreshTokenAmounts: action.data,
       };
 
     case 'refresh_nft_auth':

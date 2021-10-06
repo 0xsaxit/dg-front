@@ -93,7 +93,7 @@ const ActivateWearableModal = props => {
   }, [instances]);
 
   useEffect(() => {
-    const authStatus = state.tokenAmounts.DG_AUTHORIZATION;
+    const authStatus = state.tokenAuths.DG_AUTHORIZATION;
 
     setAuthStatus(authStatus);
   }, [state.tokenAmounts]);
@@ -185,7 +185,7 @@ const ActivateWearableModal = props => {
             {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(1)} DG
             Available <br />
             <abbr>(On Polygon)</abbr>
-          </p>          
+          </p>
         </div>
       </Aux>
     );
@@ -242,10 +242,10 @@ const ActivateWearableModal = props => {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
         // update global state token authorizations
-        const refresh = !state.refreshTokenAuth;
+        const refresh = !state.refreshTokenAuths;
 
         dispatch({
-          type: 'refresh_token_auth',
+          type: 'refresh_token_auths',
           data: refresh,
         });
         setClicked(false);
@@ -287,6 +287,14 @@ const ActivateWearableModal = props => {
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
+        // update global state token amounts
+        const refresh = !state.refreshTokenAmounts;
+
+        dispatch({
+          type: 'refresh_token_amounts',
+          data: refresh,
+        });
+
         // close this modal and open the success modal
         setOpen(false);
         setPending(false);
@@ -323,25 +331,27 @@ const ActivateWearableModal = props => {
 
       {description()}
 
-      {!pending ? (        
-          <div className={styles.buttons}>
-            <Button
-              disabled={clicked}
-              className={styles.primary}
-              onClick={() => {
-                if(!authStatus) {
-                  metaTransactionDG();
-                                    
-                } else {
-                  metaTransactionReICE();
-                }
-              }}
-            >
-              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
-              {authStatus? 'Confirm Activation' : (clicked? 'Authorizing ...':'Authorize DG')}
-            </Button>
-          </div>
-        
+      {!pending ? (
+        <div className={styles.buttons}>
+          <Button
+            disabled={clicked}
+            className={styles.primary}
+            onClick={() => {
+              if (!authStatus) {
+                metaTransactionDG();
+              } else {
+                metaTransactionReICE();
+              }
+            }}
+          >
+            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
+            {authStatus
+              ? 'Confirm Activation'
+              : clicked
+              ? 'Authorizing ...'
+              : 'Authorize DG'}
+          </Button>
+        </div>
       ) : (
         <div className={styles.buttons}>
           <Button className={styles.primary} disabled={true}>
