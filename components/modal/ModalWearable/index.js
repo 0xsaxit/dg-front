@@ -238,7 +238,7 @@ const ModalWearable = props => {
                         className={styles.img_card2}
                       />
                     </div>
-                    <div className={styles.description}>{parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(1)} DG Available</div>
+                    <div className={styles.description}>{parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(2)} DG Available</div>
                     <div className={styles.network}>(On Polygon)</div>
                   </div>
 
@@ -273,7 +273,6 @@ const ModalWearable = props => {
                 </div>
               </div>
               <div className={styles.button_area}>
-                {/* <NeedMoreUpgrade setOpen={setOpen} setUpgrade={setUpgrade} /> */}
                 {state.xpAmount >= 50 && state.DGBalances.BALANCE_CHILD_DG >= 0.1 && state.iceAmount >= 30000 ? (
                   <Button
                     className={styles.button_upgrade}
