@@ -294,11 +294,11 @@ const ModalWearable = props => {
                     Upgrade Wearable
                   </Button>
                 )}
-                  <Button
-                    className={styles.button_close}
-                  >
-                    Learn More
-                  </Button>
+                <Button
+                  className={styles.button_close}
+                >
+                  Learn More
+                </Button>
               </div>
             </div>
           </div>

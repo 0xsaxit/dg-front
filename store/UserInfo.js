@@ -63,6 +63,9 @@ function UserInfo() {
             tokenArray: tokenArray,
           };
 
+          console.log('!!!!!!!!');
+          console.log(jsonInfo);
+
           dispatch({
             type: 'user_info',
             data: data,
