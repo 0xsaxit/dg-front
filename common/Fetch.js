@@ -31,15 +31,6 @@ const apiCall = {
     return call(`${API_BASE_URL}/admin/getUsersList`, 'GET');
   },
 
-  // MINT_TOKEN: (tokenID, collectionAddr) => {
-  //   console.log('/ice/mintToken/' + tokenID + '/' + collectionAddr);
-
-  //   return call(
-  //     `${API_BASE_URL}/ice/mintToken/${tokenID}/${collectionAddr}`,
-  //     'GET'
-  //   );
-  // },
-
   MINT_TOKEN: (itemID, collectionAddr) => {
     return call(
       `${API_BASE_URL}/ice/mintToken/${itemID}/${collectionAddr}`,
@@ -51,11 +42,17 @@ const apiCall = {
     return call(`${API_BASE_URL}/ice/requestUpgrade/${txHash}`, 'GET');
   },
 
+  // ********** updated to base URL after backend merge **********
   GET_METADATA_FROM_TOKEN_URI: (contractAddr, tokenID) => {
     return call(
       `${TEST_API_BASE_URL}/ice/getMetadata/${contractAddr}/${tokenID}`,
       'GET'
     );
+  },
+
+  // ********** updated to base URL after backend merge **********
+  DELEGATE_INFO: () => {
+    return call(`${TEST_API_BASE_URL}/ice/delegateInfo`, 'GET');
   },
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -75,13 +72,21 @@ const apiCall = {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // POST API calls (no wallet address necessary)
-  USER_STATUS: (address, ipAddress) => {
+  USER_STATUS: () => {
     return call(`${API_BASE_URL}/order/webLogin`, 'POST', true);
   },
 
-  REGISTER: (address, ipAddress, affiliate) => {
+  REGISTER: affiliate => {
     return call(`${API_BASE_URL}/order/webRegister`, 'POST', true, {
       affiliate,
+    });
+  },
+
+  DELEGATE_NFT: (delegateAddr, tokenID, collectionAddr) => {
+    return call(`${API_BASE_URL}/ice/delegateToken`, 'POST', true, {
+      delegateAddr,
+      tokenID,
+      collectionAddr,
     });
   },
 
