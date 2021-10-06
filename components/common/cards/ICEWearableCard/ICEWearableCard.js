@@ -12,15 +12,15 @@ import styles from './ICEWearableCard.module.scss';
 const getRank = bonus => {
   if (bonus === 0) {
     return { value: 0, percentage: '0%' };
-  } else if (1 <= bonus <= 7) {
+  } else if (bonus >= 1 && bonus <= 7) {
     return { value: 1, percentage: '+' + bonus + '%' };
-  } else if (8 <= bonus <= 15) {
+  } else if (bonus >=  8 && bonus <= 15) {
     return { value: 2, percentage: '+' + bonus + '%' };
-  } else if (16 <= bonus <= 24) {
+  } else if (bonus >= 16 && bonus <= 24) {
     return { value: 3, percentage: '+' + bonus + '%' };
-  } else if (25 <= bonus <= 34) {
+  } else if (bonus >=25 && bonus <= 34) {
     return { value: 4, percentage: '+' + bonus + '%' };
-  } else if (35 <= bonus <= 45) {
+  } else if (bonus >=35 && bonus <= 45) {
     return { value: 5, percentage: '+' + bonus + '%' };
   }
 };
