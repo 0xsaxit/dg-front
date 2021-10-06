@@ -86,6 +86,14 @@
       text-align: center;
       color: #FFFFFF;
       margin-top: 6px;
+
+      a {
+        cursor: pointer;
+      }
+
+      a:hover {
+        color: #4183c4;
+      }
     }
 
     .button_area {
