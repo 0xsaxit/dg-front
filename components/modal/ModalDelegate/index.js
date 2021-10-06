@@ -1,9 +1,5 @@
-import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../../store';
-// import { Biconomy } from '@biconomy/mexa';
-// import Web3 from 'web3';
-// import ABI_ICE_REGISTRANT from '../../../components/ABI/ABIICERegistrant.json';
-// import MetaTx from '../../../common/MetaTx';
+import { useState, useEffect } from 'react';
+// import { GlobalContext } from '../../../store';
 import { Modal, Button } from 'semantic-ui-react';
 import Fetch from '../../../common/Fetch';
 import styles from './ModalDelegate.module.scss';
@@ -13,58 +9,23 @@ import Aux from '../../_Aux';
 
 const ModalDelegate = props => {
   // fetch delegation data from the Context API store
-  const [state, dispatch] = useContext(GlobalContext);
+  // const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  // const [web3, setWeb3] = useState({});
   const [clicked, setClicked] = useState(false);
-  // const [iceRegistrantContract, setIceRegistrantContract] = useState({});
   const [success, setSuccess] = useState(false);
   const [open, setOpen] = useState(false);
   const [enteredAddress, setEnteredAddress] = useState('');
   const [isDelegated, setIsDelegated] = useState(false);
-  // const [instances, setInstances] = useState(false);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // initialize Web3 providers and create token contract instance
-  // useEffect(() => {
-  //   if (state.userStatus >= 4) {
-  //     const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
-  //     setWeb3(web3);
-
-  //     const biconomy = new Biconomy(
-  //       new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
-  //       {
-  //         apiKey: Global.KEYS.BICONOMY_API_1,
-  //         debug: true,
-  //       }
-  //     );
-  //     const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
-
-  //     const iceRegistrantContract = new getWeb3.eth.Contract(
-  //       ABI_ICE_REGISTRANT,
-  //       Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
-  //     );
-  //     setIceRegistrantContract(iceRegistrantContract);
-
-  //     setInstances(true); // contract instantiation complete
-
-  //     biconomy
-  //       .onEvent(biconomy.READY, () => {
-  //         console.log('Mexa is Ready: Delegate (wearables)');
-  //       })
-  //       .onEvent(biconomy.ERROR, (error, message) => {
-  //         console.error(error);
-  //       });
-  //   }
-  // }, [state.userStatus]);
-
+  // fetch user's incoming/outgoing delegate mapping data
   useEffect(() => {
     (async function () {
       // console.log('token ID delegation: ' + props.tokenID);
 
-      console.log('get delegation info');
+      console.log('get delegation info...');
 
       const delegationInfo = await Fetch.DELEGATE_INFO();
 
@@ -166,7 +127,11 @@ const ModalDelegate = props => {
                 placeholder="Paste ETH Address Here"
                 onChange={evt => {
                   if (evt.target.value.length > 0) {
-                    setEnteredAddress(evt.target.value);
+                    if (web3.utils.isAddress(evt.target.value)) {
+                      setEnteredAddress(evt.target.value);
+                    } else {
+                      setEnteredAddress('');
+                    }
                   } else {
                     setEnteredAddress('');
                   }
@@ -237,58 +202,30 @@ const ModalDelegate = props => {
 
   async function delegateNFT() {
     console.log('Delegate token ID: ' + props.tokenID);
-    console.log('Delegate address: ' + entered);
+    console.log('Delegate address: ' + enteredAddress);
     setClicked(true);
 
-    const delegate = await Fetch.DELEGATE_NFT(
+    const json = await Fetch.DELEGATE_NFT(
       enteredAddress,
       props.tokenID,
       Global.ADDRESSES.COLLECTION_V2_ADDRESS
     );
+
+    console.log('delegation return data...');
+    console.log(json);
+
+    if (json.status) {
+      console.log('NFT delegation request successful');
+
+      // close this modal and open the success modal
+      setOpen(false);
+      setSuccess(true);
+    } else {
+      console.log('NFT delegation request error: ' + json.result);
+
+      setClicked(false);
+    }
   }
-
-  // async function metaTransaction() {
-  //   console.log('Meta-transaction Delegation');
-  //   console.log('Delegate token ID: ' + props.tokenID);
-  //   console.log('Delegate address: ' + entered);
-  //   setClicked(true);
-
-  //   try {
-  //     // get function signature and send Biconomy API meta-transaction
-  //     let functionSignature = iceRegistrantContract.methods
-  //       .delegateToken(
-  //         Global.ADDRESSES.COLLECTION_V2_ADDRESS,
-  //         props.tokenID,
-  //         entered,
-  //         '70'
-  //       )
-  //       .encodeABI();
-
-  //     const txHash = await MetaTx.executeMetaTransaction(
-  //       11,
-  //       functionSignature,
-  //       iceRegistrantContract,
-  //       state.userAddress,
-  //       web3
-  //     );
-
-  //     if (txHash === false) {
-  //       setClicked(false);
-
-  //       console.log('Biconomy meta-transaction failed');
-  //     } else {
-  //       console.log('Biconomy meta-transaction hash: ' + txHash);
-
-  //       // close this modal and open the success modal
-  //       setOpen(false);
-  //       setSuccess(true);
-  //     }
-  //   } catch (error) {
-  //     setClicked(false);
-
-  //     console.log('Delegation error: ' + error);
-  //   }
-  // }
 
   return (
     <Aux>

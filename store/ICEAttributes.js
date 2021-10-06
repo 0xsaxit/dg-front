@@ -119,7 +119,7 @@ function ICEAttributes() {
           iceWearableItems = iceWearableItems.filter(
             item => item.meta_data != null
           );
-          console.log('iceWearableItems: ', iceWearableItems);
+          // console.log('iceWearableItems: ', iceWearableItems);
 
           dispatch({
             type: 'ice_wearable_items',
@@ -301,34 +301,41 @@ function ICEAttributes() {
         .call();
       const DG_MOVE_AMOUNT = levelsData1[2] / Global.CONSTANTS.FACTOR;
 
-      // const levelsData2 = await ICERegistrantContract.methods.levels('2').call();
-      // const DG_COST_AMOUNT_2 = levelsData2[2] / Global.CONSTANTS.FACTOR;
-      //   const ICE_COST_AMOUNT_2 = levelsData2[2] / Global.CONSTANTS.FACTOR;
+      const levelsData2 = await ICERegistrantContract.methods
+        .levels('2')
+        .call();
+      const DG_COST_AMOUNT_2 = levelsData2[1] / Global.CONSTANTS.FACTOR;
+      const ICE_COST_AMOUNT_2 = levelsData2[3] / Global.CONSTANTS.FACTOR;
 
-      // const levelsData3 = await ICERegistrantContract.methods.levels('3').call();
-      // const DG_COST_AMOUNT_3 = levelsData3[2] / Global.CONSTANTS.FACTOR;
-      //   const ICE_COST_AMOUNT_3 = levelsData3[2] / Global.CONSTANTS.FACTOR;
+      const levelsData3 = await ICERegistrantContract.methods
+        .levels('3')
+        .call();
+      const DG_COST_AMOUNT_3 = levelsData3[1] / Global.CONSTANTS.FACTOR;
+      const ICE_COST_AMOUNT_3 = levelsData3[3] / Global.CONSTANTS.FACTOR;
 
-      /// const levelsData4 = await ICERegistrantContract.methods.levels('4').call();
-      // const DG_COST_AMOUNT_4 = levelsData4[2] / Global.CONSTANTS.FACTOR;
-      //   const ICE_COST_AMOUNT_4 = levelsData4[2] / Global.CONSTANTS.FACTOR;
+      const levelsData4 = await ICERegistrantContract.methods
+        .levels('4')
+        .call();
+      const DG_COST_AMOUNT_4 = levelsData4[1] / Global.CONSTANTS.FACTOR;
+      const ICE_COST_AMOUNT_4 = levelsData4[3] / Global.CONSTANTS.FACTOR;
 
-      // const levelsData5 = await ICERegistrantContract.methods.levels('5').call();
-      // const DG_COST_AMOUNT_5 = levelsData5[2] / Global.CONSTANTS.FACTOR;
-      //   const ICE_COST_AMOUNT_5 = levelsData5[2] / Global.CONSTANTS.FACTOR;
+      const levelsData5 = await ICERegistrantContract.methods
+        .levels('5')
+        .call();
+      const DG_COST_AMOUNT_5 = levelsData5[1] / Global.CONSTANTS.FACTOR;
+      const ICE_COST_AMOUNT_5 = levelsData5[3] / Global.CONSTANTS.FACTOR;
 
       return {
         WETH_COST_AMOUNT: WETH_COST_AMOUNT,
         DG_MOVE_AMOUNT: DG_MOVE_AMOUNT,
-
-        // DG_COST_AMOUNT_2: DG_COST_AMOUNT,
-        // ICE_COST_AMOUNT_2: ICE_COST_AMOUNT,
-        // DG_COST_AMOUNT_3: DG_COST_AMOUNT,
-        // ICE_COST_AMOUNT_3: ICE_COST_AMOUNT,
-        // DG_COST_AMOUNT_4: DG_COST_AMOUNT,
-        // ICE_COST_AMOUNT_4: ICE_COST_AMOUNT,
-        // DG_COST_AMOUNT_5: DG_COST_AMOUNT,
-        // ICE_COST_AMOUNT_5: ICE_COST_AMOUNT,
+        DG_COST_AMOUNT_2: DG_COST_AMOUNT_2,
+        ICE_COST_AMOUNT_2: ICE_COST_AMOUNT_2,
+        DG_COST_AMOUNT_3: DG_COST_AMOUNT_3,
+        ICE_COST_AMOUNT_3: ICE_COST_AMOUNT_3,
+        DG_COST_AMOUNT_4: DG_COST_AMOUNT_4,
+        ICE_COST_AMOUNT_4: ICE_COST_AMOUNT_4,
+        DG_COST_AMOUNT_5: DG_COST_AMOUNT_5,
+        ICE_COST_AMOUNT_5: ICE_COST_AMOUNT_5,
       };
     } catch (error) {
       console.log('Get token amounts error: ' + error);
