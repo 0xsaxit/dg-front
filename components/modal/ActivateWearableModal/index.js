@@ -337,6 +337,7 @@ const ActivateWearableModal = props => {
             disabled={clicked}
             className={styles.primary}
             onClick={() => {
+              console.log("authStatus: ", authStatus);
               if (!authStatus) {
                 metaTransactionDG();
               } else {
