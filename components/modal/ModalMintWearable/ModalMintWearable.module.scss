@@ -229,12 +229,11 @@
 
       .card_area {
         display: flex;
-        justify-content: flex-start;
+        justify-content: space-between;
         align-items: baseline;
 
         margin-bottom: 18px;
         margin-top: 12px;
-        gap: 6px;
 
         .card_area_body {
           position: relative;

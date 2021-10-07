@@ -50,16 +50,6 @@ const ModalMint = props => {
     setItemLimitsArray(itemLimitsArray);
   }, [state.itemLimits]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  function formatPrice(balanceDG, units) {
-    const balanceAdjusted = Number(balanceDG)
-      .toFixed(units)
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-    return balanceAdjusted;
-  }
-
   return (
     <Aux>
       <Modal
@@ -167,10 +157,7 @@ const ModalMint = props => {
                     </span>
                   ) : null}
                   <div className={styles.card} style={{ width: '150px' }}>
-                    {formatPrice(
-                      state.stakingBalances.BALANCE_USER_GOVERNANCE,
-                      3
-                    )}{' '}
+                    1{' '}
                     DG Staked
                     <img
                       src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631325895/dgNewLogo_hkvlps.png"

@@ -72,7 +72,7 @@ const ModalEthAuth = props => {
   }, [state.userStatus]);
 
   useEffect(() => {
-    const authStatus = state.tokenAmounts.WETH_AUTHORIZATION;
+    const authStatus = state.tokenAuths.WETH_AUTHORIZATION;
 
     setAuthStatus(authStatus);
   }, [state.tokenAmounts]);
@@ -157,7 +157,6 @@ const ModalEthAuth = props => {
   async function mintToken() {
     console.log('Minting NFT item ID: ' + props.itemID);
     setMinting(true);
-    setButtonMessage('Minting Token...');
 
     const json = await Fetch.MINT_TOKEN(
       props.itemID,
@@ -165,22 +164,30 @@ const ModalEthAuth = props => {
     );
 
     if (json.status) {
-      // update global state token authorizations
-      const refresh = !state.refreshTokenAuth;
+      // update global state token amounts
+      const refresh = !state.refreshTokenAmounts;
 
       dispatch({
-        type: 'refresh_token_auth',
+        type: 'refresh_token_amounts',
         data: refresh,
       });
 
       setOpenMintSuccess(true);
       setOpen(false);
+      
+      dispatch({
+        type: 'refresh_wearable_items',
+        data: false,
+      });
+
       props.close();
     } else if (!json.status) {
       setButtonMessage('Token Minting Error');
+
       console.log(json.result);
     } else if (json.status === 'error') {
       setButtonMessage(json.result);
+
       console.log(json.result);
     }
 
@@ -190,14 +197,12 @@ const ModalEthAuth = props => {
   // Biconomy API meta-transaction. User must authorize WETH token contract to access their funds
   async function metaTransaction() {
     try {
-      console.log(
-        'WETH authorization amount: ' + state.tokenAmounts.MAX_AMOUNT
-      );
+      console.log('WETH authorization amount: ' + Global.CONSTANTS.MAX_AMOUNT);
       setClicked(true);
 
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = tokenContract.methods
-        .approve(spenderAddress, state.tokenAmounts.MAX_AMOUNT)
+        .approve(spenderAddress, Global.CONSTANTS.MAX_AMOUNT)
         .encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(
@@ -216,10 +221,10 @@ const ModalEthAuth = props => {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
         // update global state token authorizations
-        const refresh = !state.refreshTokenAuth;
+        const refresh = !state.refreshTokenAuths;
 
         dispatch({
-          type: 'refresh_token_auth',
+          type: 'refresh_token_auths',
           data: refresh,
         });
       }
@@ -321,8 +326,9 @@ const ModalEthAuth = props => {
                   onClick={() => {
                     if (!authStatus) {
                       metaTransaction();
+                    } else {
+                      mintToken();
                     }
-                    mintToken();
                   }}
                 >
                   <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />

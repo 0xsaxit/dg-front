@@ -93,8 +93,8 @@ const ModalUpgradePending = props => {
 
   // get ICE and DG authorization status' based on tokenAmounts state object
   useEffect(() => {
-    const authStatusICE = state.tokenAmounts.ICE_AUTHORIZATION;
-    const authStatusDG = state.tokenAmounts.DG_AUTHORIZATION;
+    const authStatusICE = state.tokenAuths.ICE_AUTHORIZATION;
+    const authStatusDG = state.tokenAuths.DG_AUTHORIZATION;
 
     setAuthStatusICE(authStatusICE);
     setAuthStatusDG(authStatusDG);
@@ -289,10 +289,10 @@ const ModalUpgradePending = props => {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
         // update global state token authorizations
-        const refresh = !state.refreshTokenAuth;
+        const refresh = !state.refreshTokenAuths;
 
         dispatch({
-          type: 'refresh_token_auth',
+          type: 'refresh_token_auths',
           data: refresh,
         });
       }
@@ -372,7 +372,7 @@ const ModalUpgradePending = props => {
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
-        upgradeToken(txHash);
+        upgradeToken(txHash); // send the API request to server
       }
     } catch (error) {
       setClickedUpgrade(false);
@@ -390,6 +390,14 @@ const ModalUpgradePending = props => {
 
     if (json.status) {
       setAuthStatusUpgrade(true);
+
+      // update global state token amounts
+      const refresh = !state.refreshTokenAmounts;
+
+      dispatch({
+        type: 'refresh_token_amounts',
+        data: refresh,
+      });
 
       console.log('NFT upgrade request successful');
       setOpen(false);
