@@ -129,6 +129,7 @@ const initialState = {
   refreshTokenAmounts: true,
   refreshTokenAuth: true,
   refreshNFTAuth: true,
+  refreshWearable: true, 
   updateInfo: true,
   affiliateAddress: '',
   stakeTime: 0,
@@ -380,7 +381,11 @@ const reducer = (state, action) => {
         ...state,
         refreshNFTAuth: action.data,
       };
-
+    case 'refresh_wearable_items':
+      return {
+        ...state,
+        refreshWearable: action.data,
+      };
     case 'update_info':
       return {
         ...state,

@@ -78,53 +78,11 @@ function ICEAttributes() {
   useEffect(() => {
     if (instances) {
       async function fetchData() {
-        const nLen = Object.keys(collectionV2Contract).length;
-        const tokenIDs = [];
+        const nLen = Object.keys(collectionV2Contract).length;        
 
         if (nLen > 0) {
-          try {
-            for (
-              let nIndex = 0;
-              nIndex < Global.CONSTANTS.MAX_ITEM_COUNT;
-              nIndex++
-            ) {
-              const tokenID = await collectionV2Contract.methods
-                .tokenOfOwnerByIndex(state.userAddress, nIndex)
-                .call();
-
-              if (parseInt(tokenID) > 0) {
-                tokenIDs.push({ index: nIndex, tokenID: tokenID });
-              }
-            }
-          } catch (error) {
-            console.log('stack error: =>', error.message);
-          }
-
-          let iceWearableItems = await Promise.all(
-            tokenIDs.map(async item => {
-              const meta_json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
-                Global.ADDRESSES.COLLECTION_V2_ADDRESS,
-                item.tokenID
-              );
-
-              return {
-                index: item.index,
-                tokenID: item.tokenID,
-                meta_data:
-                  Object.keys(meta_json).length === 0 ? null : meta_json,
-              };
-            })
-          );
-
-          iceWearableItems = iceWearableItems.filter(
-            item => item.meta_data != null
-          );
-          // console.log('iceWearableItems: ', iceWearableItems);
-
-          dispatch({
-            type: 'ice_wearable_items',
-            data: iceWearableItems,
-          });
+          // update wearable items
+          updateWearableItems();
 
           const ice_amount = await iceTokenContract.methods
             .balanceOf(state.userAddress)
@@ -241,8 +199,67 @@ function ICEAttributes() {
     }
   }, [instances, state.iceWearableItems, state.refreshNFTAuth]);
 
+  useEffect(() => {
+    if(!state.refreshWearable) {
+      updateWearableItems();
+      dispatch({
+        type: 'refresh_wearable_items',
+        data: true,
+      });
+    }
+  }, [state.refreshWearable]);
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  async function updateWearableItems() {
+    console.log("updateWearableItems ========================= ");
+
+    const tokenIDs = [];
+    try {
+      for (
+        let nIndex = 0;
+        nIndex < Global.CONSTANTS.MAX_ITEM_COUNT;
+        nIndex++
+      ) {
+        const tokenID = await collectionV2Contract.methods
+          .tokenOfOwnerByIndex(state.userAddress, nIndex)
+          .call();
+
+        if (parseInt(tokenID) > 0) {
+          tokenIDs.push({ index: nIndex, tokenID: tokenID });
+        }
+      }
+    } catch (error) {
+      console.log('stack error: =>', error.message);
+    }
+
+    let iceWearableItems = await Promise.all(
+      tokenIDs.map(async item => {
+        const meta_json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
+          Global.ADDRESSES.COLLECTION_V2_ADDRESS,
+          item.tokenID
+        );
+
+        return {
+          index: item.index,
+          tokenID: item.tokenID,
+          meta_data:
+            Object.keys(meta_json).length === 0 ? null : meta_json,
+        };
+      })
+    );
+
+    iceWearableItems = iceWearableItems.filter(
+      item => item.meta_data != null
+    );
+    console.log('iceWearableItems: =========================== ', iceWearableItems);
+
+    dispatch({
+      type: 'ice_wearable_items',
+      data: iceWearableItems,
+    });
+  }
+
   async function getItemLimits() {
     try {
       const ITEM_LIMIT_0 = await ICERegistrantContract.methods.limits(0).call();

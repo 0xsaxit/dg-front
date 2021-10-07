@@ -174,6 +174,12 @@ const ModalEthAuth = props => {
 
       setOpenMintSuccess(true);
       setOpen(false);
+      
+      dispatch({
+        type: 'refresh_wearable_items',
+        data: false,
+      });
+
       props.close();
     } else if (!json.status) {
       setButtonMessage('Token Minting Error');
@@ -320,8 +326,9 @@ const ModalEthAuth = props => {
                   onClick={() => {
                     if (!authStatus) {
                       metaTransaction();
+                    } else {
+                      mintToken();
                     }
-                    mintToken();
                   }}
                 >
                   <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
