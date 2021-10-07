@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-// import { GlobalContext } from '../../../store';
+import { useState, useEffect, useContext } from 'react';
+import { GlobalContext } from '../../../store';
 import { Modal, Button } from 'semantic-ui-react';
 import Fetch from '../../../common/Fetch';
 import styles from './ModalDelegate.module.scss';
@@ -9,7 +9,7 @@ import Aux from '../../_Aux';
 
 const ModalDelegate = props => {
   // fetch delegation data from the Context API store
-  // const [state, dispatch] = useContext(GlobalContext);
+  const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
   const [clicked, setClicked] = useState(false);
@@ -22,21 +22,23 @@ const ModalDelegate = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   // fetch user's incoming/outgoing delegate mapping data
   useEffect(() => {
-    (async function () {
-      // console.log('token ID delegation: ' + props.tokenID);
+    if (state.userStatus >= 4) {
+      (async function () {
+        // console.log('token ID delegation: ' + props.tokenID);
 
-      console.log('get delegation info...');
+        console.log('get delegation info...');
 
-      const delegationInfo = await Fetch.DELEGATE_INFO();
+        const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
 
-      console.log('delegation info results: ');
-      console.log(delegationInfo);
+        console.log('delegation info results... ');
+        console.log(delegationInfo);
 
-      // ********** will need to fetch this data from somewhere **********
-      const isDelegated = false;
+        // ********** will need to fetch this data from somewhere **********
+        const isDelegated = false;
 
-      setIsDelegated(isDelegated);
-    })();
+        setIsDelegated(isDelegated);
+      })();
+    }
   }, []);
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -203,6 +205,9 @@ const ModalDelegate = props => {
   async function delegateNFT() {
     console.log('Delegate token ID: ' + props.tokenID);
     console.log('Delegate address: ' + enteredAddress);
+    console.log(
+      'Collection address: ' + Global.ADDRESSES.COLLECTION_V2_ADDRESS
+    );
     setClicked(true);
 
     const json = await Fetch.DELEGATE_NFT(
@@ -221,7 +226,7 @@ const ModalDelegate = props => {
       setOpen(false);
       setSuccess(true);
     } else {
-      console.log('NFT delegation request error: ' + json.result);
+      console.log('NFT delegation request error: ' + json.reason);
 
       setClicked(false);
     }

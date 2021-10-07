@@ -50,9 +50,8 @@ const apiCall = {
     );
   },
 
-  // ********** updated to base URL after backend merge **********
-  DELEGATE_INFO: () => {
-    return call(`${TEST_API_BASE_URL}/ice/delegateInfo`, 'GET');
+  DELEGATE_INFO: address => {
+    return call(`${API_BASE_URL}/ice/delegateInfo?address=${address}`, 'GET');
   },
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -82,11 +81,11 @@ const apiCall = {
     });
   },
 
-  DELEGATE_NFT: (delegateAddr, tokenID, collectionAddr) => {
+  DELEGATE_NFT: (delegateAddress, tokenID, contractAddress) => {
     return call(`${API_BASE_URL}/ice/delegateToken`, 'POST', true, {
-      delegateAddr,
+      delegateAddress,
       tokenID,
-      collectionAddr,
+      contractAddress,
     });
   },
 
