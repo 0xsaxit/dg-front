@@ -166,19 +166,19 @@ const ModalEthAuth = props => {
     if (json.status) {
       // update global state token amounts
       const refresh = !state.refreshTokenAmounts;
-
       dispatch({
         type: 'refresh_token_amounts',
         data: refresh,
       });
 
-      setOpenMintSuccess(true);
-      setOpen(false);
-      
+      // update global state wearables data
       dispatch({
         type: 'refresh_wearable_items',
         data: false,
       });
+
+      setOpenMintSuccess(true);
+      setOpen(false);
 
       props.close();
     } else if (!json.status) {

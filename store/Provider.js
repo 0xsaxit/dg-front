@@ -127,9 +127,9 @@ const initialState = {
   refreshTokens: 'Initial',
   refreshBalances: true,
   refreshTokenAmounts: true,
-  refreshTokenAuth: true,
-  refreshNFTAuth: true,
-  refreshWearable: true, 
+  refreshTokenAuths: true,
+  refreshNFTAuths: true,
+  refreshWearable: true,
   updateInfo: true,
   affiliateAddress: '',
   stakeTime: 0,
@@ -376,10 +376,10 @@ const reducer = (state, action) => {
         refreshTokenAmounts: action.data,
       };
 
-    case 'refresh_nft_auth':
+    case 'refresh_nft_auths':
       return {
         ...state,
-        refreshNFTAuth: action.data,
+        refreshNFTAuths: action.data,
       };
     case 'refresh_wearable_items':
       return {

@@ -243,7 +243,6 @@ const ActivateWearableModal = props => {
 
         // update global state token authorizations
         const refresh = !state.refreshTokenAuths;
-
         dispatch({
           type: 'refresh_token_auths',
           data: refresh,
@@ -289,10 +288,15 @@ const ActivateWearableModal = props => {
 
         // update global state token amounts
         const refresh = !state.refreshTokenAmounts;
-
         dispatch({
           type: 'refresh_token_amounts',
           data: refresh,
+        });
+
+        // update global state wearables data
+        dispatch({
+          type: 'refresh_wearable_items',
+          data: false,
         });
 
         // close this modal and open the success modal
@@ -337,7 +341,7 @@ const ActivateWearableModal = props => {
             disabled={clicked}
             className={styles.primary}
             onClick={() => {
-              console.log("authStatus: ", authStatus);
+              console.log('authStatus: ', authStatus);
               if (!authStatus) {
                 metaTransactionDG();
               } else {
