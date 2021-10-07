@@ -77,7 +77,7 @@ const DAO = props => {
   useEffect(() => {
     (async function () {
       const json = await Fetch.DG_SUPPLY_GECKO();
-      if(json && json.market_data) {
+      if (json && json.market_data) {
         setPrice(json.market_data.current_price.usd);
       }
     })();
@@ -233,7 +233,7 @@ const DAO = props => {
   function submenu() {
     return (
       <>
-        {isMobile && !mobileOpen ? (
+        {!mobileOpen ? (
           <div className={styles.tablet_menu_container}>
             <div
               className={styles.burger_icon}
@@ -250,7 +250,7 @@ const DAO = props => {
                   d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
                   stroke="white"
                   strokeWidth="1"
-                  stroke-opacity="0.5"
+                  strokeOpacity="0.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
@@ -448,7 +448,7 @@ const DAO = props => {
                         d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
                         stroke="white"
                         strokeWidth="1"
-                        stroke-opacity="0.5"
+                        strokeOpacity="0.5"
                         strokeLinecap="round"
                         strokeLinejoin="round"
                       />
