@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { GlobalContext } from '../../../store';
 import { Modal, Button } from 'semantic-ui-react';
 import Fetch from '../../../common/Fetch';
@@ -8,7 +8,7 @@ import Global from '../../Constants';
 import Aux from '../../_Aux';
 
 const ModalDelegate = props => {
-  // fetch delegation data from the Context API store
+  // fetch user's wallet address from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
@@ -21,29 +21,51 @@ const ModalDelegate = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // fetch user's incoming/outgoing delegate mapping data
-  useEffect(() => {
-    if (state.userStatus >= 4) {
-      (async function () {
-        // console.log('token ID delegation: ' + props.tokenID);
+  // useEffect(() => {
+  //   if (state.userStatus >= 4) {
+  //     (async function () {
+  //       const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
 
-        console.log('get delegation info...');
+  //       console.log('delegation info results... ');
+  //       console.log(delegationInfo);
 
-        const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
+  //       // ********** will need to fetch this data from somewhere **********
+  //       const isDelegated = false;
 
-        console.log('delegation info results... ');
-        console.log(delegationInfo);
-
-        // ********** will need to fetch this data from somewhere **********
-        const isDelegated = false;
-
-        setIsDelegated(isDelegated);
-      })();
-    }
-  }, []);
+  //       setIsDelegated(isDelegated);
+  //     })();
+  //   }
+  // }, []);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
+  async function getDelegated(address) {
+    console.log('Entered address: ' + address);
+
+    const delegationInfo = await Fetch.DELEGATE_INFO(address);
+
+    if (delegationInfo.incomingDelegations[0]) {
+      console.log('delegate info...');
+      console.log(delegationInfo);
+
+      // const incomingDelegator =
+      //   delegationInfo.incomingDelegations[0].delegateAddress.toLowerCase();
+
+      const tokenOwner =
+        delegationInfo.incomingDelegations[0].tokenOwner.toLowerCase();
+
+      console.log('Entered address incoming delegator: ' + tokenOwner);
+
+      // if entered address has delegated wearables and the delegator is not me
+      if (tokenOwner !== '' && tokenOwner !== state.userAddress.toLowerCase()) {
+        setIsDelegated(true);
+      }
+    } else {
+      console.log('Entered address has no incoming delegator');
+    }
+  }
+
   function imageDetails() {
     return (
       <div className={styles.wear_box}>
@@ -127,10 +149,17 @@ const ModalDelegate = props => {
                 className={styles.input}
                 maxLength="42"
                 placeholder="Paste ETH Address Here"
-                onChange={evt => {
+                onChange={async evt => {
                   if (evt.target.value.length > 0) {
                     if (web3.utils.isAddress(evt.target.value)) {
-                      setEnteredAddress(evt.target.value);
+                      // check to see if anyone has already delegated to this address
+                      await getDelegated(evt.target.value);
+
+                      if (!isDelegated) {
+                        setEnteredAddress(evt.target.value);
+                      } else {
+                        setEnteredAddress('');
+                      }
                     } else {
                       setEnteredAddress('');
                     }
@@ -216,8 +245,8 @@ const ModalDelegate = props => {
       Global.ADDRESSES.COLLECTION_V2_ADDRESS
     );
 
-    console.log('delegation return data...');
-    console.log(json);
+    // console.log('delegation return data...');
+    // console.log(json);
 
     if (json.status) {
       console.log('NFT delegation request successful');
