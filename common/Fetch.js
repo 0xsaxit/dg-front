@@ -94,7 +94,6 @@ const apiCall = {
   // POST API calls (wallet address necessary)
   UPDATE_TOKEN_ARRAY: (address, index) => {
     return call(`${API_BASE_URL}/order/updateTokenArray`, 'POST', true, {
-      address,
       index,
     });
   },
@@ -105,7 +104,6 @@ const apiCall = {
 
   HISTORY_DATA: address => {
     return call(`${API_BASE_URL}/order/getHistory`, 'POST', true, {
-      address,
       limit: 99999, // call all of the data
       page: 1,
     });
@@ -113,7 +111,6 @@ const apiCall = {
 
   PLAY_DATA: address => {
     return call(`${API_BASE_URL}/order/getPlayInfo`, 'POST', true, {
-      address,
       limit: 99999, // call all of the data
       page: 1,
     });
@@ -121,7 +118,6 @@ const apiCall = {
 
   POST_HISTORY: (address, amount, type, state, txHash, step) => {
     return call(`${API_BASE_URL}/order/updateHistory`, 'POST', true, {
-      address,
       amount,
       type,
       state,
