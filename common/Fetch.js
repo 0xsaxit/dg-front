@@ -1,7 +1,6 @@
 import call from 'common/API';
 // https://api.decentral.games, http://localhost:5000
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
-const TEST_API_BASE_URL = 'https://api.testing.decentral.games';
 
 const apiCall = {
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -45,7 +44,7 @@ const apiCall = {
   // ********** updated to base URL after backend merge **********
   GET_METADATA_FROM_TOKEN_URI: (contractAddr, tokenID) => {
     return call(
-      `${TEST_API_BASE_URL}/ice/getMetadata/${contractAddr}/${tokenID}`,
+      `${API_BASE_URL}/ice/getMetadata/${contractAddr}/${tokenID}`,
       'GET'
     );
   },
@@ -94,7 +93,6 @@ const apiCall = {
   // POST API calls (wallet address necessary)
   UPDATE_TOKEN_ARRAY: (address, index) => {
     return call(`${API_BASE_URL}/order/updateTokenArray`, 'POST', true, {
-      address,
       index,
     });
   },
@@ -105,7 +103,6 @@ const apiCall = {
 
   HISTORY_DATA: address => {
     return call(`${API_BASE_URL}/order/getHistory`, 'POST', true, {
-      address,
       limit: 99999, // call all of the data
       page: 1,
     });
@@ -113,7 +110,6 @@ const apiCall = {
 
   PLAY_DATA: address => {
     return call(`${API_BASE_URL}/order/getPlayInfo`, 'POST', true, {
-      address,
       limit: 99999, // call all of the data
       page: 1,
     });
@@ -121,7 +117,6 @@ const apiCall = {
 
   POST_HISTORY: (address, amount, type, state, txHash, step) => {
     return call(`${API_BASE_URL}/order/updateHistory`, 'POST', true, {
-      address,
       amount,
       type,
       state,
