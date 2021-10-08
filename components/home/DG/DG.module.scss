@@ -1,0 +1,620 @@
+@import 'styles/base.scss';
+
+.home_dashboard {
+
+  .tout_container {
+    margin-left: -42px;
+
+    @include mq($until: medium) {
+      margin-left: 0px;
+    }
+  }
+
+  .tout_h1 {
+    text-align: center;
+    font-size: 48px;
+    font-family: Larsseit-Bold;
+    margin-top: 140px;
+
+    @include mq($until: medium) {
+      font-size: 32px;
+    }
+  }
+
+  .tout_p {
+    font-size: 24px;
+    font-family: Larsseit-Light;
+    color: rgba(255, 255, 255, 0.75) !important;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    text-align: center;
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include mq($until: medium) {
+      font-size: 20px;
+      text-align: center;
+      padding: 0 24px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  .tout_image {
+    display: flex;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    position: relative;
+    z-index: -1;
+    margin-top: 32px;
+    margin-bottom: -20px;
+
+    @include mq($until: medium) {
+      width: 180px;
+      margin-top: 30px;
+      margin-bottom: 50px;
+    }
+  }
+
+  .tout_span {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+    margin-bottom: 200px;
+
+    @include mq($until: medium) {
+      margin-top: 40px;
+      margin-bottom: 90px;
+    } 
+
+    .grey_button {
+      background: #2b2b2b;
+      color: white;
+      height: 48px;
+      padding: 12px 26px 12px 26px;
+      line-height: 24px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-family: Larsseit-Bold;
+      margin-right: 16px;
+      white-space: nowrap;
+    }
+
+    .blue_button {
+      background: #006eff;
+      white-space: nowrap;
+      color: white;
+      height: 48px;
+      padding: 12px 26px 12px 26px;
+      line-height: 24px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-family: Larsseit-Bold;
+    }
+  }
+
+  .image_span {
+    margin-top: 150px;
+    margin-bottom: 150px;
+    margin-left: 0px;
+    margin-right: 0px;
+    max-width: 100%;
+
+    .section_h1 {
+      font-size: 48px;
+      font-family: Larsseit-Bold;
+      margin: 0;
+      padding: 0;
+
+      @include mq($until: medium) {
+        font-size: 32px;
+        text-align: center;
+      }
+    }
+
+    .section_p {
+      font-size: 24px;
+      font-family: Larsseit-Light;
+      color: rgba(255, 255, 255, 0.75) !important;
+      margin-top: 24px;
+      margin-bottom: 24px;
+
+      @include mq($until: medium) {
+        font-size: 20px;
+        text-align: center;
+        padding: 0 24px;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    .button_span {
+      @include mq($until: medium) {
+        display: flex;
+        justify-content: center;
+      } 
+    }
+
+    .section_p_two {
+      font-size: 24px;
+      font-family: Larsseit-Light;
+      color: rgba(255, 255, 255, 0.75) !important;
+      margin-top: 24px;
+      margin-bottom: 24px;
+      margin-right: 42px;
+
+      @include mq($until: medium) {
+        font-size: 20px;
+        text-align: center;
+        padding: 0 24px;
+        margin-right: 0px;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    .grey_button {
+      background: #2b2b2b;
+      color: white;
+      height: 48px;
+      padding: 12px 26px 12px 26px;
+      line-height: 24px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-family: Larsseit-Bold;
+      margin-right: 16px;
+      white-space: nowrap;
+    }
+
+    .blue_button {
+      background: #006eff;
+      white-space: nowrap;
+      color: white;
+      height: 48px;
+      padding: 12px 26px 12px 26px;
+      line-height: 24px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-family: Larsseit-Bold;
+    }
+
+    .image {
+      height: auto;
+      width: 75%;
+      object-fit: contain;
+      position: relative;
+
+      @include mq($until: medium) {
+        height: auto;
+        width: 60%;
+        margin-left: 0;
+        margin-top: 50px;
+        margin-bottom: 50px;
+      }
+
+      @include mq($until: small) {
+        width: 80%;
+      }
+    }
+
+    @include mq($until: medium) {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    @include mq($from: medium, $until: large) {
+      margin-top: 160px;
+      margin-bottom: 160px;
+    }
+  }
+
+  .text_group {
+    @include mq($until: medium) {
+      margin-bottom: 100px;
+    }
+  }
+
+  .video {
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    @include mq($until: small) {
+      height: 100vh;
+    }
+  }
+  .gradientLayout {
+    position: relative;
+    background: linear-gradient(rgba(0, 0, 0, 0), #000000);
+    height: 120px;
+    margin-top: -150px;
+
+    @include mq($until: extra-large) {
+      position: relative;
+      height: 210px;
+      margin-top: -180px;
+      margin-bottom: 80px;
+    }
+
+    @include mq($until: large) {
+      position: relative;
+      height: 210px;
+      margin-top: -180px;
+      margin-bottom: 80px;
+    }
+
+    @include mq($until: medium) {
+      position: relative;
+      height: 210px;
+      margin-top: -240px;
+      margin-bottom: 80px;
+    }
+
+    @include mq($until: small) {
+      position: relative;
+      height: 210px;
+      margin-top: -280px;
+      margin-bottom: 80px;
+    }
+  }
+
+  @include mq($until: small) {
+    .video {
+      display: none;
+    }
+  }
+
+  .section_two {
+    max-width: 1250px;
+    padding: 0px 0px 0px 60px;
+
+    @include mq($until: medium) {
+      max-width: 1000px;
+      padding: 0px 0px 0px 0px;
+    }
+
+    @include mq($from: medium, $until: extra-large) {
+      max-width: 1100px;
+      padding: 0px 0px 0px 48px;
+    }
+  }
+
+  .home_dashboard_content {
+    position: relative;
+    height: calc(100vh);
+    max-width: 1400px;
+    width: 100% !important;
+    max-width: 1400px;
+    padding: 0 60px;
+    margin-top: 30px;
+
+    @include mq($until: medium) {
+      padding: 0 30px;
+      margin-left: 0px;
+      width: 600px;
+    }
+
+    @include mq($from: medium, $until: extra-large) {
+      padding: 0 0px;
+      margin-left: 30px;
+      margin-top: -30px;
+    }
+
+    @include mq($until: small) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 100%;
+      height: 100vh;
+      background-image: url('https://res.cloudinary.com/dnzambf4m/image/upload/v1626943370/Mobile_Header_Image_yopvby.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      top: -72px;
+    }
+
+    .row {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+
+      @include mq($until: extra-large) {
+        width: calc(100% - 60px);
+        padding-top: 120px
+      }
+
+      @include mq($until: medium) {
+        width: calc(100% - 60px);
+        padding-top: 0px;
+      }
+    }
+
+    h1 {
+      color: white;
+      text-shadow: 1px 1px 5px black;
+      max-width: 650px;
+
+      @include mq($until: large) {
+        max-width: 550px;
+        font-size: 48px;
+      }
+
+      @include mq($until: medium) {
+        max-width: 500px;
+        font-size: 42px;
+        margin-bottom: 0;
+      }
+
+      @include mq($until: small) {
+        margin-top: 150px;
+        text-align: center;
+      }
+    }
+
+    p.content {
+      color: rgba(255, 255, 255, 0.9);
+      letter-spacing: 0.15px;
+      font-family: 'Larsseit-Light';
+      text-shadow: 1px 1px 5px black;
+      max-width: 640px;
+      margin-bottom: 8px;
+      margin-top: 6px;
+
+      @include mq($until: medium) {
+        max-width: 480px !important;
+      }
+
+      @include mq($until: large) {
+        font-size: 18px;
+        max-width: 500px !important;
+      }
+    }
+
+    
+      .button_group {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 24px;
+
+        @media screen and (min-width: 499px) {
+          .earn_dg_button {
+            background-color: #2b2b2b;
+            color: white;
+            position: relative;
+            height: 64px;
+            width: 200px;
+            line-height: 32px;
+            font-size: 20px;
+            margin-right: 0;
+          }
+    
+          .play_button {
+            position: relative;
+            background-color: #006eff;
+            color: white;
+            height: 64px;
+            width: 200px;
+            line-height: 32px;
+            font-size: 20px;
+            margin-left: 16px;
+          }
+        }
+        @media screen and (max-width: 499px) {
+          .earn_dg_button {
+            display: none;
+          }
+    
+          .play_button {
+            display: none;
+          }
+        }
+  
+        @include mq($until: small) {
+          justify-content: center;
+          transform: scale(0.9);
+          margin-top: 4px;
+        }
+      }
+    
+    
+
+    .chevron_down {
+      bottom: -55px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+
+      i {
+        font-size: 16px;
+      }
+
+      @include mq($until: medium) {
+        display: none;
+      }
+    }
+  }
+
+  .our_partners {
+    padding: 96px 0;
+
+    @include mq($until: medium) {
+      display: none;
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+
+      .image_section {
+        width: 160px;
+      }
+
+      .image_section_atari {
+        width: 100px;
+      }
+    }
+
+    h1 {
+      line-height: 50px;
+      font-size: 40px;
+      font-family: 'Larsseit-Bold';
+      text-align: center;
+      margin-bottom: 70px;
+
+      @include mq($until: medium) {
+        margin-bottom: 24px;
+        font-size: 32px;
+      }
+    }
+
+    img {
+      width: 75%;
+      object-fit: contain;
+    }
+  }
+
+  .get_started {
+    padding: 96px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    @include mq($until: medium) {
+      padding: 24px 0;
+    }
+
+    .sub_title {
+      line-height: 20px;
+      font-size: 16px;
+      opacity: 0.75;
+      color: white;
+      font-family: 'Larsseit-Bold';
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 0;
+      z-index: 3;
+
+      @include mq($until: medium) {
+        margin-top: 60px;
+      }
+
+      @include mq($until: small) {
+        margin-top: 30px;
+      }
+    }
+
+    h2.title {
+      line-height: 61px;
+      font-size: 48px;
+      color: white;
+      font-family: 'Larsseit-Bold';
+      text-align: center;
+      margin-bottom: 16px;
+      margin-top: 12px;
+      z-index: 3;
+    }
+
+    .start_here {
+      background-color: #006eff;
+      color: white;
+      height: 48px;
+      width: 256px;
+      line-height: 20px;
+      font-size: 18px;
+      margin: 0;
+      z-index: 3;
+      margin-bottom: 16px;
+
+      @include mq($until: small) {
+        margin-bottom: 16px;
+      }
+    }
+
+    .dg_video {
+      position: relative;
+      max-width: 60%;
+      width: 100%;
+      left: 14px;
+
+      @include mq($until: medium) {
+        max-width: 90%;
+        left: 14px;
+      }
+    }
+  }
+
+  .join {
+    padding: 48px 0px 150px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    @include mq($until: medium) {
+      padding: 120px 0px 150px 0px;
+    }
+
+    @include mq($until: 500px) {
+      transform: scale(0.8);
+    }
+
+    h2.title {
+      font-size: 40px;
+      color: white;
+      font-family: 'Larsseit-Bold';
+      text-align: center;
+      margin-bottom: 16px;
+      margin-top: 12px;
+      z-index: 3;
+    }
+
+    .button_span {
+      display: flex;
+      margin-top: 8px;
+
+      .telegram {
+        width: 176px;
+        height: 62px;
+        background: linear-gradient(216.03deg, #00AAEA 21.06%, #34B4E4 100.66%);
+        border-radius: 8px;
+        margin-right: 16px;
+
+
+        .telegram_img1 {
+          height: 48px;
+          margin-top: -5px;
+          margin-left: -12px;
+        }
+
+        .telegram_img2 {
+          height: 22px;
+          margin-top: 10px;
+          margin-left: -2px;
+        }
+      }
+
+      .discord {
+        width: 176px;
+        height: 62px;
+        background: #5865F2;
+        border-radius: 8px;
+
+        .discord_img {
+          height: 26px;
+          margin-top: 6px;
+        }
+      }
+    }
+  }
+}
