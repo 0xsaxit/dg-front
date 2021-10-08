@@ -78,7 +78,7 @@ function ICEAttributes() {
   useEffect(() => {
     if (instances) {
       async function fetchData() {
-        const nLen = Object.keys(collectionV2Contract).length;        
+        const nLen = Object.keys(collectionV2Contract).length;
 
         if (nLen > 0) {
           // update wearable items
@@ -197,11 +197,13 @@ function ICEAttributes() {
         });
       })();
     }
-  }, [instances, state.iceWearableItems, state.refreshNFTAuth]);
+  }, [instances, state.iceWearableItems, state.refreshNFTAuths]);
 
+  // anytime user mints/updates/activates an NFT this code will execute
   useEffect(() => {
-    if(!state.refreshWearable) {
+    if (!state.refreshWearable) {
       updateWearableItems();
+
       dispatch({
         type: 'refresh_wearable_items',
         data: true,
@@ -212,15 +214,11 @@ function ICEAttributes() {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   async function updateWearableItems() {
-    console.log("updateWearableItems ========================= ");
+    console.log('updateWearableItems ========================= ');
 
     const tokenIDs = [];
     try {
-      for (
-        let nIndex = 0;
-        nIndex < Global.CONSTANTS.MAX_ITEM_COUNT;
-        nIndex++
-      ) {
+      for (let nIndex = 0; nIndex < Global.CONSTANTS.MAX_ITEM_COUNT; nIndex++) {
         const tokenID = await collectionV2Contract.methods
           .tokenOfOwnerByIndex(state.userAddress, nIndex)
           .call();
@@ -243,16 +241,16 @@ function ICEAttributes() {
         return {
           index: item.index,
           tokenID: item.tokenID,
-          meta_data:
-            Object.keys(meta_json).length === 0 ? null : meta_json,
+          meta_data: Object.keys(meta_json).length === 0 ? null : meta_json,
         };
       })
     );
 
-    iceWearableItems = iceWearableItems.filter(
-      item => item.meta_data != null
+    iceWearableItems = iceWearableItems.filter(item => item.meta_data != null);
+    console.log(
+      'iceWearableItems: =========================== ',
+      iceWearableItems
     );
-    console.log('iceWearableItems: =========================== ', iceWearableItems);
 
     dispatch({
       type: 'ice_wearable_items',

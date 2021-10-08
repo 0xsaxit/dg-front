@@ -290,7 +290,6 @@ const ModalUpgradePending = props => {
 
         // update global state token authorizations
         const refresh = !state.refreshTokenAuths;
-
         dispatch({
           type: 'refresh_token_auths',
           data: refresh,
@@ -333,10 +332,9 @@ const ModalUpgradePending = props => {
         setAuthStatusNFT(true); // this should get set to true in the hook, but for some reason it's too slow to register
 
         // update global state NFT authorizations
-        const refresh = !state.refreshNFTAuth;
-
+        const refresh = !state.refreshNFTAuths;
         dispatch({
-          type: 'refresh_nft_auth',
+          type: 'refresh_nft_auths',
           data: refresh,
         });
       }
@@ -393,10 +391,15 @@ const ModalUpgradePending = props => {
 
       // update global state token amounts
       const refresh = !state.refreshTokenAmounts;
-
       dispatch({
         type: 'refresh_token_amounts',
         data: refresh,
+      });
+
+      // update global state wearables data
+      dispatch({
+        type: 'refresh_wearable_items',
+        data: false,
       });
 
       console.log('NFT upgrade request successful');
