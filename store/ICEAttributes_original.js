@@ -231,51 +231,26 @@ function ICEAttributes() {
       console.log('stack error: =>', error.message);
     }
 
-    // let iceWearableItems = await Promise.all(
-    //   tokenIDs.map(async item => {
-    //     const meta_json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
-    //       Global.ADDRESSES.COLLECTION_V2_ADDRESS,
-    //       item.tokenID
-    //     );
+    let iceWearableItems = await Promise.all(
+      tokenIDs.map(async item => {
+        const meta_json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
+          Global.ADDRESSES.COLLECTION_V2_ADDRESS,
+          item.tokenID
+        );
 
-    //     return {
-    //       index: item.index,
-    //       tokenID: item.tokenID,
-    //       meta_data: Object.keys(meta_json).length === 0 ? null : meta_json,
-    //     };
-    //   })
-    // );
-
-    // console.log('fetching metadata...');
-
-    let iceWearableItems = [];
-
-    tokenIDs.map(async item => {
-      const meta_json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
-        Global.ADDRESSES.COLLECTION_V2_ADDRESS,
-        item.tokenID
-      );
-
-      // console.log('meta data...');
-      // console.log(meta_json);
-
-      if (Object.keys(meta_json).length) {
-        iceWearableItems.push({
+        return {
           index: item.index,
           tokenID: item.tokenID,
-          meta_data: meta_json,
-        });
-      }
-    });
+          meta_data: Object.keys(meta_json).length === 0 ? null : meta_json,
+        };
+      })
+    );
 
-    console.log('iceWearableItems: =========================== ');
-    console.log(iceWearableItems);
-
-    // iceWearableItems = iceWearableItems.filter(item => item.meta_data != null);
-    // console.log(
-    //   'iceWearableItems: =========================== ',
-    //   iceWearableItems
-    // );
+    iceWearableItems = iceWearableItems.filter(item => item.meta_data != null);
+    console.log(
+      'iceWearableItems: =========================== ',
+      iceWearableItems
+    );
 
     dispatch({
       type: 'ice_wearable_items',
