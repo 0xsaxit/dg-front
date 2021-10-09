@@ -1,6 +1,6 @@
 import call from 'common/API';
 // https://api.decentral.games, http://localhost:5000
-const API_BASE_URL = "https://api.dev.decentral.games"
+const API_BASE_URL = 'https://api.dev.decentral.games';
 
 const apiCall = {
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -41,16 +41,11 @@ const apiCall = {
     return call(`${API_BASE_URL}/ice/requestUpgrade/${txHash}`, 'GET');
   },
 
-  // ********** updated to base URL after backend merge **********
   GET_METADATA_FROM_TOKEN_URI: (contractAddr, tokenID) => {
     return call(
       `${API_BASE_URL}/ice/getMetadata/${contractAddr}/${tokenID}`,
       'GET'
     );
-  },
-
-  DELEGATE_INFO: address => {
-    return call(`${API_BASE_URL}/ice/delegateInfo?address=${address}`, 'GET');
   },
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -69,6 +64,13 @@ const apiCall = {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  // GET API calls (wallet address optional)
+  DELEGATE_INFO: address => {
+    return call(`${API_BASE_URL}/ice/delegateInfo?address=${address}`, 'GET');
+  },
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   // POST API calls (no wallet address necessary)
   USER_STATUS: () => {
     return call(`${API_BASE_URL}/order/webLogin`, 'POST', true);
@@ -82,6 +84,15 @@ const apiCall = {
 
   DELEGATE_NFT: (delegateAddress, tokenID, contractAddress) => {
     return call(`${API_BASE_URL}/ice/delegateToken`, 'POST', true, {
+      delegateAddress,
+      tokenID,
+      contractAddress,
+    });
+  },
+
+  UNDELEGATE_NFT: (tokenOwner, delegateAddress, tokenID, contractAddress) => {
+    return call(`${API_BASE_URL}/ice/undelegateToken`, 'POST', true, {
+      tokenOwner,
       delegateAddress,
       tokenID,
       contractAddress,
