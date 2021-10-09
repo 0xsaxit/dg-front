@@ -1,9 +1,11 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../../../../store';
+import Fetch from '../../../../common/Fetch';
 import IceP2EEnabledTooltip from 'components/tooltips/IceP2EEnabledTooltip';
 import IceNeedToActivateTooltip from 'components/tooltips/IceNeedToActivateTooltip';
 import IceWearableBonusTooltip from 'components/tooltips/IceWearableBonusTooltip';
 import ModalDelegate from 'components/modal/ModalDelegate';
+import ModalWithdrawDelegation from 'components/modal/ModalWithdrawDelegation';
 import ActivateWearableModal from 'components/modal/ActivateWearableModal';
 import NeedMoreDGActivateModal from 'components/modal/NeedMoreDGActivateModal';
 import ModalWearable from 'components/modal/ModalWearable';
@@ -26,13 +28,50 @@ const getRank = bonus => {
 };
 
 const ICEWearableCard = props => {
-  // get user's status from the Context API store
+  // get user's wallet address from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
+
+  // define local variables
+  const [isDelegated, setIsDelegated] = useState(false);
+  const [delegateAddress, setDelegateAddress] = useState('');
 
   const { name, description, image, attributes } = props.data;
   const rank = getRank(parseInt(attributes.at(-1).value));
 
-  // console.log(attributes, attributes[4].trait_type);
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // fetch user's incoming/outgoing delegate mapping data. Refreshes upon delegation/undelegation
+  useEffect(() => {
+    if (state.userStatus >= 4) {
+      (async function () {
+        const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
+
+        // console.log('Outgoing delegations:');
+        // console.log(delegationInfo);
+
+        delegationInfo.outgoingDelegations.forEach((item, i) => {
+          if (item) {
+            // console.log('Outgoing delegations:' + i);
+            // console.log(item);
+
+            const delegateAddress = item.delegateAddress.toLowerCase();
+
+            const tokenId = item.tokenId.toLowerCase();
+
+            if (tokenId === props.tokenID) {
+              setIsDelegated(true);
+              setDelegateAddress(delegateAddress);
+
+              // return true;
+            } else {
+              setIsDelegated(false);
+              setDelegateAddress('');
+            }
+          }
+        });
+      })();
+    }
+  }, [state.refreshDelegateInfo]);
 
   return (
     <div className={styles.card_container}>
@@ -71,14 +110,21 @@ const ICEWearableCard = props => {
               )
             ) : (
               <span className="w-100 d-flex justify-content-between">
-                <ModalDelegate
-                  tokenID={props.tokenID}
-                  itemID={props.itemID}
-                  imgSrc={image}
-                  rank={rank.value}
-                  bonus={attributes.at(-1).value}
-                  description={description}
-                />
+                {!isDelegated ? (
+                  <ModalDelegate
+                    tokenID={props.tokenID}
+                    itemID={props.itemID}
+                    imgSrc={image}
+                    rank={rank.value}
+                    bonus={attributes.at(-1).value}
+                    description={description}
+                  />
+                ) : (
+                  <ModalWithdrawDelegation
+                    tokenID={props.tokenID}
+                    delegateAddress={delegateAddress}
+                  />
+                )}
                 <ModalWearable
                   tokenID={props.tokenID}
                   itemID={props.itemID}
