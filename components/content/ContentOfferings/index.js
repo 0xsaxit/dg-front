@@ -218,11 +218,11 @@ const ContentOfferings = props => {
       }
     };
     const previewImages = [
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633637888/Screen_Shot_2021-10-07_at_9.54.23_AM_lmgam7.png",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633637894/Screen_Shot_2021-10-07_at_9.54.47_AM_wkjywi.png",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633637890/Screen_Shot_2021-10-07_at_9.55.41_AM_dk4sh9.png",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633637921/Screen_Shot_2021-10-07_at_9.55.21_AM_rdtkn4.png",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633637892/Screen_Shot_2021-10-07_at_9.57.26_AM_xksfce.png"
+      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_1_h5zizs.png",
+      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_2_y8onmu.png",
+      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_4_uribpq.png",
+      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_3_xhaxho.png",
+      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_5_mmcqjy.png"
     ]
 
     return (
