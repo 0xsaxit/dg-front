@@ -214,73 +214,86 @@ function ICEAttributes() {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   async function updateWearableItems() {
-    console.log('updateWearableItems ========================= ');
+    if (state.userStatus >= 4) {
+      // '0x7146cae915f1Cd90871ecc69999BEfFdcaf38ff9'
+      // state.userAddress
 
-    const tokenIDs = [];
-    try {
-      for (let nIndex = 0; nIndex < Global.CONSTANTS.MAX_ITEM_COUNT; nIndex++) {
-        const tokenID = await collectionV2Contract.methods
-          .tokenOfOwnerByIndex(state.userAddress, nIndex)
-          .call();
+      console.log('updateWearableItems ========================= ');
 
-        if (parseInt(tokenID) > 0) {
-          tokenIDs.push({ index: nIndex, tokenID: tokenID });
+      const tokenIDs = [];
+      try {
+        for (
+          let nIndex = 0;
+          nIndex < Global.CONSTANTS.MAX_ITEM_COUNT;
+          nIndex++
+        ) {
+          const tokenID = await collectionV2Contract.methods
+            .tokenOfOwnerByIndex(state.userAddress, nIndex)
+            .call();
+
+          if (parseInt(tokenID) > 0) {
+            tokenIDs.push({ index: nIndex, tokenID: tokenID });
+          }
         }
+      } catch (error) {
+        console.log('stack error: =>', error.message);
       }
-    } catch (error) {
-      console.log('stack error: =>', error.message);
+
+      // let iceWearableItems = await Promise.all(
+      //   tokenIDs.map(async item => {
+      //     const meta_json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
+      //       Global.ADDRESSES.COLLECTION_V2_ADDRESS,
+      //       item.tokenID
+      //     );
+
+      //     return {
+      //       index: item.index,
+      //       tokenID: item.tokenID,
+      //       meta_data: Object.keys(meta_json).length === 0 ? null : meta_json,
+      //     };
+      //   })
+      // );
+
+      console.log('Fetching metadata...');
+
+      let iceWearableItems = [];
+
+      tokenIDs.map(async item => {
+        const meta_json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
+          Global.ADDRESSES.COLLECTION_V2_ADDRESS,
+          item.tokenID
+        );
+
+        // console.log('token ID: ' + item.tokenID);
+        // console.log('meta data status: ' + Object.keys(meta_json).length);
+        // console.log(meta_json.id);
+        // const itemID = meta_json.id.split(':').slice(-1);
+        // console.log('itemID: ' + itemID);
+
+        if (Object.keys(meta_json).length) {
+          iceWearableItems.push({
+            index: item.index,
+            tokenID: item.tokenID,
+            itemID: meta_json.id.split(':').slice(-1),
+            meta_data: meta_json,
+          });
+        }
+      });
+
+      console.log('iceWearableItems: =========================== ');
+      console.log(iceWearableItems);
+
+      // iceWearableItems = iceWearableItems.filter(item => item.meta_data != null);
+      // console.log(
+      //   'iceWearableItems: =========================== ',
+      //   iceWearableItems
+      // );
+
+      dispatch({
+        type: 'ice_wearable_items',
+        data: iceWearableItems,
+      });
     }
-
-    // let iceWearableItems = await Promise.all(
-    //   tokenIDs.map(async item => {
-    //     const meta_json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
-    //       Global.ADDRESSES.COLLECTION_V2_ADDRESS,
-    //       item.tokenID
-    //     );
-
-    //     return {
-    //       index: item.index,
-    //       tokenID: item.tokenID,
-    //       meta_data: Object.keys(meta_json).length === 0 ? null : meta_json,
-    //     };
-    //   })
-    // );
-
-    // console.log('fetching metadata...');
-
-    let iceWearableItems = [];
-
-    tokenIDs.map(async item => {
-      const meta_json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
-        Global.ADDRESSES.COLLECTION_V2_ADDRESS,
-        item.tokenID
-      );
-
-      // console.log('meta data...');
-      // console.log(meta_json);
-
-      if (Object.keys(meta_json).length) {
-        iceWearableItems.push({
-          index: item.index,
-          tokenID: item.tokenID,
-          meta_data: meta_json,
-        });
-      }
-    });
-
-    console.log('iceWearableItems: =========================== ');
-    console.log(iceWearableItems);
-
-    // iceWearableItems = iceWearableItems.filter(item => item.meta_data != null);
-    // console.log(
-    //   'iceWearableItems: =========================== ',
-    //   iceWearableItems
-    // );
-
-    dispatch({
-      type: 'ice_wearable_items',
-      data: iceWearableItems,
-    });
   }
 
   async function getItemLimits() {
