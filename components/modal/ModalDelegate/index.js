@@ -26,11 +26,11 @@ const ModalDelegate = props => {
 
     const delegationInfo = await Fetch.DELEGATE_INFO(address);
 
+    console.log('Incoming delegation information:');
+    console.log(delegationInfo.incomingDelegations);
+
     delegationInfo.incomingDelegations.forEach((item, i) => {
       if (item) {
-        // console.log('Incoming delegations:' + i);
-        // console.log(item);
-
         const tokenOwner = item.tokenOwner.toLowerCase();
         console.log('Entered address incoming delegator: ' + tokenOwner);
 
@@ -229,13 +229,6 @@ const ModalDelegate = props => {
     if (json.status) {
       console.log('NFT delegation request successful');
 
-      // update global state delegation information
-      const refresh = !state.refreshDelegateInfo;
-      dispatch({
-        type: 'refresh_delegate_info',
-        data: refresh,
-      });
-
       // close this modal and open the success modal
       setOpen(false);
       setSuccess(true);
@@ -255,7 +248,9 @@ const ModalDelegate = props => {
           onOpen={() => setOpen(true)}
           open={open}
           close
-          trigger={<Button className={styles.open_button}>Delegate</Button>}
+          trigger={
+            <Button className={styles.open_button}>{props.buttonName}</Button>
+          }
         >
           <div className={styles.top_buttons}>
             {modalButtons('close')}
@@ -277,7 +272,7 @@ const ModalDelegate = props => {
                       onClick={() => delegateNFT()}
                       disabled={enteredAddress === '' || isDelegated}
                     >
-                      Delegate Wearable
+                      {props.buttonName}
                     </Button>
                   ) : (
                     <Button className={styles.button_upgrade} disabled={true}>
@@ -300,7 +295,7 @@ const ModalDelegate = props => {
         </Modal>
       ) : (
         <ModalSuccessDelegation
-          setSuccess={setSuccess}
+          buttonName={props.buttonName}
           address={enteredAddress}
         />
       )}
