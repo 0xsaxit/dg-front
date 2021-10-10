@@ -133,13 +133,6 @@ const ModalWithdrawDelegation = props => {
     if (json.status) {
       console.log('NFT undelegation request successful');
 
-      // update global state delegation information
-      const refresh = !state.refreshDelegateInfo;
-      dispatch({
-        type: 'refresh_delegate_info',
-        data: refresh,
-      });
-
       // close this modal and open the success modal
       setOpen(false);
       setSuccess(true);
@@ -160,7 +153,7 @@ const ModalWithdrawDelegation = props => {
           open={open}
           close
           trigger={
-            <Button className={styles.open_button}>Withdraw Delegation</Button>
+            <Button className={styles.open_button}>{props.buttonName}</Button>
           }
         >
           <div className={styles.top_buttons}>
@@ -181,7 +174,7 @@ const ModalWithdrawDelegation = props => {
                       src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
                       className={styles.icon}
                     />
-                    Withdraw Delegation
+                    {props.buttonName}
                   </Button>
                 ) : (
                   <Button className={styles.button_close} disabled={true}>
@@ -194,7 +187,7 @@ const ModalWithdrawDelegation = props => {
         </Modal>
       ) : (
         <ModalDelegateConfirm
-          setSuccess={setSuccess}
+          buttonName={props.buttonName}
           address={props.delegateAddress}
         />
       )}

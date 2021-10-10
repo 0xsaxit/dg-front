@@ -1,25 +1,45 @@
-import React, { useState } from 'react';
+import { useState, useContext } from 'react';
+import { GlobalContext } from '../../../store';
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './ModalSuccessDelegation.module.scss';
 
 const ModalSuccessDelegation = props => {
+  // fetch refresh delegation status from the Context API store
+  const [state, dispatch] = useContext(GlobalContext);
+
+  // define local variables
   const [open, setOpen] = useState(true);
+
+  // update global state delegation information
+  function setGlobalState() {
+    const refresh = !state.refreshDelegateInfo;
+
+    console.log('refresh status (delegate): ' + refresh);
+
+    dispatch({
+      type: 'refresh_delegate_info',
+      data: refresh,
+    });
+
+    setOpen(false);
+  }
 
   return (
     <Modal
       className={styles.success_modal}
-      onClose={() => setOpen(false)}
+      onClose={() => setGlobalState()}
       onOpen={() => setOpen(true)}
       open={open}
       close
-      trigger={<Button className={styles.open_button}>Delegate</Button>}
+      trigger={
+        <Button className={styles.open_button}>{props.buttonName}</Button>
+      }
     >
       <div className={styles.top_buttons}>
         <span
           className={styles.button_close}
           onClick={() => {
-            setOpen(false);
-            props.setSuccess(false);
+            setGlobalState();
           }}
         >
           <svg
@@ -110,9 +130,9 @@ const ModalSuccessDelegation = props => {
             </div>
           </div>
 
-          {/* <div className={styles.button_area}>
-            <Button className={styles.button_close}>Withdraw Delegation</Button>
-          </div> */}
+          <div className={styles.button_area}>
+            <Button className={styles.button_close}>Back to Account</Button>
+          </div>
         </div>
       </div>
     </Modal>

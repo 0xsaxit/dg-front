@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import Web3 from 'web3';
-// import BigNumber from 'bignumber.js';
 import ABI_ICE_REGISTRANT from '../components/ABI/ABIICERegistrant.json';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
 import ABI_CHILD_TOKEN_WETH from '../components/ABI/ABIChildTokenWETH';
@@ -88,10 +87,6 @@ function ICEAttributes() {
             .balanceOf(state.userAddress)
             .call();
 
-          // const actual_amount = new BigNumber(ice_amount)
-          //   .div(new BigNumber(10).pow(18))
-          //   .toString(10);
-
           const actual_amount = (
             ice_amount / Global.CONSTANTS.FACTOR
           ).toString();
@@ -107,7 +102,7 @@ function ICEAttributes() {
     }
   }, [instances]);
 
-  // anytime user purchases/upgrades/activates NFTs on /ice pages this code will execute
+  // anytime user mints/upgrades/activates NFTs on /ice pages this code will execute
   useEffect(() => {
     if (instances) {
       (async function () {
@@ -142,6 +137,18 @@ function ICEAttributes() {
       })();
     }
   }, [instances, state.refreshTokenAmounts]);
+
+  // anytime user mints/updates/activates an NFT this code will execute
+  useEffect(() => {
+    if (!state.refreshWearable) {
+      updateWearableItems();
+
+      dispatch({
+        type: 'refresh_wearable_items',
+        data: true,
+      });
+    }
+  }, [state.refreshWearable]);
 
   // anytime user authorizes tokens on /ice pages this code will execute
   useEffect(() => {
@@ -199,25 +206,10 @@ function ICEAttributes() {
     }
   }, [instances, state.iceWearableItems, state.refreshNFTAuths]);
 
-  // anytime user mints/updates/activates an NFT this code will execute
-  useEffect(() => {
-    if (!state.refreshWearable) {
-      updateWearableItems();
-
-      dispatch({
-        type: 'refresh_wearable_items',
-        data: true,
-      });
-    }
-  }, [state.refreshWearable]);
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   async function updateWearableItems() {
     if (state.userStatus >= 4) {
-      // '0x7146cae915f1Cd90871ecc69999BEfFdcaf38ff9'
-      // state.userAddress
-
       console.log('updateWearableItems ========================= ');
 
       const tokenIDs = [];
@@ -236,39 +228,17 @@ function ICEAttributes() {
           }
         }
       } catch (error) {
-        console.log('stack error: =>', error.message);
+        console.log('Stack error: =>', error.message);
       }
 
-      // let iceWearableItems = await Promise.all(
-      //   tokenIDs.map(async item => {
-      //     const meta_json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
-      //       Global.ADDRESSES.COLLECTION_V2_ADDRESS,
-      //       item.tokenID
-      //     );
-
-      //     return {
-      //       index: item.index,
-      //       tokenID: item.tokenID,
-      //       meta_data: Object.keys(meta_json).length === 0 ? null : meta_json,
-      //     };
-      //   })
-      // );
-
-      console.log('Fetching metadata...');
+      console.log('Fetching metadata =========================');
 
       let iceWearableItems = [];
-
       tokenIDs.map(async item => {
         const meta_json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
           Global.ADDRESSES.COLLECTION_V2_ADDRESS,
           item.tokenID
         );
-
-        // console.log('token ID: ' + item.tokenID);
-        // console.log('meta data status: ' + Object.keys(meta_json).length);
-        // console.log(meta_json.id);
-        // const itemID = meta_json.id.split(':').slice(-1);
-        // console.log('itemID: ' + itemID);
 
         if (Object.keys(meta_json).length) {
           iceWearableItems.push({
@@ -282,12 +252,6 @@ function ICEAttributes() {
 
       console.log('iceWearableItems: =========================== ');
       console.log(iceWearableItems);
-
-      // iceWearableItems = iceWearableItems.filter(item => item.meta_data != null);
-      // console.log(
-      //   'iceWearableItems: =========================== ',
-      //   iceWearableItems
-      // );
 
       dispatch({
         type: 'ice_wearable_items',
