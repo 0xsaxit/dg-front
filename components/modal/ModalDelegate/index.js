@@ -20,50 +20,31 @@ const ModalDelegate = props => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // fetch user's incoming/outgoing delegate mapping data
-  // useEffect(() => {
-  //   if (state.userStatus >= 4) {
-  //     (async function () {
-  //       const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
-
-  //       console.log('delegation info results... ');
-  //       console.log(delegationInfo);
-
-  //       // ********** will need to fetch this data from somewhere **********
-  //       const isDelegated = false;
-
-  //       setIsDelegated(isDelegated);
-  //     })();
-  //   }
-  // }, []);
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
   async function getDelegated(address) {
     console.log('Entered address: ' + address);
 
     const delegationInfo = await Fetch.DELEGATE_INFO(address);
 
-    if (delegationInfo.incomingDelegations[0]) {
-      console.log('delegate info...');
-      console.log(delegationInfo);
+    console.log('Incoming delegation information:');
+    console.log(delegationInfo.incomingDelegations);
 
-      // const incomingDelegator =
-      //   delegationInfo.incomingDelegations[0].delegateAddress.toLowerCase();
+    delegationInfo.incomingDelegations.forEach((item, i) => {
+      if (item) {
+        const tokenOwner = item.tokenOwner.toLowerCase();
+        console.log('Entered address incoming delegator: ' + tokenOwner);
 
-      const tokenOwner =
-        delegationInfo.incomingDelegations[0].tokenOwner.toLowerCase();
-
-      console.log('Entered address incoming delegator: ' + tokenOwner);
-
-      // if entered address has delegated wearables and the delegator is not me
-      if (tokenOwner !== '' && tokenOwner !== state.userAddress.toLowerCase()) {
-        setIsDelegated(true);
+        // if entered address has delegated wearables and the delegator is not me
+        if (
+          tokenOwner !== '' &&
+          tokenOwner !== state.userAddress.toLowerCase()
+        ) {
+          setIsDelegated(true);
+        }
+      } else {
+        console.log('Entered address has no incoming delegator');
       }
-    } else {
-      console.log('Entered address has no incoming delegator');
-    }
+    });
   }
 
   function imageDetails() {
@@ -245,9 +226,6 @@ const ModalDelegate = props => {
       Global.ADDRESSES.COLLECTION_V2_ADDRESS
     );
 
-    // console.log('delegation return data...');
-    // console.log(json);
-
     if (json.status) {
       console.log('NFT delegation request successful');
 
@@ -270,7 +248,9 @@ const ModalDelegate = props => {
           onOpen={() => setOpen(true)}
           open={open}
           close
-          trigger={<Button className={styles.open_button}>Delegate</Button>}
+          trigger={
+            <Button className={styles.open_button}>{props.buttonName}</Button>
+          }
         >
           <div className={styles.top_buttons}>
             {modalButtons('close')}
@@ -292,7 +272,7 @@ const ModalDelegate = props => {
                       onClick={() => delegateNFT()}
                       disabled={enteredAddress === '' || isDelegated}
                     >
-                      Delegate Wearable
+                      {props.buttonName}
                     </Button>
                   ) : (
                     <Button className={styles.button_upgrade} disabled={true}>
@@ -315,7 +295,7 @@ const ModalDelegate = props => {
         </Modal>
       ) : (
         <ModalSuccessDelegation
-          setSuccess={setSuccess}
+          buttonName={props.buttonName}
           address={enteredAddress}
         />
       )}

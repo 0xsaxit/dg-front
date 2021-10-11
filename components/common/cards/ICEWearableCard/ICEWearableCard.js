@@ -1,13 +1,16 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../../../../store';
+import Fetch from '../../../../common/Fetch';
 import IceP2EEnabledTooltip from 'components/tooltips/IceP2EEnabledTooltip';
 import IceNeedToActivateTooltip from 'components/tooltips/IceNeedToActivateTooltip';
 import IceWearableBonusTooltip from 'components/tooltips/IceWearableBonusTooltip';
 import ModalDelegate from 'components/modal/ModalDelegate';
+import ModalWithdrawDelegation from 'components/modal/ModalWithdrawDelegation';
 import ActivateWearableModal from 'components/modal/ActivateWearableModal';
 import NeedMoreDGActivateModal from 'components/modal/NeedMoreDGActivateModal';
 import ModalWearable from 'components/modal/ModalWearable';
 import styles from './ICEWearableCard.module.scss';
+import Aux from '../../../_Aux';
 
 const getRank = bonus => {
   if (bonus === 0) {
@@ -26,38 +29,78 @@ const getRank = bonus => {
 };
 
 const ICEWearableCard = props => {
-  // get user's status from the Context API store
+  // get user's wallet address from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
+  // define local variables
+  const [delegateAddress, setDelegateAddress] = useState('');
+
+  const buttonDelegate = 'Delegate';
+  const buttonUndelegate = 'Withdraw Delegation';
   const { name, description, image, attributes } = props.data;
   const rank = getRank(parseInt(attributes.at(-1).value));
 
-  // console.log(attributes, attributes[4].trait_type);
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // fetch user's incoming/outgoing delegate mapping data. Refreshes upon delegation/undelegation
+  useEffect(() => {
+    if (state.userStatus >= 4) {
+      (async function () {
+        setDelegateAddress('');
+        const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
+
+        delegationInfo.outgoingDelegations.forEach((item, i) => {
+          if (item) {
+            const delegateAddress = item.delegateAddress;
+            const tokenId = item.tokenId;
+
+            if (tokenId === props.tokenID) {
+              setDelegateAddress(delegateAddress);
+            }
+          }
+        });
+      })();
+    }
+  }, [state.refreshDelegateInfo]);
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // helper functions
+  function imageAndDescription() {
+    return (
+      <Aux>
+        <div className={styles.wear_box_purple}>
+          {rank.value <= 0 ? (
+            <IceNeedToActivateTooltip />
+          ) : (
+            <IceP2EEnabledTooltip />
+          )}
+          <img src={image} />
+        </div>
+        <div className={styles.card_body}>
+          <div className={styles.card}>{`Rank ${rank.value}`}</div>
+          <IceWearableBonusTooltip bonus={rank.percentage} />
+          <div className={styles.card}>
+            {description.split(' ').at(-1).replace('/', ' of ')}
+          </div>
+        </div>
+
+        {/* <div className={styles.card_meta}>{name.split('(ICE')[0].trim()}</div> */}
+
+        <div className={styles.card_title}>
+          <p>{name.split('(ICE')[0].trim()}</p>
+          <p>{`(ICE Rank ${rank.value})`}</p>
+        </div>
+      </Aux>
+    );
+  }
 
   return (
     <div className={styles.card_container}>
       <div className={styles.wearable_modal}>
         <div className={styles.wear_box}>
-          <div className={styles.wear_box_purple}>
-            {rank.value <= 0 ? (
-              <IceNeedToActivateTooltip />
-            ) : (
-              <IceP2EEnabledTooltip />
-            )}
-            <img src={image} />
-          </div>
-          <div className={styles.card_body}>
-            <div className={styles.card}>{`Rank ${rank.value}`}</div>
-            <IceWearableBonusTooltip bonus={rank.percentage} />
-            <div className={styles.card}>
-              {description.split(' ').at(-1).replace('/', ' of ')}
-            </div>
-          </div>
-          <div className={styles.card_meta}>DG SUIT xxx</div>
-          <div className={styles.card_title}>
-            <p>{name.split('(ICE')[0].trim()}</p>
-            <p>{`(ICE Rank ${rank.value})`}</p>
-          </div>
+          {imageAndDescription()}
+
           <div className={styles.button_area}>
             {rank.value === 0 ? (
               state.DGBalances.BALANCE_CHILD_DG <
@@ -71,14 +114,23 @@ const ICEWearableCard = props => {
               )
             ) : (
               <span className="w-100 d-flex justify-content-between">
-                <ModalDelegate
-                  tokenID={props.tokenID}
-                  itemID={props.itemID}
-                  imgSrc={image}
-                  rank={rank.value}
-                  bonus={attributes.at(-1).value}
-                  description={description}
-                />
+                {delegateAddress === '' ? (
+                  <ModalDelegate
+                    tokenID={props.tokenID}
+                    itemID={props.itemID}
+                    imgSrc={image}
+                    rank={rank.value}
+                    bonus={attributes.at(-1).value}
+                    description={description}
+                    buttonName={buttonDelegate}
+                  />
+                ) : (
+                  <ModalWithdrawDelegation
+                    tokenID={props.tokenID}
+                    delegateAddress={delegateAddress}
+                    buttonName={buttonUndelegate}
+                  />
+                )}
                 <ModalWearable
                   tokenID={props.tokenID}
                   itemID={props.itemID}

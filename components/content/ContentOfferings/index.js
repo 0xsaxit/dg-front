@@ -7,6 +7,8 @@ import ModalMintWearable from 'components/modal/ModalMintWearable';
 import ModalLoginICE from 'components/modal/ModalLoginICE';
 import { Popup } from 'semantic-ui-react';
 import cn from 'classnames';
+import Carousel from 'react-multi-carousel';
+import "react-multi-carousel/lib/styles.css";
 
 const ContentOfferings = props => {
   // dispatch new user status to Context API store
@@ -15,6 +17,7 @@ const ContentOfferings = props => {
   // define local variables
   const [utm, setUtm] = useState('');
   const [metamaskEnabled, setMetamaskEnabled] = useState(false);
+  const [previewLevel, setPreviewLevel] = useState(0);
 
   let buttonGames1 = '';
   let buttonGames2 = '';
@@ -187,8 +190,43 @@ const ContentOfferings = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   // loop through the NFT details object
   function buyICE() {
+    const responsive = {
+      largeDesktop: {
+        breakpoint: { max: 3000, min: 1440 },
+        items: 4,
+        partialVisibilityGutter: 40
+      },
+      desktop: {
+        breakpoint: { max: 1440, min: 1240 },
+        items: 3,
+        partialVisibilityGutter: 40
+      },
+      tablet: {
+        breakpoint: { max: 1240, min: 768 },
+        items: 2,
+        partialVisibilityGutter: 60
+      },
+      smallTablet: {
+        breakpoint: { max: 768, min: 640 },
+        items: 2,
+        partialVisibilityGutter: 80
+      },
+      mobile: {
+        breakpoint: { max: 768, min: 0 },
+        items: 1,
+        partialVisibilityGutter: 60
+      }
+    };
+    const previewImages = [
+      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_1_h5zizs.png",
+      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_2_y8onmu.png",
+      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_4_uribpq.png",
+      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_3_xhaxho.png",
+      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_5_mmcqjy.png"
+    ]
+
     return (
-      <span className={styles.test}>
+      <span className={styles.iceWearablesMarketplace}>
         <div className={styles.header}>
           <h1>ICE Wearables Marketplace</h1>
           <p className={styles.marketplace_p}>
@@ -197,91 +235,133 @@ const ContentOfferings = props => {
           </p>
           <h3>DG Suit</h3>
         </div>
+
         <div className={styles.outter_games_container}>
-          {Object.keys(props.detailsICE).map((item, i) => (
-            <div key={i} className={styles.games_container}>
-              <div className={styles.wear_box_purple}>
-                <div className={styles.fullDiv}>
-                  <div className={styles.imgDiv}>
-                    <img
-                      className={styles.img}
-                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640051/p2e_enabled_wgqui5.svg"
-                    />
-                    <Popup
-                      trigger={
-                        <img
-                          className={styles.tooltip}
-                          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
-                        />
-                      }
-                      position="top left"
-                      hideOnScroll={true}
-                      className={cn('p2e_enabled_tooltip', styles.popup)}
+          <Carousel
+            arrows
+            draggable
+            swipeable
+            partialVisible
+            autoPlaySpeed={3000}
+            focusOnSelect={false}
+            infinite={false}
+            keyBoardControl={true}
+            minimumTouchDrag={80}
+            renderButtonGroupOutside={false}
+            renderDotsOutside={false}
+            responsive={responsive}
+            showDots={false}
+            slidesToSlide={1}
+            containerClass="ice-wearables-carousel-container"
+            itemClass="carousel-item"
+          >
+            <div className={styles.games_container} style={{ paddingBottom: '20px' }}>
+              <img
+                key={previewLevel}
+                className={styles.preview_nft_image}
+                src={previewImages[previewLevel]}
+              />
+              <div className={styles.preview_description}>
+                <h1 className={styles.title}>PREVIEW FIT LEVELS</h1>
+                <div className={styles.preview_level_select_div}>
+                  {previewImages.map((img, i) => (
+                    <div
+                      key={i}
+                      className={previewLevel === i ? styles.selectActive : styles.select}
+                      onClick={() => setPreviewLevel(i)}
                     >
-                      <Popup.Content className={styles.tooltipContent}>
-                        <img
-                          className={styles.popup_info}
-                          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
-                        />
-                        <p className={styles.popup_content}>
-                          P2E Enabled (aka Play-to-Earn)
-                          <br /> wearables allow you to earn real
-                          <br /> cash value from free-to-play ICE
-                          <br /> poker tables.
-                        </p>
-                      </Popup.Content>
-                    </Popup>
-                  </div>
+                      {i + 1}
+                    </div>
+                  ))}
                 </div>
               </div>
-
-              <img
-                className={styles.nft_image}
-                src={props.detailsICE[item][0]}
-              />
-
-              <div className={styles.nft_description}>
-                <span style={{ display: 'flex', justifyContent: 'center' }}>
-                  <p className={styles.nft_info}>{props.detailsICE[item][3]}</p>
-                  <p className={styles.nft_info}>{props.detailsICE[item][4]}</p>
-                </span>
-                <p className={styles.nft_other_p}>
-                  {props.detailsICE[item][2]}
-                </p>
-                <h3 className={styles.nft_other_h3}>
-                  {props.detailsICE[item][1]}
-                </h3>
-              </div>
-
-              <div
-                style={{
-                  position: 'absolute',
-                  bottom: '20px',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                }}
-              >
-                {state.userStatus && state.userLoggedIn ? (
-                  <ModalMintWearable
-                    index={i}
-                    className={styles.right_button}
-                    wearableImg={props.detailsICE[item][0]}
-                    wearableBodyType={props.detailsICE[item][3]}
-                    wearableBodyImg={props.detailsICE[item][5]}
-                    wearableName={props.detailsICE[item][1]}
-                  />
-                ) : (
-                  <ModalLoginICE />
-                )}
-
-                {/* <ModalMintActivation /> */}
-                {/* <ActivateWearableModal /> */}
-                {/* <ModalActivationSuccess setPending={false} /> */}
-              </div>
             </div>
-          ))}
+
+            {Object.keys(props.detailsICE).map((item, i) => (
+              <div key={i} className={styles.games_container}>
+                <div className={styles.wear_box_purple}>
+                  <div className={styles.fullDiv}>
+                    <div className={styles.imgDiv}>
+                      <img
+                        className={styles.img}
+                        src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640051/p2e_enabled_wgqui5.svg"
+                      />
+                      <Popup
+                        trigger={
+                          <img
+                            className={styles.tooltip}
+                            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
+                          />
+                        }
+                        position="top left"
+                        hideOnScroll={true}
+                        className={cn('p2e_enabled_tooltip', styles.popup)}
+                      >
+                        <Popup.Content className={styles.tooltipContent}>
+                          <img
+                            className={styles.popup_info}
+                            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
+                          />
+                          <p className={styles.popup_content}>
+                            P2E Enabled (aka Play-to-Earn)
+                            <br /> wearables allow you to earn real
+                            <br /> cash value from free-to-play ICE
+                            <br /> poker tables.
+                          </p>
+                        </Popup.Content>
+                      </Popup>
+                    </div>
+                  </div>
+                </div>
+
+                <img
+                  className={styles.nft_image}
+                  src={props.detailsICE[item][0]}
+                />
+
+                <div className={styles.nft_description}>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                    <p className={styles.nft_info}>{props.detailsICE[item][3]}</p>
+                    <p className={styles.nft_info}>{props.detailsICE[item][4]}</p>
+                  </span>
+                  <p className={styles.nft_other_p}>
+                    {props.detailsICE[item][2]}
+                  </p>
+                  <h3 className={styles.nft_other_h3}>
+                    {props.detailsICE[item][1]}
+                  </h3>
+                </div>
+
+                <div
+                  style={{
+                    position: 'absolute',
+                    bottom: '20px',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  {state.userStatus && state.userLoggedIn ? (
+                    <ModalMintWearable
+                      index={i}
+                      className={styles.right_button}
+                      wearableImg={props.detailsICE[item][0]}
+                      wearableBodyType={props.detailsICE[item][3]}
+                      wearableBodyImg={props.detailsICE[item][5]}
+                      wearableName={props.detailsICE[item][1]}
+                    />
+                  ) : (
+                    <ModalLoginICE />
+                  )}
+
+                  {/* <ModalMintActivation /> */}
+                  {/* <ActivateWearableModal /> */}
+                  {/* <ModalActivationSuccess setPending={false} /> */}
+                </div>
+              </div>
+            ))}
+          </Carousel>
         </div>
-      </span>
+      </span >
     );
   }
 

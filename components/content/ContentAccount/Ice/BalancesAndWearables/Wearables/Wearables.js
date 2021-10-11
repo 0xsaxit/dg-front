@@ -5,13 +5,13 @@ import styles from './Wearables.module.scss';
 
 const Wearables = ({ state }) => {
   // define local variables
-  const [itemLimitsArray, setItemLimitsArray] = useState([
-    [0, 0],
-    [0, 0],
-    [0, 0],
-    [0, 0],
-    [0, 0],
-  ]);
+  // const [itemLimitsArray, setItemLimitsArray] = useState([
+  //   [0, 0],
+  //   [0, 0],
+  //   [0, 0],
+  //   [0, 0],
+  //   [0, 0],
+  // ]);
   const activeWearables = state.iceWearableItems.filter(
     item => item.meta_data && item.meta_data.attributes.at(-1).value > 0
   );
@@ -32,22 +32,22 @@ const Wearables = ({ state }) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  useEffect(() => {
-    const itemLimit0 = state.itemLimits[0];
-    const itemLimit5 = state.itemLimits[1];
-    const itemLimit10 = state.itemLimits[2];
-    const itemLimit15 = state.itemLimits[3];
-    const itemLimit20 = state.itemLimits[4];
+  // useEffect(() => {
+  //   const itemLimit0 = state.itemLimits[0];
+  //   const itemLimit5 = state.itemLimits[1];
+  //   const itemLimit10 = state.itemLimits[2];
+  //   const itemLimit15 = state.itemLimits[3];
+  //   const itemLimit20 = state.itemLimits[4];
 
-    let itemLimitsArray = [];
-    itemLimitsArray.push(itemLimit0);
-    itemLimitsArray.push(itemLimit5);
-    itemLimitsArray.push(itemLimit10);
-    itemLimitsArray.push(itemLimit15);
-    itemLimitsArray.push(itemLimit20);
+  //   let itemLimitsArray = [];
+  //   itemLimitsArray.push(itemLimit0);
+  //   itemLimitsArray.push(itemLimit5);
+  //   itemLimitsArray.push(itemLimit10);
+  //   itemLimitsArray.push(itemLimit15);
+  //   itemLimitsArray.push(itemLimit20);
 
-    setItemLimitsArray(itemLimitsArray);
-  }, [state.itemLimits]);
+  //   setItemLimitsArray(itemLimitsArray);
+  // }, [state.itemLimits]);
 
   return (
     <section className={styles.wearableSection}>
@@ -77,6 +77,9 @@ const Wearables = ({ state }) => {
         </Button>
       </div>
 
+      {console.log('item limits array index:')}
+      {console.log(state.iceWearableItems)}
+
       <section className={styles.grid_container}>
         <div className={styles.wearables_grid}>
           {state.iceWearableItems.map((item, index) => (
@@ -84,7 +87,8 @@ const Wearables = ({ state }) => {
               data={item.meta_data}
               // key={index}
               tokenID={item.tokenID}
-              itemID={itemLimitsArray[index][1]}
+              // itemID={itemLimitsArray[index][1]}
+              itemID={item.itemID}
             />
           ))}
         </div>

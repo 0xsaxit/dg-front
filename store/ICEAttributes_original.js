@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import Web3 from 'web3';
+// import BigNumber from 'bignumber.js';
 import ABI_ICE_REGISTRANT from '../components/ABI/ABIICERegistrant.json';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
 import ABI_CHILD_TOKEN_WETH from '../components/ABI/ABIChildTokenWETH';
@@ -87,6 +88,10 @@ function ICEAttributes() {
             .balanceOf(state.userAddress)
             .call();
 
+          // const actual_amount = new BigNumber(ice_amount)
+          //   .div(new BigNumber(10).pow(18))
+          //   .toString(10);
+
           const actual_amount = (
             ice_amount / Global.CONSTANTS.FACTOR
           ).toString();
@@ -102,7 +107,7 @@ function ICEAttributes() {
     }
   }, [instances]);
 
-  // anytime user mints/upgrades/activates NFTs on /ice pages this code will execute
+  // anytime user purchases/upgrades/activates NFTs on /ice pages this code will execute
   useEffect(() => {
     if (instances) {
       (async function () {
@@ -137,18 +142,6 @@ function ICEAttributes() {
       })();
     }
   }, [instances, state.refreshTokenAmounts]);
-
-  // anytime user mints/updates/activates an NFT this code will execute
-  useEffect(() => {
-    if (!state.refreshWearable) {
-      updateWearableItems();
-
-      dispatch({
-        type: 'refresh_wearable_items',
-        data: true,
-      });
-    }
-  }, [state.refreshWearable]);
 
   // anytime user authorizes tokens on /ice pages this code will execute
   useEffect(() => {
@@ -206,58 +199,63 @@ function ICEAttributes() {
     }
   }, [instances, state.iceWearableItems, state.refreshNFTAuths]);
 
+  // anytime user mints/updates/activates an NFT this code will execute
+  useEffect(() => {
+    if (!state.refreshWearable) {
+      updateWearableItems();
+
+      dispatch({
+        type: 'refresh_wearable_items',
+        data: true,
+      });
+    }
+  }, [state.refreshWearable]);
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   async function updateWearableItems() {
-    if (state.userStatus >= 4) {
-      console.log('updateWearableItems ========================= ');
+    console.log('updateWearableItems ========================= ');
 
-      const tokenIDs = [];
-      try {
-        for (
-          let nIndex = 0;
-          nIndex < Global.CONSTANTS.MAX_ITEM_COUNT;
-          nIndex++
-        ) {
-          const tokenID = await collectionV2Contract.methods
-            .tokenOfOwnerByIndex(state.userAddress, nIndex)
-            .call();
+    const tokenIDs = [];
+    try {
+      for (let nIndex = 0; nIndex < Global.CONSTANTS.MAX_ITEM_COUNT; nIndex++) {
+        const tokenID = await collectionV2Contract.methods
+          .tokenOfOwnerByIndex(state.userAddress, nIndex)
+          .call();
 
-          if (parseInt(tokenID) > 0) {
-            tokenIDs.push({ index: nIndex, tokenID: tokenID });
-          }
+        if (parseInt(tokenID) > 0) {
+          tokenIDs.push({ index: nIndex, tokenID: tokenID });
         }
-      } catch (error) {
-        console.log('Stack error: =>', error.message);
       }
+    } catch (error) {
+      console.log('stack error: =>', error.message);
+    }
 
-      console.log('Fetching metadata =========================');
-
-      let iceWearableItems = [];
+    let iceWearableItems = await Promise.all(
       tokenIDs.map(async item => {
         const meta_json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
           Global.ADDRESSES.COLLECTION_V2_ADDRESS,
           item.tokenID
         );
 
-        if (Object.keys(meta_json).length) {
-          iceWearableItems.push({
-            index: item.index,
-            tokenID: item.tokenID,
-            itemID: meta_json.id.split(':').slice(-1),
-            meta_data: meta_json,
-          });
-        }
-      });
+        return {
+          index: item.index,
+          tokenID: item.tokenID,
+          meta_data: Object.keys(meta_json).length === 0 ? null : meta_json,
+        };
+      })
+    );
 
-      console.log('iceWearableItems: =========================== ');
-      console.log(iceWearableItems);
+    iceWearableItems = iceWearableItems.filter(item => item.meta_data != null);
+    console.log(
+      'iceWearableItems: =========================== ',
+      iceWearableItems
+    );
 
-      dispatch({
-        type: 'ice_wearable_items',
-        data: iceWearableItems,
-      });
-    }
+    dispatch({
+      type: 'ice_wearable_items',
+      data: iceWearableItems,
+    });
   }
 
   async function getItemLimits() {
