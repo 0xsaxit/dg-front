@@ -1,0 +1,98 @@
+@import "styles/base.scss";
+
+.claim_button {
+	height: 60px;
+	width: calc(100% + 48px);
+	margin-left: -24px;
+	margin-bottom: 20px;
+	border-radius: 12px;
+	font-size: 18px;
+	font-family: Larsseit-Bold;
+	color: white !important;
+}
+
+.claim_button_amount {
+	height: 40px;
+	border-radius: 16px;
+	font-size: 18px;
+	color: white;
+	font-family: Larsseit-Bold;
+	padding: 0px 24px 0px 24px;
+}
+
+.breakdown_button {
+	height: 40px;
+	border-radius: 16px;
+	font-size: 18px;
+	color: white;
+	font-family: Larsseit-Bold;
+	padding: 0px 24px 0px 24px;
+	margin-top: 8px;
+}
+
+.menu_info_modal {
+	width: 360px !important;
+	padding: 24px 48px 10px 48px;
+	margin-top: 24px !important;
+
+	.button_close {
+		color: white;
+		cursor: pointer;
+		width: 36px;
+		height: 36px;
+		background: black;
+		border-radius: 100%;
+		padding: 8px 10px 8px 10px;
+	}
+
+	.title {
+		font-weight: 800;
+		font-size: 24px;
+		letter-spacing: -0.5px;
+		text-align: center;
+	}
+
+	.subtitle {
+		font-size: 18px;
+		text-align: center;
+	}
+	
+	.coin_line {
+		height: 60px;
+		display: flex;
+		align-items: center;
+
+		&.active {
+			background: rgba(255, 255, 255, 0.1);
+			border-radius: 24px;
+			margin-top: 20px;
+			margin-left: -24px;
+			margin-right: -24px;
+			padding-left: 24px;
+			padding-right: 24px;
+		}
+
+		.coin_title {
+			font-weight: bold;
+			font-size: 18px;
+			color: white;
+		}
+
+		.coin_subtitle {
+			font-weight: bold;
+			color: white;
+			font-size: 14px;
+			line-height: 24px;
+			opacity: 0.75;
+		}
+
+		.circle_icon {
+			height: 32px;
+			margin-right: 16px;
+			display: flex;
+			justify-content: center;
+			align-self: center;
+			align-items: center;
+		}
+	}
+}

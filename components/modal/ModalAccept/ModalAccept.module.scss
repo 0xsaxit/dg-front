@@ -1,0 +1,71 @@
+@import "styles/base.scss";
+
+.disabled_enable {
+	min-width: calc(100% - 4px) !important;
+	border-radius: 12px;
+	height: 68px;
+	color: white;
+	font-size: 18px;
+	font-family: Larsseit-Bold;
+	background: #006EFF;
+
+	&:hover {
+		filter: brightness(0.9) !important;
+	}
+}
+
+.terms_modal {
+	width: 360px !important;
+	padding: 30px;
+
+	.button_close {
+		color: white;
+		cursor: pointer;
+		width: 36px;
+		height: 36px;
+		background: black;
+		border-radius: 100%;
+		padding: 8px 10px 8px 10px;
+	}
+
+	.title {
+		font-weight: 800;
+		font-size: 24px;
+		text-align: left;
+		letter-spacing: -0.5px;
+		padding-bottom: 12px;
+	}
+
+	.subtitle {
+		font-size: 18px;
+		line-height: 24px;
+		color: rgba(255, 255, 255, 1) !important;
+	}
+
+	.subtitle_2 {
+		font-size: 18px;
+		line-height: 24px;
+		color: rgba(255, 255, 255, 1) !important;
+	}
+
+	.terms_a {
+		color: #0d6efd;
+	}
+
+	.terms_a:hover {
+		filter: brightness(0.9);
+	}
+
+	.disabled_enable {
+		border-radius: 12px;
+		height: 68px;
+		color: white;
+		font-size: 18px;
+		font-family: Larsseit-Bold;
+		background: #006EFF;
+
+		&:hover {
+			filter: brightness(0.9) !important;
+		}
+	}
+}
