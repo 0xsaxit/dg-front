@@ -114,7 +114,8 @@
   width: 80px;
   min-width: 80px;
   max-width: 80px;
-  height: 2000vh;
+  min-height: 100vh;
+  max-height: 2000vh;
   padding: 4px;
   position: relative;
   z-index: 9;
