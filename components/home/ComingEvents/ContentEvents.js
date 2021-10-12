@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useState } from 'react';
 import Countdown from 'react-countdown';
 import cn from 'classnames';
 import { useMediaQuery } from 'hooks';
@@ -13,6 +13,8 @@ function getSentences(str) {
 }
 
 const ContentEvents = ({ events, eventOngoing }) => {
+
+  const [completed, setCompleted] = useState(false);
   const isWideScreen = useMediaQuery('(min-width: 1200px)');
 
   return (
@@ -25,10 +27,19 @@ const ContentEvents = ({ events, eventOngoing }) => {
             ) : (
               <span className="d-flex">
                 <span className={styles.title}>Next Event in:&nbsp;</span>
-                <Countdown
-                  className={styles.countdown}
-                  date={events[0].next_start_at}
-                />
+                {completed? (
+                  <span>
+                    Currently Active
+                  </span>
+                ) : (
+                  <Countdown
+                    className={styles.countdown}
+                    date={events[0].next_start_at}                    
+                    onComplete={() => {
+                      setCompleted(true);
+                    }}
+                  />
+                )}
               </span>
             )}
           </span>
