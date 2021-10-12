@@ -145,7 +145,7 @@ const domainDataAccessories = {
 
 const domainDataICERegistrant = {
   name: 'IceRegistrant',
-  version: 'v1.2',
+  version: 'v1.3',
   chainId: Global.CONSTANTS.PARENT_NETWORK_ID,
   verifyingContract: iceRegistrantAddress,
 };
