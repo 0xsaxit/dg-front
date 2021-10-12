@@ -105,7 +105,14 @@ const ModalDelegateConfirm = props => {
           </div>
 
           <div className={styles.button_area}>
-            <Button className={styles.button_close}>Back to Account</Button>
+            <Button
+              className={styles.button_close}
+              onClick={() => {
+                setGlobalState();
+              }}
+            >
+              Back to Account
+            </Button>
           </div>
         </div>
       </div>
