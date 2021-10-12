@@ -226,6 +226,8 @@ const ModalDelegate = props => {
       Global.ADDRESSES.COLLECTION_V2_ADDRESS
     );
 
+    console.log(json.status);
+
     if (json.status) {
       console.log('NFT delegation request successful');
 
