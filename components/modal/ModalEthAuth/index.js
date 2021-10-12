@@ -177,18 +177,19 @@ const ModalEthAuth = props => {
         data: false,
       });
 
+      console.log('NFT minting successful');
+
       setOpenMintSuccess(true);
       setOpen(false);
-
       props.close();
     } else if (!json.status) {
       setButtonMessage('Token Minting Error');
 
-      console.log(json.result);
+      console.log('NFT minting error (a): ' + json.result);
     } else if (json.status === 'error') {
       setButtonMessage(json.result);
 
-      console.log(json.result);
+      console.log('NFT minting error (b): ' + json.result);
     }
 
     setMinting(false);
