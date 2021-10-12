@@ -3697,7 +3697,8 @@ div.ui.input.withdraw_input > input {
 }
 
 .ice-wearables-carousel-container .carousel-item {
-  padding-right: 20px;
+  padding-right: 24px;
+  padding-bottom: 3px;
 }
 
 .ice-wearables-carousel-container .react-multiple-carousel__arrow {

@@ -1,9 +1,9 @@
 @import "styles/base.scss";
 
 .header {
-  width: calc(100vw - 337px);
+  width: calc(100vw - 315px);
   margin-top: 150px;
-  margin-left: 60px;
+  margin-left: 40px;
   margin-bottom: -120px;
 
   h1 {
@@ -40,7 +40,7 @@
   }
 
   @include mq($until: medium) {
-    width: calc(100% - 60px);
+    width: calc(100% - 70px);
     margin-left: 30px;
 
     h1 {
@@ -64,7 +64,7 @@
   display: grid;
   grid-gap: 24px;
   grid-template-columns: repeat(auto-fill, minmax(228px, 1fr));
-  margin: 18px 0px 120px 60px;
+  margin: 18px 0px 120px 40px;
   margin-top: 150px;
 
   @media (max-width: 1040px) {
@@ -282,13 +282,14 @@
 
 .iceWearablesMarketplace {
   .outter_games_container {
-    width: calc(100vw - 317px);
+    width: calc(100vw - 297px);
     display: block !important;
     grid-gap: 0px !important;
     grid-template-columns: none !important;
+    margin-bottom: 30px;
 
     @media (max-width: 1040px) {
-      width: calc(100vw - 140px);
+      width: calc(100vw - 120px);
     }
 
     @media (max-width: 768px) {

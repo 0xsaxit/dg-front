@@ -201,20 +201,40 @@ const ContentOfferings = props => {
         items: 3,
         partialVisibilityGutter: 40
       },
-      tablet: {
-        breakpoint: { max: 1240, min: 768 },
+      bigTablet: {
+        breakpoint: { max: 1240, min: 900 },
+        items: 2,
+        partialVisibilityGutter: 125
+      },
+      mediumTablet: {
+        breakpoint: { max: 900, min: 768 },
         items: 2,
         partialVisibilityGutter: 60
       },
       smallTablet: {
-        breakpoint: { max: 768, min: 640 },
+        breakpoint: { max: 768, min: 700 },
         items: 2,
-        partialVisibilityGutter: 80
+        partialVisibilityGutter: 40
       },
-      mobile: {
-        breakpoint: { max: 768, min: 0 },
+      bigMobile: {
+        breakpoint: { max: 700, min: 600 },
+        items: 2,
+        partialVisibilityGutter: 0
+      },
+      mediumMobile: {
+        breakpoint: { max: 600, min: 420 },
         items: 1,
-        partialVisibilityGutter: 60
+        partialVisibilityGutter: 120
+      },
+      smallMobile: {
+        breakpoint: { max: 420, min: 0 },
+        items: 1,
+        partialVisibilityGutter: 45
+      },
+      smallest: {
+        breakpoint: { max: 400, min: 0 },
+        items: 1,
+        partialVisibilityGutter: 0
       }
     };
     const previewImages = [
