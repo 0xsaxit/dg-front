@@ -29,7 +29,7 @@ const ContentEvents = ({ events, eventOngoing }) => {
                 <span className={styles.title}>Next Event in:&nbsp;</span>
                 {completed? (
                   <span>
-                    Currently Active
+                    Currently Active!
                   </span>
                 ) : (
                   <Countdown
