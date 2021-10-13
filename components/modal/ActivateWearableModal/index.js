@@ -301,6 +301,13 @@ const ActivateWearableModal = props => {
           data: false,
         });
 
+        // update global state balances
+        const refreshBalances = !state.refreshBalances;
+        dispatch({
+          type: 'refresh_balances',
+          data: refreshBalances,
+        })
+
         // close this modal and open the success modal
         setOpen(false);
         setPending(false);
@@ -355,8 +362,8 @@ const ActivateWearableModal = props => {
             {authStatus
               ? 'Confirm Activation'
               : clicked
-              ? 'Authorizing ...'
-              : 'Authorize DG'}
+                ? 'Authorizing ...'
+                : 'Authorize DG'}
           </Button>
         </div>
       ) : (

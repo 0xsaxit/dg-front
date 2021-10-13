@@ -78,7 +78,7 @@ function UserInfo() {
         }
       })();
     }
-  }, [state.userAddress, state.updateInfo]);
+  }, [state.userAddress, state.updateInfo, state.refreshBalances]);
 
   return null;
 }

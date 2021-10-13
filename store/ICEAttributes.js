@@ -81,7 +81,9 @@ function ICEAttributes() {
 
         if (nLen > 0) {
           // update wearable items
-          updateWearableItems();
+          if (state.refreshWearable) {
+            updateWearableItems();
+          }
 
           const ice_amount = await iceTokenContract.methods
             .balanceOf(state.userAddress)
@@ -90,6 +92,8 @@ function ICEAttributes() {
           const actual_amount = (
             ice_amount / Global.CONSTANTS.FACTOR
           ).toString();
+
+          console.log('Set IceAmount', ice_amount, actual_amount);
 
           dispatch({
             type: 'set_IceAmount',
@@ -100,7 +104,7 @@ function ICEAttributes() {
 
       fetchData();
     }
-  }, [instances]);
+  }, [instances, state.refreshBalances]);
 
   // anytime user mints/upgrades/activates NFTs on /ice pages this code will execute
   useEffect(() => {
