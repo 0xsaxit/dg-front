@@ -18,69 +18,68 @@ const ModalWearable = props => {
   /////////////// token price tags. (spans on lines 124, 155 and 183)
   ////////////////////////////////////////////////////////////////////
 
-
   ////////////////////////////////////////////////////////////////////
   /////////////// Bonus Array, ICE Prices, Img Array
   const bonus = [
-    "0%",         // Rank 0
-    "+1 - 7%",    // Rank 1
-    "+8 - 15%",   // Rank 2
-    "+16 - 24%",  // Rank 3
-    "+25 - 34%",  // Rank 4
-    "+35 - 45%",  // Rank 5
+    '0%', // Rank 0
+    '+1 - 7%', // Rank 1
+    '+8 - 15%', // Rank 2
+    '+16 - 24%', // Rank 3
+    '+25 - 34%', // Rank 4
+    '+35 - 45%', // Rank 5
   ];
 
   const icePrices = [
-    0,      // Rank 0
-    0,      // Rank 1
-    30000,  // Rank 2
-    40000,  // Rank 3
-    50000,  // Rank 4
-    60000   // Rank 5
-  ]
+    0, // Rank 0
+    0, // Rank 1
+    30000, // Rank 2
+    40000, // Rank 3
+    50000, // Rank 4
+    60000, // Rank 5
+  ];
 
   const imgUrls = {
-    "Trousers": [
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375784/dg_suit_bottom_rank1_lower_body_eqxrjg.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375784/dg_suit_bottom_rank1_lower_body_eqxrjg.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375785/dg_suit_bottom_rank2_lower_body_lzafze.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375790/dg_suit_bottom_rank3_lower_body_d8j7fc.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375784/dg_suit_bottom_rank4_lower_body_lgxlp6.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375787/dg_suit_bottom_rank5_lower_body_wjheco.svg"
+    Trousers: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375784/dg_suit_bottom_rank1_lower_body_eqxrjg.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375784/dg_suit_bottom_rank1_lower_body_eqxrjg.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375785/dg_suit_bottom_rank2_lower_body_lzafze.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375790/dg_suit_bottom_rank3_lower_body_d8j7fc.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375784/dg_suit_bottom_rank4_lower_body_lgxlp6.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375787/dg_suit_bottom_rank5_lower_body_wjheco.svg',
     ],
-    "Blazer": [
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375788/dg_suit_top_rank1_upper_body_topkkt.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375788/dg_suit_top_rank1_upper_body_topkkt.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375798/dg_suit_top_rank2_upper_body_gqhhf1.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375788/dg_suit_top_rank3_upper_body_zgdd1z.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375793/dg_suit_top_rank4_upper_body_mmro3k.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375795/dg_suit_top_rank5_upper_body_cwbqb8.svg"
+    Blazer: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375788/dg_suit_top_rank1_upper_body_topkkt.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375788/dg_suit_top_rank1_upper_body_topkkt.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375798/dg_suit_top_rank2_upper_body_gqhhf1.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375788/dg_suit_top_rank3_upper_body_zgdd1z.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375793/dg_suit_top_rank4_upper_body_mmro3k.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375795/dg_suit_top_rank5_upper_body_cwbqb8.svg',
     ],
-    "Cigar": [
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375775/dg_cigar_rank1_eyewear_ryp0s8.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375775/dg_cigar_rank1_eyewear_ryp0s8.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375776/dg_cigar_rank2_eyewear_egkg1l.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375776/dg_cigar_rank3_eyewear_dw0ezt.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375776/dg_cigar_rank4_eyewear_wbccwe.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375776/dg_cigar_rank5_eyewear_imanmm.svg"
+    Cigar: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375775/dg_cigar_rank1_eyewear_ryp0s8.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375775/dg_cigar_rank1_eyewear_ryp0s8.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375776/dg_cigar_rank2_eyewear_egkg1l.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375776/dg_cigar_rank3_eyewear_dw0ezt.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375776/dg_cigar_rank4_eyewear_wbccwe.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375776/dg_cigar_rank5_eyewear_imanmm.svg',
     ],
-    "Loafers": [
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375776/dg_dress_rank1_shoes_feet_m5fgcv.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375776/dg_dress_rank1_shoes_feet_m5fgcv.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375780/dg_dress_rank2_shoes_feet_rfwrkf.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375779/dg_dress_rank3_shoes_feet_wbkmn1.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375779/dg_dress_rank4_shoes_feet_b6y0dw.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375780/dg_dress_rank5_shoes_feet_icgadn.svg"
+    Loafers: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375776/dg_dress_rank1_shoes_feet_m5fgcv.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375776/dg_dress_rank1_shoes_feet_m5fgcv.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375780/dg_dress_rank2_shoes_feet_rfwrkf.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375779/dg_dress_rank3_shoes_feet_wbkmn1.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375779/dg_dress_rank4_shoes_feet_b6y0dw.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375780/dg_dress_rank5_shoes_feet_icgadn.svg',
     ],
-    "Shades": [
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375784/dg_money_shades_rank1_eyewear_gvb3kg.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375784/dg_money_shades_rank1_eyewear_gvb3kg.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375780/dg_money_shades_rank2_eyewear_czk0rc.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375784/dg_money_shades_rank3_eyewear_r1i2ng.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375781/dg_money_shades_rank4_eyewear_p03kbq.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375783/dg_money_shades_rank5_eyewear_xidpnl.svg"
-    ]
-  }
+    Shades: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375784/dg_money_shades_rank1_eyewear_gvb3kg.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375784/dg_money_shades_rank1_eyewear_gvb3kg.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375780/dg_money_shades_rank2_eyewear_czk0rc.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375784/dg_money_shades_rank3_eyewear_r1i2ng.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375781/dg_money_shades_rank4_eyewear_p03kbq.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375783/dg_money_shades_rank5_eyewear_xidpnl.svg',
+    ],
+  };
 
   return (
     <>
@@ -111,7 +110,13 @@ const ModalWearable = props => {
           </div>
           <div style={{ color: 'white', display: 'flex', gap: '24px' }}>
             <div className={styles.wear_box}>
-              <div style={{ width: '240px', display: 'flex', justifyContent: 'center' }}>
+              <div
+                style={{
+                  width: '240px',
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}
+              >
                 <div className={styles.wear_box_mark}>
                   +{props.bonus}%
                   <img
@@ -148,10 +153,14 @@ const ModalWearable = props => {
             <div className={styles.wear_box}>
               <IceUpgradeWearableTooltip />
 
-              <div style={{ width: '240px', display: 'flex', justifyContent: 'center' }}>
-                <div
-                  className={styles.wear_box_mark}
-                >
+              <div
+                style={{
+                  width: '240px',
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}
+              >
+                <div className={styles.wear_box_mark}>
                   {bonus[props.rank + 1]}
                   <img
                     src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png"
@@ -161,7 +170,7 @@ const ModalWearable = props => {
               </div>
 
               <div className={styles.wear_box_pink}>
-                <img src={imgUrls[props.name][props.rank + 1]} />
+                <img src={imgUrls[props.name][parseInt(props.rank + 1)]} />
               </div>
 
               <div className={styles.card_body}>
@@ -184,7 +193,9 @@ const ModalWearable = props => {
                 Benefits
                 <div className={styles.benefit_list}>
                   <ul>
-                    <li>Update your ICE Bonus to between {bonus[props.rank + 1]}</li>
+                    <li>
+                      Update your ICE Bonus to between {bonus[props.rank + 1]}
+                    </li>
                     <li>Daily free chip stack increase from 4,000 to 4,500</li>
                   </ul>
                 </div>
@@ -199,7 +210,7 @@ const ModalWearable = props => {
                       <span className={styles.not_enough}>Not Enough</span>
                     )}
                     <div className={styles.card}>
-                      {icePrices[props.rank + 1] / 1000 + "K"} ICE
+                      {icePrices[props.rank + 1] / 1000 + 'K'} ICE
                       <img
                         src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png"
                         className={styles.img_card1}
@@ -238,7 +249,10 @@ const ModalWearable = props => {
                         className={styles.img_card2}
                       />
                     </div>
-                    <div className={styles.description}>{parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(2)} DG Available</div>
+                    <div className={styles.description}>
+                      {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(2)}{' '}
+                      DG Available
+                    </div>
                     <div className={styles.network}>(On Polygon)</div>
                   </div>
 
@@ -268,12 +282,16 @@ const ModalWearable = props => {
                         className={styles.img_card3}
                       />
                     </div>
-                    <div className={styles.description}>{state.xpAmount} XP Available</div>
+                    <div className={styles.description}>
+                      {state.xpAmount} XP Available
+                    </div>
                   </div>
                 </div>
               </div>
               <div className={styles.button_area}>
-                {state.xpAmount >= 50 && state.DGBalances.BALANCE_CHILD_DG >= 0.1 && state.iceAmount >= 30000 ? (
+                {state.xpAmount >= 50 &&
+                state.DGBalances.BALANCE_CHILD_DG >= 0.1 &&
+                state.iceAmount >= 30000 ? (
                   <Button
                     className={styles.button_upgrade}
                     onClick={() => {
@@ -294,11 +312,7 @@ const ModalWearable = props => {
                     Upgrade Wearable
                   </Button>
                 )}
-                <Button
-                  className={styles.button_close}
-                >
-                  Learn More
-                </Button>
+                <Button className={styles.button_close}>Learn More</Button>
               </div>
             </div>
           </div>
