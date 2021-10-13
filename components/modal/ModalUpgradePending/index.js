@@ -13,6 +13,7 @@ import styles from './ModalUpgradePending.module.scss';
 import MetamaskAction, { ActionLine } from 'components/common/MetamaskAction';
 import ModalUpgradeSuccess from '../ModalUpgradeSuccess';
 import Global from '../../Constants';
+import Aux from '../../_Aux';
 
 const ModalUpgradePending = props => {
   // fetch tokenAmounts data from the Context API store
@@ -383,57 +384,59 @@ const ModalUpgradePending = props => {
 
   return (
     <Aux>
-      <Modal
-        className={styles.withdraw_modal}
-        onClose={() => setOpen(false)}
-        onOpen={() => setOpen(true)}
-        open={open}
-        close
-        trigger={<Button className={styles.open_button}>Upgrade</Button>}
-      >
-        <div
-          className={styles.header_buttons}
-          onClick={() => {
-            setOpen(false);
-          }}
+      {!openUpgradeSuccess ? (
+        <Modal
+          className={styles.withdraw_modal}
+          onClose={() => setOpen(false)}
+          onOpen={() => setOpen(true)}
+          open={open}
+          close
+          trigger={<Button className={styles.open_button}>Upgrade</Button>}
         >
-          {modalButtons('close')}
-          {modalButtons('help')}
-        </div>
-
-        <div
-          style={{
-            color: 'white',
-            display: 'flex',
-            justifyContent: 'center',
-            textAlign: 'center',
-          }}
-        >
-          <div className={styles.upgrade_container}>
-            <p className={styles.header}>
-              <img
-                className={styles.logo}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
-              />
-              Authorize & Upgrade
-            </p>
-
-            <p className={styles.description}>
-              To upgrade your wearable, you will have to complete 4 transactions
-              in metamask.
-            </p>
-
-            {authButtons()}
+          <div
+            className={styles.header_buttons}
+            onClick={() => {
+              setOpen(false);
+            }}
+          >
+            {modalButtons('close')}
+            {modalButtons('help')}
           </div>
-        </div>
-      </Modal>
 
-      <ModalUpgradeSuccess
-        show={openUpgradeSuccess}
-        close={() => {
-          setOpenUpgradeSuccess(false);
-        }}
-      />
+          <div
+            style={{
+              color: 'white',
+              display: 'flex',
+              justifyContent: 'center',
+              textAlign: 'center',
+            }}
+          >
+            <div className={styles.upgrade_container}>
+              <p className={styles.header}>
+                <img
+                  className={styles.logo}
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
+                />
+                Authorize & Upgrade
+              </p>
+
+              <p className={styles.description}>
+                To upgrade your wearable, you will have to complete 4
+                transactions in metamask.
+              </p>
+
+              {authButtons()}
+            </div>
+          </div>
+        </Modal>
+      ) : (
+        <ModalUpgradeSuccess
+          show={openUpgradeSuccess}
+          close={() => {
+            setOpenUpgradeSuccess(false);
+          }}
+        />
+      )}
     </Aux>
   );
 };
