@@ -234,21 +234,21 @@ function ICEAttributes() {
       console.log('Fetching metadata =========================');
 
       let iceWearableItems = [];
-      tokenIDs.map(async item => {
+      for (var i = 0; i < tokenIDs.length; i++) {
         const meta_json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
           Global.ADDRESSES.COLLECTION_V2_ADDRESS,
-          item.tokenID
+          tokenIDs[i].tokenID
         );
 
         if (Object.keys(meta_json).length) {
           iceWearableItems.push({
-            index: item.index,
-            tokenID: item.tokenID,
+            index: tokenIDs[i].index,
+            tokenID: tokenIDs[i].tokenID,
             itemID: meta_json.id.split(':').slice(-1),
             meta_data: meta_json,
           });
         }
-      });
+      }
 
       console.log('iceWearableItems: =========================== ');
       console.log(iceWearableItems);
