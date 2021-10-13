@@ -32,6 +32,7 @@ const ModalUpgradePending = props => {
   const [tokenContractICE, setTokenContractICE] = useState({});
   const [tokenContractDG, setTokenContractDG] = useState({});
   const [collectionV2Contract, setCollectionV2Contract] = useState({});
+  const [iceRegistrantContract, setIceRegistrantContract] = useState({});
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -73,6 +74,12 @@ const ModalUpgradePending = props => {
         Global.ADDRESSES.COLLECTION_V2_ADDRESS
       );
       setCollectionV2Contract(collectionV2Contract);
+
+      const iceRegistrantContract = new getWeb3.eth.Contract(
+        ABI_ICE_REGISTRANT,
+        Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
+      );
+      setIceRegistrantContract(iceRegistrantContract);
 
       biconomy
         .onEvent(biconomy.READY, () => {
@@ -167,7 +174,7 @@ const ModalUpgradePending = props => {
         <MetamaskAction
           primaryText="Upgrade Wearable"
           secondaryText="Transaction to upgrade wearable"
-          onClick={() => upgradeToken()}
+          onClick={() => metaTransactionUpgrade()}
           actionState={
             authStatusUpgrade
               ? 'done'
@@ -338,15 +345,46 @@ const ModalUpgradePending = props => {
     }
   }
 
-  // send the API request to upgrade the user's wearable
-  async function upgradeToken() {
-    console.log('Upgrading NFT token ID: ' + props.tokenID);
+  async function metaTransactionUpgrade() {
+    console.log('Meta-transaction Upgrade NFT');
     setClickedUpgrade(true);
 
-    const json = await Fetch.UPGRADE_TOKEN(
-      props.tokenID,
-      Global.ADDRESSES.COLLECTION_V2_ADDRESS
-    );
+    try {
+      // get function signature and send Biconomy API meta-transaction
+      let functionSignature = iceRegistrantContract.methods
+        .requestUpgrade(Global.ADDRESSES.COLLECTION_V2_ADDRESS, props.tokenID)
+        .encodeABI();
+
+      const txHash = await MetaTx.executeMetaTransaction(
+        11,
+        functionSignature,
+        iceRegistrantContract,
+        state.userAddress,
+        web3
+      );
+
+      if (txHash === false) {
+        setClickedUpgrade(false);
+
+        console.log('Biconomy meta-transaction failed');
+      } else {
+        console.log('Biconomy meta-transaction hash: ' + txHash);
+
+        upgradeToken(txHash); // send the API request to server
+      }
+    } catch (error) {
+      setClickedUpgrade(false);
+
+      console.log('Upgrade NFT error: ' + error);
+    }
+  }
+
+  // send the API request to upgrade the user's wearable
+  async function upgradeToken(txHash) {
+    console.log('Upgrade NFT transaction. Item ID: ' + props.itemID);
+    setClickedUpgrade(true);
+
+    const json = await Fetch.UPGRADE_TOKEN(txHash);
 
     if (json.status) {
       setAuthStatusUpgrade(true);
@@ -364,19 +402,33 @@ const ModalUpgradePending = props => {
         data: false,
       });
 
-      console.log('NFT upgrading successful');
-
+      console.log('NFT upgrade request successful');
       setOpen(false);
     } else if (!json.status) {
       setClickedUpgrade(false);
 
-      console.log('NFT upgrading error (a): ' + json.result);
+      console.log('NFT upgrade request error (a): ' + json.result);
     } else if (json.status === 'error') {
       setClickedUpgrade(false);
 
-      console.log('NFT upgrading error (b): ' + json.result);
+      console.log('NFT upgrade request error (b): ' + json.result);
     }
   }
+
+  // function pendingOrSuccessButton() {
+  //   return (
+  //     <Button
+  //       className={styles.next_button}
+  //       onClick={() => {
+  //         setOpen(false);
+  //         props.setUpgrade(3);
+  //       }}
+  //       disabled={authorizeTransaction != 'done'}
+  //     >
+  //       Go to Success
+  //     </Button>
+  //   );
+  // }
 
   return (
     <Modal
@@ -391,6 +443,7 @@ const ModalUpgradePending = props => {
         className={styles.header_buttons}
         onClick={() => {
           setOpen(false);
+          // props.setUpgrade(0);
         }}
       >
         {modalButtons('close')}
@@ -420,6 +473,8 @@ const ModalUpgradePending = props => {
           </p>
 
           {authButtons()}
+
+          {/* {pendingOrSuccessButton()} ********** do we still need this? ********** */}
         </div>
       </div>
     </Modal>
