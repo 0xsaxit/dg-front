@@ -186,6 +186,8 @@ const ActivateWearableModal = props => {
             Available <br />
             <abbr>(On Polygon)</abbr>
           </p>
+
+          <p>Previous owner: {previousOwner}</p>
         </div>
       </Aux>
     );
