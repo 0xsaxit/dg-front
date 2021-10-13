@@ -5,12 +5,13 @@ import Web3 from 'web3';
 import ABI_DG_TOKEN from '../../../components/ABI/ABIDGToken';
 import ABI_CHILD_TOKEN_ICE from '../../../components/ABI/ABIChildTokenICE';
 import ABI_COLLECTION_V2 from '../../../components/ABI/ABICollectionV2';
-import ABI_ICE_REGISTRANT from '../../../components/ABI/ABIICERegistrant.json';
+// import ABI_ICE_REGISTRANT from '../../../components/ABI/ABIICERegistrant.json';
 import MetaTx from '../../../common/MetaTx';
 import Fetch from '../../../common/Fetch';
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './ModalUpgradePending.module.scss';
 import MetamaskAction, { ActionLine } from 'components/common/MetamaskAction';
+import ModalUpgradeSuccess from '../ModalUpgradeSuccess';
 import Global from '../../Constants';
 
 const ModalUpgradePending = props => {
@@ -19,6 +20,7 @@ const ModalUpgradePending = props => {
 
   // define local variables
   const [open, setOpen] = useState(true);
+  const [openUpgradeSuccess, setOpenUpgradeSuccess] = useState(false);
   const [web3, setWeb3] = useState({});
   const [spenderAddress, setSpenderAddress] = useState('');
   const [authStatusICE, setAuthStatusICE] = useState(false);
@@ -76,7 +78,7 @@ const ModalUpgradePending = props => {
 
       biconomy
         .onEvent(biconomy.READY, () => {
-          console.log('Mexa is Ready: Approve ETH (wearables)');
+          console.log('Mexa is Ready: Approve ICE, DG, NFT (wearables)');
         })
         .onEvent(biconomy.ERROR, (error, message) => {
           console.error(error);
@@ -84,14 +86,14 @@ const ModalUpgradePending = props => {
     }
   }, [state.userStatus]);
 
-  // get ICE and DG authorization status' based on tokenAmounts state object
+  // get ICE and DG authorization status' based on tokenAuths state object
   useEffect(() => {
     const authStatusICE = state.tokenAuths.ICE_AUTHORIZATION;
     const authStatusDG = state.tokenAuths.DG_AUTHORIZATION;
 
     setAuthStatusICE(authStatusICE);
     setAuthStatusDG(authStatusDG);
-  }, [state.tokenAmounts]);
+  }, [state.tokenAuths]);
 
   // get NFT authorization state based on props.tokenID
   useEffect(() => {
@@ -366,6 +368,7 @@ const ModalUpgradePending = props => {
 
       console.log('NFT upgrading successful');
 
+      setOpenUpgradeSuccess(true);
       setOpen(false);
     } else if (!json.status) {
       setClickedUpgrade(false);
@@ -379,50 +382,59 @@ const ModalUpgradePending = props => {
   }
 
   return (
-    <Modal
-      className={styles.withdraw_modal}
-      onClose={() => setOpen(false)}
-      onOpen={() => setOpen(true)}
-      open={open}
-      close
-      trigger={<Button className={styles.open_button}>Upgrade</Button>}
-    >
-      <div
-        className={styles.header_buttons}
-        onClick={() => {
-          setOpen(false);
-        }}
+    <Aux>
+      <Modal
+        className={styles.withdraw_modal}
+        onClose={() => setOpen(false)}
+        onOpen={() => setOpen(true)}
+        open={open}
+        close
+        trigger={<Button className={styles.open_button}>Upgrade</Button>}
       >
-        {modalButtons('close')}
-        {modalButtons('help')}
-      </div>
-
-      <div
-        style={{
-          color: 'white',
-          display: 'flex',
-          justifyContent: 'center',
-          textAlign: 'center',
-        }}
-      >
-        <div className={styles.upgrade_container}>
-          <p className={styles.header}>
-            <img
-              className={styles.logo}
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
-            />
-            Authorize & Upgrade
-          </p>
-
-          <p className={styles.description}>
-            To upgrade your wearable, you will have to complete 4 transactions
-            in metamask.
-          </p>
-
-          {authButtons()}
+        <div
+          className={styles.header_buttons}
+          onClick={() => {
+            setOpen(false);
+          }}
+        >
+          {modalButtons('close')}
+          {modalButtons('help')}
         </div>
-      </div>
-    </Modal>
+
+        <div
+          style={{
+            color: 'white',
+            display: 'flex',
+            justifyContent: 'center',
+            textAlign: 'center',
+          }}
+        >
+          <div className={styles.upgrade_container}>
+            <p className={styles.header}>
+              <img
+                className={styles.logo}
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
+              />
+              Authorize & Upgrade
+            </p>
+
+            <p className={styles.description}>
+              To upgrade your wearable, you will have to complete 4 transactions
+              in metamask.
+            </p>
+
+            {authButtons()}
+          </div>
+        </div>
+      </Modal>
+
+      <ModalUpgradeSuccess
+        show={openUpgradeSuccess}
+        close={() => {
+          setOpenUpgradeSuccess(false);
+        }}
+      />
+    </Aux>
   );
 };
 
