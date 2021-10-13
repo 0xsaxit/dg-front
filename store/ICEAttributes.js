@@ -240,13 +240,17 @@ function ICEAttributes() {
           item.tokenID
         );
 
-        if (Object.keys(meta_json).length) {
-          iceWearableItems.push({
-            index: item.index,
-            tokenID: item.tokenID,
-            itemID: meta_json.id.split(':').slice(-1),
-            meta_data: meta_json,
-          });
+        try {
+          if (Object.keys(meta_json).length) {
+            iceWearableItems.push({
+              index: item.index,
+              tokenID: item.tokenID,
+              itemID: meta_json.id.split(':').slice(-1),
+              meta_data: meta_json,
+            });
+          }
+        } catch (error) {
+          console.log('Metadata error: =>', error.message);
         }
       });
 
