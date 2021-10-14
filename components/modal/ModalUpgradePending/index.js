@@ -367,6 +367,13 @@ const ModalUpgradePending = props => {
         data: false,
       });
 
+      // update global state balances
+      const refreshBalances = !state.refreshBalances;
+      dispatch({
+        type: 'refresh_balances',
+        data: refreshBalances,
+      })
+
       console.log('NFT upgrading successful');
 
       setOpenUpgradeSuccess(true);
