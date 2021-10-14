@@ -219,8 +219,8 @@ const ModalWearable = props => {
                   <div className={styles.card_area_body}>
                     {state.iceAmounts.ICE_AVAILABLE_AMOUNT <
                       icePrices[Math.min(props.rank + 1, 5)] && (
-                      <span className={styles.not_enough}>Not Enough</span>
-                    )}
+                        <span className={styles.not_enough}>Not Enough</span>
+                      )}
                     <div className={styles.card}>
                       {icePrices[Math.min(props.rank + 1, 5)] / 1000 + 'K'} ICE
                       <img
@@ -284,7 +284,7 @@ const ModalWearable = props => {
                   </div>
 
                   <div className={styles.card_area_body}>
-                    {state.userInfo.balanceXP < 50 && (
+                    {state.xpAmounts < 50 && (
                       <span className={styles.not_enough}>Not Enough</span>
                     )}
                     <div className={styles.card}>
@@ -295,15 +295,15 @@ const ModalWearable = props => {
                       />
                     </div>
                     <div className={styles.description}>
-                      {state.userInfo.balanceXP} XP Available
+                      {state.xpAmounts} XP Available
                     </div>
                   </div>
                 </div>
               </div>
               <div className={styles.button_area}>
-                {state.userInfo.balanceXP >= 50 &&
-                state.DGBalances.BALANCE_CHILD_DG >= 0.1 &&
-                state.iceAmounts.ICE_AVAILABLE_AMOUNT >= 30000 ? (
+                {state.xpAmounts >= 50 &&
+                  state.DGBalances.BALANCE_CHILD_DG >= 0.1 &&
+                  state.iceAmounts.ICE_AVAILABLE_AMOUNT >= 30000 ? (
                   <Button
                     className={styles.button_upgrade}
                     onClick={() => {
@@ -345,6 +345,7 @@ const ModalWearable = props => {
           setUpgrade={setUpgrade}
           tokenID={props.tokenID}
           itemID={props.itemID}
+          upgradeRank={Math.min(props.rank + 1, 5)}
         />
       )}
 

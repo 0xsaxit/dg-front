@@ -57,7 +57,6 @@ function UserInfo() {
             name: name,
             id: id,
             balancePLAY: balancePLAY,
-            balanceXP: balanceXP,
             count: count,
             email: email,
             playersList: playersList,
@@ -72,10 +71,10 @@ function UserInfo() {
             data: data,
           });
 
-          // dispatch({
-          //   type: 'set_XpAmount',
-          //   data: jsonInfo.iceXpCurrent
-          // })
+          dispatch({
+            type: 'xp_amounts',
+            data: balanceXP
+          })
         }
       })();
     }

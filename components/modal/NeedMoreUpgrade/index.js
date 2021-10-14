@@ -158,9 +158,9 @@ const NeedMoreUpgrade = ({
             <div className={styles.xp_icon}>
               <XP />
             </div>
-            {state.userInfo.balanceXP < upgradeNeedXpAmount ? (
+            {state.xpAmounts < upgradeNeedXpAmount ? (
               <span className={styles.xp_pill}>
-                Need {upgradeNeedXpAmount - state.userInfo.balanceXP} more
+                Need {upgradeNeedXpAmount - state.xpAmounts} more
               </span>
             ) : null}
 
@@ -171,7 +171,7 @@ const NeedMoreUpgrade = ({
               </Button>
 
               <p className={styles.availability_info}>
-                {state.userInfo.balanceXP} XP Available
+                {state.xpAmounts} XP Available
               </p>
             </div>
           </div>

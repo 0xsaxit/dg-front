@@ -108,6 +108,22 @@ const ModalUpgradePending = props => {
     }
   }, [state.nftAuthorizations]);
 
+  // open Upgrade Success Modal after we get updated wearable info from the API
+  useEffect(() => {
+    console.log("****************", state.iceWearableUpdatedSuccess, state.iceWearableItems);
+    if (state.iceWearableUpdatedSuccess) {
+      // update global state iceWearableUpdatedSuccess
+      dispatch({
+        type: 'ice_wearable_update_success',
+        data: false,
+      })
+
+      setAuthStatusUpgrade(true);
+      setOpenUpgradeSuccess(true);
+      setOpen(false);
+    }
+  }, [state.iceWearableItems])
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
@@ -122,10 +138,10 @@ const ModalUpgradePending = props => {
             authStatusICE
               ? 'done'
               : !clickedICE
-              ? 'initial'
-              : clickedICE
-              ? 'clicked'
-              : null
+                ? 'initial'
+                : clickedICE
+                  ? 'clicked'
+                  : null
           }
         />
 
@@ -139,10 +155,10 @@ const ModalUpgradePending = props => {
             authStatusDG
               ? 'done'
               : !clickedDG
-              ? 'initial'
-              : clickedDG
-              ? 'clicked'
-              : null
+                ? 'initial'
+                : clickedDG
+                  ? 'clicked'
+                  : null
           }
           disabled={!authStatusICE}
         />
@@ -157,10 +173,10 @@ const ModalUpgradePending = props => {
             authStatusNFT
               ? 'done'
               : !clickedNFT
-              ? 'initial'
-              : clickedNFT
-              ? 'clicked'
-              : null
+                ? 'initial'
+                : clickedNFT
+                  ? 'clicked'
+                  : null
           }
           disabled={!authStatusDG}
         />
@@ -175,10 +191,10 @@ const ModalUpgradePending = props => {
             authStatusUpgrade
               ? 'done'
               : !clickedUpgrade
-              ? 'initial'
-              : clickedUpgrade
-              ? 'clicked'
-              : null
+                ? 'initial'
+                : clickedUpgrade
+                  ? 'clicked'
+                  : null
           }
           disabled={!authStatusNFT}
         />
@@ -352,8 +368,6 @@ const ModalUpgradePending = props => {
     );
 
     if (json.status) {
-      setAuthStatusUpgrade(true);
-
       // update global state token amounts
       const refreshTokenAmounts = !state.refreshTokenAmounts;
       dispatch({
@@ -375,10 +389,13 @@ const ModalUpgradePending = props => {
         data: refreshBalances,
       })
 
-      console.log('NFT upgrading successful');
+      // update global state iceWearableUpdatedSuccess
+      dispatch({
+        type: 'ice_wearable_update_success',
+        data: true,
+      })
 
-      setOpenUpgradeSuccess(true);
-      setOpen(false);
+      console.log('NFT upgrading successful');
     } else if (!json.status) {
       setClickedUpgrade(false);
 
@@ -440,6 +457,7 @@ const ModalUpgradePending = props => {
       ) : (
         <ModalUpgradeSuccess
           show={openUpgradeSuccess}
+          tokenID={props.tokenID}
           close={() => {
             setOpenUpgradeSuccess(false);
           }}
