@@ -61,6 +61,7 @@ const Wearables = ({ state }) => {
         <div className={styles.wearables_grid}>
           {state.iceWearableItems.map((item, index) => (
             <ICEWearableCard
+              key={index}
               data={item.meta_data}
               tokenID={item.tokenID}
               itemID={item.itemID}
@@ -69,6 +70,7 @@ const Wearables = ({ state }) => {
 
           {state.iceDelegatedItems.map((item, index) => (
             <ICEDelegatedCard
+              key={index}
               data={item.meta_data}
               ownerAddress={item.ownerAddress}
               tokenID={item.tokenID}
