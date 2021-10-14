@@ -6,7 +6,8 @@ import BalancesAndWearables from './BalancesAndWearables';
 function ICE({ state }) {
   return (
     <Aux>
-      {state.userStatus && !!state.iceWearableItems.length ? (
+      {(state.userStatus && !!state.iceWearableItems.length) ||
+      !!state.iceDelegatedItems.length ? (
         <BalancesAndWearables />
       ) : (
         <NoWearablesSplash />
