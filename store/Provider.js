@@ -12,16 +12,17 @@ const initialState = {
   userAddress: '',
   userInfo: {
     name: '',
-    index: 0,
+    id: 0,
     balancePLAY: 0,
+    balanceXP: 0,
     count: '',
     email: '',
     playersList: [],
-    totalDAI: 0,
-    totalMANA: 0,
-    totalPLAY: 0,
-    totalUSDT: 0,
-    totalATRI: 0,
+    // totalDAI: 0,
+    // totalMANA: 0,
+    // totalPLAY: 0,
+    // totalUSDT: 0,
+    // totalATRI: 0,
     tokenArray: [false, false, false, false, false, false],
   },
   userBalances: [
@@ -72,6 +73,7 @@ const initialState = {
     atri: 0,
     usdt: 0,
     dg: 0,
+    ice: 0,
   },
   DGBreakdown: {
     eth: 0,
@@ -120,6 +122,10 @@ const initialState = {
     DG_COST_AMOUNT_5: 0,
     ICE_COST_AMOUNT_5: 0,
   },
+  iceAmounts: {
+    ICE_AVAILABLE_AMOUNT: 0,
+    ICE_CLAIM_AMOUNT: 0,
+  },
   tokenAuths: {
     DG_AUTHORIZATION: false,
     ICE_AUTHORIZATION: false,
@@ -128,6 +134,7 @@ const initialState = {
   refreshTokens: 'Initial',
   refreshBalances: true,
   refreshTokenAmounts: true,
+  refreshICEAmounts: true,
   refreshTokenAuths: true,
   refreshNFTAuths: true,
   refreshWearable: true,
@@ -152,8 +159,8 @@ const initialState = {
   dgWarningMsg: false,
   toastMessage: '',
   selectedLang: 0,
-  iceAmount: 0,
-  xpAmount: 0,
+  // iceAmount: 0,
+  // xpAmount: 0,
   userVerified: true,
   isAmnesiaPage: false,
 };
@@ -298,17 +305,17 @@ const reducer = (state, action) => {
         iceDelegatedItems: action.data,
       };
 
-    case 'set_IceAmount':
-      return {
-        ...state,
-        iceAmount: action.data,
-      };
+    // case 'set_IceAmount':
+    //   return {
+    //     ...state,
+    //     iceAmount: action.data,
+    //   };
 
-    case 'set_XpAmount':
-      return {
-        ...state,
-        xpAmount: action.data,
-      };
+    // case 'set_XpAmount':
+    //   return {
+    //     ...state,
+    //     xpAmount: action.data,
+    //   };
 
     case 'nft_authorizations':
       return {
@@ -326,6 +333,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         tokenAmounts: action.data,
+      };
+
+    case 'ice_amounts':
+      return {
+        ...state,
+        iceAmounts: action.data,
       };
 
     case 'token_auths':
@@ -386,6 +399,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         refreshTokenAmounts: action.data,
+      };
+
+    case 'refresh_ice_amounts':
+      return {
+        ...state,
+        refreshICEAmounts: action.data,
       };
 
     case 'refresh_nft_auths':

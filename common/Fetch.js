@@ -22,9 +22,9 @@ const apiCall = {
     return call(`${API_BASE_URL}/admin/getTotalRecords`, 'GET', false);
   },
 
-  PLAYER_DATA: () => {
-    return call(`${API_BASE_URL}/admin/getCryptoRecords`, 'GET');
-  },
+  // PLAYER_DATA: () => {
+  //   return call(`${API_BASE_URL}/admin/getCryptoRecords`, 'GET');
+  // },
 
   USERS_LIST: () => {
     return call(`${API_BASE_URL}/admin/getUsersList`, 'GET');
@@ -53,6 +53,10 @@ const apiCall = {
 
   CLAIM_REWARDS: () => {
     return call(`${API_BASE_URL}/ice/claimRewards`, 'GET');
+  },
+
+  CLAIM_REWARDS_AMOUNT: () => {
+    return call(`${API_BASE_URL}/ice/getUnclaimedRewardsAmount`, 'GET');
   },
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -205,6 +209,10 @@ const apiCall = {
       false
     );
   },
+
+  // ICE_PRICE: () => {
+  //   return call(`https://api.coingecko.com/api/v3/coins/ice`, 'GET', false);
+  // },
 
   LAND_PRICE: () => {
     return call(

@@ -289,16 +289,17 @@ const ActivateWearableModal = props => {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
         // update global state token amounts
-        const refresh = !state.refreshTokenAmounts;
+        const refresh1 = !state.refreshTokenAmounts;
         dispatch({
           type: 'refresh_token_amounts',
-          data: refresh,
+          data: refresh1,
         });
 
         // update global state wearables data
+        const refresh2 = !state.refreshWearable;
         dispatch({
           type: 'refresh_wearable_items',
-          data: false,
+          data: refresh2,
         });
 
         // close this modal and open the success modal
