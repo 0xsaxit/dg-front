@@ -355,17 +355,17 @@ const ModalUpgradePending = props => {
       setAuthStatusUpgrade(true);
 
       // update global state token amounts
-      const refresh1 = !state.refreshTokenAmounts;
+      const refreshTokenAmounts = !state.refreshTokenAmounts;
       dispatch({
         type: 'refresh_token_amounts',
-        data: refresh1,
+        data: refreshTokenAmounts,
       });
 
       // update global state wearables data
-      const refresh2 = !state.refreshWearable;
+      const refreshWearable = !state.refreshWearable;
       dispatch({
         type: 'refresh_wearable_items',
-        data: refresh2,
+        data: refreshWearable,
       });
 
       // update global state balances
