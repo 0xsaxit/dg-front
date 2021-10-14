@@ -102,6 +102,53 @@ function ICEAttributes() {
     }
   }, [instances]);
 
+  // anytime user mints/updates/activates an NFT this code will execute
+  useEffect(() => {
+    if (!state.refreshWearable) {
+      updateWearableItems();
+
+      dispatch({
+        type: 'refresh_wearable_items',
+        data: true,
+      });
+    }
+  }, [state.refreshWearable]);
+
+  // anytime user undelegates an NFT this code will execute
+  useEffect(() => {
+    (async function () {
+      let iceDelegatedItems = [];
+
+      const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
+
+      if (Object.keys(delegationInfo).length) {
+        delegationInfo.incomingDelegations.forEach(async (item, i) => {
+          const ownerAddress = item.tokenOwner;
+          const tokenId = item.tokenId;
+
+          const meta_json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
+            Global.ADDRESSES.COLLECTION_V2_ADDRESS,
+            tokenId
+          );
+
+          if (Object.keys(meta_json).length) {
+            iceDelegatedItems.push({
+              ownerAddress: ownerAddress,
+              tokenID: tokenId,
+              itemID: meta_json.id.split(':').slice(-1),
+              meta_data: meta_json,
+            });
+          }
+        });
+      }
+
+      dispatch({
+        type: 'ice_delegated_items',
+        data: iceDelegatedItems,
+      });
+    })();
+  }, [state.refreshDelegation]);
+
   // anytime user mints/upgrades/activates NFTs on /ice pages this code will execute
   useEffect(() => {
     if (instances) {
@@ -137,18 +184,6 @@ function ICEAttributes() {
       })();
     }
   }, [instances, state.refreshTokenAmounts]);
-
-  // anytime user mints/updates/activates an NFT this code will execute
-  useEffect(() => {
-    if (!state.refreshWearable) {
-      updateWearableItems();
-
-      dispatch({
-        type: 'refresh_wearable_items',
-        data: true,
-      });
-    }
-  }, [state.refreshWearable]);
 
   // anytime user authorizes tokens on /ice pages this code will execute
   useEffect(() => {

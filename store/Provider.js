@@ -105,6 +105,7 @@ const initialState = {
     [0, 20],
   ],
   iceWearableItems: [],
+  iceDelegatedItems: [],
   nftAuthorizations: [],
   canPurchase: true,
   tokenAmounts: {
@@ -131,6 +132,7 @@ const initialState = {
   refreshNFTAuths: true,
   refreshWearable: true,
   refreshDelegateInfo: true,
+  refreshDelegation: true,
   updateInfo: true,
   affiliateAddress: '',
   stakeTime: 0,
@@ -289,16 +291,25 @@ const reducer = (state, action) => {
         ...state,
         iceWearableItems: action.data,
       };
+
+    case 'ice_delegated_items':
+      return {
+        ...state,
+        iceDelegatedItems: action.data,
+      };
+
     case 'set_IceAmount':
       return {
         ...state,
         iceAmount: action.data,
       };
+
     case 'set_XpAmount':
       return {
         ...state,
         xpAmount: action.data,
       };
+
     case 'nft_authorizations':
       return {
         ...state,
@@ -393,6 +404,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         refreshDelegateInfo: action.data,
+      };
+
+    case 'refresh_delegation':
+      return {
+        ...state,
+        refreshDelegation: action.data,
       };
 
     case 'update_info':
