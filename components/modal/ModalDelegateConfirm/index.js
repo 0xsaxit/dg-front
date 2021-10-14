@@ -14,7 +14,7 @@ const ModalDelegateConfirm = props => {
   function setGlobalState() {
     const refresh = !state.refreshDelegateInfo;
 
-    console.log('refresh status (undelegate): ' + refresh);
+    // console.log('refresh status (undelegate): ' + refresh);
 
     dispatch({
       type: 'refresh_delegate_info',
