@@ -13,14 +13,17 @@ const Balances = ({ state }) => {
       icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg',
       name: 'ICE',
       type: 'ICE',
-      model: state.iceAmount,
-      price: '0.00',
+      model: state.iceAmounts.ICE_AVAILABLE_AMOUNT,
+      price: formatPrice(
+        state.iceAmounts.ICE_CLAIM_AMOUNT * state.DGPrices.ice,
+        2
+      ),
     },
     {
       icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_XP_ICN_f9w2se.svg',
       name: 'Gameplay XP',
       type: 'XP',
-      model: state.xpAmount,
+      model: state.userInfo.balanceXP,
       price: '0.00',
     },
     {
@@ -135,21 +138,27 @@ const Balances = ({ state }) => {
         <p className={styles.reward_header}>Play-to-Earn Rewards</p>
 
         <div className={styles.reward_value}>
-          <p className={styles.DG_value}>1830</p>
+          <p className={styles.DG_value}>{state.iceAmounts.ICE_CLAIM_AMOUNT}</p>
           <img
             style={{ marginTop: '-4px' }}
             src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
           />
         </div>
-        <p className={styles.price}>$109.32</p>
+        <p className={styles.price}>
+          $
+          {formatPrice(
+            state.iceAmounts.ICE_CLAIM_AMOUNT * state.DGPrices.ice,
+            2
+          )}
+        </p>
 
         {!clicked ? (
           <Button className={styles.claim_button} onClick={() => claimTokens()}>
-            Claim 1,830 ICE
+            Claim {state.iceAmounts.ICE_CLAIM_AMOUNT} ICE
           </Button>
         ) : (
           <Button className={styles.claim_button} disabled>
-            Claim 1,830 ICE
+            Claim {state.iceAmounts.ICE_CLAIM_AMOUNT} ICE
           </Button>
         )}
 
@@ -159,14 +168,21 @@ const Balances = ({ state }) => {
   }
 
   async function claimTokens() {
-    console.log('Claiming ICE Rewards: ' + '1,830');
+    console.log('Claiming ICE Rewards: ' + state.iceAmounts.ICE_CLAIM_AMOUNT);
     setClicked(true);
 
     const json = await Fetch.CLAIM_REWARDS();
 
     if (json.status) {
       console.log('Claim ICE rewards request successful');
-      console.log('Claim ICE amoung: ' + json.txHash);
+      console.log('Claim ICE amount: ' + json.txHash);
+
+      // update global state ice amounts
+      const refresh = !state.refreshICEAmounts;
+      dispatch({
+        type: 'refresh_ice_amounts',
+        data: refresh,
+      });
     } else {
       console.log('Claim ICE rewards request error: ' + json.reason);
 

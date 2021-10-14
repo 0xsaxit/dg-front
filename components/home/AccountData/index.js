@@ -183,7 +183,10 @@ const AccountData = props => {
                     ICE Mined{' '}
                     <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631365915/w706j6tiotm1gdp0p8nu.svg" />{' '}
                   </p>
-                  <p className={styles.amount}> {state.iceAmount} </p>
+                  <p className={styles.amount}>
+                    {' '}
+                    {state.iceAmounts.ICE_AVAILABLE_AMOUNT}{' '}
+                  </p>
                 </div>
               </div>
               <div className={styles.token_container}>

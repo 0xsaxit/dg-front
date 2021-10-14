@@ -26,7 +26,7 @@ const ModalWithdrawDelegation = props => {
       <Aux>
         <div className={styles.header}>Delegation Details</div>
 
-        {ownerAddress ? (
+        {!ownerAddress ? (
           <div className={styles.description}>
             You’ve been delegated this wearable.
             <br />
@@ -45,7 +45,7 @@ const ModalWithdrawDelegation = props => {
             <div className={styles.card_area_body}>
               <div className={styles.card}>
                 <div className={styles.info}>You Earn</div>
-                {ownerAddress ? '70%' : '30%'}
+                {!ownerAddress ? '70%' : '30%'}
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card}
@@ -56,7 +56,7 @@ const ModalWithdrawDelegation = props => {
             <div className={styles.card_area_body}>
               <div className={styles.card}>
                 <div className={styles.info}>They Earn</div>
-                {ownerAddress ? '30%' : '70%'}
+                {!ownerAddress ? '30%' : '70%'}
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card}

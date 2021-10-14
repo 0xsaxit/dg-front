@@ -20,7 +20,9 @@ const ModalWearable = props => {
 
   ////////////////////////////////////////////////////////////////////
   /////////////// Bonus Array, ICE Prices, Img Array
-  const [wearableName, setWearableName] = useState(props.name.replace('Diamond Hands ', ''));
+  const [wearableName, setWearableName] = useState(
+    props.name.replace('Diamond Hands ', '')
+  );
 
   const bonus = [
     '0%', // Rank 0
@@ -172,11 +174,17 @@ const ModalWearable = props => {
               </div>
 
               <div className={styles.wear_box_pink}>
-                <img src={imgUrls[wearableName][parseInt(Math.min(props.rank + 1, 5))]} />
+                <img
+                  src={
+                    imgUrls[wearableName][parseInt(Math.min(props.rank + 1, 5))]
+                  }
+                />
               </div>
 
               <div className={styles.card_body}>
-                <div className={styles.card}>Rank {Math.min(props.rank + 1, 5)}</div>
+                <div className={styles.card}>
+                  Rank {Math.min(props.rank + 1, 5)}
+                </div>
                 <div className={styles.card}>
                   {bonus[Math.min(props.rank + 1, 5)]}
                   <img
@@ -196,7 +204,8 @@ const ModalWearable = props => {
                 <div className={styles.benefit_list}>
                   <ul>
                     <li>
-                      Update your ICE Bonus to between {bonus[Math.min(props.rank + 1, 5)]}
+                      Update your ICE Bonus to between{' '}
+                      {bonus[Math.min(props.rank + 1, 5)]}
                     </li>
                     <li>Daily free chip stack increase from 4,000 to 4,500</li>
                   </ul>
@@ -208,7 +217,8 @@ const ModalWearable = props => {
                 <span style={{ opacity: 0.75 }}>&nbsp;($109.12)</span>
                 <div className={styles.card_area}>
                   <div className={styles.card_area_body}>
-                    {state.iceAmount < icePrices[Math.min(props.rank + 1, 5)] && (
+                    {state.iceAmounts.ICE_AVAILABLE_AMOUNT <
+                      icePrices[Math.min(props.rank + 1, 5)] && (
                       <span className={styles.not_enough}>Not Enough</span>
                     )}
                     <div className={styles.card}>
@@ -220,7 +230,7 @@ const ModalWearable = props => {
                     </div>
 
                     <div className={styles.description}>
-                      {state.iceAmount} ICE Available
+                      {state.iceAmounts.ICE_AVAILABLE_AMOUNT} ICE Available
                     </div>
                     <div className={styles.network}>(On Polygon)</div>
                   </div>
@@ -274,7 +284,7 @@ const ModalWearable = props => {
                   </div>
 
                   <div className={styles.card_area_body}>
-                    {state.xpAmount < 50 && (
+                    {state.userInfo.balanceXP < 50 && (
                       <span className={styles.not_enough}>Not Enough</span>
                     )}
                     <div className={styles.card}>
@@ -285,15 +295,15 @@ const ModalWearable = props => {
                       />
                     </div>
                     <div className={styles.description}>
-                      {state.xpAmount} XP Available
+                      {state.userInfo.balanceXP} XP Available
                     </div>
                   </div>
                 </div>
               </div>
               <div className={styles.button_area}>
-                {state.xpAmount >= 50 &&
-                  state.DGBalances.BALANCE_CHILD_DG >= 0.1 &&
-                  state.iceAmount >= 30000 ? (
+                {state.userInfo.balanceXP >= 50 &&
+                state.DGBalances.BALANCE_CHILD_DG >= 0.1 &&
+                state.iceAmounts.ICE_AVAILABLE_AMOUNT >= 30000 ? (
                   <Button
                     className={styles.button_upgrade}
                     onClick={() => {
