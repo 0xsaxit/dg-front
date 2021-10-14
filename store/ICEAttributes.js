@@ -148,6 +148,9 @@ function ICEAttributes() {
             tokenId
           );
 
+          console.log('delegation data...');
+          console.log(meta_json);
+
           if (Object.keys(meta_json).length) {
             iceDelegatedItems.push({
               ownerAddress: ownerAddress,
