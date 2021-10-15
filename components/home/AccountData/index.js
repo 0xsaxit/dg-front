@@ -58,6 +58,17 @@ const AccountData = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
+  function formatPrice(balanceDG, units) {
+    const balanceAdjusted = Number(balanceDG)
+      .toFixed(units)
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+    return balanceAdjusted;
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // helper functions
   const onCopy = () => {
     navigator.clipboard.writeText(state.userAddress);
     setCopied(true);
@@ -206,7 +217,7 @@ const AccountData = props => {
                     Unused XP{' '}
                     <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631365915/w706j6tiotm1gdp0p8nu.svg" />{' '}
                   </p>
-                  <p className={styles.amount}> 0 </p>
+                  <p className={styles.amount}> {state.xpAmounts} </p>
                 </div>
               </div>
               <div className={styles.token_container}>
@@ -219,10 +230,10 @@ const AccountData = props => {
                 <div className={styles.tokenBalance}>
                   <p className={styles.title}>
                     {' '}
-                    DG Mined{' '}
+                    DG{' '}
                     <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631365915/w706j6tiotm1gdp0p8nu.svg" />{' '}
                   </p>
-                  <p className={styles.amount}> 0 </p>
+                  <p className={styles.amount}> {formatPrice(state.DGBalances.BALANCE_CHILD_DG, 3)} </p>
                 </div>
               </div>
             </div>
