@@ -1,9 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { GlobalContext } from '../../../store';
+import GetRank from '../../../common/GetIceWearableRank'
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './ModalUpgradeSuccess.module.scss';
 
 const ModalUpgradeSuccess = props => {
+  // fetch user's Polygon DG balance from the Context API store
+  const [state, dispatch] = useContext(GlobalContext);
+
+  // define local variables
   const [open, setOpen] = useState(true);
+  const [image, setImage] = useState("")
+  const [description, setDescription] = useState("x of 100");
+  const [rank, setRank] = useState({})
+
+  useEffect(() => {
+    const itemInfo = state.iceWearableItems.filter(item => item.tokenID === props.tokenID)[0];
+    setImage(itemInfo.meta_data.image);
+    setDescription(itemInfo.meta_data.description.split(' ').at(-1).replace('/', ' of '));
+    setRank(GetRank(parseInt(itemInfo.meta_data.attributes.at(-1).value)));
+  }, [state.iceWearableItems])
 
   return (
     <Modal
@@ -77,7 +93,7 @@ const ModalUpgradeSuccess = props => {
 
         <div className={styles.card}>
           <div className={styles.toppercent}>
-            +31%
+            {rank.percentage}
             <img
               src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631326183/ICE_Diamon_ICN_k27aap.png"
               style={{ width: '20px', marginLeft: '3px' }}
@@ -85,26 +101,33 @@ const ModalUpgradeSuccess = props => {
           </div>
           <div className={styles.image}>
             <img
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631591546/bg_6_vbjmjo.png"
+              src={image}
               className={styles.logo}
             />
           </div>
           <div className={styles.properties}>
-            <div className={styles.round}>Rank 4</div>
+            <div className={styles.round}>Rank {rank.value}</div>
             <div className={styles.round}>
-              +31%
+              {rank.percentage}
               <img
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631326183/ICE_Diamon_ICN_k27aap.png"
                 style={{ width: '14px', marginLeft: '2px' }}
               />
             </div>
-            <div className={styles.round}>1 of 100</div>
+            <div className={styles.round}>{description}</div>
           </div>
         </div>
 
         <div className={styles.buttons}>
           <Button className={styles.primary}>Play Now</Button>
-          <Button className={styles.none}>Back to Account</Button>
+          <Button
+            className={styles.none}
+            onClose={() => {
+              setOpen(false);
+            }}
+          >
+            Back to Account
+          </Button>
         </div>
       </div>
     </Modal>

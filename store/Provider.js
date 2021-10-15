@@ -14,7 +14,6 @@ const initialState = {
     name: '',
     id: 0,
     balancePLAY: 0,
-    balanceXP: 0,
     count: '',
     email: '',
     playersList: [],
@@ -107,6 +106,7 @@ const initialState = {
     [0, 20],
   ],
   iceWearableItems: [],
+  iceWearableUpdatedSuccess: false,
   iceDelegatedItems: [],
   nftAuthorizations: [],
   canPurchase: true,
@@ -126,6 +126,7 @@ const initialState = {
     ICE_AVAILABLE_AMOUNT: 0,
     ICE_CLAIM_AMOUNT: 0,
   },
+  xpAmounts: 0,
   tokenAuths: {
     DG_AUTHORIZATION: false,
     ICE_AUTHORIZATION: false,
@@ -298,24 +299,18 @@ const reducer = (state, action) => {
         ...state,
         iceWearableItems: action.data,
       };
+    
+    case 'ice_wearable_update_success':
+      return {
+        ...state,
+        iceWearableUpdatedSuccess:  action.data,
+      }
 
     case 'ice_delegated_items':
       return {
         ...state,
         iceDelegatedItems: action.data,
       };
-
-    // case 'set_IceAmount':
-    //   return {
-    //     ...state,
-    //     iceAmount: action.data,
-    //   };
-
-    // case 'set_XpAmount':
-    //   return {
-    //     ...state,
-    //     xpAmount: action.data,
-    //   };
 
     case 'nft_authorizations':
       return {
@@ -340,6 +335,12 @@ const reducer = (state, action) => {
         ...state,
         iceAmounts: action.data,
       };
+    
+    case 'xp_amounts':
+      return {
+        ...state,
+        xpAmounts: action.data,
+      }
 
     case 'token_auths':
       return {
