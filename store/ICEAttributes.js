@@ -210,6 +210,9 @@ function ICEAttributes() {
     if (instances) {
       (async function () {
         const iceAmounts = await getICEAmounts();
+        iceAmounts.ICE_AVAILABLE_AMOUNT = parseInt(iceAmounts.ICE_AVAILABLE_AMOUNT)
+        iceAmounts.ICE_CLAIM_AMOUNT = parseInt(iceAmounts.ICE_CLAIM_AMOUNT)
+        
         console.log('==== <iceAmounts> ==== ', iceAmounts);
 
         dispatch({
