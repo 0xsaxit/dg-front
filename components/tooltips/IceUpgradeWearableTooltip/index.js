@@ -37,8 +37,7 @@ const IceUpgradeWearableTooltip = () => {
           <p>
             Your new ICE bonus will be
             <br /> randomly selected within the new
-            <br /> rank range. If unhappy with your
-            <br /> result, you can reroll for 10,000 ICE.
+            <br /> rank range.
           </p>
           <div className="row">
             <div className="col-6 itemDiv">

@@ -1,11 +1,17 @@
-// import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ICEWearableCard from 'components/common/cards/ICEWearableCard';
-import ICEDelegatedCard from 'components/common/cards/ICEDelegatedCard';
 import { Button } from 'semantic-ui-react';
 import styles from './Wearables.module.scss';
 
 const Wearables = ({ state }) => {
   // define local variables
+  // const [itemLimitsArray, setItemLimitsArray] = useState([
+  //   [0, 0],
+  //   [0, 0],
+  //   [0, 0],
+  //   [0, 0],
+  //   [0, 0],
+  // ]);
   const activeWearables = state.iceWearableItems.filter(
     item => item.meta_data && item.meta_data.attributes.at(-1).value > 0
   );
@@ -26,6 +32,23 @@ const Wearables = ({ state }) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  // useEffect(() => {
+  //   const itemLimit0 = state.itemLimits[0];
+  //   const itemLimit5 = state.itemLimits[1];
+  //   const itemLimit10 = state.itemLimits[2];
+  //   const itemLimit15 = state.itemLimits[3];
+  //   const itemLimit20 = state.itemLimits[4];
+
+  //   let itemLimitsArray = [];
+  //   itemLimitsArray.push(itemLimit0);
+  //   itemLimitsArray.push(itemLimit5);
+  //   itemLimitsArray.push(itemLimit10);
+  //   itemLimitsArray.push(itemLimit15);
+  //   itemLimitsArray.push(itemLimit20);
+
+  //   setItemLimitsArray(itemLimitsArray);
+  // }, [state.itemLimits]);
+
   return (
     <section className={styles.wearableSection}>
       <div className={styles.wearableHeader}>
@@ -54,26 +77,17 @@ const Wearables = ({ state }) => {
         </Button>
       </div>
 
-      {/* {console.log('item limits array index:')}
-      {console.log(state.iceWearableItems)} */}
+      {console.log('item limits array index:')}
+      {console.log(state.iceWearableItems)}
 
       <section className={styles.grid_container}>
         <div className={styles.wearables_grid}>
           {state.iceWearableItems.map((item, index) => (
             <ICEWearableCard
-              key={index}
               data={item.meta_data}
+              // key={index}
               tokenID={item.tokenID}
-              itemID={item.itemID}
-            />
-          ))}
-
-          {state.iceDelegatedItems.map((item, index) => (
-            <ICEDelegatedCard
-              key={index}
-              data={item.meta_data}
-              ownerAddress={item.ownerAddress}
-              tokenID={item.tokenID}
+              // itemID={itemLimitsArray[index][1]}
               itemID={item.itemID}
             />
           ))}

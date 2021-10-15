@@ -9,7 +9,7 @@ import MetaTx from '../../../common/MetaTx';
 import Fetch from '../../../common/Fetch';
 import Aux from '../../_Aux';
 import Global from '../../Constants';
-import MetamaskAction from './MetamaskAction';
+// import MetamaskAction from './MetamaskAction';
 import ModalMintSuccess from '../ModalMintSuccess';
 
 const ModalEthAuth = props => {
@@ -26,7 +26,7 @@ const ModalEthAuth = props => {
   const [openMintSuccess, setOpenMintSuccess] = useState(false);
   const [minting, setMinting] = useState(false);
   const [buttonMessage, setButtonMessage] = useState('Proceed to Mint');
-  const [clicked, setClicked] = useState(false);
+  // const [clicked, setClicked] = useState(false);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////
@@ -71,11 +71,12 @@ const ModalEthAuth = props => {
     }
   }, [state.userStatus]);
 
+  // get WETH authorization status based on tokenAuths state object
   useEffect(() => {
     const authStatus = state.tokenAuths.WETH_AUTHORIZATION;
 
     setAuthStatus(authStatus);
-  }, [state.tokenAmounts]);
+  }, [state.tokenAuths]);
 
   useEffect(() => {
     const canPurchase = state.canPurchase;
@@ -165,16 +166,17 @@ const ModalEthAuth = props => {
 
     if (json.status) {
       // update global state token amounts
-      const refresh = !state.refreshTokenAmounts;
+      const refresh1 = !state.refreshTokenAmounts;
       dispatch({
         type: 'refresh_token_amounts',
-        data: refresh,
+        data: refresh1,
       });
 
       // update global state wearables data
+      const refresh2 = !state.refreshWearable;
       dispatch({
         type: 'refresh_wearable_items',
-        data: false,
+        data: refresh2,
       });
 
       console.log('NFT minting successful');
@@ -199,7 +201,7 @@ const ModalEthAuth = props => {
   async function metaTransaction() {
     try {
       console.log('WETH authorization amount: ' + Global.CONSTANTS.MAX_AMOUNT);
-      setClicked(true);
+      // setClicked(true);
 
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = tokenContract.methods
@@ -217,7 +219,7 @@ const ModalEthAuth = props => {
       if (txHash === false) {
         console.log('Biconomy meta-transaction failed');
 
-        setClicked(false);
+        // setClicked(false);
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
@@ -232,7 +234,7 @@ const ModalEthAuth = props => {
     } catch (error) {
       console.log('WETH authorization error: ' + error);
 
-      setClicked(false);
+      // setClicked(false);
     }
   }
 

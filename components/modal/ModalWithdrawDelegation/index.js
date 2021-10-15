@@ -16,6 +16,8 @@ const ModalWithdrawDelegation = props => {
   const [open, setOpen] = useState(false);
   const [success, setSuccess] = useState(false);
 
+  const ownerAddress = props.ownerAddress === state.userAddress ? true : false;
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
@@ -24,17 +26,26 @@ const ModalWithdrawDelegation = props => {
       <Aux>
         <div className={styles.header}>Delegation Details</div>
 
-        <div className={styles.description}>
-          You’ve delegated this wearable to <a>{props.address}</a>.<br />
-          Profits can be claimed from your <a>ICE rewards page</a>.
-        </div>
+        {!ownerAddress ? (
+          <div className={styles.description}>
+            You’ve been delegated this wearable.
+            <br />
+            Profits can be claimed from your <a>ICE rewards page</a>.
+          </div>
+        ) : (
+          <div className={styles.description}>
+            You’ve delegated this wearable to <a>{props.delegateAddress}</a>.
+            <br />
+            Profits can be claimed from your <a>ICE rewards page</a>.
+          </div>
+        )}
 
         <div className={styles.price_area}>
           <div className={styles.card_area}>
             <div className={styles.card_area_body}>
               <div className={styles.card}>
                 <div className={styles.info}>You Earn</div>
-                30%
+                {!ownerAddress ? '70%' : '30%'}
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card}
@@ -45,7 +56,7 @@ const ModalWithdrawDelegation = props => {
             <div className={styles.card_area_body}>
               <div className={styles.card}>
                 <div className={styles.info}>They Earn</div>
-                70%
+                {!ownerAddress ? '30%' : '70%'}
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card}
@@ -116,7 +127,7 @@ const ModalWithdrawDelegation = props => {
 
   async function undelegateNFT() {
     console.log('Undelegate token ID: ' + props.tokenID);
-    console.log('Token owner address: ' + state.userAddress);
+    console.log('Token owner address: ' + props.ownerAddress);
     console.log('Delegate address: ' + props.delegateAddress);
     console.log(
       'Collection address: ' + Global.ADDRESSES.COLLECTION_V2_ADDRESS
@@ -124,7 +135,7 @@ const ModalWithdrawDelegation = props => {
     setClicked(true);
 
     const json = await Fetch.UNDELEGATE_NFT(
-      state.userAddress,
+      props.ownerAddress,
       props.delegateAddress,
       props.tokenID,
       Global.ADDRESSES.COLLECTION_V2_ADDRESS
@@ -132,6 +143,14 @@ const ModalWithdrawDelegation = props => {
 
     if (json.status) {
       console.log('NFT undelegation request successful');
+
+      // update global state delegated items
+      const refresh = !state.refreshDelegation;
+
+      dispatch({
+        type: 'refresh_delegation',
+        data: refresh,
+      });
 
       // close this modal and open the success modal
       setOpen(false);

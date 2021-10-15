@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../../../../store';
 import Fetch from '../../../../common/Fetch';
+import GetRank from '../../../../common/GetIceWearableRank'
 import IceP2EEnabledTooltip from 'components/tooltips/IceP2EEnabledTooltip';
 import IceNeedToActivateTooltip from 'components/tooltips/IceNeedToActivateTooltip';
 import IceWearableBonusTooltip from 'components/tooltips/IceWearableBonusTooltip';
@@ -12,22 +13,6 @@ import ModalWearable from 'components/modal/ModalWearable';
 import styles from './ICEWearableCard.module.scss';
 import Aux from '../../../_Aux';
 
-const getRank = bonus => {
-  if (bonus === 0) {
-    return { value: 0, percentage: '0%' };
-  } else if (bonus >= 1 && bonus <= 7) {
-    return { value: 1, percentage: '+' + bonus + '%' };
-  } else if (bonus >= 8 && bonus <= 15) {
-    return { value: 2, percentage: '+' + bonus + '%' };
-  } else if (bonus >= 16 && bonus <= 24) {
-    return { value: 3, percentage: '+' + bonus + '%' };
-  } else if (bonus >= 25 && bonus <= 34) {
-    return { value: 4, percentage: '+' + bonus + '%' };
-  } else if (bonus >= 35 && bonus <= 45) {
-    return { value: 5, percentage: '+' + bonus + '%' };
-  }
-};
-
 const ICEWearableCard = props => {
   // get user's wallet address from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -38,7 +23,7 @@ const ICEWearableCard = props => {
   const buttonDelegate = 'Delegate';
   const buttonUndelegate = 'Withdraw Delegation';
   const { name, description, image, attributes } = props.data;
-  const rank = getRank(parseInt(attributes.at(-1).value));
+  const rank = GetRank(parseInt(attributes.at(-1).value));
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -127,6 +112,7 @@ const ICEWearableCard = props => {
                 ) : (
                   <ModalWithdrawDelegation
                     tokenID={props.tokenID}
+                    ownerAddress={state.userAddress}
                     delegateAddress={delegateAddress}
                     buttonName={buttonUndelegate}
                   />

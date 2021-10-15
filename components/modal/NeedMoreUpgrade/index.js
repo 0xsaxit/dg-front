@@ -4,7 +4,13 @@ import { GlobalContext } from 'store';
 import styles from './NeedMoreUpgrade.module.scss';
 import { ICEIcon, DGLogo, XP, ExternalLinkArrow } from './Assets';
 
-const NeedMoreUpgrade = ({ upgradeNeedIceAmount, upgradeNeedDgAmount, upgradeNeedXpAmount, setUpgrade, setPropsOpen }) => {
+const NeedMoreUpgrade = ({
+  upgradeNeedIceAmount,
+  upgradeNeedDgAmount,
+  upgradeNeedXpAmount,
+  setUpgrade,
+  setPropsOpen,
+}) => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -102,9 +108,13 @@ const NeedMoreUpgrade = ({ upgradeNeedIceAmount, upgradeNeedDgAmount, upgradeNee
             <div className={styles.ice_icon}>
               <ICEIcon />
             </div>
-            {state.iceAmount < upgradeNeedIceAmount ?
-              <span className={styles.ice_pill}>Need {upgradeNeedIceAmount - state.iceAmount} more</span>
-              : null}
+            {state.iceAmounts.ICE_AVAILABLE_AMOUNT < upgradeNeedIceAmount ? (
+              <span className={styles.ice_pill}>
+                Need{' '}
+                {upgradeNeedIceAmount - state.iceAmounts.ICE_AVAILABLE_AMOUNT}{' '}
+                more
+              </span>
+            ) : null}
 
             <div className={styles.button_container}>
               <Button className={styles.blue_button}>
@@ -112,7 +122,9 @@ const NeedMoreUpgrade = ({ upgradeNeedIceAmount, upgradeNeedDgAmount, upgradeNee
                 <ExternalLinkArrow />
               </Button>
 
-              <p className={styles.availability_info}>{state.iceAmount} ICE Available</p>
+              <p className={styles.availability_info}>
+                {state.iceAmounts.ICE_AVAILABLE_AMOUNT} ICE Available
+              </p>
             </div>
           </div>
 
@@ -120,9 +132,14 @@ const NeedMoreUpgrade = ({ upgradeNeedIceAmount, upgradeNeedDgAmount, upgradeNee
             <div className={styles.dg_icon}>
               <DGLogo />
             </div>
-            {state.DGBalances.BALANCE_CHILD_DG < upgradeNeedDgAmount ?
-              <span className={styles.dg_pill}>Need {upgradeNeedDgAmount - parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(1)} more</span>
-              : null}
+            {state.DGBalances.BALANCE_CHILD_DG < upgradeNeedDgAmount ? (
+              <span className={styles.dg_pill}>
+                Need{' '}
+                {upgradeNeedDgAmount -
+                  parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(1)}{' '}
+                more
+              </span>
+            ) : null}
 
             <div className={styles.button_container}>
               <Button className={styles.blue_button}>
@@ -130,7 +147,10 @@ const NeedMoreUpgrade = ({ upgradeNeedIceAmount, upgradeNeedDgAmount, upgradeNee
                 <ExternalLinkArrow />
               </Button>
 
-              <p className={styles.availability_info}>{parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(1)} DG Available</p>
+              <p className={styles.availability_info}>
+                {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(1)} DG
+                Available
+              </p>
             </div>
           </div>
 
@@ -138,9 +158,11 @@ const NeedMoreUpgrade = ({ upgradeNeedIceAmount, upgradeNeedDgAmount, upgradeNee
             <div className={styles.xp_icon}>
               <XP />
             </div>
-            {state.xpAmount < upgradeNeedXpAmount ?
-              <span className={styles.xp_pill}>Need {upgradeNeedXpAmount - state.xpAmount} more</span>
-              : null}
+            {state.xpAmounts < upgradeNeedXpAmount ? (
+              <span className={styles.xp_pill}>
+                Need {upgradeNeedXpAmount - state.xpAmounts} more
+              </span>
+            ) : null}
 
             <div className={styles.button_container}>
               <Button className={styles.gray_button}>
@@ -148,7 +170,9 @@ const NeedMoreUpgrade = ({ upgradeNeedIceAmount, upgradeNeedDgAmount, upgradeNee
                 <span>Gameplay</span>
               </Button>
 
-              <p className={styles.availability_info}>{state.xpAmount} XP Available</p>
+              <p className={styles.availability_info}>
+                {state.xpAmounts} XP Available
+              </p>
             </div>
           </div>
         </div>
