@@ -289,18 +289,25 @@ const ActivateWearableModal = props => {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
         // update global state token amounts
-        const refresh1 = !state.refreshTokenAmounts;
+        const refreshTokenAmounts = !state.refreshTokenAmounts;
         dispatch({
           type: 'refresh_token_amounts',
-          data: refresh1,
+          data: refreshTokenAmounts,
         });
 
         // update global state wearables data
-        const refresh2 = !state.refreshWearable;
+        const refreshWearable = !state.refreshWearable;
         dispatch({
           type: 'refresh_wearable_items',
-          data: refresh2,
+          data: refreshWearable,
         });
+
+        // update global state balances
+        const refreshBalances = !state.refreshBalances;
+        dispatch({
+          type: 'refresh_balances',
+          data: refreshBalances,
+        })
 
         // close this modal and open the success modal
         setOpen(false);
@@ -356,8 +363,8 @@ const ActivateWearableModal = props => {
             {authStatus
               ? 'Confirm Activation'
               : clicked
-              ? 'Authorizing ...'
-              : 'Authorize DG'}
+                ? 'Authorizing ...'
+                : 'Authorize DG'}
           </Button>
         </div>
       ) : (
