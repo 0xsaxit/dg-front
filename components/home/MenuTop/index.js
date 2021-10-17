@@ -25,9 +25,9 @@ const MenuTop = props => {
 
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-  const isTablet = useMediaQuery('(min-width: 1100px)');
+  const isTablet = useMediaQuery('(min-width: 1176px)');
   const isMobile = useMediaQuery('(min-width: 768px)');
-  const isSquished = useMediaQuery('(min-width: 820px)');
+  const isSquished = useMediaQuery('(min-width: 860px)');
   const [open, setOpen] = useState(false);
   const [utm, setUtm] = useState('');
   const [scrollState, setScrollState] = useState('top');
@@ -185,8 +185,8 @@ const MenuTop = props => {
       <div className={cn(styles.mobile_menu, open ? styles.open : '')}>
         <span className="d-flex flex-column w-100">
           {!isMobile && (
-            <Link href={`/${utm}`}>
-              <Menu.Item className={styles.menu_style}>Play1</Menu.Item>
+            <Link href={`/ice`}>
+              <Menu.Item className={styles.menu_style}>ICE Poker</Menu.Item>
             </Link>
           )}
           {!isMobile && (
@@ -238,10 +238,10 @@ const MenuTop = props => {
     return (
       <div className={styles.menu_items_to_hide}>
         {isMobile && (
-          <Link href={`/${utm}`}>
+          <Link href={`/ice`}>
             <Menu.Item className={styles.menu_style}>
               {/* {t('navMenu.PLAY')} */}
-              Play
+              ICE Poker
             </Menu.Item>
           </Link>
         )}

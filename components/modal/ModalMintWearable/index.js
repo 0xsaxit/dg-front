@@ -50,6 +50,20 @@ const ModalMint = props => {
     setItemLimitsArray(itemLimitsArray);
   }, [state.itemLimits]);
 
+  function roundup(num) {
+
+    let decimalPlaces = 0;
+    if(num < 0.1) {
+      decimalPlaces = 2;
+      num = Math.floor(num + "e" + decimalPlaces);
+
+    } else {
+      decimalPlaces = 1
+      num = Math.round(num + "e" + decimalPlaces);      
+    }
+    return Number(num + "e" + -decimalPlaces);
+}
+
   return (
     <Aux>
       <Modal
@@ -145,14 +159,14 @@ const ModalMint = props => {
                   </div>
                   {state.userBalances[2][3]>=0.1? (
                     <div className={styles.green_check}>
-                      {state.userBalances[2][3]} ETH Available &nbsp; 
+                      {roundup(state.userBalances[2][3])} ETH Available &nbsp; 
                       <svg width="9" height="8" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3.83203 7.73047C4.10547 7.73047 4.32031 7.625 4.46875 7.40625L8.10547 1.86328C8.21094 1.70312 8.25391 1.55078 8.25391 1.41016C8.25391 1.03125 7.96484 0.75 7.57422 0.75C7.30859 0.75 7.14062 0.847656 6.97656 1.10156L3.81641 6.08594L2.21484 4.12109C2.06641 3.94141 1.90234 3.86328 1.67578 3.86328C1.28125 3.86328 0.996094 4.14453 0.996094 4.52734C0.996094 4.69922 1.04688 4.84766 1.19531 5.01562L3.21094 7.4375C3.37891 7.63672 3.57422 7.73047 3.83203 7.73047Z" fill="#67DD6C"/>
                       </svg>
                     </div>
                   ) : (
                     <div className={styles.description}>
-                      {state.userBalances[2][3]} ETH Available                  
+                      {roundup(state.userBalances[2][3])} ETH Available                  
                     </div>
                   )}
                   
@@ -176,7 +190,7 @@ const ModalMint = props => {
                   </div>
                   {state.stakingBalances.BALANCE_USER_GOVERNANCE >=1? (
                     <div className={styles.green_check}>
-                      You must have at least {state.stakingBalances.BALANCE_USER_GOVERNANCE} DG
+                      {roundup(state.stakingBalances.BALANCE_USER_GOVERNANCE)} DG Staked
                     </div>
                   ) : (
                     <div>
