@@ -291,9 +291,9 @@ const ModalPopup = () => {
                 My Account{' '}
               </p>
             </Link>
-            {/*<Link href="/account/ice">
+            <Link href="/account/ice">
               <p className="account-dropdown-item"> Play to Earn </p>
-            </Link>*/}
+            </Link>
             <Link href="/account/items">
               <p className="account-dropdown-item"> My Items </p>
             </Link>
