@@ -133,7 +133,7 @@ const ModalSuccessDelegation = props => {
           <div className={styles.button_area}>
             <Button
               className={styles.button_close}
-              onClose={() => setGlobalState()}
+              onClick={() => setGlobalState()}
             >
               Back to Account
             </Button>
