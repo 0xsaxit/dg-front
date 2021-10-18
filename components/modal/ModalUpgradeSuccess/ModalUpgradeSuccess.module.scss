@@ -109,12 +109,12 @@
         align-items: center;
       }
       .image {
-        border-radius: 16px;
         text-align: center;
 
         .logo {
           width: 241px;
           height: 241px;
+          border-radius: 16px;
         }
       }
       .properties {
@@ -220,6 +220,7 @@
           .logo {
             width: 215px;
             height: 215px;
+            border-radius: 16px;
           }
         }
       }

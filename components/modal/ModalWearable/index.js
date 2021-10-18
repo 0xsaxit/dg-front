@@ -44,44 +44,44 @@ const ModalWearable = props => {
 
   const imgUrls = {
     Trousers: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375784/dg_suit_bottom_rank1_lower_body_eqxrjg.svg',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375784/dg_suit_bottom_rank1_lower_body_eqxrjg.svg',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375785/dg_suit_bottom_rank2_lower_body_lzafze.svg',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375790/dg_suit_bottom_rank3_lower_body_d8j7fc.svg',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375784/dg_suit_bottom_rank4_lower_body_lgxlp6.svg',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375787/dg_suit_bottom_rank5_lower_body_wjheco.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank1_lower_body_o18u5h.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank1_lower_body_o18u5h.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank2_lower_body_x8duyn.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank3_lower_body_cogifo.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank4_lower_body_bdz0gt.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank5_lower_body_jz4bwy.png',
     ],
     Blazer: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375788/dg_suit_top_rank1_upper_body_topkkt.svg',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375788/dg_suit_top_rank1_upper_body_topkkt.svg',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375798/dg_suit_top_rank2_upper_body_gqhhf1.svg',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375788/dg_suit_top_rank3_upper_body_zgdd1z.svg',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375793/dg_suit_top_rank4_upper_body_mmro3k.svg',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375795/dg_suit_top_rank5_upper_body_cwbqb8.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank1_upper_body_zw12j7.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank1_upper_body_zw12j7.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank2_upper_body_jifiuq.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank3_upper_body_suw9ai.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank4_upper_body_cyz0gk.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank5_upper_body_ff5n1t.png',
     ],
     Cigar: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375775/dg_cigar_rank1_eyewear_ryp0s8.svg',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375775/dg_cigar_rank1_eyewear_ryp0s8.svg',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375776/dg_cigar_rank2_eyewear_egkg1l.svg',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375776/dg_cigar_rank3_eyewear_dw0ezt.svg',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375776/dg_cigar_rank4_eyewear_wbccwe.svg',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375776/dg_cigar_rank5_eyewear_imanmm.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank1_eyewear_kt6mqk.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank1_eyewear_kt6mqk.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank2_eyewear_r55vvl.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank3_eyewear_uydyit.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank4_eyewear_mtyrtr.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank5_eyewear_hromtz.png',
     ],
     Loafers: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375776/dg_dress_rank1_shoes_feet_m5fgcv.svg',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375776/dg_dress_rank1_shoes_feet_m5fgcv.svg',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375780/dg_dress_rank2_shoes_feet_rfwrkf.svg',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375779/dg_dress_rank3_shoes_feet_wbkmn1.svg',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375779/dg_dress_rank4_shoes_feet_b6y0dw.svg',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375780/dg_dress_rank5_shoes_feet_icgadn.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank1_shoes_feet_nxazsi.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank1_shoes_feet_nxazsi.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank2_shoes_feet_l83rhe.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank3_shoes_feet_gvjjb8.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank4_shoes_feet_avry6l.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank5_shoes_feet_tpnzfv.png',
     ],
     Shades: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375784/dg_money_shades_rank1_eyewear_gvb3kg.svg',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375784/dg_money_shades_rank1_eyewear_gvb3kg.svg',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375780/dg_money_shades_rank2_eyewear_czk0rc.svg',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375784/dg_money_shades_rank3_eyewear_r1i2ng.svg',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375781/dg_money_shades_rank4_eyewear_p03kbq.svg',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633375783/dg_money_shades_rank5_eyewear_xidpnl.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank1_eyewear_shmmce.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank1_eyewear_shmmce.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank2_eyewear_xqvbkf.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank3_eyewear_anyqat.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank4_eyewear_eejcjh.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank5_eyewear_umdmvc.png',
     ],
   };
 
@@ -303,7 +303,7 @@ const ModalWearable = props => {
               <div className={styles.button_area}>
                 {state.xpAmounts >= 50 &&
                   state.DGBalances.BALANCE_CHILD_DG >= 0.1 &&
-                  state.iceAmounts.ICE_AVAILABLE_AMOUNT >= 30000 ? (
+                  state.iceAmounts.ICE_AVAILABLE_AMOUNT >= icePrices[Math.min(props.rank + 1, 5)] ? (
                   <Button
                     className={styles.button_upgrade}
                     onClick={() => {
@@ -330,6 +330,7 @@ const ModalWearable = props => {
           </div>
         </Modal>
       )}
+
       {upgrade == 1 && (
         <NeedMoreUpgrade
           upgradeNeedIceAmount={icePrices[Math.min(props.rank + 1, 5)]}
@@ -349,7 +350,12 @@ const ModalWearable = props => {
         />
       )}
 
-      {upgrade == 3 && <ModalUpgradeSuccess setUpgrade={setUpgrade} />}
+      {upgrade == 3 &&
+        <ModalUpgradeSuccess
+          tokenID={props.tokenID}
+          setUpgrade={setUpgrade}
+        />
+      }
     </>
   );
 };

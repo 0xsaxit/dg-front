@@ -122,7 +122,7 @@ const ModalUpgradeSuccess = props => {
           <Button className={styles.primary}>Play Now</Button>
           <Button
             className={styles.none}
-            onClose={() => {
+            onClick={() => {
               setOpen(false);
             }}
           >
