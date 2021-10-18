@@ -633,9 +633,9 @@ const Overview = props => {
                       <path
                         d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
                         stroke="white"
-                        stroke-width="1.7"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.7"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
                   </div>
@@ -672,9 +672,9 @@ const Overview = props => {
                       <path
                         d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
                         stroke="white"
-                        stroke-width="1.7"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.7"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
                   </div>
@@ -713,9 +713,9 @@ const Overview = props => {
                       <path
                         d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
                         stroke="white"
-                        stroke-width="1.7"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.7"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
                   </div>

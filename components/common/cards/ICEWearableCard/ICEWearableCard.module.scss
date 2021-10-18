@@ -39,6 +39,7 @@
 
       img {
         width: 100%;
+        border-radius: 16px;
       }
 
       .p2e_enabled {
@@ -100,6 +101,8 @@
   }
 
   .card_title {
+    margin-top: 15px;
+
     p {
       font-family: Larsseit-Bold;
       font-style: normal;

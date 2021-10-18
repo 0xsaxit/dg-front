@@ -26,6 +26,7 @@ const CONSTANTS = {
   DISCORD_URL: 'https://discord.gg/cvbSNzY',
   SOCIAL_HANDLE: 'decentralgames',
   MAX_ITEM_COUNT: 10,
+  VERIFY_URL: 'staging.decentral.games',
   // AMNESIA_COMMENT: we should remove these after we are done with amnesia
   AMNESIA_DESCRIPTION: "The world’s biggest DJs, live from Decentral Games.",
 };
@@ -55,7 +56,7 @@ const ADDRESSES = (() => {
   const DG_STAKING_UNISWAP_ADDRESS = '0x55ceb773c494cf7ad4f2e3170936866bd7eff1c9';
   const DG_STAKING_GOVERNANCE_ADDRESS = '0xf1d113059517dbddd99ab9caffa76fc01f0557cd';
   const DG_KEEPER_CONTRACT_ADDRESS = '0x6b5C29B035Ec40a7cE567f1F11cc90eBfa4f1D17';
-  const ICE_REGISTRANT_ADDRESS = '0x8d074ef94674797b26ca633d98984151117bf163';
+  const ICE_REGISTRANT_ADDRESS = '0xC9a67eD1472A76d064C826B54c144Ca00DAE4015';
   const BP_TOKEN_ADDRESS_1 = '0xca54c398195fce98856888b0fd97a9470a140f71';
   const BP_TOKEN_ADDRESS_2 = '0x3cf393b95a4fbf9b2bdfc2011fd6675cf51d3e5d';
   const UNISWAP_ADDRESS_STAKING = '0x44c21f5dcb285d92320ae345c92e8b6204be8cdf';

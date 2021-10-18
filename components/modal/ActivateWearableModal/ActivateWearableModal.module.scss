@@ -1,4 +1,4 @@
-@import 'styles/base.scss';
+@import "styles/base.scss";
 
 .open_button {
   background-color: #0d6efd !important;
@@ -10,7 +10,7 @@
 
 .dgactivate_modal {
   width: 480px !important;
-  height: 359px !important;
+  height: 470px !important;
   background: black !important;
   border-radius: 24px !important;
   padding-left: 40px;
@@ -44,30 +44,29 @@
       border-radius: 24px;
       padding: 8px 10px 8px 10px;
     }
-    .button_help {        
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
+    .button_help {
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
 
-        font-family: Larsseit-Bold;
-        font-style: normal;
-        font-size: 18px;
-        line-height: 24px;
-        text-align: center;
+      font-family: Larsseit-Bold;
+      font-style: normal;
+      font-size: 18px;
+      line-height: 24px;
+      text-align: center;
 
-        color: white;
-        cursor: pointer;
-        width: 109px;
-        height: 48px;
-        background: black;
-        border-radius: 24px;
-        padding: 8px 10px 8px 10px;
-
+      color: white;
+      cursor: pointer;
+      width: 109px;
+      height: 48px;
+      background: black;
+      border-radius: 24px;
+      padding: 8px 10px 8px 10px;
     }
   }
-  
+
   .title {
     font-family: Larsseit-ExtraBold;
     font-style: normal;
@@ -75,8 +74,8 @@
     line-height: 44px;
     text-align: center;
     letter-spacing: -0.7px;
-    color: #FFFFFF;
-    
+    color: #ffffff;
+
     display: flex;
     justify-content: center;
     gap: 21px;
@@ -94,61 +93,85 @@
     font-size: 18px;
     line-height: 24px;
     text-align: center;
-    color: #FFFFFF;    
+    color: #ffffff;
     .link {
-        color: #509bff !important;
+      color: #509bff !important;
     }
   }
 
-  .logo {      
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 78px;
-    margin-top: 32px;
-  }
-
-  .progress {
-    margin-left: 52px;
+  .dgSection {
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+    font-family: "Larsseit-Medium";
+    font-style: normal;
+    line-height: 35px;
+    letter-spacing: 0.3px;
     margin-top: 24px;
 
-    .status {
-      gap: 19px;
+    .dgAmount {
       display: flex;
+      justify-content: center;
       align-items: center;
-  
-      // .checkmark {}
-      // .threedot{}
-  
-      .right {
-        display: flex;
-        flex-direction: column;
-  
-        .top {
-          font-family: Larsseit-Bold;
-          font-style: normal;
-          font-size: 24px;
-          line-height: 33px;
-          color: #FFFFFF;
-        }
-  
-        .bottom {
-          font-family: Larsseit-Bold;
-          font-style: normal;
-          font-size: 18px;
-          line-height: 24px;
-          color: #FFFFFF;
+
+      div {
+        border: 1px solid #2a2a2a;
+        border-radius: 18px;
+        padding: 12px 30px;
+        background: #090909;
+
+        img {
+          width: 22px;
+          margin-left: 8px;
+          position: relative;
+          top: 3px;
         }
       }
     }
-    .linebar {
-      width: 4px;
-      height: 22px;
-      background: #35AB3A;
-      border-radius: 8px;
-      margin-left: 14px;
-      margin-top: 6px;
-      margin-bottom: 6px;
+
+    p {
+      font-family: "Larsseit-Medium";
+      font-style: normal;
+      font-weight: normal;
+      font-size: 13px;
+      line-height: 18px;
+      text-align: center;
+      margin-top: 10px;
+      color: rgba(255, 255, 255, 0.5) !important;
+
+      abbr {
+        font-size: 10px;
+      }
+    }
+  }
+
+  .buttons {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .primary {
+      position: relative;
+      height: 90px;
+      background: #006EFF;
+      font-family: Larsseit-Regular;
+      font-style: normal;        
+      font-size: 22px;
+      letter-spacing: 0.8px;
+      line-height: 33px;
+      text-align: center;
+      color: #FFFFFF;
+      background: #006EFF;
+      border-radius: 16px;
+
+      img {
+        position: absolute;
+        left: 40px;
+        bottom: 27px;
+        margin-right: 24px;
+        width: 38px;
+      }
     }
   }
 }

@@ -32,8 +32,6 @@ function UserInfo() {
       if (json3 && json3.market_data) {
         setAtriPrice(json3.market_data.current_price.usd);
       }
-
-
     })();
   }, [manaPrice, ethPrice, atriPrice]);
 
@@ -47,11 +45,13 @@ function UserInfo() {
           const name = jsonInfo.avatarName;
           const id = jsonInfo._id.slice(-6);
           const balancePLAY = jsonInfo.playBalance.toLocaleString();
+          const balanceXP = jsonInfo.iceXpCurrent;
           const count = jsonInfo.callCount;
           const email = '';
           const playersList = jsonInfo.playersList;
           const tokenArray = jsonInfo.tokenArray;
-          const jsonData = await Fetch.PLAYER_DATA(state.userAddress);
+
+          // const jsonData = await Fetch.PLAYER_DATA(state.userAddress);
 
           const data = {
             name: name,
@@ -63,14 +63,22 @@ function UserInfo() {
             tokenArray: tokenArray,
           };
 
+          // console.log('!!!!!!!!');
+          // console.log(jsonInfo);
+
           dispatch({
             type: 'user_info',
             data: data,
           });
+
+          dispatch({
+            type: 'xp_amounts',
+            data: balanceXP
+          })
         }
       })();
     }
-  }, [state.userAddress, state.updateInfo]);
+  }, [state.userAddress, state.updateInfo, state.refreshBalances]);
 
   return null;
 }

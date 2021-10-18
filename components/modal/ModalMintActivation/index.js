@@ -83,7 +83,10 @@ const ModalMintActivation = props => {
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629894323/Group_8_es81yz.png"
                 alt="logo"
               />
-              <div className={styles.round_desc}>0.1 ETH + 1 DG Staked</div>
+              <div className={styles.round_desc}>
+                {state.tokenAmounts.WETH_COST_AMOUNT} ETH +{' '}
+                {state.stakingBalances.BALANCE_USER_GOVERNANCE} DG Staked
+              </div>
             </div>
             <div className={styles.logo}>
               <img

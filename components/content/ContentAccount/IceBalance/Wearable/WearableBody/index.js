@@ -71,7 +71,7 @@ function WearableBody({ state }) {
               </div>
             ))}
 
-            <div
+            {/* <div
               className={cn(
                 'col-lg-4 col-md-4 col-sm-6 col-xs-12',
                 styles.wearable_card
@@ -87,9 +87,9 @@ function WearableBody({ state }) {
                 text="Suit Bottoms"
                 state="1"
               />
-            </div>
+            </div> */}
 
-            <div
+            {/* <div
               className={cn(
                 'col-lg-4 col-md-4 col-sm-6 col-xs-12',
                 styles.wearable_card
@@ -107,9 +107,9 @@ function WearableBody({ state }) {
                 balance={state.DGBalances.BALANCE_CHILD_DG}
                 state="2"
               />
-            </div>
+            </div> */}
 
-            <div
+            {/* <div
               className={cn(
                 'col-lg-4 col-md-4 col-sm-6 col-xs-12',
                 styles.wearable_card
@@ -126,7 +126,7 @@ function WearableBody({ state }) {
                 text="Money Shades"
                 state="3"
               />
-            </div>
+            </div> */}
           </div>
         ) : (
           <div className={styles.wearable_container}>

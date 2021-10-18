@@ -101,7 +101,7 @@ function USDT({ passed = false }) {
         data: true,
       });
 
-      console.log('authorize amount: ' + Global.CONSTANTS.MAX_AMOUNT);
+      console.log('USDT authorize amount: ' + Global.CONSTANTS.MAX_AMOUNT);
 
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = tokenContract.methods

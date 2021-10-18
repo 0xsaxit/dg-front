@@ -1,7 +1,6 @@
 import call from 'common/API';
 // https://api.decentral.games, http://localhost:5000
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
-const TEST_API_BASE_URL = 'https://api.testing.decentral.games';
+const API_BASE_URL = 'https://api.dev.decentral.games';
 
 const apiCall = {
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -23,42 +22,41 @@ const apiCall = {
     return call(`${API_BASE_URL}/admin/getTotalRecords`, 'GET', false);
   },
 
-  PLAYER_DATA: () => {
-    return call(`${API_BASE_URL}/admin/getCryptoRecords`, 'GET');
-  },
+  // PLAYER_DATA: () => {
+  //   return call(`${API_BASE_URL}/admin/getCryptoRecords`, 'GET');
+  // },
 
   USERS_LIST: () => {
     return call(`${API_BASE_URL}/admin/getUsersList`, 'GET');
   },
 
-  // MINT_TOKEN: (tokenID, collectionAddr) => {
-  //   console.log('/ice/mintToken/' + tokenID + '/' + collectionAddr);
-
-  //   return call(
-  //     `${API_BASE_URL}/ice/mintToken/${tokenID}/${collectionAddr}`,
-  //     'GET'
-  //   );
-  // },
-
-  MINT_TOKEN: (tokenID, collectionAddr) => {
+  MINT_TOKEN: (itemID, collectionAddr) => {
     return call(
-      `${API_BASE_URL}/ice/mintToken/${tokenID}/${collectionAddr}`,
+      `${API_BASE_URL}/ice/mintToken/${itemID}/${collectionAddr}`,
       'GET'
     );
   },
 
-  UPGRADE_TOKEN: (requestIndex, itemID) => {
+  UPGRADE_TOKEN: (tokenID, collectionAddr) => {
     return call(
-      `${API_BASE_URL}/ice/requestUpgrade/${requestIndex}/${itemID}`,
+      `${API_BASE_URL}/ice/upgradeToken/${tokenID}/${collectionAddr}`,
       'GET'
     );
   },
 
   GET_METADATA_FROM_TOKEN_URI: (contractAddr, tokenID) => {
     return call(
-      `${TEST_API_BASE_URL}/ice/getMetadata/${contractAddr}/${tokenID}`,
+      `${API_BASE_URL}/ice/getMetadata/${contractAddr}/${tokenID}`,
       'GET'
     );
+  },
+
+  CLAIM_REWARDS: () => {
+    return call(`${API_BASE_URL}/ice/claimRewards`, 'GET');
+  },
+
+  CLAIM_REWARDS_AMOUNT: () => {
+    return call(`${API_BASE_URL}/ice/getUnclaimedRewardsAmount`, 'GET');
   },
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -77,14 +75,38 @@ const apiCall = {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  // GET API calls (wallet address optional)
+  DELEGATE_INFO: address => {
+    return call(`${API_BASE_URL}/ice/delegateInfo?address=${address}`, 'GET');
+  },
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   // POST API calls (no wallet address necessary)
-  USER_STATUS: (address, ipAddress) => {
+  USER_STATUS: () => {
     return call(`${API_BASE_URL}/order/webLogin`, 'POST', true);
   },
 
-  REGISTER: (address, ipAddress, affiliate) => {
+  REGISTER: affiliate => {
     return call(`${API_BASE_URL}/order/webRegister`, 'POST', true, {
       affiliate,
+    });
+  },
+
+  DELEGATE_NFT: (delegateAddress, tokenID, contractAddress) => {
+    return call(`${API_BASE_URL}/ice/delegateToken`, 'POST', true, {
+      delegateAddress,
+      tokenID,
+      contractAddress,
+    });
+  },
+
+  UNDELEGATE_NFT: (tokenOwner, delegateAddress, tokenID, contractAddress) => {
+    return call(`${API_BASE_URL}/ice/undelegateToken`, 'POST', true, {
+      tokenOwner,
+      delegateAddress,
+      tokenID,
+      contractAddress,
     });
   },
 
@@ -93,7 +115,6 @@ const apiCall = {
   // POST API calls (wallet address necessary)
   UPDATE_TOKEN_ARRAY: (address, index) => {
     return call(`${API_BASE_URL}/order/updateTokenArray`, 'POST', true, {
-      address,
       index,
     });
   },
@@ -104,7 +125,6 @@ const apiCall = {
 
   HISTORY_DATA: address => {
     return call(`${API_BASE_URL}/order/getHistory`, 'POST', true, {
-      address,
       limit: 99999, // call all of the data
       page: 1,
     });
@@ -112,7 +132,6 @@ const apiCall = {
 
   PLAY_DATA: address => {
     return call(`${API_BASE_URL}/order/getPlayInfo`, 'POST', true, {
-      address,
       limit: 99999, // call all of the data
       page: 1,
     });
@@ -120,7 +139,6 @@ const apiCall = {
 
   POST_HISTORY: (address, amount, type, state, txHash, step) => {
     return call(`${API_BASE_URL}/order/updateHistory`, 'POST', true, {
-      address,
       amount,
       type,
       state,
@@ -191,6 +209,10 @@ const apiCall = {
       false
     );
   },
+
+  // ICE_PRICE: () => {
+  //   return call(`https://api.coingecko.com/api/v3/coins/ice`, 'GET', false);
+  // },
 
   LAND_PRICE: () => {
     return call(

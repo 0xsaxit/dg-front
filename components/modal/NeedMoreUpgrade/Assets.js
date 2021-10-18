@@ -6,7 +6,7 @@ export const ICEIcon = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g clip-path="url(#clip0)">
+    <g clipPath="url(#clip0)">
       <path
         d="M23.2935 28.5176L39.6516 71.6631H41.5964L57.9543 28.5176H23.2935Z"
         fill="#7ECAFF"
@@ -98,9 +98,9 @@ export const XP = () => (
         width="76.9091"
         height="52.1247"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feBlend
           mode="normal"
           in="SourceGraphic"
@@ -130,8 +130,8 @@ export const XP = () => (
         y2="204.524"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#FFA800" />
-        <stop offset="1" stop-color="#FF0000" />
+        <stop stopColor="#FFA800" />
+        <stop offset="1" stopColor="#FF0000" />
       </linearGradient>
       <linearGradient
         id="paint1_linear"
@@ -141,8 +141,8 @@ export const XP = () => (
         y2="204.524"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#FFA800" />
-        <stop offset="1" stop-color="#FF0000" />
+        <stop stopColor="#FFA800" />
+        <stop offset="1" stopColor="#FF0000" />
       </linearGradient>
     </defs>
   </svg>

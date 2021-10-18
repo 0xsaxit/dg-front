@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Modal, Button } from 'semantic-ui-react';
+import { GlobalContext } from '../../../store';
 import styles from './NeedMoreDGActivateModal.module.scss';
-import ActivateWearableModal from '../ActivateWearableModal';
 import ModalActivationSuccess from '../ModalActivationSuccess';
 
 const NeedMoreDGActivateModal = props => {
+  // get user's status from the Context API store
+  const [state, dispatch] = useContext(GlobalContext);
+
   const [open, setOpen] = useState(false);
   const [pending, setPending] = useState(false);
 
@@ -19,7 +22,7 @@ const NeedMoreDGActivateModal = props => {
           close
           trigger={
             <Button className={styles.open_button}>
-              Activate Wearable (0.5 DG)
+              Activate Wearable ({state.tokenAmounts.DG_MOVE_AMOUNT} DG)
             </Button>
           }
         >
@@ -115,7 +118,10 @@ const NeedMoreDGActivateModal = props => {
                   />
                 </svg>
               </Button>
-              <span className={styles.text}>0.0 DG Available</span>
+              <span className={styles.text}>
+                {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(1)} DG
+                Available
+              </span>
             </div>
           </div>
         </Modal>

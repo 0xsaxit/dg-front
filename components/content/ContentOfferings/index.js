@@ -7,6 +7,8 @@ import ModalMintWearable from 'components/modal/ModalMintWearable';
 import ModalLoginICE from 'components/modal/ModalLoginICE';
 import { Popup } from 'semantic-ui-react';
 import cn from 'classnames';
+import Carousel from 'react-multi-carousel';
+import "react-multi-carousel/lib/styles.css";
 
 const ContentOfferings = props => {
   // dispatch new user status to Context API store
@@ -15,6 +17,7 @@ const ContentOfferings = props => {
   // define local variables
   const [utm, setUtm] = useState('');
   const [metamaskEnabled, setMetamaskEnabled] = useState(false);
+  const [previewLevel, setPreviewLevel] = useState(0);
 
   let buttonGames1 = '';
   let buttonGames2 = '';
@@ -73,6 +76,7 @@ const ContentOfferings = props => {
         <div className={styles.outter_games_container}>
           {Object.keys(props.detailsGames).map((item, i) => (
             <a
+              key={i}
               href={props.detailsGames[item][6] + utm}
               target="_blank"
               className={styles.games_container}
@@ -129,6 +133,7 @@ const ContentOfferings = props => {
         <div className={styles.outter_games_container}>
           {Object.keys(props.detailsNFTs).map((item, i) => (
             <a
+              key={i}
               href={props.detailsNFTs[item][6] + utm}
               target="_blank"
               className={styles.games_container}
@@ -185,23 +190,115 @@ const ContentOfferings = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   // loop through the NFT details object
   function buyICE() {
+    const responsive = {
+      largeDesktop: {
+        breakpoint: { max: 3000, min: 1440 },
+        items: 4,
+        partialVisibilityGutter: 40
+      },
+      desktop: {
+        breakpoint: { max: 1440, min: 1240 },
+        items: 3,
+        partialVisibilityGutter: 40
+      },
+      bigTablet: {
+        breakpoint: { max: 1240, min: 900 },
+        items: 2,
+        partialVisibilityGutter: 125
+      },
+      mediumTablet: {
+        breakpoint: { max: 900, min: 768 },
+        items: 2,
+        partialVisibilityGutter: 60
+      },
+      smallTablet: {
+        breakpoint: { max: 768, min: 700 },
+        items: 2,
+        partialVisibilityGutter: 40
+      },
+      bigMobile: {
+        breakpoint: { max: 700, min: 600 },
+        items: 2,
+        partialVisibilityGutter: 0
+      },
+      mediumMobile: {
+        breakpoint: { max: 600, min: 420 },
+        items: 1,
+        partialVisibilityGutter: 120
+      },
+      smallMobile: {
+        breakpoint: { max: 420, min: 0 },
+        items: 1,
+        partialVisibilityGutter: 45
+      },
+      smallest: {
+        breakpoint: { max: 400, min: 0 },
+        items: 1,
+        partialVisibilityGutter: 0
+      }
+    };
+    const previewImages = [
+      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_1_h5zizs.png",
+      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_2_y8onmu.png",
+      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_4_uribpq.png",
+      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_3_xhaxho.png",
+      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_5_mmcqjy.png"
+    ]
+
     return (
-      <div>
-      {state.userStatus < 20 ? (
-        null
-      ) : (
-        <span className={styles.test}>
-          <div className={styles.header}>
-            <h1>ICE Wearables Marketplace</h1>
-            <p className={styles.marketplace_p}>
-              ICE Wearables give you table access to free to play, play-to-earn
-              poker. Learn more by <a href="/">clicking here.</a>
-            </p>
-            <h3>DG Suit</h3>
-          </div>
-          <div className={styles.outter_games_container}>
+      <span className={styles.iceWearablesMarketplace}>
+        <div className={styles.header}>
+          <h1>ICE Wearables Marketplace</h1>
+          <p className={styles.marketplace_p}>
+            ICE Wearables give you table access to free to play, play-to-earn
+            poker. Learn more by <a href="/">clicking here.</a>
+          </p>
+          <h3>DG Suit</h3>
+        </div>
+
+        <div className={styles.outter_games_container}>
+          <Carousel
+            arrows
+            draggable
+            swipeable
+            partialVisible
+            autoPlaySpeed={3000}
+            focusOnSelect={false}
+            infinite={false}
+            keyBoardControl={true}
+            minimumTouchDrag={80}
+            renderButtonGroupOutside={false}
+            renderDotsOutside={false}
+            responsive={responsive}
+            showDots={false}
+            slidesToSlide={1}
+            containerClass="ice-wearables-carousel-container"
+            itemClass="carousel-item"
+          >
+            <div className={styles.games_container} style={{ paddingBottom: '20px' }}>
+              <img
+                key={previewLevel}
+                className={styles.preview_nft_image}
+                src={previewImages[previewLevel]}
+              />
+              <div className={styles.preview_description}>
+                <h1 className={styles.title}>PREVIEW FIT LEVELS</h1>
+                <div className={styles.preview_level_select_div}>
+                  {previewImages.map((img, i) => (
+                    <div
+                      key={i}
+                      className={previewLevel === i ? styles.selectActive : styles.select}
+                      onClick={() => setPreviewLevel(i)}
+                    >
+                      {i + 1}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
             {Object.keys(props.detailsICE).map((item, i) => (
-              <div className={styles.games_container}>
+              <div key={i} className={styles.games_container}>
                 <div className={styles.wear_box_purple}>
                   <div className={styles.fullDiv}>
                     <div className={styles.imgDiv}>
@@ -254,7 +351,6 @@ const ContentOfferings = props => {
                     {props.detailsICE[item][1]}
                   </h3>
                 </div>
-
                 <div
                   style={{
                     position: 'absolute',
@@ -282,10 +378,9 @@ const ContentOfferings = props => {
                 </div>
               </div>
             ))}
-          </div>
-        </span>
-        )}
-      </div>
+          </Carousel>
+        </div>
+      </span >
     );
   }
 
@@ -297,6 +392,7 @@ const ContentOfferings = props => {
         <div className={styles.outter_games_container}>
           {Object.keys(props.detailsCasinos).map((item, i) => (
             <a
+              key={i}
               href={props.detailsCasinos[item][6] + utm}
               target="_blank"
               className={styles.games_container}
@@ -361,6 +457,7 @@ const ContentOfferings = props => {
         <div className={styles.outter_games_container}>
           {Object.keys(props.detailsShop).map((item, i) => (
             <a
+              key={i}
               href={props.detailsShop[item][6] + utm}
               target="_blank"
               className={styles.games_container}

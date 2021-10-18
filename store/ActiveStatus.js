@@ -23,34 +23,38 @@ function ActiveStatus() {
   const sessionDuration = Global.CONSTANTS.ACTIVE_PERIOD;
 
   useEffect(() => {
-    if (
-      state.userInfo.tokenArray.includes(true) &&
-      state.networkID === Global.CONSTANTS.PARENT_NETWORK_ID
-    ) {
-      // initialize Web3 providers and create treasury contract instance
-      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
-      setWeb3(web3);
-      const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
-      setMaticWeb3(maticWeb3);
+    try {
+      if (
+        state.userInfo.tokenArray.includes(true) &&
+        state.networkID === Global.CONSTANTS.PARENT_NETWORK_ID
+      ) {
+        // initialize Web3 providers and create treasury contract instance
+        const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+        setWeb3(web3);
+        const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
+        setMaticWeb3(maticWeb3);
 
-      const biconomy = new Biconomy(
-        new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
-        {
-          apiKey: Global.KEYS.BICONOMY_API_1,
-          debug: true,
-        }
-      );
-      const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
-      setGetWeb3(getWeb3);
+        const biconomy = new Biconomy(
+          new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
+          {
+            apiKey: Global.KEYS.BICONOMY_API_1,
+            debug: true,
+          }
+        );
+        const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
+        setGetWeb3(getWeb3);
 
-      biconomy
-        .onEvent(biconomy.READY, () => {
-          console.log('Mexa is Ready: Active Status');
-          setBiconomyReady(true);
-        })
-        .onEvent(biconomy.ERROR, (error, message) => {
-          console.error(error);
-        });
+        biconomy
+          .onEvent(biconomy.READY, () => {
+            console.log('Mexa is Ready: Active Status');
+            setBiconomyReady(true);
+          })
+          .onEvent(biconomy.ERROR, (error, message) => {
+            console.error(error);
+          });
+      }
+    } catch (error) {
+      console.log(error);
     }
   }, [state.userInfo, state.networkID]);
 

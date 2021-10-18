@@ -1,8 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import Web3 from 'web3';
-import BigNumber from 'bignumber.js';
-
 import ABI_ICE_REGISTRANT from '../components/ABI/ABIICERegistrant.json';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
 import ABI_CHILD_TOKEN_WETH from '../components/ABI/ABIChildTokenWETH';
@@ -19,15 +17,12 @@ function ICEAttributes() {
 
   // define local variables
   const [instances, setInstances] = useState(false);
-
   const [ICERegistrantContract, setICERegistrantContract] = useState({});
   const [DGMaticContract, setDGMaticContract] = useState({});
   const [WETHMaticContract, setWETHMaticContract] = useState({});
   const [ICEMaticContract, setICEMaticContract] = useState({});
   const [collectionV2Contract, setCollectionV2Contract] = useState({});
   const [iceTokenContract, setIceTokenContract] = useState({});
-
-  // const userWalletAddress = '0x7146cae915f1Cd90871ecc69999BEfFdcaf38ff9'; // temporary
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -79,76 +74,107 @@ function ICEAttributes() {
     }
   }, [state.userStatus]);
 
+  // anytime user mints/updates/activates an NFT this code will execute
   useEffect(() => {
     if (instances) {
       async function fetchData() {
-        const nLen = Object.keys(collectionV2Contract).length;
+        console.log('updateWearableItems ========================= ');
+
         const tokenIDs = [];
+        try {
+          for (
+            let nIndex = 0;
+            nIndex < Global.CONSTANTS.MAX_ITEM_COUNT;
+            nIndex++
+          ) {
+            const tokenID = await collectionV2Contract.methods
+              .tokenOfOwnerByIndex(state.userAddress, nIndex)
+              .call();
 
-        if (nLen > 0) {
+            if (parseInt(tokenID) > 0) {
+              tokenIDs.push({ index: nIndex, tokenID: tokenID });
+            }
+          }
+        } catch (error) {
+          console.log('Stack error: =>', error.message);
+        }
+
+        console.log('Fetching metadata =========================');
+
+        let iceWearableItems = [];
+        for (var i = 0; i < tokenIDs.length; i++) {
           try {
-            for (
-              let nIndex = 0;
-              nIndex < Global.CONSTANTS.MAX_ITEM_COUNT;
-              nIndex++
-            ) {
-              const tokenID = await collectionV2Contract.methods
-                .tokenOfOwnerByIndex(state.userAddress, nIndex)
-                .call();
+            const json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
+              Global.ADDRESSES.COLLECTION_V2_ADDRESS,
+              tokenIDs[i].tokenID
+            );
 
-              if (parseInt(tokenID) > 0) {
-                tokenIDs.push({ index: nIndex, tokenID: tokenID });
-              }
+            if (Object.keys(json.metadata).length) {
+              iceWearableItems.push({
+                index: tokenIDs[i].index,
+                tokenID: tokenIDs[i].tokenID,
+                itemID: json.metadata.id.split(':').slice(-1),
+                meta_data: json.metadata,
+              });
             }
           } catch (error) {
-            console.log('stack error: =>', error.message);
+            console.log('Fetch metadata error: ' + error.result);
           }
-
-          let iceWearableItems = await Promise.all(
-            tokenIDs.map(async item => {
-              const meta_json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
-                Global.ADDRESSES.COLLECTION_V2_ADDRESS,
-                item.tokenID
-              );
-
-              return {
-                index: item.index,
-                tokenID: item.tokenID,
-                meta_data:
-                  Object.keys(meta_json).length === 0 ? null : meta_json,
-              };
-            })
-          );
-
-          iceWearableItems = iceWearableItems.filter(
-            item => item.meta_data != null
-          );
-          console.log('iceWearableItems: ', iceWearableItems);
-
-          dispatch({
-            type: 'ice_wearable_items',
-            data: iceWearableItems,
-          });
-
-          const ice_amount = await iceTokenContract.methods
-            .balanceOf(state.userAddress)
-            .call();
-
-          const actual_amount = new BigNumber(ice_amount)
-            .div(new BigNumber(10).pow(18))
-            .toString(10);
-          dispatch({
-            type: 'set_IceAmount',
-            data: actual_amount,
-          });
         }
+
+        console.log('iceWearableItems: =========================== ');
+        console.log(iceWearableItems);
+
+        dispatch({
+          type: 'ice_wearable_items',
+          data: iceWearableItems,
+        });
       }
 
       fetchData();
     }
-  }, [instances]);
+  }, [instances, state.refreshWearable]);
 
-  // anytime user authorizes tokens on /ice pages this code will execute
+  // anytime user undelegates an NFT this code will execute
+  useEffect(() => {
+    (async function () {
+      let iceDelegatedItems = [];
+
+      const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
+
+      if (Object.keys(delegationInfo).length) {
+        delegationInfo.incomingDelegations.forEach(async (item, i) => {
+          const ownerAddress = item.tokenOwner;
+          const tokenId = item.tokenId;
+
+          try {
+            const json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
+              Global.ADDRESSES.COLLECTION_V2_ADDRESS,
+              tokenId
+            );
+
+            if (Object.keys(json.metadata).length) {
+              iceDelegatedItems.push({
+                ownerAddress: ownerAddress,
+                tokenID: tokenId,
+                itemID: json.metadata.id.split(':').slice(-1),
+                meta_data: json.metadata,
+              });
+            }
+          } catch (error) {
+            console.log('Fetch delegation info error: ' + error.result);
+          }
+        });
+      }
+
+      dispatch({
+        type: 'ice_delegated_items',
+        data: iceDelegatedItems,
+      });
+    })();
+  }, [state.refreshDelegation]);
+
+  // anytime user mints/upgrades/activates NFTs on /ice pages this code will execute
   useEffect(() => {
     if (instances) {
       (async function () {
@@ -182,16 +208,61 @@ function ICEAttributes() {
         console.log('Token status updates completed!');
       })();
     }
-  }, [instances, state.refreshTokenAuth]);
+  }, [instances, state.refreshTokenAmounts]);
+
+  // anytime user claims ICE rewards this code will execute
+  useEffect(() => {
+    if (instances) {
+      (async function () {
+        const iceAmounts = await getICEAmounts();
+        iceAmounts.ICE_AVAILABLE_AMOUNT = parseInt(
+          iceAmounts.ICE_AVAILABLE_AMOUNT
+        );
+        iceAmounts.ICE_CLAIM_AMOUNT = parseInt(iceAmounts.ICE_CLAIM_AMOUNT);
+
+        console.log('==== <iceAmounts> ==== ', iceAmounts);
+
+        dispatch({
+          type: 'ice_amounts',
+          data: iceAmounts,
+        });
+
+        console.log('ICE amount updates completed!');
+      })();
+    }
+  }, [instances, state.refreshBalances, state.refreshICEAmounts]);
+
+  // anytime user authorizes tokens on /ice pages this code will execute
+  useEffect(() => {
+    if (instances) {
+      (async function () {
+        const tokenAuths = await getTokenAuthorizations();
+
+        console.log(
+          'Get token authorization: DG: ' + tokenAuths.DG_AUTHORIZATION
+        );
+        console.log(
+          'Get token authorization: ICE: ' + tokenAuths.ICE_AUTHORIZATION
+        );
+        console.log(
+          'Get token authorization: WETH: ' + tokenAuths.WETH_AUTHORIZATION
+        );
+
+        dispatch({
+          type: 'token_auths',
+          data: tokenAuths,
+        });
+
+        console.log('Token authorizations updates completed!');
+      })();
+    }
+  }, [instances, state.refreshTokenAuths]);
 
   // anytime user authorizes NFTs on /ice pages this code will execute
   useEffect(() => {
     if (instances && state.iceWearableItems.length) {
       (async function () {
         let authArray = [];
-
-        // console.log('ice wearables...');
-        // console.log(state.iceWearableItems);
 
         state.iceWearableItems.map(async (item, i) => {
           try {
@@ -209,16 +280,13 @@ function ICEAttributes() {
           }
         });
 
-        // console.log('NFT authorizations...');
-        // console.log(authArray);
-
         dispatch({
           type: 'nft_authorizations',
           data: authArray,
         });
       })();
     }
-  }, [instances, state.iceWearableItems, state.refreshNFTAuth]);
+  }, [instances, state.iceWearableItems, state.refreshNFTAuths]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -270,26 +338,91 @@ function ICEAttributes() {
 
   async function getTokenAmounts() {
     try {
-      const WETH_COST_AMOUNT = await ICERegistrantContract.methods
+      const wethConstAmount = await ICERegistrantContract.methods
         .mintingPrice()
         .call();
+      const WETH_COST_AMOUNT = wethConstAmount / Global.CONSTANTS.FACTOR;
 
-      // const DG_COST_AMOUNT = await ICERegistrantContract.methods
-      //   .levels()
-      //   .call();
+      const levelsData1 = await ICERegistrantContract.methods
+        .levels('1')
+        .call();
+      const DG_MOVE_AMOUNT = levelsData1[2] / Global.CONSTANTS.FACTOR;
 
-      //   const DG_MOVE_AMOUNT = await ICERegistrantContract.methods
-      //   .levels()
-      //   .call();
+      const levelsData2 = await ICERegistrantContract.methods
+        .levels('2')
+        .call();
+      const DG_COST_AMOUNT_2 = levelsData2[1] / Global.CONSTANTS.FACTOR;
+      const ICE_COST_AMOUNT_2 = levelsData2[3] / Global.CONSTANTS.FACTOR;
 
-      //   const ICE_COST_AMOUNT = await ICERegistrantContract.methods
-      //   .levels()
-      //   .call();
+      const levelsData3 = await ICERegistrantContract.methods
+        .levels('3')
+        .call();
+      const DG_COST_AMOUNT_3 = levelsData3[1] / Global.CONSTANTS.FACTOR;
+      const ICE_COST_AMOUNT_3 = levelsData3[3] / Global.CONSTANTS.FACTOR;
 
-      //   const ICE_MOVE_AMOUNT = await ICERegistrantContract.methods
-      //   .levels()
-      //   .call();
+      const levelsData4 = await ICERegistrantContract.methods
+        .levels('4')
+        .call();
+      const DG_COST_AMOUNT_4 = levelsData4[1] / Global.CONSTANTS.FACTOR;
+      const ICE_COST_AMOUNT_4 = levelsData4[3] / Global.CONSTANTS.FACTOR;
 
+      const levelsData5 = await ICERegistrantContract.methods
+        .levels('5')
+        .call();
+      const DG_COST_AMOUNT_5 = levelsData5[1] / Global.CONSTANTS.FACTOR;
+      const ICE_COST_AMOUNT_5 = levelsData5[3] / Global.CONSTANTS.FACTOR;
+
+      const ICE_AMOUNT = await iceTokenContract.methods
+        .balanceOf(state.userAddress)
+        .call();
+      const ICE_AMOUNT_ADJUSTED = (
+        ICE_AMOUNT / Global.CONSTANTS.FACTOR
+      ).toString();
+
+      return {
+        WETH_COST_AMOUNT: WETH_COST_AMOUNT,
+        DG_MOVE_AMOUNT: DG_MOVE_AMOUNT,
+        DG_COST_AMOUNT_2: DG_COST_AMOUNT_2,
+        ICE_COST_AMOUNT_2: ICE_COST_AMOUNT_2,
+        DG_COST_AMOUNT_3: DG_COST_AMOUNT_3,
+        ICE_COST_AMOUNT_3: ICE_COST_AMOUNT_3,
+        DG_COST_AMOUNT_4: DG_COST_AMOUNT_4,
+        ICE_COST_AMOUNT_4: ICE_COST_AMOUNT_4,
+        DG_COST_AMOUNT_5: DG_COST_AMOUNT_5,
+        ICE_COST_AMOUNT_5: ICE_COST_AMOUNT_5,
+      };
+    } catch (error) {
+      console.log('Get token amounts error: ' + error);
+    }
+  }
+
+  async function getICEAmounts() {
+    try {
+      const ICE_AVAILABLE_AMOUNT = await iceTokenContract.methods
+        .balanceOf(state.userAddress)
+        .call();
+      const ICE_AMOUNT_ADJUSTED = (
+        ICE_AVAILABLE_AMOUNT / Global.CONSTANTS.FACTOR
+      ).toString();
+
+      console.log('Available ICE amount: ' + ICE_AMOUNT_ADJUSTED);
+
+      const json = await Fetch.CLAIM_REWARDS_AMOUNT();
+      const ICE_CLAIM_AMOUNT = json.totalUnclaimedAmount;
+
+      console.log('Claim ICE rewards amount: ' + json.totalUnclaimedAmount);
+
+      return {
+        ICE_AVAILABLE_AMOUNT: ICE_AMOUNT_ADJUSTED,
+        ICE_CLAIM_AMOUNT: ICE_CLAIM_AMOUNT,
+      };
+    } catch (error) {
+      console.log('Get ICE amounts error: ' + error);
+    }
+  }
+
+  async function getTokenAuthorizations() {
+    try {
       const DG_AUTHORIZATION = await Transactions.tokenAuthorization(
         DGMaticContract,
         state.userAddress,
@@ -308,26 +441,13 @@ function ICEAttributes() {
         Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
       );
 
-      // console.log('User address: ' + state.userAddress);
-      // console.log(
-      //   'Spender address: ' + Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
-      // );
-      console.log('Get token authorization: DG: ' + DG_AUTHORIZATION);
-      console.log('Get token authorization: ICE: ' + ICE_AUTHORIZATION);
-      console.log('Get token authorization: WETH: ' + WETH_AUTHORIZATION);
-
       return {
-        WETH_COST_AMOUNT: WETH_COST_AMOUNT,
-        // DG_COST_AMOUNT: DG_COST_AMOUNT,
-        // DG_MOVE_AMOUNT: DG_MOVE_AMOUNT,
-        // ICE_COST_AMOUNT: ICE_COST_AMOUNT,
-        // ICE_MOVE_AMOUNT: ICE_MOVE_AMOUNT,
         DG_AUTHORIZATION: DG_AUTHORIZATION,
         ICE_AUTHORIZATION: ICE_AUTHORIZATION,
         WETH_AUTHORIZATION: WETH_AUTHORIZATION,
       };
     } catch (error) {
-      console.log('Get token amounts error: ' + error);
+      console.log('Get token authorizations error: ' + error);
     }
   }
 

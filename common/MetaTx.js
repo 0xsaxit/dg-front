@@ -57,9 +57,7 @@ arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domainTypeTreasury);
 arrayDomainType.push(domainTypeTreasury);
 arrayDomainType.push(domainTypeToken);
-
 arrayDomainType.push(domainTypeToken);
-
 arrayDomainType.push(domainTypeTreasury);
 
 metaTransactionType.push(
@@ -145,16 +143,9 @@ const domainDataAccessories = {
   salt: '0x' + Global.CONSTANTS.MATIC_NETWORK_ID.toString(16).padStart(64, '0'),
 };
 
-// const domainDataAccessories = {
-//   name: 'Decentraland Rarities',
-//   version: '1',
-//   chainId: Global.CONSTANTS.PARENT_NETWORK_ID,
-//   verifyingContract: accessoriesContract,
-// };
-
 const domainDataICERegistrant = {
   name: 'IceRegistrant',
-  version: 'v1.1',
+  version: 'v1.3',
   chainId: Global.CONSTANTS.PARENT_NETWORK_ID,
   verifyingContract: iceRegistrantAddress,
 };
@@ -169,9 +160,7 @@ arrayDomainData.push(domainDataTokenWETH);
 arrayDomainData.push(domainDataDGPointerNew);
 arrayDomainData.push(domainDataTokenICE);
 arrayDomainData.push(domainDataTokenDG);
-
 arrayDomainData.push(domainDataAccessories);
-
 arrayDomainData.push(domainDataICERegistrant);
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -191,8 +180,8 @@ function executeMetaTransaction(
     console.log('Verify contract: ' + arrayDomainData[i].verifyingContract);
 
     try {
-      console.log('contract instance...');
-      console.log(contractInstance);
+      // console.log('contract instance...');
+      // console.log(contractInstance);
 
       let nonce = await contractInstance.methods.getNonce(userAddress).call();
 

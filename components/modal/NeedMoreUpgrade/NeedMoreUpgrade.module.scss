@@ -4,6 +4,7 @@
   background-color: #006eff !important;
   color: white !important;
   height: 42px !important;
+  width: calc(50% - 8px) !important;
   border-radius: 10px !important;
   font-family: Larsseit-Bold;
   font-size: 14px !important;
@@ -31,8 +32,8 @@
       justify-content: center;
       align-items: center;
 
-      width: 48px;
-      height: 48px;
+      width: 36px;
+      height: 36px;
       background: black;
       color: white;
 
@@ -119,7 +120,7 @@
           height: 78px;
         }
 
-        .ice_pill, .xp_pill {
+        .ice_pill, .dg_pill, .xp_pill {
           padding: 4px 10px;
           height: 23px;
           font-size: 11px;
@@ -132,6 +133,10 @@
 
         .ice_pill {
           margin-top: -10px;
+        }
+
+        .dg_pill {
+          margin-top: -8px;
         }
         
         .xp_pill {

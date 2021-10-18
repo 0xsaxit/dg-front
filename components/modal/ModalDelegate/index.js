@@ -1,85 +1,52 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { GlobalContext } from '../../../store';
-import { Biconomy } from '@biconomy/mexa';
-import Web3 from 'web3';
-import ABI_ICE_REGISTRANT from '../../../components/ABI/ABIICERegistrant.json';
-import MetaTx from '../../../common/MetaTx';
 import { Modal, Button } from 'semantic-ui-react';
+import Fetch from '../../../common/Fetch';
 import styles from './ModalDelegate.module.scss';
 import ModalSuccessDelegation from '../ModalSuccessDelegation';
 import Global from '../../Constants';
 import Aux from '../../_Aux';
 
 const ModalDelegate = props => {
-  // fetch delegation data from the Context API store
+  // fetch user's wallet address from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [web3, setWeb3] = useState({});
-  // const [spenderAddress, setSpenderAddress] = useState('');
-  // const [authStatusICE, setAuthStatusICE] = useState(false);
-  // const [authStatusDG, setAuthStatusDG] = useState(false);
-  // const [authStatusNFT, setAuthStatusNFT] = useState(false);
-
   const [clicked, setClicked] = useState(false);
-  const [iceRegistrantContract, setIceRegistrantContract] = useState({});
   const [success, setSuccess] = useState(false);
   const [open, setOpen] = useState(false);
-  const [entered, setEntered] = useState('');
-
-  const [isDelegated, setIsDelegated] = useState(false); // ********** will need to call smart contract for this value **********
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // initialize Web3 providers and create token contract instance
-  useEffect(() => {
-    if (state.userStatus >= 4) {
-      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
-      setWeb3(web3);
-
-      const biconomy = new Biconomy(
-        new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
-        {
-          apiKey: Global.KEYS.BICONOMY_API_1,
-          debug: true,
-        }
-      );
-      const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
-
-      // const spenderAddress = Global.ADDRESSES.ICE_REGISTRANT_ADDRESS;
-      // setSpenderAddress(spenderAddress);
-
-      // const tokenContractICE = new getWeb3.eth.Contract(
-      //   ABI_CHILD_TOKEN_ICE,
-      //   Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ICE
-      // );
-      // setTokenContractICE(tokenContractICE);
-
-      // const tokenContractDG = new getWeb3.eth.Contract(
-      //   ABI_DG_TOKEN,
-      //   Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DG
-      // );
-      // setTokenContractDG(tokenContractDG);
-
-      const iceRegistrantContract = new getWeb3.eth.Contract(
-        ABI_ICE_REGISTRANT,
-        Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
-      );
-      setIceRegistrantContract(iceRegistrantContract);
-
-      biconomy
-        .onEvent(biconomy.READY, () => {
-          console.log('Mexa is Ready: Delegate (wearables)');
-        })
-        .onEvent(biconomy.ERROR, (error, message) => {
-          console.error(error);
-        });
-    }
-  }, [state.userStatus]);
+  const [enteredAddress, setEnteredAddress] = useState('');
+  const [isDelegated, setIsDelegated] = useState(false);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
+  async function getDelegated(address) {
+    console.log('Entered address: ' + address);
+
+    const delegationInfo = await Fetch.DELEGATE_INFO(address);
+
+    console.log('Incoming delegation information:');
+    console.log(delegationInfo.incomingDelegations);
+
+    delegationInfo.incomingDelegations.forEach((item, i) => {
+      if (item) {
+        const tokenOwner = item.tokenOwner.toLowerCase();
+        console.log('Entered address incoming delegator: ' + tokenOwner);
+
+        // if entered address has delegated wearables and the delegator is not me
+        if (
+          tokenOwner !== '' &&
+          tokenOwner !== state.userAddress.toLowerCase()
+        ) {
+          setIsDelegated(true);
+        }
+      } else {
+        console.log('Entered address has no incoming delegator');
+      }
+    });
+  }
+
   function imageDetails() {
     return (
       <div className={styles.wear_box}>
@@ -87,15 +54,17 @@ const ModalDelegate = props => {
           <img src={props.imgSrc} />
         </div>
         <div className={styles.card_body}>
-          <div className={styles.card}>{props.rank}</div>
+          <div className={styles.card}>Rank {props.rank}</div>
           <div className={styles.card}>
-            {props.bonus}
+            +{props.bonus}%
             <img
               src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"
               className={styles.img_card}
             />
           </div>
-          <div className={styles.card}>1 of 100</div>
+          <div className={styles.card}>
+            {props.description.split(' ').at(-1).replace('/', ' of ')}
+          </div>
         </div>
       </div>
     );
@@ -161,11 +130,22 @@ const ModalDelegate = props => {
                 className={styles.input}
                 maxLength="42"
                 placeholder="Paste ETH Address Here"
-                onChange={evt => {
+                onChange={async evt => {
                   if (evt.target.value.length > 0) {
-                    setEntered(evt.target.value);
+                    if (web3.utils.isAddress(evt.target.value)) {
+                      // check to see if anyone has already delegated to this address
+                      await getDelegated(evt.target.value);
+
+                      if (!isDelegated) {
+                        setEnteredAddress(evt.target.value);
+                      } else {
+                        setEnteredAddress('');
+                      }
+                    } else {
+                      setEnteredAddress('');
+                    }
                   } else {
-                    setEntered('');
+                    setEnteredAddress('');
                   }
                 }}
               />
@@ -232,52 +212,32 @@ const ModalDelegate = props => {
     }
   }
 
-  async function metaTransaction() {
-    console.log('Meta-transaction Delegation');
+  async function delegateNFT() {
+    console.log('Delegate token ID: ' + props.tokenID);
+    console.log('Delegate address: ' + enteredAddress);
+    console.log(
+      'Collection address: ' + Global.ADDRESSES.COLLECTION_V2_ADDRESS
+    );
     setClicked(true);
 
-    try {
-      // get function signature and send Biconomy API meta-transaction
-      let functionSignature = iceRegistrantContract.methods
-        .delegateToken(
-          Global.ADDRESSES.COLLECTION_V2_ADDRESS,
-          '2', // props.tokenID,
-          entered,
-          '70'
-        )
-        .encodeABI();
+    const json = await Fetch.DELEGATE_NFT(
+      enteredAddress,
+      props.tokenID,
+      Global.ADDRESSES.COLLECTION_V2_ADDRESS
+    );
 
-      const txHash = await MetaTx.executeMetaTransaction(
-        11,
-        functionSignature,
-        iceRegistrantContract,
-        state.userAddress,
-        web3
-      );
+    console.log(json.status);
 
-      if (txHash === false) {
-        setClicked(false);
+    if (json.status) {
+      console.log('NFT delegation request successful');
 
-        console.log('Biconomy meta-transaction failed');
-      } else {
-        console.log('Biconomy meta-transaction hash: ' + txHash);
+      // close this modal and open the success modal
+      setOpen(false);
+      setSuccess(true);
+    } else {
+      console.log('NFT delegation request error: ' + json.reason);
 
-        // // update global state NFT authorizations
-        // const refresh = !state.refreshNFTAuth;
-
-        // dispatch({
-        //   type: 'refresh_nft_auth',
-        //   data: refresh,
-        // });
-
-        // close this modal and open the success modal
-        setOpen(false);
-        setSuccess(true);
-      }
-    } catch (error) {
       setClicked(false);
-
-      console.log('Delegation error: ' + error);
     }
   }
 
@@ -290,7 +250,9 @@ const ModalDelegate = props => {
           onOpen={() => setOpen(true)}
           open={open}
           close
-          trigger={<Button className={styles.open_button}>Delegate</Button>}
+          trigger={
+            <Button className={styles.open_button}>{props.buttonName}</Button>
+          }
         >
           <div className={styles.top_buttons}>
             {modalButtons('close')}
@@ -309,10 +271,10 @@ const ModalDelegate = props => {
                   {!clicked ? (
                     <Button
                       className={styles.button_upgrade}
-                      onClick={() => metaTransaction()}
-                      disabled={entered === '' || isDelegated}
+                      onClick={() => delegateNFT()}
+                      disabled={enteredAddress === '' || isDelegated}
                     >
-                      Delegate Wearable
+                      {props.buttonName}
                     </Button>
                   ) : (
                     <Button className={styles.button_upgrade} disabled={true}>
@@ -334,7 +296,10 @@ const ModalDelegate = props => {
           </div>
         </Modal>
       ) : (
-        <ModalSuccessDelegation setSuccess={setSuccess} />
+        <ModalSuccessDelegation
+          buttonName={props.buttonName}
+          address={enteredAddress}
+        />
       )}
     </Aux>
   );
