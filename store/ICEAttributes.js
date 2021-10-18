@@ -103,18 +103,22 @@ function ICEAttributes() {
 
         let iceWearableItems = [];
         for (var i = 0; i < tokenIDs.length; i++) {
-          const meta_json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
-            Global.ADDRESSES.COLLECTION_V2_ADDRESS,
-            tokenIDs[i].tokenID
-          );
-  
-          if (Object.keys(meta_json).length) {
-            iceWearableItems.push({
-              index: tokenIDs[i].index,
-              tokenID: tokenIDs[i].tokenID,
-              itemID: meta_json.id.split(':').slice(-1),
-              meta_data: meta_json,
-            });
+          try {
+            const json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
+              Global.ADDRESSES.COLLECTION_V2_ADDRESS,
+              tokenIDs[i].tokenID
+            );
+
+            if (Object.keys(json.metadata).length) {
+              iceWearableItems.push({
+                index: tokenIDs[i].index,
+                tokenID: tokenIDs[i].tokenID,
+                itemID: json.metadata.id.split(':').slice(-1),
+                meta_data: json.metadata,
+              });
+            }
+          } catch (error) {
+            console.log('Fetch metadata error: ' + error.result);
           }
         }
 
@@ -143,21 +147,22 @@ function ICEAttributes() {
           const ownerAddress = item.tokenOwner;
           const tokenId = item.tokenId;
 
-          const meta_json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
-            Global.ADDRESSES.COLLECTION_V2_ADDRESS,
-            tokenId
-          );
+          try {
+            const json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
+              Global.ADDRESSES.COLLECTION_V2_ADDRESS,
+              tokenId
+            );
 
-          console.log('delegation data...');
-          console.log(meta_json);
-
-          if (Object.keys(meta_json).length) {
-            iceDelegatedItems.push({
-              ownerAddress: ownerAddress,
-              tokenID: tokenId,
-              itemID: meta_json.id.split(':').slice(-1),
-              meta_data: meta_json,
-            });
+            if (Object.keys(json.metadata).length) {
+              iceDelegatedItems.push({
+                ownerAddress: ownerAddress,
+                tokenID: tokenId,
+                itemID: json.metadata.id.split(':').slice(-1),
+                meta_data: json.metadata,
+              });
+            }
+          } catch (error) {
+            console.log('Fetch delegation info error: ' + error.result);
           }
         });
       }
@@ -210,9 +215,11 @@ function ICEAttributes() {
     if (instances) {
       (async function () {
         const iceAmounts = await getICEAmounts();
-        iceAmounts.ICE_AVAILABLE_AMOUNT = parseInt(iceAmounts.ICE_AVAILABLE_AMOUNT)
-        iceAmounts.ICE_CLAIM_AMOUNT = parseInt(iceAmounts.ICE_CLAIM_AMOUNT)
-        
+        iceAmounts.ICE_AVAILABLE_AMOUNT = parseInt(
+          iceAmounts.ICE_AVAILABLE_AMOUNT
+        );
+        iceAmounts.ICE_CLAIM_AMOUNT = parseInt(iceAmounts.ICE_CLAIM_AMOUNT);
+
         console.log('==== <iceAmounts> ==== ', iceAmounts);
 
         dispatch({
