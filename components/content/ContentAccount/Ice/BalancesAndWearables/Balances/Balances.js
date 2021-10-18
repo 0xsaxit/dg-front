@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { GlobalContext } from '../../../../../../store';
 import cn from 'classnames';
 import { Button } from 'semantic-ui-react';
 import styles from './Balances.module.scss';
@@ -6,6 +7,9 @@ import Fetch from '../../../../../../common/Fetch';
 import Aux from '../../../../../_Aux';
 
 const Balances = ({ state }) => {
+  // dispatch user's ICE amounts to the Context API store
+  const [dispatch] = useContext(GlobalContext);
+
   // define local variables
   const [clicked, setClicked] = useState(false);
   const balenceItems = [
