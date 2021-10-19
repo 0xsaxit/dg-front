@@ -6,7 +6,7 @@ import Fetch from '../../../../../../common/Fetch';
 import Aux from '../../../../../_Aux';
 import { GlobalContext } from '../../../../../../store';
 
-const Balances = ({ state }) => {
+const Balances = () => {
   // fetch user's Polygon DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
