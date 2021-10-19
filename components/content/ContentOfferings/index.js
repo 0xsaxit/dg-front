@@ -351,7 +351,6 @@ const ContentOfferings = props => {
                     {props.detailsICE[item][1]}
                   </h3>
                 </div>
-
                 <div
                   style={{
                     position: 'absolute',

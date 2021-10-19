@@ -10,7 +10,13 @@ function ICE({ state }) {
       !!state.iceDelegatedItems.length ? (
         <BalancesAndWearables />
       ) : (
-        <NoWearablesSplash />
+        <div>
+          {state.userStatus && !!state.iceWearableItems.length ? (
+            <BalancesAndWearables />
+          ) : (
+            <NoWearablesSplash />
+          )}
+        </div>
       )}
     </Aux>
   );
