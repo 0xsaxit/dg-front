@@ -163,6 +163,10 @@ const Balances = () => {
           )}
         </p>
 
+        <p className={styles.p_text}>
+          ICE Earnings vary based on your total equipped wearables, wearable ranks, and your placement in daily ICE Poker tournaments.
+        </p>
+
         {!clicked ? (
           <Button className={styles.claim_button} onClick={() => claimTokens()}>
             Claim {state.iceAmounts.ICE_CLAIM_AMOUNT} ICE
@@ -173,7 +177,6 @@ const Balances = () => {
           </Button>
         )}
 
-        <p className={styles.sell_all}>See All Rewards</p>
       </div>
     );
   }

@@ -35,10 +35,9 @@ const Wearables = ({ state }) => {
         </div>
         <Button
           className={styles.open_sea}
-          href="http://defi.atarichain.com/"
-          target="_blank"
+          href="/ice/marketplace"
         >
-          Buy On Open Sea
+          Mint Wearable
           <svg
             width="13"
             height="12"
