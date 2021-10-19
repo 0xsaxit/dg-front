@@ -196,7 +196,7 @@ const AccountData = props => {
                   </p>
                   <p className={styles.amount}>
                     {' '}
-                    {state.iceAmounts.ICE_AVAILABLE_AMOUNT}{' '}
+                    {state.iceAmounts.ICE_AVAILABLE_AMOUNT.toLocaleString()}{' '}
                   </p>
                 </div>
               </div>
@@ -217,7 +217,10 @@ const AccountData = props => {
                     Unused XP{' '}
                     <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631365915/w706j6tiotm1gdp0p8nu.svg" />{' '}
                   </p>
-                  <p className={styles.amount}> {state.xpAmounts} </p>
+                  <p className={styles.amount}>
+                    {' '}
+                    {state.xpAmounts.toLocaleString()}{' '}
+                  </p>
                 </div>
               </div>
               <div className={styles.token_container}>
@@ -233,7 +236,10 @@ const AccountData = props => {
                     DG{' '}
                     <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631365915/w706j6tiotm1gdp0p8nu.svg" />{' '}
                   </p>
-                  <p className={styles.amount}> {formatPrice(state.DGBalances.BALANCE_CHILD_DG, 3)} </p>
+                  <p className={styles.amount}>
+                    {' '}
+                    {formatPrice(state.DGBalances.BALANCE_CHILD_DG, 3)}{' '}
+                  </p>
                 </div>
               </div>
             </div>
