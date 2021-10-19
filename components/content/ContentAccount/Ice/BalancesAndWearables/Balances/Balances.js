@@ -6,9 +6,9 @@ import styles from './Balances.module.scss';
 import Fetch from '../../../../../../common/Fetch';
 import Aux from '../../../../../_Aux';
 
-const Balances = ({ state }) => {
+const Balances = () => {
   // dispatch user's ICE amounts to the Context API store
-  const [dispatch] = useContext(GlobalContext);
+  const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
   const [clicked, setClicked] = useState(false);
@@ -187,10 +187,11 @@ const Balances = ({ state }) => {
 
       if (json.status) {
         console.log('Claim ICE rewards request successful');
-        console.log('Claim ICE amount: ' + json.txHash);
+        console.log('Claim ICE transaction hash: ' + json.txHash);
 
         // update global state ice amounts
         const refresh = !state.refreshICEAmounts;
+
         dispatch({
           type: 'refresh_ice_amounts',
           data: refresh,
@@ -201,7 +202,7 @@ const Balances = ({ state }) => {
         setClicked(false);
       }
     } catch (error) {
-      console.log(error); // API request timeount error
+      console.log(error); // API request timeout error
 
       setClicked(false);
     }
