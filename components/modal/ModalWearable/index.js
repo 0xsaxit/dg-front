@@ -219,8 +219,8 @@ const ModalWearable = props => {
                   <div className={styles.card_area_body}>
                     {state.iceAmounts.ICE_AVAILABLE_AMOUNT <
                       icePrices[Math.min(props.rank + 1, 5)] && (
-                        <span className={styles.not_enough}>Not Enough</span>
-                      )}
+                      <span className={styles.not_enough}>Not Enough</span>
+                    )}
                     <div className={styles.card}>
                       {icePrices[Math.min(props.rank + 1, 5)] / 1000 + 'K'} ICE
                       <img
@@ -288,7 +288,7 @@ const ModalWearable = props => {
                       <span className={styles.not_enough}>Not Enough</span>
                     )}
                     <div className={styles.card}>
-                      50 XP
+                      50
                       <img
                         src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629727455/XP_zbnvuf.png"
                         className={styles.img_card3}
@@ -302,8 +302,9 @@ const ModalWearable = props => {
               </div>
               <div className={styles.button_area}>
                 {state.xpAmounts >= 50 &&
-                  state.DGBalances.BALANCE_CHILD_DG >= 0.1 &&
-                  state.iceAmounts.ICE_AVAILABLE_AMOUNT >= icePrices[Math.min(props.rank + 1, 5)] ? (
+                state.DGBalances.BALANCE_CHILD_DG >= 0.1 &&
+                state.iceAmounts.ICE_AVAILABLE_AMOUNT >=
+                  icePrices[Math.min(props.rank + 1, 5)] ? (
                   <Button
                     className={styles.button_upgrade}
                     onClick={() => {
@@ -350,12 +351,9 @@ const ModalWearable = props => {
         />
       )}
 
-      {upgrade == 3 &&
-        <ModalUpgradeSuccess
-          tokenID={props.tokenID}
-          setUpgrade={setUpgrade}
-        />
-      }
+      {upgrade == 3 && (
+        <ModalUpgradeSuccess tokenID={props.tokenID} setUpgrade={setUpgrade} />
+      )}
     </>
   );
 };
