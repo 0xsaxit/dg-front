@@ -38,7 +38,7 @@ const Wearables = ({ state }) => {
           href="http://defi.atarichain.com/"
           target="_blank"
         >
-          Buy On Open Sea
+          Mint Wearable
           <svg
             width="13"
             height="12"
