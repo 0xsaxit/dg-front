@@ -9,8 +9,14 @@ const IceBalances = () => {
 
   return (
     <>
-      <Balance />
-      <Wearable state={state} />
+      {state.userStatus < 20 ? (
+        null
+      ) : (
+        <div>
+          <Balance />
+          <Wearable state={state} />
+        </div>
+      )}
     </>
   );
 };
