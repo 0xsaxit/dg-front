@@ -3414,6 +3414,7 @@ i.clone.outline.icon,
 }
 
 .copied-toast {
+  text-align: center;
   background-color: #1f1f1f;
   position: fixed;
   bottom: 60px;

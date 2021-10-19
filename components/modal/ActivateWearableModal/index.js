@@ -8,7 +8,7 @@ import MetaTx from '../../../common/MetaTx';
 import MetamaskAction from './MetamaskAction';
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './ActivateWearableModal.module.scss';
-// import ModalActivationSuccess from '../ModalActivationSuccess';
+import ModalActivationSuccess from '../ModalActivationSuccess';
 import Global from '../../Constants';
 import Aux from '../../_Aux';
 
@@ -18,7 +18,6 @@ const ActivateWearableModal = props => {
 
   // define local variables
   const [open, setOpen] = useState(false);
-  const [pending, setPending] = useState(false);
   const [web3, setWeb3] = useState({});
   const [spenderAddress, setSpenderAddress] = useState('');
   const [iceRegistrantContract, setIceRegistrantContract] = useState({});
@@ -27,6 +26,11 @@ const ActivateWearableModal = props => {
   const [previousOwner, setPreviousOwner] = useState('');
   const [authStatus, setAuthStatus] = useState(false);
   const [clicked, setClicked] = useState(false);
+
+  const [openUpgradeSuccess, setOpenUpgradeSuccess] = useState(false);
+  
+
+  console.log("props =========================== ", props);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -220,6 +224,7 @@ const ActivateWearableModal = props => {
 
   // Biconomy API meta-transaction. User must authorize DG token contract to access their funds
   async function metaTransactionDG() {
+    
     try {
       setClicked(true);
       console.log('DG authorize amount: ' + Global.CONSTANTS.MAX_AMOUNT);
@@ -250,20 +255,22 @@ const ActivateWearableModal = props => {
           data: refresh,
         });
         setClicked(false);
+        setAuthStatus(true);
       }
     } catch (error) {
       setClicked(false);
       console.log('DG authorization error: ' + error);
     }
+    
   }
 
   async function metaTransactionReICE() {
     console.log('Meta-transaction NFT Activation');
     console.log('Previous owner: ' + previousOwner);
     console.log('Token ID: ' + props.tokenID);
-    setPending(true);
 
     try {
+      setClicked(true);
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = iceRegistrantContract.methods
         .reIceNFT(
@@ -282,8 +289,8 @@ const ActivateWearableModal = props => {
       );
 
       if (txHash === false) {
-        setPending(false);
-
+        setOpenUpgradeSuccess(false);
+        setClicked(false);
         console.log('Biconomy meta-transaction failed');
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
@@ -311,42 +318,43 @@ const ActivateWearableModal = props => {
 
         // close this modal and open the success modal
         setOpen(false);
-        setPending(false);
+        setClicked(false);
+        setOpenUpgradeSuccess(true);
       }
     } catch (error) {
-      setPending(false);
-
+      setOpenUpgradeSuccess(false);
+      setClicked(false);
       console.log('NFT Activation error: ' + error);
     }
   }
 
   return (
-    <Modal
-      className={styles.dgactivate_modal}
-      onClose={() => {
-        setOpen(false);
-        // props.setPending(false);
-      }}
-      onOpen={() => {
-        setOpen(true);
-      }}
-      open={open}
-      close
-      trigger={
-        <Button className={styles.open_button}>
-          Activate Wearable ({state.tokenAmounts.DG_MOVE_AMOUNT} DG)
-        </Button>
-      }
-    >
-      <div className={styles.top_buttons}>
-        {modalButtons('close')}
-        {modalButtons('help')}
-      </div>
-
-      {description()}
-
-      {!pending ? (
-        <div className={styles.buttons}>
+    <Aux>
+    {!openUpgradeSuccess? (
+      <Modal
+        className={styles.dgactivate_modal}
+        onClose={() => {
+          setOpen(false);
+        }}
+        onOpen={() => {
+          setOpen(true);
+        }}
+        open={open}
+        close
+        trigger={
+          <Button className={styles.open_button}>
+            Activate Wearable ({state.tokenAmounts.DG_MOVE_AMOUNT} DG)
+          </Button>
+        }
+      >
+        <div className={styles.top_buttons}>
+          {modalButtons('close')}
+          {modalButtons('help')}
+        </div>
+  
+        {description()}
+  
+        <div className={styles.buttons}>          
           <Button
             disabled={clicked}
             className={styles.primary}
@@ -361,28 +369,24 @@ const ActivateWearableModal = props => {
           >
             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
             {authStatus
-              ? 'Confirm Activation'
+              ? (clicked? 'Confirming...' : 'Confirm Activation')
               : clicked
                 ? 'Authorizing ...'
                 : 'Authorize DG'}
           </Button>
         </div>
-      ) : (
-        <div className={styles.buttons}>
-          <Button className={styles.primary} disabled={true}>
-            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
-            Pending Activation...
-          </Button>
-        </div>
-
-        // <ModalActivationSuccess
-        //   setPending={setPending}
-        //   image={props.image}
-        //   rank={props.rank}
-        //   description={props.description}
-        // />
-      )}
-    </Modal>
+      </Modal>
+    ):(
+      <ModalActivationSuccess
+        show={openUpgradeSuccess}
+        setOpenUpgradeSuccess={setOpenUpgradeSuccess}
+        tokenID={props.tokenID}
+        close={() => {
+          setOpenUpgradeSuccess(false);
+        }}
+      />
+    )}
+    </Aux>
   );
 };
 

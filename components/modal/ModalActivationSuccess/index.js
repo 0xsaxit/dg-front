@@ -1,9 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './ModalActivationSuccess.module.scss';
+import { GlobalContext } from '../../../store';
+import GetRank from '../../../common/GetIceWearableRank'
 
 const ModalActivationSuccess = props => {
+
+  const [state, dispatch] = useContext(GlobalContext);
   const [open, setOpen] = useState(true);
+  const [image, setImage] = useState("")
+  const [description, setDescription] = useState("x of 100");
+  const [rank, setRank] = useState({})
+
+  useEffect(() => {
+    const itemInfo = state.iceWearableItems.filter(item => item.tokenID === props.tokenID)[0];
+    setImage(itemInfo.meta_data.image);
+    setDescription(itemInfo.meta_data.description.split(' ').at(-1).replace('/', ' of '));
+    setRank(GetRank(parseInt(itemInfo.meta_data.attributes.at(-1).value)));
+  }, [state.iceWearableItems])
 
   return (
     <>
@@ -11,7 +25,6 @@ const ModalActivationSuccess = props => {
         className={styles.activation_success_modal}
         onClose={() => {
           setOpen(false);
-          props.setPending(0);
         }}
         onOpen={() => setOpen(true)}
         open={open}
@@ -27,7 +40,7 @@ const ModalActivationSuccess = props => {
             className={styles.button_close}
             onClick={() => {
               setOpen(false);
-              props.setPending(0);
+              // props.setOpenUpgradeSuccess(false);
             }}
           >
             <svg
@@ -82,35 +95,43 @@ const ModalActivationSuccess = props => {
 
           <div className={styles.card}>
             <div className={styles.toppercent}>
-              {props.rank.percentage}
+              {rank.percentage}
               <img
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"
                 style={{ width: '20px' }}
               />
             </div>
             <div className={styles.image}>
-              <img src={props.image} className={styles.logo} />
+              <img src={image} className={styles.logo} />
             </div>
             <div className={styles.properties}>
-              <div className={styles.round}>Rank {props.rank.value}</div>
+              <div className={styles.round}>Rank {rank.value}</div>
               <div className={styles.round}>
-                {props.rank.percentage}
+                {rank.percentage}
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630486742/image_2_pm0jck.png"
                   style={{ width: '20px' }}
                 />
               </div>
               <div className={styles.round}>
-                {props.description.split(' ').at(-1).replace('/', ' of ')}
+                {description}
               </div>
             </div>
           </div>
 
           <div className={styles.buttons}>
             <Button className={styles.primary}>Play Now</Button>
-            <Button className={styles.none}>Back to Account</Button>
+            <Button 
+              className={styles.none}
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              Back to Account
+            </Button>
           </div>
         </div>
+
       </Modal>
     </>
   );
