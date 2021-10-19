@@ -1,13 +1,13 @@
-import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../../../../../store';
+import { useState, useEffect, useContext } from 'react'
 import cn from 'classnames';
 import { Button } from 'semantic-ui-react';
 import styles from './Balances.module.scss';
 import Fetch from '../../../../../../common/Fetch';
 import Aux from '../../../../../_Aux';
+import { GlobalContext } from '../../../../../../store';
 
-const Balances = () => {
-  // dispatch user's ICE amounts to the Context API store
+const Balances = ({ state }) => {
+  // fetch user's Polygon DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
@@ -41,13 +41,6 @@ const Balances = () => {
       ),
     },
   ];
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // after claiming rewards this code gets executed
-  useEffect(() => {
-    setClicked(false);
-  }, [state.iceAmounts]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -182,27 +175,20 @@ const Balances = () => {
     console.log('Claiming ICE Rewards: ' + state.iceAmounts.ICE_CLAIM_AMOUNT);
     setClicked(true);
 
-    try {
-      const json = await Fetch.CLAIM_REWARDS();
+    const json = await Fetch.CLAIM_REWARDS();
 
-      if (json.status) {
-        console.log('Claim ICE rewards request successful');
-        console.log('Claim ICE transaction hash: ' + json.txHash);
+    if (json.status) {
+      console.log('Claim ICE rewards request successful');
+      console.log('Claim ICE amount: ' + json.txHash);
 
-        // update global state ice amounts
-        const refresh = !state.refreshICEAmounts;
-
-        dispatch({
-          type: 'refresh_ice_amounts',
-          data: refresh,
-        });
-      } else {
-        console.log('Claim ICE rewards request error: ' + json.reason);
-
-        setClicked(false);
-      }
-    } catch (error) {
-      console.log(error); // API request timeout error
+      // update global state ice amounts
+      const refresh = !state.refreshICEAmounts;
+      dispatch({
+        type: 'refresh_ice_amounts',
+        data: refresh,
+      });
+    } else {
+      console.log('Claim ICE rewards request error: ' + json.reason);
 
       setClicked(false);
     }
