@@ -43,10 +43,7 @@ const MetamaskAction = ({
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <circle cx="16" cy="16" r="16" fill="#35AB3A" />              
-              {/* <circle cx="16" cy="15.7" r="2.7" fill="white" />
-              <circle cx="8.7" cy="15.7" r="2.7" fill="white" />
-              <circle cx="23.3001" cy="15.7" r="2.7" fill="white" /> */}
+              <circle cx="16" cy="16" r="16" fill="#35AB3A" />
             </svg>
             </>
           )}

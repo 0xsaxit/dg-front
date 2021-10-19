@@ -9,8 +9,9 @@ import MetaTx from '../../../common/MetaTx';
 import Fetch from '../../../common/Fetch';
 import Aux from '../../_Aux';
 import Global from '../../Constants';
-// import MetamaskAction from './MetamaskAction';
+import MetamaskAction, { ActionLine } from 'components/common/MetamaskAction';
 import ModalMintSuccess from '../ModalMintSuccess';
+import { Loader} from 'semantic-ui-react'
 
 const ModalEthAuth = props => {
   // dispatch user's treasury contract active status to the Context API store
@@ -26,7 +27,9 @@ const ModalEthAuth = props => {
   const [openMintSuccess, setOpenMintSuccess] = useState(false);
   const [minting, setMinting] = useState(false);
   const [buttonMessage, setButtonMessage] = useState('Proceed to Mint');
-  // const [clicked, setClicked] = useState(false);
+  const [clickedAuthEth, setClickedAuthEth] = useState(false);
+  const [clickedConfirm, setClickedConfirm] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////
@@ -73,8 +76,7 @@ const ModalEthAuth = props => {
 
   // get WETH authorization status based on tokenAuths state object
   useEffect(() => {
-    const authStatus = state.tokenAuths.WETH_AUTHORIZATION;
-
+    const authStatus = state.tokenAuths.WETH_AUTHORIZATION;    
     setAuthStatus(authStatus);
   }, [state.tokenAuths]);
 
@@ -82,7 +84,11 @@ const ModalEthAuth = props => {
     const canPurchase = state.canPurchase;
 
     if (canPurchase) {
-      setButtonMessage('Confirm Purchase');
+      if(state.tokenAuths.WETH_AUTHORIZATION) {
+        setButtonMessage('Confirm Purchase');
+      } else {
+        setButtonMessage('Authorize ETH');
+      }
     } else {
       setButtonMessage('Cooldown Period');
     }
@@ -106,40 +112,35 @@ const ModalEthAuth = props => {
         </p>
 
         <div className={styles.upgrade_inner_container}>
-          <div className={styles.eth_container}>
-            <span style={{ display: 'flex', flexDirection: 'row' }}>
-              <p className={styles.eth_amount}>
-                {' '}
-                {state.tokenAmounts.WETH_COST_AMOUNT} ETH{' '}
-              </p>
-              <img
-                className={styles.eth_img}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1625014714/ETH_kzfhxr.png"
-              />
-            </span>
-          </div>
-
-          <div className={styles.eth_description}>
-            {state.userBalances[2][3]} ETH Available
-          </div>
-
-          <div className={styles.eth_description_two}>(On Polygon)</div>
-
-          {/* ok11 */}
-          {/* <MetamaskAction
+          <MetamaskAction
             actionState={
               authStatus
                 ? 'done'
-                : !clicked
+                : !clickedAuthEth
                 ? 'initial'
-                : clicked
+                : clickedAuthEth
                 ? 'clicked'
                 : null
             }
             onClick={metaTransaction}
             primaryText="Authorize ETH"
             secondaryText="Enables ETH Transaction"
-          /> */}
+          />
+
+          <ActionLine previousAction={authStatus ? 'done' : 'initial'}/>
+
+          <MetamaskAction
+            actionState={
+              !clickedConfirm
+                ? 'initial'
+                : clickedConfirm
+                ? 'clicked'
+                : null
+            }
+            onClick={mintToken}
+            primaryText="Confirm Purchase"
+            secondaryText="Mint Wearable"
+          />
 
           {/** TODO: add correct on click action here */}
           {/* <MetamaskAction
@@ -158,6 +159,9 @@ const ModalEthAuth = props => {
   async function mintToken() {
     console.log('Minting NFT item ID: ' + props.itemID);
     setMinting(true);
+
+    setLoading(true);
+    setClickedConfirm(true);
 
     const json = await Fetch.MINT_TOKEN(
       props.itemID,
@@ -183,13 +187,21 @@ const ModalEthAuth = props => {
 
       setOpenMintSuccess(true);
       setOpen(false);
+
+      setLoading(false);
+      setClickedConfirm(false);
+
       props.close();
     } else if (!json.status) {
       setButtonMessage('Token Minting Error');
+      setLoading(false);
+      setClickedConfirm(false);
 
       console.log('NFT minting error (a): ' + json.result);
     } else if (json.status === 'error') {
       setButtonMessage(json.result);
+      setLoading(false);
+      setClickedConfirm(false);
 
       console.log('NFT minting error (b): ' + json.result);
     }
@@ -201,7 +213,8 @@ const ModalEthAuth = props => {
   async function metaTransaction() {
     try {
       console.log('WETH authorization amount: ' + Global.CONSTANTS.MAX_AMOUNT);
-      // setClicked(true);
+      setClickedAuthEth(true);
+      setLoading(true);
 
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = tokenContract.methods
@@ -219,7 +232,7 @@ const ModalEthAuth = props => {
       if (txHash === false) {
         console.log('Biconomy meta-transaction failed');
 
-        // setClicked(false);
+        setClickedAuthEth(false);
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
@@ -230,11 +243,14 @@ const ModalEthAuth = props => {
           type: 'refresh_token_auths',
           data: refresh,
         });
+        setAuthStatus(true);
+        setLoading(false);        
       }
     } catch (error) {
       console.log('WETH authorization error: ' + error);
 
-      // setClicked(false);
+      setClickedAuthEth(false);
+      setLoading(false);
     }
   }
 
@@ -335,16 +351,16 @@ const ModalEthAuth = props => {
                   }}
                 >
                   <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
-                  {buttonMessage}
+                  {loading? <Loader /> : (authStatus? 'Confirm Purchase':'Authorize ETH')}
                 </Button>
               ) : (
                 <Button disabled className={styles.proceed_button}>
-                  {buttonMessage}
+                  Cooldown Period
                 </Button>
               )
             ) : (
               <Button disabled className={styles.proceed_button}>
-                {buttonMessage}
+                {loading? <Loader /> : 'Confirm Purchase'}
               </Button>
             )}
           </div>
