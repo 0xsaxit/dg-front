@@ -1,0 +1,43 @@
+import React from 'react'
+import { Button } from 'semantic-ui-react';
+import styles from './forthStep.module.scss'
+
+const ForthStep = () => {
+    return (
+        <div className={styles.main_wrapper}>
+            <div className={styles.title}>
+                <h1>Play ICE Poker!</h1>
+                <p>Two wasy to play ICE Poker</p>
+            </div>
+
+            <div className={styles.content}>
+                <div className={styles.box_div}>
+                    <div className={styles.box_title}>
+                        <h1>Play in the 3D Metaverse</h1>
+                    </div>
+                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634617669/metaverse_kmhmrf.png" alt="avatar" />
+                    <div className={styles.button_div}>
+                        <Button>
+                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620413783/MANA_jw7ylg.png" alt="mana" />
+                            Enter Decentraland
+                        </Button>
+                    </div>
+                </div>
+
+                <div className={styles.box_div} style={{ paddingRight: '10px' }}>
+                    <div className={styles.box_title}>
+                        <h1>Play On Your Browser</h1>
+                    </div>
+                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634617750/Poker_Table_seodln.png" style={{ width: '130px' }} alt="marketplace" />
+                    <div className={styles.button_div}>
+                        <Button disabled>
+                            Comming Soon
+                        </Button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default ForthStep

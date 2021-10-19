@@ -8,7 +8,7 @@ import { GlobalContext } from '../../../../../../store';
 
 const Balances = ({ state }) => {
   // fetch user's Polygon DG balance from the Context API store
-  const [state, dispatch] = useContext(GlobalContext);
+  const [dispatch] = useContext(GlobalContext);
 
   // define local variables
   const [clicked, setClicked] = useState(false);
