@@ -3245,7 +3245,7 @@ img.avatar-picture-binance {
 
 .account-address {
   font-size: 18px;
-  color: rgba(255, 255, 255, 0.5) !important;
+  opacity: 0.5;
   padding-left: 8px;
   margin-top: -4px !important;
 }
@@ -3374,6 +3374,11 @@ i.clone.outline.icon,
   cursor: pointer;
   color: white !important;
   transition: all linear 0.1s;
+  opacity: 1;
+}
+
+.account-address:hover .svg {
+  opacity: 0.1;
 }
 
 .account-address:hover > i.clone.outline.icon {
@@ -3640,7 +3645,12 @@ div.ui.input.withdraw_input > input {
 .popup .content .info {
   width: 17px !important;
   position: absolute !important;
-  top: 20px !important;
+  /* top: 20px !important; */
+}
+
+.popup .accountTooltip .tooltip_body {
+  display: flex;
+  align-items: center;
 }
 
 .popup .content p {
