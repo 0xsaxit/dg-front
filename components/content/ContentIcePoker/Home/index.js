@@ -5,25 +5,15 @@ import styles from './Home.module.scss'
 const Home = () => {
     return (
         <div className={styles.main_wrapper}>
-            <div className={styles.title}>
-                <h1>
-                    Free To Play. <br />
-                    Play To Earn. <br />
-                    <abbr>(ICE)</abbr> Poker.
-                </h1>
-
-                <p>
-                    Play free poker and earn real cash value. <br />
-                    Acquire an ICE Wearable NFT to get started.
-                </p>
-            </div>
-
-            <div className={styles.img}>
-                <img
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634393601/Intersect_qszewx.png"
-                    alt="Intersect"
-                />
-            </div>
+            <video
+              src="https://res.cloudinary.com/dnzambf4m/video/upload/v1634761194/Web_Landing_2_1_gqgruf.webm"
+              className={styles.home_video}
+              type="video/mp4"
+              frameBorder="0"
+              autoPlay={true}
+              loop
+              muted
+            ></video>
 
             <div className={styles.button_section}>
                 <Button

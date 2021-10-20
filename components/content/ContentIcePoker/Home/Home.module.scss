@@ -2,68 +2,22 @@
 
 .main_wrapper {
     min-height: 100%;
-    background-image: url("https://res.cloudinary.com/dnzambf4m/image/upload/v1634392959/IcePokerBg_orakvo.png");
-    background-position: center;
-    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-top: -60px;
+    margin-bottom: -120px;
 
-    .title {
-        h1 {
-            font-family: "Larsseit-ExtraBold";
-            font-weight: 800 !important;
-            font-size: 42px;
-            margin-bottom: 0;
-            line-height: 1.2;
-            text-align: center;
-
-            abbr {
-                font-family: Shadows Into Light, cursive;
-                font-weight: 100;
-            }
-        }
-
-        p {
-            font-family: "Larsseit-Regular";
-            font-weight: 400;
-            font-size: 21px;
-            line-height: 28px;
-            text-align: center;
-            margin-top: 20px;
-            margin-bottom: 30px;
-        }
-
-        @include mq($until: 499px) {
-            h1 {
-                font-size: 32px;
-            }
-
-            p {
-                font-size: 16px;
-                line-height: 20px;
-            }
-        }
-    }
-
-    .img {
-        display: flex;
-        justify-content: center;
-
-        img {
-            max-width: 100%;
-
-            @include mq($until: 499px) {
-                max-width: 80%;
-            }
-        }
+    .home_video {
+        height: 100vh;
     }
 
     .button_section {
         display: flex;
         justify-content: center;
-        margin-top: 10px;
+        margin-top: -240px;
+        transform: scale(0.8);
 
         .get_started {
             background-color: #2b2b2b;
