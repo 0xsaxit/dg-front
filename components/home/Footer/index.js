@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import cn from 'classnames';
-import { Button } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 import { useMediaQuery } from 'hooks';
 import Link from 'next/link';
 import styles from './Footer.module.scss';
@@ -196,10 +196,19 @@ const Footer = () => {
               </span>
               <div className="d-flex justify-content-between">
                 <p className={styles.description}>
-                  {/* {t('Footer.WE_USE_CLLOKIES')} */}
-                  We use cookies to create a better experience.
+                  <a href="https://twitter.com/decentralgames" target="_blank">
+                    <Icon className={styles.icon} name="twitter" />
+                  </a>
+                  <a href="/discord" target="_blank">
+                    <Icon className={styles.icon} name="discord" />
+                  </a>                  
+                  <a href="https://t.me/decentralgames" target="_blank">
+                    <Icon className={styles.icon} name="telegram" />
+                  </a>
+                  <a href="https://github.com/decentralgames" target="_blank">
+                    <Icon className={styles.icon} name="github" />
+                  </a>
                 </p>
-                {/*<span className={styles.accept}>Accept</span>*/}
               </div>
             </div>
           )}
@@ -258,10 +267,19 @@ const Footer = () => {
             </span>
             <div className="d-flex justify-content-between">
               <p className={styles.description}>
-                {/* {t('Footer.WE_USE_CLLOKIES')} */}
-                We use cookies to create a better experience.
+                <a href="https://twitter.com/decentralgames" target="_blank">
+                  <Icon className={styles.icon} name="twitter" />
+                </a>
+                <a href="/discord" target="_blank">
+                  <Icon className={styles.icon} name="discord" />
+                </a>                  
+                <a href="https://t.me/decentralgames" target="_blank">
+                  <Icon className={styles.icon} name="telegram" />
+                </a>
+                <a href="https://github.com/decentralgames" target="_blank">
+                  <Icon className={styles.icon} name="github" />
+                </a>
               </p>
-              {/*<span className={styles.accept}>Accept</span>*/}
             </div>
           </div>
         )}
