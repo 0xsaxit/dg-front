@@ -119,7 +119,13 @@ const ModalUpgradeSuccess = props => {
         </div>
 
         <div className={styles.buttons}>
-          <Button className={styles.primary}>Play Now</Button>
+          <Button 
+            href="https://play.decentral.games/dext"
+            target="_blank"
+            className={styles.primary}
+          >
+            Play Now
+          </Button>
           <Button
             className={styles.none}
             onClick={() => {
