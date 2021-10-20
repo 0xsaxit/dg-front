@@ -122,7 +122,7 @@ const ModalEthAuth = props => {
                 ? 'clicked'
                 : null
             }
-            onClick={metaTransaction}
+            disabled={true}
             primaryText="Authorize ETH"
             secondaryText="Enables ETH Transaction"
           />
@@ -133,19 +133,10 @@ const ModalEthAuth = props => {
             actionState={
               !clickedConfirm ? 'initial' : clickedConfirm ? 'clicked' : null
             }
-            onClick={mintToken}
+            disabled={true}
             primaryText="Confirm Purchase"
             secondaryText="Mint Wearable"
           />
-
-          {/** TODO: add correct on click action here */}
-          {/* <MetamaskAction
-            actionState={payForActivationState}
-            onClick={() => console.log('pay for activation on click action')}
-            primaryText="Pay For Activation"
-            secondaryText="Payment with 0.1 ETH"
-            disabled={authStatus}
-          /> */}
         </div>
       </Aux>
     );
