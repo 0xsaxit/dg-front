@@ -14,7 +14,7 @@ import MetamaskAction, { ActionLine } from 'components/common/MetamaskAction';
 import ModalUpgradeSuccess from '../ModalUpgradeSuccess';
 import Global from '../../Constants';
 import Aux from '../../_Aux';
-import { Loader} from 'semantic-ui-react'
+import { Loader } from 'semantic-ui-react';
 
 const ModalUpgradePending = props => {
   // fetch tokenAmounts data from the Context API store
@@ -95,14 +95,13 @@ const ModalUpgradePending = props => {
   }, [state.userStatus]);
 
   // get ICE and DG authorization status' based on tokenAuths state object
-  useEffect(() => {    
+  useEffect(() => {
     const authStatusICE = state.tokenAuths.ICE_AUTHORIZATION;
     const authStatusDG = state.tokenAuths.DG_AUTHORIZATION;
 
     setAuthStatusICE(authStatusICE);
     setAuthStatusDG(authStatusDG);
     setInstance(true);
-
   }, [state.tokenAuths]);
 
   // get NFT authorization state based on props.tokenID
@@ -119,13 +118,13 @@ const ModalUpgradePending = props => {
   }, [state.nftAuthorizations]);
 
   // open Upgrade Success Modal after we get updated wearable info from the API
-  useEffect(() => {    
+  useEffect(() => {
     if (state.iceWearableUpdatedSuccess) {
       // update global state iceWearableUpdatedSuccess
       dispatch({
         type: 'ice_wearable_update_success',
         data: false,
-      })
+      });
 
       setAuthStatusUpgrade(true);
       setOpenUpgradeSuccess(true);
@@ -133,28 +132,27 @@ const ModalUpgradePending = props => {
 
       setInstance(true);
     }
-  }, [state.iceWearableItems])
-  
+  }, [state.iceWearableItems]);
+
   useEffect(() => {
     if (instance) {
       init();
       setRefreshActiveItem(!refreshActiveItem);
-      console.log("reloading completed all: ", progSteps);
+      console.log('reloading completed all: ', progSteps);
     }
   }, [instance]);
 
-  useEffect(() => {    
-    if(updateStatus.name) {
+  useEffect(() => {
+    if (updateStatus.name) {
       updateActionState(updateStatus.name, updateStatus.value);
     }
-  }, [updateStatus])
+  }, [updateStatus]);
 
-  useEffect(() => {    
+  useEffect(() => {
     const active = getactiveItem(null);
-    console.log("Active: ===== ", active);
+    console.log('Active: ===== ', active);
     setActiveItem(active);
-  }, [refreshActiveItem])
-  
+  }, [refreshActiveItem]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -166,65 +164,63 @@ const ModalUpgradePending = props => {
         step: 'ICE',
         authState: authStatusICE,
         text: 'Authorize ICE',
-        actionState: 
-        authStatusICE? 'done':'initial',
-        handleClick: () =>{
-          console.log("ICE clicked!");
+        actionState: authStatusICE ? 'done' : 'initial',
+        handleClick: () => {
+          console.log('ICE clicked!');
           metaTransactionToken('ICE');
-        }
+        },
       },
       {
         step: 'DG',
         authState: authStatusDG,
         text: 'Authorize DG',
-        actionState: authStatusDG? 'done':'initial',
-        handleClick: () =>{
-          console.log("DG clicked!");
+        actionState: authStatusDG ? 'done' : 'initial',
+        handleClick: () => {
+          console.log('DG clicked!');
           metaTransactionToken('DG');
-        }
+        },
       },
       {
         step: 'NFT',
         authState: authStatusNFT,
         text: 'Authorize NFT',
-        actionState: authStatusNFT? 'done': 'initial',
-        handleClick: () =>{
-          console.log("NFT clicked!");
+        actionState: authStatusNFT ? 'done' : 'initial',
+        handleClick: () => {
+          console.log('NFT clicked!');
           metaTransactionNFT();
-        }
+        },
       },
       {
         step: 'WEARABLE',
         authState: authStatusUpgrade,
         text: 'Upgrade Wearable',
-        actionState: authStatusUpgrade? 'done': 'initial',
-        handleClick: () =>{
-          console.log("Wearable clicked!");
+        actionState: authStatusUpgrade ? 'done' : 'initial',
+        handleClick: () => {
+          console.log('Wearable clicked!');
           upgradeToken();
-        }
-      }
-    ]
+        },
+      },
+    ];
 
     status.sort((a, b) => {
-      return a.step === 'WEARABLE'? 0 : (b.authState - a.authState);
-    })    
+      return a.step === 'WEARABLE' ? 0 : b.authState - a.authState;
+    });
     setProgSteps(status);
   }
 
   function updateAuthState(name, value) {
     progSteps.map(item => {
-      if(item.step === name) {
+      if (item.step === name) {
         item.authState = value;
-      } 
-    })
+      }
+    });
     setProgSteps(progSteps);
   }
 
   function updateActionState(name, value) {
-
     const result = progSteps.map(item => {
-      if(item.step === name) {
-        if(value === 'done') {
+      if (item.step === name) {
+        if (value === 'done') {
           item.authState = true;
         }
 
@@ -232,8 +228,8 @@ const ModalUpgradePending = props => {
         return item;
       } else {
         return item;
-      } 
-    })
+      }
+    });
 
     const active = getactiveItem(result);
 
@@ -242,10 +238,10 @@ const ModalUpgradePending = props => {
   }
 
   function getactiveItem(param) {
-    console.log("param ====== ", param);
+    console.log('param ====== ', param);
 
-    const activeItems = (param? param:progSteps).filter(x=> !x.authState);
-    if(activeItems.length > 0) {
+    const activeItems = (param ? param : progSteps).filter(x => !x.authState);
+    if (activeItems.length > 0) {
       return activeItems[0];
     } else {
       return null;
@@ -255,39 +251,45 @@ const ModalUpgradePending = props => {
   function populateButtons() {
     return (
       <div className={styles.steps_container}>
-        {progSteps && progSteps.map(item => (
-          <>
-          <MetamaskAction
-            primaryText={item.text}            
-            actionState={item.actionState}
-            onClick={()=> {
-              console.log("circle clicked", item);
-              // if(!item.authState) {
-              //   item.handleClick();
-              // }
-            }}
-          />
-          {item.step!=='WEARABLE' && (<ActionLine previousAction={item.authState ? 'done' : 'initial'}/>)}
-          </>
-        ))}
+        {progSteps &&
+          progSteps.map(item => (
+            <>
+              <MetamaskAction
+                primaryText={item.text}
+                actionState={item.actionState}
+                onClick={() => {
+                  console.log('circle clicked', item);
+                  // if(!item.authState) {
+                  //   item.handleClick();
+                  // }
+                }}
+              />
+              {item.step !== 'WEARABLE' && (
+                <ActionLine
+                  previousAction={item.authState ? 'done' : 'initial'}
+                />
+              )}
+            </>
+          ))}
       </div>
-    )
+    );
   }
 
   function proceedButton() {
     // const activeItem = getActiveItem();
-    console.log("active Proceed Item: ", activeItem);
+    console.log('active Proceed Item: ', activeItem);
 
     return (
       <Button
         className={styles.proceed_button}
         onClick={() => {
-          console.log("active Item: ", activeItem);
+          console.log('active Item: ', activeItem);
           activeItem.handleClick();
         }}
       >
         <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
-        {loading? <Loader /> : activeItem.text}
+
+        {loading ? <Loader /> : activeItem.text}
       </Button>
     );
   }
@@ -349,22 +351,21 @@ const ModalUpgradePending = props => {
   }
 
   async function metaTransactionToken(token) {
-
     let tokenContract = {};
     let MetaTxNumber = 0;
 
     console.log('Meta-transaction: ' + token);
     setLoading(true);
-    setUpdateStatus({name: token, value: 'clicked'})
-   
-    if (token === 'ICE') {      
+    setUpdateStatus({ name: token, value: 'clicked' });
+
+    if (token === 'ICE') {
       tokenContract = tokenContractICE;
       MetaTxNumber = 8;
     } else if (token === 'DG') {
       tokenContract = tokenContractDG;
       MetaTxNumber = 9;
     }
-   
+
     try {
       console.log(
         'Authorize ' + token + ' amount: ' + Global.CONSTANTS.MAX_AMOUNT
@@ -385,11 +386,9 @@ const ModalUpgradePending = props => {
       );
 
       if (txHash === false) {
-
         setLoading(false);
-        setUpdateStatus({name: token, value: 'initial'});
+        setUpdateStatus({ name: token, value: 'initial' });
         console.log('Biconomy meta-transaction failed');
-
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
@@ -401,12 +400,11 @@ const ModalUpgradePending = props => {
         });
 
         setLoading(false);
-        setUpdateStatus({name: token, value: 'done'});        
+        setUpdateStatus({ name: token, value: 'done' });
       }
     } catch (error) {
-      
       setLoading(false);
-      setUpdateStatus({name: token, value: 'initial'});
+      setUpdateStatus({ name: token, value: 'initial' });
       console.log(token + ' Authorization error: ' + error);
     }
   }
@@ -417,7 +415,7 @@ const ModalUpgradePending = props => {
     console.log('Spender address: ' + spenderAddress);
 
     setLoading(true);
-    setUpdateStatus({name: token, value: 'clicked'})
+    setUpdateStatus({ name: token, value: 'clicked' });
 
     try {
       // get function signature and send Biconomy API meta-transaction
@@ -434,13 +432,12 @@ const ModalUpgradePending = props => {
       );
 
       if (txHash === false) {
-        setLoading(false);      
-        setUpdateStatus({name: token, value: 'initial'});
+        setLoading(false);
+        setUpdateStatus({ name: token, value: 'initial' });
         console.log('Biconomy meta-transaction failed');
       } else {
-
         console.log('Biconomy meta-transaction hash: ' + txHash);
-        // setAuthStatusNFT(true); // this should get set to true in the hook, but for some reason it's too slow to register        
+        // setAuthStatusNFT(true); // this should get set to true in the hook, but for some reason it's too slow to register
 
         // update global state NFT authorizations
         const refresh = !state.refreshNFTAuths;
@@ -449,16 +446,15 @@ const ModalUpgradePending = props => {
           data: refresh,
         });
 
-        setLoading(false);      
-        setUpdateStatus({name: token, value: 'done'});
+        setLoading(false);
+        setUpdateStatus({ name: token, value: 'done' });
       }
     } catch (error) {
-      // setClickedNFT(false);      
+      // setClickedNFT(false);
 
       console.log('NFT authorization error: ' + error);
       setLoading(false);
-      setUpdateStatus({name: token, value: 'initial'});
-      
+      setUpdateStatus({ name: token, value: 'initial' });
     }
   }
 
@@ -469,58 +465,65 @@ const ModalUpgradePending = props => {
 
     const token = 'WEARABLE';
     setLoading(true);
-    setUpdateStatus({name: token, value: 'clicked'})
+    setUpdateStatus({ name: token, value: 'clicked' });
 
-    const json = await Fetch.UPGRADE_TOKEN(
-      props.tokenID,
-      Global.ADDRESSES.COLLECTION_V2_ADDRESS
-    );
+    try {
+      const json = await Fetch.UPGRADE_TOKEN(
+        props.tokenID,
+        Global.ADDRESSES.COLLECTION_V2_ADDRESS
+      );
 
-    if (json.status) {
-      // update global state token amounts
-      const refreshTokenAmounts = !state.refreshTokenAmounts;
-      dispatch({
-        type: 'refresh_token_amounts',
-        data: refreshTokenAmounts,
-      });
+      if (json.status) {
+        // update global state token amounts
+        const refreshTokenAmounts = !state.refreshTokenAmounts;
+        dispatch({
+          type: 'refresh_token_amounts',
+          data: refreshTokenAmounts,
+        });
 
-      // update global state wearables data
-      const refreshWearable = !state.refreshWearable;
-      dispatch({
-        type: 'refresh_wearable_items',
-        data: refreshWearable,
-      });
+        // update global state wearables data
+        const refreshWearable = !state.refreshWearable;
+        dispatch({
+          type: 'refresh_wearable_items',
+          data: refreshWearable,
+        });
 
-      // update global state balances
-      const refreshBalances = !state.refreshBalances;
-      dispatch({
-        type: 'refresh_balances',
-        data: refreshBalances,
-      })
+        // update global state balances
+        const refreshBalances = !state.refreshBalances;
+        dispatch({
+          type: 'refresh_balances',
+          data: refreshBalances,
+        });
 
-      // update global state iceWearableUpdatedSuccess
-      dispatch({
-        type: 'ice_wearable_update_success',
-        data: true,
-      })
+        // update global state iceWearableUpdatedSuccess
+        dispatch({
+          type: 'ice_wearable_update_success',
+          data: true,
+        });
 
-      console.log('WEARABLE upgrading successful');
+        console.log('WEARABLE upgrading successful');
+        setLoading(false);
+        setUpdateStatus({ name: token, value: 'done' });
+        // setRefreshActiveItem(!refreshActiveItem);
+      } else if (!json.status) {
+        setLoading(false);
+        setUpdateStatus({ name: token, value: 'initial' });
+
+        setClickedUpgrade(false);
+        console.log('WEARABLE upgrading error (a): ' + json.result);
+      } else if (json.status === 'error') {
+        setLoading(false);
+        setUpdateStatus({ name: token, value: 'initial' });
+
+        setClickedUpgrade(false);
+        console.log('WEARABLE upgrading error (b): ' + json.result);
+      }
+    } catch (error) {
       setLoading(false);
-      setUpdateStatus({name: token, value: 'done'});
-      // setRefreshActiveItem(!refreshActiveItem);
-
-    } else if (!json.status) {
-      setLoading(false);
-      setUpdateStatus({name: token, value: 'initial'});
-
+      setUpdateStatus({ name: token, value: 'initial' });
       setClickedUpgrade(false);
-      console.log('WEARABLE upgrading error (a): ' + json.result);
-    } else if (json.status === 'error') {
-      setLoading(false);
-      setUpdateStatus({name: token, value: 'initial'});
 
-      setClickedUpgrade(false);
-      console.log('WEARABLE upgrading error (b): ' + json.result);
+      console.log(error); // API request timeout error
     }
   }
 
@@ -551,7 +554,7 @@ const ModalUpgradePending = props => {
               display: 'flex',
               justifyContent: 'center',
               textAlign: 'center',
-              flexDirection: 'column'
+              flexDirection: 'column',
             }}
           >
             <div className={styles.upgrade_container}>
@@ -565,12 +568,13 @@ const ModalUpgradePending = props => {
 
               <p className={styles.description}>
                 To upgrade your wearable, you will have to complete 4
-                transactions in metamask.
+                transactions in MetaMask.
               </p>
 
               {/* {authButtons()} */}
               {populateButtons()}
             </div>
+
             {activeItem && proceedButton()}
           </div>
         </Modal>

@@ -11,7 +11,7 @@ import Aux from '../../_Aux';
 import Global from '../../Constants';
 import MetamaskAction, { ActionLine } from 'components/common/MetamaskAction';
 import ModalMintSuccess from '../ModalMintSuccess';
-import { Loader} from 'semantic-ui-react'
+import { Loader } from 'semantic-ui-react';
 
 const ModalEthAuth = props => {
   // dispatch user's treasury contract active status to the Context API store
@@ -76,7 +76,7 @@ const ModalEthAuth = props => {
 
   // get WETH authorization status based on tokenAuths state object
   useEffect(() => {
-    const authStatus = state.tokenAuths.WETH_AUTHORIZATION;    
+    const authStatus = state.tokenAuths.WETH_AUTHORIZATION;
     setAuthStatus(authStatus);
   }, [state.tokenAuths]);
 
@@ -84,7 +84,7 @@ const ModalEthAuth = props => {
     const canPurchase = state.canPurchase;
 
     if (canPurchase) {
-      if(state.tokenAuths.WETH_AUTHORIZATION) {
+      if (state.tokenAuths.WETH_AUTHORIZATION) {
         setButtonMessage('Confirm Purchase');
       } else {
         setButtonMessage('Authorize ETH');
@@ -122,34 +122,21 @@ const ModalEthAuth = props => {
                 ? 'clicked'
                 : null
             }
-            onClick={metaTransaction}
+            disabled={true}
             primaryText="Authorize ETH"
             secondaryText="Enables ETH Transaction"
           />
 
-          <ActionLine previousAction={authStatus ? 'done' : 'initial'}/>
+          <ActionLine previousAction={authStatus ? 'done' : 'initial'} />
 
           <MetamaskAction
             actionState={
-              !clickedConfirm
-                ? 'initial'
-                : clickedConfirm
-                ? 'clicked'
-                : null
+              !clickedConfirm ? 'initial' : clickedConfirm ? 'clicked' : null
             }
-            onClick={mintToken}
+            disabled={true}
             primaryText="Confirm Purchase"
             secondaryText="Mint Wearable"
           />
-
-          {/** TODO: add correct on click action here */}
-          {/* <MetamaskAction
-            actionState={payForActivationState}
-            onClick={() => console.log('pay for activation on click action')}
-            primaryText="Pay For Activation"
-            secondaryText="Payment with 0.1 ETH"
-            disabled={authStatus}
-          /> */}
         </div>
       </Aux>
     );
@@ -163,47 +150,55 @@ const ModalEthAuth = props => {
     setLoading(true);
     setClickedConfirm(true);
 
-    const json = await Fetch.MINT_TOKEN(
-      props.itemID,
-      Global.ADDRESSES.COLLECTION_V2_ADDRESS
-    );
+    try {
+      const json = await Fetch.MINT_TOKEN(
+        props.itemID,
+        Global.ADDRESSES.COLLECTION_V2_ADDRESS
+      );
 
-    if (json.status) {
-      // update global state token amounts
-      const refresh1 = !state.refreshTokenAmounts;
-      dispatch({
-        type: 'refresh_token_amounts',
-        data: refresh1,
-      });
+      if (json.status) {
+        // update global state token amounts
+        const refresh1 = !state.refreshTokenAmounts;
+        dispatch({
+          type: 'refresh_token_amounts',
+          data: refresh1,
+        });
 
-      // update global state wearables data
-      const refresh2 = !state.refreshWearable;
-      dispatch({
-        type: 'refresh_wearable_items',
-        data: refresh2,
-      });
+        // update global state wearables data
+        const refresh2 = !state.refreshWearable;
+        dispatch({
+          type: 'refresh_wearable_items',
+          data: refresh2,
+        });
 
-      console.log('NFT minting successful');
+        console.log('NFT minting successful');
 
-      setOpenMintSuccess(true);
-      setOpen(false);
+        setOpenMintSuccess(true);
+        setOpen(false);
 
+        setLoading(false);
+        setClickedConfirm(false);
+
+        props.close();
+      } else if (!json.status) {
+        setButtonMessage('Token Minting Error');
+        setLoading(false);
+        setClickedConfirm(false);
+
+        console.log('NFT minting error (a): ' + json.result);
+      } else if (json.status === 'error') {
+        setButtonMessage(json.result);
+        setLoading(false);
+        setClickedConfirm(false);
+
+        console.log('NFT minting error (b): ' + json.result);
+      }
+    } catch (error) {
+      setButtonMessage('API Timeout');
       setLoading(false);
       setClickedConfirm(false);
 
-      props.close();
-    } else if (!json.status) {
-      setButtonMessage('Token Minting Error');
-      setLoading(false);
-      setClickedConfirm(false);
-
-      console.log('NFT minting error (a): ' + json.result);
-    } else if (json.status === 'error') {
-      setButtonMessage(json.result);
-      setLoading(false);
-      setClickedConfirm(false);
-
-      console.log('NFT minting error (b): ' + json.result);
+      console.log(error); // API request timeout error
     }
 
     setMinting(false);
@@ -244,7 +239,7 @@ const ModalEthAuth = props => {
           data: refresh,
         });
         setAuthStatus(true);
-        setLoading(false);        
+        setLoading(false);
       }
     } catch (error) {
       console.log('WETH authorization error: ' + error);
@@ -351,7 +346,13 @@ const ModalEthAuth = props => {
                   }}
                 >
                   <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
-                  {loading? <Loader /> : (authStatus? 'Confirm Purchase':'Authorize ETH')}
+                  {loading ? (
+                    <Loader />
+                  ) : authStatus ? (
+                    'Confirm Purchase'
+                  ) : (
+                    'Authorize ETH'
+                  )}
                 </Button>
               ) : (
                 <Button disabled className={styles.proceed_button}>
@@ -360,7 +361,7 @@ const ModalEthAuth = props => {
               )
             ) : (
               <Button disabled className={styles.proceed_button}>
-                {loading? <Loader /> : 'Confirm Purchase'}
+                {loading ? <Loader /> : 'Confirm Purchase'}
               </Button>
             )}
           </div>
