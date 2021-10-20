@@ -126,6 +126,7 @@ const AccountData = props => {
               </a>
             </span>
           </div>
+
           <div
             className={cn(
               'col-lg-8',
@@ -175,7 +176,6 @@ const AccountData = props => {
                 </p>
               </span>
             </span>
-
             <div style={{ display: 'flex' }}>
               <div className={styles.token_container}>
                 <div className={styles.tokenImgDiv}>

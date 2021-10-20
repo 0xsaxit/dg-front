@@ -26,7 +26,7 @@ const CONSTANTS = {
   DISCORD_URL: 'https://discord.gg/cvbSNzY',
   SOCIAL_HANDLE: 'decentralgames',
   MAX_ITEM_COUNT: 10,
-  VERIFY_URL: 'dev.decentral.games',
+  VERIFY_URL: 'staging.decentral.games',
   // AMNESIA_COMMENT: we should remove these after we are done with amnesia
   AMNESIA_DESCRIPTION: "The world’s biggest DJs, live from Decentral Games.",
 };
