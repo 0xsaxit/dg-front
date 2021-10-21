@@ -84,7 +84,11 @@ const Balances = () => {
             <div className={styles.float_right}>
               <div className={styles.text_wrapper}>
                 <p className={styles.bold_text}>{item.model}</p>
-                <p className={styles.bold_text}>${item.price}</p>
+                {index === 1 ? (
+                  <p className={styles.bold_text}>--</p>
+                ) : (
+                  <p className={styles.bold_text}>${item.price}</p>
+                )}
               </div>
 
               {index === 1 ? (
