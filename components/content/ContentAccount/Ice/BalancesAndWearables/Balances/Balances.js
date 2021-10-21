@@ -17,7 +17,10 @@ const Balances = () => {
       icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg',
       name: 'ICE',
       type: 'ICE',
-      model: state.iceAmounts.ICE_AVAILABLE_AMOUNT,
+      model: formatPrice(
+        state.iceAmounts.ICE_AVAILABLE_AMOUNT,
+        0
+      ),
       price: formatPrice(
         state.iceAmounts.ICE_CLAIM_AMOUNT * state.DGPrices.ice,
         2
@@ -27,7 +30,10 @@ const Balances = () => {
       icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_XP_ICN_f9w2se.svg',
       name: 'Gameplay XP',
       type: 'XP',
-      model: state.xpAmounts,
+      model: formatPrice(
+        state.xpAmounts,
+        0
+      ),
       price: '0.00',
     },
     {
@@ -120,7 +126,7 @@ const Balances = () => {
         ) : type === 'ICE' ? (
           <Button
             className={styles.newLink}
-            href="https://quickswap.exchange/#/swap?outputCurrency=0x2a93172c8dccbfbc60a39d56183b7279a2f647b4"
+            href="https://quickswap.exchange/#/swap?outputCurrency=0xc6c855ad634dcdad23e64da71ba85b8c51e5ad7c"
             target="_blank"
           >
             Buy {arrow()}
@@ -173,11 +179,11 @@ const Balances = () => {
 
         {!clicked ? (
           <Button className={styles.claim_button} onClick={() => claimTokens()}>
-            Claim {state.iceAmounts.ICE_CLAIM_AMOUNT} ICE
+            Claim {formatPrice(state.iceAmounts.ICE_CLAIM_AMOUNT, 0)} ICE
           </Button>
         ) : (
           <Button className={styles.claim_button} disabled>
-            Claim {state.iceAmounts.ICE_CLAIM_AMOUNT} ICE
+            Claim {formatPrice(state.iceAmounts.ICE_CLAIM_AMOUNT, 0)} ICE
           </Button>
         )}
 
