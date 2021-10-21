@@ -2,28 +2,473 @@
 
 .main_wrapper {
     min-height: 100%;
-    background-image: url("https://res.cloudinary.com/dnzambf4m/image/upload/v1634392959/IcePokerBg_orakvo.png");
-    background-position: center;
-    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 
-    .title {
-        h1 {
-            font-family: "Larsseit-ExtraBold";
-            font-weight: 800 !important;
-            font-size: 42px;
-            margin-bottom: 0;
-            line-height: 1.2;
-            text-align: center;
-        }
+    .iceWearablesMarketplace {
+        .header {
+            width: calc(100vw - 315px);
+            margin-top: 50px;
+            margin-left: 40px;
+            margin-bottom: -120px;
 
-        @include mq($until: 499px) {
             h1 {
-                font-size: 32px;
+                font-size: 24px;
+                font-family: "Larsseit-Medium";
+                line-height: 32px;
+                letter-spacing: 0.7px;
+            }
+
+            p {
+                font-size: 20px;
+                font-family: "Larsseit-Regular";
+                line-height: 32px;
+                letter-spacing: 0.3px;
+
+                a {
+                    color: #509bff;
+                    text-decoration: underline !important;
+
+                    &:hover {
+                        transition: 0.2s ease-in;
+                    }
+                }
+            }
+
+            h3 {
+                font-size: 19px;
+                line-height: 26px;
+                margin-top: 48px;
+            }
+
+            @media (max-width: 1040px) {
+                width: calc(100% - 80px);
+            }
+
+            @include mq($until: medium) {
+                width: calc(100% - 70px);
+                margin-left: 30px;
+
+                h1 {
+                    font-size: 18px;
+                }
+
+                p {
+                    font-size: 15px;
+                    line-height: 20px;
+                }
+
+                h3 {
+                    font-size: 16px;
+                    margin-top: 48px;
+                }
             }
         }
+
+        .outter_games_container {
+            width: calc(100vw - 297px);
+            display: block !important;
+            grid-gap: 0px !important;
+            grid-template-columns: none !important;
+            margin: 18px 0px 120px 40px;
+            margin-bottom: 30px;
+            margin-top: 150px;
+
+            @media (max-width: 1040px) {
+                width: calc(100vw - 120px);
+            }
+
+            @media (max-width: 768px) {
+                width: calc(100vw - 110px);
+            }
+
+            .games_container {
+                position: relative;
+                border: 1px solid #2a2a2a;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border-radius: 12px;
+                box-sizing: border-box;
+                padding: 18px 18px 75px 18px;
+                min-width: 228px;
+                height: 100%;
+
+                .wear_box_purple {
+                    position: relative;
+                    width: 100%;
+                    border-radius: 16px;
+                    margin-top: 12px;
+
+                    .p2e_enabled {
+                        position: absolute;
+                        top: -45px;
+                        cursor: pointer;
+                    }
+
+                    .fullDiv {
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        margin-bottom: 14px;
+
+                        .imgDiv {
+                            position: absolute;
+                            width: 240px;
+                            top: -25px !important;
+
+                            .img {
+                                width: 100%;
+                                pointer-events: none !important;
+                            }
+
+                            .tooltip {
+                                position: absolute;
+                                right: 70px !important;
+                                width: 12px !important;
+                                top: 24.5px;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+
+                    .popup {
+                        margin-right: -13px !important;
+                        margin-bottom: 13px !important;
+                        height: auto !important;
+
+                        .tooltipContent {
+                            width: 240px;
+                            padding-top: 8px;
+                            padding-right: 5px;
+                            padding-bottom: 5px;
+
+                            .popup_info {
+                                width: 17px !important;
+                                position: absolute !important;
+                                top: 17px !important;
+                            }
+
+                            .popup_content {
+                                font-size: 13px;
+                                line-height: 18px;
+                                letter-spacing: 0.5px;
+                                margin-left: 30px;
+                                font-weight: 700;
+                            }
+                        }
+                        &::before {
+                            background-color: #1f1f1f !important;
+                            box-shadow: 1px 1px 0 0 #1f1f1f !important;
+                            display: block !important;
+                        }
+                    }
+
+                    @media screen and (max-width: 1000px) {
+                        .fullDiv {
+                            width: 100%;
+                            display: flex;
+                            justify-content: center;
+                            margin-bottom: 0px;
+
+                            .imgDiv {
+                                position: absolute;
+                                width: 200px !important;
+                                top: -30px !important;
+
+                                .img {
+                                    width: 100%;
+                                }
+
+                                .tooltip {
+                                    position: absolute;
+                                    right: 58px !important;
+                                    top: 20.5px !important;
+                                    width: 10px !important;
+                                }
+                            }
+                        }
+
+                        .popup {
+                            margin-right: -15px !important;
+                            margin-bottom: 8px !important;
+
+                            .tooltipContent {
+                                width: 240px;
+                                padding-top: 8px;
+                                padding-right: 5px;
+                                padding-bottom: 5px;
+
+                                .popup_info {
+                                    width: 17px !important;
+                                    position: absolute !important;
+                                    top: 17px !important;
+                                }
+
+                                .popup_content {
+                                    font-size: 13px;
+                                    line-height: 18px;
+                                    letter-spacing: 0.3px;
+                                    margin-left: 30px;
+                                }
+                            }
+                            &::before {
+                                background-color: #1f1f1f !important;
+                                box-shadow: 1px 1px 0 0 #1f1f1f !important;
+                            }
+                        }
+                    }
+
+                    @include mq($until: medium) {
+                        .fullDiv {
+                            .imgDiv {
+                                position: absolute;
+                                width: 260px !important;
+
+                                .img {
+                                    width: 80% !important;
+                                    position: absolute;
+                                    right: 30px;
+                                }
+
+                                .tooltip {
+                                    position: absolute;
+                                    right: 87px !important;
+                                    top: 21px !important;
+                                    width: 12px !important;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .nft_image {
+                    width: 100%;
+                    border-radius: 12px;
+                    margin-top: 5px;
+                    pointer-events: none !important;
+
+                    .p2e_enabled {
+                        position: absolute;
+                        top: -39px;
+                        z-index: 2;
+                        left: 0;
+                        min-width: 190px;
+                        height: 100px;
+                    }
+
+                    .product_image {
+                        height: 100%;
+                        min-height: 100%;
+                        border-radius: 12px;
+                    }
+                }
+
+                .nft_description {
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                    margin-top: 5px;
+
+                    .nft_info {
+                        border: 1px solid #2a2a2a;
+                        padding: 4px 8px 4px 8px;
+                        margin: 8px 4px 0 4px;
+                        border-radius: 12px;
+                        font-size: 10px;
+                        line-height: 12px;
+                        font-family: Larsseit-Bold;
+                    }
+
+                    .nft_other_p {
+                        color: rgba(255, 255, 255, 0.5) !important;
+                        font-family: Larsseit-Bold;
+                        font-size: 10px;
+                        line-height: 26px;
+                        margin-bottom: 0px;
+                        margin-top: 8px;
+                        text-align: center;
+                        text-transform: uppercase;
+                    }
+
+                    .nft_p {
+                        color: rgba(255, 255, 255) !important;
+                        font-family: Larsseit-Regular;
+                        font-size: 14px;
+                        line-height: 20px;
+                        margin-bottom: 0px;
+                        margin-top: 8px;
+                        text-align: center;
+                    }
+
+                    .nft_other_h3 {
+                        font-family: Larsseit-Bold;
+                        text-align: center;
+                        font-size: 20px;
+                        line-height: 24px;
+                        margin-top: 0px;
+                        margin-bottom: 0px;
+                        color: rgba(255, 255, 255) !important;
+                    }
+
+                    .nft_h3 {
+                        font-family: Larsseit-Bold;
+                        text-align: center;
+                        font-size: 20px;
+                        margin-top: 10px;
+                        margin-bottom: 4px;
+                        color: rgba(255, 255, 255) !important;
+                    }
+                }
+
+                .nft_button {
+                    background: #006eff !important;
+                    width: 197px;
+                    height: 34px;
+                    border-radius: 8px !important;
+                    font-family: Larsseit-Bold;
+                    font-size: 12px !important;
+                    margin-left: auto;
+                    margin-right: auto;
+                    color: white !important;
+                    margin-top: 24px !important;
+                    line-height: 17px !important;
+                }
+
+                .preview_nft_image {
+                    margin-top: 5px;
+                    border-radius: 12px;
+                    height: calc(100% - 30px);
+                    object-fit: cover;
+
+                    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+                    -moz-animation: fadein 2s; /* Firefox < 16 */
+                    -ms-animation: fadein 2s; /* Internet Explorer */
+                    -o-animation: fadein 2s; /* Opera < 12.1 */
+                    animation: fadein 2s;
+                }
+
+                .preview_description {
+                    position: relative;
+                    width: 100%;
+
+                    .title {
+                        margin-top: 12px;
+                        font-family: "Larsseit-Regular";
+                        font-style: normal;
+                        font-size: 10px;
+                        font-weight: bold !important;
+                        line-height: 14px;
+                        text-align: center;
+                        color: rgba(255, 255, 255, 0.5) !important;
+                    }
+
+                    .preview_level_select_div {
+                        width: 100%;
+                        border: 1px solid #2a2a2a;
+                        border-radius: 8px;
+                        display: flex;
+                        justify-content: space-evenly;
+                        padding: 5px;
+                        margin-top: 12px;
+
+                        .select {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            max-width: 18.5%;
+                            padding: 10px 15px;
+                            background: transparent;
+                            border-radius: 8px;
+                            font-family: "Larsseit-Regular";
+                            font-style: normal;
+                            font-weight: bold;
+                            font-size: 13.0345px;
+                            line-height: 15px;
+                            color: rgba(255, 255, 255, 0.5);
+                            text-align: center;
+                            cursor: pointer;
+                            transition: 0.15s ease-in;
+
+                            &:hover {
+                                color: #ffffff;
+                                background: #2a2a2a;
+                                transition: 0.15s ease-in;
+                            }
+                        }
+
+                        .selectActive {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            max-width: 18.5%;
+                            padding: 10px 15px;
+                            background: #2a2a2a;
+                            border-radius: 8px;
+                            font-family: "Larsseit-Regular";
+                            font-style: normal;
+                            font-weight: bold;
+                            font-size: 13.0345px;
+                            line-height: 15px;
+                            color: #ffffff;
+                            text-align: center;
+                            transition: 0.15s ease-in;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
