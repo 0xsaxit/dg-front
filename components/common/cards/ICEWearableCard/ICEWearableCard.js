@@ -98,7 +98,13 @@ const ICEWearableCard = props => {
                 />
               )
             ) : (
-              <span className="w-100 d-flex justify-content-between">
+              <span
+                className={
+                  rank.value != 5
+                    ? 'w-100 d-flex justify-content-between'
+                    : 'w-100 d-flex justify-content-center'
+                }
+              >
                 {delegateAddress === '' ? (
                   <ModalDelegate
                     tokenID={props.tokenID}
@@ -117,16 +123,18 @@ const ICEWearableCard = props => {
                     buttonName={buttonUndelegate}
                   />
                 )}
-                <ModalWearable
-                  tokenID={props.tokenID}
-                  itemID={props.itemID}
-                  imgSrc={image}
-                  rank={rank.value}
-                  percentage={rank.percentage}
-                  bonus={attributes.at(-1).value}
-                  description={description}
-                  name={name.split('(ICE')[0].trim()}
-                />
+                {rank.value < 5 && (
+                  <ModalWearable
+                    tokenID={props.tokenID}
+                    itemID={props.itemID}
+                    imgSrc={image}
+                    rank={rank.value}
+                    percentage={rank.percentage}
+                    bonus={attributes.at(-1).value}
+                    description={description}
+                    name={name.split('(ICE')[0].trim()}
+                  />
+                )}
               </span>
             )}
           </div>

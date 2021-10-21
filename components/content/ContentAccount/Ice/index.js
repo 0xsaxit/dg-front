@@ -6,17 +6,23 @@ import BalancesAndWearables from './BalancesAndWearables';
 function ICE({ state }) {
   return (
     <Aux>
-      {(state.userStatus && !!state.iceWearableItems.length) ||
-      !!state.iceDelegatedItems.length ? (
-        <BalancesAndWearables />
-      ) : (
-        <div>
-          {state.userStatus && !!state.iceWearableItems.length ? (
+      {!state.iceWearableItemsLoading && !state.iceDelegatedItemsLoading && (
+        ///////////////////////////////
+        // loader can be added here
+        // (!state.iceWearableItemsLoading &&
+        // !state.iceDelegatedItemsLoading)
+        // ? {conditional with BalancesAndWearables or NoWearablesSplash}
+        // : <Loader />
+        //////////////////////////////
+        <>
+          {state.userStatus &&
+          (!!state.iceWearableItems.length ||
+            !!state.iceDelegatedItems.length) ? (
             <BalancesAndWearables />
           ) : (
             <NoWearablesSplash />
           )}
-        </div>
+        </>
       )}
     </Aux>
   );
