@@ -106,8 +106,10 @@ const initialState = {
     [0, 20],
   ],
   iceWearableItems: [],
+  iceWearableItemsLoading: false,
   iceWearableUpdatedSuccess: false,
   iceDelegatedItems: [],
+  iceDelegatedItemsLoading: false,
   nftAuthorizations: [],
   canPurchase: true,
   tokenAmounts: {
@@ -299,17 +301,29 @@ const reducer = (state, action) => {
         ...state,
         iceWearableItems: action.data,
       };
-    
+
+    case 'ice_wearable_items_loading':
+      return {
+        ...state,
+        iceWearableItemsLoading: action.data,
+      };
+
     case 'ice_wearable_update_success':
       return {
         ...state,
-        iceWearableUpdatedSuccess:  action.data,
-      }
+        iceWearableUpdatedSuccess: action.data,
+      };
 
     case 'ice_delegated_items':
       return {
         ...state,
         iceDelegatedItems: action.data,
+      };
+
+    case 'ice_delegated_items_loading':
+      return {
+        ...state,
+        iceDelegatedItemsLoading: action.data,
       };
 
     case 'nft_authorizations':
@@ -335,12 +349,12 @@ const reducer = (state, action) => {
         ...state,
         iceAmounts: action.data,
       };
-    
+
     case 'xp_amounts':
       return {
         ...state,
         xpAmounts: action.data,
-      }
+      };
 
     case 'token_auths':
       return {
