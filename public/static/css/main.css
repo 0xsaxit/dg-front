@@ -3737,3 +3737,25 @@ div.ui.input.withdraw_input > input {
 .ice-wearables-carousel-container .react-multiple-carousel__arrow {
   background-color: #2A2A2A;
 }
+
+.no-result-div {
+  margin-top: 40px;
+}
+
+.no-result-div .title {
+  font-size: 24px;
+  text-align: center;
+}
+
+.star-animation-div {
+  position: absolute;
+  left: -45px;
+}
+
+.foxAnimation-div .title {
+  max-width: 270px;
+  margin-top: 25px;
+  font-family: 'Larsseit-Bold';
+  font-size: 20px;
+  text-align: center;
+}
