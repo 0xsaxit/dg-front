@@ -8,8 +8,8 @@ const AccountTooltip = (props) => {
         trigger={
           <div className={styles.question_mark}>
             <svg
-              width="11"
-              height="12"
+              width="8"
+              height="9"
               viewBox="0 0 11 12"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +21,7 @@ const AccountTooltip = (props) => {
             </svg>
           </div>
         }
-        position="right center"
+        position="right center"        
         hideOnScroll={true}
         className={styles.popup}
       >
@@ -32,7 +32,7 @@ const AccountTooltip = (props) => {
               src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
             />
             <p>
-              This is your total {props.data} earned through gameplay.            
+              This is your total {props.data} through gameplay.            
             </p>
           </div>          
         </Popup.Content>
