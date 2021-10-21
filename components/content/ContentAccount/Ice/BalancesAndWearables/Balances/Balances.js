@@ -112,7 +112,7 @@ const Balances = () => {
         {type === 'DG' ? (
           <Button
             className={styles.newLink}
-            href="http://defi.atarichain.com/"
+            href="https://quickswap.exchange/#/swap?outputCurrency=0x2a93172c8dccbfbc60a39d56183b7279a2f647b4"
             target="_blank"
           >
             Buy {arrow()}
@@ -120,7 +120,7 @@ const Balances = () => {
         ) : type === 'ICE' ? (
           <Button
             className={styles.newLink}
-            href="http://defi.atarichain.com/"
+            href="https://quickswap.exchange/#/swap?outputCurrency=0x2a93172c8dccbfbc60a39d56183b7279a2f647b4"
             target="_blank"
           >
             Buy {arrow()}
