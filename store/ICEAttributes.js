@@ -79,6 +79,10 @@ function ICEAttributes() {
     if (instances) {
       async function fetchData() {
         console.log('updateWearableItems ========================= ');
+        dispatch({
+          type: 'ice_wearable_items_loading',
+          data: true,
+        });
 
         const tokenIDs = [];
         try {
@@ -129,6 +133,10 @@ function ICEAttributes() {
           type: 'ice_wearable_items',
           data: iceWearableItems,
         });
+        dispatch({
+          type: 'ice_wearable_items_loading',
+          data: false,
+        });
       }
 
       fetchData();
@@ -138,6 +146,10 @@ function ICEAttributes() {
   // anytime user undelegates an NFT this code will execute
   useEffect(() => {
     (async function () {
+      dispatch({
+        type: 'ice_delegated_items_loading',
+        data: true,
+      });
       let iceDelegatedItems = [];
 
       const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
@@ -170,6 +182,10 @@ function ICEAttributes() {
       dispatch({
         type: 'ice_delegated_items',
         data: iceDelegatedItems,
+      });
+      dispatch({
+        type: 'ice_delegated_items_loading',
+        data: false,
       });
     })();
   }, [state.refreshDelegation]);
