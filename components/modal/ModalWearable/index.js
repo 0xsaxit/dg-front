@@ -207,7 +207,7 @@ const ModalWearable = props => {
                       Update your ICE Bonus to between{' '}
                       {bonus[Math.min(props.rank + 1, 5)]}
                     </li>
-                    <li>Daily free chip stack increase from 4,000 to 4,500</li>
+                    <li>Increase the resale value and rarity of your NFT</li>
                   </ul>
                 </div>
               </div>
