@@ -183,7 +183,7 @@ const ActivateWearableModal = props => {
             </div>
           </div>
           <p>
-            {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(1)} DG
+            {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(2)} DG
             Available <br />
             <abbr>(On Polygon)</abbr>
           </p>
