@@ -2,18 +2,13 @@ import React from 'react';
 import Aux from 'components/_Aux';
 import NoWearablesSplash from './NoWearablesSplash';
 import BalancesAndWearables from './BalancesAndWearables';
+import Images from 'common/Images';
+import styles from './Ice.module.scss';
 
 function ICE({ state }) {
   return (
     <Aux>
-      {!state.iceWearableItemsLoading && !state.iceDelegatedItemsLoading && (
-        ///////////////////////////////
-        // loader can be added here
-        // (!state.iceWearableItemsLoading &&
-        // !state.iceDelegatedItemsLoading)
-        // ? {conditional with BalancesAndWearables or NoWearablesSplash}
-        // : <Loader />
-        //////////////////////////////
+      {!state.iceWearableItemsLoading && !state.iceDelegatedItemsLoading ? (
         <>
           {state.userStatus &&
           (!!state.iceWearableItems.length ||
@@ -23,6 +18,10 @@ function ICE({ state }) {
             <NoWearablesSplash />
           )}
         </>
+      ) : (
+        <div className={styles.spinner_wrapper}>
+          <img src={Images.LOADING_SPINNER} />
+        </div>
       )}
     </Aux>
   );
