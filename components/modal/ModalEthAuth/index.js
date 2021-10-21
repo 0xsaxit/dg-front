@@ -30,6 +30,7 @@ const ModalEthAuth = props => {
   const [clickedAuthEth, setClickedAuthEth] = useState(false);
   const [clickedConfirm, setClickedConfirm] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorText, setErrorText] = useState(null);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////
@@ -142,8 +143,19 @@ const ModalEthAuth = props => {
     );
   }
 
+  function showErrorCase() {
+    return (
+      <Aux>
+        <div className={styles.error_text}>
+          {errorText? errorText: ''}
+        </div>
+      </Aux>
+    );
+  }
+
   // send-off the API request to mint the user's Level 1 wearable
   async function mintToken() {
+    setErrorText(null);
     console.log('Minting NFT item ID: ' + props.itemID);
     setMinting(true);
 
@@ -178,15 +190,18 @@ const ModalEthAuth = props => {
 
         setLoading(false);
         setClickedConfirm(false);
+        setErrorText(null);
 
         props.close();
       } else if (!json.status) {
+        setErrorText('Token Minting Error');
         setButtonMessage('Token Minting Error');
         setLoading(false);
         setClickedConfirm(false);
 
         console.log('NFT minting error (a): ' + json.result);
       } else if (json.status === 'error') {
+        setErrorText(json.result);
         setButtonMessage(json.result);
         setLoading(false);
         setClickedConfirm(false);
@@ -194,6 +209,7 @@ const ModalEthAuth = props => {
         console.log('NFT minting error (b): ' + json.result);
       }
     } catch (error) {
+      setErrorText('API Timeout');
       setButtonMessage('API Timeout');
       setLoading(false);
       setClickedConfirm(false);
@@ -364,6 +380,8 @@ const ModalEthAuth = props => {
                 {loading ? <Loader /> : 'Confirm Purchase'}
               </Button>
             )}
+
+            {showErrorCase()}
           </div>
         </div>
       </Modal>
