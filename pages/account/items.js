@@ -4,6 +4,7 @@ import AccountData from '../../components/home/AccountData';
 import Layout from '../../components/Layout.js';
 import Header from '../../components/Header';
 import Global from '../../components/Constants';
+import FoxAnimation from '../../components/lottieAnimation/animations/fox'
 import Images from '../../common/Images';
 
 const Items = () => {
@@ -21,8 +22,8 @@ const Items = () => {
       {state.userStatus ? (
         <AccountData dataType={'items'} />
       ) : (
-        <div className="account-other-inner-p">
-          You must connect your wallet to view this page
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '200px' }}>
+          <FoxAnimation />
         </div>
       )}
     </Layout>
