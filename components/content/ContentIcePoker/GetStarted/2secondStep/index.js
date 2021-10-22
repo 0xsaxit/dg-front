@@ -17,7 +17,11 @@ const FirstStep = () => {
                     </div>
                     <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634610802/marketplace_lr9n7z.png" alt="marketplace" />
                     <div className={styles.button_div}>
-                        <Button>
+                        <Button
+                            onClick={() => {
+                                window.open("/ice/marketplace", "_blank");
+                            }}
+                        >
                             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634610493/clipboard_dlp3sh.png" alt="marketplace" />
                             Explore Marketplace
                         </Button>
@@ -34,7 +38,11 @@ const FirstStep = () => {
                         </li>
                     </div>
                     <div className={styles.button_div}>
-                        <Button>
+                        <Button
+                            onClick={() => {
+                                window.open("https://decentral.games/discord", "_blank");
+                            }}
+                        >
                             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634610493/discord_ny46dw.png" alt="discord" />
                             Find Delegators (Discord)
                         </Button>
