@@ -61,6 +61,7 @@ function UserInfo() {
             email: email,
             playersList: playersList,
             tokenArray: tokenArray,
+            balanceXP: balanceXP,
           };
 
           // console.log('!!!!!!!!');
@@ -70,11 +71,6 @@ function UserInfo() {
             type: 'user_info',
             data: data,
           });
-
-          dispatch({
-            type: 'xp_amounts',
-            data: balanceXP
-          })
         }
       })();
     }
