@@ -275,7 +275,7 @@ const ModalWearable = props => {
                       />
                     </div>
                     {state.DGBalances.BALANCE_CHILD_DG < 0.1? (
-                      <div>
+                      <div className={styles.description}>
                         {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(2)}{' '}
                         DG Available
                       </div>
