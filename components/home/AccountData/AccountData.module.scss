@@ -69,6 +69,10 @@
 			justify-content: center;
 
 			.title {
+				display: flex;
+				justify-content: center;
+				gap: 4px;
+				
 				font-size: 10px;
 				color: "white";
 				opacity: 0.5;

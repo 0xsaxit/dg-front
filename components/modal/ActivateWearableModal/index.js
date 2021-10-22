@@ -28,9 +28,6 @@ const ActivateWearableModal = props => {
   const [clicked, setClicked] = useState(false);
 
   const [openUpgradeSuccess, setOpenUpgradeSuccess] = useState(false);
-  
-
-  console.log("props =========================== ", props);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -186,7 +183,7 @@ const ActivateWearableModal = props => {
             </div>
           </div>
           <p>
-            {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(1)} DG
+            {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(2)} DG
             Available <br />
             <abbr>(On Polygon)</abbr>
           </p>

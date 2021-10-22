@@ -184,7 +184,7 @@ const IcePoker = props => {
                                     </div>
                                 </Link>
 
-                                <Link href="/ice/myAccount">
+                                <Link href="/account/ice">
                                     <div
                                         className={styles.menu_item}
                                         style={{ marginTop: '2px' }}
@@ -401,7 +401,7 @@ const IcePoker = props => {
                                     </div>
                                 </Link>
 
-                                <Link href="/ice/myAccount">
+                                <Link href="/account/ice">
                                     <div
                                         className={
                                             iceState === 'account'
@@ -430,7 +430,7 @@ const IcePoker = props => {
                                                 strokeLinejoin="round" />
                                         </svg>
 
-                                        <div className={styles.menu_title}>My Account</div>
+                                        <div className={styles.menu_title}>Account & Upgrade</div>
                                     </div>
                                 </Link>
                             </div>

@@ -117,7 +117,11 @@ const NeedMoreUpgrade = ({
             ) : null}
 
             <div className={styles.button_container}>
-              <Button className={styles.blue_button}>
+              <Button 
+                className={styles.blue_button}
+                href="https://quickswap.exchange/#/swap?outputCurrency=0xc6c855ad634dcdad23e64da71ba85b8c51e5ad7c"
+                target="_blank"
+              >
                 Buy ICE &nbsp;
                 <ExternalLinkArrow />
               </Button>
@@ -136,19 +140,23 @@ const NeedMoreUpgrade = ({
               <span className={styles.dg_pill}>
                 Need{' '}
                 {upgradeNeedDgAmount -
-                  parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(1)}{' '}
+                  parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(2)}{' '}
                 more
               </span>
             ) : null}
 
             <div className={styles.button_container}>
-              <Button className={styles.blue_button}>
+              <Button 
+                className={styles.blue_button}
+                href="https://quickswap.exchange/#/swap?outputCurrency=0x2a93172c8dccbfbc60a39d56183b7279a2f647b4"
+                target="_blank"
+              >
                 Buy $DG &nbsp;
                 <ExternalLinkArrow />
               </Button>
 
               <p className={styles.availability_info}>
-                {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(1)} DG
+                {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(2)} DG
                 Available
               </p>
             </div>
