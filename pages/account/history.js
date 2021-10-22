@@ -22,7 +22,7 @@ const History = () => {
       {state.userStatus ? (
         <AccountData dataType={'history'} />
       ) : (
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '150px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '200px' }}>
           <FoxAnimation />
         </div>
       )}

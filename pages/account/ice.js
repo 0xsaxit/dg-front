@@ -22,7 +22,7 @@ const Ice = () => {
       {state.userStatus ? (
         <AccountData dataType={'ice'} />
       ) : (
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '150px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '200px' }}>
           <FoxAnimation />
         </div>
       )}

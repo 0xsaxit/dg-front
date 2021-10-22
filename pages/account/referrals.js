@@ -22,7 +22,7 @@ const Referrals = () => {
       {state.userStatus ? (
         <AccountData dataType={'referrals'} />
       ) : (
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '150px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '200px' }}>
           <FoxAnimation />
         </div>
       )}
