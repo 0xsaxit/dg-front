@@ -19,7 +19,7 @@ const FirstStep = () => {
                     <div className={styles.button_div}>
                         <Button
                             onClick={() => {
-                                window.open("/ice/marketplace");
+                                window.location.href = "/ice/marketplace";
                             }}
                         >
                             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634610493/clipboard_dlp3sh.png" alt="marketplace" />
