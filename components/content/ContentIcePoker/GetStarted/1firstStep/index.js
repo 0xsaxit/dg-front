@@ -17,11 +17,21 @@ const FirstStep = () => {
                     </div>
                     <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" alt="metamask" />
                     <div className={styles.button_div}>
-                        <Button className={styles.firstButton}>
+                        <Button
+                            className={styles.firstButton}
+                            onClick={() => {
+                                window.open("https://www.google.com/chrome/?brand=CHBD&geo=US&gclsrc=ds&gclsrc=ds", "_blank");
+                            }}
+                        >
                             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634606779/chrome_ytab9e.png" alt="chrome" />
                             Chrome
                         </Button>
-                        <Button className={styles.secondButton}>
+                        <Button
+                            className={styles.secondButton}
+                            onClick={() => {
+                                window.open("https://www.mozilla.org/en-US/firefox/new/", "_blank");
+                            }}
+                        >
                             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634606779/firefox_ky0stl.png" alt="firefox" />
                             Firefox
                         </Button>
