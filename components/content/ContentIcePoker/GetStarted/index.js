@@ -15,7 +15,10 @@ const GetStarted = () => {
             <div className={styles.header_steps}>
                 {steps.map((step, index) => (
                     <div key={index} style={{ display: 'flex', justifyContent: 'center' }}>
-                        <div className={(index + 1) === currentStep ? styles.step_active : styles.step}>
+                        <div
+                            className={(index + 1) === currentStep ? styles.step_active : styles.step}
+                            onClick={() => setCurrentStep(index + 1)}
+                        >
                             <div>{index + 1}</div>
                             <p className={styles.title}>{step}</p>
                         </div>
