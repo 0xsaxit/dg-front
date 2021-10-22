@@ -20,7 +20,7 @@ const FirstStep = () => {
                         <Button
                             className={styles.firstButton}
                             onClick={() => {
-                                window.open("https://www.google.com/chrome/?brand=CHBD&geo=US&gclsrc=ds&gclsrc=ds", "_blank");
+                                window.open("https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en", "_blank");
                             }}
                         >
                             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634606779/chrome_ytab9e.png" alt="chrome" />
@@ -29,7 +29,7 @@ const FirstStep = () => {
                         <Button
                             className={styles.secondButton}
                             onClick={() => {
-                                window.open("https://www.mozilla.org/en-US/firefox/new/", "_blank");
+                                window.open("https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/", "_blank");
                             }}
                         >
                             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634606779/firefox_ky0stl.png" alt="firefox" />

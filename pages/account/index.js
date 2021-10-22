@@ -4,6 +4,7 @@ import React, { useContext, useEffect } from 'react';
 import AccountData from '../../components/home/AccountData';
 import Layout from '../../components/Layout.js';
 import Header from '../../components/Header';
+import FoxAnimation from '../../components/lottieAnimation/animations/fox'
 import Global from '../../components/Constants';
 import Images from '../../common/Images';
 
@@ -22,8 +23,8 @@ const Account = () => {
       {state.userStatus ? (
         <AccountData dataType={'balances'} />
       ) : (
-        <div className="account-other-inner-p">
-          You must connect your wallet to view this page
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '150px' }}>
+          <FoxAnimation />
         </div>
       )}
     </Layout>

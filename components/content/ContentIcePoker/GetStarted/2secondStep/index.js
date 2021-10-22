@@ -19,7 +19,7 @@ const FirstStep = () => {
                     <div className={styles.button_div}>
                         <Button
                             onClick={() => {
-                                window.open("/ice/marketplace", "_blank");
+                                window.open("/ice/marketplace");
                             }}
                         >
                             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634610493/clipboard_dlp3sh.png" alt="marketplace" />
@@ -34,7 +34,7 @@ const FirstStep = () => {
                     </div>
                     <div className={styles.content}>
                         <li>
-                            Join the <a href="/">Decentral Games Discord</a><br /><abbr />to find potential delegations (rented<br /><abbr />ICE NFT Wearables)
+                            Join the <a href="https://decentral.games/discord" target="_blank">Decentral Games Discord</a><br /><abbr />to find potential delegations (rented<br /><abbr />ICE NFT Wearables)
                         </li>
                     </div>
                     <div className={styles.button_div}>

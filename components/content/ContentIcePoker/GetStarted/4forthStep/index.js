@@ -7,7 +7,7 @@ const ForthStep = () => {
         <div className={styles.main_wrapper}>
             <div className={styles.title}>
                 <h1>Play ICE Poker!</h1>
-                <p>Two wasy to play ICE Poker</p>
+                <p>Two ways to play ICE Poker</p>
             </div>
 
             <div className={styles.content}>
