@@ -175,9 +175,9 @@ const ModalWithdrawDelegation = props => {
             <Button className={styles.open_button}>{props.buttonName}</Button>
           }
         >
-          <div className={styles.top_buttons}>
-            {modalButtons('close')}
+          <div className={styles.top_buttons}>            
             {modalButtons('help')}
+            {modalButtons('close')}
           </div>
           <div className={styles.confirmation_container}>
             <div className={styles.wear_box_body}>

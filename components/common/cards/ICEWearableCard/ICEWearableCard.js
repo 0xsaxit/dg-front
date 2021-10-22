@@ -21,7 +21,7 @@ const ICEWearableCard = props => {
   const [delegateAddress, setDelegateAddress] = useState('');
 
   const buttonDelegate = 'Delegate';
-  const buttonUndelegate = 'Withdraw Delegation';
+  const buttonUndelegate = 'Undelegate';
   const { name, description, image, attributes } = props.data;
   const rank = GetRank(parseInt(attributes.at(-1).value));
 
