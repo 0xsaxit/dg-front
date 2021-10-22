@@ -13,7 +13,7 @@ const ICEWearableCard = props => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const buttonUndelegate = 'Withdraw Delegation';
+  const buttonUndelegate = 'Undelegate';
   const { name, description, image, attributes } = props.data;
   const rank = GetRank(parseInt(attributes.at(-1).value));
 
