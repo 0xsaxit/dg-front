@@ -3,6 +3,7 @@ import { GlobalContext } from './index';
 import Web3 from 'web3';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
 import ABI_CHILD_TOKEN_MANA from '../components/ABI/ABIChildTokenMANA';
+import ABI_ICE_LP from '../components/ABI/ABILiquidityICE';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
 // import Fetch from '../common/Fetch';
@@ -29,6 +30,8 @@ function DGBalances() {
   const [DAI_BPT, setDAI_BPT] = useState({});
   const [MANA_BPT, setMANA_BPT] = useState({});
   const [ETH_UNI, setETH_UNI] = useState({});
+  const [iceContract, setIceContract] = useState({});
+  const [maticLPContract, setMaticLPContract] = useState({});
   // const [CEO_MANA, setCEO_MANA] = useState({});
   // const [CEO_DAI, setCEO_DAI] = useState({});
   const [instances, setInstances] = useState(false);
@@ -94,6 +97,20 @@ function DGBalances() {
           Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DAI
         );
         setMaticDAIContract(maticDAIContract);
+
+        const maticICEContract = new maticWeb3.eth.Contract(
+          ABI_CHILD_TOKEN_MANA,
+          Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ICE
+        );
+        setIceContract(maticICEContract);
+
+        const maticLPContract = new maticWeb3.eth.Contract(
+          ABI_ICE_LP,
+          "0x9e3880647C07BA13E65663DE29783eCD96Ec21dE"
+        );
+        setMaticLPContract(maticLPContract); 
+
+        console.log(maticLPContract);
 
         const stakingContractPool1 = await Transactions.stakingContractPool1(
           web3
@@ -225,6 +242,18 @@ function DGBalances() {
         0
       );
 
+      const UNVESTED_DG_1 = await Transactions.balanceOfToken(
+        DGTokenContract,
+        "0x9e78ADcc93eA1CD666f37ECfC3c5a868Ae55d274",
+        3
+      );
+
+      const UNVESTED_DG_2 = await Transactions.balanceOfToken(
+        DGMaticContract,
+        "0x9e78ADcc93eA1CD666f37ECfC3c5a868Ae55d274",
+        3
+      );
+
       // const BALANCE_TREASURY_DG = await Transactions.balanceOfToken(
       //   DGTokenContract,
       //   '0x7A61A0Ed364E599Ae4748D1EbE74bf236Dd27B09',
@@ -234,6 +263,12 @@ function DGBalances() {
       const BALANCE_CHILD_DG = await Transactions.balanceOfToken(
         DGMaticContract,
         state.userAddress,
+        3
+      );
+
+      const BALANCE_ICE = await Transactions.balanceOfToken(
+        iceContract,
+        "0x7A61A0Ed364E599Ae4748D1EbE74bf236Dd27B09",
         3
       );
 
@@ -305,12 +340,21 @@ function DGBalances() {
 
       const BALANCE_AFFILIATES = await getAffiliateBalances(); // affiliate balances
 
+      const BALANCE_UNCLAIMED = await getDGGameplayUnclaimed(); // unclaimed dg in rewards contract
+
+      const USDC_BALANCE_LP = await getUSDCBalanceLP(); // get USDC balance in LP
+
+      const ICE_BALANCE_LP = await getICEBalanceLP(); // get ice balance in LP
+
       return {
         BALANCE_BP_DG_1: BALANCE_BP_DG_1,
         BALANCE_BP_DG_2: BALANCE_BP_DG_2,
         BALANCE_BP_DAI: BALANCE_BP_DAI,
         BALANCE_ROOT_DG: BALANCE_ROOT_DG,
         BALANCE_CHILD_DG: BALANCE_CHILD_DG,
+        UNVESTED_DG_1: UNVESTED_DG_1,
+        UNVESTED_DG_2: UNVESTED_DG_2,
+        BALANCE_ICE: BALANCE_ICE,
         // BALANCE_CHILD_MANA: BALANCE_CHILD_MANA,
         // BALANCE_CHILD_DAI: BALANCE_CHILD_DAI,
         BALANCE_UNISWAP_DG: BALANCE_UNISWAP_DG,
@@ -331,6 +375,10 @@ function DGBalances() {
 
         // BALANCE_TREASURY_DG: BALANCE_TREASURY_DG,
         BALANCE_AFFILIATES: BALANCE_AFFILIATES,
+        BALANCE_UNCLAIMED: BALANCE_UNCLAIMED,
+        ICE_BALANCE_LP: ICE_BALANCE_LP,
+        USDC_BALANCE_LP: USDC_BALANCE_LP,
+
       };
     } catch (error) {
       console.log('Token balances error: ' + error);
@@ -405,6 +453,47 @@ function DGBalances() {
     try {
       const amount = await keeperContract.methods
         .availableBalance(state.userAddress)
+        .call();
+      const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
+
+      return balanceAdjusted;
+    } catch (error) {
+      console.log('No DG keeper balance found: ' + error);
+    }
+  }
+
+  // get ice and usdc balances in lp pool
+  async function getUSDCBalanceLP() {
+    try {
+      const amount = await maticLPContract.methods
+        .getReserves().call();
+
+      const usdc = (amount[0] / 1000000);
+
+      return usdc;
+    } catch (error) {
+      console.log('No DG keeper balance found: ' + error);
+    }
+  }
+
+  async function getICEBalanceLP() {
+    try {
+      const amount = await maticLPContract.methods
+        .getReserves().call();
+
+      const ice = (amount[1] / 1000000000000000000);
+
+      return ice;
+    } catch (error) {
+      console.log('No DG keeper balance found: ' + error);
+    }
+  }
+
+  // get contracts DG unclaimed balance from smart contract for keeping funds
+  async function getDGGameplayUnclaimed() {
+    try {
+      const amount = await keeperContract.methods
+        .availableBalance("0x9e78ADcc93eA1CD666f37ECfC3c5a868Ae55d274")
         .call();
       const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
 

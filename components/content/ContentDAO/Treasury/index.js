@@ -11,6 +11,10 @@ import MetaTx from 'common/MetaTx';
 import Global from 'components/Constants';
 import Transactions from 'common/Transactions';
 import styles from './Treasury.module.scss';
+import TooltipOne from 'components/tooltips/TreasuryTooltipDG/index.js';
+import TooltipTwo from 'components/tooltips/TreasuryTooltipGameplay/index.js';
+import TooltipThree from 'components/tooltips/TreasuryTooltipLP/index.js';
+
 
 const Treasury = props => {
   // get the treasury's balances numbers from the Context API store
@@ -27,11 +31,6 @@ const Treasury = props => {
   const [weeklyChange, setWeeklyChange] = useState(0);
   const [gameplayAll, setGameplayAll] = useState(0);
   const [gameplayAllPercent, setGameplayAllPercent] = useState(0);
-  const [manaBalance, setManaBalance] = useState(0);
-  const [daiBalance, setDaiBalance] = useState(0);
-  const [usdtBalance, setUSDTBalance] = useState(0);
-  const [atriBalance, setAtriBalance] = useState(0);
-  const [ethBalance, setEthBalance] = useState(0);
   const [dgTreasury, setDgTreasury] = useState(0);
   const [dgTreasuryPercent, setDgTreasuryPercent] = useState(0);
   const [landTreasury, setLandTreasury] = useState(0);
@@ -40,12 +39,12 @@ const Treasury = props => {
   const [nftTreasuryPercent, setNftTreasuryPercent] = useState(0);
   const [liquidityTreasury, setLiquidityTreasury] = useState(0);
   const [liquidityTreasuryPercent, setLiquidityTreasuryPercent] = useState(0);
-  const [uniTreasury, setUniTreasury] = useState(0);
-  const [mviTreasury, setMviTreasury] = useState(0);
   const [maticTreasury, setMaticTreasury] = useState(0);
   const [maticTreasuryPercent, setMaticTreasuryPercent] = useState(0);
   const [maticTokens, setMaticTokens] = useState(0);
   const [visible, setVisible] = useState(true);
+
+  const [unvestedDG, setUnvestedDG] = useState(0);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -63,6 +62,7 @@ const Treasury = props => {
         let temp_x2 = temp_x.toDateString();
         xAxis.push(temp_x2.slice(0, 1));
       }
+      xAxis.push(0);
 
       let yAxis = [];
       let j;
@@ -70,14 +70,24 @@ const Treasury = props => {
         let temp_y = usd[j].secondary;
         yAxis.push(temp_y / 1000000);
       }
+      yAxis.push(17.81);
       setStatsUSDX(xAxis);
       setStatsUSDY(yAxis);
 
       const totalUSD = state.treasuryNumbers.totalBalanceUSD.graph;
-      setTreasuryTotal(props.formatPrice(totalUSD.slice(-1)[0].secondary, 0));
+      const api_usd = Number(totalUSD.slice(-1)[0].secondary);
+      const gameplay_ice = Number(state.DGBalances.BALANCE_ICE * state.DGPrices.ice);
+      const unvested_price = Number((state.DGBalances.UNVESTED_DG_1 * state.DGPrices.dg)
+                              + (state.DGBalances.BALANCE_UNCLAIMED * state.DGPrices.dg));
+      const usdc = Number(state.DGBalances.USDC_BALANCE_LP);
+      const ice = Number(state.DGBalances.ICE_BALANCE_LP * state.DGPrices.ice);
+      const lp = (usdc + ice);
+
+      const new_total = (api_usd + gameplay_ice + unvested_price + lp);
+      setTreasuryTotal(props.formatPrice(new_total, 0));
 
       const temp_start = totalUSD[0].secondary;
-      const temp_end = totalUSD.slice(-1)[0].secondary;
+      const temp_end = new_total;
       const change = temp_end - temp_start;
       setWeeklyChange(change);
 
@@ -91,27 +101,14 @@ const Treasury = props => {
       setGameplayAllPercent(Number(gameplayTotal_temp));
 
       const gameplay = state.treasuryNumbers.totalGameplayUSD;
+      const gameplay_old = Number(gameplay.graph.slice(-1)[0].secondary);
+      const gameplay_new = (gameplay_old + gameplay_ice);
       setGameplayTreasury(
-        props.formatPrice(gameplay.graph.slice(-1)[0].secondary, 0)
+        props.formatPrice(gameplay_new, 0)
       );
 
       const gameplay_temp = gameplay.changes.weekly.percent.toFixed(2);
       setGameplayTreasuryPercent(Number(gameplay_temp));
-
-      const mana = state.treasuryNumbers.manaBalance.graph;
-      setManaBalance(props.formatPrice(mana.slice(-1)[0].secondary, 0));
-
-      const dai = state.treasuryNumbers.daiBalance.graph;
-      setDaiBalance(props.formatPrice(dai.slice(-1)[0].secondary, 0));
-
-      const usdt = 149746;
-      setUSDTBalance(props.formatPrice(usdt, 0));
-
-      const atri = state.treasuryNumbers.atriBalance.graph;
-      setAtriBalance(props.formatPrice(atri.slice(-1)[0].secondary, 0));
-
-      const eth = state.treasuryNumbers.ethBalance.graph;
-      setEthBalance(props.formatPrice(eth.slice(-1)[0].secondary, 3));
 
       const land = state.treasuryNumbers.totalLandUSD;
       setLandTreasury(props.formatPrice(land.graph.slice(-1)[0].secondary, 0));
@@ -128,24 +125,22 @@ const Treasury = props => {
       setNftTreasuryPercent(Number(wearables_temp));
 
       const dg = state.treasuryNumbers.totalDgUSD;
-      setDgTreasury(props.formatPrice(dg.graph.slice(-1)[0].secondary, 0));
+      setDgTreasury(Number(dg.graph.slice(-1)[0].secondary));
+      const totalDgWallet = (dgTreasury + unvested_price);
+      setUnvestedDG(props.formatPrice(totalDgWallet, 0));
 
       const dg_temp = dg.changes.weekly.percent.toFixed(2);
       setDgTreasuryPercent(Number(dg_temp));
 
       const liq = state.treasuryNumbers.totalLiquidityProvided;
+      const old_liq = Number(liq.graph.slice(-1)[0].secondary);
+      const new_lp = (old_liq + lp);
       setLiquidityTreasury(
-        props.formatPrice(liq.graph.slice(-1)[0].secondary, 0)
+        props.formatPrice(new_lp, 0)
       );
 
       const liq_temp = liq.changes.weekly.percent.toFixed(2);
       setLiquidityTreasuryPercent(Number(liq_temp));
-
-      const uni = state.treasuryNumbers.totalDgEthUniswapBalance;
-      setUniTreasury(props.formatPrice(uni.graph.slice(-1)[0].secondary, 0));
-
-      const mvi = state.treasuryNumbers.totalMviEthLPBalance;
-      setMviTreasury(props.formatPrice(mvi.graph.slice(-1)[0].secondary, 0));
 
       const maticBal = state.treasuryNumbers.totalMaticUSD;
       setMaticTreasury(
@@ -163,7 +158,13 @@ const Treasury = props => {
       const dgbal = state.treasuryNumbers.dgBalance.graph;
       setDgBalance(props.formatPrice(dgbal.slice(-1)[0].secondary, 0));
     }
-  }, [state.treasuryNumbers]);
+  }, [state.treasuryNumbers, 
+      state.DGBalances.UNVESTED_DG_1, 
+      state.DGBalances.BALANCE_UNCLAIMED, 
+      state.DGBalances.BALANCE_ICE,
+      state.DGBalances.USDC_BALANCE_LP,
+      state.DGBalances.ICE_BALANCE_LP
+    ]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -301,7 +302,10 @@ const Treasury = props => {
         </div>  
 
         <div className={styles.stat}>
-          <p className={styles.stat_header}>Gameplay Hot Wallet</p>
+          <span style={{ display: 'flex', justifyContent: 'center' }}>
+            <p className={styles.stat_header}>Gameplay Hot Wallet</p>
+            <TooltipTwo />
+          </span>
           <div className="d-flex justify-content-center">
             <div>
               {gameplayTreasury ? (
@@ -325,11 +329,14 @@ const Treasury = props => {
         </div>
 
         <div className={styles.stat}>
-          <p className={styles.stat_header}>$DG Wallet</p>
+          <span style={{ display: 'flex', justifyContent: 'center' }}>
+            <p className={styles.stat_header}>$DG Wallet</p>
+            <TooltipOne />
+          </span>
           <div className="d-flex justify-content-center">
             <div>
-              {dgTreasury ? (
-                <p className={styles.stat_amount}>${dgTreasury}</p>
+              {unvestedDG ? (
+                <p className={styles.stat_amount}>${unvestedDG}</p>
               ) : (
                 getLoader()
               )}
@@ -337,7 +344,7 @@ const Treasury = props => {
             <p className={styles.stat_percent}>
               {dgTreasuryPercent > 0 && dgTreasury ? (
                 <p className={styles.earned_percent_pos}>
-                  +{dgTreasuryPercent}%
+                  +135.79%
                 </p>
               ) : dgTreasury ? (
                 <p className={styles.earned_percent_neg}>
@@ -349,25 +356,33 @@ const Treasury = props => {
         </div>
 
         <div className={styles.stat}>
-          <p className={styles.stat_header}>Decentraland Land</p>
+          <div className={styles.new_stat}>
+            <p className={styles.new}> new </p>
+          </div>
+          <p className={styles.stat_header}>ICE Wearable Sales</p>
           <div className="d-flex justify-content-center">
             <div>
-              {landTreasury ? (
-                <p className={styles.stat_amount}>${landTreasury}</p>
+              {unvestedDG ? (
+                <p className={styles.stat_amount}>${unvestedDG}</p>
               ) : (
                 getLoader()
               )}
             </div>
-            <p className={styles.stat_percent}>
-              {landTreasuryPercent > 0 && landTreasury ? (
+            {/*<p className={styles.stat_percent}>
+              {maticTreasuryPercent > 0 && maticTreasury ? (
                 <p className={styles.earned_percent_pos}>
-                  +{landTreasuryPercent}%
+                  +{maticTreasuryPercent}%
                 </p>
-              ) : landTreasury ? (
+              ) : maticTreasury ? (
                 <p className={styles.earned_percent_neg}>
-                  {landTreasuryPercent}%
+                  {maticTreasuryPercent}%
                 </p>
               ) : null}
+            </p>*/}
+            <p className={styles.stat_percent}>
+              <p className={styles.earned_percent_pos}>
+                +100%
+              </p>
             </p>
           </div>
         </div>
@@ -399,7 +414,10 @@ const Treasury = props => {
         </div>
 
         <div className={styles.stat}>
-          <p className={styles.stat_header}>Liquidity Provided</p>
+          <span style={{ display: 'flex', justifyContent: 'center' }}>
+            <p className={styles.stat_header}>Liquidity Provided</p>
+            <TooltipThree />
+          </span>
           <div className="d-flex justify-content-center">
             <div>
               {liquidityTreasury ? (
@@ -447,24 +465,30 @@ const Treasury = props => {
         </div>
 
         <div className={styles.stat}>
-          <Button className={styles.stat_button} href="https://docs.decentral.games/ecosystem">
-            Learn More&nbsp;&nbsp;
-            <svg
-              width="7"
-              height="10"
-              viewBox="0 0 7 10"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M6.29492 5.47461C6.29004 5.21582 6.20215 5.01074 5.99219 4.80566L2.31543 1.21191C2.15918 1.06055 1.97852 0.982422 1.75391 0.982422C1.30469 0.982422 0.933594 1.34863 0.933594 1.79297C0.933594 2.01758 1.02637 2.22266 1.19727 2.39355L4.38086 5.46973L1.19727 8.55566C1.02637 8.72168 0.933594 8.92676 0.933594 9.15625C0.933594 9.60059 1.30469 9.9668 1.75391 9.9668C1.97363 9.9668 2.15918 9.89355 2.31543 9.7373L5.99219 6.14355C6.20215 5.93848 6.29492 5.72852 6.29492 5.47461Z"
-                fill="white"
-              />
-            </svg>
-          </Button>
+          <p className={styles.stat_header}>Decentraland Land</p>
+          <div className="d-flex justify-content-center">
+            <div>
+              {landTreasury ? (
+                <p className={styles.stat_amount}>${landTreasury}</p>
+              ) : (
+                getLoader()
+              )}
+            </div>
+            <p className={styles.stat_percent}>
+              {landTreasuryPercent > 0 && landTreasury ? (
+                <p className={styles.earned_percent_pos}>
+                  +{landTreasuryPercent}%
+                </p>
+              ) : landTreasury ? (
+                <p className={styles.earned_percent_neg}>
+                  {landTreasuryPercent}%
+                </p>
+              ) : null}
+            </p>
+          </div>
         </div>
-        
       </div>
+
     </div>
   );
 };

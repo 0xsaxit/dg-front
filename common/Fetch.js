@@ -198,6 +198,14 @@ const apiCall = {
     );
   },
 
+  ICE_PRICE: () => {
+    return call(
+      `https://api.coingecko.com/api/v3/coins/decentral-games-ice`,
+      'GET',
+      false
+    );
+  }, 
+
   ATRI_PRICE: () => {
     return call(`https://api.coingecko.com/api/v3/coins/atari`, 'GET', false);
   },
