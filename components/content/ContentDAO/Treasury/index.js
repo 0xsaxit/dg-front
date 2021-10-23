@@ -43,8 +43,13 @@ const Treasury = props => {
   const [maticTreasuryPercent, setMaticTreasuryPercent] = useState(0);
   const [maticTokens, setMaticTokens] = useState(0);
   const [visible, setVisible] = useState(true);
-
   const [unvestedDG, setUnvestedDG] = useState(0);
+  const [wearableSales, setWearableSales] = useState(0);
+
+  /// temp percentages
+  const [gameplayHotPercent, setGameplayHotPercent] = useState(0);
+  const [dgPercent, setDgPercent] = useState(0);
+  const [lpPercent, setLpPercent] = useState(0);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -77,13 +82,17 @@ const Treasury = props => {
       const totalUSD = state.treasuryNumbers.totalBalanceUSD.graph;
       const api_usd = Number(totalUSD.slice(-1)[0].secondary);
       const gameplay_ice = Number(state.DGBalances.BALANCE_ICE * state.DGPrices.ice);
-      const unvested_price = Number((state.DGBalances.UNVESTED_DG_1 * state.DGPrices.dg)
-                              + (state.DGBalances.BALANCE_UNCLAIMED * state.DGPrices.dg));
+      const unclaimed_1 = Number(state.DGBalances.UNVESTED_DG_1);
+      const unclaimed_2 = Number(state.DGBalances.BALANCE_UNCLAIMED);
+      const unvested_amount = (unclaimed_1 + unclaimed_2);
+      const unvested_price = (unvested_amount * state.DGPrices.dg);
       const usdc = Number(state.DGBalances.USDC_BALANCE_LP);
       const ice = Number(state.DGBalances.ICE_BALANCE_LP * state.DGPrices.ice);
       const lp = (usdc + ice);
+      const wearable_sales = Number(state.DGBalances.BALANCE_WETH_WEARABLES * state.DGPrices.eth);
+      setWearableSales(props.formatPrice(wearable_sales, 0));
 
-      const new_total = (api_usd + gameplay_ice + unvested_price + lp);
+      const new_total = (api_usd + gameplay_ice + unvested_price + lp + wearable_sales);
       setTreasuryTotal(props.formatPrice(new_total, 0));
 
       const temp_start = totalUSD[0].secondary;
@@ -157,13 +166,28 @@ const Treasury = props => {
 
       const dgbal = state.treasuryNumbers.dgBalance.graph;
       setDgBalance(props.formatPrice(dgbal.slice(-1)[0].secondary, 0));
+
+      //////////////////////////////////////////////////////////////////////
+      // temporary percentages for dg wallet, gameplay hot wallet, and lp //
+      //////////////////////////////////////////////////////////////////////
+      const gameplay_percent = ((gameplay_new - gameplay_old) / gameplay_old) * 100;
+      setGameplayHotPercent(gameplay_percent.toFixed(2));
+
+      const dg_percent = ((totalDgWallet - dgTreasury) / dgTreasury) * 100;
+      setDgPercent(dg_percent.toFixed(2));
+
+      const lp_percent = ((new_lp - old_liq) / old_liq) * 100;
+      setLpPercent(lp_percent.toFixed(2));
+
     }
   }, [state.treasuryNumbers, 
       state.DGBalances.UNVESTED_DG_1, 
       state.DGBalances.BALANCE_UNCLAIMED, 
       state.DGBalances.BALANCE_ICE,
       state.DGBalances.USDC_BALANCE_LP,
-      state.DGBalances.ICE_BALANCE_LP
+      state.DGBalances.ICE_BALANCE_LP,
+      state.DGBalances.BALANCE_WETH_WEARABLES,
+      dgTreasury
     ]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -315,13 +339,13 @@ const Treasury = props => {
               )}
             </div>
             <p className={styles.stat_percent}>
-              {gameplayTreasuryPercent > 0 && gameplayTreasury ? (
+              {gameplayHotPercent > 0 && gameplayTreasury ? (
                 <p className={styles.earned_percent_pos}>
-                  +{gameplayTreasuryPercent}%
+                  +{gameplayHotPercent}%
                 </p>
               ) : gameplayTreasury ? (
                 <p className={styles.earned_percent_neg}>
-                  {gameplayTreasuryPercent}%
+                  {gameplayHotPercent}%
                 </p>
               ) : null}
             </p>
@@ -342,13 +366,13 @@ const Treasury = props => {
               )}
             </div>
             <p className={styles.stat_percent}>
-              {dgTreasuryPercent > 0 && dgTreasury ? (
+              {dgPercent > 0 && dgTreasury ? (
                 <p className={styles.earned_percent_pos}>
-                  +135.79%
+                  +{dgPercent}%
                 </p>
               ) : dgTreasury ? (
                 <p className={styles.earned_percent_neg}>
-                  {dgTreasuryPercent}%
+                  {dgPercent}%
                 </p>
               ) : null}
             </p>
@@ -362,8 +386,8 @@ const Treasury = props => {
           <p className={styles.stat_header}>ICE Wearable Sales</p>
           <div className="d-flex justify-content-center">
             <div>
-              {unvestedDG ? (
-                <p className={styles.stat_amount}>${unvestedDG}</p>
+              {wearableSales ? (
+                <p className={styles.stat_amount}>${wearableSales}</p>
               ) : (
                 getLoader()
               )}
@@ -427,13 +451,13 @@ const Treasury = props => {
               )}
             </div>
             <p className={styles.stat_percent}>
-              {liquidityTreasuryPercent > 0 && liquidityTreasury ? (
+              {lpPercent > 0 && liquidityTreasury ? (
                 <p className={styles.earned_percent_pos}>
-                  +{liquidityTreasuryPercent}%
+                  +{lpPercent}%
                 </p>
               ) : liquidityTreasury ? (
                 <p className={styles.earned_percent_neg}>
-                  {liquidityTreasuryPercent}%
+                  {lpPercent}%
                 </p>
               ) : null}
             </p>
