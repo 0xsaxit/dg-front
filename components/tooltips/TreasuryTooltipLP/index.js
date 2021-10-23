@@ -76,7 +76,7 @@ const TreasuryTooltipLP = props => {
                 MVI-ETH LP: ${mviTreasury}         
               </p>
               <p style={{ marginTop: '0px' }}>
-                $INDEX tokens: ${uniTreasury}         
+                $INDEX Tokens: ${uniTreasury}         
               </p>
             </div>
           </div>          

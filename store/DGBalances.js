@@ -32,6 +32,7 @@ function DGBalances() {
   const [ETH_UNI, setETH_UNI] = useState({});
   const [iceContract, setIceContract] = useState({});
   const [maticLPContract, setMaticLPContract] = useState({});
+  const [maticWethContract, setMaticWethContract] = useState({});
   // const [CEO_MANA, setCEO_MANA] = useState({});
   // const [CEO_DAI, setCEO_DAI] = useState({});
   const [instances, setInstances] = useState(false);
@@ -110,7 +111,11 @@ function DGBalances() {
         );
         setMaticLPContract(maticLPContract); 
 
-        console.log(maticLPContract);
+        const maticWethContract = new maticWeb3.eth.Contract(
+          ABI_CHILD_TOKEN_MANA,
+          "0x7ceb23fd6bc0add59e62ac25578270cff1b9f619"
+        );
+        setMaticWethContract(maticWethContract); 
 
         const stakingContractPool1 = await Transactions.stakingContractPool1(
           web3
@@ -346,6 +351,8 @@ function DGBalances() {
 
       const ICE_BALANCE_LP = await getICEBalanceLP(); // get ice balance in LP
 
+      const BALANCE_WETH_WEARABLES = await getWETH(); // get weth from wearable sales
+
       return {
         BALANCE_BP_DG_1: BALANCE_BP_DG_1,
         BALANCE_BP_DG_2: BALANCE_BP_DG_2,
@@ -378,10 +385,26 @@ function DGBalances() {
         BALANCE_UNCLAIMED: BALANCE_UNCLAIMED,
         ICE_BALANCE_LP: ICE_BALANCE_LP,
         USDC_BALANCE_LP: USDC_BALANCE_LP,
+        BALANCE_WETH_WEARABLES: BALANCE_WETH_WEARABLES,
 
       };
     } catch (error) {
       console.log('Token balances error: ' + error);
+    }
+  }
+
+  // get user's DG points balance from smart contract for gameplay mining
+  async function getWETH() {
+    try {
+      const amount = await maticWethContract.methods
+        .balanceOf("0x3c383B7Ffd5d2bF24EBd1fc8509ceFa9b7D1976f")
+        .call();
+
+      const pointsAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
+
+      return pointsAdjusted;
+    } catch (error) {
+      console.log('No DG points found: ' + error);
     }
   }
 
