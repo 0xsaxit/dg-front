@@ -108,6 +108,10 @@
   @include mq($until: 1040px) {
     width: calc(100% - 80px);
   }
+
+  @include mq($until: 499px) {
+    width: calc(100% - 48px);
+  }
 }
 
 .tablet_menu_container {

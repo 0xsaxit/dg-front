@@ -108,7 +108,7 @@
   }
 
   @include mq($until: 499px) {
-    width: calc(100% - 48px);
+    width: 100vw;
   }
 }
 

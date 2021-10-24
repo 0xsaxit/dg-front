@@ -18,13 +18,7 @@ const Governance = () => {
         image={Images.SOCIAL_SHARE}
       />
 
-      {state.userStatus ? (
-        <DAO DGState={'governance'} />
-      ) : (
-        <div className="account-other-inner-p">
-          You must connect your wallet to view this page
-        </div>
-      )}
+      <DAO DGState={'governance'} />
     </Layout>
   );
 };

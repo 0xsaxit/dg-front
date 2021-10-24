@@ -1,4 +1,4 @@
-import { Image, Button, Divider } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 import { useState, useContext, useEffect } from 'react';
 import styles from './ContentOfferings.module.scss';
 import { GlobalContext } from '../../../store';
