@@ -192,8 +192,8 @@ const AccountData = props => {
                 <div className={styles.tokenBalance}>
                   <p className={styles.title}>
                     {' '}
-                    ICE Mined{' '}
-                    <AccountTooltip data={"ICE"} />
+                    ICE Earned{' '}
+                    <AccountTooltip data={"ICE Earned"} />
                   </p>
                   <p className={styles.amount}>
                     {' '}
@@ -215,8 +215,8 @@ const AccountData = props => {
                 <div className={styles.tokenBalance}>
                   <p className={styles.title}>
                     {' '}
-                    Unused XP{' '}
-                    <AccountTooltip data={"XP"} />
+                    XP Earned{' '}
+                    <AccountTooltip data={"XP Earned"} />
                   </p>
                   <p className={styles.amount}>
                     {' '}
@@ -234,8 +234,8 @@ const AccountData = props => {
                 <div className={styles.tokenBalance}>
                   <p className={styles.title}>
                     {' '}
-                    DG{' '}
-                    <AccountTooltip data="DG" />
+                    DG Mined{' '}
+                    <AccountTooltip data="DG Mined" />
                   </p>
                   <p className={styles.amount}>
                     {' '}

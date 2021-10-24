@@ -89,7 +89,7 @@ const NeedMoreDGActivateModal = props => {
               alt="logo"
             />
           </div>
-          <div className={styles.round_desc}>Need 0.5 more</div>
+          <div className={styles.round_desc}>Need {(0.5 - state.DGBalances.BALANCE_CHILD_DG).toFixed(2)} more</div>
 
           <div className={styles.buttons}>
             <div className={styles.button}>
@@ -121,7 +121,7 @@ const NeedMoreDGActivateModal = props => {
                 </svg>
               </Button>
               <span className={styles.text}>
-                {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(1)} DG
+                {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(2)} DG
                 Available
               </span>
             </div>

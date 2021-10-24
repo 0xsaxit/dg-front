@@ -17,7 +17,11 @@ const FirstStep = () => {
                     </div>
                     <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634610802/marketplace_lr9n7z.png" alt="marketplace" />
                     <div className={styles.button_div}>
-                        <Button>
+                        <Button
+                            onClick={() => {
+                                window.location.href = "/ice/marketplace";
+                            }}
+                        >
                             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634610493/clipboard_dlp3sh.png" alt="marketplace" />
                             Explore Marketplace
                         </Button>
@@ -30,11 +34,15 @@ const FirstStep = () => {
                     </div>
                     <div className={styles.content}>
                         <li>
-                            Join the <a href="/">Decentral Games Discord</a><br /><abbr />to find potential delegations (rented<br /><abbr />ICE NFT Wearables)
+                            Join the <a href="https://decentral.games/discord" target="_blank">Decentral Games Discord</a><br /><abbr />to find potential delegations (rented<br /><abbr />ICE NFT Wearables)
                         </li>
                     </div>
                     <div className={styles.button_div}>
-                        <Button>
+                        <Button
+                            onClick={() => {
+                                window.open("https://decentral.games/discord", "_blank");
+                            }}
+                        >
                             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634610493/discord_ny46dw.png" alt="discord" />
                             Find Delegators (Discord)
                         </Button>

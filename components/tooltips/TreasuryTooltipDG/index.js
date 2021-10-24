@@ -1,7 +1,35 @@
-import styles from './AccountTooltip.module.scss';
+import styles from './TreasuryTooltipDG.module.scss';
 import { Popup } from 'semantic-ui-react';
+import { GlobalContext } from 'store';
+import React, { useEffect, useContext, useState } from 'react';
 
-const AccountTooltip = (props) => {
+const TreasuryTooltipDG = props => {
+  // get the treasury's balances numbers from the Context API store
+  const [state, dispatch] = useContext(GlobalContext);
+
+  const [dgTreasury, setDgTreasury] = useState(0);
+  const [unvestedDG, setUnvestedDG] = useState(0);
+
+  function formatPrice(balanceDG, units) {
+    const priceFormatted = Number(balanceDG)
+      .toFixed(units)
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+    return priceFormatted;
+  }
+
+  useEffect(() => {
+    if (Object.keys(state.treasuryNumbers).length !== 0) {
+      const usd = state.treasuryNumbers.totalBalanceUSD.graph;
+
+      const dg = state.treasuryNumbers.totalDgUSD;
+      setDgTreasury(formatPrice(dg.graph.slice(-1)[0].secondary, 0));
+      const unvested_price = Number((state.DGBalances.UNVESTED_DG_1 * state.DGPrices.dg)
+                              + (state.DGBalances.BALANCE_UNCLAIMED * state.DGPrices.dg));
+      setUnvestedDG(formatPrice(unvested_price, 0));
+    }
+  }, [state.treasuryNumbers, state.DGBalances.UNVESTED_DG_1, state.DGBalances.BALANCE_UNCLAIMED]);
+
   return (
     <>
        <Popup
@@ -26,14 +54,19 @@ const AccountTooltip = (props) => {
         className={styles.popup}
       >
         <Popup.Content className="accountTooltip">
-          <div className="tooltip_body">
+          <div className="tooltip_body" style={{ width: '244px' }}>
             <img
               className="info"
               src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
             />
-            <p>
-              This is your total {props.data} through gameplay.            
-            </p>
+            <div>
+              <p style={{ marginBottom: '4px' }}>
+                DAO $DG: ${dgTreasury}         
+              </p>
+              <p style={{ marginTop: '0px' }}>
+                Vested Gameplay $DG: ${unvestedDG}            
+              </p>
+            </div>
           </div>          
         </Popup.Content>
       </Popup>
@@ -41,4 +74,4 @@ const AccountTooltip = (props) => {
   );
 };
 
-export default AccountTooltip;
+export default TreasuryTooltipDG;

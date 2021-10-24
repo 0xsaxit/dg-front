@@ -64,6 +64,9 @@ const Overview = props => {
   const [currentDate, setCurrentDate] = useState('');
   const [visible, setVisible] = useState(true);
 
+  const [unvestedDG, setUnvestedDG] = useState(0);
+  const [dgPercent, setDgPercent] = useState(0);
+
   function formatPrice(balanceDG, units) {
     const priceFormatted = Number(balanceDG)
       .toFixed(units)
@@ -115,9 +118,6 @@ const Overview = props => {
         }
       );
 
-      console.log('!!!');
-      console.log(snapshotData);
-
       setSnapshotOne(snapshotData.data.data.proposals[0]);
       setSnapshotTwo(snapshotData.data.data.proposals[1]);
       setSnapshotThree(snapshotData.data.data.proposals[2]);
@@ -163,26 +163,40 @@ const Overview = props => {
       const usd = state.treasuryNumbers.totalBalanceUSD.graph;
       let xAxis = [];
       let i;
-      for (i = 0; i < usd.length; i += 7) {
+      for (i = 0; i < usd.length; i += 4) {
         let temp_x = new Date(usd[i].primary);
         let temp_x2 = temp_x.toDateString();
         xAxis.push(temp_x2.slice(0, 1));
       }
+      xAxis.push(0);
 
       let yAxis = [];
       let j;
-      for (j = 0; j < usd.length; j += 7) {
+      for (j = 0; j < usd.length; j += 4) {
         let temp_y = usd[j].secondary;
         yAxis.push(temp_y / 1000000);
       }
+      yAxis.push(17.81);
       setStatsUSDX(xAxis);
       setStatsUSDY(yAxis);
 
       const totalUSD = state.treasuryNumbers.totalBalanceUSD.graph;
-      setTreasuryTotal(props.formatPrice(totalUSD.slice(-1)[0].secondary, 0));
+      const api_usd = Number(totalUSD.slice(-1)[0].secondary);
+      const gameplay_ice = Number(state.DGBalances.BALANCE_ICE * state.DGPrices.ice);
+      const unclaimed_1 = Number(state.DGBalances.UNVESTED_DG_1);
+      const unclaimed_2 = Number(state.DGBalances.BALANCE_UNCLAIMED);
+      const unvested_amount = (unclaimed_1 + unclaimed_2);
+      const unvested_price = (unvested_amount * state.DGPrices.dg);
+      const usdc = Number(state.DGBalances.USDC_BALANCE_LP);
+      const ice = Number(state.DGBalances.ICE_BALANCE_LP * state.DGPrices.ice);
+      const lp = (usdc + ice);
+      const wearable_sales = Number(state.DGBalances.BALANCE_WETH_WEARABLES * state.DGPrices.eth);
+
+      const new_total = (api_usd + gameplay_ice + unvested_price + lp + wearable_sales);
+      setTreasuryTotal(props.formatPrice(new_total, 0));
 
       const temp_start = totalUSD[0].secondary;
-      const temp_end = totalUSD.slice(-1)[0].secondary;
+      const temp_end = new_total;
       const change = temp_end - temp_start;
       setWeeklyChange(change);
 
@@ -233,7 +247,9 @@ const Overview = props => {
       setNftTreasuryPercent(Number(wearables_temp));
 
       const dg = state.treasuryNumbers.totalDgUSD;
-      setDgTreasury(props.formatPrice(dg.graph.slice(-1)[0].secondary, 0));
+      setDgTreasury(Number(dg.graph.slice(-1)[0].secondary));
+      const totalDgWallet = (dgTreasury + unvested_price);
+      setUnvestedDG(props.formatPrice(totalDgWallet, 0));
 
       const dg_temp = dg.changes.weekly.percent.toFixed(2);
       setDgTreasuryPercent(Number(dg_temp));
@@ -267,8 +283,19 @@ const Overview = props => {
 
       const dgbal = state.treasuryNumbers.dgBalance.graph;
       setDgBalance(props.formatPrice(dgbal.slice(-1)[0].secondary, 0));
+
+      const dg_percent = ((totalDgWallet - dgTreasury) / dgTreasury) * 100;
+      setDgPercent(dg_percent.toFixed(2));
     }
-  }, [state.treasuryNumbers]);
+  }, [state.treasuryNumbers, 
+      state.DGBalances.UNVESTED_DG_1, 
+      state.DGBalances.BALANCE_UNCLAIMED, 
+      state.DGBalances.BALANCE_ICE,
+      state.DGBalances.USDC_BALANCE_LP,
+      state.DGBalances.ICE_BALANCE_LP,
+      state.DGBalances.BALANCE_WETH_WEARABLES,
+      dgTreasury
+    ]);
 
   useEffect(() => {
     if (state.userStatus && state.stakingBalances.BALANCE_USER_GOVERNANCE > 0) {
@@ -507,20 +534,20 @@ const Overview = props => {
                 <p className={styles.stat_header}>$DG Wallet</p>
                 <div className="d-flex">
                   <div>
-                    {dgTreasury ? (
-                      <p className={styles.stat_amount}>${dgTreasury}</p>
+                    {unvestedDG ? (
+                      <p className={styles.stat_amount}>${unvestedDG}</p>
                     ) : (
                       getLoader()
                     )}
                   </div>
                   <p className={styles.stat_percent}>
-                    {dgTreasuryPercent > 0 && dgTreasury ? (
+                    {dgPercent > 0 && unvestedDG ? (
                       <p className={styles.earned_percent_pos}>
-                        +{dgTreasuryPercent}%
+                        +{dgPercent}%
                       </p>
-                    ) : dgTreasury ? (
+                    ) : unvestedDG ? (
                       <p className={styles.earned_percent_neg}>
-                        {dgTreasuryPercent}%
+                        {dgPercent}%
                       </p>
                     ) : null}
                   </p>

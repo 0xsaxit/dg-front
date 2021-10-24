@@ -109,6 +109,18 @@
     letter-spacing: 0.3px;
     margin-top: 24px;
 
+    .greenCheck {
+      font-family: Larsseit-Regular;
+      font-style: normal;            
+      font-size: 12px;
+      line-height: 14px;
+      text-align: center;
+      color: #67DD6C !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .dgAmount {
       display: flex;
       justify-content: center;

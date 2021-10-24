@@ -183,8 +183,14 @@ const ActivateWearableModal = props => {
             </div>
           </div>
           <p>
-            {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(1)} DG
-            Available <br />
+            <span className={styles.greenCheck}>
+              {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(1)} DG
+                Available 
+              <svg width="16" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.83203 7.73047C4.10547 7.73047 4.32031 7.625 4.46875 7.40625L8.10547 1.86328C8.21094 1.70312 8.25391 1.55078 8.25391 1.41016C8.25391 1.03125 7.96484 0.75 7.57422 0.75C7.30859 0.75 7.14062 0.847656 6.97656 1.10156L3.81641 6.08594L2.21484 4.12109C2.06641 3.94141 1.90234 3.86328 1.67578 3.86328C1.28125 3.86328 0.996094 4.14453 0.996094 4.52734C0.996094 4.69922 1.04688 4.84766 1.19531 5.01562L3.21094 7.4375C3.37891 7.63672 3.57422 7.73047 3.83203 7.73047Z" fill="#67DD6C"/>
+              </svg>
+            </span>
+            <br />
             <abbr>(On Polygon)</abbr>
           </p>
 

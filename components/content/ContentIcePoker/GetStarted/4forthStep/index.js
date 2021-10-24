@@ -7,7 +7,7 @@ const ForthStep = () => {
         <div className={styles.main_wrapper}>
             <div className={styles.title}>
                 <h1>Play ICE Poker!</h1>
-                <p>Two wasy to play ICE Poker</p>
+                <p>Two ways to play ICE Poker</p>
             </div>
 
             <div className={styles.content}>
@@ -17,7 +17,11 @@ const ForthStep = () => {
                     </div>
                     <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634617669/metaverse_kmhmrf.png" alt="avatar" />
                     <div className={styles.button_div}>
-                        <Button>
+                        <Button
+                            onClick={() => {
+                                window.open("https://play.decentral.games/dext", "_blank");
+                            }}
+                        >
                             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620413783/MANA_jw7ylg.png" alt="mana" />
                             Enter Decentraland
                         </Button>
@@ -31,7 +35,7 @@ const ForthStep = () => {
                     <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634617750/Poker_Table_seodln.png" style={{ width: '130px' }} alt="marketplace" />
                     <div className={styles.button_div}>
                         <Button disabled>
-                            Comming Soon
+                            Coming Soon
                         </Button>
                     </div>
                 </div>
