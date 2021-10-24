@@ -154,7 +154,7 @@ function ICEAttributes() {
 
       const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
 
-      if (Object.keys(delegationInfo).length) {
+      if (delegationInfo !== undefined && Object.keys(delegationInfo).length) {
         delegationInfo.incomingDelegations.forEach(async (item, i) => {
           const ownerAddress = item.tokenOwner;
           const tokenId = item.tokenId;
