@@ -34,7 +34,7 @@ const TreasuryTooltipDG = props => {
     <>
        <Popup
         trigger={
-          <div className={styles.question_mark}>
+          <div className={styles.info_mark}>
             <svg
               width="8"
               height="9"
