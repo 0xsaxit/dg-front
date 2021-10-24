@@ -78,7 +78,6 @@ function ICEAttributes() {
   useEffect(() => {
     if (instances) {
       async function fetchData() {
-        console.log('updateWearableItems ========================= ');
         dispatch({
           type: 'ice_wearable_items_loading',
           data: true,
