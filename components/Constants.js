@@ -29,6 +29,8 @@ const CONSTANTS = {
   VERIFY_URL: 'staging.decentral.games',
   // AMNESIA_COMMENT: we should remove these after we are done with amnesia
   AMNESIA_DESCRIPTION: "The world’s biggest DJs, live from Decentral Games.",
+  POOLING_TIME_OUT: 8000,
+  POOLING_LIMIT_COUNT: 6,
 };
 
 // wallet and contract addresses

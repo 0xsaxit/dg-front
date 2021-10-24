@@ -32,9 +32,36 @@ const ModalEthAuth = props => {
   const [loading, setLoading] = useState(false);
   const [errorText, setErrorText] = useState(null);
 
+  const [tickCount, setTickCount] = useState(0);
+  const [intervalId, setIntervalId] = useState(0);
+  const [mintStatus, setMintStatus] = useState({});
+
   /////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////
   // Update Open Modal Status
+  useEffect(() => {
+    if(Object.keys(mintStatus).length !== 0) {
+      console.log("pooling status finished! ");
+      clearInterval(intervalId);
+      setIntervalId(0);
+
+      completedMint(mintStatus);
+    }
+  }, [mintStatus]);
+
+  useEffect(() => {
+    const completeData = async () => {
+      console.log("pooling timeout finished!");
+      clearInterval(intervalId);
+      setIntervalId(0);
+      completedMint({}, true);
+      setTickCount(0);
+    }
+
+    if(tickCount === Global.CONSTANTS.POOLING_LIMIT_COUNT && intervalId > 0) {      
+      completeData();
+    }
+  }, [tickCount]);
 
   useEffect(() => {
     setOpen(props.show);
@@ -104,7 +131,7 @@ const ModalEthAuth = props => {
     return (
       <Aux>
         <div className={styles.header}>
-          <p className={styles.header_text}>Mint Wearable</p>
+          <p className={styles.header_text}>Mint Wearable-{tickCount}</p>
         </div>
 
         <p className={styles.description}>
@@ -153,6 +180,28 @@ const ModalEthAuth = props => {
     );
   }
 
+  async function fetchMintToken() {
+    try {
+      const json = await Fetch.MINT_TOKEN(
+        props.itemID,
+        Global.ADDRESSES.COLLECTION_V2_ADDRESS
+      );
+      console.log("pooling json: ", json);
+
+      if(json.status) {
+        setMintStatus(json);
+      }
+
+    } catch (error) {
+      setErrorText('API Timeout');
+      setButtonMessage('API Timeout');
+      setLoading(false);
+      setClickedConfirm(false);
+
+      console.log(error); // API request timeout error
+    }
+  }
+
   // send-off the API request to mint the user's Level 1 wearable
   async function mintToken() {
     setErrorText(null);
@@ -162,12 +211,18 @@ const ModalEthAuth = props => {
     setLoading(true);
     setClickedConfirm(true);
 
-    try {
-      const json = await Fetch.MINT_TOKEN(
-        props.itemID,
-        Global.ADDRESSES.COLLECTION_V2_ADDRESS
-      );
+    console.log("props.itemID", props.itemID);
+    console.log("COLLECTION_V2_ADDRESS", Global.ADDRESSES.COLLECTION_V2_ADDRESS);
 
+    const intervalid = setInterval(() => {
+      setTickCount(prevCount => prevCount + 1);
+      fetchMintToken();
+    }, Global.CONSTANTS.POOLING_TIME_OUT);
+    setIntervalId(intervalid);
+  }
+
+  async function completedMint(json, timeout = false) {
+    if(!timeout) {
       if (json.status) {
         // update global state token amounts
         const refresh1 = !state.refreshTokenAmounts;
@@ -175,48 +230,45 @@ const ModalEthAuth = props => {
           type: 'refresh_token_amounts',
           data: refresh1,
         });
-
+  
         // update global state wearables data
         const refresh2 = !state.refreshWearable;
         dispatch({
           type: 'refresh_wearable_items',
           data: refresh2,
         });
-
+  
         console.log('NFT minting successful');
-
+  
         setOpenMintSuccess(true);
         setOpen(false);
-
+  
         setLoading(false);
         setClickedConfirm(false);
-        setErrorText(null);
-
+        setErrorText(null);  
         props.close();
+
       } else if (!json.status) {
         setErrorText('Token Minting Error');
         setButtonMessage('Token Minting Error');
         setLoading(false);
         setClickedConfirm(false);
-
+  
         console.log('NFT minting error (a): ' + json.result);
       } else if (json.status === 'error') {
         setErrorText(json.result);
         setButtonMessage(json.result);
         setLoading(false);
         setClickedConfirm(false);
-
+  
         console.log('NFT minting error (b): ' + json.result);
       }
-    } catch (error) {
-      setErrorText('API Timeout');
-      setButtonMessage('API Timeout');
+    } else {
+      setErrorText('Token Minting Error');
+      setButtonMessage('Token Minting Error');
       setLoading(false);
       setClickedConfirm(false);
-
-      console.log(error); // API request timeout error
     }
-
     setMinting(false);
   }
 
