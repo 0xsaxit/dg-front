@@ -40,7 +40,7 @@ function Application({ Component, pageProps, store }) {
     setPageLoading(true);
     const timer = setTimeout(() => {
       console.log('This will run after 3 second on first load!');
-      setPageLoading(false);      
+      setPageLoading(false);
     }, 3000);
     return () => clearTimeout(timer);
   }, []);
@@ -70,9 +70,13 @@ function Application({ Component, pageProps, store }) {
 
       {pageLoading ? (
         <Spinner background={1} />
-      ) : null}
-      
-      <Segment />
+      ) :
+        <>
+          <Segment />
+          <Component {...pageProps} />
+        </>
+      }
+
       <UserStatus />
       <UserBalances />
       <Transactions />
@@ -88,8 +92,6 @@ function Application({ Component, pageProps, store }) {
       <EventsData />
       <SubgraphQuery />
       <ICEAttributes />
-
-      <Component {...pageProps} />
     </Provider>
   );
   // }

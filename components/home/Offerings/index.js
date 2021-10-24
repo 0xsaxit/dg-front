@@ -1,11 +1,8 @@
 import { useState, useContext } from 'react';
 import { GlobalContext } from '../../../store';
 import Link from 'next/link';
-import { Divider, Icon } from 'semantic-ui-react';
 import ContentOfferings from '../../content/ContentOfferings';
 import ContentLeaderboard from '../../content/ContentLeaderboard';
-import Spinner from '../../Spinner';
-import Images from '../../../common/Images';
 import Aux from '../../_Aux';
 import { useMediaQuery } from 'hooks';
 import styles from './Offerings.module.scss';
@@ -992,9 +989,8 @@ const Offerings = (props) => {
       <div className="d-flex flex-row">
         {submenu()}
 
-
         {gameState === 'leaderboard' ? (
-          <span>
+          <span className={styles.main_container}>
             <ContentLeaderboard
               gameRecords={state.gameRecords}
               gameSelect={gameSelect}

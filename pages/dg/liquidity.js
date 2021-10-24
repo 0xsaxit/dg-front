@@ -18,13 +18,7 @@ const Liquidity = () => {
         image={Images.SOCIAL_SHARE}
       />
 
-      {state.userStatus ? (
-        <DAO DGState={'uniswap'} />
-      ) : (
-        <div className="account-other-inner-p" style={{ marginTop: '150px' }}>
-          You must connect your wallet to view this page
-        </div>
-      )}
+      <DAO DGState={'uniswap'} />
     </Layout>
   );
 };
