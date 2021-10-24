@@ -245,8 +245,6 @@ function ICEAttributes() {
   /////////////////////////////////////////////////////////////////////////////////////////
   async function updateWearableItems() {
     if (state.userStatus >= 4) {
-      console.log('updateWearableItems ========================= ');
-
       const tokenIDs = [];
       try {
         for (
