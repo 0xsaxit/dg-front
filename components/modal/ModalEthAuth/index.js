@@ -131,7 +131,7 @@ const ModalEthAuth = props => {
     return (
       <Aux>
         <div className={styles.header}>
-          <p className={styles.header_text}>Mint Wearable-{tickCount}</p>
+          <p className={styles.header_text}>Mint Wearable</p>
         </div>
 
         <p className={styles.description}>
