@@ -1,9 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../../store';
 import Web3 from 'web3';
-import cn from 'classnames';
 import Link from 'next/link';
-import styled from 'styled-components';
 import { Divider, Input } from 'semantic-ui-react';
 import { useMediaQuery } from 'hooks';
 import Overview from '../../content/ContentDAO/Overview';
@@ -11,6 +9,7 @@ import Governance from '../../content/ContentDAO/Governance';
 import Liquidity from '../../content/ContentDAO/Liquidity';
 import Gameplay from '../../content/ContentDAO/Gameplay';
 import ContentTreasury from '../../content/ContentDAO/Treasury';
+import FoxAnimation from '../../lottieAnimation/animations/fox'
 
 import ContentMining from '../../content/ContentMining';
 import ContentMiningV1 from '../../content/ContentMiningV1';
@@ -758,38 +757,62 @@ const DAO = props => {
           {DGState === 'overview' ? (
             <Overview price={price} formatPrice={formatPrice} />
           ) : DGState === 'governance' ? (
-            <Governance
-              price={price}
-              formatPrice={formatPrice}
-              instances={instances}
-              stakingContractPool1={stakingContractPool1}
-              stakingContractPool2={stakingContractPool2}
-              staking={staking}
-              withdrawal={withdrawal}
-              reward={reward}
-            />
+            <>
+              {!state.userStatus ?
+                <section style={{ marginTop: '100px' }}>
+                  <FoxAnimation />
+                </section>
+                :
+                <Governance
+                  price={price}
+                  formatPrice={formatPrice}
+                  instances={instances}
+                  stakingContractPool1={stakingContractPool1}
+                  stakingContractPool2={stakingContractPool2}
+                  staking={staking}
+                  withdrawal={withdrawal}
+                  reward={reward}
+                />
+              }
+            </>
           ) : DGState === 'uniswap' ? (
-            <Liquidity
-              price={price}
-              formatPrice={formatPrice}
-              instances={instances}
-              stakingContractPool1={stakingContractPool1}
-              stakingContractPool2={stakingContractPool2}
-              staking={staking}
-              withdrawal={withdrawal}
-              reward={reward}
-            />
+            <>
+              {!state.userStatus ?
+                <section style={{ marginTop: '100px' }}>
+                  <FoxAnimation />
+                </section>
+                :
+                <Liquidity
+                  price={price}
+                  formatPrice={formatPrice}
+                  instances={instances}
+                  stakingContractPool1={stakingContractPool1}
+                  stakingContractPool2={stakingContractPool2}
+                  staking={staking}
+                  withdrawal={withdrawal}
+                  reward={reward}
+                />
+              }
+            </>
           ) : DGState === 'mining' ? (
-            <Gameplay
-              price={price}
-              formatPrice={formatPrice}
-              instances={instances}
-              stakingContractPool1={stakingContractPool1}
-              stakingContractPool2={stakingContractPool2}
-              staking={staking}
-              withdrawal={withdrawal}
-              reward={reward}
-            />
+            <>
+              {!state.userStatus ?
+                <section style={{ marginTop: '100px' }}>
+                  <FoxAnimation />
+                </section>
+                :
+                <Gameplay
+                  price={price}
+                  formatPrice={formatPrice}
+                  instances={instances}
+                  stakingContractPool1={stakingContractPool1}
+                  stakingContractPool2={stakingContractPool2}
+                  staking={staking}
+                  withdrawal={withdrawal}
+                  reward={reward}
+                />
+              }
+            </>
           ) : DGState === 'balancer' ? (
             <ContentBalancer
               price={price}
@@ -802,7 +825,15 @@ const DAO = props => {
               reward={reward}
             />
           ) : DGState === 'treasury' ? (
-            <ContentTreasury formatPrice={formatPrice} />
+            <>
+              {!state.userStatus ?
+                <section style={{ marginTop: '100px' }}>
+                  <FoxAnimation />
+                </section>
+                :
+                <ContentTreasury formatPrice={formatPrice} />
+              }
+            </>
           ) : DGState === 'airdrop' ? (
             <ContentAirdrop price={price} formatPrice={formatPrice} />
           ) : DGState === 'admin' ? (
