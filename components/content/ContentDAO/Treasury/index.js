@@ -75,9 +75,6 @@ const Treasury = props => {
         let temp_y = usd[j].secondary;
         yAxis.push(temp_y / 1000000);
       }
-      yAxis.push(17.81);
-      setStatsUSDX(xAxis);
-      setStatsUSDY(yAxis);
 
       const totalUSD = state.treasuryNumbers.totalBalanceUSD.graph;
       const api_usd = Number(totalUSD.slice(-1)[0].secondary);
@@ -94,6 +91,10 @@ const Treasury = props => {
 
       const new_total = (api_usd + gameplay_ice + unvested_price + lp + wearable_sales);
       setTreasuryTotal(props.formatPrice(new_total, 0));
+
+      yAxis.push(new_total / 1000000);
+      setStatsUSDX(xAxis);
+      setStatsUSDY(yAxis);
 
       const temp_start = totalUSD[0].secondary;
       const temp_end = new_total;

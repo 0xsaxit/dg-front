@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Grid, Table } from 'semantic-ui-react';
+import { Table } from 'semantic-ui-react';
 import Global from '../Constants';
-import Spinner from '../Spinner';
-import Images from '../../common/Images';
+import FoxAnimation from '../lottieAnimation/animations/fox'
 
 const ContentLeaderboard = (props) => {
   // get game score records from the Context API store
@@ -16,7 +15,7 @@ const ContentLeaderboard = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  var a = ['',' First ','Second ','Third ','Fourth ', 'Fifth ','Sixth ','Seventh ','Eighth ','Ninth ','Tenth'];
+  var a = ['', ' First ', 'Second ', 'Third ', 'Fourth ', 'Fifth ', 'Sixth ', 'Seventh ', 'Eighth ', 'Ninth ', 'Tenth'];
 
   function inWords(num) {
     if ((num = num.toString()).length > 9) return 'overflow';
@@ -136,81 +135,85 @@ const ContentLeaderboard = (props) => {
     }
   }, [props.gameRecords, props.timePeriod, props.gameSelect]);
 
-  if (isLoading) return <Spinner background={0} />;
+  if (isLoading) return (
+    <section style={{ marginTop: '100px' }}>
+      <FoxAnimation />
+    </section>
+  );
 
   console.log(dataGames);
 
   return (
     <>
-       {(props && props.coinSelector) ? props.coinSelector():null}
+      {(props && props.coinSelector) ? props.coinSelector() : null}
       <div className="outter-leaders-container" style={{ marginTop: '24px' }}>
         {games.map((game, index) => {
           return (
-              <Table unstackable className="leaders-table">
-                <Table.Header>
-                  <Table.Row>
-                    <Table.HeaderCell className="leaderboard-header">{game.toLowerCase()}</Table.HeaderCell>
-                    {/*<Table.HeaderCell>WIN</Table.HeaderCell>*/}
-                  </Table.Row>
-                </Table.Header>
+            <Table unstackable className="leaders-table">
+              <Table.Header>
+                <Table.Row>
+                  <Table.HeaderCell className="leaderboard-header">{game.toLowerCase()}</Table.HeaderCell>
+                  {/*<Table.HeaderCell>WIN</Table.HeaderCell>*/}
+                </Table.Row>
+              </Table.Header>
 
-                <Table.Body>
-                  {dataGames[index].map((row, index) => {
-                    var num = parseInt(
-                      Number(row.winnings) / Global.CONSTANTS.FACTOR
-                    );
-                    var amount = Number(num.toFixed(0))
-                      .toLocaleString()
-                      .split(/\s/)
-                      .join(',');
-                    return (
-                      <Table.Row key={index}>
-                        <Table.Cell style={{ display: 'flex' }}>
-                          <img
-                            className="avatar-picture"
-                            src={`https://events.decentraland.org/api/profile/${row.address}/face.png`}
-                            style={{
-                              width: '36px',
-                              marginRight: '6px',
-                              verticalAlign: 'middle',
-                              border: '1px solid rgba(42, 42, 42, 1)',
-                              borderRadius: '100%',
-                              display: 'flex',
-                              alignSelf: 'center',
-                            }}
-                          />
-                          <span style={{ display: 'flex', flexDirection: 'column', paddingLeft: '12px', alignSelf: 'center' }}>
-                            <p className="leaderboard-top">
-                              {inWords(index + 1)}
-                            </p>
-                            <p className="leaderboard-bottom">
-                              {row.name === null || row.name === '' 
-                                ? row.address.substr(0, 6) +
-                                  '...' +
-                                  row.address.substr(-4)
-                                : row.name}
-                            </p>
-                          </span>
-                        </Table.Cell>
-                        <Table.Cell>
-                          <span style={{ display: 'flex', flexDirection: 'column', paddingLeft: '12px', marginTop: '-3px' }}>
-                            <p className="leaderboard-top" style={{ textAlign: 'right' }}>
-                              Winnings
-                            </p>
-                            <p className="leaderboard-bottom" style={{ textAlign: 'right' }}>
-                              {amount}
-                            </p>
-                          </span>
-                        </Table.Cell>
-                      </Table.Row>
-                    );
-                  })}
-                </Table.Body>
-              </Table>
+              <Table.Body>
+                {dataGames[index].map((row, index) => {
+                  var num = parseInt(
+                    Number(row.winnings) / Global.CONSTANTS.FACTOR
+                  );
+                  var amount = Number(num.toFixed(0))
+                    .toLocaleString()
+                    .split(/\s/)
+                    .join(',');
+                  return (
+                    <Table.Row key={index}>
+                      <Table.Cell style={{ display: 'flex' }}>
+                        <img
+                          className="avatar-picture"
+                          src={`https://events.decentraland.org/api/profile/${row.address}/face.png`}
+                          style={{
+                            width: '36px',
+                            marginRight: '6px',
+                            verticalAlign: 'middle',
+                            border: '1px solid rgba(42, 42, 42, 1)',
+                            borderRadius: '100%',
+                            display: 'flex',
+                            alignSelf: 'center',
+                          }}
+                        />
+                        <span style={{ display: 'flex', flexDirection: 'column', paddingLeft: '12px', alignSelf: 'center' }}>
+                          <p className="leaderboard-top">
+                            {inWords(index + 1)}
+                          </p>
+                          <p className="leaderboard-bottom">
+                            {row.name === null || row.name === ''
+                              ? row.address.substr(0, 6) +
+                              '...' +
+                              row.address.substr(-4)
+                              : row.name}
+                          </p>
+                        </span>
+                      </Table.Cell>
+                      <Table.Cell>
+                        <span style={{ display: 'flex', flexDirection: 'column', paddingLeft: '12px', marginTop: '-3px' }}>
+                          <p className="leaderboard-top" style={{ textAlign: 'right' }}>
+                            Winnings
+                          </p>
+                          <p className="leaderboard-bottom" style={{ textAlign: 'right' }}>
+                            {amount}
+                          </p>
+                        </span>
+                      </Table.Cell>
+                    </Table.Row>
+                  );
+                })}
+              </Table.Body>
+            </Table>
           );
         })}
       </div>
-    </>  
+    </>
   );
 };
 
