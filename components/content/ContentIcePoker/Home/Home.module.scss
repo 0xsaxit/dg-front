@@ -1,7 +1,8 @@
 @import "styles/base.scss";
 
 .main_wrapper {
-  min-height: 100%;
+  position: relative;
+  min-height: 800px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,12 +12,14 @@
 
   .home_video {
     width: 100%;
-    height: calc(100vh - 70px) !important;
+    height: calc(100vh + 4px) !important;
+    min-height: 800px;
     object-fit: cover;
   }
 
   .lower_section {
-    margin-top: -250px;
+    position: absolute;
+    top: 72%;
     animation: fadeIn 7s;
     -webkit-animation: fadeIn 7s;
     -moz-animation: fadeIn 7s;
@@ -117,14 +120,22 @@
   }
 
   @media screen and (max-width: 500px) {
-    margin-top: -60px;
+    margin-top: -40px;
+    min-height: 100% !important;
 
     .home_video {
-      height: 90vh;
+      height: calc(100vh - 56px) !important;
+      min-height: 100% !important;
     }
 
     .lower_section {
-      margin-top: -165px;
+      top: 75% !important;
+    }
+  }
+
+  @media screen and (max-height: 800px) {
+    .lower_section {
+      top: 600px;
     }
   }
 }
