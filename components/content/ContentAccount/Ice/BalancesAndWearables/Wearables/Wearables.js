@@ -1,4 +1,5 @@
-// import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import Fetch from '../../../../../../common/Fetch';
 import ICEWearableCard from 'components/common/cards/ICEWearableCard';
 import ICEDelegatedCard from 'components/common/cards/ICEDelegatedCard';
 import { Button } from 'semantic-ui-react';
@@ -6,23 +7,40 @@ import styles from './Wearables.module.scss';
 
 const Wearables = ({ state }) => {
   // define local variables
+  const [maxICEBonus, setMaxICEBonus] = useState(0);
   const activeWearables = state.iceWearableItems.filter(
     item => item.meta_data && item.meta_data.attributes.at(-1).value > 0
   );
-  const maxICEBonus = activeWearables.reduce((prev, current) => {
-    let bonus = parseInt(current.meta_data.attributes.at(-1).value);
-    if (bonus <= 7) {
-      return 7 + prev;
-    } else if (bonus <= 15) {
-      return 15 + prev;
-    } else if (bonus <= 24) {
-      return 24 + prev;
-    } else if (bonus <= 34) {
-      return 34 + prev;
-    } else if (bonus >= 35) {
-      return 45 + prev;
+  const delegatedWearables = state.iceDelegatedItems.filter(
+    item => item.meta_data && item.meta_data.attributes.at(-1).value > 0
+  )
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // fetch user's incoming/outgoing delegate mapping data. Refreshes upon delegation/undelegation
+  useEffect(() => {
+    if (state.userStatus >= 4) {
+      (async function () {
+        let maxICEValue = 0;
+        const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
+        console.log(delegationInfo);
+
+        activeWearables.map(activeWearable => {
+          if (delegationInfo.outgoingDelegations && delegationInfo.outgoingDelegations.findIndex(e => e.tokenId === activeWearable.tokenID) >= 0) {
+            maxICEValue += parseInt(activeWearable.meta_data.attributes.at(-1).value) * 0.3;
+          } else {
+            maxICEValue += parseInt(activeWearable.meta_data.attributes.at(-1).value);
+          }
+        })
+
+        delegatedWearables.map(delegatedWearable => {
+          maxICEValue += parseInt(delegatedWearable.meta_data.attributes.at(-1).value) * 0.7;
+        })
+
+        setMaxICEBonus(Math.round(maxICEValue * 1000) / 1000);
+      })();
     }
-  }, 0);
+  }, [state.refreshDelegateInfo]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -31,7 +49,7 @@ const Wearables = ({ state }) => {
       <div className={styles.wearableHeader}>
         <div>
           <h2>ICED Wearables</h2>
-          <p>{`(${activeWearables.length} of ${state.iceWearableItems.length} Active) ${maxICEBonus}% Max ICE Bonus`}</p>
+          <p>{`(${activeWearables.length + delegatedWearables.length} of ${state.iceWearableItems.length + state.iceDelegatedItems.length} Active) ${maxICEBonus}% Max ICE Bonus`}</p>
         </div>
         <Button
           className={styles.open_sea}
