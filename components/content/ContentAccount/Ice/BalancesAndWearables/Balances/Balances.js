@@ -22,7 +22,7 @@ const Balances = () => {
         0
       ),
       price: formatPrice(
-        state.iceAmounts.ICE_CLAIM_AMOUNT * state.DGPrices.ice,
+        state.iceAmounts.ICE_AVAILABLE_AMOUNT * state.DGPrices.ice,
         2
       ),
     },
@@ -31,7 +31,7 @@ const Balances = () => {
       name: 'Gameplay XP',
       type: 'XP',
       model: formatPrice(
-        state.xpAmounts,
+        state.userInfo.balanceXP,
         0
       ),
       price: '0.00',
