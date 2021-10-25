@@ -6,8 +6,6 @@ import Images from 'common/Images';
 import styles from './Ice.module.scss';
 
 function ICE({ state }) {
-  console.log("*******************", state.iceWearableItemsLoading);
-
   return (
     <Aux>
       {!state.iceWearableItemsLoading && !state.iceDelegatedItemsLoading ? (
