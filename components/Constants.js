@@ -22,7 +22,7 @@ const CONSTANTS = {
   MATIC_URL: 'https://rpc-mainnet.maticvigil.com/v1/7089dae85151c62193fcd92f53de4d9ff749bcc2', // 'https://rpc-mainnet.matic.network',
   MATIC_EXPLORER: 'https://explorer-mainnet.maticvigil.com',
   TITLE: 'Decentral Games',
-  DESCRIPTION: 'The first community-owned, Metaverse casino. Provably fair game logic, non-custodial accounts, immediate payouts.',
+  DESCRIPTION: 'Free to play, play to earn gaming in the metaverse. Play ICE Poker, trade NFTs, vote in the DAO, and earn real value from your favorite games.',
   DISCORD_URL: 'https://discord.gg/cvbSNzY',
   SOCIAL_HANDLE: 'decentralgames',
   MAX_ITEM_COUNT: 10,

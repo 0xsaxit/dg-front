@@ -34,14 +34,7 @@ function SectionOne(props) {
             <h1>
               {' '}
               {/* { t('Home.PLAY') } */}
-              Play
-              <span style={{ fontFamily: 'Shadows Into Light, cursive' }}>
-                {' '}
-                {/* { t('Home.ANDOWN') } */}
-                (and own){' '}
-              </span>
-              {/* { t('Home.FIRSTEVER') } */}
-              the first ever metaverse casino .{' '}
+              Play-to-earn gaming in the metaverse
             </h1>
             <p className={cn(styles.content, mobile ? 'px-6 mx-auto' : 'px-0')}>
               {mobile
