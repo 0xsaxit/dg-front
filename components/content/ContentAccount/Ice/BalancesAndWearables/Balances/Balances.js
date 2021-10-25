@@ -22,7 +22,7 @@ const Balances = () => {
         0
       ),
       price: formatPrice(
-        state.iceAmounts.ICE_CLAIM_AMOUNT * state.DGPrices.ice,
+        state.iceAmounts.ICE_AVAILABLE_AMOUNT * state.DGPrices.ice,
         2
       ),
     },
