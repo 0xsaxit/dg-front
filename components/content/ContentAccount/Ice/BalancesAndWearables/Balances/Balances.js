@@ -31,7 +31,7 @@ const Balances = () => {
       name: 'Gameplay XP',
       type: 'XP',
       model: formatPrice(
-        state.xpAmounts,
+        state.userInfo.balanceXP,
         0
       ),
       price: '0.00',
