@@ -46,6 +46,7 @@ function UserInfo() {
           const id = jsonInfo._id.slice(-6);
           const balancePLAY = jsonInfo.playBalance.toLocaleString();
           const balanceXP = jsonInfo.iceXpCurrent;
+          const totalXP = jsonInfo.iceXpAllTime;
           const count = jsonInfo.callCount;
           const email = '';
           const playersList = jsonInfo.playersList;
@@ -62,10 +63,11 @@ function UserInfo() {
             playersList: playersList,
             tokenArray: tokenArray,
             balanceXP: balanceXP,
+            totalXP: totalXP,
           };
 
-          // console.log('!!!!!!!!');
-          // console.log(jsonInfo);
+          console.log('!!!!!!!!');
+          console.log(jsonInfo);
 
           dispatch({
             type: 'user_info',
