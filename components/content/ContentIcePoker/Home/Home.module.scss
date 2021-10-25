@@ -19,7 +19,7 @@
 
   .lower_section {
     position: absolute;
-    top: 72%;
+    top: 66% !important;
     animation: fadeIn 7s;
     -webkit-animation: fadeIn 7s;
     -moz-animation: fadeIn 7s;
@@ -119,6 +119,12 @@
     }
   }
 
+  @media screen and (max-width: 1800px) {
+    .lower_section {
+      top: 65% !important;
+    }
+  }
+
   @media screen and (max-width: 500px) {
     margin-top: -40px;
     min-height: 100% !important;
@@ -129,13 +135,25 @@
     }
 
     .lower_section {
-      top: 75% !important;
+      top: 66% !important;
     }
   }
 
   @media screen and (max-height: 800px) {
     .lower_section {
-      top: 600px;
+      top: 520px !important;
+    }
+  }
+
+  @media screen and (max-width: 500px) and (max-height: 800px) {
+    .lower_section {
+      top: 65% !important;
+    }
+  }
+
+  @media screen and (min-width: 1585px) and (max-height: 800px) {
+    .lower_section {
+      top: 555px !important;
     }
   }
 }
