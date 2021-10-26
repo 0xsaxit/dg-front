@@ -122,7 +122,7 @@ const NeedMoreUpgrade = ({
                 href="https://quickswap.exchange/#/swap?outputCurrency=0xc6c855ad634dcdad23e64da71ba85b8c51e5ad7c"
                 target="_blank"
               >
-                Buy ICE &nbsp;
+                Buy ICE
                 <ExternalLinkArrow />
               </Button>
 
@@ -151,7 +151,7 @@ const NeedMoreUpgrade = ({
                 href="https://quickswap.exchange/#/swap?outputCurrency=0x2a93172c8dccbfbc60a39d56183b7279a2f647b4"
                 target="_blank"
               >
-                Buy $DG &nbsp;
+                Buy $DG
                 <ExternalLinkArrow />
               </Button>
 
