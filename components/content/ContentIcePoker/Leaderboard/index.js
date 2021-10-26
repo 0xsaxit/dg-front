@@ -18,11 +18,11 @@ const Leaderboard = () => {
     useEffect(() => {
         if (Object.keys(state.gameRecords).length !== 0) {
             if (time === 'Weekly') {
-                setGameRecords(state.gameRecords.weekly.poker.play)
+                setGameRecords(state.gameRecords.weekly.poker.chips)
             } else if (time === 'Monthly') {
-                setGameRecords(state.gameRecords.daily.poker.play)
+                setGameRecords(state.gameRecords.monthly.poker.chips)
             } else {
-                setGameRecords(state.gameRecords.all.poker.play)
+                setGameRecords(state.gameRecords.all.poker.chips)
             }
         }
     }, [state.gameRecords, time])
