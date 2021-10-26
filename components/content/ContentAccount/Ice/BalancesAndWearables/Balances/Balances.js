@@ -22,7 +22,7 @@ const Balances = () => {
         0
       ),
       price: formatPrice(
-        state.iceAmounts.ICE_CLAIM_AMOUNT * state.DGPrices.ice,
+        state.iceAmounts.ICE_AVAILABLE_AMOUNT * state.DGPrices.ice,
         2
       ),
     },
@@ -31,7 +31,7 @@ const Balances = () => {
       name: 'Gameplay XP',
       type: 'XP',
       model: formatPrice(
-        state.xpAmounts,
+        state.userInfo.balanceXP,
         0
       ),
       price: '0.00',
@@ -195,6 +195,9 @@ const Balances = () => {
     console.log('Claiming ICE Rewards: ' + state.iceAmounts.ICE_CLAIM_AMOUNT);
     setClicked(true);
 
+    //Show Toast Message
+    let msg = '';
+
     try {
       const json = await Fetch.CLAIM_REWARDS();
 
@@ -209,13 +212,27 @@ const Balances = () => {
           type: 'refresh_ice_amounts',
           data: refresh,
         });
-      } else {
-        console.log('Claim ICE rewards request error: ' + json.reason);
 
+        //Show Toast Message
+        msg = 'ICE claimed successfully!';
+      } else {
+        console.log('Claim ICE rewards request error: ' + json.reason);       
+        msg = 'ICE claimed failed!';
         setClicked(false);
       }
+
+      dispatch({
+        type: 'show_toastMessage',
+        data: msg,
+      });
+
     } catch (error) {
       console.log(error); // API request timeout error
+      msg = 'API request timeout error';
+      dispatch({
+        type: 'show_toastMessage',
+        data: msg,
+      });
 
       setClicked(false);
     }

@@ -120,7 +120,7 @@ const MessageToast = (props) => {
           type: 'show_toastMessage',
           data: '',
         });
-      }, 5000);
+      }, 4500);
       return () => {
         clearTimeout(timer);
       };
