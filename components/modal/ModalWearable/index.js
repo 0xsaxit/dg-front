@@ -36,10 +36,10 @@ const ModalWearable = props => {
   const icePrices = [
     0, // Rank 0
     0, // Rank 1
-    30000, // Rank 2
-    40000, // Rank 3
-    50000, // Rank 4
-    60000, // Rank 5
+    10000, // Rank 2
+    15000, // Rank 3
+    20000, // Rank 4
+    25000, // Rank 5
   ];
 
   const imgUrls = {
