@@ -127,7 +127,7 @@ const Leaderboard = () => {
                                                     </abbr>
                                                 </Table.Cell>
                                                 <Table.Cell className={styles.winnings}>
-                                                    <abbr>{(Number(row.winnings) / 100000000000000000).toLocaleString()}</abbr>
+                                                    <abbr>{Number((Number(row.winnings) / 100000000000000000).toFixed(0)).toLocaleString()}</abbr>
                                                     <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1635212177/FREE_Coin_c08hyk.png" alt="ice" />
                                                 </Table.Cell>
                                             </Table.Row>

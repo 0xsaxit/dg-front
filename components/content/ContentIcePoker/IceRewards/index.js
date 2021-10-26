@@ -10,6 +10,7 @@ const IceRewards = () => {
 
     // define local variables
     const [clicked, setClicked] = useState(false);
+    const [payoutTime, setPayoutTime] = useState('--');
 
     /////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -17,6 +18,21 @@ const IceRewards = () => {
     useEffect(() => {
         setClicked(false);
     }, [state.iceAmounts]);
+
+    useEffect(() => {
+        let id = setInterval(() => {
+            var remainingTime = getRemainingTime() / 60;
+
+            // Set Remain Time Text
+            if (remainingTime >= 60) {
+                remainingTime = Math.floor(remainingTime / 60)
+                setPayoutTime(remainingTime > 1 ? remainingTime + " hours." : remainingTime + " hour.");
+            } else {
+                setPayoutTime(remainingTime > 1 ? Math.floor(remainingTime) + " minutes." : "1 minute.");
+            }
+        }, 1000);
+        return () => clearInterval(id);
+    });
 
     /////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -27,6 +43,21 @@ const IceRewards = () => {
             .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
         return balanceAdjusted;
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////
+    // get Remaining Time
+    function getRemainingTime() {
+        const today = new Date()
+        const todayUTC = new Date(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate(), today.getUTCHours(), today.getUTCMinutes(), today.getUTCSeconds());
+        const tomorrowUTC = new Date(todayUTC.getTime())
+        tomorrowUTC.setDate(tomorrowUTC.getDate() + 1)
+        tomorrowUTC.setHours(0)
+        tomorrowUTC.setMinutes(0);
+        tomorrowUTC.setSeconds(0);
+
+        return (tomorrowUTC.getTime() - todayUTC.getTime()) / 1000
     }
 
     async function claimTokens() {
@@ -66,7 +97,7 @@ const IceRewards = () => {
                     Claim Your ICE Rewards!
                 </h1>
                 <p>
-                    Payouts at midnight UTC daily. Next payout in <abbr>4 hours.</abbr>
+                    Payouts at midnight UTC daily. Next payout in <abbr>{payoutTime}</abbr>
                 </p>
             </div>
 
@@ -86,9 +117,7 @@ const IceRewards = () => {
                 </p>
 
                 <p className={styles.lower_text}>
-                    ICE Earnings vary based on your total equipped wearables, <br />
-                    wearable ranks, and your placement in daily ICE Poker<br />
-                    tournaments.
+                    ICE Earnings vary based on your total equipped wearables, wearable ranks, and your placement in daily ICE Poker tournaments.
                 </p>
 
 
@@ -97,10 +126,10 @@ const IceRewards = () => {
                         Claim {formatPrice(state.iceAmounts.ICE_CLAIM_AMOUNT, 0)} ICE
                     </Button>
                 ) : (
-                        <Button className={cn(styles.claim_ICE, styles.lower_button)} disabled>
-                            Claim {formatPrice(state.iceAmounts.ICE_CLAIM_AMOUNT, 0)} ICE
-                        </Button>
-                    )}
+                    <Button className={cn(styles.claim_ICE, styles.lower_button)} disabled>
+                        Claim {formatPrice(state.iceAmounts.ICE_CLAIM_AMOUNT, 0)} ICE
+                    </Button>
+                )}
             </div>
         </div>
     )
