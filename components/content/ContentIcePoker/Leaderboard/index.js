@@ -27,6 +27,8 @@ const Leaderboard = () => {
         }
     }, [state.gameRecords, time])
 
+    console.log(state);
+
     return (
         <div className={styles.main_wrapper}>
             {!state.userStatus ?
@@ -83,7 +85,7 @@ const Leaderboard = () => {
                         </div>
                         <div className={styles.winnings}>
                             <abbr>{state.iceAmounts.ICE_AVAILABLE_AMOUNT.toLocaleString()}</abbr>
-                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
+                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1635212177/FREE_Coin_c08hyk.png" alt="ice" />
                         </div>
                     </div>
 
@@ -95,7 +97,7 @@ const Leaderboard = () => {
                                         Player
                                     </Table.HeaderCell>
                                     <Table.HeaderCell>
-                                        Total ICE Winnings
+                                        Total CHIP Winnings
                                     </Table.HeaderCell>
                                 </Table.Row>
                             </Table.Header>
@@ -125,8 +127,8 @@ const Leaderboard = () => {
                                                     </abbr>
                                                 </Table.Cell>
                                                 <Table.Cell className={styles.winnings}>
-                                                    <abbr>{row.winnings.toLocaleString()}</abbr>
-                                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
+                                                    <abbr>{(Number(row.winnings) / 100000000000000000).toLocaleString()}</abbr>
+                                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1635212177/FREE_Coin_c08hyk.png" alt="ice" />
                                                 </Table.Cell>
                                             </Table.Row>
                                         );
