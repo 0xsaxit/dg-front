@@ -172,7 +172,15 @@ const ModalWithdrawDelegation = props => {
           open={open}
           close
           trigger={
-            <Button className={props.buttonName === "Withdraw Delegation" ? styles.open_button_fullWidth : styles.open_button}>{props.buttonName}</Button>
+            <Button
+              className={
+                props.buttonName === 'Withdraw Delegation'
+                  ? styles.open_button_fullWidth
+                  : styles.open_button
+              }
+            >
+              {props.buttonName}
+            </Button>
           }
         >
           <div className={styles.top_buttons}>
@@ -187,7 +195,10 @@ const ModalWithdrawDelegation = props => {
                 {!clicked ? (
                   <Button
                     className={styles.button_close}
-                    onClick={() => undelegateNFT()}
+                    onClick={() => {
+                      analytics.track('CLICKED WITHDRAW DELEGATION');
+                      undelegateNFT();
+                    }}
                   >
                     <img
                       src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
