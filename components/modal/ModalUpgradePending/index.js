@@ -169,6 +169,7 @@ const ModalUpgradePending = props => {
           console.log('ICE clicked!');
           metaTransactionToken('ICE');
         },
+        trackEvent: 'ICE AUTHORIZATION CLICKED',
       },
       {
         step: 'DG',
@@ -179,6 +180,7 @@ const ModalUpgradePending = props => {
           console.log('DG clicked!');
           metaTransactionToken('DG');
         },
+        trackEvent: 'DG AUTHORIZATION CLICKED',
       },
       {
         step: 'NFT',
@@ -189,6 +191,7 @@ const ModalUpgradePending = props => {
           console.log('NFT clicked!');
           metaTransactionNFT();
         },
+        trackEvent: 'NFT AUTHORIZATION CLICKED',
       },
       {
         step: 'WEARABLE',
@@ -199,6 +202,7 @@ const ModalUpgradePending = props => {
           console.log('Wearable clicked!');
           upgradeToken();
         },
+        trackEvent: 'CONFIRM UPGRADE CLICKED',
       },
     ];
 
@@ -284,6 +288,7 @@ const ModalUpgradePending = props => {
         className={styles.proceed_button}
         onClick={() => {
           console.log('active Item: ', activeItem);
+          analytics.track(activeItem.trackEvent);
           activeItem.handleClick();
         }}
       >
