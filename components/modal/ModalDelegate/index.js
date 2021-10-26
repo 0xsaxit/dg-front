@@ -271,7 +271,10 @@ const ModalDelegate = props => {
                   {!clicked ? (
                     <Button
                       className={styles.button_upgrade}
-                      onClick={() => delegateNFT()}
+                      onClick={() => {
+                        analytics.track('CLICKED DELEGATE');
+                        delegateNFT();
+                      }}
                       disabled={enteredAddress === '' || isDelegated}
                     >
                       {props.buttonName}
