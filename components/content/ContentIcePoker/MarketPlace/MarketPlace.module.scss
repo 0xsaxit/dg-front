@@ -96,11 +96,23 @@
                 min-width: 228px;
                 height: 100%;
 
+                .coming_soon {
+                    width: 190px;
+                    border-radius: 8px;
+                    background: #4e4e4e;
+                    height: 34px;
+                    font-family: Larsseit-Bold;
+                    font-size: 11px;
+                    line-height: 20px;
+                    color: white;
+                }                
+
                 .wear_box_purple {
                     position: relative;
                     width: 100%;
                     border-radius: 16px;
                     margin-top: 12px;
+
 
                     .p2e_enabled {
                         position: absolute;
@@ -133,6 +145,7 @@
                             }
                         }
                     }
+
 
                     .popup {
                         margin-right: -13px !important;
