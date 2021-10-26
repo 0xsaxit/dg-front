@@ -28,6 +28,7 @@ const ActivateWearableModal = props => {
   const [clicked, setClicked] = useState(false);
 
   const [openUpgradeSuccess, setOpenUpgradeSuccess] = useState(false);
+  const [errorText, setErrorText] = useState(null);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -267,6 +268,16 @@ const ActivateWearableModal = props => {
     
   }
 
+  function showErrorCase() {
+    return (
+      <Aux>
+        <div className={styles.error_text}>
+          {errorText? errorText: ''}
+        </div>
+      </Aux>
+    );
+  }
+
   async function metaTransactionReICE() {
     console.log('Meta-transaction NFT Activation');
     console.log('Previous owner: ' + previousOwner);
@@ -274,7 +285,7 @@ const ActivateWearableModal = props => {
 
     try {
       setClicked(true);
-      // get function signature and send Biconomy API meta-transaction
+      // get function signature and send Biconomy API meta-transaction      
       let functionSignature = iceRegistrantContract.methods
         .reIceNFT(
           previousOwner,
@@ -294,6 +305,7 @@ const ActivateWearableModal = props => {
       if (txHash === false) {
         setOpenUpgradeSuccess(false);
         setClicked(false);
+        setErrorText('Activation is failed');
         console.log('Biconomy meta-transaction failed');
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
@@ -320,14 +332,17 @@ const ActivateWearableModal = props => {
         })
 
         // close this modal and open the success modal
+        setErrorText(null);
         setOpen(false);
         setClicked(false);
         setOpenUpgradeSuccess(true);
       }
+
     } catch (error) {
       setOpenUpgradeSuccess(false);
       setClicked(false);
       console.log('NFT Activation error: ' + error);
+      setErrorText('NFT Activation error');
     }
   }
 
@@ -378,6 +393,7 @@ const ActivateWearableModal = props => {
                 : 'Authorize DG'}
           </Button>
         </div>
+        {showErrorCase()}
       </Modal>
     ):(
       <ModalActivationSuccess
