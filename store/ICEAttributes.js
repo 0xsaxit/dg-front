@@ -112,16 +112,16 @@ function ICEAttributes() {
               tokenIDs[i].tokenID
             );
 
-            if (Object.keys(json.metadata).length) {
+            if (Object.keys(json).length) {
               iceWearableItems.push({
                 index: tokenIDs[i].index,
                 tokenID: tokenIDs[i].tokenID,
-                itemID: json.metadata.id.split(':').slice(-1),
-                meta_data: json.metadata,
+                itemID: json.id.split(':').slice(-1),
+                meta_data: json,
               });
             }
           } catch (error) {
-            console.log('Fetch metadata error: ' + error.result);
+            console.log('Fetch metadata error: ' + error);
           }
         }
 
@@ -164,16 +164,16 @@ function ICEAttributes() {
               tokenId
             );
 
-            if (Object.keys(json.metadata).length) {
+            if (Object.keys(json).length) {
               iceDelegatedItems.push({
                 ownerAddress: ownerAddress,
                 tokenID: tokenId,
-                itemID: json.metadata.id.split(':').slice(-1),
-                meta_data: json.metadata,
+                itemID: json.id.split(':').slice(-1),
+                meta_data: json,
               });
             }
           } catch (error) {
-            console.log('Fetch delegation info error: ' + error.result);
+            console.log('Fetch delegation info error: ' + error);
           }
         });
       }
