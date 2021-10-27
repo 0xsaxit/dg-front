@@ -9,8 +9,6 @@ const TreasuryTooltipGameplay = props => {
 
   const [manaBalance, setManaBalance] = useState(0);
   const [daiBalance, setDaiBalance] = useState(0);
-  const [usdtBalance, setUSDTBalance] = useState(0);
-  const [atriBalance, setAtriBalance] = useState(0);
   const [ethBalance, setEthBalance] = useState(0);
   const [iceBalance, setIceBalance] = useState(0);
 
@@ -32,16 +30,10 @@ const TreasuryTooltipGameplay = props => {
       const dai = state.treasuryNumbers.daiBalance.graph;
       setDaiBalance(formatPrice(dai.slice(-1)[0].secondary, 0));
 
-      const usdt = state.treasuryNumbers.usdtBalance.graph;
-      setUSDTBalance(formatPrice(usdt.slice(-1)[0].secondary, 0));
-
-      const atri = state.treasuryNumbers.atriBalance.graph;
-      setAtriBalance(formatPrice(atri.slice(-1)[0].secondary, 0));
-
       const eth = state.treasuryNumbers.ethBalance.graph;
       setEthBalance(formatPrice(eth.slice(-1)[0].secondary, 3));
 
-      const ice = Number(state.DGBalances.BALANCE_ICE * state.DGPrices.ice);
+      const ice = Number(state.DGBalances.BALANCE_ICE);
       setIceBalance(formatPrice(ice, 0));
     }
   }, [state.treasuryNumbers, state.DGBalances.BALANCE_ICE]);
@@ -81,12 +73,6 @@ const TreasuryTooltipGameplay = props => {
               </p>
               <p style={{ marginBottom: '4px' }}>
                 DAI: ${daiBalance}         
-              </p>
-              <p style={{ marginBottom: '4px' }}>
-                USDT: ${usdtBalance}         
-              </p>
-              <p style={{ marginBottom: '4px' }}>
-                ATARI: ${atriBalance}         
               </p>
               <p style={{ marginBottom: '4px' }}>
                 ETH: ${ethBalance}
