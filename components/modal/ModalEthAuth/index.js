@@ -26,22 +26,22 @@ const ModalEthAuth = props => {
   const [open, setOpen] = useState(false);
   const [openMintSuccess, setOpenMintSuccess] = useState(false);
   const [minting, setMinting] = useState(false);
-  const [buttonMessage, setButtonMessage] = useState('Proceed to Mint');
+  // const [buttonMessage, setButtonMessage] = useState('Proceed to Mint');
   const [clickedAuthEth, setClickedAuthEth] = useState(false);
   const [clickedConfirm, setClickedConfirm] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorText, setErrorText] = useState(null);
-
   const [tickCount, setTickCount] = useState(0);
   const [intervalId, setIntervalId] = useState(0);
   const [mintStatus, setMintStatus] = useState({});
+  const [biconomyReady, setBiconomyReady] = useState(false);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////
   // Update Open Modal Status
   useEffect(() => {
-    if(Object.keys(mintStatus).length !== 0) {
-      console.log("pooling status finished! ");
+    if (Object.keys(mintStatus).length !== 0) {
+      console.log('pooling status finished! ');
       clearInterval(intervalId);
       setIntervalId(0);
 
@@ -51,14 +51,14 @@ const ModalEthAuth = props => {
 
   useEffect(() => {
     const completeData = async () => {
-      console.log("pooling timeout finished!");
+      console.log('pooling timeout finished!');
       clearInterval(intervalId);
       setIntervalId(0);
       completedMint({}, true);
       setTickCount(0);
-    }
+    };
 
-    if(tickCount === Global.CONSTANTS.POOLING_LIMIT_COUNT && intervalId > 0) {      
+    if (tickCount === Global.CONSTANTS.POOLING_LIMIT_COUNT && intervalId > 0) {
       completeData();
     }
   }, [tickCount]);
@@ -95,6 +95,7 @@ const ModalEthAuth = props => {
       biconomy
         .onEvent(biconomy.READY, () => {
           console.log('Mexa is Ready: Approve ETH (wearables)');
+          setBiconomyReady(true);
         })
         .onEvent(biconomy.ERROR, (error, message) => {
           console.error(error);
@@ -111,15 +112,15 @@ const ModalEthAuth = props => {
   useEffect(() => {
     const canPurchase = state.canPurchase;
 
-    if (canPurchase) {
-      if (state.tokenAuths.WETH_AUTHORIZATION) {
-        setButtonMessage('Confirm Purchase');
-      } else {
-        setButtonMessage('Authorize ETH');
-      }
-    } else {
-      setButtonMessage('Cooldown Period');
-    }
+    // if (canPurchase) {
+    //   if (state.tokenAuths.WETH_AUTHORIZATION) {
+    //     setButtonMessage('Confirm Purchase');
+    //   } else {
+    //     setButtonMessage('Authorize ETH');
+    //   }
+    // } else {
+    //   setButtonMessage('Cooldown Period');
+    // }
 
     setCanPurchase(canPurchase);
   }, [state.canPurchase]);
@@ -173,9 +174,7 @@ const ModalEthAuth = props => {
   function showErrorCase() {
     return (
       <Aux>
-        <div className={styles.error_text}>
-          {errorText? errorText: ''}
-        </div>
+        <div className={styles.error_text}>{errorText ? errorText : ''}</div>
       </Aux>
     );
   }
@@ -186,15 +185,14 @@ const ModalEthAuth = props => {
         props.itemID,
         Global.ADDRESSES.COLLECTION_V2_ADDRESS
       );
-      console.log("pooling json: ", json);
+      console.log('pooling json: ', json);
 
-      if(json.status) {
+      if (json.status) {
         setMintStatus(json);
       }
-
     } catch (error) {
       setErrorText('API Timeout');
-      setButtonMessage('API Timeout');
+      // setButtonMessage('API Timeout');
       setLoading(false);
       setClickedConfirm(false);
 
@@ -211,8 +209,11 @@ const ModalEthAuth = props => {
     setLoading(true);
     setClickedConfirm(true);
 
-    console.log("props.itemID", props.itemID);
-    console.log("COLLECTION_V2_ADDRESS", Global.ADDRESSES.COLLECTION_V2_ADDRESS);
+    console.log('props.itemID', props.itemID);
+    console.log(
+      'COLLECTION_V2_ADDRESS',
+      Global.ADDRESSES.COLLECTION_V2_ADDRESS
+    );
 
     const intervalid = setInterval(() => {
       setTickCount(prevCount => prevCount + 1);
@@ -222,7 +223,7 @@ const ModalEthAuth = props => {
   }
 
   async function completedMint(json, timeout = false) {
-    if(!timeout) {
+    if (!timeout) {
       if (json.status) {
         // update global state token amounts
         const refresh1 = !state.refreshTokenAmounts;
@@ -230,42 +231,41 @@ const ModalEthAuth = props => {
           type: 'refresh_token_amounts',
           data: refresh1,
         });
-  
+
         // update global state wearables data
         const refresh2 = !state.refreshWearable;
         dispatch({
           type: 'refresh_wearable_items',
           data: refresh2,
         });
-  
+
         console.log('NFT minting successful');
-  
+
         setOpenMintSuccess(true);
         setOpen(false);
-  
+
         setLoading(false);
         setClickedConfirm(false);
-        setErrorText(null);  
+        setErrorText(null);
         props.close();
-
       } else if (!json.status) {
         setErrorText('Token Minting Error');
-        setButtonMessage('Token Minting Error');
+        // setButtonMessage('Token Minting Error');
         setLoading(false);
         setClickedConfirm(false);
-  
+
         console.log('NFT minting error (a): ' + json.result);
       } else if (json.status === 'error') {
         setErrorText(json.result);
-        setButtonMessage(json.result);
+        // setButtonMessage(json.result);
         setLoading(false);
         setClickedConfirm(false);
-  
+
         console.log('NFT minting error (b): ' + json.result);
       }
     } else {
       setErrorText('Token Minting Error');
-      setButtonMessage('Token Minting Error');
+      // setButtonMessage('Token Minting Error');
       setLoading(false);
       setClickedConfirm(false);
     }
@@ -420,8 +420,10 @@ const ModalEthAuth = props => {
                     <Loader />
                   ) : authStatus ? (
                     'Confirm Purchase'
-                  ) : (
+                  ) : biconomyReady ? (
                     'Authorize ETH'
+                  ) : (
+                    'Biconomy Initializing'
                   )}
                 </Button>
               ) : (
