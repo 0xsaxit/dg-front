@@ -3,6 +3,7 @@ import { GlobalContext } from '../../../../store'
 import { Button } from 'semantic-ui-react'
 import cn from 'classnames'
 import styles from './IceRewards.module.scss'
+import Fetch from '../../../../common/Fetch';
 
 const IceRewards = () => {
     // dispatch user's ICE amounts to the Context API store
