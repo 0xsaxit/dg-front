@@ -80,6 +80,8 @@ const IceRewards = () => {
     console.log('Claiming ICE Rewards: ' + state.iceAmounts.ICE_CLAIM_AMOUNT);
     setClicked(true);
 
+    let msg = '';
+
     try {
       const json = await Fetch.CLAIM_REWARDS();
 
@@ -94,16 +96,25 @@ const IceRewards = () => {
           type: 'refresh_ice_amounts',
           data: refresh,
         });
+        msg = 'ICE claimed successfully!';
+
       } else {
         console.log('Claim ICE rewards request error: ' + json.reason);
+        msg = 'ICE claimed failed!';
 
         setClicked(false);
       }
     } catch (error) {
       console.log(error); // API request timeout error
+      msg = 'ICE claimed failed!';
 
       setClicked(false);
     }
+
+    dispatch({
+        type: 'show_toastMessage',
+        data: msg,
+    });
   }
 
   return (
