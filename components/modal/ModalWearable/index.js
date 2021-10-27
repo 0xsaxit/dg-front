@@ -85,7 +85,7 @@ const ModalWearable = props => {
     ],
   };
 
-  console.log("state.userInfo", state.userInfo);
+  // console.log("state.userInfo", state.userInfo);
 
   return (
     <>
@@ -381,7 +381,12 @@ const ModalWearable = props => {
         />
       )}
 
-      {upgrade == 3 && <ModalUpgradeSuccess setUpgrade={setUpgrade} />}
+      {upgrade == 3 && (
+        <ModalUpgradeSuccess 
+          tokenID={props.tokenID} 
+          setUpgrade={setUpgrade} 
+        />
+      )}
     </>
   );
 };
