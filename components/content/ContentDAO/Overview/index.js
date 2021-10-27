@@ -29,8 +29,6 @@ const Overview = props => {
   const [gameplayAllPercent, setGameplayAllPercent] = useState(0);
   const [manaBalance, setManaBalance] = useState(0);
   const [daiBalance, setDaiBalance] = useState(0);
-  const [usdtBalance, setUSDTBalance] = useState(0);
-  const [atriBalance, setAtriBalance] = useState(0);
   const [ethBalance, setEthBalance] = useState(0);
   const [dgTreasury, setDgTreasury] = useState(0);
   const [dgTreasuryPercent, setDgTreasuryPercent] = useState(0);
@@ -222,12 +220,6 @@ const Overview = props => {
 
       const dai = state.treasuryNumbers.daiBalance.graph;
       setDaiBalance(props.formatPrice(dai.slice(-1)[0].secondary, 0));
-
-      const usdt = 149746;
-      setUSDTBalance(props.formatPrice(usdt, 0));
-
-      const atri = state.treasuryNumbers.atriBalance.graph;
-      setAtriBalance(props.formatPrice(atri.slice(-1)[0].secondary, 0));
 
       const eth = state.treasuryNumbers.ethBalance.graph;
       setEthBalance(props.formatPrice(eth.slice(-1)[0].secondary, 3));
