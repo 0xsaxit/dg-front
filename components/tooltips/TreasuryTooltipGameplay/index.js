@@ -75,12 +75,6 @@ const TreasuryTooltipGameplay = props => {
                 DAI: ${daiBalance}         
               </p>
               <p style={{ marginBottom: '4px' }}>
-                USDT: ${usdtBalance}         
-              </p>
-              <p style={{ marginBottom: '4px' }}>
-                ATARI: ${atriBalance}         
-              </p>
-              <p style={{ marginBottom: '4px' }}>
                 ETH: ${ethBalance}
               </p>
               <p style={{ marginTop: '0px' }}>
