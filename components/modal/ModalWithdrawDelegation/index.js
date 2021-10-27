@@ -16,7 +16,7 @@ const ModalWithdrawDelegation = props => {
   const [open, setOpen] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const ownerAddress = props.ownerAddress === state.userAddress ? true : false;
+  const isDelegator = props.ownerAddress === state.userAddress;
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -26,7 +26,7 @@ const ModalWithdrawDelegation = props => {
       <Aux>
         <div className={styles.header}>Delegation Details</div>
 
-        {!ownerAddress ? (
+        {!isDelegator ? (
           <div className={styles.description}>
             You’ve been delegated this wearable.
             <br />
@@ -45,7 +45,7 @@ const ModalWithdrawDelegation = props => {
             <div className={styles.card_area_body}>
               <div className={styles.card}>
                 <div className={styles.info}>You Earn</div>
-                {!ownerAddress ? '70%' : '30%'}
+                {!isDelegator ? '70%' : '30%'}
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card}
@@ -56,7 +56,7 @@ const ModalWithdrawDelegation = props => {
             <div className={styles.card_area_body}>
               <div className={styles.card}>
                 <div className={styles.info}>They Earn</div>
-                {!ownerAddress ? '30%' : '70%'}
+                {!isDelegator ? '30%' : '70%'}
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card}
@@ -196,7 +196,11 @@ const ModalWithdrawDelegation = props => {
                   <Button
                     className={styles.button_close}
                     onClick={() => {
-                      analytics.track('CLICKED WITHDRAW DELEGATION');
+                      analytics.track(
+                        isDelegator
+                          ? 'DELEGATOR CLICKED WITHDRAW'
+                          : 'DELEGATEE CLICKED WITHDRAW'
+                      );
                       undelegateNFT();
                     }}
                   >
