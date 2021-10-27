@@ -278,6 +278,7 @@ const ModalEthAuth = props => {
       console.log('WETH authorization amount: ' + Global.CONSTANTS.MAX_AMOUNT);
       setClickedAuthEth(true);
       setLoading(true);
+      setErrorText(null);
 
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = tokenContract.methods
@@ -294,7 +295,7 @@ const ModalEthAuth = props => {
 
       if (txHash === false) {
         console.log('Biconomy meta-transaction failed');
-
+        setErrorText('ETH Authorization failed, please try again');
         setClickedAuthEth(false);
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
@@ -311,6 +312,7 @@ const ModalEthAuth = props => {
       }
     } catch (error) {
       console.log('WETH authorization error: ' + error);
+      setErrorText('ETH Authorization failed, please try again');
 
       setClickedAuthEth(false);
       setLoading(false);
