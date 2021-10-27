@@ -85,6 +85,7 @@ const Treasury = props => {
       const unvested_price = (unvested_amount * state.DGPrices.dg);
       const usdc = Number(state.DGBalances.USDC_BALANCE_LP);
       const ice = Number(state.DGBalances.ICE_BALANCE_LP * state.DGPrices.ice);
+      const eth = Number(56 * state.DGPrices.eth);
       const lp = (usdc + ice);
       const wearable_sales = Number(state.DGBalances.BALANCE_WETH_WEARABLES * state.DGPrices.eth);
       setWearableSales(props.formatPrice(wearable_sales, 0));
@@ -102,13 +103,18 @@ const Treasury = props => {
       setWeeklyChange(change);
 
       const gameplayTotal = state.treasuryNumbers.allTimeGameplayUSD;
+      const game_temp = Number(gameplayTotal.graph.slice(-1)[0].secondary);
+      const game_final = game_temp + eth + 120000
       setGameplayAll(
-        props.formatPrice(gameplayTotal.graph.slice(-1)[0].secondary, 0)
+        props.formatPrice(game_final, 0)
       );
 
-      const gameplayTotal_temp =
+      {/*const gameplayTotal_temp =
         gameplayTotal.changes.weekly.percent.toFixed(2);
-      setGameplayAllPercent(Number(gameplayTotal_temp));
+      setGameplayAllPercent(Number(gameplayTotal_temp));*/}
+
+      const gameplayTotal_temp = ((game_final - game_temp) / game_temp) * 100;
+      setGameplayAllPercent(gameplayTotal_temp.toFixed(2));
 
       const gameplay = state.treasuryNumbers.totalGameplayUSD;
       const gameplay_old = Number(gameplay.graph.slice(-1)[0].secondary);
@@ -466,7 +472,7 @@ const Treasury = props => {
         </div>
 
         <div className={styles.stat}>
-          <p className={styles.stat_header}>Staked in Matic Node</p>
+          <p className={styles.stat_header}>Polygon Validator Node</p>
           <div className="d-flex justify-content-center">
             <div>
               {maticTreasury ? (

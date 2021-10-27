@@ -7,6 +7,8 @@ import ContentAccount from 'components/content/ContentAccount';
 import Aux from 'components/_Aux';
 import styles from './AccountData.module.scss';
 import AccountTooltip from 'components/tooltips/AccountTooltip';
+import Fetch from '../../../common/Fetch';
+
 
 const AccountData = props => {
   // get user's transaction history from the Context API store
@@ -20,6 +22,7 @@ const AccountData = props => {
   const [utm, setUtm] = useState('');
   // const [DGMined, setDGMined] = useState(''); ********** this needs to be updated for new dgPointer function **********
   const [copied, setCopied] = useState(false);
+  const [totalICE, setTotalICE] = useState(0);
 
   const dataType = props.dataType;
   const maximumCount = 100; // ***** we should limit the data being returned from the server to 100 rows *****
@@ -38,6 +41,18 @@ const AccountData = props => {
   //   const temp = Number(one + two);
   //   setDGMined(temp);
   // }, [state.DGGameplayCollected, state.DGBalances.BALANCE_MINING_DG_V2]);
+
+  // set uniswap APY stat
+  useEffect(() => {
+    (async () => {
+      let json = await Fetch.ICE_AMOUNTS();
+
+      const unclaimed = json.totalUnclaimedAmount;
+      const claimed = json.totalClaimedAmount;
+      const total = Number(unclaimed + claimed);
+      setTotalICE(formatPrice(total, 0));
+    })();
+  }, []);
 
   useEffect(() => {
     if (!isLoading) {
@@ -197,7 +212,7 @@ const AccountData = props => {
                   </p>
                   <p className={styles.amount}>
                     {' '}
-                    {state.iceAmounts.ICE_AVAILABLE_AMOUNT.toLocaleString()}{' '}
+                    {totalICE}{' '}
                   </p>
                 </div>
               </div>
@@ -220,7 +235,7 @@ const AccountData = props => {
                   </p>
                   <p className={styles.amount}>
                     {' '}
-                    {state.userInfo.totalXP? state.userInfo.totalXP.toLocaleString(): null}{' '}
+                    {state.userInfo.totalXP >= 0 ? state.userInfo.totalXP.toLocaleString(): null}{' '}
                   </p>
                 </div>
               </div>
@@ -239,7 +254,7 @@ const AccountData = props => {
                   </p>
                   <p className={styles.amount}>
                     {' '}
-                    {formatPrice(state.DGBalances.BALANCE_CHILD_DG, 3)}{' '}
+                    --{' '}
                   </p>
                 </div>
               </div>

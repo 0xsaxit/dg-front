@@ -755,7 +755,18 @@ const DAO = props => {
         {/* <div style={{ marginTop: '-200vh', width: isTablet || isMobile ? 'calc(100% - 80px)' : 'calc(100% - 300px)', float: 'right' }}> */}
         <div className={styles.main_container}>
           {DGState === 'overview' ? (
-            <Overview price={price} formatPrice={formatPrice} />
+            <>
+              {!state.userStatus ?
+                <section style={{ marginTop: '100px' }}>
+                  <FoxAnimation />
+                </section>
+                :
+                <Overview 
+                  price={price} 
+                  formatPrice={formatPrice} 
+                />
+              }
+            </>
           ) : DGState === 'governance' ? (
             <>
               {!state.userStatus ?
