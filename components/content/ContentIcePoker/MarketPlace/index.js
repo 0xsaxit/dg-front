@@ -121,7 +121,7 @@ const MarketPlace = () => {
                     <h1>ICE Wearables Marketplace</h1>
                     <p className={styles.marketplace_p}>
                         ICE Wearables give you table access to free to play, play-to-earn
-                        poker. Learn more by <a href="/">clicking here.</a>
+                        poker. Learn more by <a href="https://ice.decentral.games/" target="_blank">clicking here.</a>
                     </p>
                     <h3>DG Suit</h3>
                 </div>
@@ -240,8 +240,8 @@ const MarketPlace = () => {
                                             wearableName={detailsICE[item][1]}
                                         />
                                     ) : (
-                                            <ModalLoginICE />
-                                        )}
+                                        <ModalLoginICE />
+                                    )}
 
                                     {/* <ModalMintActivation /> */}
                                     {/* <ActivateWearableModal /> */}

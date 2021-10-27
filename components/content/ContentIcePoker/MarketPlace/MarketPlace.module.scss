@@ -48,7 +48,7 @@
             }
 
             @include mq($until: medium) {
-                width: calc(100% - 70px);
+                width: calc(100% - 50px);
                 margin-left: 40px;
 
                 h1 {
@@ -340,7 +340,6 @@
                 .preview_nft_image {
                     margin-top: 5px;
                     border-radius: 12px;
-                    height: calc(100% - 30px);
                     object-fit: cover;
 
                     -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
