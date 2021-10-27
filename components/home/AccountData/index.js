@@ -220,7 +220,7 @@ const AccountData = props => {
                   </p>
                   <p className={styles.amount}>
                     {' '}
-                    {state.userInfo.totalXP.toLocaleString()}{' '}
+                    {state.userInfo.totalXP? state.userInfo.totalXP.toLocaleString(): null}{' '}
                   </p>
                 </div>
               </div>
