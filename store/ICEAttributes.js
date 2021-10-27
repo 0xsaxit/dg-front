@@ -125,8 +125,7 @@ function ICEAttributes() {
           }
         }
 
-        console.log('iceWearableItems: =========================== ');
-        console.log(iceWearableItems);
+        console.log('iceWearableItems:', iceWearableItems);
 
         dispatch({
           type: 'ice_wearable_items',
