@@ -48,8 +48,8 @@
             }
 
             @include mq($until: medium) {
-                width: calc(100% - 70px);
-                margin-left: 30px;
+                width: calc(100% - 50px);
+                margin-left: 40px;
 
                 h1 {
                     font-size: 18px;
@@ -131,38 +131,6 @@
                                 top: 24.5px;
                                 cursor: pointer;
                             }
-                        }
-                    }
-
-                    .popup {
-                        margin-right: -13px !important;
-                        margin-bottom: 13px !important;
-                        height: auto !important;
-
-                        .tooltipContent {
-                            width: 240px;
-                            padding-top: 8px;
-                            padding-right: 5px;
-                            padding-bottom: 5px;
-
-                            .popup_info {
-                                width: 17px !important;
-                                position: absolute !important;
-                                top: 17px !important;
-                            }
-
-                            .popup_content {
-                                font-size: 13px;
-                                line-height: 18px;
-                                letter-spacing: 0.5px;
-                                margin-left: 30px;
-                                font-weight: 700;
-                            }
-                        }
-                        &::before {
-                            background-color: #1f1f1f !important;
-                            box-shadow: 1px 1px 0 0 #1f1f1f !important;
-                            display: block !important;
                         }
                     }
 
@@ -340,7 +308,6 @@
                 .preview_nft_image {
                     margin-top: 5px;
                     border-radius: 12px;
-                    height: calc(100% - 30px);
                     object-fit: cover;
 
                     -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
@@ -420,6 +387,69 @@
                     }
                 }
             }
+        }
+    }
+}
+
+.popup {
+    margin-right: -13px !important;
+    margin-bottom: 13px !important;
+    height: auto !important;
+
+    .tooltipContent {
+        width: 240px;
+        padding-top: 8px;
+        padding-right: 5px;
+        padding-bottom: 5px;
+
+        .popup_info {
+            width: 17px !important;
+            position: absolute !important;
+            top: 17px !important;
+        }
+
+        .popup_content {
+            font-size: 13px;
+            line-height: 18px;
+            letter-spacing: 0.5px;
+            margin-left: 30px;
+            font-weight: 700;
+        }
+    }
+    &::before {
+        background-color: #1f1f1f !important;
+        box-shadow: 1px 1px 0 0 #1f1f1f !important;
+        display: block !important;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .popup {
+        margin-right: -15px !important;
+        margin-bottom: 8px !important;
+
+        .tooltipContent {
+            width: 240px;
+            padding-top: 8px;
+            padding-right: 5px;
+            padding-bottom: 5px;
+
+            .popup_info {
+                width: 17px !important;
+                position: absolute !important;
+                top: 17px !important;
+            }
+
+            .popup_content {
+                font-size: 13px;
+                line-height: 18px;
+                letter-spacing: 0.3px;
+                margin-left: 30px;
+            }
+        }
+        &::before {
+            background-color: #1f1f1f !important;
+            box-shadow: 1px 1px 0 0 #1f1f1f !important;
         }
     }
 }

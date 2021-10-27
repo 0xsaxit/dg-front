@@ -29,8 +29,6 @@ const Overview = props => {
   const [gameplayAllPercent, setGameplayAllPercent] = useState(0);
   const [manaBalance, setManaBalance] = useState(0);
   const [daiBalance, setDaiBalance] = useState(0);
-  const [usdtBalance, setUSDTBalance] = useState(0);
-  const [atriBalance, setAtriBalance] = useState(0);
   const [ethBalance, setEthBalance] = useState(0);
   const [dgTreasury, setDgTreasury] = useState(0);
   const [dgTreasuryPercent, setDgTreasuryPercent] = useState(0);
@@ -176,9 +174,6 @@ const Overview = props => {
         let temp_y = usd[j].secondary;
         yAxis.push(temp_y / 1000000);
       }
-      yAxis.push(17.81);
-      setStatsUSDX(xAxis);
-      setStatsUSDY(yAxis);
 
       const totalUSD = state.treasuryNumbers.totalBalanceUSD.graph;
       const api_usd = Number(totalUSD.slice(-1)[0].secondary);
@@ -189,11 +184,16 @@ const Overview = props => {
       const unvested_price = (unvested_amount * state.DGPrices.dg);
       const usdc = Number(state.DGBalances.USDC_BALANCE_LP);
       const ice = Number(state.DGBalances.ICE_BALANCE_LP * state.DGPrices.ice);
+      const eth_game = Number(56 * state.DGPrices.eth);
       const lp = (usdc + ice);
       const wearable_sales = Number(state.DGBalances.BALANCE_WETH_WEARABLES * state.DGPrices.eth);
 
       const new_total = (api_usd + gameplay_ice + unvested_price + lp + wearable_sales);
       setTreasuryTotal(props.formatPrice(new_total, 0));
+
+      yAxis.push(new_total / 1000000);
+      setStatsUSDX(xAxis);
+      setStatsUSDY(yAxis);
 
       const temp_start = totalUSD[0].secondary;
       const temp_end = new_total;
@@ -201,13 +201,18 @@ const Overview = props => {
       setWeeklyChange(change);
 
       const gameplayTotal = state.treasuryNumbers.allTimeGameplayUSD;
+      const game_temp = Number(gameplayTotal.graph.slice(-1)[0].secondary);
+      const game_final = game_temp + eth_game + 120000
       setGameplayAll(
-        props.formatPrice(gameplayTotal.graph.slice(-1)[0].secondary, 0)
+        props.formatPrice(game_final, 0)
       );
 
-      const gameplayTotal_temp =
+      {/*const gameplayTotal_temp =
         gameplayTotal.changes.weekly.percent.toFixed(2);
-      setGameplayAllPercent(Number(gameplayTotal_temp));
+      setGameplayAllPercent(Number(gameplayTotal_temp));*/}
+
+      const gameplayTotal_temp = ((game_final - game_temp) / game_temp) * 100;
+      setGameplayAllPercent(gameplayTotal_temp.toFixed(2));
 
       const gameplay = state.treasuryNumbers.totalGameplayUSD;
       setGameplayTreasury(
@@ -222,12 +227,6 @@ const Overview = props => {
 
       const dai = state.treasuryNumbers.daiBalance.graph;
       setDaiBalance(props.formatPrice(dai.slice(-1)[0].secondary, 0));
-
-      const usdt = 149746;
-      setUSDTBalance(props.formatPrice(usdt, 0));
-
-      const atri = state.treasuryNumbers.atriBalance.graph;
-      setAtriBalance(props.formatPrice(atri.slice(-1)[0].secondary, 0));
 
       const eth = state.treasuryNumbers.ethBalance.graph;
       setEthBalance(props.formatPrice(eth.slice(-1)[0].secondary, 3));
@@ -507,23 +506,23 @@ const Overview = props => {
 
             <div className={styles.stats_container}>
               <div className={styles.stat}>
-                <p className={styles.stat_header}>Gameplay Wallet</p>
-                <div className="d-flex">
+                <p className={styles.stat_header}>All Time Game Profits</p>
+                <div className="d-flex" style={{ justifyContent: 'center' }}>
                   <div>
-                    {gameplayTreasury ? (
-                      <p className={styles.stat_amount}>${gameplayTreasury}</p>
+                    {gameplayAll ? (
+                      <p className={styles.stat_amount}>${gameplayAll}</p>
                     ) : (
                       getLoader()
                     )}
                   </div>
                   <p className={styles.stat_percent}>
-                    {gameplayTreasuryPercent > 0 && gameplayTreasury ? (
+                    {gameplayAllPercent > 0 && gameplayAll ? (
                       <p className={styles.earned_percent_pos}>
-                        +{gameplayTreasuryPercent}%
+                        +{gameplayAllPercent}%
                       </p>
-                    ) : gameplayTreasury ? (
+                    ) : gameplayAll ? (
                       <p className={styles.earned_percent_neg}>
-                        {gameplayTreasuryPercent}%
+                        {gameplayAllPercent}%
                       </p>
                     ) : null}
                   </p>

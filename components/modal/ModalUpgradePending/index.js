@@ -150,7 +150,6 @@ const ModalUpgradePending = props => {
 
   useEffect(() => {
     const active = getactiveItem(null);
-    console.log('Active: ===== ', active);
     setActiveItem(active);
   }, [refreshActiveItem]);
 
@@ -242,8 +241,6 @@ const ModalUpgradePending = props => {
   }
 
   function getactiveItem(param) {
-    console.log('param ====== ', param);
-
     const activeItems = (param ? param : progSteps).filter(x => !x.authState);
     if (activeItems.length > 0) {
       return activeItems[0];
@@ -281,7 +278,7 @@ const ModalUpgradePending = props => {
 
   function proceedButton() {
     // const activeItem = getActiveItem();
-    console.log('active Proceed Item: ', activeItem);
+    // console.log('active Proceed Item: ', activeItem);
 
     return (
       <Button
@@ -479,37 +476,13 @@ const ModalUpgradePending = props => {
       );
 
       if (json.status) {
-        // update global state token amounts
-        const refreshTokenAmounts = !state.refreshTokenAmounts;
-        dispatch({
-          type: 'refresh_token_amounts',
-          data: refreshTokenAmounts,
-        });
-
-        // update global state wearables data
-        const refreshWearable = !state.refreshWearable;
-        dispatch({
-          type: 'refresh_wearable_items',
-          data: refreshWearable,
-        });
-
-        // update global state balances
-        const refreshBalances = !state.refreshBalances;
-        dispatch({
-          type: 'refresh_balances',
-          data: refreshBalances,
-        });
-
-        // update global state iceWearableUpdatedSuccess
-        dispatch({
-          type: 'ice_wearable_update_success',
-          data: true,
-        });
+        console.log("success in upgrading:", json);
+        props.setUpgrade(3);
 
         console.log('WEARABLE upgrading successful');
         setLoading(false);
         setUpdateStatus({ name: token, value: 'done' });
-        // setRefreshActiveItem(!refreshActiveItem);
+        
       } else if (!json.status) {
         setLoading(false);
         setUpdateStatus({ name: token, value: 'initial' });
