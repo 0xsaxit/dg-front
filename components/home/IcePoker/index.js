@@ -72,7 +72,7 @@ const IcePoker = props => {
                                     </div>
                                 </Link>
 
-                                <Link href="/ice/getStarted">
+                                <Link href="/ice/start">
                                     <div
                                         className={styles.menu_item}
                                         style={{ marginTop: '2px' }}
@@ -156,7 +156,7 @@ const IcePoker = props => {
                                     </div>
                                 </Link>
 
-                                <Link href="/ice/iceRewards">
+                                <Link href="/ice/claim">
                                     <div
                                         className={styles.menu_item}
                                         style={{ marginTop: '2px' }}
@@ -269,7 +269,7 @@ const IcePoker = props => {
                                     </div>
                                 </Link>
 
-                                <Link href="/ice/getStarted">
+                                <Link href="/ice/start">
                                     <div
                                         className={
                                             iceState === 'getStarted'
@@ -368,7 +368,7 @@ const IcePoker = props => {
                                     </div>
                                 </Link>
 
-                                <Link href="/ice/iceRewards">
+                                <Link href="/ice/claim">
                                     <div
                                         className={
                                             iceState === 'iceRewards'

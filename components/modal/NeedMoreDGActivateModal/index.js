@@ -79,8 +79,8 @@ const NeedMoreDGActivateModal = props => {
           <div className={styles.desc}>
             In order to earn ICE, you must first activate your wearable. ICE
             Wearables are activated on the Polygon sidechain. If you already own
-            enough $DG on mainnet, you can bridge it to Polygon
-            <a> with us</a> or use <a>matic bridge</a>.
+            enough $DG on mainnet, you can bridge it to Polygon using 
+            <a href="https://wallet.polygon.technology/login?next=%2Fbridge" target="_blank"> matic bridge</a>
           </div>
 
           <div className={styles.logo}>
@@ -93,7 +93,12 @@ const NeedMoreDGActivateModal = props => {
 
           <div className={styles.buttons}>
             <div className={styles.button}>
-              <Button className={styles.gray}>Learn More</Button>
+              <Button
+                className={styles.gray}
+                onClick={() => {
+                  window.open("https://ice.decentral.games/ice-nft-wearables", "_blank");
+                }}
+              >Learn More</Button>
             </div>
 
             <div className={styles.button}>
