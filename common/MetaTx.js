@@ -236,6 +236,7 @@ function executeMetaTransaction(
               });
 
             console.log('Execute Meta-Transactions done');
+            console.log(ret);
             resolve(ret.transactionHash);
           } catch (error) {
             console.log('Execute Meta-Transactions failed: ', error);
