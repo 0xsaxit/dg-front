@@ -33,7 +33,7 @@ const ICEWearableCard = props => {
     if (state.userStatus >= 4) {
       (async function () {
         setDelegateAddress('');
-        const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);;
+        const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
 
         delegationInfo.outgoingDelegations.forEach((item, i) => {
           if (item) {
