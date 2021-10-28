@@ -82,8 +82,6 @@ const ModalDelegate = props => {
     setErrorMsg(errormsg);
   }
 
-  // updates
-
   // async function getDelegated(address) {
   //   console.log('Entered address: ' + address);
 
