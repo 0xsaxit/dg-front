@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../../../../store';
-import Fetch from '../../../../common/Fetch';
 import GetRank from '../../../../common/GetIceWearableRank'
 import IceP2EEnabledTooltip from 'components/tooltips/IceP2EEnabledTooltip';
 import IceNeedToActivateTooltip from 'components/tooltips/IceNeedToActivateTooltip';
@@ -32,7 +31,7 @@ const ICEWearableCard = props => {
     if (state.userStatus >= 4) {
       (async function () {
         setDelegateAddress('');
-        const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
+        const delegationInfo = state.iceDelegatedItems;
 
         delegationInfo.outgoingDelegations.forEach((item, i) => {
           if (item) {

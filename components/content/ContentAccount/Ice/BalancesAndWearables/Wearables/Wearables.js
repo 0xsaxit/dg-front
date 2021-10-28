@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import Fetch from '../../../../../../common/Fetch';
 import ICEWearableCard from 'components/common/cards/ICEWearableCard';
 import ICEDelegatedCard from 'components/common/cards/ICEDelegatedCard';
 import { Button } from 'semantic-ui-react';
@@ -31,7 +30,7 @@ const Wearables = ({ state }) => {
           "Shades": 0
         };
 
-        const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
+        const delegationInfo = state.iceDelegatedItems;
 
         activeWearables.map(activeWearable => {
           if (delegationInfo.outgoingDelegations && delegationInfo.outgoingDelegations.findIndex(e => e.tokenId === activeWearable.tokenID) >= 0) {
