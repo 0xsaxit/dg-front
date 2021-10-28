@@ -94,7 +94,7 @@ const MenuTop = props => {
     const interval = setInterval(() => {
       const frameWidth = window.innerWidth;
 
-      if (frameWidth > 1100) {
+      if (frameWidth > 1176) {
         setOpen(false);
       }
     }, 100);

@@ -26,7 +26,9 @@ const Wildcard = () => {
       const parameter = router.query.param[0];
       const re = /[0-9A-Fa-f]{6}/g;
 
-      if (re.test(parameter) && parameter.length === 6) {
+      if (router.query.param[0] === 'games' && router.query.param[1] === 'ice') {
+        router.push('/ice/marketplace');
+      } else if (re.test(parameter) && parameter.length === 6) {
         dispatch({
           type: 'affiliate_address',
           data: parameter,
