@@ -192,49 +192,6 @@ const detailsNFTs = {
   ],
 };
 
-const detailsICE = {
-  Pants: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_suit_bottom_rank1_lower_body_trd5yw.png',
-    'Trousers',
-    'outfit name',
-    'Legs',
-    '1 of 100',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatLegs_tn9b57.svg',
-  ],
-  Top: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_suit_top_rank1_upper_body_qlnqky.png',
-    'Blazer',
-    'outfit name',
-    'Torso',
-    '1 of 100',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631728323/FlatClothes-01_1_kbpyfj.svg',
-  ],
-  Cigar: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_cigar_rank1_eyewear_lk5lnu.png',
-    'Cigar',
-    'outfit name',
-    'Head',
-    '1 of 100',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatHat_pypkjx.svg',
-  ],
-  Shoes: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_dress_rank1_shoes_feet_w7ncwa.png',
-    'Loafers',
-    'outfit name',
-    'Feet',
-    '1 of 100',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatShoes_hjvr3p.svg',
-  ],
-  Glasses: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_money_shades_rank1_eyewear_knm0f4.png',
-    'Shades',
-    'outfit name',
-    'Accessory',
-    '1 of 100',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatAccessory_s1cjpg.svg',
-  ],
-};
-
 const Offerings = (props) => {
   // get leaderboard data from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -476,17 +433,6 @@ const Offerings = (props) => {
                       <path
                         d="M19.0953 7.66675V9.20008H17.2676V14.3334H15.7761V9.20008H13.9485V7.66675H19.0953Z"
                         fill={gameState === 'nfts' ? 'white' : '#808080'}
-                      />
-                    </svg>
-                  </div>
-                </Link>
-
-                <Link href="/games/ice">
-                  <div className={styles.menu_item}>
-                    <svg width="24" height="24" viewBox="0 0 22 20" style={{ margin: '0px 1px 0px -1px' }} fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M17.9167 0.666667H5.08333C4.9375 0.666667 4.79167 0.739584 4.71875 0.885417L1.07292 6.24479C0.963542 6.39063 0.963542 6.60938 1.07292 6.75521L11.1354 19.1875C11.3177 19.4062 11.6458 19.4062 11.8281 19.1875L21.8906 6.75521C22 6.60938 22 6.39063 21.9271 6.24479L18.2812 0.885417C18.1719 0.739584 18.0625 0.666667 17.9167 0.666667ZM17.1875 2.41667L19.5208 5.91667H17.0052L15.1094 2.41667H17.1875ZM9.82292 2.41667H13.1406L15.0365 5.91667H7.96354L9.82292 2.41667ZM5.77604 2.41667H7.85417L5.95833 5.91667H3.47917L5.77604 2.41667ZM4.20833 7.66667H6.06771L8.58333 13.5L4.20833 7.66667ZM7.96354 7.66667H15L11.5 16.5625L7.96354 7.66667ZM14.4167 13.5L16.8958 7.66667H18.7552L14.4167 13.5Z"
-                        fill={gameState === 'ice' ? 'white' : '#808080'}
                       />
                     </svg>
                   </div>
@@ -758,24 +704,6 @@ const Offerings = (props) => {
                   </div>
                 </Link>
 
-                <Link href="/games/ice">
-                  <div
-                    className={
-                      gameState === 'ice'
-                        ? styles.menu_item_active
-                        : styles.menu_item
-                    }
-                  >
-                    <svg width="24" height="24" viewBox="0 0 22 20" style={{ margin: '0px 1px 0px -1px' }} fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M17.9167 0.666667H5.08333C4.9375 0.666667 4.79167 0.739584 4.71875 0.885417L1.07292 6.24479C0.963542 6.39063 0.963542 6.60938 1.07292 6.75521L11.1354 19.1875C11.3177 19.4062 11.6458 19.4062 11.8281 19.1875L21.8906 6.75521C22 6.60938 22 6.39063 21.9271 6.24479L18.2812 0.885417C18.1719 0.739584 18.0625 0.666667 17.9167 0.666667ZM17.1875 2.41667L19.5208 5.91667H17.0052L15.1094 2.41667H17.1875ZM9.82292 2.41667H13.1406L15.0365 5.91667H7.96354L9.82292 2.41667ZM5.77604 2.41667H7.85417L5.95833 5.91667H3.47917L5.77604 2.41667ZM4.20833 7.66667H6.06771L8.58333 13.5L4.20833 7.66667ZM7.96354 7.66667H15L11.5 16.5625L7.96354 7.66667ZM14.4167 13.5L16.8958 7.66667H18.7552L14.4167 13.5Z"
-                        fill={gameState === 'ice' ? 'white' : '#808080'}
-                      />
-                    </svg>
-                    <div className={styles.menu_title}>ICE Wearables</div>
-                  </div>
-                </Link>
-
                 <Link href="/games/shop">
                   <div
                     className={
@@ -1004,7 +932,6 @@ const Offerings = (props) => {
             detailsGames={detailsGames}
             detailsCasinos={detailsCasinos}
             detailsNFTs={detailsNFTs}
-            detailsICE={detailsICE}
             detailsShop={detailsShop}
           />
         )}

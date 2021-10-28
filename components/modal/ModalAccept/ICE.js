@@ -14,9 +14,9 @@ import Global from 'components/Constants';
 import styles from './ModalAccept.module.scss';
 import Images from '../../../common/Images';
 import Fetch from '../../../common/Fetch';
-import ButtonApproveATRI from 'components/button/ButtonApprove/ATRI';
+import ButtonApproveICE from 'components/button/ButtonApprove/ICE';
 
-const ATRI = () => {
+const ICE = () => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -59,8 +59,8 @@ const ATRI = () => {
       close
       trigger={
         <span>
-          {!state.atriLoading ? (
-            <Button className={styles.disabled_enable}>Enable ATRI</Button>
+          {!state.wethLoading ? (
+            <Button disabled className={styles.disabled_enable}>Enable ICE</Button>
           ) : (
             <Button className={styles.disabled_enable}>
               <Loader
@@ -157,7 +157,7 @@ const ATRI = () => {
         </span>
 
         <span onClick={() => setOpen(false)}>
-          <ButtonApproveATRI
+          <ButtonApproveICE
             passed={
               checkedOne === true &&
               checkedTwo === true &&
@@ -170,4 +170,4 @@ const ATRI = () => {
   );
 };
 
-export default ATRI;
+export default ICE;

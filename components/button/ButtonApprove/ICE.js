@@ -3,13 +3,13 @@ import { GlobalContext } from '../../../store';
 import { Biconomy } from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
-import ABI_CHILD_TOKEN_ATRI from '../../ABI/ABIChildTokenATRI';
+import ABI_CHILD_TOKEN_WETH from '../../ABI/ABIChildTokenWETH';
 import Global from '../../Constants';
 import Fetch from '../../../common/Fetch';
 import MetaTx from '../../../common/MetaTx';
 import styles from './ButtonApprove.module.scss';
 
-function ATRI({ passed = false }) {
+function ICE({ passed = false }) {
   // dispatch user's treasury contract active status to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -18,8 +18,6 @@ function ATRI({ passed = false }) {
   const [web3, setWeb3] = useState({});
   const [spenderAddress, setSpenderAddress] = useState('');
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     if (state.userStatus >= 4) {
       // initialize Web3 providers and create token contract instance
@@ -39,15 +37,15 @@ function ATRI({ passed = false }) {
       setSpenderAddress(spenderAddress);
 
       const tokenContract = new getWeb3.eth.Contract(
-        ABI_CHILD_TOKEN_ATRI,
-        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ATRI
+        ABI_CHILD_TOKEN_WETH,
+        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH
       );
 
       setTokenContract(tokenContract);
 
       biconomy
         .onEvent(biconomy.READY, () => {
-          console.log('Mexa is Ready: Approve ATRI');
+          console.log('Mexa is Ready: Approve ETH');
         })
         .onEvent(biconomy.ERROR, (error, message) => {
           console.error(error);
@@ -67,15 +65,10 @@ function ATRI({ passed = false }) {
       data: true,
     });
 
-    // dispatch({
-    //   type: 'update_status',
-    //   data: value,
-    // });
-
     // update user's token array in database
-    console.log("Updating user's token array in database: ATRI");
+    console.log("Updating user's token array in database: ETH");
 
-    await Fetch.UPDATE_TOKEN_ARRAY(state.userAddress, 3);
+    await Fetch.UPDATE_TOKEN_ARRAY(state.userAddress, 4);
 
     // update global state user information
     const refresh = !state.updateInfo;
@@ -86,12 +79,12 @@ function ATRI({ passed = false }) {
     });
 
     // post authorization to database
-    console.log('Posting ATRI authorization transaction to db: MAX_AMOUNT');
+    console.log('Posting ETH authorization transaction to db: MAX_AMOUNT');
 
     Fetch.POST_HISTORY(
       state.userAddress,
       Global.CONSTANTS.MAX_AMOUNT,
-      'ATRI Authorization',
+      'ETH Authorization',
       'Confirmed',
       txHash,
       state.userStatus
@@ -102,11 +95,11 @@ function ATRI({ passed = false }) {
   async function metaTransaction() {
     try {
       dispatch({
-        type: 'set_atriLoading',
+        type: 'set_wethLoading',
         data: true,
       });
 
-      console.log('authorize amount: ' + Global.CONSTANTS.MAX_AMOUNT);
+      console.log('ETH authorize amount: ' + Global.CONSTANTS.MAX_AMOUNT);
 
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = tokenContract.methods
@@ -114,7 +107,7 @@ function ATRI({ passed = false }) {
         .encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(
-        5,
+        6,
         functionSignature,
         tokenContract,
         state.userAddress,
@@ -125,7 +118,7 @@ function ATRI({ passed = false }) {
         console.log('Biconomy meta-transaction failed');
 
         dispatch({
-          type: 'set_atriLoading',
+          type: 'set_wethLoading',
           data: false,
         });
       } else {
@@ -134,15 +127,15 @@ function ATRI({ passed = false }) {
         dispatchActiveStatus(txHash);
 
         dispatch({
-          type: 'set_atriLoading',
+          type: 'set_wethLoading',
           data: false,
         });
       }
     } catch (error) {
-      console.log('Biconomy metatransaction error: ' + error);
+      console.log(error);
 
       dispatch({
-        type: 'set_atriLoading',
+        type: 'set_wethLoading',
         data: false,
       });
     }
@@ -150,13 +143,14 @@ function ATRI({ passed = false }) {
 
   return (
     <Button
+      disabled
       className={styles.enabled_button}
       onClick={() => metaTransaction()}
       disabled={!passed}
     >
-      Enable ATRI
+      Enable ICE
     </Button>
   );
 }
 
-export default ATRI;
+export default ICE;
