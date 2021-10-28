@@ -323,7 +323,7 @@ const ModalWearable = props => {
                     </div>
                     {(!state.userInfo.balanceXP || state.userInfo.balanceXP < 50) ? (
                       <div className={styles.description}>
-                        {parseFloat(state.userInfo.balanceXP).toFixed(2)}{' '}
+                        {parseFloat(state.userInfo.balanceXP).toFixed(0)}{' '}
                         XP Available
                       </div>
                     ) : (
