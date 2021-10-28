@@ -12,6 +12,7 @@ const ModalWearable = props => {
   const [state, dispatch] = useContext(GlobalContext);
   const [open, setOpen] = useState(false);
   const [upgrade, setUpgrade] = useState(0);
+  const [upgradeCost, setUpgradeCost] = useState(0);
 
   /////////////////////////////////////////////////////////////////////
   /////////////// TODO: please add some logic to calculate the "not enough" tags' visibility on top of the
@@ -216,7 +217,10 @@ const ModalWearable = props => {
 
               <div className={styles.price_area}>
                 Price
-                <span style={{ opacity: 0.75 }}>&nbsp;($109.12)</span>
+                <span style={{ opacity: 0.75 }}>{' '}
+                  (${((icePrices[Math.min(props.rank + 1, 5)] 
+                    * state.DGPrices.ice)
+                  + (0.1 * state.DGPrices.dg)).toFixed(2)})</span>
                 <div className={styles.card_area}>
                   <div className={styles.card_area_body}>
                     {state.iceAmounts.ICE_AVAILABLE_AMOUNT <
