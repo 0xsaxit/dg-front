@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../../store';
 import { Modal, Button } from 'semantic-ui-react';
 import Fetch from '../../../common/Fetch';
@@ -8,7 +8,6 @@ import Global from '../../Constants';
 import Aux from '../../_Aux';
 import ABI_COLLECTION_V2 from '../../../components/ABI/ABICollectionV2';
 import Web3 from 'web3';
-// import { isObject } from 'lodash-es';
 
 const ModalDelegate = props => {
   // fetch user's wallet address from the Context API store
@@ -19,22 +18,22 @@ const ModalDelegate = props => {
   const [success, setSuccess] = useState(false);
   const [open, setOpen] = useState(false);
   const [enteredAddress, setEnteredAddress] = useState('');
-  const [isDelegated, setIsDelegated] = useState(false);
+  // const [isDelegated, setIsDelegated] = useState(false);
+
   const [errorMsg, setErrorMsg] = useState('');
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
-  function isObjectEmpty(obj) {
-    return Object.keys(obj).length === 0;
-  }
+  // function isObjectEmpty(obj) {
+  //   return Object.keys(obj).length === 0;
+  // }
 
   function isArrayEmpty(arr) {
     return arr.length === 0;
   }
 
   async function hasDataByAddress(address) {
-
     // if any index has data then we should show error1
     const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL);
     const collectionV2Contract = new maticWeb3.eth.Contract(
@@ -44,11 +43,7 @@ const ModalDelegate = props => {
 
     let hasData = false;
     try {
-      for (
-        let nIndex = 0;
-        nIndex < 5;
-        nIndex++
-      ) {
+      for (let nIndex = 0; nIndex < 5; nIndex++) {
         const tokenID = await collectionV2Contract.methods
           .tokenOfOwnerByIndex(address, nIndex)
           .call();
@@ -66,47 +61,52 @@ const ModalDelegate = props => {
     return false;
   }
 
-  async function checkErrorMessage(address){    
-
+  async function checkErrorMessage(address) {
     let errormsg = null;
     const hasData = await hasDataByAddress(address);
-    if(hasData) {
+    if (hasData) {
       errormsg = 'This user already owns a wearable and cannot be delegated to';
     }
 
-    const delegationInfo = state.iceDelegatedItems;
-    console.log("case2: ", delegationInfo.incomingDelegations);
-    if(!isArrayEmpty(delegationInfo.incomingDelegations)) {
-      errormsg = 'This user already has a wearable delegated to them, they can undelegate to receive yours';
+    const delegationInfo = await Fetch.DELEGATE_INFO(address);
+
+    console.log('delegation info (ModalDelegate/index.js): ');
+    console.log(delegationInfo);
+
+    console.log('case2: ', delegationInfo.incomingDelegations);
+
+    if (!isArrayEmpty(delegationInfo.incomingDelegations)) {
+      errormsg =
+        'This user already has a wearable delegated to them, they can undelegate to receive yours';
     }
     setErrorMsg(errormsg);
   }
 
-  async function getDelegated(address) {
-    console.log('Entered address: ' + address);
+  // async function getDelegated(address) {
+  //   console.log('Entered address: ' + address);
 
-    const delegationInfo = state.iceDelegatedItems;
+  //   const delegationInfo = state.iceDelegatedItems;
 
-    console.log('Incoming delegation information:');
-    console.log(delegationInfo.incomingDelegations);
+  //   console.log('Incoming delegation information:');
+  //   console.log(delegationInfo.incomingDelegations);
 
-    delegationInfo.incomingDelegations.forEach((item, i) => {
-      if (item) {
-        const tokenOwner = item.tokenOwner.toLowerCase();
-        console.log('Entered address incoming delegator: ' + tokenOwner);
+  //   delegationInfo.incomingDelegations.forEach((item, i) => {
+  //     if (item) {
+  //       const tokenOwner = item.tokenOwner.toLowerCase();
+  //       console.log('Entered address incoming delegator: ' + tokenOwner);
 
-        // if entered address has delegated wearables and the delegator is not me
-        if (
-          tokenOwner !== '' &&
-          tokenOwner !== state.userAddress.toLowerCase()
-        ) {
-          setIsDelegated(true);
-        }
-      } else {
-        console.log('Entered address has no incoming delegator');
-      }
-    });
-  }
+  //       // if entered address has delegated wearables and the delegator is not me
+  //       if (
+  //         tokenOwner !== '' &&
+  //         tokenOwner !== state.userAddress.toLowerCase()
+  //       ) {
+  //         setIsDelegated(true);
+  //       }
+  //     } else {
+  //       console.log('Entered address has no incoming delegator');
+  //     }
+  //   });
+  // }
 
   function imageDetails() {
     return (
@@ -210,7 +210,7 @@ const ModalDelegate = props => {
                     }
                   } else {
                     setEnteredAddress('');
-                  }                  
+                  }
                 }}
               />
             </div>
@@ -298,8 +298,10 @@ const ModalDelegate = props => {
       setSuccess(true);
     } else {
       console.log('NFT delegation request error: ' + json.reason);
-      if(json.status === 2) {
-        setErrorMsg('This wearable has already been checked-in today. You can delegate after 12 AM UTC.');
+      if (json.status === 2) {
+        setErrorMsg(
+          'This wearable has already been checked-in today. You can delegate after 12 AM UTC.'
+        );
       } else {
         setErrorMsg('Delegation failed');
       }
@@ -341,7 +343,7 @@ const ModalDelegate = props => {
                         analytics.track('CLICKED DELEGATE');
                         delegateNFT();
                       }}
-                      disabled={errorMsg == null? false : true}
+                      disabled={errorMsg == null ? false : true}
                     >
                       {props.buttonName}
                     </Button>
@@ -356,9 +358,7 @@ const ModalDelegate = props => {
               </div>
 
               {errorMsg && (
-                <div className={styles.delegateInfo}>
-                  {errorMsg}
-                </div>
+                <div className={styles.delegateInfo}>{errorMsg}</div>
               )}
 
               {/* {isDelegated ? (
