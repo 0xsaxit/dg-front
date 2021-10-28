@@ -5,11 +5,10 @@ import { GlobalContext } from 'store/index';
 import { DGModal } from 'dg-modal-widget';
 import Images from 'common/Images';
 import Global from 'components/Constants';
-import ModalAcceptUSDT from 'components/modal/ModalAccept/USDT';
 import ModalAcceptMANA from 'components/modal/ModalAccept/MANA';
 import ModalAcceptDAI from 'components/modal/ModalAccept/DAI';
 import ModalAcceptETH from 'components/modal/ModalAccept/ETH';
-import ModalAcceptATRI from 'components/modal/ModalAccept/ATRI';
+import ModalAcceptICE from 'components/modal/ModalAccept/ICE';
 import styles from './Balances.module.scss';
 import Fetch from '../../../../common/Fetch';
 import { BreadcrumbJsonLd } from 'next-seo';
@@ -155,12 +154,6 @@ const Balances = (props) => {
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_DAI_kbvlhx.png',
     swapAsset: 'MATIC_DAI',
   });
-  const rampUSDT = new RampInstantSDK({
-    hostAppName: 'Buy USDT Directly',
-    hostLogoUrl:
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_USDT_kb1sem.png',
-    swapAsset: 'USDT',
-  });
   const rampETH = new RampInstantSDK({
     hostAppName: 'Buy ETH Directly',
     hostLogoUrl:
@@ -200,60 +193,6 @@ const Balances = (props) => {
                 </Button>
               )}
             </>
-          </div>
-        </div>
-
-
-        {/* ////// ETHEREUM ////// */}
-        <div className={styles.balance_column}>
-          <span className={styles.float_left}>
-            <span className={styles.img_left}>
-              <img src={Images[`ETH_CIRCLE`]} />
-            </span>
-            <span className={styles.balance_column_header}>
-              <p className={styles.bold_text}>Ethereum</p>
-              <p className={styles.bold_text}>ETH</p>
-            </span>
-          </span>
-
-          <div className={styles.float_right}>
-            <span className={styles.balance_column_header}>
-              <p className={styles.bold_text}>{Number(state.userBalances[2][3]).toFixed(3)} ETH</p>
-              <p className={styles.bold_text}>${(state.userBalances[2][3] * state.DGPrices.eth).toFixed(2)}</p>
-            </span>
-
-            <div>
-              {state.userInfo.tokenArray[4] ? (
-              <span>
-                <Button
-                  className={styles.deposit_button}
-                  href="https://wallet.matic.network/bridge/"
-                  target="_blank"
-                >
-                  Deposit
-                </Button>
-
-                <Button
-                  className={styles.deposit_button}
-                  href="https://wallet.matic.network/bridge/"
-                  target="_blank"
-                >
-                  Withdraw
-                </Button>
-              </span>
-            ) : (
-              <ModalAcceptETH />
-            )}
-              <Button
-                className={styles.newLink}
-                onClick={() => rampETH.show()}
-              >
-                Buy
-                <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12.125 8.4292L12.1177 1.09033C12.1177 0.504395 11.7295 0.101562 11.1289 0.101562H3.78271C3.21875 0.101562 2.81592 0.519043 2.81592 1.02441C2.81592 1.52246 3.24072 1.92529 3.76807 1.92529H6.45605L9.19531 1.83008L7.8916 2.97998L1.17529 9.70361C0.977539 9.90869 0.867676 10.1504 0.867676 10.3921C0.867676 10.8828 1.32178 11.3516 1.82715 11.3516C2.06885 11.3516 2.31055 11.2417 2.5083 11.0439L9.23193 4.32764L10.3965 3.0166L10.2866 5.65332V8.45117C10.2866 8.97119 10.6821 9.40332 11.1948 9.40332C11.7002 9.40332 12.125 8.97852 12.125 8.4292Z" fill="white"/>
-                </svg>
-              </Button>
-            </div>
           </div>
         </div>
 
@@ -361,124 +300,6 @@ const Balances = (props) => {
                 className={styles.newLink}  
                 href="https://www.binance.com/en/trade/MANA_ETH"
                 target="_blank"
-              >
-                Buy
-                <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12.125 8.4292L12.1177 1.09033C12.1177 0.504395 11.7295 0.101562 11.1289 0.101562H3.78271C3.21875 0.101562 2.81592 0.519043 2.81592 1.02441C2.81592 1.52246 3.24072 1.92529 3.76807 1.92529H6.45605L9.19531 1.83008L7.8916 2.97998L1.17529 9.70361C0.977539 9.90869 0.867676 10.1504 0.867676 10.3921C0.867676 10.8828 1.32178 11.3516 1.82715 11.3516C2.06885 11.3516 2.31055 11.2417 2.5083 11.0439L9.23193 4.32764L10.3965 3.0166L10.2866 5.65332V8.45117C10.2866 8.97119 10.6821 9.40332 11.1948 9.40332C11.7002 9.40332 12.125 8.97852 12.125 8.4292Z" fill="white"/>
-                </svg>
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        {/* ////// USDT ////// */}
-        <div className={styles.balance_column}>
-          <span className={styles.float_left}>
-            <span className={styles.img_left}>
-              <img src={Images[`USDT_CIRCLE`]} />
-            </span>
-            <span className={styles.balance_column_header}>
-              <p className={styles.bold_text}>Tether</p>
-              <p className={styles.bold_text}>USDT</p>
-            </span>
-          </span>
-
-          <div className={styles.float_right}>
-            <span className={styles.balance_column_header}>
-              <p className={styles.bold_text}>                
-                {parseInt(
-                  state.userBalances[2][1] * 1000000000000
-                ).toLocaleString()} USDT
-              </p>
-              <p className={styles.bold_text}>${(state.userBalances[2][1] * 1000000000000).toFixed(2)}</p>
-            </span>
-
-            <div>
-            {state.userInfo.tokenArray[2] ? (
-              <span>
-                <Button
-                  onClick={() => setStateAndEvent(5, true, 'USDT Deposit')}
-                  className={styles.deposit_button}
-                  style={{display: lock === 6? 'none':'flex', width: lock === 6? '':'100%'}}
-                  disabled = {lock >0 && lock!==5? true : false}
-                >
-                  {resumeModal5 ? 'Pending Transfer':'Deposit' }
-                </Button>
-
-                <DGModal
-                  showModal={showModal_5}
-                  onClose={() => setStateAndEvent(5, false, 'USDT Deposit')}
-                  onReady={params => console.log("USDT MODAL1 IS READY =======>", params)}
-                  withdrawalAddress={state.userAddress}
-                  injectedProvider={injectedProvider}
-                  loginProvider={injectedProvider}                 
-                  routerPublicIdentifier={connext.routerPublicID}                  
-                  depositAssetId={connext.assetID_1_USDT}                  
-                  depositChainProvider={connext.chainProviderInfura}                  
-                  withdrawAssetId={connext.assetID_2_USDT}                  
-                  withdrawChainProvider={connext.chainProviderMatic}                  
-                  depositChainId={1}
-                  withdrawChainId={137}
-                  isDeposit = {true}
-                  onFinished={(txHash, amountUi) => {
-                    setResumeModal5(0);
-                    getWithdrawalAmount(txHash, amountUi);
-                    updateStatus(0, 5);
-                  }}
-                  resumeModal={state.openModal.resumeID>0 ? 1 : resumeModal5}
-                  onPaused = {params => {                    
-                    if(params > 0 && params < 4) {
-                      setResumeModal5(params);
-                      updateStatus(params, 5);
-                    }
-                  }}
-                />
-
-                <Button
-                  onClick={() => setStateAndEvent(6, true, 'USDT Withdrawal')}
-                  className={styles.deposit_button}
-                  style={{display: lock === 5? 'none':'flex', width: lock === 5? '':'100%'}}
-                  disabled = {lock >0 && lock!==6? true : false}
-                >
-                  {resumeModal6 ? 'Pending Transfer' : 'Withdraw' }
-                </Button>
-
-                <DGModal
-                  showModal={showModal_6}
-                  onClose={() => setStateAndEvent(6, false, 'USDT Withdrawal')}
-                  onReady={params => console.log("USDT MODAL2 IS READY =======>", params)}                  
-                  withdrawalAddress={state.userAddress}
-                  injectedProvider={injectedProvider}
-                  loginProvider={injectedProvider}
-                  routerPublicIdentifier={connext.routerPublicID}
-                  depositAssetId={connext.assetID_2_USDT}
-                  depositChainProvider={connext.chainProviderMatic}
-                  withdrawAssetId={connext.assetID_1_USDT}
-                  withdrawChainProvider={connext.chainProviderInfura}
-                  depositChainId={137}
-                  withdrawChainId={1}
-                  isDeposit = {false}
-                  onFinished={(txHash, amountUi) => {
-                    getWithdrawalAmount(txHash, amountUi);
-                    setResumeModal6(0);
-                    updateStatus(0);
-                  }}
-                  resumeModal={state.openModal.resumeID>0 ? 1 : resumeModal6}
-                  onPaused = {params => {
-                    if(params > 0 && params < 4) {
-                      setResumeModal6(params, 6);
-                      updateStatus(params, 6);
-                    }
-                  }}
-                />
-
-              </span>
-            ) : (
-              <ModalAcceptUSDT />
-            )}
-              <Button
-                className={styles.newLink}
-                onClick={() => rampUSDT.show()}
               >
                 Buy
                 <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -602,28 +423,29 @@ const Balances = (props) => {
               </Button>
             </div>
           </div>
+
         </div>
 
-        {/* ////// ATARI ////// */}
+       {/* ////// ICE ////// */}
         <div className={styles.balance_column}>
           <span className={styles.float_left}>
             <span className={styles.img_left}>
-              <img src={Images[`ATRI_CIRCLE`]} />
+              <img src={Images[`ETH_CIRCLE`]} />
             </span>
             <span className={styles.balance_column_header}>
-              <p className={styles.bold_text}>Atari</p>
-              <p className={styles.bold_text}>ATRI</p>
+              <p className={styles.bold_text}>Ethereum</p>
+              <p className={styles.bold_text}>ETH</p>
             </span>
           </span>
 
           <div className={styles.float_right}>
             <span className={styles.balance_column_header}>
-              <p className={styles.bold_text}>{parseInt(state.userBalances[2][2]).toLocaleString()} ATRI</p>
-              <p className={styles.bold_text}>${(state.userBalances[2][2] * state.DGPrices.atri).toFixed(2)}</p>
+              <p className={styles.bold_text}>{Number(state.userBalances[2][3]).toFixed(3)} ETH</p>
+              <p className={styles.bold_text}>${(state.userBalances[2][3] * state.DGPrices.eth).toFixed(2)}</p>
             </span>
 
             <div>
-              {state.userInfo.tokenArray[3] ? (
+              {state.userInfo.tokenArray[4] ? (
               <span>
                 <Button
                   className={styles.deposit_button}
@@ -642,11 +464,64 @@ const Balances = (props) => {
                 </Button>
               </span>
             ) : (
-              <ModalAcceptATRI />
+              <ModalAcceptETH />
             )}
               <Button
                 className={styles.newLink}
-                href="http://defi.atarichain.com/"
+                onClick={() => rampETH.show()}
+              >
+                Buy
+                <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.125 8.4292L12.1177 1.09033C12.1177 0.504395 11.7295 0.101562 11.1289 0.101562H3.78271C3.21875 0.101562 2.81592 0.519043 2.81592 1.02441C2.81592 1.52246 3.24072 1.92529 3.76807 1.92529H6.45605L9.19531 1.83008L7.8916 2.97998L1.17529 9.70361C0.977539 9.90869 0.867676 10.1504 0.867676 10.3921C0.867676 10.8828 1.32178 11.3516 1.82715 11.3516C2.06885 11.3516 2.31055 11.2417 2.5083 11.0439L9.23193 4.32764L10.3965 3.0166L10.2866 5.65332V8.45117C10.2866 8.97119 10.6821 9.40332 11.1948 9.40332C11.7002 9.40332 12.125 8.97852 12.125 8.4292Z" fill="white"/>
+                </svg>
+              </Button>
+            </div>
+          </div>
+        </div>
+
+
+        {/* ////// ETHEREUM ////// */}
+        <div className={styles.balance_column}>
+          <span className={styles.float_left}>
+            <span className={styles.img_left}>
+              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1635286999/Group_80_exgcle.png" />
+            </span>
+            <span className={styles.balance_column_header}>
+              <p className={styles.bold_text}>Ice</p>
+              <p className={styles.bold_text}>ICE</p>
+            </span>
+          </span>
+
+          <div className={styles.float_right}>
+            <span className={styles.balance_column_header}>
+              <p className={styles.bold_text}>{parseInt(state.iceAmounts.ICE_AVAILABLE_AMOUNT).toLocaleString()} ICE</p>
+              <p className={styles.bold_text}>${(state.iceAmounts.ICE_AVAILABLE_AMOUNT * state.DGPrices.ice).toFixed(2)}</p>
+            </span>
+
+            <div>
+              {/*{state.userInfo.tokenArray[4] ? (
+              <span>
+                <Button
+                  className={styles.deposit_button}
+                  href="https://wallet.matic.network/bridge/"
+                  target="_blank"
+                >
+                  Deposit
+                </Button>
+                <Button
+                  className={styles.deposit_button}
+                  href="https://wallet.matic.network/bridge/"
+                  target="_blank"
+                >
+                  Withdraw
+                </Button>
+              </span>
+            ) : (*/}
+              <ModalAcceptICE />
+
+              <Button
+                className={styles.newLink}
+                href="https://quickswap.exchange/#/swap?outputCurrency=0xc6c855ad634dcdad23e64da71ba85b8c51e5ad7c"
                 target="_blank"
               >
                 Buy
