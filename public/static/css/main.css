@@ -3661,7 +3661,12 @@ div.ui.input.withdraw_input>input {
 }
 
 .ice-wearables-carousel-container .react-multiple-carousel__arrow {
-  background-color: #2A2A2A;
+  background-color: #006eff;
+}
+
+.ice-wearables-carousel-container .react-multiple-carousel__arrow:hover {
+  background-color: #006eff;
+  filter: brightness(0.9);
 }
 
 .no-result-div {

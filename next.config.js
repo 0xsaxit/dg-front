@@ -1,7 +1,6 @@
 // analyze the code bundles that are generated with Next.js
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-});
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+
 const path = require('path');
 
 module.exports = {
@@ -19,6 +18,16 @@ module.exports = {
         net: 'empty',
         tls: 'empty',
       };
+    }
+
+    if (process.env.ANALYZE === 'true') {
+      config.plugins.push(
+        new BundleAnalyzerPlugin({
+          analyzerMode: 'server',
+          analyzerPort: isServer ? 8888 : 8889,
+          openAnalyzer: true,
+        })
+      )
     }
 
     return config;

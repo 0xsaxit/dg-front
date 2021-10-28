@@ -29,7 +29,6 @@
 
                 a {
                     color: #509bff;
-                    text-decoration: underline !important;
 
                     &:hover {
                         transition: 0.2s ease-in;
@@ -98,14 +97,13 @@
 
                 .coming_soon {
                     width: 190px;
-                    border-radius: 8px;
-                    background: #4e4e4e;
                     height: 34px;
-                    font-family: Larsseit-Bold;
-                    font-size: 11px;
-                    line-height: 20px;
+                    border-radius: 8px;
                     color: white;
-                }                
+                    background: #4a4a4a;
+                    font-family: Larsseit-Bold;
+                    font-size: 12px;
+                }
 
                 .wear_box_purple {
                     position: relative;

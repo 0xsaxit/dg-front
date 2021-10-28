@@ -508,7 +508,7 @@ const Balances = (props) => {
                 >
                   Deposit
                 </Button>
-
+                
                 <Button
                   className={styles.deposit_button}
                   href="https://wallet.matic.network/bridge/"
