@@ -230,7 +230,7 @@ const MarketPlace = () => {
                                         justifyContent: 'space-between',
                                     }}
                                 >
-                                    {/*{state.userStatus && state.userLoggedIn ? (
+                                    {state.userStatus && state.userLoggedIn ? (
                                         <ModalMintWearable
                                             index={i}
                                             className={styles.right_button}
@@ -241,11 +241,11 @@ const MarketPlace = () => {
                                         />
                                     ) : (
                                         <ModalLoginICE />
-                                    )}*/}
+                                    )}
 
-                                    <Button disabled className={styles.coming_soon}>
+                                    {/*<Button disabled className={styles.coming_soon}>
                                         Coming Soon!
-                                    </Button>
+                                    </Button>*/}
 
                                     {/* <ModalMintActivation /> */}
                                     {/* <ActivateWearableModal /> */}
