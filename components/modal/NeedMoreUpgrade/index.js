@@ -99,8 +99,8 @@ const NeedMoreUpgrade = ({
 
         <p className={styles.description}>
           ICE Wearables are upgraded on the Polygon sidechain. If you already
-          own enough $DG and ICE on mainnet, you can bridge them to Polygon{' '}
-          <a>with us</a> or using <a>matic bridge</a>.
+          own enough $DG and ICE on mainnet, you can bridge them to Polygon using
+          <a href="https://wallet.polygon.technology/login?next=%2Fbridge" target="_blank"> matic bridge</a>
         </p>
 
         <div className={styles.bottom_section}>
@@ -117,7 +117,7 @@ const NeedMoreUpgrade = ({
             ) : null}
 
             <div className={styles.button_container}>
-              <Button 
+              <Button
                 className={styles.blue_button}
                 href="https://quickswap.exchange/#/swap?outputCurrency=0xc6c855ad634dcdad23e64da71ba85b8c51e5ad7c"
                 target="_blank"
@@ -146,7 +146,7 @@ const NeedMoreUpgrade = ({
             ) : null}
 
             <div className={styles.button_container}>
-              <Button 
+              <Button
                 className={styles.blue_button}
                 href="https://quickswap.exchange/#/swap?outputCurrency=0x2a93172c8dccbfbc60a39d56183b7279a2f647b4"
                 target="_blank"

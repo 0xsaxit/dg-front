@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link';
 import { Button } from 'semantic-ui-react';
 import styles from './secondStep.module.scss'
 
@@ -17,14 +18,12 @@ const FirstStep = () => {
                     </div>
                     <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634610802/marketplace_lr9n7z.png" alt="marketplace" />
                     <div className={styles.button_div}>
-                        <Button
-                            onClick={() => {
-                                window.location.href = "/ice/marketplace";
-                            }}
-                        >
-                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634610493/clipboard_dlp3sh.png" alt="marketplace" />
-                            Explore Marketplace
-                        </Button>
+                        <Link href="/ice/marketplace">
+                            <Button>
+                                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634610493/clipboard_dlp3sh.png" alt="marketplace" />
+                                Explore Marketplace
+                            </Button>
+                        </Link>
                     </div>
                 </div>
 

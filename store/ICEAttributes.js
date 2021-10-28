@@ -125,8 +125,7 @@ function ICEAttributes() {
           }
         }
 
-        console.log('iceWearableItems: =========================== ');
-        console.log(iceWearableItems);
+        console.log('iceWearableItems:', iceWearableItems);
 
         dispatch({
           type: 'ice_wearable_items',
@@ -229,20 +228,24 @@ function ICEAttributes() {
   useEffect(() => {
     if (instances) {
       (async function () {
-        const iceAmounts = await getICEAmounts();
-        iceAmounts.ICE_AVAILABLE_AMOUNT = parseInt(
-          iceAmounts.ICE_AVAILABLE_AMOUNT
-        );
-        iceAmounts.ICE_CLAIM_AMOUNT = parseInt(iceAmounts.ICE_CLAIM_AMOUNT);
+        try {
+          const iceAmounts = await getICEAmounts();
+          iceAmounts.ICE_AVAILABLE_AMOUNT = parseInt(
+            iceAmounts.ICE_AVAILABLE_AMOUNT
+          );
+          iceAmounts.ICE_CLAIM_AMOUNT = parseInt(iceAmounts.ICE_CLAIM_AMOUNT);
 
-        console.log('==== <iceAmounts> ==== ', iceAmounts);
+          console.log('==== <iceAmounts> ==== ', iceAmounts);
 
-        dispatch({
-          type: 'ice_amounts',
-          data: iceAmounts,
-        });
+          dispatch({
+            type: 'ice_amounts',
+            data: iceAmounts,
+          });
 
-        console.log('ICE amount updates completed!');
+          console.log('ICE amount updates completed!');
+        } catch (error) {
+          console.log('ICE Amounts not found: ' + error);
+        }
       })();
     }
   }, [instances, state.refreshBalances, state.refreshICEAmounts]);
