@@ -11,6 +11,8 @@ import NeedMoreDGActivateModal from 'components/modal/NeedMoreDGActivateModal';
 import ModalWearable from 'components/modal/ModalWearable';
 import styles from './ICEWearableCard.module.scss';
 import Aux from '../../../_Aux';
+import Fetch from '../../../../common/Fetch';
+
 
 const ICEWearableCard = props => {
   // get user's wallet address from the Context API store
@@ -31,7 +33,7 @@ const ICEWearableCard = props => {
     if (state.userStatus >= 4) {
       (async function () {
         setDelegateAddress('');
-        const delegationInfo = state.iceDelegatedItems;
+        const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);;
 
         delegationInfo.outgoingDelegations.forEach((item, i) => {
           if (item) {
