@@ -84,7 +84,7 @@ const Leaderboard = () => {
                             </abbr>
                         </div>
                         <div className={styles.winnings}>
-                            <abbr>{state.iceAmounts.ICE_AVAILABLE_AMOUNT.toLocaleString()}</abbr>
+                            <abbr>--</abbr>
                             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1635212177/FREE_Coin_c08hyk.png" alt="ice" />
                         </div>
                     </div>
