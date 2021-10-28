@@ -27,8 +27,7 @@ const CONSTANTS = {
   SOCIAL_HANDLE: 'decentralgames',
   MAX_ITEM_COUNT: 10,
   VERIFY_URL: 'staging.decentral.games',
-  // AMNESIA_COMMENT: we should remove these after we are done with amnesia
-  AMNESIA_DESCRIPTION: "The world’s biggest DJs, live from Decentral Games.",
+  AMNESIA_DESCRIPTION: "The world’s biggest DJs, live from Decentral Games.", // AMNESIA_COMMENT: we should remove these after we are done with amnesia
   POOLING_TIME_OUT: 8000,
   POOLING_LIMIT_COUNT: 6,
 };
