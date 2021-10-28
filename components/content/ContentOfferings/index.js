@@ -511,8 +511,6 @@ const ContentOfferings = props => {
     return contentGames();
   } else if (props.gameState === 'nfts') {
     return buyNFTs();
-  } else if (props.gameState === 'ice') {
-    return buyICE();
   } else if (props.gameState === 'casinos') {
     return contentCasinos();
   } else if (props.gameState === 'shop') {

@@ -12,6 +12,8 @@ import NeedMoreDGActivateModal from 'components/modal/NeedMoreDGActivateModal';
 import ModalWearable from 'components/modal/ModalWearable';
 import styles from './ICEWearableCard.module.scss';
 import Aux from '../../../_Aux';
+import Fetch from '../../../../common/Fetch';
+
 
 const ICEWearableCard = props => {
   // get user's wallet address from the Context API store
