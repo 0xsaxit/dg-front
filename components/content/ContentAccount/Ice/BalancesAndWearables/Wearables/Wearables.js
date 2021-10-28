@@ -3,6 +3,8 @@ import ICEWearableCard from 'components/common/cards/ICEWearableCard';
 import ICEDelegatedCard from 'components/common/cards/ICEDelegatedCard';
 import { Button } from 'semantic-ui-react';
 import styles from './Wearables.module.scss';
+import Fetch from '../../../../../../common/Fetch';
+
 
 const Wearables = ({ state }) => {
   // define local variables
@@ -30,7 +32,7 @@ const Wearables = ({ state }) => {
           "Shades": 0
         };
 
-        const delegationInfo = state.iceDelegatedItems;
+        const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
 
         activeWearables.map(activeWearable => {
           if (delegationInfo.outgoingDelegations && delegationInfo.outgoingDelegations.findIndex(e => e.tokenId === activeWearable.tokenID) >= 0) {

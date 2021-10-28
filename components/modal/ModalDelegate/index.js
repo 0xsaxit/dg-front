@@ -74,7 +74,7 @@ const ModalDelegate = props => {
       errormsg = 'This user already owns a wearable and cannot be delegated to';
     }
 
-    const delegationInfo = state.iceDelegatedItems;
+    const delegationInfo = await Fetch.DELEGATE_INFO(address);
     console.log("case2: ", delegationInfo.incomingDelegations);
     if(!isArrayEmpty(delegationInfo.incomingDelegations)) {
       errormsg = 'This user already has a wearable delegated to them, they can undelegate to receive yours';
@@ -85,7 +85,7 @@ const ModalDelegate = props => {
   async function getDelegated(address) {
     console.log('Entered address: ' + address);
 
-    const delegationInfo = state.iceDelegatedItems;
+    const delegationInfo = await Fetch.DELEGATE_INFO(address);
 
     console.log('Incoming delegation information:');
     console.log(delegationInfo.incomingDelegations);
