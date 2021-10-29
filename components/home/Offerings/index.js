@@ -49,6 +49,7 @@ const detailsGames = {
 
 const detailsCasinos = {
   Tominoya: [
+    'https://play.decentral.games/tominoya',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1624916730/Tominoya_Lapse_om9erf.gif',
     'games-pic',
     'Tominoya',
@@ -56,35 +57,35 @@ const detailsCasinos = {
     'Roulette',
     'Blackjack',
     'Poker',
-    'https://play.decentraland.org/?position=-118%2C135&realm=dg',
   ],
   Atari: [
+    'https://play.decentral.games/atari',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1625022643/ATARI_TIMELAPSE_1_brvynj.gif',
     'games-pic',
     'Atari',
     'Atari is situated on a 20-parcel estate. The scene features an open-concept floor plan and building design modelled after the iconic Atari logo.',
     'Roulette',
     'Blackjack',
-    'https://play.decentraland.org/?position=-94%2C110&realm=dg',
   ],
   Chateau: [
+    'https://play.decentral.games/chateau',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1624916719/Chateau_Chatoshi_lapse_2_gbjrgn.gif',
     'games-pic',
     'Chateau Satoshi',
     'Chateau Satoshi is an art deco inspired experience, theatre, nightclub, and stratosphere.',
     'Roulette',
     'Blackjack',
-    'https://play.decentraland.org/?position=-75%2C77&realm=dg',
   ],
   Dext: [
+    'https://play.decentral.games/dext',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1627209301/Dext_Timelapse_1_oh5bnz.gif',
     'games-pic',
     'DEXT Poker Lounge',
     'The DEXT Poker Lounge features eight Texas Holdem poker tables located in a skyscraper penthouse, accessible via teleporter on the ground floor.',
     'Poker',
-    'https://play.decentraland.org/?position=-110%2C129&realm=dg',
   ],
   BAYC: [
+    'https://play.decentral.games/bayc',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1628340721/cloudinary_zjohvr.gif',
     'games-pic',
     'Bored Ape Yacht Club',
@@ -92,9 +93,9 @@ const detailsCasinos = {
     'Roulette',
     'Blackjack',
     'Poker',
-    'https://play.decentraland.org/?position=-110%2C121&realm=dg',
   ],
   Aquarium: [
+    'https://play.decentral.games/aquarium',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1628340722/Aquarium_timelaps_2_lpqj2r.gif',
     'games-pic',
     'The Aquarium',

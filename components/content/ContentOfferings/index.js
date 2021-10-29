@@ -393,35 +393,35 @@ const ContentOfferings = props => {
           {Object.keys(props.detailsCasinos).map((item, i) => (
             <a
               key={i}
-              href={props.detailsCasinos[item][6] + utm}
+              href={props.detailsCasinos[item][0] + utm}
               target="_blank"
               className={styles.games_container}
             >
               <img
-                src={props.detailsCasinos[item][0]}
+                src={props.detailsCasinos[item][1]}
                 className={styles.nft_image}
               />
 
               <div className={styles.nft_description}>
                 <span style={{ display: 'flex', justifyContent: 'center' }}>
                   <p className={styles.nft_info}>
-                    {props.detailsCasinos[item][4]}
+                    {props.detailsCasinos[item][5]}
                   </p>
                   {props.detailsCasinos[item][5] == 'Blackjack' ? (
-                    <p className={styles.nft_info}>
-                      {props.detailsCasinos[item][5]}
-                    </p>
-                  ) : null}
-                  {props.detailsCasinos[item][7] ? (
                     <p className={styles.nft_info}>
                       {props.detailsCasinos[item][6]}
                     </p>
                   ) : null}
+                  {props.detailsCasinos[item][7] ? (
+                    <p className={styles.nft_info}>
+                      {props.detailsCasinos[item][7]}
+                    </p>
+                  ) : null}
                 </span>
                 <h3 className={styles.nft_h3}>
-                  {props.detailsCasinos[item][2]}
+                  {props.detailsCasinos[item][3]}
                 </h3>
-                <p className={styles.nft_p}>{props.detailsCasinos[item][3]}</p>
+                <p className={styles.nft_p}>{props.detailsCasinos[item][4]}</p>
               </div>
 
               <div
@@ -437,7 +437,7 @@ const ContentOfferings = props => {
                   color="blue"
                   className={styles.nft_button}
                   target="_blank"
-                  href={props.detailsCasinos[item][6] + utm}
+                  href={props.detailsCasinos[item][0] + utm}
                 >
                   Play Now
                 </Button>
