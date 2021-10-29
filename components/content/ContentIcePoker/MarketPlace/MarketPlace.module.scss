@@ -91,7 +91,7 @@
                 align-items: center;
                 border-radius: 12px;
                 box-sizing: border-box;
-                padding: 18px 18px 75px 18px;
+                padding: 18px;
                 min-width: 228px;
                 height: 100%;
 
@@ -507,8 +507,8 @@
   color: white !important;
   line-height: 17px !important;
   background: #006eff !important;
-  width: 254px;
   margin: 0 !important;
+  width: 100%;
 }
 
 @keyframes fadein {
