@@ -13,12 +13,12 @@ function SectionTwo() {
   return (
     <Aux>
       <div className={cn(styles.section_two, 'container-fluid')}>
-
         <div className={styles.tout_container}>
           <h1 className={styles.tout_h1}>Wear NFTs, Play Poker, Earn ICE</h1>
           <p className={styles.tout_p}>
-            Play to earn with free play poker in the metaverse. Beta coming soon!
-          </p> 
+            Play to earn with free play poker in the metaverse. Beta is now
+            live!
+          </p>
           <div>
             {!mobile && (
               <img
@@ -35,34 +35,20 @@ function SectionTwo() {
               />
             )}
           </div>
-          <span
-            className={styles.tout_span}
-          >
-            <Button
-              className={styles.grey_button}
-              href="/ice/getStarted"
-            >
-            {mobile ?
-              'Start' :
-              'Get Started'
-            }
+          <span className={styles.tout_span}>
+            <Button className={styles.grey_button} href="/ice/getStarted">
+              {mobile ? 'Start' : 'Get Started'}
             </Button>
             <Button
               className={styles.blue_button}
               href="https://play.decentral.games/dext"
               target="_blank"
             >
-            {mobile ?
-              'Play' :
-              'Play Now'
-            }
+              {mobile ? 'Play' : 'Play Now'}
             </Button>
           </span>
 
-          <a
-              href="https://ice.decentral.games" 
-              target="_blank"
-          >
+          <a href="https://ice.decentral.games" target="_blank">
             <p className={styles.wp_text}>
               Read Whitepaper
               <svg
@@ -103,33 +89,32 @@ function SectionTwo() {
             </h1>
             <p className={styles.section_p}>
               {/* {t('Home.PLAY_GAMES_META')} */}
-              Play games in the metaverse and earn $DG token win or lose. Get up to 50% of your expected losses back in $DG.
+              Play games in the metaverse and earn $DG token win or lose. Get up
+              to 50% of your expected losses back in $DG.
             </p>
 
-            <span
-              className={styles.button_span}
-            >
+            <span className={styles.button_span}>
               <Button
                 className={styles.grey_button}
                 href="https://docs.decentral.games/"
                 target="_blank"
               >
-              {mobile ?
-                'Info' //t('Home.INFO') 
-                :
-                'Learn More' //t('Home.LEARNMORE')
-              }
+                {
+                  mobile
+                    ? 'Info' //t('Home.INFO')
+                    : 'Learn More' //t('Home.LEARNMORE')
+                }
               </Button>
               <Button
                 className={styles.blue_button}
                 href="/games"
                 target="_blank"
               >
-              {mobile ?
-                'Games' // t('Home.GAMES') 
-                :
-                'See Games' // t('Home.SEEGAMES')
-              }
+                {
+                  mobile
+                    ? 'Games' // t('Home.GAMES')
+                    : 'See Games' // t('Home.SEEGAMES')
+                }
               </Button>
             </span>
           </div>
@@ -210,30 +195,28 @@ function SectionTwo() {
               Stake $DG in governance and earn up to 40% in yield rewards.
             </p>
 
-            <span
-              className={styles.button_span}
-            >
+            <span className={styles.button_span}>
               <Button
                 className={styles.grey_button}
                 href="https://docs.decentral.games/"
                 target="_blank"
               >
-              {mobile ?
-                'Info' //t('Home.INFO')
-                :
-                'Learn More' //t('Home.LEARNMORE')
-              }
+                {
+                  mobile
+                    ? 'Info' //t('Home.INFO')
+                    : 'Learn More' //t('Home.LEARNMORE')
+                }
               </Button>
               <Button
                 className={styles.blue_button}
                 href="https://docs.decentral.games/getting-started/earn-dg-gov-rewards"
                 target="_blank"
               >
-              {mobile ?
-                'Earn' //t('Home.EARN') 
-                :
-                'Earn APY%' //t('Home.EARNAPY')
-              }
+                {
+                  mobile
+                    ? 'Earn' //t('Home.EARN')
+                    : 'Earn APY%' //t('Home.EARNAPY')
+                }
               </Button>
             </span>
           </div>
@@ -257,34 +240,33 @@ function SectionTwo() {
             style={{ position: 'relative', zIndex: '3' }}
           >
             <h1 className={styles.section_h1}>
-            Vote in the DAO {/* {t('Home.VOTE_IN_THE_DAO')}  */}
-              <br /> 
+              Vote in the DAO {/* {t('Home.VOTE_IN_THE_DAO')}  */}
+              <br />
               (Be The House) {/* {t('Home.BE_THE_HOUSE')} */}
             </h1>
             <p className={styles.section_p}>
               {/* {t('Home.WITH_THE_DG_DAO')} */}
-              With the $DG DAO, you own the casino. Control the profits, vote for new games, and decide on feature proposals.
+              With the $DG DAO, you own the casino. Control the profits, vote
+              for new games, and decide on feature proposals.
             </p>
 
-            <span
-              className={styles.button_span}
-            >
+            <span className={styles.button_span}>
               <Button
                 className={styles.grey_button}
                 href="https://docs.decentral.games/"
                 target="_blank"
               >
-              {mobile ?
-                'Info' // t('Home.INFO') 
-                :
-                'Learn More '// t('Home.LEARNMORE')
-              }
+                {
+                  mobile
+                    ? 'Info' // t('Home.INFO')
+                    : 'Learn More ' // t('Home.LEARNMORE')
+                }
               </Button>
               <Button className={styles.blue_button} href="/dg/">
-                {tablet ? 
-                  'Explore' // t('Home.EXPLORER')
-                  : 
-                  'Explore Treasury' // t('Home.EXPLORER_THREASURY')
+                {
+                  tablet
+                    ? 'Explore' // t('Home.EXPLORER')
+                    : 'Explore Treasury' // t('Home.EXPLORER_THREASURY')
                 }
               </Button>
             </span>
