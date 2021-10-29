@@ -66,9 +66,6 @@ function UserInfo() {
             totalXP: totalXP,
           };
 
-          console.log('!!!!!!!!');
-          console.log(jsonInfo);
-
           dispatch({
             type: 'user_info',
             data: data,

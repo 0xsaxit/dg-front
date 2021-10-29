@@ -12,6 +12,7 @@ const IceRewards = () => {
   // define local variables
   const [clicked, setClicked] = useState(false);
   const [payoutTime, setPayoutTime] = useState('--');
+  const [iceAmount, setIceAmount] = useState(0);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -19,6 +20,13 @@ const IceRewards = () => {
   useEffect(() => {
     setClicked(false);
   }, [state.iceAmounts]);
+
+  useEffect(() => {
+    (async () => {
+      let json = await Fetch.ICE_AMOUNTS(state.userAddress);
+      setIceAmount(json.totalUnclaimedAmount);
+    })();
+  }, [iceAmount]);
 
   useEffect(() => {
     let id = setInterval(() => {
@@ -131,7 +139,7 @@ const IceRewards = () => {
         <p className={styles.lower_header}>Claim ICE Rewards</p>
         <div className={styles.lower_value}>
           <p className={styles.ICE_value}>
-            {state.iceAmounts.ICE_CLAIM_AMOUNT}
+            {iceAmount}
           </p>
           <img
             style={{ marginTop: '-4px' }}
@@ -141,7 +149,7 @@ const IceRewards = () => {
         <p className={styles.price}>
           $
           {formatPrice(
-            state.iceAmounts.ICE_CLAIM_AMOUNT * state.DGPrices.ice,
+            iceAmount * state.DGPrices.ice,
             2
           )}
         </p>

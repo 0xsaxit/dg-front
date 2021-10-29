@@ -12,6 +12,8 @@ const Balances = () => {
 
   // define local variables
   const [clicked, setClicked] = useState(false);
+  const [iceAmount, setIceAmount] = useState(0);
+
   const balenceItems = [
     {
       icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg',
@@ -47,6 +49,13 @@ const Balances = () => {
       ),
     },
   ];
+
+  useEffect(() => {
+    (async () => {
+      let json = await Fetch.ICE_AMOUNTS(state.userAddress);
+      setIceAmount(json.totalUnclaimedAmount);
+    })();
+  }, [iceAmount]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -159,7 +168,7 @@ const Balances = () => {
         <p className={styles.reward_header}>Play-to-Earn Rewards</p>
 
         <div className={styles.reward_value}>
-          <p className={styles.DG_value}>{state.iceAmounts.ICE_CLAIM_AMOUNT}</p>
+          <p className={styles.DG_value}>{iceAmount}</p>
           <img
             style={{ marginTop: '-4px' }}
             src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
@@ -168,7 +177,7 @@ const Balances = () => {
         <p className={styles.price}>
           $
           {formatPrice(
-            state.iceAmounts.ICE_CLAIM_AMOUNT * state.DGPrices.ice,
+            iceAmount * state.DGPrices.ice,
             2
           )}
         </p>
