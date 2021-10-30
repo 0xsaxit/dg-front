@@ -1,7 +1,7 @@
 import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from './index';
 import Fetch from '../common/Fetch';
-import Global from '../components/Constants';
+// import Global from '../components/Constants';
 
 function UserInfo() {
   // dispatch user's information to the Context API store
@@ -66,8 +66,8 @@ function UserInfo() {
             totalXP: totalXP,
           };
 
-          console.log('!!!!!!!!');
-          console.log(jsonInfo);
+          // console.log('!!!!!!!!');
+          // console.log(jsonInfo);
 
           dispatch({
             type: 'user_info',

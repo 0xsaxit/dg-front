@@ -57,8 +57,8 @@ const ICEWearableCard = props => {
         setDelegateAddress('');
         const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
 
-        console.log('delegation info (ICEWearableCard): ');
-        console.log(delegationInfo);
+        // console.log('delegation info (ICEWearableCard): ');
+        // console.log(delegationInfo);
 
         delegationInfo.outgoingDelegations.forEach((item, i) => {
           if (item) {
@@ -78,7 +78,8 @@ const ICEWearableCard = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
   function imageAndDescription() {
-    console.log('*', delegateAddress);
+    // console.log('*', delegateAddress);
+
     return (
       <Aux>
         <div className={styles.wear_box_purple}>

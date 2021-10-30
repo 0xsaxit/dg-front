@@ -221,7 +221,7 @@ const ButtonConnect = () => {
   }
 
   async function getUserStatus() {
-    console.log('Get user status: Connect6');
+    console.log('Get user status: ButtonConnect');
 
     try {
       // const responseIP = await Fetch.IP_ADDRESS();
@@ -234,7 +234,7 @@ const ButtonConnect = () => {
 
       return jsonStatus.status;
     } catch {
-      console.log('Unregistered wallet: Connect');
+      console.log('Unregistered wallet: ButtonConnect');
 
       return false;
     }
@@ -260,7 +260,7 @@ const ButtonConnect = () => {
               src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
               className={styles.metamask_icon}
             />
-            {tablet ? 'Connect' : 'Connect Metamask'}
+            {tablet ? 'Connect' : 'Connect MetaMask'}
           </Button>
           <a
             href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"

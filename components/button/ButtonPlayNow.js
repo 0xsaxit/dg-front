@@ -76,7 +76,7 @@ const ButtonPlayNow = () => {
   }
 
   async function getUserStatus() {
-    console.log('Get user status: Play Now');
+    console.log('Get user status: ButtonPlayNow');
 
     try {
       // const responseIP = await Fetch.IP_ADDRESS();
@@ -88,7 +88,7 @@ const ButtonPlayNow = () => {
 
       return jsonStatus.status;
     } catch {
-      console.log('Unregistered wallet: Play Now');
+      console.log('Unregistered wallet: ButtonPlayNow');
 
       return false;
     }

@@ -32,8 +32,8 @@ const Wearables = ({ state }) => {
 
         const delegationInfo = state.iceDelegatedItems;
 
-        console.log('delegation info (Wearables): ');
-        console.log(delegationInfo);
+        // console.log('delegation info (Wearables): ');
+        // console.log(delegationInfo);
 
         activeWearables.map(activeWearable => {
           if (

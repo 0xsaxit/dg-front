@@ -64,7 +64,7 @@ function UserStatus() {
   //       return stepValue;
   //     }
   //   } catch {
-  //     console.log('Unregistered wallet: User Status');
+  //     console.log('Unregistered wallet: UserStatus');
 
   //     return 0;
   //   }
@@ -84,7 +84,7 @@ function UserStatus() {
   }
 
   async function getUserStatus() {
-    console.log('Get user status: User Status');
+    console.log('Get user status: UserStatus');
 
     try {
       // const responseIP = await Fetch.IP_ADDRESS();
@@ -97,7 +97,7 @@ function UserStatus() {
 
       return jsonStatus.status;
     } catch (e) {
-      console.log('Unregistered wallet: UserStatus2');
+      console.log('Unregistered wallet: UserStatus');
 
       return false;
     }
