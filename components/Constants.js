@@ -25,11 +25,10 @@ const CONSTANTS = {
   DESCRIPTION: 'Free to play, play to earn gaming in the metaverse. Play ICE Poker, trade NFTs, vote in the DAO, and earn real value from your favorite games.',
   DISCORD_URL: 'https://discord.gg/cvbSNzY',
   SOCIAL_HANDLE: 'decentralgames',
-  MAX_ITEM_COUNT: 10,
+  MAX_ITEM_COUNT: 10, // maximum number of tokenOfOwner indexes to query on the accessories contract
   VERIFY_URL: 'staging.decentral.games',
-  AMNESIA_DESCRIPTION: "The world’s biggest DJs, live from Decentral Games.", // AMNESIA_COMMENT: we should remove these after we are done with amnesia
-  POOLING_TIME_OUT: 8000,
-  POOLING_LIMIT_COUNT: 6,
+  WETH_MINT_AMOUNT: 0.1, // amount of WETH required for minting
+  DG_STAKED_AMOUNT: 1, // amount of DG user is required to have staked in order to mint wearable
 };
 
 // wallet and contract addresses
