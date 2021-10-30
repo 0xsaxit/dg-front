@@ -143,50 +143,55 @@ function ICEAttributes() {
 
   // anytime user undelegates an NFT this code will execute
   useEffect(() => {
-    (async function () {
-      dispatch({
-        type: 'ice_delegated_items_loading',
-        data: true,
-      });
-      let iceDelegatedItems = [];
-
-      const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
-
-      if (delegationInfo !== undefined && Object.keys(delegationInfo).length) {
-        delegationInfo.incomingDelegations.forEach(async (item, i) => {
-          const ownerAddress = item.tokenOwner;
-          const tokenId = item.tokenId;
-
-          try {
-            const json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
-              Global.ADDRESSES.COLLECTION_V2_ADDRESS,
-              tokenId
-            );
-
-            if (Object.keys(json).length) {
-              iceDelegatedItems.push({
-                ownerAddress: ownerAddress,
-                tokenID: tokenId,
-                itemID: json.id.split(':').slice(-1),
-                meta_data: json,
-              });
-            }
-          } catch (error) {
-            console.log('Fetch delegation info error: ' + error);
-          }
+    if (state.userStatus >= 4) {
+      (async function () {
+        dispatch({
+          type: 'ice_delegated_items_loading',
+          data: true,
         });
-      }
+        let iceDelegatedItems = [];
 
-      dispatch({
-        type: 'ice_delegated_items',
-        data: iceDelegatedItems,
-      });
-      dispatch({
-        type: 'ice_delegated_items_loading',
-        data: false,
-      });
-    })();
-  }, [state.refreshDelegation]);
+        const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
+
+        if (
+          delegationInfo !== undefined &&
+          Object.keys(delegationInfo).length
+        ) {
+          delegationInfo.incomingDelegations.forEach(async (item, i) => {
+            const ownerAddress = item.tokenOwner;
+            const tokenId = item.tokenId;
+
+            try {
+              const json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
+                Global.ADDRESSES.COLLECTION_V2_ADDRESS,
+                tokenId
+              );
+
+              if (Object.keys(json).length) {
+                iceDelegatedItems.push({
+                  ownerAddress: ownerAddress,
+                  tokenID: tokenId,
+                  itemID: json.id.split(':').slice(-1),
+                  meta_data: json,
+                });
+              }
+            } catch (error) {
+              console.log('Fetch delegation info error: ' + error);
+            }
+          });
+        }
+
+        dispatch({
+          type: 'ice_delegated_items',
+          data: iceDelegatedItems,
+        });
+        dispatch({
+          type: 'ice_delegated_items_loading',
+          data: false,
+        });
+      })();
+    }
+  }, [state.userStatus, state.refreshDelegation]);
 
   // anytime user mints/upgrades/activates NFTs on /ice pages this code will execute
   useEffect(() => {

@@ -9,7 +9,7 @@ function ICE({ state }) {
   return (
     <Aux>
       {!state.iceWearableItemsLoading && !state.iceDelegatedItemsLoading ? (
-        <>
+        <Aux>
           {state.userStatus &&
           (!!state.iceWearableItems.length ||
             !!state.iceDelegatedItems.length) ? (
@@ -17,7 +17,7 @@ function ICE({ state }) {
           ) : (
             <NoWearablesSplash />
           )}
-        </>
+        </Aux>
       ) : (
         <div className={styles.spinner_wrapper}>
           <img src={Images.LOADING_SPINNER} />
