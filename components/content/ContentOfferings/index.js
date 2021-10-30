@@ -101,10 +101,10 @@ const ContentOfferings = props => {
 
               <div
                 style={{
-                  position: 'absolute',
-                  bottom: '20px',
                   display: 'flex',
                   justifyContent: 'space-between',
+                  marginTop: 'auto',
+                  width: '100%',
                 }}
               >
                 <Button
@@ -163,10 +163,10 @@ const ContentOfferings = props => {
 
               <div
                 style={{
-                  position: 'absolute',
-                  bottom: '20px',
                   display: 'flex',
                   justifyContent: 'space-between',
+                  marginTop: 'auto',
+                  width: '100%',
                 }}
               >
                 <Button
@@ -194,56 +194,56 @@ const ContentOfferings = props => {
       largeDesktop: {
         breakpoint: { max: 3000, min: 1440 },
         items: 4,
-        partialVisibilityGutter: 40
+        partialVisibilityGutter: 40,
       },
       desktop: {
         breakpoint: { max: 1440, min: 1240 },
         items: 3,
-        partialVisibilityGutter: 40
+        partialVisibilityGutter: 40,
       },
       bigTablet: {
         breakpoint: { max: 1240, min: 900 },
         items: 2,
-        partialVisibilityGutter: 125
+        partialVisibilityGutter: 125,
       },
       mediumTablet: {
         breakpoint: { max: 900, min: 768 },
         items: 2,
-        partialVisibilityGutter: 60
+        partialVisibilityGutter: 60,
       },
       smallTablet: {
         breakpoint: { max: 768, min: 700 },
         items: 2,
-        partialVisibilityGutter: 40
+        partialVisibilityGutter: 40,
       },
       bigMobile: {
         breakpoint: { max: 700, min: 600 },
         items: 2,
-        partialVisibilityGutter: 0
+        partialVisibilityGutter: 0,
       },
       mediumMobile: {
         breakpoint: { max: 600, min: 420 },
         items: 1,
-        partialVisibilityGutter: 120
+        partialVisibilityGutter: 120,
       },
       smallMobile: {
         breakpoint: { max: 420, min: 0 },
         items: 1,
-        partialVisibilityGutter: 45
+        partialVisibilityGutter: 45,
       },
       smallest: {
         breakpoint: { max: 400, min: 0 },
         items: 1,
-        partialVisibilityGutter: 0
-      }
+        partialVisibilityGutter: 0,
+      },
     };
     const previewImages = [
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_1_h5zizs.png",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_2_y8onmu.png",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_4_uribpq.png",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_3_xhaxho.png",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_5_mmcqjy.png"
-    ]
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_1_h5zizs.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_2_y8onmu.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_4_uribpq.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_3_xhaxho.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_5_mmcqjy.png',
+    ];
 
     return (
       <span className={styles.iceWearablesMarketplace}>
@@ -275,7 +275,10 @@ const ContentOfferings = props => {
             containerClass="ice-wearables-carousel-container"
             itemClass="carousel-item"
           >
-            <div className={styles.games_container} style={{ paddingBottom: '20px' }}>
+            <div
+              className={styles.games_container}
+              style={{ paddingBottom: '20px' }}
+            >
               <img
                 key={previewLevel}
                 className={styles.preview_nft_image}
@@ -287,7 +290,9 @@ const ContentOfferings = props => {
                   {previewImages.map((img, i) => (
                     <div
                       key={i}
-                      className={previewLevel === i ? styles.selectActive : styles.select}
+                      className={
+                        previewLevel === i ? styles.selectActive : styles.select
+                      }
                       onClick={() => setPreviewLevel(i)}
                     >
                       {i + 1}
@@ -341,8 +346,12 @@ const ContentOfferings = props => {
 
                 <div className={styles.nft_description}>
                   <span style={{ display: 'flex', justifyContent: 'center' }}>
-                    <p className={styles.nft_info}>{props.detailsICE[item][3]}</p>
-                    <p className={styles.nft_info}>{props.detailsICE[item][4]}</p>
+                    <p className={styles.nft_info}>
+                      {props.detailsICE[item][3]}
+                    </p>
+                    <p className={styles.nft_info}>
+                      {props.detailsICE[item][4]}
+                    </p>
                   </span>
                   <p className={styles.nft_other_p}>
                     {props.detailsICE[item][2]}
@@ -353,10 +362,10 @@ const ContentOfferings = props => {
                 </div>
                 <div
                   style={{
-                    position: 'absolute',
-                    bottom: '20px',
                     display: 'flex',
                     justifyContent: 'space-between',
+                    marginTop: 'auto',
+                    width: '100%',
                   }}
                 >
                   {state.userStatus && state.userLoggedIn ? (
@@ -380,7 +389,7 @@ const ContentOfferings = props => {
             ))}
           </Carousel>
         </div>
-      </span >
+      </span>
     );
   }
 
@@ -426,10 +435,10 @@ const ContentOfferings = props => {
 
               <div
                 style={{
-                  position: 'absolute',
-                  bottom: '20px',
                   display: 'flex',
                   justifyContent: 'space-between',
+                  marginTop: 'auto',
+                  width: '100%',
                 }}
               >
                 <Button
@@ -484,10 +493,10 @@ const ContentOfferings = props => {
 
               <div
                 style={{
-                  position: 'absolute',
-                  bottom: '20px',
                   display: 'flex',
                   justifyContent: 'space-between',
+                  marginTop: 'auto',
+                  width: '100%',
                 }}
               >
                 <Button

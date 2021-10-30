@@ -225,10 +225,10 @@ const MarketPlace = () => {
 
                 <div
                   style={{
-                    position: 'absolute',
-                    bottom: '20px',
                     display: 'flex',
                     justifyContent: 'space-between',
+                    marginTop: 'auto',
+                    width: '100%',
                   }}
                 >
                   {state.userStatus && state.userLoggedIn ? (
@@ -244,6 +244,7 @@ const MarketPlace = () => {
                     <a
                       href="https://opensea.io/collection/decentral-games-ice"
                       target="_blank"
+                      style={{ width: '100%' }}
                     >
                       <Button className={styles.opensea_button}>
                         Buy on Opensea
