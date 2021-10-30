@@ -47,12 +47,15 @@ const ModalDelegate = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
 
-  // Global.CONSTANTS.MAX_ITEM_COUNT was hard-coded to 5
   async function hasDataByAddress(address) {
     // let hasData = false;
 
     try {
-      for (let nIndex = 0; nIndex < Global.CONSTANTS.MAX_ITEM_COUNT; nIndex++) {
+      for (
+        let nIndex = 0;
+        nIndex < Global.CONSTANTS.MAX_DELEGATION_COUNT;
+        nIndex++
+      ) {
         const tokenID = await collectionV2Contract.methods
           .tokenOfOwnerByIndex(address, nIndex)
           .call();
@@ -339,13 +342,12 @@ const ModalDelegate = props => {
       setOpen(false);
       setSuccess(true);
     } else {
-      console.log('NFT delegation request error: ' + json.reason);
-      if (json.status === 2) {
-        setErrorMsg(
-          'This wearable has already been checked-in today. You can delegate after 12 AM UTC.'
-        );
+      console.log('NFT delegation request error. Code: ' + json.code);
+
+      if (json.code === 2) {
+        setErrorMsg(json.reason); // this wearable has already been checked-in today
       } else {
-        setErrorMsg('Delegation failed');
+        setErrorMsg('Delegation failed. Code: ' + json.code);
       }
       setClicked(false);
     }

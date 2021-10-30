@@ -26,6 +26,7 @@ const CONSTANTS = {
   DISCORD_URL: 'https://discord.gg/cvbSNzY',
   SOCIAL_HANDLE: 'decentralgames',
   MAX_ITEM_COUNT: 10, // maximum number of tokenOfOwner indexes to query on the accessories contract
+  MAX_DELEGATION_COUNT: 5, // maximum number of delegated NFTs a user can have
   VERIFY_URL: 'staging.decentral.games',
   WETH_MINT_AMOUNT: 0.1, // amount of WETH required for minting
   DG_STAKED_AMOUNT: 1, // amount of DG user is required to have staked in order to mint wearable
