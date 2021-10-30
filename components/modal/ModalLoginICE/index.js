@@ -136,7 +136,7 @@ const ModalLoginICE = () => {
   }
 
   async function getUserStatus() {
-    console.log('Get user status: Connect');
+    console.log('Get user status: ModalLoginICE');
 
     try {
       // const responseIP = await Fetch.IP_ADDRESS();
@@ -149,7 +149,7 @@ const ModalLoginICE = () => {
 
       return jsonStatus.status;
     } catch {
-      console.log('Unregistered wallet: Connect');
+      console.log('Unregistered wallet: ModalLoginICE');
 
       return false;
     }
@@ -207,7 +207,7 @@ const ModalLoginICE = () => {
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
                   style={{ height: '36px', margin: '6px 24px 0px -48px' }}
                 />
-                Connect Metamask
+                Connect MetaMask
               </span>
             </button>
             <a

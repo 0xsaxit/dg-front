@@ -19,105 +19,67 @@ const ModalDelegate = props => {
   const [open, setOpen] = useState(false);
   const [enteredAddress, setEnteredAddress] = useState('');
   // const [isDelegated, setIsDelegated] = useState(false);
-  const [collectionV2Contract, setCollectionV2Contract] = useState({});
-  const [web3, setWeb3] = useState({});
+
   const [errorMsg, setErrorMsg] = useState('');
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  useEffect(() => {
-    if (state.userStatus >= 4) {
-      // initialize Web3 providers and create token contract instance
-      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
-      setWeb3(web3);
+  // helper functions
+  // function isObjectEmpty(obj) {
+  //   return Object.keys(obj).length === 0;
+  // }
 
-      const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
+  function isArrayEmpty(arr) {
+    return arr.length === 0;
+  }
 
-      // setMaticWeb3(maticWeb3);
-      // const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL);
-
-      const collectionV2Contract = new maticWeb3.eth.Contract(
-        ABI_COLLECTION_V2,
-        Global.ADDRESSES.COLLECTION_V2_ADDRESS
-      );
-      setCollectionV2Contract(collectionV2Contract);
-    }
-  }, [state.userStatus]);
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-
-  // Global.CONSTANTS.MAX_ITEM_COUNT was hard-coded to 5
   async function hasDataByAddress(address) {
-    // let hasData = false;
+    // if any index has data then we should show error1
+    const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL);
+    const collectionV2Contract = new maticWeb3.eth.Contract(
+      ABI_COLLECTION_V2,
+      Global.ADDRESSES.COLLECTION_V2_ADDRESS
+    );
 
+    let hasData = false;
     try {
-      for (let nIndex = 0; nIndex < Global.CONSTANTS.MAX_ITEM_COUNT; nIndex++) {
+      for (let nIndex = 0; nIndex < 5; nIndex++) {
         const tokenID = await collectionV2Contract.methods
           .tokenOfOwnerByIndex(address, nIndex)
           .call();
 
         if (parseInt(tokenID) > 0) {
           return true;
-        } // else {
-        // hasData = false;
-        // }
+        } else {
+          hasData = false;
+        }
       }
     } catch (error) {
-      console.log('Index out-of-bounds: ', error.message);
-
-      // setErrorMsg(error.message);
-
-      // return false;
+      console.log('Stack error: =>', error.message);
+      hasData = false;
     }
-
     return false;
   }
 
-  // function isArrayEmpty(arr) {
-  //   return arr.length === 0;
-  // }
-
-  async function checkDelegatedStatus(address) {
-    let errorMsg = '';
-    let isDelegated = false;
-
-    // if any index has data then we should show error
+  async function checkErrorMessage(address) {
+    let errormsg = null;
     const hasData = await hasDataByAddress(address);
     if (hasData) {
-      errorMsg = 'This user already owns a wearable and cannot be delegated to';
-      isDelegated = true;
-    } else {
-      const delegationInfo = await Fetch.DELEGATE_INFO(address);
-      // const delegationInfo = state.iceDelegatedItems;
-
-      console.log('delegation info...');
-      console.log(delegationInfo);
-
-      // ensure no-one has delegated to target address yet (besides me)
-      delegationInfo.incomingDelegations.forEach((item, i) => {
-        if (item) {
-          const tokenOwner = item.tokenOwner.toLowerCase();
-          console.log('Entered address incoming delegator: ' + tokenOwner);
-
-          // if entered address has delegated wearables and the delegator is not me
-          if (
-            tokenOwner !== '' &&
-            tokenOwner !== state.userAddress.toLowerCase()
-          ) {
-            errorMsg =
-              'This user already has a wearable delegated to them, they can undelegate to receive yours';
-            isDelegated = true;
-          }
-        } else {
-          console.log('Entered address has no incoming delegator');
-        }
-      });
+      errormsg = 'This user already owns a wearable and cannot be delegated to';
     }
 
-    setErrorMsg(errorMsg);
-    // setIsDelegated(isDelegated);
-    return isDelegated;
+    const delegationInfo = await Fetch.DELEGATE_INFO(address);
+
+    console.log('delegation info (ModalDelegate/index.js): ');
+    console.log(delegationInfo);
+
+    console.log('case2: ', delegationInfo.incomingDelegations);
+
+    if (!isArrayEmpty(delegationInfo.incomingDelegations)) {
+      errormsg =
+        'This user already has a wearable delegated to them, they can undelegate to receive yours';
+    }
+    setErrorMsg(errormsg);
   }
 
   // async function getDelegated(address) {
@@ -230,18 +192,15 @@ const ModalDelegate = props => {
                 maxLength="42"
                 placeholder="Paste ETH Address Here"
                 onChange={async evt => {
-                  setErrorMsg('');
-
                   if (evt.target.value.length > 0) {
-                    // setErrorMsg('');
+                    setErrorMsg('');
 
                     if (web3.utils.isAddress(evt.target.value)) {
-                      const isDelegated = await checkDelegatedStatus(
-                        evt.target.value
-                      );
+                      await checkErrorMessage(evt.target.value);
 
                       // check to see if anyone has already delegated to this address
-                      if (!isDelegated) {
+
+                      if (!errorMsg) {
                         setEnteredAddress(evt.target.value);
                       } else {
                         setEnteredAddress('');
@@ -251,7 +210,6 @@ const ModalDelegate = props => {
                     }
                   } else {
                     setEnteredAddress('');
-                    // setErrorMsg('');
                   }
                 }}
               />
@@ -385,7 +343,7 @@ const ModalDelegate = props => {
                         analytics.track('CLICKED DELEGATE');
                         delegateNFT();
                       }}
-                      disabled={errorMsg === '' ? false : true}
+                      disabled={errorMsg == null ? false : true}
                     >
                       {props.buttonName}
                     </Button>
@@ -399,9 +357,16 @@ const ModalDelegate = props => {
                 </div>
               </div>
 
-              {errorMsg !== '' && (
+              {errorMsg && (
                 <div className={styles.delegateInfo}>{errorMsg}</div>
               )}
+
+              {/* {isDelegated ? (
+                <div className={styles.delegateInfo}>
+                  Address already has delegated wearables. Only 1 person can
+                  delegate at a time.
+                </div>
+              ) : null} */}
             </div>
           </div>
         </Modal>

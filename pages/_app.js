@@ -32,7 +32,6 @@ import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../store';
 
 function Application({ Component, pageProps, store }) {
-
   const router = useRouter();
   const [pageLoading, setPageLoading] = useState(true);
 
@@ -47,11 +46,11 @@ function Application({ Component, pageProps, store }) {
 
   useEffect(() => {
     const handleStart = () => {
-      console.log("1. Page Loading is started.");
+      console.log('1. Page Loading is started.');
       setPageLoading(true);
     };
     const handleComplete = () => {
-      console.log("2. Page Loading is completed.");
+      console.log('2. Page Loading is completed.');
       setPageLoading(false);
     };
 
@@ -70,12 +69,12 @@ function Application({ Component, pageProps, store }) {
 
       {pageLoading ? (
         <Spinner background={1} />
-      ) :
+      ) : (
         <>
           <Segment />
           <Component {...pageProps} />
         </>
-      }
+      )}
 
       <UserStatus />
       <UserBalances />
