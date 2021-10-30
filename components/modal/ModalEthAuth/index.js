@@ -36,6 +36,9 @@ const ModalEthAuth = props => {
   const [mintStatus, setMintStatus] = useState({});
   const [biconomyReady, setBiconomyReady] = useState(false);
 
+  const POOLING_TIME_OUT = 8000; // mintToken API endpoint request pool interval (milliseconds)
+  const POOLING_LIMIT_COUNT = 6; // attempt to call mintToken API endpoint this number of times before timing-out
+
   /////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////
   // Update Open Modal Status
@@ -58,7 +61,7 @@ const ModalEthAuth = props => {
       setTickCount(0);
     };
 
-    if (tickCount === Global.CONSTANTS.POOLING_LIMIT_COUNT && intervalId > 0) {
+    if (tickCount === POOLING_LIMIT_COUNT && intervalId > 0) {
       completeData();
     }
   }, [tickCount]);
@@ -218,7 +221,8 @@ const ModalEthAuth = props => {
     const intervalid = setInterval(() => {
       setTickCount(prevCount => prevCount + 1);
       fetchMintToken();
-    }, Global.CONSTANTS.POOLING_TIME_OUT);
+    }, POOLING_TIME_OUT);
+
     setIntervalId(intervalid);
   }
 
