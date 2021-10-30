@@ -9,6 +9,7 @@ import Governance from '../../content/ContentDAO/Governance';
 import Liquidity from '../../content/ContentDAO/Liquidity';
 import Gameplay from '../../content/ContentDAO/Gameplay';
 import ContentTreasury from '../../content/ContentDAO/Treasury';
+import TokenMigration from '../../content/ContentDAO/TokenMigration'
 import FoxAnimation from '../../lottieAnimation/animations/fox'
 
 import ContentMining from '../../content/ContentMining';
@@ -656,6 +657,39 @@ const DAO = props => {
                     <div className={styles.menu_title}>Liquidity Provision</div>
                   </div>
                 </Link>
+
+                <Link href="/dg/tokenMigration">
+                  <div
+                    className={
+                      DGState === 'tokenMigration'
+                        ? styles.menu_item_active
+                        : styles.menu_item
+                    }
+                  >
+                    <svg
+                      width="25"
+                      height="16"
+                      viewBox="0 0 25 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M2 8C2 4.68629 4.68629 2 8 2C9.43178 2 10.7464 2.50151 11.7779 3.33844C12.2293 2.8331 12.7529 2.39368 13.3326 2.03643C11.9174 0.770024 10.0486 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16C10.0486 16 11.9174 15.23 13.3326 13.9636C12.7529 13.6063 12.2293 13.1669 11.7779 12.6616C10.7464 13.4985 9.43178 14 8 14C4.68629 14 2 11.3137 2 8Z"
+                        fill={DGState === 'tokenMigration' ? 'white' : '#808080'}
+                      />
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M17 2C13.6863 2 11 4.68629 11 8C11 11.3137 13.6863 14 17 14C20.3137 14 23 11.3137 23 8C23 4.68629 20.3137 2 17 2ZM9 8C9 3.58172 12.5817 0 17 0C21.4183 0 25 3.58172 25 8C25 12.4183 21.4183 16 17 16C12.5817 16 9 12.4183 9 8Z"
+                        fill={DGState === 'tokenMigration' ? 'white' : '#808080'}
+                      />
+                    </svg>
+
+                    <div className={styles.menu_title}>Token Migration</div>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -761,9 +795,9 @@ const DAO = props => {
                   <FoxAnimation />
                 </section>
                 :
-                <Overview 
-                  price={price} 
-                  formatPrice={formatPrice} 
+                <Overview
+                  price={price}
+                  formatPrice={formatPrice}
                 />
               }
             </>
@@ -851,6 +885,17 @@ const DAO = props => {
             contentAdmin()
           ) : DGState === 'miningv1' ? (
             <ContentMiningV1 price={price} formatPrice={formatPrice} />
+          ) : DGState === 'tokenMigration' ? (
+
+            <>
+              {!state.userStatus ?
+                <section style={{ marginTop: '100px' }}>
+                  <FoxAnimation />
+                </section>
+                :
+                <TokenMigration />
+              }
+            </>
           ) : null}
         </div>
       </div>
