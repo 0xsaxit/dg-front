@@ -2543,7 +2543,6 @@ div.ui.grid.admin-balances-container {
 .not-found-container .not-found-header-text {
   font-size: 80px;
   font-weight: 800 !important;
-  letter-spacing: 0.25px;
   margin-bottom: 0px;
   color: rgba(255, 255, 255, 1) !important;
 }
@@ -2551,7 +2550,7 @@ div.ui.grid.admin-balances-container {
 .not-found-container .not-found-middle-text {
   font-size: 28px;
   font-weight: 600;
-  margin-bottom: 9px;
+  margin-bottom: 6px;
   color: rgba(255, 255, 255, 1) !important;
 }
 
@@ -3049,12 +3048,15 @@ a.ui.button.balances-top-button {
 .ui.button.not-found-button {
   color: white;
   background-color: #006eff;
-  min-width: 180px;
+  min-width: 198px;
+  font-size: 17px;
+  font-family:  Larsseit-Bold;
   margin-top: 12px;
   height: 48px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 12px;
 }
 
 .ui.button.play-button.ecosystem, .ui.button.play-button.deposit {

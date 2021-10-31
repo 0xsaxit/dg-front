@@ -76,7 +76,7 @@ function blog() {
         </div>
       </div>
 
-       <div className="featured-blog-container">
+      <div className="featured-blog-container">
         <Link href="/blog/[id]" as="blog/decentral-games-ice-poker-genesis-mint-and-beta-play-to-earn-launch">
           <a>
             <span className="featured-blog-grid">
