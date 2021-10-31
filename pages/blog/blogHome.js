@@ -76,8 +76,8 @@ function blog() {
         </div>
       </div>
 
-      <div className="featured-blog-container">
-        <Link href="/blog/[id]" as="blog/decentral-games-announces-play-to-earn-metaverse-poker-ice-token-rollout">
+       <div className="featured-blog-container">
+        <Link href="/blog/[id]" as="blog/decentral-games-ice-poker-genesis-mint-and-beta-play-to-earn-launch">
           <a>
             <span className="featured-blog-grid">
               <Image src={Images.FEATURED_IMAGE} className="featured-image" />
@@ -85,7 +85,7 @@ function blog() {
               <div className="post-info featured">
                 <div className="top">
                   <span className="blog-category">Announcements </span>
-                  <span className="blog-date">1 SEP 2021</span>
+                  <span className="blog-date">27 OCT 2021</span>
                 </div>
                 <div className="bottom">
                   <div className="blog-title">
@@ -97,7 +97,7 @@ function blog() {
                         marginTop: '10px'
                       }}
                     >
-                      Decentral Games Announces Play-to-Earn Metaverse Poker, ICE Token Rollout
+                      Decentral Games ICE Poker Genesis Mint and Beta Play-to-Earn Launch
                     </h4>
                     <p
                       style={{
@@ -106,7 +106,7 @@ function blog() {
                         paddingTop: '15px',
                       }}
                     >
-                      Decentral Games is excited to announce the development of free-play, play-to-earn Metaverse poker! Play-to-earn architectures will play a massive role in driving the future of crypto and gaming adoption, and Decentral Games is now a first-mover in this nascent, but promising, space
+                      Put on an ICE Poker Wearable and hit the tables to earn ICE and have fun with your friends! Decentral Games’ play-to-earn ICE Poker lets anyone earn ICE by purchasing or receiving delegation to an ICE Poker Wearable NFT and completing daily poker challenges in the Metaverse
                     </p>
                   </div>
                 </div>
