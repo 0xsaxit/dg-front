@@ -27,29 +27,26 @@ const Treasury = props => {
   const [statsUSDX, setStatsUSDX] = useState([]);
   const [statsUSDY, setStatsUSDY] = useState([]);
   const [gameplayTreasury, setGameplayTreasury] = useState(0);
-  const [gameplayTreasuryPercent, setGameplayTreasuryPercent] = useState(0);
+  const [gameplayHotPercent, setGameplayHotPercent] = useState(0);
   const [weeklyChange, setWeeklyChange] = useState(0);
   const [gameplayAll, setGameplayAll] = useState(0);
   const [gameplayAllPercent, setGameplayAllPercent] = useState(0);
   const [dgTreasury, setDgTreasury] = useState(0);
-  const [dgTreasuryPercent, setDgTreasuryPercent] = useState(0);
+  const [dgPercent, setDgPercent] = useState(0);
   const [landTreasury, setLandTreasury] = useState(0);
   const [landTreasuryPercent, setLandTreasuryPercent] = useState(0);
   const [nftTreasury, setNftTreasury] = useState(0);
   const [nftTreasuryPercent, setNftTreasuryPercent] = useState(0);
   const [liquidityTreasury, setLiquidityTreasury] = useState(0);
-  const [liquidityTreasuryPercent, setLiquidityTreasuryPercent] = useState(0);
+  const [lpPercent, setLpPercent] = useState(0);
   const [maticTreasury, setMaticTreasury] = useState(0);
   const [maticTreasuryPercent, setMaticTreasuryPercent] = useState(0);
   const [maticTokens, setMaticTokens] = useState(0);
   const [visible, setVisible] = useState(true);
-  const [unvestedDG, setUnvestedDG] = useState(0);
   const [wearableSales, setWearableSales] = useState(0);
-
-  /// temp percentages
-  const [gameplayHotPercent, setGameplayHotPercent] = useState(0);
-  const [dgPercent, setDgPercent] = useState(0);
-  const [lpPercent, setLpPercent] = useState(0);
+  const [wearableSalesPercent, setWearableSalesPercent] = useState(0);
+  const [unvestedDG, setUnvestedDG] = useState(0);
+  const [dgTreasuryPercent, setDgTreasuryPercent] = useState(0);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -67,7 +64,6 @@ const Treasury = props => {
         let temp_x2 = temp_x.toDateString();
         xAxis.push(temp_x2.slice(0, 1));
       }
-      xAxis.push(0);
 
       let yAxis = [];
       let j;
@@ -78,53 +74,36 @@ const Treasury = props => {
 
       const totalUSD = state.treasuryNumbers.totalBalanceUSD.graph;
       const api_usd = Number(totalUSD.slice(-1)[0].secondary);
-      const gameplay_ice = Number(state.DGBalances.BALANCE_ICE * state.DGPrices.ice);
-      const unclaimed_1 = Number(state.DGBalances.UNVESTED_DG_1);
-      const unclaimed_2 = Number(state.DGBalances.BALANCE_UNCLAIMED);
-      const unvested_amount = (unclaimed_1 + unclaimed_2);
-      const unvested_price = (unvested_amount * state.DGPrices.dg);
-      const usdc = Number(state.DGBalances.USDC_BALANCE_LP);
-      const ice = Number(state.DGBalances.ICE_BALANCE_LP * state.DGPrices.ice);
-      const eth = Number(56 * state.DGPrices.eth);
-      const lp = (usdc + ice);
+      setTreasuryTotal(props.formatPrice(api_usd, 0));
+
       const wearable_sales = Number(state.DGBalances.BALANCE_WETH_WEARABLES * state.DGPrices.eth);
-      setWearableSales(props.formatPrice(wearable_sales, 0));
 
-      const new_total = (api_usd + gameplay_ice + unvested_price + lp + wearable_sales);
-      setTreasuryTotal(props.formatPrice(new_total, 0));
-
-      yAxis.push(new_total / 1000000);
       setStatsUSDX(xAxis);
       setStatsUSDY(yAxis);
 
       const temp_start = totalUSD[0].secondary;
-      const temp_end = new_total;
+      const temp_end = api_usd;
       const change = temp_end - temp_start;
       setWeeklyChange(change);
 
       const gameplayTotal = state.treasuryNumbers.allTimeGameplayUSD;
       const game_temp = Number(gameplayTotal.graph.slice(-1)[0].secondary);
-      const game_final = game_temp + eth + 120000
       setGameplayAll(
-        props.formatPrice(game_final, 0)
+        props.formatPrice(game_temp, 0)
       );
 
-      {/*const gameplayTotal_temp =
+      const gameplayTotal_temp =
         gameplayTotal.changes.weekly.percent.toFixed(2);
-      setGameplayAllPercent(Number(gameplayTotal_temp));*/}
-
-      const gameplayTotal_temp = ((game_final - game_temp) / game_temp) * 100;
-      setGameplayAllPercent(gameplayTotal_temp.toFixed(2));
+      setGameplayAllPercent(Number(gameplayTotal_temp));
 
       const gameplay = state.treasuryNumbers.totalGameplayUSD;
-      const gameplay_old = Number(gameplay.graph.slice(-1)[0].secondary);
-      const gameplay_new = (gameplay_old + gameplay_ice);
+      const gameplay_temp = Number(gameplay.graph.slice(-1)[0].secondary);
       setGameplayTreasury(
-        props.formatPrice(gameplay_new, 0)
+        props.formatPrice(gameplay_temp, 0)
       );
 
-      const gameplay_temp = gameplay.changes.weekly.percent.toFixed(2);
-      setGameplayTreasuryPercent(Number(gameplay_temp));
+      const gameplay_temp2 = gameplay.changes.weekly.percent.toFixed(2);
+      setGameplayHotPercent(Number(gameplay_temp2));
 
       const land = state.treasuryNumbers.totalLandUSD;
       setLandTreasury(props.formatPrice(land.graph.slice(-1)[0].secondary, 0));
@@ -140,23 +119,29 @@ const Treasury = props => {
       const wearables_temp = wearables.changes.weekly.percent.toFixed(2);
       setNftTreasuryPercent(Number(wearables_temp));
 
-      const dg = state.treasuryNumbers.totalDgUSD;
+      const ice_wearables = state.treasuryNumbers.totalIceWearablesUSD;
+      setWearableSales(
+        props.formatPrice(ice_wearables.graph.slice(-1)[0].secondary, 0)
+      );
+
+      const ice_percent = ice_wearables.changes.weekly.percent.toFixed(2);
+      setWearableSalesPercent(Number(ice_percent));
+
+      const dg = state.treasuryNumbers.totalDgWalletUSD;
       setDgTreasury(Number(dg.graph.slice(-1)[0].secondary));
-      const totalDgWallet = (dgTreasury + unvested_price);
-      setUnvestedDG(props.formatPrice(totalDgWallet, 0));
+      setUnvestedDG(props.formatPrice(dgTreasury, 0));
 
       const dg_temp = dg.changes.weekly.percent.toFixed(2);
       setDgTreasuryPercent(Number(dg_temp));
 
       const liq = state.treasuryNumbers.totalLiquidityProvided;
       const old_liq = Number(liq.graph.slice(-1)[0].secondary);
-      const new_lp = (old_liq + lp);
       setLiquidityTreasury(
-        props.formatPrice(new_lp, 0)
+        props.formatPrice(old_liq, 0)
       );
 
       const liq_temp = liq.changes.weekly.percent.toFixed(2);
-      setLiquidityTreasuryPercent(Number(liq_temp));
+      setLpPercent(Number(liq_temp));
 
       const maticBal = state.treasuryNumbers.totalMaticUSD;
       setMaticTreasury(
@@ -174,28 +159,8 @@ const Treasury = props => {
       const dgbal = state.treasuryNumbers.dgBalance.graph;
       setDgBalance(props.formatPrice(dgbal.slice(-1)[0].secondary, 0));
 
-      //////////////////////////////////////////////////////////////////////
-      // temporary percentages for dg wallet, gameplay hot wallet, and lp //
-      //////////////////////////////////////////////////////////////////////
-      const gameplay_percent = ((gameplay_new - gameplay_old) / gameplay_old) * 100;
-      setGameplayHotPercent(gameplay_percent.toFixed(2));
-
-      const dg_percent = ((totalDgWallet - dgTreasury) / dgTreasury) * 100;
-      setDgPercent(dg_percent.toFixed(2));
-
-      const lp_percent = ((new_lp - old_liq) / old_liq) * 100;
-      setLpPercent(lp_percent.toFixed(2));
-
     }
-  }, [state.treasuryNumbers, 
-      state.DGBalances.UNVESTED_DG_1, 
-      state.DGBalances.BALANCE_UNCLAIMED, 
-      state.DGBalances.BALANCE_ICE,
-      state.DGBalances.USDC_BALANCE_LP,
-      state.DGBalances.ICE_BALANCE_LP,
-      state.DGBalances.BALANCE_WETH_WEARABLES,
-      dgTreasury
-    ]);
+  }, [state.treasuryNumbers]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -373,13 +338,13 @@ const Treasury = props => {
               )}
             </div>
             <p className={styles.stat_percent}>
-              {dgPercent > 0 && dgTreasury ? (
+              {dgTreasuryPercent > 0 && dgTreasury ? (
                 <p className={styles.earned_percent_pos}>
-                  +{dgPercent}%
+                  +{dgTreasuryPercent}%
                 </p>
               ) : dgTreasury ? (
                 <p className={styles.earned_percent_neg}>
-                  {dgPercent}%
+                  {dgTreasuryPercent}%
                 </p>
               ) : null}
             </p>
@@ -399,21 +364,16 @@ const Treasury = props => {
                 getLoader()
               )}
             </div>
-            {/*<p className={styles.stat_percent}>
-              {maticTreasuryPercent > 0 && maticTreasury ? (
+            <p className={styles.stat_percent}>
+              {wearableSalesPercent > 0 && wearableSales ? (
                 <p className={styles.earned_percent_pos}>
-                  +{maticTreasuryPercent}%
+                  +{wearableSalesPercent}%
                 </p>
-              ) : maticTreasury ? (
+              ) : wearableSales ? (
                 <p className={styles.earned_percent_neg}>
-                  {maticTreasuryPercent}%
+                  {wearableSalesPercent}%
                 </p>
               ) : null}
-            </p>*/}
-            <p className={styles.stat_percent}>
-              <p className={styles.earned_percent_pos}>
-                +100%
-              </p>
             </p>
           </div>
         </div>
