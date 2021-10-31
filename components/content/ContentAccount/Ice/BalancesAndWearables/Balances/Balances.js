@@ -14,6 +14,7 @@ const Balances = () => {
   const [clicked, setClicked] = useState(false);
   const [totalICE, setTotalICE] = useState(0);
 
+
   const balenceItems = [
     {
       icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg',
@@ -49,6 +50,13 @@ const Balances = () => {
       ),
     },
   ];
+
+  useEffect(() => {
+    (async () => {
+      let json = await Fetch.ICE_AMOUNTS(state.userAddress);
+      setIceAmount(json.totalUnclaimedAmount);
+    })();
+  }, [iceAmount]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
