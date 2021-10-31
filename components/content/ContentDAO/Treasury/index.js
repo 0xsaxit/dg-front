@@ -48,9 +48,6 @@ const Treasury = props => {
   const [unvestedDG, setUnvestedDG] = useState(0);
   const [dgTreasuryPercent, setDgTreasuryPercent] = useState(0);
 
-  console.log('!!!');
-  console.log(state.treasuryNumbers);
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // use for both the graph and the stats
@@ -130,7 +127,7 @@ const Treasury = props => {
       const ice_percent = ice_wearables.changes.weekly.percent.toFixed(2);
       setWearableSalesPercent(Number(ice_percent));
 
-      const dg = state.treasuryNumbers.totalDgUSD;
+      const dg = state.treasuryNumbers.totalDgWalletUSD;
       setDgTreasury(Number(dg.graph.slice(-1)[0].secondary));
       setUnvestedDG(props.formatPrice(dgTreasury, 0));
 
