@@ -12,6 +12,7 @@ const IceRewards = () => {
   // define local variables
   const [clicked, setClicked] = useState(false);
   const [payoutTime, setPayoutTime] = useState('--');
+  const [totalICE, setTotalICE] = useState(0);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -19,6 +20,14 @@ const IceRewards = () => {
   useEffect(() => {
     setClicked(false);
   }, [state.iceAmounts]);
+
+  useEffect(() => {
+    (async () => {
+      let json = await Fetch.ICE_AMOUNTS(state.userAddress);
+      const unclaimed = json.totalUnclaimedAmount;
+      setTotalICE(formatPrice(unclaimed, 0));
+    })();
+  }, []);
 
   useEffect(() => {
     let id = setInterval(() => {
@@ -131,7 +140,7 @@ const IceRewards = () => {
         <p className={styles.lower_header}>Claim ICE Rewards</p>
         <div className={styles.lower_value}>
           <p className={styles.ICE_value}>
-            {state.iceAmounts.ICE_CLAIM_AMOUNT}
+            {totalICE}
           </p>
           <img
             style={{ marginTop: '-4px' }}
@@ -141,7 +150,7 @@ const IceRewards = () => {
         <p className={styles.price}>
           $
           {formatPrice(
-            state.iceAmounts.ICE_CLAIM_AMOUNT * state.DGPrices.ice,
+            totalICE * state.DGPrices.ice,
             2
           )}
         </p>
@@ -156,14 +165,14 @@ const IceRewards = () => {
             className={cn(styles.claim_ICE, styles.lower_button)}
             onClick={() => claimTokens()}
           >
-            Claim {formatPrice(state.iceAmounts.ICE_CLAIM_AMOUNT, 0)} ICE
+            Claim {formatPrice(totalICE, 0)} ICE
           </Button>
         ) : (
           <Button
             className={cn(styles.claim_ICE, styles.lower_button)}
             disabled
           >
-            Claim {formatPrice(state.iceAmounts.ICE_CLAIM_AMOUNT, 0)} ICE
+            Claim {formatPrice(totalICE, 0)} ICE
           </Button>
         )}
       </div>

@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { GlobalContext } from '../../../../store';
 import ModalMintWearable from 'components/modal/ModalMintWearable';
 import ModalLoginICE from 'components/modal/ModalLoginICE';
-import { Popup } from 'semantic-ui-react';
+import { Popup, Button } from 'semantic-ui-react';
 import cn from 'classnames';
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
@@ -230,7 +230,7 @@ const MarketPlace = () => {
                                         justifyContent: 'space-between',
                                     }}
                                 >
-                                    {state.userStatus && state.userLoggedIn ? (
+                                    {/*{state.userStatus && state.userLoggedIn ? (
                                         <ModalMintWearable
                                             index={i}
                                             className={styles.right_button}
@@ -241,7 +241,16 @@ const MarketPlace = () => {
                                         />
                                     ) : (
                                         <ModalLoginICE />
-                                    )}
+                                    )}*/}
+
+                                    <Button 
+                                        href="https://opensea.io/collection/decentral-games-ice"
+                                        target="_blank"
+                                        className={styles.opensea}
+                                    >
+                                        Buy on Opensea
+                                    </Button>
+
 
                                     {/* <ModalMintActivation /> */}
                                     {/* <ActivateWearableModal /> */}

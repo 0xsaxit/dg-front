@@ -3170,6 +3170,7 @@ img.avatar-picture-binance {
   background-color: #1f1f1f;
   padding: 30px;
   border: 0px solid white;
+  transform: scale(0.9);
 }
 
 .account-address {
@@ -3323,6 +3324,7 @@ i.clone.outline.icon, .account-address {
   font-size: 18px;
   margin-top: 24px;
   padding-top: 21px;
+  line-height: 21px;
 }
 
 .ui.button.buy-dg-button.binance {
