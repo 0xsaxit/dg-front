@@ -54,9 +54,9 @@ const Balances = () => {
   useEffect(() => {
     (async () => {
       let json = await Fetch.ICE_AMOUNTS(state.userAddress);
-      setIceAmount(json.totalUnclaimedAmount);
+      setTotalICE(json.totalUnclaimedAmount);
     })();
-  }, [iceAmount]);
+  }, [totalICE]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
