@@ -174,7 +174,7 @@ const ButtonStartConnect = () => {
   }
 
   async function getUserStatus() {
-    console.log('Get user status: Connect');
+    console.log('Get user status: ButtonStartConnect');
 
     try {
       // const responseIP = await Fetch.IP_ADDRESS();
@@ -186,7 +186,7 @@ const ButtonStartConnect = () => {
 
       return jsonStatus.status;
     } catch {
-      console.log('Unregistered wallet: Connect');
+      console.log('Unregistered wallet: ButtonStartConnect');
 
       return false;
     }

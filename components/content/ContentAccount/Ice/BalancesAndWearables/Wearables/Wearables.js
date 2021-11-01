@@ -34,8 +34,8 @@ const Wearables = ({ state }) => {
 
         const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
 
-        console.log('delegation info (Wearables): ');
-        console.log(delegationInfo);
+        // console.log('delegation info (Wearables): ');
+        // console.log(delegationInfo);
 
         activeWearables.map(activeWearable => {
           if (

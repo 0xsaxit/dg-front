@@ -219,6 +219,7 @@ const ModalEthAuth = props => {
       setTickCount(prevCount => prevCount + 1);
       fetchMintToken();
     }, Global.CONSTANTS.POOLING_TIME_OUT);
+
     setIntervalId(intervalid);
   }
 

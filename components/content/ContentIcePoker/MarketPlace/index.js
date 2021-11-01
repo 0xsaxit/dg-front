@@ -224,39 +224,33 @@ const MarketPlace = () => {
                 </div>
 
                 <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    marginTop: 'auto',
-                    width: '100%',
-                  }}
+                    style={{
+                        position: 'absolute',
+                        bottom: '20px',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                    }}
                 >
-                  {state.userStatus && state.userLoggedIn ? (
-                    // sold out on nfts
-                    // <ModalMintWearable
-                    //     index={i}
-                    //     className={styles.right_button}
-                    //     wearableImg={detailsICE[item][0]}
-                    //     wearableBodyType={detailsICE[item][3]}
-                    //     wearableBodyImg={detailsICE[item][5]}
-                    //     wearableName={detailsICE[item][1]}
-                    // />
-                    <a
-                      href="https://opensea.io/collection/decentral-games-ice"
-                      target="_blank"
-                      style={{ width: '100%' }}
-                    >
-                      <Button className={styles.opensea_button}>
-                        Buy on Opensea
-                      </Button>
-                    </a>
-                  ) : (
-                    <ModalLoginICE />
-                  )}
+                    {/*{state.userStatus && state.userLoggedIn ? (
+                        <ModalMintWearable
+                            index={i}
+                            className={styles.right_button}
+                            wearableImg={detailsICE[item][0]}
+                            wearableBodyType={detailsICE[item][3]}
+                            wearableBodyImg={detailsICE[item][5]}
+                            wearableName={detailsICE[item][1]}
+                        />
+                    ) : (
+                        <ModalLoginICE />
+                    )}*/}
 
-                  {/*<Button disabled className={styles.coming_soon}>
-                                        Coming Soon!
-                                    </Button>*/}
+                    <Button 
+                        href="https://opensea.io/collection/decentral-games-ice"
+                        target="_blank"
+                        className={styles.opensea}
+                    >
+                        Buy on Opensea
+                    </Button>
 
                   {/* <ModalMintActivation /> */}
                   {/* <ActivateWearableModal /> */}

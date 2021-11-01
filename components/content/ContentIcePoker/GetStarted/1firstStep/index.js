@@ -61,7 +61,7 @@ const FirstStep = () => {
                         </div>
                     </div>
                     <div className={styles.button_div}>
-                        <Button 
+                        <Button
                             onClick={() => {
                                 window.open("https://medium.com/stakingbits/setting-up-metamask-for-polygon-matic-network-838058f6d844", "_blank");
                             }}
