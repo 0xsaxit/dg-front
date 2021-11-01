@@ -27,7 +27,7 @@ const IceRewards = () => {
       const unclaimed = json.totalUnclaimedAmount;
       setTotalICE(formatPrice(unclaimed, 0));
     })();
-  }, []);
+  }, [totalICE]);
 
   useEffect(() => {
     let id = setInterval(() => {
