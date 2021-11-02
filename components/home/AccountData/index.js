@@ -42,14 +42,16 @@ const AccountData = props => {
   //   setDGMined(temp);
   // }, [state.DGGameplayCollected, state.DGBalances.BALANCE_MINING_DG_V2]);
 
-  // set uniswap APY stat
   useEffect(() => {
     (async () => {
-      let json = await Fetch.ICE_AMOUNTS();
+      let json = await Fetch.ICE_AMOUNTS(state.userAddress);
+
+      console.log('!!!');
+      console.log(json);
 
       const unclaimed = json.totalUnclaimedAmount;
       const claimed = json.totalClaimedAmount;
-      const total = Number(unclaimed + claimed);
+      const total = Number(unclaimed) + Number(claimed);
       setTotalICE(formatPrice(total, 0));
     })();
   }, []);

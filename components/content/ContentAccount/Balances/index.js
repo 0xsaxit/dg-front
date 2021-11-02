@@ -217,7 +217,7 @@ const Balances = (props) => {
             <div>
               {state.userInfo.tokenArray[1] ? (
               <span>
-                <Button
+                {/*<Button
                   className={styles.deposit_button}
                   onClick={() => setStateAndEvent(1, true, 'MANA Deposit')}
                   style={{display: lock === 2? 'none':'flex', width: lock === 2? '':'100%'}}
@@ -292,6 +292,15 @@ const Balances = (props) => {
                     }
                   }}
                 />
+              </span>*/}
+
+                <Button 
+                  className={styles.temp_deposit}
+                  href="https://wallet.polygon.technology/bridge"
+                  target="_blank"
+                >
+                  Deposit & withdraw
+                </Button>
               </span>
             ) : (
               <ModalAcceptMANA />
@@ -333,7 +342,7 @@ const Balances = (props) => {
             <div>
              {state.userInfo.tokenArray[0] ? (
               <span>
-                <Button 
+                {/*<Button 
                   onClick={() => setStateAndEvent(3, true, 'DAI Deposit')}
                   className={styles.deposit_button}
                   style={{display: lock === 4? 'none':'flex', width: lock === 4? '':'100%'}}
@@ -408,6 +417,14 @@ const Balances = (props) => {
                     }
                   }}
                 />
+              </span>*/}
+                <Button 
+                  className={styles.temp_deposit}
+                  href="https://wallet.polygon.technology/bridge"
+                  target="_blank"
+                >
+                  Deposit & withdraw
+                </Button>
               </span>
             ) : (
               <ModalAcceptDAI />
@@ -447,20 +464,12 @@ const Balances = (props) => {
             <div>
               {state.userInfo.tokenArray[4] ? (
               <span>
-                <Button
-                  className={styles.deposit_button}
-                  href="https://wallet.matic.network/bridge/"
+                <Button 
+                  className={styles.temp_deposit}
+                  href="https://wallet.polygon.technology/bridge"
                   target="_blank"
                 >
-                  Deposit
-                </Button>
-
-                <Button
-                  className={styles.deposit_button}
-                  href="https://wallet.matic.network/bridge/"
-                  target="_blank"
-                >
-                  Withdraw
+                  Deposit & withdraw
                 </Button>
               </span>
             ) : (

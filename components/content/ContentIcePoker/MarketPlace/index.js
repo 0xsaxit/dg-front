@@ -248,8 +248,11 @@ const MarketPlace = () => {
                       href="https://opensea.io/collection/decentral-games-ice"
                       target="_blank"
                       style={{ width: '100%' }}
-                    >
-                      <Button className={styles.opensea_button}>
+                      <Button 
+                          href="https://opensea.io/collection/decentral-games-ice"
+                          target="_blank"
+                          className={styles.opensea}
+                      >
                         Buy on Opensea
                       </Button>
                     </a>
