@@ -3,7 +3,7 @@ import { GlobalContext } from '../../../store';
 import { Biconomy } from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
-import ABI_CHILD_TOKEN_WETH from '../../ABI/ABIChildTokenWETH';
+import ABI_CHILD_TOKEN_ICE from '../../ABI/ABIChildTokenICE';
 import Global from '../../Constants';
 import Fetch from '../../../common/Fetch';
 import MetaTx from '../../../common/MetaTx';
@@ -37,8 +37,8 @@ function ICE({ passed = false }) {
       setSpenderAddress(spenderAddress);
 
       const tokenContract = new getWeb3.eth.Contract(
-        ABI_CHILD_TOKEN_WETH,
-        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH
+        ABI_CHILD_TOKEN_ICE,
+        Global.ADDRESSES.ICE_TOKEN_ADDRESS
       );
 
       setTokenContract(tokenContract);
