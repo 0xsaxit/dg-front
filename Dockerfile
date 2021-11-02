@@ -31,7 +31,7 @@ RUN yarn outdated || true
 COPY . .
 
 RUN npx next telemetry disable &&\
-    env \
+    env
 
 # Build For Proper Env - construct the string then run the command
 RUN cmd="yarn run build:$APP_ENV"; eval $cmd;
