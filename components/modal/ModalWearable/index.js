@@ -340,7 +340,7 @@ const ModalWearable = props => {
               <div className={styles.button_area}>
                 {state.userInfo.balanceXP >= 50 &&
                   state.DGBalances.BALANCE_CHILD_DG >= 0.1 &&
-                  state.iceAmounts.ICE_AVAILABLE_AMOUNT >= 30000 ? (
+                  state.iceAmounts.ICE_AVAILABLE_AMOUNT >= icePrices[Math.min(props.rank + 1, 5)] ? (
                   <Button
                     className={styles.button_upgrade}
                     onClick={() => {
