@@ -45,7 +45,11 @@ LABEL description="We secure your business from scratch"
 LABEL maintainer="support@secureimages.dev"
 
 ENV NODE_ENV=production \
-    PATH="/app/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    PATH="/app/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" \
+    APP_ENV=$APP_ENV
+
+RUN echo APP_ENV: $APP_ENV
+RUN env
 
 WORKDIR /app
 
