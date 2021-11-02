@@ -3,7 +3,7 @@ import call from 'common/API';
 import { ApiUrlsByAppEnv } from './environments'
 
 // APP_ENV must be set in the .env.{environment} files
-export const API_BASE_URL = ApiUrlsByAppEnv[process.env.APP_ENV];
+export const API_BASE_URL = ApiUrlsByAppEnv[process.env.APP_ENV] || 'https://api.decentral.games';
 
 console.log('process.env.APP_ENV (NODE_ENV): ', process.env.APP_ENV)
 console.log('API_BASE_URL: ', API_BASE_URL)
