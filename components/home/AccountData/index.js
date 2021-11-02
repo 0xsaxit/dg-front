@@ -47,7 +47,7 @@ const AccountData = props => {
       try {
         let json = await Fetch.ICE_AMOUNTS(state.userAddress);
 
-        console.log('!!!');
+        console.log('---> ICE_AMOUNTS FAILING <---');
         console.log(json);
 
         const unclaimed = json.totalUnclaimedAmount;
