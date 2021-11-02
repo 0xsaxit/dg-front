@@ -24,7 +24,7 @@ COPY package*.json yarn.lock ./
 
 RUN yarn audit --level critical || true
 
-RUN yarn install --production
+RUN yarn install
 
 RUN yarn outdated || true
 
