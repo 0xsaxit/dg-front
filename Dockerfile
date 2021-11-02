@@ -8,10 +8,12 @@ LABEL description="We secure your business from scratch"
 LABEL maintainer="support@secureimages.dev"
 
 ARG CI=true
-ARG NEXT_PUBLIC_API_URL
-ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 
-ENV NODE_ENV="production"
+# Receive NODE_ENV from --build-arg
+ARG APP_ENV
+ENV APP_ENV=$APP_ENV
+
+RUN echo APP_ENV: $APP_ENV
 
 RUN apk add --no-cache ca-certificates git build-base python2 &&\
     rm -rf /var/cache/apk/*
@@ -29,9 +31,10 @@ RUN yarn outdated || true
 COPY . .
 
 RUN npx next telemetry disable &&\
-    env
+    env \
 
-RUN yarn run build
+# Build For Proper Env - construct the string then run the command
+RUN cmd="yarn run build:$APP_ENV"; eval $cmd;
 
 # CMD ["sleep", "3d"]
 ################################################################################
@@ -44,6 +47,7 @@ LABEL maintainer="support@secureimages.dev"
 ENV NODE_ENV=production \
     PATH="/app/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
+
 WORKDIR /app
 
 COPY --from=build --chown=node:node /app .
@@ -52,4 +56,4 @@ USER node
 
 EXPOSE 3000
 
-CMD ["next", "start", "-p", "3000"]
+CMD ["npm", "run", "start"]

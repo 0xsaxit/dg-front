@@ -1,6 +1,12 @@
 import call from 'common/API';
-// https://api.decentral.games, http://localhost:5000
-const API_BASE_URL = 'https://api.testing.decentral.games';
+
+import { ApiUrlsByAppEnv } from './environments'
+
+// APP_ENV must be set in the .env.{environment} files
+export const API_BASE_URL = ApiUrlsByAppEnv[process.env.APP_ENV];
+
+console.log('process.env.APP_ENV (NODE_ENV): ', process.env.APP_ENV)
+console.log('API_BASE_URL: ', API_BASE_URL)
 
 const apiCall = {
   /////////////////////////////////////////////////////////////////////////////////////////
