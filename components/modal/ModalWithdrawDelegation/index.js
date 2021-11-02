@@ -30,7 +30,7 @@ const ModalWithdrawDelegation = props => {
           <div className={styles.description}>
             You’ve been delegated this wearable.
             <br />
-            Profits can be claimed from your <a>ICE rewards page</a>.
+            Profits can be claimed from your <a href="/ice/claim">ICE rewards page</a>.
           </div>
         ) : (
           <div className={styles.description}>
