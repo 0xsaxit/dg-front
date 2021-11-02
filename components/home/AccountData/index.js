@@ -51,7 +51,7 @@ const AccountData = props => {
 
       const unclaimed = json.totalUnclaimedAmount;
       const claimed = json.totalClaimedAmount;
-      const total = Number(unclaimed + claimed);
+      const total = Number(unclaimed) + Number(claimed);
       setTotalICE(formatPrice(total, 0));
     })();
   }, []);
