@@ -231,7 +231,7 @@ const Overview = props => {
       setWearableSalesPercent(Number(ice_percent));
 
       const dg = state.treasuryNumbers.totalDgWalletUSD;
-      setDgTreasury(Number(dg.graph.slice(-1)[0].secondary));
+      setDgTreasury(Number(dg.graph[0].secondary));
       setUnvestedDG(props.formatPrice(dgTreasury, 0));
 
       const dg_temp = dg.changes.weekly.percent.toFixed(2);

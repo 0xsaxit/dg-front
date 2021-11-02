@@ -8,7 +8,7 @@ const content404 = () => {
       <p> The requested page could not be found. </p>
 
       <Button className="not-found-button" href="/">
-        BACK TO HOME
+        Back to Home
       </Button>
     </span>
   );

@@ -83,6 +83,21 @@
                 width: calc(100vw - 110px);
             }
 
+            .opensea_button {
+  height: 34px;
+  border-radius: 8px !important;
+  font-family: Larsseit-Bold;
+  font-size: 12px !important;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  color: white !important;
+  line-height: 17px !important;
+  background: #006eff !important;
+  margin: 0 !important;
+  width: 190px;
+}
+
             .games_container {
                 position: relative;
                 border: 1px solid #2a2a2a;
@@ -91,15 +106,26 @@
                 align-items: center;
                 border-radius: 12px;
                 box-sizing: border-box;
-                padding: 18px 18px 75px 18px;
+                padding: 18px;
                 min-width: 228px;
                 height: 100%;
+
+                .coming_soon {
+                    width: 190px;
+                    height: 34px;
+                    border-radius: 8px;
+                    color: white;
+                    background: #4a4a4a;
+                    font-family: Larsseit-Bold;
+                    font-size: 12px;
+                }
 
                 .wear_box_purple {
                     position: relative;
                     width: 100%;
                     border-radius: 16px;
                     margin-top: 12px;
+
 
                     .p2e_enabled {
                         position: absolute;
@@ -133,6 +159,38 @@
                         }
                     }
 
+                    .popup {
+                        margin-right: -13px !important;
+                        margin-bottom: 13px !important;
+                        height: auto !important;
+
+                        .tooltipContent {
+                            width: 240px;
+                            padding-top: 8px;
+                            padding-right: 5px;
+                            padding-bottom: 5px;
+
+                            .popup_info {
+                                width: 17px !important;
+                                position: absolute !important;
+                                top: 17px !important;
+                            }
+
+                            .popup_content {
+                                font-size: 13px;
+                                line-height: 18px;
+                                letter-spacing: 0.5px;
+                                margin-left: 30px;
+                                font-weight: 700;
+                            }
+                        }
+                        &::before {
+                            background-color: #1f1f1f !important;
+                            box-shadow: 1px 1px 0 0 #1f1f1f !important;
+                            display: block !important;
+                        }
+                    }
+                  
                     @media screen and (max-width: 1000px) {
                         .fullDiv {
                             width: 100%;
@@ -451,6 +509,21 @@
             box-shadow: 1px 1px 0 0 #1f1f1f !important;
         }
     }
+}
+
+.opensea_button {
+  height: 34px;
+  border-radius: 8px !important;
+  font-family: Larsseit-Bold;
+  font-size: 12px !important;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  color: white !important;
+  line-height: 17px !important;
+  background: #006eff !important;
+  margin: 0 !important;
+  width: 100%;
 }
 
 @keyframes fadein {
