@@ -47,7 +47,6 @@ LABEL maintainer="support@secureimages.dev"
 ENV NODE_ENV=production \
     PATH="/app/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
-
 WORKDIR /app
 
 COPY --from=build --chown=node:node /app .
