@@ -55,10 +55,37 @@
     display: flex;
     justify-content: space-between;
 
+    .stat_button {
+      margin-top: 31px;
+      align-self: center;
+      background: rgba(31, 31, 31, 1);
+      line-height: 19px;
+      height: 41px;
+      border-radius: 10px;
+      font-family: Larsseit-Bold;
+      font-size: 14px;
+      color: white;
+    }
+
     .stat {
-      width: 25%;
+      width: 33.33%;
       display: flex;
       flex-direction: column;
+
+      .new_stat {
+        background: #2a2a2a;
+        width: 36px;
+        padding: 2px 6px;
+        border-radius: 4px;
+        margin: 14px 0px -30px calc(50% - 18px);
+
+        .new {
+          font-size: 8px;
+          font-family: Larsseit-Bold;
+          text-transform: uppercase;
+          text-align: center;
+        }
+      }
 
       .stat_header {
         font-size: 14px;
@@ -86,19 +113,6 @@
         font-size: 14px;
         font-family: Larsseit-Bold;
         color: #ea3943 !important;
-      }
-
-      .stat_button {
-        margin-top: 31px;
-        align-self: center;
-        background: rgba(31, 31, 31, 1);
-        line-height: 19px;
-        height: 41px;
-        border-radius: 10px;
-        font-family: Larsseit-Bold;
-        font-size: 14px;
-        color: white;
-
       }
     }
   }

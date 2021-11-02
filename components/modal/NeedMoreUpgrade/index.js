@@ -4,7 +4,13 @@ import { GlobalContext } from 'store';
 import styles from './NeedMoreUpgrade.module.scss';
 import { ICEIcon, DGLogo, XP, ExternalLinkArrow } from './Assets';
 
-const NeedMoreUpgrade = ({ upgradeNeedIceAmount, upgradeNeedDgAmount, upgradeNeedXpAmount, setUpgrade, setPropsOpen }) => {
+const NeedMoreUpgrade = ({
+  upgradeNeedIceAmount,
+  upgradeNeedDgAmount,
+  upgradeNeedXpAmount,
+  setUpgrade,
+  setPropsOpen,
+}) => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -93,8 +99,8 @@ const NeedMoreUpgrade = ({ upgradeNeedIceAmount, upgradeNeedDgAmount, upgradeNee
 
         <p className={styles.description}>
           ICE Wearables are upgraded on the Polygon sidechain. If you already
-          own enough $DG and ICE on mainnet, you can bridge them to Polygon{' '}
-          <a>with us</a> or using <a>matic bridge</a>.
+          own enough $DG and ICE on mainnet, you can bridge them to Polygon using
+          <a href="https://wallet.polygon.technology/login?next=%2Fbridge" target="_blank"> matic bridge</a>
         </p>
 
         <div className={styles.bottom_section}>
@@ -102,17 +108,27 @@ const NeedMoreUpgrade = ({ upgradeNeedIceAmount, upgradeNeedDgAmount, upgradeNee
             <div className={styles.ice_icon}>
               <ICEIcon />
             </div>
-            {state.iceAmount < upgradeNeedIceAmount ?
-              <span className={styles.ice_pill}>Need {upgradeNeedIceAmount - state.iceAmount} more</span>
-              : null}
+            {state.iceAmounts.ICE_AVAILABLE_AMOUNT < upgradeNeedIceAmount ? (
+              <span className={styles.ice_pill}>
+                Need{' '}
+                {upgradeNeedIceAmount - state.iceAmounts.ICE_AVAILABLE_AMOUNT}{' '}
+                more
+              </span>
+            ) : null}
 
             <div className={styles.button_container}>
-              <Button className={styles.blue_button}>
-                Buy ICE &nbsp;
+              <Button
+                className={styles.blue_button}
+                href="https://quickswap.exchange/#/swap?outputCurrency=0xc6c855ad634dcdad23e64da71ba85b8c51e5ad7c"
+                target="_blank"
+              >
+                Buy ICE
                 <ExternalLinkArrow />
               </Button>
 
-              <p className={styles.availability_info}>{state.iceAmount} ICE Available</p>
+              <p className={styles.availability_info}>
+                {state.iceAmounts.ICE_AVAILABLE_AMOUNT} ICE Available
+              </p>
             </div>
           </div>
 
@@ -120,17 +136,29 @@ const NeedMoreUpgrade = ({ upgradeNeedIceAmount, upgradeNeedDgAmount, upgradeNee
             <div className={styles.dg_icon}>
               <DGLogo />
             </div>
-            {state.DGBalances.BALANCE_CHILD_DG < upgradeNeedDgAmount ?
-              <span className={styles.dg_pill}>Need {upgradeNeedDgAmount - parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(1)} more</span>
-              : null}
+            {state.DGBalances.BALANCE_CHILD_DG < upgradeNeedDgAmount ? (
+              <span className={styles.dg_pill}>
+                Need{' '}
+                {upgradeNeedDgAmount -
+                  parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(2)}{' '}
+                more
+              </span>
+            ) : null}
 
             <div className={styles.button_container}>
-              <Button className={styles.blue_button}>
-                Buy $DG &nbsp;
+              <Button
+                className={styles.blue_button}
+                href="https://quickswap.exchange/#/swap?outputCurrency=0x2a93172c8dccbfbc60a39d56183b7279a2f647b4"
+                target="_blank"
+              >
+                Buy $DG
                 <ExternalLinkArrow />
               </Button>
 
-              <p className={styles.availability_info}>{parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(1)} DG Available</p>
+              <p className={styles.availability_info}>
+                {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(2)} DG
+                Available
+              </p>
             </div>
           </div>
 
@@ -138,9 +166,11 @@ const NeedMoreUpgrade = ({ upgradeNeedIceAmount, upgradeNeedDgAmount, upgradeNee
             <div className={styles.xp_icon}>
               <XP />
             </div>
-            {state.xpAmount < upgradeNeedXpAmount ?
-              <span className={styles.xp_pill}>Need {upgradeNeedXpAmount - state.xpAmount} more</span>
-              : null}
+            {state.xpAmounts < upgradeNeedXpAmount ? (
+              <span className={styles.xp_pill}>
+                Need {upgradeNeedXpAmount - state.xpAmounts} more
+              </span>
+            ) : null}
 
             <div className={styles.button_container}>
               <Button className={styles.gray_button}>
@@ -148,7 +178,9 @@ const NeedMoreUpgrade = ({ upgradeNeedIceAmount, upgradeNeedDgAmount, upgradeNee
                 <span>Gameplay</span>
               </Button>
 
-              <p className={styles.availability_info}>{state.xpAmount} XP Available</p>
+              <p className={styles.availability_info}>
+                {state.xpAmounts} XP Available
+              </p>
             </div>
           </div>
         </div>

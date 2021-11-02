@@ -12,16 +12,16 @@ const initialState = {
   userAddress: '',
   userInfo: {
     name: '',
-    index: 0,
+    id: 0,
     balancePLAY: 0,
     count: '',
     email: '',
     playersList: [],
-    totalDAI: 0,
-    totalMANA: 0,
-    totalPLAY: 0,
-    totalUSDT: 0,
-    totalATRI: 0,
+    // totalDAI: 0,
+    // totalMANA: 0,
+    // totalPLAY: 0,
+    // totalUSDT: 0,
+    // totalATRI: 0,
     tokenArray: [false, false, false, false, false, false],
   },
   userBalances: [
@@ -72,6 +72,7 @@ const initialState = {
     atri: 0,
     usdt: 0,
     dg: 0,
+    ice: 0,
   },
   DGBreakdown: {
     eth: 0,
@@ -105,6 +106,10 @@ const initialState = {
     [0, 20],
   ],
   iceWearableItems: [],
+  iceWearableItemsLoading: false,
+  iceWearableUpdatedSuccess: false,
+  iceDelegatedItems: [],
+  iceDelegatedItemsLoading: false,
   nftAuthorizations: [],
   canPurchase: true,
   tokenAmounts: {
@@ -119,6 +124,11 @@ const initialState = {
     DG_COST_AMOUNT_5: 0,
     ICE_COST_AMOUNT_5: 0,
   },
+  iceAmounts: {
+    ICE_AVAILABLE_AMOUNT: 0,
+    ICE_CLAIM_AMOUNT: 0,
+  },
+  xpAmounts: 0,
   tokenAuths: {
     DG_AUTHORIZATION: false,
     ICE_AUTHORIZATION: false,
@@ -127,10 +137,12 @@ const initialState = {
   refreshTokens: 'Initial',
   refreshBalances: true,
   refreshTokenAmounts: true,
+  refreshICEAmounts: true,
   refreshTokenAuths: true,
   refreshNFTAuths: true,
   refreshWearable: true,
   refreshDelegateInfo: true,
+  refreshDelegation: true,
   updateInfo: true,
   affiliateAddress: '',
   stakeTime: 0,
@@ -150,8 +162,8 @@ const initialState = {
   dgWarningMsg: false,
   toastMessage: '',
   selectedLang: 0,
-  iceAmount: 0,
-  xpAmount: 0,
+  // iceAmount: 0,
+  // xpAmount: 0,
   userVerified: true,
   isAmnesiaPage: false,
 };
@@ -289,16 +301,31 @@ const reducer = (state, action) => {
         ...state,
         iceWearableItems: action.data,
       };
-    case 'set_IceAmount':
+
+    case 'ice_wearable_items_loading':
       return {
         ...state,
-        iceAmount: action.data,
+        iceWearableItemsLoading: action.data,
       };
-    case 'set_XpAmount':
+
+    case 'ice_wearable_update_success':
       return {
         ...state,
-        xpAmount: action.data,
+        iceWearableUpdatedSuccess: action.data,
       };
+
+    case 'ice_delegated_items':
+      return {
+        ...state,
+        iceDelegatedItems: action.data,
+      };
+
+    case 'ice_delegated_items_loading':
+      return {
+        ...state,
+        iceDelegatedItemsLoading: action.data,
+      };
+
     case 'nft_authorizations':
       return {
         ...state,
@@ -315,6 +342,18 @@ const reducer = (state, action) => {
       return {
         ...state,
         tokenAmounts: action.data,
+      };
+
+    case 'ice_amounts':
+      return {
+        ...state,
+        iceAmounts: action.data,
+      };
+
+    case 'xp_amounts':
+      return {
+        ...state,
+        xpAmounts: action.data,
       };
 
     case 'token_auths':
@@ -377,6 +416,12 @@ const reducer = (state, action) => {
         refreshTokenAmounts: action.data,
       };
 
+    case 'refresh_ice_amounts':
+      return {
+        ...state,
+        refreshICEAmounts: action.data,
+      };
+
     case 'refresh_nft_auths':
       return {
         ...state,
@@ -393,6 +438,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         refreshDelegateInfo: action.data,
+      };
+
+    case 'refresh_delegation':
+      return {
+        ...state,
+        refreshDelegation: action.data,
       };
 
     case 'update_info':

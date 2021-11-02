@@ -16,6 +16,8 @@ const ModalWithdrawDelegation = props => {
   const [open, setOpen] = useState(false);
   const [success, setSuccess] = useState(false);
 
+  const isDelegator = props.ownerAddress === state.userAddress;
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
@@ -24,17 +26,30 @@ const ModalWithdrawDelegation = props => {
       <Aux>
         <div className={styles.header}>Delegation Details</div>
 
-        <div className={styles.description}>
-          You’ve delegated this wearable to <a>{props.address}</a>.<br />
-          Profits can be claimed from your <a>ICE rewards page</a>.
-        </div>
+        {!isDelegator ? (
+          <div className={styles.description}>
+            You’ve been delegated this wearable.
+            <br />
+            Profits can be claimed from your <a href="/ice/claim">ICE rewards page</a>.
+          </div>
+        ) : (
+          <div className={styles.description}>
+            You’ve delegated this wearable to 
+              <a 
+                href={`https://polygonscan.com/address/${props.delegateAddress}`}
+                target="_blank"
+              >{props.delegateAddress}
+            </a>.<br />
+            Profits can be claimed from your <a href="/ice/claim">ICE rewards page</a>.
+          </div>
+        )}
 
         <div className={styles.price_area}>
           <div className={styles.card_area}>
             <div className={styles.card_area_body}>
               <div className={styles.card}>
                 <div className={styles.info}>You Earn</div>
-                30%
+                {!isDelegator ? '70%' : '30%'}
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card}
@@ -45,7 +60,7 @@ const ModalWithdrawDelegation = props => {
             <div className={styles.card_area_body}>
               <div className={styles.card}>
                 <div className={styles.info}>They Earn</div>
-                70%
+                {!isDelegator ? '30%' : '70%'}
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card}
@@ -116,7 +131,7 @@ const ModalWithdrawDelegation = props => {
 
   async function undelegateNFT() {
     console.log('Undelegate token ID: ' + props.tokenID);
-    console.log('Token owner address: ' + state.userAddress);
+    console.log('Token owner address: ' + props.ownerAddress);
     console.log('Delegate address: ' + props.delegateAddress);
     console.log(
       'Collection address: ' + Global.ADDRESSES.COLLECTION_V2_ADDRESS
@@ -124,7 +139,7 @@ const ModalWithdrawDelegation = props => {
     setClicked(true);
 
     const json = await Fetch.UNDELEGATE_NFT(
-      state.userAddress,
+      props.ownerAddress,
       props.delegateAddress,
       props.tokenID,
       Global.ADDRESSES.COLLECTION_V2_ADDRESS
@@ -132,6 +147,14 @@ const ModalWithdrawDelegation = props => {
 
     if (json.status) {
       console.log('NFT undelegation request successful');
+
+      // update global state delegated items
+      const refresh = !state.refreshDelegation;
+
+      dispatch({
+        type: 'refresh_delegation',
+        data: refresh,
+      });
 
       // close this modal and open the success modal
       setOpen(false);
@@ -153,12 +176,20 @@ const ModalWithdrawDelegation = props => {
           open={open}
           close
           trigger={
-            <Button className={styles.open_button}>{props.buttonName}</Button>
+            <Button
+              className={
+                props.buttonName === 'Withdraw Delegation'
+                  ? styles.open_button_fullWidth
+                  : styles.open_button
+              }
+            >
+              {props.buttonName}
+            </Button>
           }
         >
           <div className={styles.top_buttons}>
-            {modalButtons('close')}
             {modalButtons('help')}
+            {modalButtons('close')}
           </div>
           <div className={styles.confirmation_container}>
             <div className={styles.wear_box_body}>
@@ -168,7 +199,14 @@ const ModalWithdrawDelegation = props => {
                 {!clicked ? (
                   <Button
                     className={styles.button_close}
-                    onClick={() => undelegateNFT()}
+                    onClick={() => {
+                      analytics.track(
+                        isDelegator
+                          ? 'DELEGATOR CLICKED WITHDRAW'
+                          : 'DELEGATEE CLICKED WITHDRAW'
+                      );
+                      undelegateNFT();
+                    }}
                   >
                     <img
                       src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"

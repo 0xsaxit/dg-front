@@ -111,7 +111,7 @@ const ModalLoginICE = () => {
       // const jsonIP = await responseIP.json();
 
       // update user status in database
-      await Fetch.REGISTER(userAddress, '', state.affiliateAddress);
+      await Fetch.REGISTER(state.affiliateAddress);
 
       // update global state user status after fetch is complete
       dispatch({
@@ -136,7 +136,7 @@ const ModalLoginICE = () => {
   }
 
   async function getUserStatus() {
-    console.log('Get user status: Connect');
+    console.log('Get user status: ModalLoginICE');
 
     try {
       // const responseIP = await Fetch.IP_ADDRESS();
@@ -149,7 +149,7 @@ const ModalLoginICE = () => {
 
       return jsonStatus.status;
     } catch {
-      console.log('Unregistered wallet: Connect');
+      console.log('Unregistered wallet: ModalLoginICE');
 
       return false;
     }
@@ -157,7 +157,7 @@ const ModalLoginICE = () => {
 
   return (
     <span className={styles.top_span}>
-      {state.networkID && !state.userLoggedIn ? (
+      {metamaskEnabled && !state.userLoggedIn ? (
         <Modal
           className={styles.connect_metamask_modal}
           onClose={() => setOpen(false)}
@@ -194,7 +194,7 @@ const ModalLoginICE = () => {
             </span>
           </div>
 
-          <div>
+          <div className={styles.connect_modal}>
             <h1 className={styles.title}>Connect Your Wallet</h1>
             <button
               className={cn('btn btn-primary w-100', styles.busd_button)}
@@ -207,28 +207,15 @@ const ModalLoginICE = () => {
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
                   style={{ height: '36px', margin: '6px 24px 0px -48px' }}
                 />
-                Connect Metamask
+                Connect MetaMask
               </span>
             </button>
-            <p className={styles.subtitle}>
-              {' '}
-              We currently only support{' '}
-              <a
-                className="modal-a"
-                href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
-                target="_blank"
-              >
-                {' '}
-                Metamask wallets{' '}
-              </a>
-              . We will never have access to your private keys and we can not
-              access your funds without your direct confirmation.{' '}
-            </p>
-            {/*<p className={styles.subtitle_2}>
-                {' '}
-                For the other casinos,{' '}
-                <a className="modal-a" href="https://metamask.io"> click here </a>.
-              </p>*/}
+            <a
+              href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
+              target="_blank"
+            >
+              <button className={styles.need_help}>Need Help?</button>
+            </a>
           </div>
         </Modal>
       ) : safari ? (
@@ -238,7 +225,9 @@ const ModalLoginICE = () => {
           onOpen={() => setOpen(true)}
           open={open}
           close
-          trigger={<Button className={styles.play_now_modal}>Play Now</Button>}
+          trigger={
+            <Button className={styles.play_now_modal}>Mint New Wearable</Button>
+          }
         >
           <div
             style={{
@@ -316,7 +305,9 @@ const ModalLoginICE = () => {
           onOpen={() => setOpen(true)}
           open={open}
           close
-          trigger={<Button className={styles.play_now_modal}>Play Now</Button>}
+          trigger={
+            <Button className={styles.play_now_modal}>Mint New Wearable</Button>
+          }
         >
           <div
             style={{
@@ -349,11 +340,11 @@ const ModalLoginICE = () => {
               href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
               target="_blank"
             >
-              <Button className="busd_button">
+              <Button className={styles.busd_button}>
                 <span style={{ display: 'flex', justifyContent: 'center' }}>
                   Set Up Metamask
                   <svg
-                    style={{ margin: '8px 0px 0px 18px' }}
+                    style={{ margin: '15px 0px 0px 18px' }}
                     width="18"
                     height="18"
                     viewBox="0 0 18 18"
@@ -372,13 +363,11 @@ const ModalLoginICE = () => {
               {' '}
               We currently only support{' '}
               <a className="modal-a" href="https://metamask.io">
-                {' '}
-                Metamask wallets{' '}
+                Metamask wallets
               </a>
               . For more instructions on how to set up Metamask,{' '}
               <a className="modal-a" href="https://metamask.io">
-                {' '}
-                click here{' '}
+                click here
               </a>
               .
             </p>

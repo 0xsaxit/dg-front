@@ -1,5 +1,5 @@
 import { Provider } from '../store';
-import App from 'next/app';
+// import App from 'next/app';
 // import './i18n';
 
 import 'semantic-ui-css/semantic.min.css';
@@ -26,39 +26,38 @@ import EventsData from '../store/EventsData';
 import SubgraphQuery from '../store/SubgraphQuery';
 import ICEAttributes from '../store/ICEAttributes';
 
-import Spinner from 'components/Spinner';
-import { useRouter } from 'next/router';
-import { useEffect, useContext, useState } from 'react';
-import { GlobalContext } from '../store';
+// import Spinner from 'components/Spinner';
+// import { useRouter } from 'next/router';
+// import { useEffect, useContext, useState } from 'react';
+// import { GlobalContext } from '../store';
 
 function Application({ Component, pageProps, store }) {
+  // const router = useRouter();
+  // const [pageLoading, setPageLoading] = useState(true);
 
-  const router = useRouter();
-  const [pageLoading, setPageLoading] = useState(true);
+  // useEffect(() => {
+  //   setPageLoading(true);
+  //   const timer = setTimeout(() => {
+  //     console.log('This will run after 3 second on first load!');
+  //     setPageLoading(false);
+  //   }, 3000);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
-  useEffect(() => {
-    setPageLoading(true);
-    const timer = setTimeout(() => {
-      console.log('This will run after 3 second on first load!');
-      setPageLoading(false);      
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, []);
+  // useEffect(() => {
+  //   const handleStart = () => {
+  //     console.log('1. Page Loading is started.');
+  //     setPageLoading(true);
+  //   };
+  //   const handleComplete = () => {
+  //     console.log('2. Page Loading is completed.');
+  //     setPageLoading(false);
+  //   };
 
-  useEffect(() => {
-    const handleStart = () => {
-      console.log("1. Page Loading is started.");
-      setPageLoading(true);
-    };
-    const handleComplete = () => {
-      console.log("2. Page Loading is completed.");
-      setPageLoading(false);
-    };
-
-    router.events.on('routeChangeStart', handleStart);
-    router.events.on('routeChangeComplete', handleComplete);
-    router.events.on('routeChangeError', handleComplete);
-  }, [router]);
+  //   router.events.on('routeChangeStart', handleStart);
+  //   router.events.on('routeChangeComplete', handleComplete);
+  //   router.events.on('routeChangeError', handleComplete);
+  // }, [router]);
 
   return (
     <Provider store={store}>
@@ -68,11 +67,15 @@ function Application({ Component, pageProps, store }) {
         }
       `}</style>
 
-      {pageLoading ? (
+      {/* {pageLoading ? (
         <Spinner background={1} />
-      ) : null}
-      
+      ) : (
+        <> */}
       <Segment />
+      <Component {...pageProps} />
+      {/* </>
+      )} */}
+
       <UserStatus />
       <UserBalances />
       <Transactions />
@@ -88,8 +91,6 @@ function Application({ Component, pageProps, store }) {
       <EventsData />
       <SubgraphQuery />
       <ICEAttributes />
-
-      <Component {...pageProps} />
     </Provider>
   );
   // }

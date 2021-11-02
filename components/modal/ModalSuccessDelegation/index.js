@@ -14,7 +14,7 @@ const ModalSuccessDelegation = props => {
   function setGlobalState() {
     const refresh = !state.refreshDelegateInfo;
 
-    console.log('refresh status (delegate): ' + refresh);
+    // console.log('refresh status (delegate): ' + refresh);
 
     dispatch({
       type: 'refresh_delegate_info',
@@ -100,8 +100,13 @@ const ModalSuccessDelegation = props => {
           <div className={styles.header}>Delegation Successful!</div>
 
           <div className={styles.description}>
-            You’ve delegated this wearable to <a>{props.address}</a>.<br />
-            Profits can be claimed from your <a>ICE rewards page</a>.
+            You’ve delegated this wearable to 
+              <a 
+                href={`https://polygonscan.com/address/${props.address}`}
+                target="_blank"
+              >{props.address}
+            </a>.<br />
+            Profits can be claimed from your <a href="/ice/claim">ICE rewards page</a>.
           </div>
 
           <div className={styles.price_area}>
@@ -133,7 +138,7 @@ const ModalSuccessDelegation = props => {
           <div className={styles.button_area}>
             <Button
               className={styles.button_close}
-              onClose={() => setGlobalState()}
+              onClick={() => setGlobalState()}
             >
               Back to Account
             </Button>

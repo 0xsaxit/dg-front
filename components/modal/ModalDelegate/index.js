@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../../store';
 import { Modal, Button } from 'semantic-ui-react';
 import Fetch from '../../../common/Fetch';
@@ -6,6 +6,8 @@ import styles from './ModalDelegate.module.scss';
 import ModalSuccessDelegation from '../ModalSuccessDelegation';
 import Global from '../../Constants';
 import Aux from '../../_Aux';
+import ABI_COLLECTION_V2 from '../../../components/ABI/ABICollectionV2';
+import Web3 from 'web3';
 
 const ModalDelegate = props => {
   // fetch user's wallet address from the Context API store
@@ -16,36 +18,136 @@ const ModalDelegate = props => {
   const [success, setSuccess] = useState(false);
   const [open, setOpen] = useState(false);
   const [enteredAddress, setEnteredAddress] = useState('');
-  const [isDelegated, setIsDelegated] = useState(false);
+  // const [isDelegated, setIsDelegated] = useState(false);
+  const [collectionV2Contract, setCollectionV2Contract] = useState({});
+  const [web3, setWeb3] = useState({});
+  const [errorMsg, setErrorMsg] = useState('');
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // helper functions
-  async function getDelegated(address) {
-    console.log('Entered address: ' + address);
+  useEffect(() => {
+    if (state.userStatus >= 4) {
+      // initialize Web3 providers and create token contract instance
+      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+      setWeb3(web3);
 
-    const delegationInfo = await Fetch.DELEGATE_INFO(address);
+      const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
-    console.log('Incoming delegation information:');
-    console.log(delegationInfo.incomingDelegations);
+      // setMaticWeb3(maticWeb3);
+      // const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL);
 
-    delegationInfo.incomingDelegations.forEach((item, i) => {
-      if (item) {
-        const tokenOwner = item.tokenOwner.toLowerCase();
-        console.log('Entered address incoming delegator: ' + tokenOwner);
+      const collectionV2Contract = new maticWeb3.eth.Contract(
+        ABI_COLLECTION_V2,
+        Global.ADDRESSES.COLLECTION_V2_ADDRESS
+      );
+      setCollectionV2Contract(collectionV2Contract);
+    }
+  }, [state.userStatus]);
 
-        // if entered address has delegated wearables and the delegator is not me
-        if (
-          tokenOwner !== '' &&
-          tokenOwner !== state.userAddress.toLowerCase()
-        ) {
-          setIsDelegated(true);
-        }
-      } else {
-        console.log('Entered address has no incoming delegator');
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+
+  async function hasDataByAddress(address) {
+    // let hasData = false;
+
+    try {
+      for (
+        let nIndex = 0;
+        nIndex < Global.CONSTANTS.MAX_DELEGATION_COUNT;
+        nIndex++
+      ) {
+        const tokenID = await collectionV2Contract.methods
+          .tokenOfOwnerByIndex(address, nIndex)
+          .call();
+
+        if (parseInt(tokenID) > 0) {
+          return true;
+        } // else {
+        // hasData = false;
+        // }
       }
-    });
+    } catch (error) {
+      console.log('Index out-of-bounds: ', error.message);
+
+      // setErrorMsg(error.message);
+
+      // return false;
+    }
+
+    return false;
   }
+
+  // function isArrayEmpty(arr) {
+  //   return arr.length === 0;
+  // }
+
+  async function checkDelegatedStatus(address) {
+    let errorMsg = '';
+    let isDelegated = false;
+
+    // if any index has data then we should show error
+    const hasData = await hasDataByAddress(address);
+    if (hasData) {
+      errorMsg = 'This user already owns a wearable and cannot be delegated to';
+      isDelegated = true;
+    } else {
+      const delegationInfo = await Fetch.DELEGATE_INFO(address);
+      // const delegationInfo = state.iceDelegatedItems;
+
+      console.log('delegation info...');
+      console.log(delegationInfo);
+
+      // ensure no-one has delegated to target address yet (besides me)
+      delegationInfo.incomingDelegations.forEach((item, i) => {
+        if (item) {
+          const tokenOwner = item.tokenOwner.toLowerCase();
+          console.log('Entered address incoming delegator: ' + tokenOwner);
+
+          // if entered address has delegated wearables and the delegator is not me
+          if (
+            tokenOwner !== '' &&
+            tokenOwner !== state.userAddress.toLowerCase()
+          ) {
+            errorMsg =
+              'This user already has a wearable delegated to them, they can undelegate to receive yours';
+            isDelegated = true;
+          }
+        } else {
+          console.log('Entered address has no incoming delegator');
+        }
+      });
+    }
+
+    setErrorMsg(errorMsg);
+    // setIsDelegated(isDelegated);
+    return isDelegated;
+  }
+
+  // async function getDelegated(address) {
+  //   console.log('Entered address: ' + address);
+
+  //   const delegationInfo = state.iceDelegatedItems;
+
+  //   console.log('Incoming delegation information:');
+  //   console.log(delegationInfo.incomingDelegations);
+
+  //   delegationInfo.incomingDelegations.forEach((item, i) => {
+  //     if (item) {
+  //       const tokenOwner = item.tokenOwner.toLowerCase();
+  //       console.log('Entered address incoming delegator: ' + tokenOwner);
+
+  //       // if entered address has delegated wearables and the delegator is not me
+  //       if (
+  //         tokenOwner !== '' &&
+  //         tokenOwner !== state.userAddress.toLowerCase()
+  //       ) {
+  //         setIsDelegated(true);
+  //       }
+  //     } else {
+  //       console.log('Entered address has no incoming delegator');
+  //     }
+  //   });
+  // }
 
   function imageDetails() {
     return (
@@ -131,11 +233,17 @@ const ModalDelegate = props => {
                 maxLength="42"
                 placeholder="Paste ETH Address Here"
                 onChange={async evt => {
-                  if (evt.target.value.length > 0) {
-                    if (web3.utils.isAddress(evt.target.value)) {
-                      // check to see if anyone has already delegated to this address
-                      await getDelegated(evt.target.value);
+                  setErrorMsg('');
 
+                  if (evt.target.value.length > 0) {
+                    // setErrorMsg('');
+
+                    if (web3.utils.isAddress(evt.target.value)) {
+                      const isDelegated = await checkDelegatedStatus(
+                        evt.target.value
+                      );
+
+                      // check to see if anyone has already delegated to this address
                       if (!isDelegated) {
                         setEnteredAddress(evt.target.value);
                       } else {
@@ -146,6 +254,7 @@ const ModalDelegate = props => {
                     }
                   } else {
                     setEnteredAddress('');
+                    // setErrorMsg('');
                   }
                 }}
               />
@@ -226,8 +335,6 @@ const ModalDelegate = props => {
       Global.ADDRESSES.COLLECTION_V2_ADDRESS
     );
 
-    console.log(json.status);
-
     if (json.status) {
       console.log('NFT delegation request successful');
 
@@ -235,8 +342,13 @@ const ModalDelegate = props => {
       setOpen(false);
       setSuccess(true);
     } else {
-      console.log('NFT delegation request error: ' + json.reason);
+      console.log('NFT delegation request error. Code: ' + json.code);
 
+      if (json.code === 2) {
+        setErrorMsg(json.reason); // this wearable has already been checked-in today
+      } else {
+        setErrorMsg('Delegation failed. Code: ' + json.code);
+      }
       setClicked(false);
     }
   }
@@ -271,8 +383,11 @@ const ModalDelegate = props => {
                   {!clicked ? (
                     <Button
                       className={styles.button_upgrade}
-                      onClick={() => delegateNFT()}
-                      disabled={enteredAddress === '' || isDelegated}
+                      onClick={() => {
+                        analytics.track('CLICKED DELEGATE');
+                        delegateNFT();
+                      }}
+                      disabled={errorMsg === '' ? false : true}
                     >
                       {props.buttonName}
                     </Button>
@@ -286,12 +401,9 @@ const ModalDelegate = props => {
                 </div>
               </div>
 
-              {isDelegated ? (
-                <div className={styles.delegateInfo}>
-                  Address already has delegated wearables. Only 1 person can
-                  delegate at a time.
-                </div>
-              ) : null}
+              {errorMsg !== '' && (
+                <div className={styles.delegateInfo}>{errorMsg}</div>
+              )}
             </div>
           </div>
         </Modal>

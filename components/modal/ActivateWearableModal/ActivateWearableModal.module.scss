@@ -8,9 +8,19 @@
   width: 100%;
 }
 
+.error_text {
+  font-family: Larsseit-Regular;
+  font-style: normal; 
+  font-size: 11px;
+  line-height: 15px;
+  text-align: center;
+  color: #FFB5B5;
+  margin-top: 12px;
+}
+
 .dgactivate_modal {
   width: 480px !important;
-  height: 430px !important;
+  height: 490px !important;
   background: black !important;
   border-radius: 24px !important;
   padding-left: 40px;
@@ -108,6 +118,18 @@
     line-height: 35px;
     letter-spacing: 0.3px;
     margin-top: 24px;
+
+    .greenCheck {
+      font-family: Larsseit-Regular;
+      font-style: normal;            
+      font-size: 12px;
+      line-height: 14px;
+      text-align: center;
+      color: #67DD6C !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
     .dgAmount {
       display: flex;

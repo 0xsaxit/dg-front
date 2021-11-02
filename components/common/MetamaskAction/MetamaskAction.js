@@ -34,6 +34,8 @@ const MetamaskAction = ({
             </svg>
           )}
           {actionState === 'clicked' && (
+            <>
+            <div className={styles.animate_action} />
             <svg
               width="32"
               height="32"
@@ -42,10 +44,8 @@ const MetamaskAction = ({
               xmlns="http://www.w3.org/2000/svg"
             >
               <circle cx="16" cy="16" r="16" fill="#35AB3A" />
-              <circle cx="16" cy="15.7" r="2.7" fill="white" />
-              <circle cx="8.7" cy="15.7" r="2.7" fill="white" />
-              <circle cx="23.3001" cy="15.7" r="2.7" fill="white" />
             </svg>
+            </>
           )}
           {actionState === 'done' && (
             <svg

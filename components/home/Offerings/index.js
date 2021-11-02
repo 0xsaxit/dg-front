@@ -1,11 +1,8 @@
 import { useState, useContext } from 'react';
 import { GlobalContext } from '../../../store';
 import Link from 'next/link';
-import { Divider, Icon } from 'semantic-ui-react';
 import ContentOfferings from '../../content/ContentOfferings';
 import ContentLeaderboard from '../../content/ContentLeaderboard';
-import Spinner from '../../Spinner';
-import Images from '../../../common/Images';
 import Aux from '../../_Aux';
 import { useMediaQuery } from 'hooks';
 import styles from './Offerings.module.scss';
@@ -52,6 +49,7 @@ const detailsGames = {
 
 const detailsCasinos = {
   Tominoya: [
+    'https://play.decentral.games/tominoya',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1624916730/Tominoya_Lapse_om9erf.gif',
     'games-pic',
     'Tominoya',
@@ -59,35 +57,35 @@ const detailsCasinos = {
     'Roulette',
     'Blackjack',
     'Poker',
-    'https://play.decentraland.org/?position=-118%2C135&realm=dg',
   ],
   Atari: [
+    'https://play.decentral.games/atari',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1625022643/ATARI_TIMELAPSE_1_brvynj.gif',
     'games-pic',
     'Atari',
     'Atari is situated on a 20-parcel estate. The scene features an open-concept floor plan and building design modelled after the iconic Atari logo.',
     'Roulette',
     'Blackjack',
-    'https://play.decentraland.org/?position=-94%2C110&realm=dg',
   ],
   Chateau: [
+    'https://play.decentral.games/chateau',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1624916719/Chateau_Chatoshi_lapse_2_gbjrgn.gif',
     'games-pic',
     'Chateau Satoshi',
     'Chateau Satoshi is an art deco inspired experience, theatre, nightclub, and stratosphere.',
     'Roulette',
     'Blackjack',
-    'https://play.decentraland.org/?position=-75%2C77&realm=dg',
   ],
   Dext: [
+    'https://play.decentral.games/dext',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1627209301/Dext_Timelapse_1_oh5bnz.gif',
     'games-pic',
     'DEXT Poker Lounge',
     'The DEXT Poker Lounge features eight Texas Holdem poker tables located in a skyscraper penthouse, accessible via teleporter on the ground floor.',
     'Poker',
-    'https://play.decentraland.org/?position=-110%2C129&realm=dg',
   ],
   BAYC: [
+    'https://play.decentral.games/bayc',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1628340721/cloudinary_zjohvr.gif',
     'games-pic',
     'Bored Ape Yacht Club',
@@ -95,9 +93,9 @@ const detailsCasinos = {
     'Roulette',
     'Blackjack',
     'Poker',
-    'https://play.decentraland.org/?position=-110%2C121&realm=dg',
   ],
   Aquarium: [
+    'https://play.decentral.games/aquarium',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1628340722/Aquarium_timelaps_2_lpqj2r.gif',
     'games-pic',
     'The Aquarium',
@@ -192,49 +190,6 @@ const detailsNFTs = {
     'Rare',
     'https://opensea.io/assets/dg-accessories',
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
-  ],
-};
-
-const detailsICE = {
-  Pants: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_suit_bottom_rank1_lower_body_trd5yw.png',
-    'Trousers',
-    'outfit name',
-    'Legs',
-    '1 of 100',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatLegs_tn9b57.svg',
-  ],
-  Top: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_suit_top_rank1_upper_body_qlnqky.png',
-    'Blazer',
-    'outfit name',
-    'Torso',
-    '1 of 100',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631728323/FlatClothes-01_1_kbpyfj.svg',
-  ],
-  Cigar: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_cigar_rank1_eyewear_lk5lnu.png',
-    'Cigar',
-    'outfit name',
-    'Head',
-    '1 of 100',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatHat_pypkjx.svg',
-  ],
-  Shoes: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_dress_rank1_shoes_feet_w7ncwa.png',
-    'Loafers',
-    'outfit name',
-    'Feet',
-    '1 of 100',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatShoes_hjvr3p.svg',
-  ],
-  Glasses: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_money_shades_rank1_eyewear_knm0f4.png',
-    'Shades',
-    'outfit name',
-    'Accessory',
-    '1 of 100',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatAccessory_s1cjpg.svg',
   ],
 };
 
@@ -479,17 +434,6 @@ const Offerings = (props) => {
                       <path
                         d="M19.0953 7.66675V9.20008H17.2676V14.3334H15.7761V9.20008H13.9485V7.66675H19.0953Z"
                         fill={gameState === 'nfts' ? 'white' : '#808080'}
-                      />
-                    </svg>
-                  </div>
-                </Link>
-
-                <Link href="/games/ice">
-                  <div className={styles.menu_item}>
-                    <svg width="24" height="24" viewBox="0 0 22 20" style={{ margin: '0px 1px 0px -1px' }} fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M17.9167 0.666667H5.08333C4.9375 0.666667 4.79167 0.739584 4.71875 0.885417L1.07292 6.24479C0.963542 6.39063 0.963542 6.60938 1.07292 6.75521L11.1354 19.1875C11.3177 19.4062 11.6458 19.4062 11.8281 19.1875L21.8906 6.75521C22 6.60938 22 6.39063 21.9271 6.24479L18.2812 0.885417C18.1719 0.739584 18.0625 0.666667 17.9167 0.666667ZM17.1875 2.41667L19.5208 5.91667H17.0052L15.1094 2.41667H17.1875ZM9.82292 2.41667H13.1406L15.0365 5.91667H7.96354L9.82292 2.41667ZM5.77604 2.41667H7.85417L5.95833 5.91667H3.47917L5.77604 2.41667ZM4.20833 7.66667H6.06771L8.58333 13.5L4.20833 7.66667ZM7.96354 7.66667H15L11.5 16.5625L7.96354 7.66667ZM14.4167 13.5L16.8958 7.66667H18.7552L14.4167 13.5Z"
-                        fill={gameState === 'ice' ? 'white' : '#808080'}
                       />
                     </svg>
                   </div>
@@ -761,24 +705,6 @@ const Offerings = (props) => {
                   </div>
                 </Link>
 
-                <Link href="/games/ice">
-                  <div
-                    className={
-                      gameState === 'ice'
-                        ? styles.menu_item_active
-                        : styles.menu_item
-                    }
-                  >
-                    <svg width="24" height="24" viewBox="0 0 22 20" style={{ margin: '0px 1px 0px -1px' }} fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M17.9167 0.666667H5.08333C4.9375 0.666667 4.79167 0.739584 4.71875 0.885417L1.07292 6.24479C0.963542 6.39063 0.963542 6.60938 1.07292 6.75521L11.1354 19.1875C11.3177 19.4062 11.6458 19.4062 11.8281 19.1875L21.8906 6.75521C22 6.60938 22 6.39063 21.9271 6.24479L18.2812 0.885417C18.1719 0.739584 18.0625 0.666667 17.9167 0.666667ZM17.1875 2.41667L19.5208 5.91667H17.0052L15.1094 2.41667H17.1875ZM9.82292 2.41667H13.1406L15.0365 5.91667H7.96354L9.82292 2.41667ZM5.77604 2.41667H7.85417L5.95833 5.91667H3.47917L5.77604 2.41667ZM4.20833 7.66667H6.06771L8.58333 13.5L4.20833 7.66667ZM7.96354 7.66667H15L11.5 16.5625L7.96354 7.66667ZM14.4167 13.5L16.8958 7.66667H18.7552L14.4167 13.5Z"
-                        fill={gameState === 'ice' ? 'white' : '#808080'}
-                      />
-                    </svg>
-                    <div className={styles.menu_title}>ICE Wearables</div>
-                  </div>
-                </Link>
-
                 <Link href="/games/shop">
                   <div
                     className={
@@ -992,9 +918,8 @@ const Offerings = (props) => {
       <div className="d-flex flex-row">
         {submenu()}
 
-
         {gameState === 'leaderboard' ? (
-          <span>
+          <span className={styles.main_container}>
             <ContentLeaderboard
               gameRecords={state.gameRecords}
               gameSelect={gameSelect}
@@ -1008,7 +933,6 @@ const Offerings = (props) => {
             detailsGames={detailsGames}
             detailsCasinos={detailsCasinos}
             detailsNFTs={detailsNFTs}
-            detailsICE={detailsICE}
             detailsShop={detailsShop}
           />
         )}

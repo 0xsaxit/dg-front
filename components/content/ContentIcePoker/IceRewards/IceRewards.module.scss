@@ -1,0 +1,131 @@
+@import "styles/base.scss";
+
+.main_wrapper {
+    margin-left: 40px;
+    margin-top: 80px;
+    width: 400px;
+
+    .title {
+        h1 {
+            font-family: "Larsseit-ExtraBold";
+            font-weight: 800 !important;
+            font-size: 24px;
+            margin-bottom: 0;
+            line-height: 32px;
+            text-align: center;
+        }
+
+        p {
+            font-family: Larsseit-Regular;
+            font-size: 16px;
+            line-height: 21px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5) !important;
+            margin-top: 3px;
+
+            abbr {
+                color: white;
+            }
+        }
+
+        @include mq($until: 499px) {
+            h1 {
+                font-size: 24px;
+            }
+        }
+    }
+
+    .lower {
+        padding: 28px;
+        border: 1px solid rgba(42, 42, 42, 1);
+        border-radius: 16px;
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
+        height: 100%;
+
+        .lower_header {
+            font-family: Larsseit-Bold;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .lower_img {
+            width: 240px;
+            align-self: center;
+            margin-top: -8px;
+        }
+
+        .lower_text {
+            font-family: Larsseit-Regular;
+            text-align: center;
+            font-size: 12px;
+            line-height: 18px;
+        }
+
+        .lower_button {
+            width: 100%;
+            background: #006eff;
+            color: white;
+            border-radius: 10px;
+            height: 40px;
+            font-family: Larsseit-Bold;
+            font-size: 14px;
+        }
+
+        .lower_button {
+            margin-top: 20px !important;
+            margin-bottom: 0px !important;
+            background: rgb(31, 31, 31);
+            color: white;
+
+            &:hover,
+            &:focus {
+                color: white;
+                background: rgb(31, 31, 31);
+                filter: brightness(0.9) !important;
+            }
+        }
+
+        .lower_value {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .ICE_value {
+                font-family: Larsseit-Bold;
+                font-size: 41px;
+                margin-right: 12px;
+                margin-bottom: 0;
+            }
+
+            img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        .price {
+            font-family: Larsseit-Bold;
+            font-size: 20px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5) !important;
+            margin-bottom: 16px;
+        }
+
+        .claim_ICE {
+            margin-top: 0;
+            margin-bottom: 14px;
+        }
+    }
+
+    @include mq($until: 499px) {
+        margin-left: 20px;
+        width: calc(100vw - 120px);
+
+        .lower {
+            width: calc(100vw - 110px);
+        }
+    }
+}

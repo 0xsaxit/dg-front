@@ -12,75 +12,81 @@ const ModalWearable = props => {
   const [state, dispatch] = useContext(GlobalContext);
   const [open, setOpen] = useState(false);
   const [upgrade, setUpgrade] = useState(0);
+  const [upgradeCost, setUpgradeCost] = useState(0);
 
   /////////////////////////////////////////////////////////////////////
   /////////////// TODO: please add some logic to calculate the "not enough" tags' visibility on top of the
   /////////////// token price tags. (spans on lines 124, 155 and 183)
   ////////////////////////////////////////////////////////////////////
 
-
   ////////////////////////////////////////////////////////////////////
   /////////////// Bonus Array, ICE Prices, Img Array
+  const [wearableName, setWearableName] = useState(
+    props.name.replace('Diamond Hands ', '')
+  );
+
   const bonus = [
-    "0%",         // Rank 0
-    "+1 - 7%",    // Rank 1
-    "+8 - 15%",   // Rank 2
-    "+16 - 24%",  // Rank 3
-    "+25 - 34%",  // Rank 4
-    "+35 - 45%",  // Rank 5
+    '0%', // Rank 0
+    '+1 - 7%', // Rank 1
+    '+8 - 15%', // Rank 2
+    '+16 - 24%', // Rank 3
+    '+25 - 34%', // Rank 4
+    '+35 - 45%', // Rank 5
   ];
 
   const icePrices = [
-    0,      // Rank 0
-    0,      // Rank 1
-    30000,  // Rank 2
-    40000,  // Rank 3
-    50000,  // Rank 4
-    60000   // Rank 5
-  ]
+    0, // Rank 0
+    0, // Rank 1
+    10000, // Rank 2
+    15000, // Rank 3
+    20000, // Rank 4
+    25000, // Rank 5
+  ];
 
   const imgUrls = {
-    "Trousers": [
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375784/dg_suit_bottom_rank1_lower_body_eqxrjg.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375784/dg_suit_bottom_rank1_lower_body_eqxrjg.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375785/dg_suit_bottom_rank2_lower_body_lzafze.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375790/dg_suit_bottom_rank3_lower_body_d8j7fc.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375784/dg_suit_bottom_rank4_lower_body_lgxlp6.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375787/dg_suit_bottom_rank5_lower_body_wjheco.svg"
+    Trousers: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank1_lower_body_o18u5h.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank1_lower_body_o18u5h.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank2_lower_body_x8duyn.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank3_lower_body_cogifo.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank4_lower_body_bdz0gt.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank5_lower_body_jz4bwy.png',
     ],
-    "Blazer": [
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375788/dg_suit_top_rank1_upper_body_topkkt.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375788/dg_suit_top_rank1_upper_body_topkkt.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375798/dg_suit_top_rank2_upper_body_gqhhf1.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375788/dg_suit_top_rank3_upper_body_zgdd1z.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375793/dg_suit_top_rank4_upper_body_mmro3k.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375795/dg_suit_top_rank5_upper_body_cwbqb8.svg"
+    Blazer: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank1_upper_body_zw12j7.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank1_upper_body_zw12j7.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank2_upper_body_jifiuq.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank3_upper_body_suw9ai.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank4_upper_body_cyz0gk.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank5_upper_body_ff5n1t.png',
     ],
-    "Cigar": [
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375775/dg_cigar_rank1_eyewear_ryp0s8.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375775/dg_cigar_rank1_eyewear_ryp0s8.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375776/dg_cigar_rank2_eyewear_egkg1l.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375776/dg_cigar_rank3_eyewear_dw0ezt.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375776/dg_cigar_rank4_eyewear_wbccwe.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375776/dg_cigar_rank5_eyewear_imanmm.svg"
+    Cigar: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank1_eyewear_kt6mqk.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank1_eyewear_kt6mqk.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank2_eyewear_r55vvl.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank3_eyewear_uydyit.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank4_eyewear_mtyrtr.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank5_eyewear_hromtz.png',
     ],
-    "Loafers": [
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375776/dg_dress_rank1_shoes_feet_m5fgcv.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375776/dg_dress_rank1_shoes_feet_m5fgcv.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375780/dg_dress_rank2_shoes_feet_rfwrkf.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375779/dg_dress_rank3_shoes_feet_wbkmn1.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375779/dg_dress_rank4_shoes_feet_b6y0dw.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375780/dg_dress_rank5_shoes_feet_icgadn.svg"
+    Loafers: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank1_shoes_feet_nxazsi.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank1_shoes_feet_nxazsi.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank2_shoes_feet_l83rhe.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank3_shoes_feet_gvjjb8.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank4_shoes_feet_avry6l.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank5_shoes_feet_tpnzfv.png',
     ],
-    "Shades": [
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375784/dg_money_shades_rank1_eyewear_gvb3kg.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375784/dg_money_shades_rank1_eyewear_gvb3kg.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375780/dg_money_shades_rank2_eyewear_czk0rc.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375784/dg_money_shades_rank3_eyewear_r1i2ng.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375781/dg_money_shades_rank4_eyewear_p03kbq.svg",
-      "https://res.cloudinary.com/dnzambf4m/image/upload/v1633375783/dg_money_shades_rank5_eyewear_xidpnl.svg"
-    ]
-  }
+    Shades: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank1_eyewear_shmmce.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank1_eyewear_shmmce.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank2_eyewear_xqvbkf.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank3_eyewear_anyqat.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank4_eyewear_eejcjh.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank5_eyewear_umdmvc.png',
+    ],
+  };
+
+  // console.log("state.userInfo", state.userInfo);
 
   return (
     <>
@@ -111,7 +117,13 @@ const ModalWearable = props => {
           </div>
           <div style={{ color: 'white', display: 'flex', gap: '24px' }}>
             <div className={styles.wear_box}>
-              <div style={{ width: '240px', display: 'flex', justifyContent: 'center' }}>
+              <div
+                style={{
+                  width: '240px',
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}
+              >
                 <div className={styles.wear_box_mark}>
                   +{props.bonus}%
                   <img
@@ -148,11 +160,15 @@ const ModalWearable = props => {
             <div className={styles.wear_box}>
               <IceUpgradeWearableTooltip />
 
-              <div style={{ width: '240px', display: 'flex', justifyContent: 'center' }}>
-                <div
-                  className={styles.wear_box_mark}
-                >
-                  {bonus[props.rank + 1]}
+              <div
+                style={{
+                  width: '240px',
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}
+              >
+                <div className={styles.wear_box_mark}>
+                  {bonus[Math.min(props.rank + 1, 5)]}
                   <img
                     src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png"
                     className={styles.img_card}
@@ -161,13 +177,19 @@ const ModalWearable = props => {
               </div>
 
               <div className={styles.wear_box_pink}>
-                <img src={imgUrls[props.name][props.rank + 1]} />
+                <img
+                  src={
+                    imgUrls[wearableName][parseInt(Math.min(props.rank + 1, 5))]
+                  }
+                />
               </div>
 
               <div className={styles.card_body}>
-                <div className={styles.card}>Rank {props.rank + 1}</div>
                 <div className={styles.card}>
-                  {bonus[props.rank + 1]}
+                  Rank {Math.min(props.rank + 1, 5)}
+                </div>
+                <div className={styles.card}>
+                  {bonus[Math.min(props.rank + 1, 5)]}
                   <img
                     src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png"
                     className={styles.img_card}
@@ -184,31 +206,49 @@ const ModalWearable = props => {
                 Benefits
                 <div className={styles.benefit_list}>
                   <ul>
-                    <li>Update your ICE Bonus to between {bonus[props.rank + 1]}</li>
-                    <li>Daily free chip stack increase from 4,000 to 4,500</li>
+                    <li>
+                      Update your ICE Bonus to between{' '}
+                      {bonus[Math.min(props.rank + 1, 5)]}
+                    </li>
+                    <li>Increase the resale value and rarity of your NFT</li>
                   </ul>
                 </div>
               </div>
 
               <div className={styles.price_area}>
                 Price
-                <span style={{ opacity: 0.75 }}>&nbsp;($109.12)</span>
+                <span style={{ opacity: 0.75 }}>{' '}
+                  (${((icePrices[Math.min(props.rank + 1, 5)] 
+                    * state.DGPrices.ice)
+                  + (0.1 * state.DGPrices.dg)).toFixed(2)})</span>
                 <div className={styles.card_area}>
                   <div className={styles.card_area_body}>
-                    {state.iceAmount < icePrices[props.rank + 1] && (
-                      <span className={styles.not_enough}>Not Enough</span>
-                    )}
+                    {state.iceAmounts.ICE_AVAILABLE_AMOUNT <
+                      icePrices[Math.min(props.rank + 1, 5)] && (
+                        <span className={styles.not_enough}>Not Enough</span>
+                      )}
                     <div className={styles.card}>
-                      {icePrices[props.rank + 1] / 1000 + "K"} ICE
+                      {icePrices[Math.min(props.rank + 1, 5)] / 1000 + 'K'} ICE
                       <img
                         src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png"
                         className={styles.img_card1}
                       />
                     </div>
 
-                    <div className={styles.description}>
-                      {state.iceAmount} ICE Available
-                    </div>
+
+                    {state.iceAmounts.ICE_AVAILABLE_AMOUNT < icePrices[Math.min(props.rank + 1, 5)] ? (
+                      <div className={styles.description}>
+                        {parseFloat(state.iceAmounts.ICE_AVAILABLE_AMOUNT).toLocaleString()}{' '}
+                        ICE Available
+                      </div>) : (
+                      <div className={styles.greenCheck}>
+                        {parseFloat(state.iceAmounts.ICE_AVAILABLE_AMOUNT).toLocaleString()}{' '} ICE Available
+                        <svg width="9" height="8" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M3.83203 7.73047C4.10547 7.73047 4.32031 7.625 4.46875 7.40625L8.10547 1.86328C8.21094 1.70312 8.25391 1.55078 8.25391 1.41016C8.25391 1.03125 7.96484 0.75 7.57422 0.75C7.30859 0.75 7.14062 0.847656 6.97656 1.10156L3.81641 6.08594L2.21484 4.12109C2.06641 3.94141 1.90234 3.86328 1.67578 3.86328C1.28125 3.86328 0.996094 4.14453 0.996094 4.52734C0.996094 4.69922 1.04688 4.84766 1.19531 5.01562L3.21094 7.4375C3.37891 7.63672 3.57422 7.73047 3.83203 7.73047Z" fill="#67DD6C" />
+                        </svg>
+                      </div>
+                    )}
+
                     <div className={styles.network}>(On Polygon)</div>
                   </div>
 
@@ -238,7 +278,20 @@ const ModalWearable = props => {
                         className={styles.img_card2}
                       />
                     </div>
-                    <div className={styles.description}>{parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(2)} DG Available</div>
+                    {state.DGBalances.BALANCE_CHILD_DG < 0.1 ? (
+                      <div className={styles.description}>
+                        {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(2)}{' '}
+                        DG Available
+                      </div>
+                    ) : (
+                      <div className={styles.greenCheck}>
+                        {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(2)}{' '} DG Available
+                        <svg width="9" height="8" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M3.83203 7.73047C4.10547 7.73047 4.32031 7.625 4.46875 7.40625L8.10547 1.86328C8.21094 1.70312 8.25391 1.55078 8.25391 1.41016C8.25391 1.03125 7.96484 0.75 7.57422 0.75C7.30859 0.75 7.14062 0.847656 6.97656 1.10156L3.81641 6.08594L2.21484 4.12109C2.06641 3.94141 1.90234 3.86328 1.67578 3.86328C1.28125 3.86328 0.996094 4.14453 0.996094 4.52734C0.996094 4.69922 1.04688 4.84766 1.19531 5.01562L3.21094 7.4375C3.37891 7.63672 3.57422 7.73047 3.83203 7.73047Z" fill="#67DD6C" />
+                        </svg>
+                      </div>
+                    )}
+
                     <div className={styles.network}>(On Polygon)</div>
                   </div>
 
@@ -258,22 +311,36 @@ const ModalWearable = props => {
                   </div>
 
                   <div className={styles.card_area_body}>
-                    {state.xpAmount < 50 && (
+                    {(!state.userInfo.balanceXP || state.userInfo.balanceXP < 50) && (
                       <span className={styles.not_enough}>Not Enough</span>
                     )}
                     <div className={styles.card}>
-                      50 XP
+                      50
                       <img
                         src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629727455/XP_zbnvuf.png"
                         className={styles.img_card3}
                       />
                     </div>
-                    <div className={styles.description}>{state.xpAmount} XP Available</div>
+                    {(!state.userInfo.balanceXP || state.userInfo.balanceXP < 50) ? (
+                      <div className={styles.description}>
+                        {parseFloat(state.userInfo.balanceXP).toFixed(0)}{' '}
+                        XP Available
+                      </div>
+                    ) : (
+                      <div className={styles.greenCheck}>
+                        {parseFloat(state.userInfo.balanceXP).toFixed(2)}{' '} XP Available
+                        <svg width="9" height="8" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M3.83203 7.73047C4.10547 7.73047 4.32031 7.625 4.46875 7.40625L8.10547 1.86328C8.21094 1.70312 8.25391 1.55078 8.25391 1.41016C8.25391 1.03125 7.96484 0.75 7.57422 0.75C7.30859 0.75 7.14062 0.847656 6.97656 1.10156L3.81641 6.08594L2.21484 4.12109C2.06641 3.94141 1.90234 3.86328 1.67578 3.86328C1.28125 3.86328 0.996094 4.14453 0.996094 4.52734C0.996094 4.69922 1.04688 4.84766 1.19531 5.01562L3.21094 7.4375C3.37891 7.63672 3.57422 7.73047 3.83203 7.73047Z" fill="#67DD6C" />
+                        </svg>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
               <div className={styles.button_area}>
-                {state.xpAmount >= 50 && state.DGBalances.BALANCE_CHILD_DG >= 0.1 && state.iceAmount >= 30000 ? (
+                {state.userInfo.balanceXP >= 50 &&
+                  state.DGBalances.BALANCE_CHILD_DG >= 0.1 &&
+                  state.iceAmounts.ICE_AVAILABLE_AMOUNT >= icePrices[Math.min(props.rank + 1, 5)] ? (
                   <Button
                     className={styles.button_upgrade}
                     onClick={() => {
@@ -296,6 +363,9 @@ const ModalWearable = props => {
                 )}
                 <Button
                   className={styles.button_close}
+                  onClick={() => {
+                    window.open("https://ice.decentral.games/ice-nft-wearables", "_blank");
+                  }}
                 >
                   Learn More
                 </Button>
@@ -306,7 +376,7 @@ const ModalWearable = props => {
       )}
       {upgrade == 1 && (
         <NeedMoreUpgrade
-          upgradeNeedIceAmount={icePrices[props.rank + 1]}
+          upgradeNeedIceAmount={icePrices[Math.min(props.rank + 1, 5)]}
           upgradeNeedDgAmount={0.1}
           upgradeNeedXpAmount={50}
           setUpgrade={setUpgrade}
@@ -322,7 +392,12 @@ const ModalWearable = props => {
         />
       )}
 
-      {upgrade == 3 && <ModalUpgradeSuccess setUpgrade={setUpgrade} />}
+      {upgrade == 3 && (
+        <ModalUpgradeSuccess
+          tokenID={props.tokenID}
+          setUpgrade={setUpgrade}
+        />
+      )}
     </>
   );
 };

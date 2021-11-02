@@ -1,7 +1,7 @@
 import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from './index';
 import Fetch from '../common/Fetch';
-import Global from '../components/Constants';
+// import Global from '../components/Constants';
 
 function UserInfo() {
   // dispatch user's information to the Context API store
@@ -32,8 +32,6 @@ function UserInfo() {
       if (json3 && json3.market_data) {
         setAtriPrice(json3.market_data.current_price.usd);
       }
-
-
     })();
   }, [manaPrice, ethPrice, atriPrice]);
 
@@ -47,11 +45,14 @@ function UserInfo() {
           const name = jsonInfo.avatarName;
           const id = jsonInfo._id.slice(-6);
           const balancePLAY = jsonInfo.playBalance.toLocaleString();
+          const balanceXP = jsonInfo.iceXpCurrent;
+          const totalXP = jsonInfo.iceXpAllTime;
           const count = jsonInfo.callCount;
           const email = '';
           const playersList = jsonInfo.playersList;
           const tokenArray = jsonInfo.tokenArray;
-          const jsonData = await Fetch.PLAYER_DATA(state.userAddress);
+
+          // const jsonData = await Fetch.PLAYER_DATA(state.userAddress);
 
           const data = {
             name: name,
@@ -61,24 +62,18 @@ function UserInfo() {
             email: email,
             playersList: playersList,
             tokenArray: tokenArray,
+            balanceXP: balanceXP,
+            totalXP: totalXP,
           };
-
-          console.log('!!!!!!!!');
-          console.log(jsonInfo);
 
           dispatch({
             type: 'user_info',
             data: data,
           });
-
-          dispatch({
-            type: 'set_XpAmount',
-            data: jsonInfo.iceXpCurrent
-          })
         }
       })();
     }
-  }, [state.userAddress, state.updateInfo]);
+  }, [state.userAddress, state.updateInfo, state.refreshBalances]);
 
   return null;
 }

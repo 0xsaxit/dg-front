@@ -4,6 +4,7 @@
   background-color: #006eff !important;
   color: white !important;
   height: 42px !important;
+  width: calc(50% - 8px) !important;
   border-radius: 10px !important;
   font-family: Larsseit-Bold;
   font-size: 14px !important;
@@ -157,6 +158,7 @@
           }
 
           .blue_button {
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -165,6 +167,13 @@
             background: #006eff;
             color: white;
             border-radius: 10px;
+            padding: 12px 32px 12px 20px;
+            margin-bottom: 7px;
+
+            svg {
+              position: absolute;
+              right: 15px;
+            }
           }
 
           .gray_button {

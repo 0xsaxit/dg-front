@@ -21,6 +21,9 @@ function PricesBreakdown() {
           const ethJson = await Fetch.ETH_PRICE();
           const priceETH = ethJson.market_data.current_price.usd;
 
+          const iceJson = await Fetch.ICE_PRICE();
+          const priceICE = iceJson.market_data.current_price.usd;
+
           const dgJson = await Fetch.DG_SUPPLY_GECKO();
           const priceDG = dgJson.market_data.current_price.usd;
 
@@ -33,6 +36,7 @@ function PricesBreakdown() {
               dai: 1,
               usdt: 1,
               dg: priceDG,
+              ice: priceICE,
             },
           });
         } catch (error) {

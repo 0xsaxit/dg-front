@@ -1,0 +1,214 @@
+@import "styles/base.scss";
+
+.main_wrapper {
+    margin-top: 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+
+    .title {
+        h1 {
+            font-family: "Larsseit-ExtraBold";
+            font-weight: 800 !important;
+            font-size: 24px;
+            line-height: 32px;
+            text-align: center;
+            margin-bottom: 0;
+        }
+
+        @include mq($until: 499px) {
+            h1 {
+                font-size: 32px;
+            }
+        }
+    }
+
+    .time_div {
+        display: flex;
+        justify-content: center;
+        border: 1px solid #1f1f1f;
+        border-radius: 24px;
+        padding: 3px;
+        margin-top: 12px;
+
+        div {
+            font-family: "Larsseit-Medium";
+            font-size: 14px;
+            line-height: 19px;
+            text-align: center;
+            color: #fff;
+            background: transparent;
+            width: 80px;
+            padding: 2px;
+            margin: 2px;
+            border-radius: 24px;
+            cursor: pointer;
+            transition: 0.2s ease-in;
+
+            &:hover {
+                background: #1f1f1f;
+                transition: 0.2s ease-in;
+            }
+        }
+
+        .active {
+            background: #1f1f1f;
+        }
+    }
+
+    .user_div {
+        position: relative;
+        width: 680px;
+        display: flex;
+        align-items: center;
+        padding: 15px 24px 15px 30px;
+        margin-top: 24px;
+        border: 1px solid #2a2a2a;
+        box-sizing: border-box;
+        border-radius: 24px;
+
+        .rank {
+            color: #fff;
+            margin-right: 16px;
+            font-size: 18px;
+            font-family: "Larsseit-Bold";
+            float: left;
+        }
+
+        .user_info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            float: left;
+
+            img {
+                width: 40px;
+                height: 40px;
+                background-color: rgb(59, 59, 59);
+                border-radius: 50%;
+            }
+
+            abbr {
+                color: #67dd6c;
+                font-size: 18px;
+                font-family: "Larsseit-Bold";
+                margin-left: 16px;
+            }
+        }
+
+        .winnings {
+            position: absolute;
+            right: 24px;
+            display: flex;
+            align-items: center;
+
+            abbr {
+                font-size: 18px;
+                font-family: "Larsseit-Bold";
+                color: #fff;
+                margin-right: 8px;
+            }
+
+            img {
+                width: 22px;
+                height: 22px;
+                margin-top: 2px;
+            }
+        }
+    }
+
+    .table {
+        position: relative;
+        width: 680px;
+        margin-top: 32px;
+        margin-bottom: 50px;
+
+        table {
+            thead {
+                th {
+                    font-size: 18px;
+                    font-family: "Larsseit-Bold";
+
+                    &:first-child {
+                        padding-left: 25px;
+                    }
+
+                    &:last-child {
+                        padding-right: 25px;
+                        text-align: right;
+                    }
+                }
+            }
+
+            tbody {
+                position: relative;
+
+                tr {
+                    display: flex;
+                    align-items: center;
+                    border-radius: 24px;
+                    margin-bottom: 3px;
+
+                    td {
+                        padding: 15px 24px 15px 24px;
+                    }
+
+                    .user_info {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        float: left;
+
+                        img {
+                            width: 40px;
+                            height: 40px;
+                            background-color: rgb(59, 59, 59);
+                            border-radius: 50%;
+                            margin-left: 16px;
+                            margin-right: 16px;
+                        }
+
+                        abbr {
+                            color: #fff;
+                            font-size: 18px;
+                            font-family: "Larsseit-Bold";
+                        }
+
+                        .active {
+                            color: #67dd6c;
+                        }
+
+                        .star {
+                            position: absolute;
+                            left: -10px;
+                            width: 15px;
+                            height: 15px;
+                            background: transparent;
+                        }
+                    }
+
+                    .winnings {
+                        position: absolute;
+                        right: 0px;
+                        display: flex;
+                        align-items: center;
+
+                        abbr {
+                            font-size: 18px;
+                            font-family: "Larsseit-Bold";
+                            color: #fff;
+                            margin-right: 8px;
+                        }
+
+                        img {
+                            width: 22px;
+                            height: 22px;
+                            margin-top: 2px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

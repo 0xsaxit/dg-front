@@ -22,9 +22,9 @@ const apiCall = {
     return call(`${API_BASE_URL}/admin/getTotalRecords`, 'GET', false);
   },
 
-  PLAYER_DATA: () => {
-    return call(`${API_BASE_URL}/admin/getCryptoRecords`, 'GET');
-  },
+  // PLAYER_DATA: () => {
+  //   return call(`${API_BASE_URL}/admin/getCryptoRecords`, 'GET');
+  // },
 
   USERS_LIST: () => {
     return call(`${API_BASE_URL}/admin/getUsersList`, 'GET');
@@ -36,10 +36,6 @@ const apiCall = {
       'GET'
     );
   },
-
-  // UPGRADE_TOKEN: txHash => {
-  //   return call(`${API_BASE_URL}/ice/requestUpgrade/${txHash}`, 'GET');
-  // },
 
   UPGRADE_TOKEN: (tokenID, collectionAddr) => {
     return call(
@@ -55,6 +51,14 @@ const apiCall = {
     );
   },
 
+  CLAIM_REWARDS: () => {
+    return call(`${API_BASE_URL}/ice/claimRewards`, 'GET');
+  },
+
+  CLAIM_REWARDS_AMOUNT: () => {
+    return call(`${API_BASE_URL}/ice/getUnclaimedRewardsAmount`, 'GET');
+  },
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // GET API calls (wallet address necessary)
@@ -65,6 +69,13 @@ const apiCall = {
   POKER_DATA: address => {
     return call(
       `${API_BASE_URL}/admin/getPokerHandHistory?address=${address}`,
+      'GET'
+    );
+  },
+
+  ICE_AMOUNTS: address => {
+    return call(
+      `${API_BASE_URL}/ice/getUnclaimedRewardsAmount?address=${address}`,
       'GET'
     );
   },
@@ -194,6 +205,14 @@ const apiCall = {
     );
   },
 
+  ICE_PRICE: () => {
+    return call(
+      `https://api.coingecko.com/api/v3/coins/decentral-games-ice`,
+      'GET',
+      false
+    );
+  }, 
+
   ATRI_PRICE: () => {
     return call(`https://api.coingecko.com/api/v3/coins/atari`, 'GET', false);
   },
@@ -205,6 +224,10 @@ const apiCall = {
       false
     );
   },
+
+  // ICE_PRICE: () => {
+  //   return call(`https://api.coingecko.com/api/v3/coins/ice`, 'GET', false);
+  // },
 
   LAND_PRICE: () => {
     return call(

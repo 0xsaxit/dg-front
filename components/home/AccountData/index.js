@@ -6,6 +6,9 @@ import Spinner from 'components/Spinner';
 import ContentAccount from 'components/content/ContentAccount';
 import Aux from 'components/_Aux';
 import styles from './AccountData.module.scss';
+import AccountTooltip from 'components/tooltips/AccountTooltip';
+import Fetch from '../../../common/Fetch';
+
 
 const AccountData = props => {
   // get user's transaction history from the Context API store
@@ -19,6 +22,7 @@ const AccountData = props => {
   const [utm, setUtm] = useState('');
   // const [DGMined, setDGMined] = useState(''); ********** this needs to be updated for new dgPointer function **********
   const [copied, setCopied] = useState(false);
+  const [totalICE, setTotalICE] = useState(0);
 
   const dataType = props.dataType;
   const maximumCount = 100; // ***** we should limit the data being returned from the server to 100 rows *****
@@ -39,6 +43,20 @@ const AccountData = props => {
   // }, [state.DGGameplayCollected, state.DGBalances.BALANCE_MINING_DG_V2]);
 
   useEffect(() => {
+    (async () => {
+      let json = await Fetch.ICE_AMOUNTS(state.userAddress);
+
+      console.log('!!!');
+      console.log(json);
+
+      const unclaimed = json.totalUnclaimedAmount;
+      const claimed = json.totalClaimedAmount;
+      const total = Number(unclaimed) + Number(claimed);
+      setTotalICE(formatPrice(total, 0));
+    })();
+  }, []);
+
+  useEffect(() => {
     if (!isLoading) {
       let result = {};
       if (dataType === 'history') {
@@ -54,6 +72,17 @@ const AccountData = props => {
   useEffect(() => {
     setUtm(sessionStorage.getItem('utm'));
   }, [utm]);
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // helper functions
+  function formatPrice(balanceDG, units) {
+    const balanceAdjusted = Number(balanceDG)
+      .toFixed(units)
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+    return balanceAdjusted;
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -115,6 +144,7 @@ const AccountData = props => {
               </a>
             </span>
           </div>
+
           <div
             className={cn(
               'col-lg-8',
@@ -158,13 +188,12 @@ const AccountData = props => {
                     <path
                       d="M1.54907 15.7588L10.9241 15.7588C11.7151 15.7588 12.3303 15.1143 12.3303 14.3525L12.3303 12.9463L13.7366 12.9463C14.5276 12.9463 15.1428 12.3018 15.1428 11.54L15.1428 2.16504C15.1428 1.37402 14.5276 0.758789 13.7366 0.758789L4.36157 0.758788C3.59985 0.758788 2.95532 1.37402 2.95532 2.16504L2.95532 3.57129L1.54907 3.57129C0.787355 3.57129 0.142823 4.18652 0.142823 4.97754L0.142822 14.3525C0.142822 15.1143 0.787354 15.7588 1.54907 15.7588ZM4.53735 2.16504L13.5608 2.16504C13.678 2.16504 13.7366 2.22363 13.7366 2.34082L13.7366 11.3643C13.7366 11.4521 13.678 11.54 13.5608 11.54L12.3303 11.54L12.3303 4.97754C12.3303 4.18652 11.7151 3.57129 10.9241 3.57129L4.36157 3.57129L4.36157 2.34082C4.36157 2.22363 4.44946 2.16504 4.53735 2.16504ZM1.72485 4.97754L10.7483 4.97754C10.8655 4.97754 10.9241 5.03613 10.9241 5.15332L10.9241 14.1768C10.9241 14.2646 10.8655 14.3525 10.7483 14.3525L1.72485 14.3525C1.63696 14.3525 1.54907 14.2646 1.54907 14.1768L1.54907 5.15332C1.54907 5.03613 1.63696 4.97754 1.72485 4.97754Z"
                       fill="white"
-                      fillOpacity="0.5"
+                      // fillOpacity="0.5"
                     />
                   </svg>
                 </p>
               </span>
             </span>
-
             <div style={{ display: 'flex' }}>
               <div className={styles.token_container}>
                 <div className={styles.tokenImgDiv}>
@@ -180,10 +209,13 @@ const AccountData = props => {
                 <div className={styles.tokenBalance}>
                   <p className={styles.title}>
                     {' '}
-                    ICE Mined{' '}
-                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631365915/w706j6tiotm1gdp0p8nu.svg" />{' '}
+                    ICE Earned{' '}
+                    <AccountTooltip data={"ICE Earned"} />
                   </p>
-                  <p className={styles.amount}> {state.iceAmount} </p>
+                  <p className={styles.amount}>
+                    {' '}
+                    {totalICE}{' '}
+                  </p>
                 </div>
               </div>
               <div className={styles.token_container}>
@@ -200,10 +232,13 @@ const AccountData = props => {
                 <div className={styles.tokenBalance}>
                   <p className={styles.title}>
                     {' '}
-                    Unused XP{' '}
-                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631365915/w706j6tiotm1gdp0p8nu.svg" />{' '}
+                    XP Earned{' '}
+                    <AccountTooltip data={"XP Earned"} />
                   </p>
-                  <p className={styles.amount}> 0 </p>
+                  <p className={styles.amount}>
+                    {' '}
+                    {state.userInfo.totalXP >= 0 ? state.userInfo.totalXP.toLocaleString(): null}{' '}
+                  </p>
                 </div>
               </div>
               <div className={styles.token_container}>
@@ -217,9 +252,12 @@ const AccountData = props => {
                   <p className={styles.title}>
                     {' '}
                     DG Mined{' '}
-                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631365915/w706j6tiotm1gdp0p8nu.svg" />{' '}
+                    <AccountTooltip data="DG Mined" />
                   </p>
-                  <p className={styles.amount}> 0 </p>
+                  <p className={styles.amount}>
+                    {' '}
+                    --{' '}
+                  </p>
                 </div>
               </div>
             </div>

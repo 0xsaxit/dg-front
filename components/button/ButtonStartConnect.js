@@ -157,7 +157,7 @@ const ButtonStartConnect = () => {
       // const jsonIP = await responseIP.;
 
       // update user status in database
-      await Fetch.REGISTER(userAddress, '', state.affiliateAddress);
+      await Fetch.REGISTER(state.affiliateAddress);
 
       // update global state user status after fetch is complete
       dispatch({
@@ -174,7 +174,7 @@ const ButtonStartConnect = () => {
   }
 
   async function getUserStatus() {
-    console.log('Get user status: Connect');
+    console.log('Get user status: ButtonStartConnect');
 
     try {
       // const responseIP = await Fetch.IP_ADDRESS();
@@ -186,7 +186,7 @@ const ButtonStartConnect = () => {
 
       return jsonStatus.status;
     } catch {
-      console.log('Unregistered wallet: Connect');
+      console.log('Unregistered wallet: ButtonStartConnect');
 
       return false;
     }

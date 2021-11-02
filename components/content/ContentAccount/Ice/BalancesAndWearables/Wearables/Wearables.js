@@ -1,67 +1,161 @@
 import { useEffect, useState } from 'react';
 import ICEWearableCard from 'components/common/cards/ICEWearableCard';
+import ICEDelegatedCard from 'components/common/cards/ICEDelegatedCard';
 import { Button } from 'semantic-ui-react';
 import styles from './Wearables.module.scss';
+import Fetch from '../../../../../../common/Fetch';
+
 
 const Wearables = ({ state }) => {
   // define local variables
-  // const [itemLimitsArray, setItemLimitsArray] = useState([
-  //   [0, 0],
-  //   [0, 0],
-  //   [0, 0],
-  //   [0, 0],
-  //   [0, 0],
-  // ]);
+  const [maxICEBonus, setMaxICEBonus] = useState(0);
   const activeWearables = state.iceWearableItems.filter(
     item => item.meta_data && item.meta_data.attributes.at(-1).value > 0
   );
-  const maxICEBonus = activeWearables.reduce((prev, current) => {
-    let bonus = parseInt(current.meta_data.attributes.at(-1).value);
-    if (bonus <= 7) {
-      return 7 + prev;
-    } else if (bonus <= 15) {
-      return 15 + prev;
-    } else if (bonus <= 24) {
-      return 24 + prev;
-    } else if (bonus <= 34) {
-      return 34 + prev;
-    } else if (bonus >= 35) {
-      return 45 + prev;
+  const delegatedWearables = state.iceDelegatedItems.filter(
+    item => item.meta_data && item.meta_data.attributes.at(-1).value > 0
+  );
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // fetch user's incoming/outgoing delegate mapping data. Refreshes upon delegation/undelegation
+  useEffect(() => {
+    if (state.iceDelegatedItems.length) {
+      (async function () {
+        let maxICEValue = 0;
+        let maxICEDelegatedWearableBonuses = [];
+        let maxICEActiveWearableBonuses = {
+          Trousers: 0,
+          Blazer: 0,
+          Cigar: 0,
+          Loafers: 0,
+          Shades: 0,
+        };
+
+        const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
+
+        // console.log('delegation info (Wearables): ');
+        // console.log(delegationInfo);
+
+        activeWearables.map(activeWearable => {
+          if (
+            delegationInfo.outgoingDelegations &&
+            delegationInfo.outgoingDelegations.findIndex(
+              e => e.tokenId === activeWearable.tokenID
+            ) >= 0
+          ) {
+            var indexOfDelegated = maxICEDelegatedWearableBonuses.findIndex(
+              e => e.tokenID === activeWearable.tokenID
+            );
+            if (indexOfDelegated < 0) {
+              const newDelegatedWearableBonuses = {
+                tokenID: activeWearable.tokenID,
+                wearableBonuses: {
+                  Trousers: 0,
+                  Blazer: 0,
+                  Cigar: 0,
+                  Loafers: 0,
+                  Shades: 0,
+                },
+              };
+
+              Object.keys(newDelegatedWearableBonuses.wearableBonuses).map(
+                item => {
+                  if (activeWearable.meta_data.name.search(item) >= 0) {
+                    if (
+                      newDelegatedWearableBonuses.wearableBonuses[item] <
+                      parseInt(
+                        activeWearable.meta_data.attributes.at(-1).value
+                      ) *
+                        0.3
+                    ) {
+                      newDelegatedWearableBonuses.wearableBonuses[item] =
+                        parseInt(
+                          activeWearable.meta_data.attributes.at(-1).value
+                        ) * 0.3;
+                    }
+                  }
+                }
+              );
+              maxICEDelegatedWearableBonuses.push(newDelegatedWearableBonuses);
+            } else {
+              const delegatedWearableBonuses =
+                maxICEDelegatedWearableBonuses[indexOfDelegated]
+                  .wearableBonuses;
+
+              Object.keys(delegatedWearableBonuses).map(item => {
+                if (activeWearable.meta_data.name.search(item) >= 0) {
+                  if (
+                    delegatedWearableBonuses[item] <
+                    parseInt(activeWearable.meta_data.attributes.at(-1).value) *
+                      0.3
+                  ) {
+                    delegatedWearableBonuses[item] =
+                      parseInt(
+                        activeWearable.meta_data.attributes.at(-1).value
+                      ) * 0.3;
+                  }
+                }
+              });
+            }
+          } else {
+            Object.keys(maxICEActiveWearableBonuses).map(item => {
+              if (activeWearable.meta_data.name.search(item) >= 0) {
+                if (
+                  maxICEActiveWearableBonuses[item] <
+                  parseInt(activeWearable.meta_data.attributes.at(-1).value)
+                ) {
+                  maxICEActiveWearableBonuses[item] = parseInt(
+                    activeWearable.meta_data.attributes.at(-1).value
+                  );
+                }
+              }
+            });
+          }
+        });
+
+        delegatedWearables.map(delegatedWearable => {
+          Object.keys(maxICEActiveWearableBonuses).map(item => {
+            if (delegatedWearable.meta_data.name.search(item) >= 0) {
+              const bonusValue =
+                parseInt(delegatedWearable.meta_data.attributes.at(-1).value) *
+                0.7;
+              if (maxICEActiveWearableBonuses[item] < bonusValue) {
+                maxICEActiveWearableBonuses[item] = bonusValue;
+              }
+            }
+          });
+        });
+
+        // Get maxICEBonus
+        Object.keys(maxICEActiveWearableBonuses).map(item => {
+          maxICEValue += maxICEActiveWearableBonuses[item];
+        });
+
+        maxICEDelegatedWearableBonuses.map(e => {
+          Object.keys(e.wearableBonuses).map(item => {
+            maxICEValue += e.wearableBonuses[item];
+          });
+        });
+
+        setMaxICEBonus(Math.round(maxICEValue * 1000) / 1000);
+      })();
     }
-  }, 0);
+  }, [state.refreshDelegateInfo]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // useEffect(() => {
-  //   const itemLimit0 = state.itemLimits[0];
-  //   const itemLimit5 = state.itemLimits[1];
-  //   const itemLimit10 = state.itemLimits[2];
-  //   const itemLimit15 = state.itemLimits[3];
-  //   const itemLimit20 = state.itemLimits[4];
-
-  //   let itemLimitsArray = [];
-  //   itemLimitsArray.push(itemLimit0);
-  //   itemLimitsArray.push(itemLimit5);
-  //   itemLimitsArray.push(itemLimit10);
-  //   itemLimitsArray.push(itemLimit15);
-  //   itemLimitsArray.push(itemLimit20);
-
-  //   setItemLimitsArray(itemLimitsArray);
-  // }, [state.itemLimits]);
-
   return (
     <section className={styles.wearableSection}>
       <div className={styles.wearableHeader}>
         <div>
           <h2>ICED Wearables</h2>
-          <p>{`(${activeWearables.length} of ${state.iceWearableItems.length} Active) ${maxICEBonus}% Max ICE Bonus`}</p>
+          <p>{`(${activeWearables.length + delegatedWearables.length} of ${
+            state.iceWearableItems.length + state.iceDelegatedItems.length
+          } Active) ${maxICEBonus}% Max ICE Bonus`}</p>
         </div>
-        <Button
-          className={styles.open_sea}
-          href="http://defi.atarichain.com/"
-          target="_blank"
-        >
-          Buy On Open Sea
+        <Button className={styles.open_sea} href="/ice/marketplace">
+          Mint Wearable
           <svg
             width="13"
             height="12"
@@ -77,17 +171,26 @@ const Wearables = ({ state }) => {
         </Button>
       </div>
 
-      {console.log('item limits array index:')}
-      {console.log(state.iceWearableItems)}
+      {/* {console.log('item limits array index:')}
+      {console.log(state.iceWearableItems)} */}
 
       <section className={styles.grid_container}>
         <div className={styles.wearables_grid}>
           {state.iceWearableItems.map((item, index) => (
             <ICEWearableCard
+              key={index}
               data={item.meta_data}
-              // key={index}
               tokenID={item.tokenID}
-              // itemID={itemLimitsArray[index][1]}
+              itemID={item.itemID}
+            />
+          ))}
+
+          {state.iceDelegatedItems.map((item, index) => (
+            <ICEDelegatedCard
+              key={index}
+              data={item.meta_data}
+              ownerAddress={item.ownerAddress}
+              tokenID={item.tokenID}
               itemID={item.itemID}
             />
           ))}

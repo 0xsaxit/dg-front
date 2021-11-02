@@ -169,8 +169,11 @@
       width: 241px;
       height: 241px;
       margin-top: 42px;
-      //background: radial-gradient(68.68% 68.68% at 50% 50%, #AD86FF 0%, #622DF8 100%);
       border-radius: 16px;
+
+      img {
+        border-radius: 16px;
+      }
     }
     .card_body {
       display: flex;
@@ -209,11 +212,14 @@
       width: 241px;
       height: 241px;
       margin-top: 42px;
-      //background: radial-gradient(68.68% 68.68% at 50% 50%, #ff81db 0%, #fd32c2 100%);
       border-radius: 16px;
 
       font-family: Larsseit;
       font-style: normal;
+
+      img {
+        border-radius: 16px;
+      }
     }
   }
   
@@ -331,6 +337,15 @@
             text-align: center;
             color: rgba(255, 255, 255, 0.5);
           }
+          .greenCheck {
+            font-family: Larsseit-Regular;
+            font-style: normal;            
+            font-size: 10px;
+            line-height: 14px;
+            text-align: center;
+            color: #67DD6C !important;
+          }
+
           .network {
             font-family: Larsseit-Regular;
             font-style: normal;

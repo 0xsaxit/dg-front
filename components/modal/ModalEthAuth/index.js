@@ -9,8 +9,9 @@ import MetaTx from '../../../common/MetaTx';
 import Fetch from '../../../common/Fetch';
 import Aux from '../../_Aux';
 import Global from '../../Constants';
-import MetamaskAction from './MetamaskAction';
+import MetamaskAction, { ActionLine } from 'components/common/MetamaskAction';
 import ModalMintSuccess from '../ModalMintSuccess';
+import { Loader } from 'semantic-ui-react';
 
 const ModalEthAuth = props => {
   // dispatch user's treasury contract active status to the Context API store
@@ -25,12 +26,42 @@ const ModalEthAuth = props => {
   const [open, setOpen] = useState(false);
   const [openMintSuccess, setOpenMintSuccess] = useState(false);
   const [minting, setMinting] = useState(false);
-  const [buttonMessage, setButtonMessage] = useState('Proceed to Mint');
-  const [clicked, setClicked] = useState(false);
+  // const [buttonMessage, setButtonMessage] = useState('Proceed to Mint');
+  const [clickedAuthEth, setClickedAuthEth] = useState(false);
+  const [clickedConfirm, setClickedConfirm] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorText, setErrorText] = useState(null);
+  const [tickCount, setTickCount] = useState(0);
+  const [intervalId, setIntervalId] = useState(0);
+  const [mintStatus, setMintStatus] = useState({});
+  const [biconomyReady, setBiconomyReady] = useState(false);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////
   // Update Open Modal Status
+  useEffect(() => {
+    if (Object.keys(mintStatus).length !== 0) {
+      console.log('pooling status finished! ');
+      clearInterval(intervalId);
+      setIntervalId(0);
+
+      completedMint(mintStatus);
+    }
+  }, [mintStatus]);
+
+  useEffect(() => {
+    const completeData = async () => {
+      console.log('pooling timeout finished!');
+      clearInterval(intervalId);
+      setIntervalId(0);
+      completedMint({}, true);
+      setTickCount(0);
+    };
+
+    if (tickCount === Global.CONSTANTS.POOLING_LIMIT_COUNT && intervalId > 0) {
+      completeData();
+    }
+  }, [tickCount]);
 
   useEffect(() => {
     setOpen(props.show);
@@ -64,6 +95,7 @@ const ModalEthAuth = props => {
       biconomy
         .onEvent(biconomy.READY, () => {
           console.log('Mexa is Ready: Approve ETH (wearables)');
+          setBiconomyReady(true);
         })
         .onEvent(biconomy.ERROR, (error, message) => {
           console.error(error);
@@ -71,20 +103,24 @@ const ModalEthAuth = props => {
     }
   }, [state.userStatus]);
 
+  // get WETH authorization status based on tokenAuths state object
   useEffect(() => {
     const authStatus = state.tokenAuths.WETH_AUTHORIZATION;
-
     setAuthStatus(authStatus);
-  }, [state.tokenAmounts]);
+  }, [state.tokenAuths]);
 
   useEffect(() => {
     const canPurchase = state.canPurchase;
 
-    if (canPurchase) {
-      setButtonMessage('Confirm Purchase');
-    } else {
-      setButtonMessage('Cooldown Period');
-    }
+    // if (canPurchase) {
+    //   if (state.tokenAuths.WETH_AUTHORIZATION) {
+    //     setButtonMessage('Confirm Purchase');
+    //   } else {
+    //     setButtonMessage('Authorize ETH');
+    //   }
+    // } else {
+    //   setButtonMessage('Cooldown Period');
+    // }
 
     setCanPurchase(canPurchase);
   }, [state.canPurchase]);
@@ -105,93 +141,135 @@ const ModalEthAuth = props => {
         </p>
 
         <div className={styles.upgrade_inner_container}>
-          <div className={styles.eth_container}>
-            <span style={{ display: 'flex', flexDirection: 'row' }}>
-              <p className={styles.eth_amount}>
-                {' '}
-                {state.tokenAmounts.WETH_COST_AMOUNT} ETH{' '}
-              </p>
-              <img
-                className={styles.eth_img}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1625014714/ETH_kzfhxr.png"
-              />
-            </span>
-          </div>
-
-          <div className={styles.eth_description}>
-            {state.userBalances[2][3]} ETH Available
-          </div>
-
-          <div className={styles.eth_description_two}>(On Polygon)</div>
-
-          {/* ok11 */}
-          {/* <MetamaskAction
+          <MetamaskAction
             actionState={
               authStatus
                 ? 'done'
-                : !clicked
+                : !clickedAuthEth
                 ? 'initial'
-                : clicked
+                : clickedAuthEth
                 ? 'clicked'
                 : null
             }
-            onClick={metaTransaction}
+            disabled={true}
             primaryText="Authorize ETH"
             secondaryText="Enables ETH Transaction"
-          /> */}
+          />
 
-          {/** TODO: add correct on click action here */}
-          {/* <MetamaskAction
-            actionState={payForActivationState}
-            onClick={() => console.log('pay for activation on click action')}
-            primaryText="Pay For Activation"
-            secondaryText="Payment with 0.1 ETH"
-            disabled={authStatus}
-          /> */}
+          <ActionLine previousAction={authStatus ? 'done' : 'initial'} />
+
+          <MetamaskAction
+            actionState={
+              !clickedConfirm ? 'initial' : clickedConfirm ? 'clicked' : null
+            }
+            disabled={true}
+            primaryText="Confirm Purchase"
+            secondaryText="Mint Wearable"
+          />
         </div>
       </Aux>
     );
   }
 
+  function showErrorCase() {
+    return (
+      <Aux>
+        <div className={styles.error_text}>{errorText ? errorText : ''}</div>
+      </Aux>
+    );
+  }
+
+  async function fetchMintToken() {
+    try {
+      const json = await Fetch.MINT_TOKEN(
+        props.itemID,
+        Global.ADDRESSES.COLLECTION_V2_ADDRESS
+      );
+      console.log('pooling json: ', json);
+
+      if (json.status) {
+        setMintStatus(json);
+      }
+    } catch (error) {
+      setErrorText('API Timeout');
+      // setButtonMessage('API Timeout');
+      setLoading(false);
+      setClickedConfirm(false);
+
+      console.log(error); // API request timeout error
+    }
+  }
+
   // send-off the API request to mint the user's Level 1 wearable
   async function mintToken() {
+    setErrorText(null);
     console.log('Minting NFT item ID: ' + props.itemID);
     setMinting(true);
 
-    const json = await Fetch.MINT_TOKEN(
-      props.itemID,
+    setLoading(true);
+    setClickedConfirm(true);
+
+    console.log('props.itemID', props.itemID);
+    console.log(
+      'COLLECTION_V2_ADDRESS',
       Global.ADDRESSES.COLLECTION_V2_ADDRESS
     );
 
-    if (json.status) {
-      // update global state token amounts
-      const refresh = !state.refreshTokenAmounts;
-      dispatch({
-        type: 'refresh_token_amounts',
-        data: refresh,
-      });
+    const intervalid = setInterval(() => {
+      setTickCount(prevCount => prevCount + 1);
+      fetchMintToken();
+    }, Global.CONSTANTS.POOLING_TIME_OUT);
 
-      // update global state wearables data
-      dispatch({
-        type: 'refresh_wearable_items',
-        data: false,
-      });
+    setIntervalId(intervalid);
+  }
 
-      console.log('NFT minting successful');
+  async function completedMint(json, timeout = false) {
+    if (!timeout) {
+      if (json.status) {
+        // update global state token amounts
+        const refresh1 = !state.refreshTokenAmounts;
+        dispatch({
+          type: 'refresh_token_amounts',
+          data: refresh1,
+        });
 
-      setOpenMintSuccess(true);
-      setOpen(false);
-      props.close();
-    } else if (!json.status) {
-      setButtonMessage('Token Minting Error');
+        // update global state wearables data
+        const refresh2 = !state.refreshWearable;
+        dispatch({
+          type: 'refresh_wearable_items',
+          data: refresh2,
+        });
 
-      console.log('NFT minting error (a): ' + json.result);
-    } else if (json.status === 'error') {
-      setButtonMessage(json.result);
+        console.log('NFT minting successful');
 
-      console.log('NFT minting error (b): ' + json.result);
+        setOpenMintSuccess(true);
+        setOpen(false);
+
+        setLoading(false);
+        setClickedConfirm(false);
+        setErrorText(null);
+        props.close();
+      } else if (!json.status) {
+        setErrorText('Token Minting Error');
+        // setButtonMessage('Token Minting Error');
+        setLoading(false);
+        setClickedConfirm(false);
+
+        console.log('NFT minting error (a): ' + json.result);
+      } else if (json.status === 'error') {
+        setErrorText(json.result);
+        // setButtonMessage(json.result);
+        setLoading(false);
+        setClickedConfirm(false);
+
+        console.log('NFT minting error (b): ' + json.result);
+      }
+    } else {
+      setErrorText('Token Minting Error');
+      // setButtonMessage('Token Minting Error');
+      setLoading(false);
+      setClickedConfirm(false);
     }
-
     setMinting(false);
   }
 
@@ -199,7 +277,9 @@ const ModalEthAuth = props => {
   async function metaTransaction() {
     try {
       console.log('WETH authorization amount: ' + Global.CONSTANTS.MAX_AMOUNT);
-      setClicked(true);
+      setClickedAuthEth(true);
+      setLoading(true);
+      setErrorText(null);
 
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = tokenContract.methods
@@ -216,8 +296,8 @@ const ModalEthAuth = props => {
 
       if (txHash === false) {
         console.log('Biconomy meta-transaction failed');
-
-        setClicked(false);
+        setErrorText('ETH Authorization failed, please try again');
+        setClickedAuthEth(false);
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
@@ -228,11 +308,15 @@ const ModalEthAuth = props => {
           type: 'refresh_token_auths',
           data: refresh,
         });
+        setAuthStatus(true);
+        setLoading(false);
       }
     } catch (error) {
       console.log('WETH authorization error: ' + error);
+      setErrorText('ETH Authorization failed, please try again');
 
-      setClicked(false);
+      setClickedAuthEth(false);
+      setLoading(false);
     }
   }
 
@@ -333,18 +417,28 @@ const ModalEthAuth = props => {
                   }}
                 >
                   <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
-                  {buttonMessage}
+                  {loading ? (
+                    <Loader />
+                  ) : authStatus ? (
+                    'Confirm Purchase'
+                  ) : biconomyReady ? (
+                    'Authorize ETH'
+                  ) : (
+                    'Biconomy Initializing'
+                  )}
                 </Button>
               ) : (
                 <Button disabled className={styles.proceed_button}>
-                  {buttonMessage}
+                  Cooldown Period
                 </Button>
               )
             ) : (
               <Button disabled className={styles.proceed_button}>
-                {buttonMessage}
+                {loading ? <Loader /> : 'Confirm Purchase'}
               </Button>
             )}
+
+            {showErrorCase()}
           </div>
         </div>
       </Modal>

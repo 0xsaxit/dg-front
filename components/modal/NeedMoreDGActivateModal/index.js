@@ -79,8 +79,8 @@ const NeedMoreDGActivateModal = props => {
           <div className={styles.desc}>
             In order to earn ICE, you must first activate your wearable. ICE
             Wearables are activated on the Polygon sidechain. If you already own
-            enough $DG on mainnet, you can bridge it to Polygon
-            <a> with us</a> or use <a>matic bridge</a>.
+            enough $DG on mainnet, you can bridge it to Polygon using 
+            <a href="https://wallet.polygon.technology/login?next=%2Fbridge" target="_blank"> matic bridge</a>
           </div>
 
           <div className={styles.logo}>
@@ -89,16 +89,23 @@ const NeedMoreDGActivateModal = props => {
               alt="logo"
             />
           </div>
-          <div className={styles.round_desc}>Need 0.5 more</div>
+          <div className={styles.round_desc}>Need {(0.5 - state.DGBalances.BALANCE_CHILD_DG).toFixed(2)} more</div>
 
           <div className={styles.buttons}>
             <div className={styles.button}>
-              <Button className={styles.gray}>Learn More</Button>
+              <Button
+                className={styles.gray}
+                onClick={() => {
+                  window.open("https://ice.decentral.games/ice-nft-wearables", "_blank");
+                }}
+              >Learn More</Button>
             </div>
 
             <div className={styles.button}>
               <Button
                 className={styles.primary}
+                href="https://quickswap.exchange/#/swap?outputCurrency=0x2a93172c8dccbfbc60a39d56183b7279a2f647b4"
+                target="_blank"
                 onClick={() => {
                   setOpen(false);
                   setPending(true);
@@ -119,7 +126,7 @@ const NeedMoreDGActivateModal = props => {
                 </svg>
               </Button>
               <span className={styles.text}>
-                {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(1)} DG
+                {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(2)} DG
                 Available
               </span>
             </div>

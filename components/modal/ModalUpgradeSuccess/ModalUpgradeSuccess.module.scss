@@ -4,6 +4,7 @@
   background-color: #006eff !important;
   color: white !important;
   height: 42px;
+  width: calc(50% - 8px);
   border-radius: 10px !important;
   font-family: Larsseit-Bold;
   font-size: 14px !important;
@@ -108,12 +109,12 @@
         align-items: center;
       }
       .image {
-        border-radius: 16px;
         text-align: center;
 
         .logo {
           width: 241px;
           height: 241px;
+          border-radius: 16px;
         }
       }
       .properties {
@@ -219,6 +220,7 @@
           .logo {
             width: 215px;
             height: 215px;
+            border-radius: 16px;
           }
         }
       }

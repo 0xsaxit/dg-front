@@ -39,6 +39,7 @@
 
       img {
         width: 100%;
+        border-radius: 16px;
       }
 
       .p2e_enabled {
@@ -54,9 +55,27 @@
     }
 
     .card_body {
+      position: relative;
       display: flex;
       justify-content: space-evenly;
       margin-top: 14px;
+
+      .delegated {
+        position: absolute;
+        top: -60px;
+        left: 20px;
+        padding: 5px 15px;
+        border-radius: 25px;
+        color: #fff;
+        font-size: 12px;
+        font-family: "Larsseit-Medium";
+        background: rgba(0, 0, 0, 0.75);
+
+        svg {
+          margin-left: 5px;
+          top: 1px;
+        }
+      }
 
       .card {
         display: flex;
