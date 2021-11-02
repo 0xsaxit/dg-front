@@ -9,6 +9,7 @@ const KEYS = {
   CONNEXT_PUBLIC_ID: 'vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np'
 };
 
+
 // common constant values
 const CONSTANTS = {
   BASE_URL: 'https://decentral.games',

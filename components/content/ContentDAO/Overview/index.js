@@ -230,11 +230,10 @@ const Overview = props => {
       const ice_percent = ice_wearables.changes.weekly.percent.toFixed(2);
       setWearableSalesPercent(Number(ice_percent));
 
-      const dg = state.treasuryNumbers.totalDgWalletUSD;
-      setDgTreasury(Number(dg.graph[0].secondary));
+      setDgTreasury(Number(state.treasuryNumbers.totalDgWalletUSD.graph[0].secondary));
       setUnvestedDG(props.formatPrice(dgTreasury, 0));
 
-      const dg_temp = dg.changes.weekly.percent.toFixed(2);
+      const dg_temp = state.treasuryNumbers.totalDgWalletUSD.changes.weekly.percent.toFixed(2);
       setDgTreasuryPercent(Number(dg_temp));
 
       const liq = state.treasuryNumbers.totalLiquidityProvided;
@@ -263,7 +262,7 @@ const Overview = props => {
       setDgBalance(props.formatPrice(dgbal.slice(-1)[0].secondary, 0));
 
     }
-  }, [state.treasuryNumbers]);
+  }, [state.treasuryNumbers, dgTreasury]);
 
   useEffect(() => {
     if (state.userStatus && state.stakingBalances.BALANCE_USER_GOVERNANCE > 0) {

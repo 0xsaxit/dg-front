@@ -12,7 +12,8 @@ const Balances = () => {
 
   // define local variables
   const [clicked, setClicked] = useState(false);
-  const [iceAmount, setIceAmount] = useState(0);
+  const [totalICE, setTotalICE] = useState(0);
+
 
   const balenceItems = [
     {
@@ -53,9 +54,9 @@ const Balances = () => {
   useEffect(() => {
     (async () => {
       let json = await Fetch.ICE_AMOUNTS(state.userAddress);
-      setIceAmount(json.totalUnclaimedAmount);
+      setTotalICE(json.totalUnclaimedAmount);
     })();
-  }, [iceAmount]);
+  }, [totalICE]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -74,6 +75,14 @@ const Balances = () => {
 
     return balanceAdjusted;
   }
+
+  useEffect(() => {
+    (async () => {
+      let json = await Fetch.ICE_AMOUNTS(state.userAddress);
+      const unclaimed = json.totalUnclaimedAmount;
+      setTotalICE(formatPrice(unclaimed, 0));
+    })();
+  }, []);
 
   function content() {
     return (
@@ -168,7 +177,7 @@ const Balances = () => {
         <p className={styles.reward_header}>Play-to-Earn Rewards</p>
 
         <div className={styles.reward_value}>
-          <p className={styles.DG_value}>{iceAmount}</p>
+          <p className={styles.DG_value}>{totalICE}</p>
           <img
             style={{ marginTop: '-4px' }}
             src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
@@ -177,7 +186,7 @@ const Balances = () => {
         <p className={styles.price}>
           $
           {formatPrice(
-            iceAmount * state.DGPrices.ice,
+            totalICE * state.DGPrices.ice,
             2
           )}
         </p>
@@ -188,11 +197,11 @@ const Balances = () => {
 
         {!clicked ? (
           <Button className={styles.claim_button} onClick={() => claimTokens()}>
-            Claim {formatPrice(iceAmount, 0)} ICE
+            Claim {formatPrice(totalICE, 0)} ICE
           </Button>
         ) : (
           <Button className={styles.claim_button} disabled>
-            Claim {formatPrice(iceAmount, 0)} ICE
+            Claim {formatPrice(totalICE, 0)} ICE
           </Button>
         )}
 

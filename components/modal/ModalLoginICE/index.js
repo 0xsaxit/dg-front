@@ -111,7 +111,7 @@ const ModalLoginICE = () => {
       // const jsonIP = await responseIP.json();
 
       // update user status in database
-      await Fetch.REGISTER(userAddress, '', state.affiliateAddress);
+      await Fetch.REGISTER(state.affiliateAddress);
 
       // update global state user status after fetch is complete
       dispatch({

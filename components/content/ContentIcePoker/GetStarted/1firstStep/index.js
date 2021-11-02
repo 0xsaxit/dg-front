@@ -121,7 +121,7 @@ const FirstStep = () => {
                         </div>
                     </div>
                     <div className={styles.button_div}>
-                        <Button 
+                        <Button
                             onClick={() => {
                                 switchMaticNetwork();
                             }}
