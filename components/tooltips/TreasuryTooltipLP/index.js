@@ -26,14 +26,14 @@ const TreasuryTooltipLP = props => {
       const mvi = state.treasuryNumbers.totalMviEthLPBalance;
       setMviTreasury(formatPrice(mvi.graph.slice(-1)[0].secondary, 0));
 
-      const uni = state.treasuryNumbers.totalLiquidityProvided;
-      const temp = Number(uni.graph.slice(-1)[0].secondary);
-      const temp_2 = Number(mvi.graph.slice(-1)[0].secondary);
-      const index = (temp - temp_2);
-      setUniTreasury(formatPrice(index, 0));
+      const index = state.treasuryNumbers.indexRewards;
+      setUniTreasury(formatPrice(index.graph.slice(-1)[0].secondary, 0));
 
       const ice_lp = state.treasuryNumbers.totalIceUsdcLPBalance;
       setIceTreasury(formatPrice(ice_lp.graph.slice(-1)[0].secondary, 0));
+
+      console.log('!!!!');
+      console.log(state.treasuryNumbers);
     }
   }, [state.treasuryNumbers]);
 
