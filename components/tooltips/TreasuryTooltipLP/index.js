@@ -32,12 +32,10 @@ const TreasuryTooltipLP = props => {
       const index = (temp - temp_2);
       setUniTreasury(formatPrice(index, 0));
 
-      const usdc = Number(state.DGBalances.USDC_BALANCE_LP);
-      const ice = Number(state.DGBalances.ICE_BALANCE_LP * state.DGPrices.ice);
-      const lp = (usdc + ice);
-      setIceTreasury(formatPrice(lp, 0));
+      const ice_lp = state.treasuryNumbers.totalIceUsdcLPBalance;
+      setIceTreasury(formatPrice(ice_lp.graph.slice(-1)[0].secondary, 0));
     }
-  }, [state.treasuryNumbers, state.DGBalances.ICE_BALANCE_LP, state.DGBalances.USDC_BALANCE_LP]);
+  }, [state.treasuryNumbers]);
 
   return (
     <>
@@ -63,7 +61,7 @@ const TreasuryTooltipLP = props => {
         className={styles.popup}
       >
         <Popup.Content className="accountTooltip">
-          <div className="tooltip_body" style={{ width: '184px' }}>
+          <div className="tooltip_body" style={{ width: '204px' }}>
             <img
               className="info"
               src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"

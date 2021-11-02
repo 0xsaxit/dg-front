@@ -244,13 +244,19 @@ const MarketPlace = () => {
                         <ModalLoginICE />
                     )}*/}
 
-                    <Button 
-                        href="https://opensea.io/collection/decentral-games-ice"
-                        target="_blank"
-                        className={styles.opensea}
+                    <a
+                      href="https://opensea.io/collection/decentral-games-ice"
+                      target="_blank"
+                      style={{ width: '100%' }}
                     >
+                      <Button 
+                          href="https://opensea.io/collection/decentral-games-ice"
+                          target="_blank"
+                          className={styles.opensea}
+                      >
                         Buy on Opensea
-                    </Button>
+                      </Button>
+                    </a>
 
                   {/* <ModalMintActivation /> */}
                   {/* <ActivateWearableModal /> */}

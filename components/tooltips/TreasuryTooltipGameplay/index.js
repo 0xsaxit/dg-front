@@ -33,10 +33,10 @@ const TreasuryTooltipGameplay = props => {
       const eth = state.treasuryNumbers.ethBalance.graph;
       setEthBalance(formatPrice(eth.slice(-1)[0].secondary * state.DGPrices.eth, 0));
 
-      const ice = Number(state.DGBalances.BALANCE_ICE);
-      setIceBalance(formatPrice(ice * state.DGPrices.ice, 0));
+      const ice = state.treasuryNumbers.iceBalance.graph;
+      setIceBalance(formatPrice(ice.slice(-1)[0].secondary * state.DGPrices.ice, 0));
     }
-  }, [state.treasuryNumbers, state.DGBalances.BALANCE_ICE]);
+  }, [state.treasuryNumbers]);
 
   return (
     <>

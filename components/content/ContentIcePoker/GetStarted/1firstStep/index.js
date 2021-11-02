@@ -2,6 +2,66 @@ import React from 'react'
 import { Button } from 'semantic-ui-react';
 import styles from './firstStep.module.scss'
 
+
+async function switchMaticNetwork() { 
+    try {
+        let ethereum = window.ethereum;
+        const data = [{
+            chainId: '0x89',
+            chainName: 'Matic Mainnet',
+            nativeCurrency:
+                {
+                    name: 'MATIC',
+                    symbol: 'MATIC',
+                    decimals: 18
+                },
+            rpcUrls: ['https://rpc-mainnet.maticvigil.com/'],
+            blockExplorerUrls: ['https://explorer.matic.network/'],
+        }]
+        
+        const tx = await ethereum.request({method: 'wallet_addEthereumChain', params:data}).catch()
+        if (tx) {
+            console.log(tx)
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function switchNetwork() {
+    // Check if MetaMask is installed    
+    if (window.ethereum) {
+        try {
+        // check if the chain to connect to is installed
+        await window.ethereum.request({
+            method: 'wallet_switchEthereumChain',
+            params: [{ chainId: '0x89' }],
+        });
+        } catch (error) {
+        // This error code indicates that the chain has not been added to MetaMask        
+        if (error.code === 4902) {
+            try {
+            await window.ethereum.request({
+                method: 'wallet_addEthereumChain',
+                params: [
+                {
+                    chainId: '0x38',
+                    rpcUrl: 'https://explorer.matic.network/',
+                },
+                ],
+            });
+            } catch (addError) {
+            console.error(addError);
+            }
+        }
+        console.error(error);
+        }
+    } else {
+        // if no window.ethereum then MetaMask is not installed
+        alert('MetaMask is not installed. Please consider installing it');
+    } 
+}
+
 const FirstStep = () => {
     return (
         <div className={styles.main_wrapper}>
@@ -63,10 +123,10 @@ const FirstStep = () => {
                     <div className={styles.button_div}>
                         <Button
                             onClick={() => {
-                                window.open("https://medium.com/stakingbits/setting-up-metamask-for-polygon-matic-network-838058f6d844", "_blank");
+                                switchMaticNetwork();
                             }}
                         >
-                            See Complete Tutorial
+                            Add Polygon
                         </Button>
                     </div>
                 </div>
