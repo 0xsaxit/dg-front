@@ -157,28 +157,30 @@ function ICEAttributes() {
           delegationInfo !== undefined &&
           Object.keys(delegationInfo).length
         ) {
-          delegationInfo.incomingDelegations.forEach(async (item, i) => {
-            const ownerAddress = item.tokenOwner;
-            const tokenId = item.tokenId;
+          Object.keys(delegationInfo).map(key => {
+            delegationInfo[key].forEach(async (item, i) => {
+              const ownerAddress = item.tokenOwner;
+              const tokenId = item.tokenId;
 
-            try {
-              const json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
-                Global.ADDRESSES.COLLECTION_V2_ADDRESS,
-                tokenId
-              );
+              try {
+                const json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
+                  Global.ADDRESSES.COLLECTION_V2_ADDRESS,
+                  tokenId
+                );
 
-              if (Object.keys(json).length) {
-                iceDelegatedItems.push({
-                  ownerAddress: ownerAddress,
-                  tokenID: tokenId,
-                  itemID: json.id.split(':').slice(-1),
-                  meta_data: json,
-                });
+                if (Object.keys(json).length) {
+                  iceDelegatedItems.push({
+                    ownerAddress: ownerAddress,
+                    tokenID: tokenId,
+                    itemID: json.id.split(':').slice(-1),
+                    meta_data: json,
+                  });
+                }
+              } catch (error) {
+                console.log('Fetch delegation info error: ' + error);
               }
-            } catch (error) {
-              console.log('Fetch delegation info error: ' + error);
-            }
-          });
+            });
+          })
         }
 
         dispatch({
