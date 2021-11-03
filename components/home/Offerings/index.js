@@ -102,7 +102,6 @@ const detailsCasinos = {
     'The Aquarium is an underwater-themed venue featuring neon lights, aquatic artwork, and virtual fish navigating the scene floor.',
     'Roulette',
     'Blackjack',
-    'https://play.decentraland.org/?position=-118%2C129&realm=dg',
   ],
 };
 
