@@ -8,7 +8,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        APP_ENV: testing # change this to adjust which environments APIs are called
+        APP_ENV: production # change this to adjust which environments APIs are called
     restart: always
     user: root
     ports:
