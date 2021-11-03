@@ -234,8 +234,7 @@ const MarketPlace = () => {
 
                 <div
                     style={{
-                        position: 'absolute',
-                        bottom: '20px',
+                        marginTop: '60px',
                         display: 'flex',
                         justifyContent: 'space-between',
                     }}
