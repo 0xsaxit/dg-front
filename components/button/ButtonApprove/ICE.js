@@ -45,7 +45,7 @@ function ICE({ passed = false }) {
 
       biconomy
         .onEvent(biconomy.READY, () => {
-          console.log('Mexa is Ready: Approve ETH');
+          console.log('Mexa is Ready: Approve ICE');
         })
         .onEvent(biconomy.ERROR, (error, message) => {
           console.error(error);
@@ -66,9 +66,9 @@ function ICE({ passed = false }) {
     });
 
     // update user's token array in database
-    console.log("Updating user's token array in database: ETH");
+    console.log("Updating user's token array in database: ICE");
 
-    await Fetch.UPDATE_TOKEN_ARRAY(state.userAddress, 4);
+    await Fetch.UPDATE_TOKEN_ARRAY(state.userAddress, 5);
 
     // update global state user information
     const refresh = !state.updateInfo;
@@ -79,12 +79,12 @@ function ICE({ passed = false }) {
     });
 
     // post authorization to database
-    console.log('Posting ETH authorization transaction to db: MAX_AMOUNT');
+    console.log('Posting ICE authorization transaction to db: MAX_AMOUNT');
 
     Fetch.POST_HISTORY(
       state.userAddress,
       Global.CONSTANTS.MAX_AMOUNT,
-      'ETH Authorization',
+      'ICE Authorization',
       'Confirmed',
       txHash,
       state.userStatus
@@ -95,11 +95,11 @@ function ICE({ passed = false }) {
   async function metaTransaction() {
     try {
       dispatch({
-        type: 'set_wethLoading',
+        type: 'set_iceLoading',
         data: true,
       });
 
-      console.log('ETH authorize amount: ' + Global.CONSTANTS.MAX_AMOUNT);
+      console.log('ICE authorize amount: ' + Global.CONSTANTS.MAX_AMOUNT);
 
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = tokenContract.methods
@@ -107,7 +107,7 @@ function ICE({ passed = false }) {
         .encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(
-        6,
+        8,
         functionSignature,
         tokenContract,
         state.userAddress,
@@ -118,7 +118,7 @@ function ICE({ passed = false }) {
         console.log('Biconomy meta-transaction failed');
 
         dispatch({
-          type: 'set_wethLoading',
+          type: 'set_iceLoading',
           data: false,
         });
       } else {
@@ -127,7 +127,7 @@ function ICE({ passed = false }) {
         dispatchActiveStatus(txHash);
 
         dispatch({
-          type: 'set_wethLoading',
+          type: 'set_iceLoading',
           data: false,
         });
       }
@@ -135,7 +135,7 @@ function ICE({ passed = false }) {
       console.log(error);
 
       dispatch({
-        type: 'set_wethLoading',
+        type: 'set_iceLoading',
         data: false,
       });
     }

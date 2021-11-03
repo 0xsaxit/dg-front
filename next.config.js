@@ -4,6 +4,9 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const path = require('path');
 
 module.exports = {
+  publicRuntimeConfig: {
+    APP_ENV: process.env.APP_ENV
+  },
   webpack: (config, { isServer }) => {
     //Added for svg files
     config.module.rules.push({

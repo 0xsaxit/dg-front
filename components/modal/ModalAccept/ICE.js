@@ -59,8 +59,8 @@ const ICE = () => {
       close
       trigger={
         <span>
-          {!state.wethLoading ? (
-            <Button disabled className={styles.disabled_enable}>Enable ICE</Button>
+          {!state.iceLoading ? (
+            <Button className={styles.disabled_enable}>Enable ICE</Button>
           ) : (
             <Button className={styles.disabled_enable}>
               <Loader

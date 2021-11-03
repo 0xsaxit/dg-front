@@ -154,6 +154,7 @@ const initialState = {
   atriLoading: false,
   wethLoading: false,
   dgLoading: 0,
+  iceLoading: false,
   dgShow: false,
   openModal: {
     resumeID: 0,
@@ -509,6 +510,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         dgLoading: action.data,
+      };
+    case 'set_iceLoading':
+      return {
+        ...state,
+        iceLoading: action.data,
       };
     case 'set_openModal':
       return {

@@ -23,7 +23,7 @@ const ICEWearableCard = props => {
   const buttonDelegate = 'Delegate';
   const buttonUndelegate = 'Undelegate';
   const { name, description, image, attributes } = props.data;
-  const rank = GetRank(parseInt(attributes.at(-1).value));
+  const rank = GetRank(parseInt(attributes.at(-2).value));
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -156,7 +156,7 @@ const ICEWearableCard = props => {
                     itemID={props.itemID}
                     imgSrc={image}
                     rank={rank.value}
-                    bonus={attributes.at(-1).value}
+                    bonus={attributes.at(-2).value}
                     description={description}
                     buttonName={buttonDelegate}
                   />
@@ -175,7 +175,7 @@ const ICEWearableCard = props => {
                     imgSrc={image}
                     rank={rank.value}
                     percentage={rank.percentage}
-                    bonus={attributes.at(-1).value}
+                    bonus={attributes.at(-2).value}
                     description={description}
                     name={name.split('(ICE')[0].trim()}
                   />
