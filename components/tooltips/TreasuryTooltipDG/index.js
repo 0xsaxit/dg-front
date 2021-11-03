@@ -27,9 +27,9 @@ const TreasuryTooltipDG = props => {
       const dg = state.treasuryNumbers.totalDgUSD;
       setDgTreasury(formatPrice(dg.graph.slice(-1)[0].secondary, 0));
 
-      setTempLoad(Number(state.treasuryNumbers.vestedDgBalance.graph[0].secondary));
+      setTempLoad(state.treasuryNumbers.vestedDgBalance.graph[0].secondary);
       setTempLoad2(tempLoad * state.DGPrices.dg);
-      setUnvestedDG(tempLoad2);
+      setUnvestedDG(formatPrice(tempLoad2, 0));
     }
   }, [state.treasuryNumbers, tempLoad, tempLoad2]);
 
