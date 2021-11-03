@@ -1,16 +1,26 @@
-import React, { useState, useContext } from 'react'
-import { GlobalContext } from '../../../../store';
+import React, {useContext, useState} from 'react'
+import {GlobalContext} from '../../../../store';
 import ModalMintWearable from 'components/modal/ModalMintWearable';
 import ModalLoginICE from 'components/modal/ModalLoginICE';
-import { Popup, Button } from 'semantic-ui-react';
+import {Button, Popup} from 'semantic-ui-react';
 import cn from 'classnames';
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
 import styles from './MarketPlace.module.scss'
+import getConfig from "next/config";
+import {appOptions} from "../../../../appOptions";
+
+// This imports NODE_ENV from next.config.js
+const { publicRuntimeConfig } = getConfig()
+const { APP_ENV } = publicRuntimeConfig;
+let renderCount = 0;
 
 const MarketPlace = () => {
   // dispatch new user status to Context API store
   const [state, dispatch] = useContext(GlobalContext);
+
+  console.log('render count: ', renderCount)
+  renderCount++
 
   // define local variables
   const [previewLevel, setPreviewLevel] = useState(0);
@@ -231,18 +241,25 @@ const MarketPlace = () => {
                         justifyContent: 'space-between',
                     }}
                 >
-                    {/*{state.userStatus && state.userLoggedIn ? (
-                        <ModalMintWearable
-                            index={i}
-                            className={styles.right_button}
-                            wearableImg={detailsICE[item][0]}
-                            wearableBodyType={detailsICE[item][3]}
-                            wearableBodyImg={detailsICE[item][5]}
-                            wearableName={detailsICE[item][1]}
-                        />
-                    ) : (
-                        <ModalLoginICE />
-                    )}*/}
+
+                  {(() => {
+                    // Always show in non-production env, only show in production env if flag is enabled
+                        if (appOptions.isMintWearableEnabled || APP_ENV !== 'production') {
+                          if (state.userStatus && state.userLoggedIn) {
+                            return <ModalMintWearable
+                                index={i}
+                                className={styles.right_button}
+                                wearableImg={detailsICE[item][0]}
+                                wearableBodyType={detailsICE[item][3]}
+                                wearableBodyImg={detailsICE[item][5]}
+                                wearableName={detailsICE[item][1]}
+                            />
+                          } else {
+                            return <ModalLoginICE/>
+                          }
+                        }
+                      }
+                  )()}
 
                     <a
                       href="https://opensea.io/collection/decentral-games-ice"
@@ -257,10 +274,6 @@ const MarketPlace = () => {
                         Buy on Opensea
                       </Button>
                     </a>
-
-                  {/* <ModalMintActivation /> */}
-                  {/* <ActivateWearableModal /> */}
-                  {/* <ModalActivationSuccess setPending={false} /> */}
                 </div>
               </div>
             ))}
