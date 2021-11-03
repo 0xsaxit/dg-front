@@ -363,7 +363,7 @@ const ModalDelegate = props => {
           open={open}
           close
           trigger={
-            <Button className={styles.open_button}>{props.buttonName}</Button>
+            <Button className={props.rank === 5 ? styles.open_button_fullWidth : styles.open_button}>{props.buttonName}</Button>
           }
         >
           <div className={styles.top_buttons}>
