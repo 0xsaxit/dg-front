@@ -183,7 +183,7 @@ const ModalDelegate = props => {
             <ul>
               <li>Let another player Play-to-Earn with your item</li>
               <li>Earn 30% of all ICE profits from their gameplay</li>
-              <li>Withdraw your delegation instantly at any time.</li>
+              <li>Withdraw your delegation at any time.</li>
             </ul>
           </div>
         </div>
