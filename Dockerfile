@@ -13,7 +13,7 @@ ARG CI=true
 ARG APP_ENV
 ENV APP_ENV=$APP_ENV
 
-RUN echo APP_ENV: $APP_ENV
+RUN echo build APP_ENV: $APP_ENV
 
 RUN apk add --no-cache ca-certificates git build-base python2 &&\
     rm -rf /var/cache/apk/*
@@ -44,11 +44,16 @@ LABEL website="Secure Docker Images https://secureimages.dev"
 LABEL description="We secure your business from scratch"
 LABEL maintainer="support@secureimages.dev"
 
+# This just clears the Cache for the proceeding RUN commands
+ARG TEST
+
+# Receive NODE_ENV from --build-arg
+ARG APP_ENV
 ENV NODE_ENV=production \
     PATH="/app/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" \
     APP_ENV=$APP_ENV
 
-RUN echo APP_ENV: $APP_ENV
+RUN echo runtime APP_ENV: $APP_ENV
 RUN env
 
 WORKDIR /app
