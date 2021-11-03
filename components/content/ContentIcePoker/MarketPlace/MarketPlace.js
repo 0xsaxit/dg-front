@@ -13,14 +13,13 @@ import {appOptions} from "../../../../appOptions";
 // This imports NODE_ENV from next.config.js
 const { publicRuntimeConfig } = getConfig()
 const { APP_ENV } = publicRuntimeConfig;
-let renderCount = 0;
+// let renderCount = 1;
 
 const MarketPlace = () => {
   // dispatch new user status to Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
-  console.log('render count: ', renderCount)
-  renderCount++
+  // console.log('render count: ', renderCount);  renderCount++;
 
   // define local variables
   const [previewLevel, setPreviewLevel] = useState(0);
