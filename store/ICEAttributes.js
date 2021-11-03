@@ -78,10 +78,12 @@ function ICEAttributes() {
   useEffect(() => {
     if (instances) {
       async function fetchData() {
-        dispatch({
-          type: 'ice_wearable_items_loading',
-          data: true,
-        });
+        if (!state.iceWearableItems || state.iceWearableItems.length === 0) {
+          dispatch({
+            type: 'ice_wearable_items_loading',
+            data: true,
+          });
+        }
 
         const tokenIDs = [];
         try {
