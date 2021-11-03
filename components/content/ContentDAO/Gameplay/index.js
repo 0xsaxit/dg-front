@@ -156,25 +156,6 @@ const Gameplay = props => {
           <div className={styles.gameplay_container}>
             <img
               className={styles.gameplay_img}
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1625014714/ETH_kzfhxr.png"
-            />
-
-            <div className={styles.gameplay_right}>
-              <div className="d-flex flex-column mr-2">
-                <p className={styles.gameplay_top}>Roulette Rate</p>
-                <p className={styles.gameplay_title}>7 ETH</p>
-              </div>
-
-              <div className={styles.reward_stats}>
-                <p className={styles.gameplay_right}>Blackjack Rate</p>
-                <p className={styles.gameplay_right_bottom}>23 ETH</p>
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.gameplay_container}>
-            <img
-              className={styles.gameplay_img}
               src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620413783/MANA_jw7ylg.png"
             />
 
@@ -187,25 +168,6 @@ const Gameplay = props => {
               <div className={styles.reward_stats}>
                 <p className={styles.gameplay_right}>Blackjack Rate</p>
                 <p className={styles.gameplay_right_bottom}>82K MANA</p>
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.gameplay_container}>
-            <img
-              className={styles.gameplay_img}
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620413765/TETHER_xhvz1p.png"
-            />
-
-            <div className={styles.gameplay_right}>
-              <div className="d-flex flex-column mr-2">
-                <p className={styles.gameplay_top}>Roulette Rate</p>
-                <p className={styles.gameplay_title}>22K USDT</p>
-              </div>
-
-              <div className={styles.reward_stats}>
-                <p className={styles.gameplay_right}>Blackjack Rate</p>
-                <p className={styles.gameplay_right_bottom}>74K USDT</p>
               </div>
             </div>
           </div>
@@ -232,18 +194,37 @@ const Gameplay = props => {
           <div className={styles.gameplay_container}>
             <img
               className={styles.gameplay_img}
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620413783/ATARI_ttfcry.png"
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1625014714/ETH_kzfhxr.png"
             />
 
             <div className={styles.gameplay_right}>
               <div className="d-flex flex-column mr-2">
                 <p className={styles.gameplay_top}>Roulette Rate</p>
-                <p className={styles.gameplay_title}>400K ATRI</p>
+                <p className={styles.gameplay_title}>7 ETH</p>
               </div>
 
               <div className={styles.reward_stats}>
                 <p className={styles.gameplay_right}>Blackjack Rate</p>
-                <p className={styles.gameplay_right_bottom}>1.35M ATRI</p>
+                <p className={styles.gameplay_right_bottom}>23 ETH</p>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.gameplay_container}>
+            <img
+              className={styles.gameplay_img}
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1635286999/Group_80_exgcle.png"
+            />
+
+            <div className={styles.gameplay_right}>
+              <div className="d-flex flex-column mr-2">
+                <p className={styles.gameplay_top}>Roulette Rate</p>
+                <p className={styles.gameplay_title}>-- ICE</p>
+              </div>
+
+              <div className={styles.reward_stats}>
+                <p className={styles.gameplay_right}>Blackjack Rate</p>
+                <p className={styles.gameplay_right_bottom}>-- ICE</p>
               </div>
             </div>
           </div>
