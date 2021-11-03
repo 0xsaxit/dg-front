@@ -83,7 +83,7 @@ const ICEWearableCard = props => {
     return (
       <Aux>
         <div className={styles.wear_box_purple}>
-          {rank.value <= 0 ? (
+          {!props.isActivated ? (
             <IceNeedToActivateTooltip />
           ) : (
             <IceP2EEnabledTooltip />

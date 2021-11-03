@@ -179,6 +179,7 @@ const Wearables = ({ state }) => {
               data={item.meta_data}
               tokenID={item.tokenID}
               itemID={item.itemID}
+              isActivated={item.isActivated}
             />
           ))}
 
