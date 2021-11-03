@@ -34,7 +34,8 @@ RUN npx next telemetry disable &&\
     env
 
 # Build For Proper Env - construct the string then run the command
-RUN cmd="yarn run build:$APP_ENV"; eval $cmd;
+RUN cmd="NODE_OPTIONS=\"--max-old-space-size=8192\" yarn run build:$APP_ENV"; \
+    eval $cmd;
 
 # CMD ["sleep", "3d"]
 ################################################################################
