@@ -1,16 +1,25 @@
-import React, { useState, useContext } from 'react'
-import { GlobalContext } from '../../../../store';
+import React, {useContext, useState} from 'react'
+import {GlobalContext} from '../../../../store';
 import ModalMintWearable from 'components/modal/ModalMintWearable';
 import ModalLoginICE from 'components/modal/ModalLoginICE';
-import { Popup, Button } from 'semantic-ui-react';
+import {Button, Popup} from 'semantic-ui-react';
 import cn from 'classnames';
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
 import styles from './MarketPlace.module.scss'
+import getConfig from "next/config";
+import {appOptions} from "../../../../appOptions";
+
+// This imports NODE_ENV from next.config.js
+const { publicRuntimeConfig } = getConfig()
+const { APP_ENV } = publicRuntimeConfig;
+// let renderCount = 1;
 
 const MarketPlace = () => {
   // dispatch new user status to Context API store
   const [state, dispatch] = useContext(GlobalContext);
+
+  // console.log('render count: ', renderCount);  renderCount++;
 
   // define local variables
   const [previewLevel, setPreviewLevel] = useState(0);
@@ -21,7 +30,7 @@ const MarketPlace = () => {
       'Trousers',
       'DG Suit',
       'Legs',
-      '1 of 100',
+      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatLegs_tn9b57.svg',
     ],
     Top: [
@@ -29,7 +38,7 @@ const MarketPlace = () => {
       'Blazer',
       'DG Suit',
       'Torso',
-      '1 of 100',
+      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631728323/FlatClothes-01_1_kbpyfj.svg',
     ],
     Cigar: [
@@ -37,7 +46,7 @@ const MarketPlace = () => {
       'Cigar',
       'DG Suit',
       'Head',
-      '1 of 100',
+      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatHat_pypkjx.svg',
     ],
     Shoes: [
@@ -45,7 +54,7 @@ const MarketPlace = () => {
       'Loafers',
       'DG Suit',
       'Feet',
-      '1 of 100',
+      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatShoes_hjvr3p.svg',
     ],
     Glasses: [
@@ -53,7 +62,7 @@ const MarketPlace = () => {
       'Shades',
       'DG Suit',
       'Accessory',
-      '1 of 100',
+      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatAccessory_s1cjpg.svg',
     ],
   };
@@ -225,42 +234,45 @@ const MarketPlace = () => {
 
                 <div
                     style={{
-                        position: 'absolute',
-                        bottom: '20px',
+                        marginTop: '24px',
                         display: 'flex',
                         justifyContent: 'space-between',
+                        width: '100%',
                     }}
                 >
-                    {/*{state.userStatus && state.userLoggedIn ? (
-                        <ModalMintWearable
-                            index={i}
-                            className={styles.right_button}
-                            wearableImg={detailsICE[item][0]}
-                            wearableBodyType={detailsICE[item][3]}
-                            wearableBodyImg={detailsICE[item][5]}
-                            wearableName={detailsICE[item][1]}
-                        />
-                    ) : (
-                        <ModalLoginICE />
-                    )}*/}
 
-                    <a
-                      href="https://opensea.io/collection/decentral-games-ice"
-                      target="_blank"
-                      style={{ width: '100%' }}
-                    >
-                      <Button 
-                          href="https://opensea.io/collection/decentral-games-ice"
-                          target="_blank"
-                          className={styles.opensea}
-                      >
-                        Buy on Opensea
-                      </Button>
-                    </a>
-
-                  {/* <ModalMintActivation /> */}
-                  {/* <ActivateWearableModal /> */}
-                  {/* <ModalActivationSuccess setPending={false} /> */}
+                  {(() => {
+                    // Always show in non-production env, only show in production env if flag is enabled
+                        if (appOptions.isMintWearableEnabled || APP_ENV !== 'production') {
+                          if (state.userStatus && state.userLoggedIn) {
+                            return <ModalMintWearable
+                                index={i}
+                                className={styles.right_button}
+                                wearableImg={detailsICE[item][0]}
+                                wearableBodyType={detailsICE[item][3]}
+                                wearableBodyImg={detailsICE[item][5]}
+                                wearableName={detailsICE[item][1]}
+                            />
+                          } else {
+                            return <ModalLoginICE/>
+                          }
+                        } else {
+                          return                
+                            <a
+                              href="https://opensea.io/collection/decentral-games-ice"
+                              target="_blank"
+                              style={{
+                                  width: '100%',
+                              }}
+                            >
+                              <Button
+                                className={styles.opensea}>
+                                Buy on Opensea
+                              </Button>
+                            </a>
+                        }
+                      }
+                  )()}
                 </div>
               </div>
             ))}

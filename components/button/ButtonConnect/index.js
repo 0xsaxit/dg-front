@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import cn from 'classnames';
 import { Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
-import Fetch from 'common/Fetch';
+import Fetch, { API_BASE_URL } from 'common/Fetch';
 import call from 'common/API';
 import Aux from 'components/_Aux';
 import { useMediaQuery } from 'hooks';
@@ -26,7 +26,7 @@ const assignToken = async () => {
     );
 
     const token = await call(
-      `${process.env.NEXT_PUBLIC_API_URL}/authentication/getWebAuthToken?address=${userAddress}&signature=${signature}&timestamp=${timestamp}`,
+      `${API_BASE_URL}/authentication/getWebAuthToken?address=${userAddress}&signature=${signature}&timestamp=${timestamp}`,
       'GET',
       false
     );

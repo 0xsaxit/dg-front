@@ -72,7 +72,7 @@ const ModalMint = props => {
             />
           </div>
           <div className={styles.card}>
-            {100 - (itemLimitsArray[props.index][0] - 1)} of 100
+            {(itemLimitsArray[props.index][0])} of 100 left
           </div>
         </div>
       </div>
@@ -82,7 +82,7 @@ const ModalMint = props => {
   function priceAndStaked() {
     return (
       <div className={styles.price_area}>
-        Price <span>${(state.DGPrices.eth / 10).toFixed(2)}</span>
+        Price <span>(${(state.DGPrices.eth / 10).toFixed(2)})</span>
         <div className={styles.card_area}>
           <div className={styles.card_area_body}>
             {state.userBalances[2][3] < Global.CONSTANTS.WETH_MINT_AMOUNT ? (
@@ -121,7 +121,7 @@ const ModalMint = props => {
 
             <div className={styles.network}>(On Polygon)</div>
           </div>
-          &nbsp;+&nbsp;
+          <p style={{ margin: '0px 8px 0px 8px' }}>+</p>
           <div className={styles.card_area_body}>
             {state.stakingBalances.BALANCE_USER_GOVERNANCE <
             Global.CONSTANTS.DG_STAKED_AMOUNT ? (

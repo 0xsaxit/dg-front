@@ -44,15 +44,19 @@ const AccountData = props => {
 
   useEffect(() => {
     (async () => {
-      let json = await Fetch.ICE_AMOUNTS(state.userAddress);
+      try {
+        let json = await Fetch.ICE_AMOUNTS(state.userAddress);
 
-      console.log('!!!');
-      console.log(json);
+        console.log('---> ICE_AMOUNTS FAILING <---');
+        console.log(json);
 
-      const unclaimed = json.totalUnclaimedAmount;
-      const claimed = json.totalClaimedAmount;
-      const total = Number(unclaimed) + Number(claimed);
-      setTotalICE(formatPrice(total, 0));
+        const unclaimed = json.totalUnclaimedAmount;
+        const claimed = json.totalClaimedAmount;
+        const total = Number(unclaimed) + Number(claimed);
+        setTotalICE(formatPrice(total, 0));
+      } catch (error) {
+        console.log('Error with total ICE amounts: ' + error);
+      }
     })();
   }, []);
 

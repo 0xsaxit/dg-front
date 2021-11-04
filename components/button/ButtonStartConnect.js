@@ -1,8 +1,8 @@
 import { useState, useContext, useEffect } from 'react';
 import { GlobalContext } from '../../store';
 import { useRouter } from 'next/router';
-import { Button, Icon, Modal } from 'semantic-ui-react';
-import Fetch from 'common/Fetch';
+import { Button } from 'semantic-ui-react';
+import Fetch, { API_BASE_URL } from 'common/Fetch';
 import call from 'common/API';
 import Aux from '../_Aux';
 import ModalLoginTop from '../modal/ModalLoginTop';
@@ -22,7 +22,7 @@ const assignToken = async () => {
     );
 
     const token = await call(
-      `${process.env.NEXT_PUBLIC_API_URL}/authentication/getWebAuthToken?address=${userAddress}&signature=${signature}&timestamp=${timestamp}`,
+      `${API_BASE_URL}/authentication/getWebAuthToken?address=${userAddress}&signature=${signature}&timestamp=${timestamp}`,
       'GET',
       false
     );

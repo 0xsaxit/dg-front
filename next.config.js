@@ -4,6 +4,10 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const path = require('path');
 
 module.exports = {
+  productionBrowserSourceMaps: process.env.APP_ENV !== 'production' ? true : false, // enables debugging for non production mode
+  publicRuntimeConfig: {
+    APP_ENV: process.env.APP_ENV
+  },
   webpack: (config, { isServer }) => {
     //Added for svg files
     config.module.rules.push({
