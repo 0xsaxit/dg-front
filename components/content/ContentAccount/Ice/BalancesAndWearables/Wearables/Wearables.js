@@ -5,7 +5,6 @@ import { Button } from 'semantic-ui-react';
 import styles from './Wearables.module.scss';
 import Fetch from '../../../../../../common/Fetch';
 
-
 const Wearables = ({ state }) => {
   // define local variables
   const [maxICEBonus, setMaxICEBonus] = useState(0);
