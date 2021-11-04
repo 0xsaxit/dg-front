@@ -1,6 +1,7 @@
 import ReactGA from 'react-ga';
 import Global from './Constants';
 
+
 export const initGA = (userAddress, userStatus, winningsDAI, winningsMANA) => {
   // console.log('user address (GA): ' + userAddress);
   // console.log('user status (GA): ' + userStatus);

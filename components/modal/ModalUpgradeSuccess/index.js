@@ -18,35 +18,15 @@ const ModalUpgradeSuccess = props => {
     const itemInfo = state.iceWearableItems.filter(item => item.tokenID === props.tokenID)[0];
     setImage(itemInfo.meta_data? itemInfo.meta_data.image : '');
     setDescription(itemInfo.meta_data? itemInfo.meta_data.description.split(' ').at(-1).replace('/', ' of '):'');
-    setRank(itemInfo.meta_data? GetRank(parseInt(itemInfo.meta_data.attributes.at(-1).value)):0);
+    setRank(itemInfo.meta_data? GetRank(parseInt(itemInfo.meta_data.attributes.at(-2).value)):0);
   }, [state.iceWearableItems])
 
   function refresh() {
-    // update global state token amounts
-    const refreshTokenAmounts = !state.refreshTokenAmounts;
-    dispatch({
-      type: 'refresh_token_amounts',
-      data: refreshTokenAmounts,
-    });
-    
-    // update global state wearables data
-    const refreshWearable = !state.refreshWearable;
-    dispatch({
-      type: 'refresh_wearable_items',
-      data: refreshWearable,
-    });
-
     // update global state balances
     const refreshBalances = !state.refreshBalances;
     dispatch({
       type: 'refresh_balances',
       data: refreshBalances,
-    });
-
-    // update global state iceWearableUpdatedSuccess
-    dispatch({
-      type: 'ice_wearable_update_success',
-      data: true,
     });
   }
 
