@@ -72,7 +72,7 @@ const ModalMint = props => {
             />
           </div>
           <div className={styles.card}>
-            {100 - (itemLimitsArray[props.index][0] - 1)} of 100
+            {(itemLimitsArray[props.index][0])} of 100 left
           </div>
         </div>
       </div>
