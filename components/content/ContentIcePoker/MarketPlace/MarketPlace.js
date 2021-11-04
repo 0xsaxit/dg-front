@@ -30,7 +30,7 @@ const MarketPlace = () => {
       'Trousers',
       'DG Suit',
       'Legs',
-      '1 of 100',
+      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatLegs_tn9b57.svg',
     ],
     Top: [
@@ -38,7 +38,7 @@ const MarketPlace = () => {
       'Blazer',
       'DG Suit',
       'Torso',
-      '1 of 100',
+      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631728323/FlatClothes-01_1_kbpyfj.svg',
     ],
     Cigar: [
@@ -46,7 +46,7 @@ const MarketPlace = () => {
       'Cigar',
       'DG Suit',
       'Head',
-      '1 of 100',
+      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatHat_pypkjx.svg',
     ],
     Shoes: [
@@ -54,7 +54,7 @@ const MarketPlace = () => {
       'Loafers',
       'DG Suit',
       'Feet',
-      '1 of 100',
+      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatShoes_hjvr3p.svg',
     ],
     Glasses: [
@@ -62,7 +62,7 @@ const MarketPlace = () => {
       'Shades',
       'DG Suit',
       'Accessory',
-      '1 of 100',
+      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatAccessory_s1cjpg.svg',
     ],
   };
@@ -234,9 +234,10 @@ const MarketPlace = () => {
 
                 <div
                     style={{
-                        marginTop: '60px',
+                        marginTop: '24px',
                         display: 'flex',
                         justifyContent: 'space-between',
+                        width: '100%',
                     }}
                 >
 
@@ -255,23 +256,24 @@ const MarketPlace = () => {
                           } else {
                             return <ModalLoginICE/>
                           }
+                        } else {
+                          return 
+                            <a
+                              href="https://opensea.io/collection/decentral-games-ice"
+                              target="_blank"
+                              style={{
+                                width: '100%',
+                              }}
+                            >
+                              <Button 
+                                className={styles.opensea}
+                              >
+                                Buy on Opensea
+                              </Button>
+                            </a>
                         }
                       }
                   )()}
-
-                    <a
-                      href="https://opensea.io/collection/decentral-games-ice"
-                      target="_blank"
-                      style={{ width: '100%' }}
-                    >
-                      <Button 
-                          href="https://opensea.io/collection/decentral-games-ice"
-                          target="_blank"
-                          className={styles.opensea}
-                      >
-                        Buy on Opensea
-                      </Button>
-                    </a>
                 </div>
               </div>
             ))}
