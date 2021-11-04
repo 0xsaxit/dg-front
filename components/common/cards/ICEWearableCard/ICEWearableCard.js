@@ -25,6 +25,9 @@ const ICEWearableCard = props => {
   const { name, description, image, attributes } = props.data;
   const rank = GetRank(parseInt(attributes.at(-2).value));
 
+  console.log('!!!');
+  console.log(props.data);
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // fetch user's incoming/outgoing delegate mapping data. Refreshes upon delegation/undelegation
@@ -132,7 +135,7 @@ const ICEWearableCard = props => {
           {imageAndDescription()}
 
           <div className={styles.button_area}>
-            {props.isActivated ? (
+            {!props.isActivated ? (
               state.DGBalances.BALANCE_CHILD_DG <
               state.tokenAmounts.DG_MOVE_AMOUNT ? (
                 <NeedMoreDGActivateModal />
