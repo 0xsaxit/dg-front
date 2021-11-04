@@ -25,9 +25,6 @@ const ICEWearableCard = props => {
   const { name, description, image, attributes } = props.data;
   const rank = GetRank(parseInt(attributes.at(-2).value));
 
-  console.log('!!!');
-  console.log(props.data);
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // fetch user's incoming/outgoing delegate mapping data. Refreshes upon delegation/undelegation
