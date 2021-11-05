@@ -252,6 +252,20 @@ const MarketPlace = () => {
                           } else {
                             return <ModalLoginICE className={styles.flex_50}></ModalLoginICE>
                           }
+                        } else {
+                          return 
+                            <a
+                              href="https://opensea.io/collection/decentral-games-ice"
+                              target="_blank"
+                              style={{
+                                 width: '100%',
+                              }}
+                            >
+                              <Button
+                                className={styles.opensea}>
+                                Buy on Opensea
+                              </Button>
+                          </a>
                         }
                       }
                   )()}
