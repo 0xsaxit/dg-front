@@ -53,6 +53,13 @@ const Balances = (props) => {
   const [resumeModal6, setResumeModal6] = useState(0); // USDT withdraw
   const [lock, setLock] = useState(0);
 
+  function formatPrice(balanceDG, units) {
+    const priceFormatted = Number(balanceDG)
+      .toFixed(units)
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+    return priceFormatted;
+  }
 
   useEffect(() => {
     if (state.dgLoading === 1) {
@@ -211,7 +218,7 @@ const Balances = (props) => {
           <div className={styles.float_right}>
             <span className={styles.balance_column_header}>
               <p className={styles.bold_text}>{parseInt(state.userBalances[1][1]).toLocaleString()} MANA</p>
-              <p className={styles.bold_text}>${(state.userBalances[1][1] * state.DGPrices.mana).toFixed(2)}</p>
+              <p className={styles.bold_text}>${formatPrice(state.userBalances[1][1] * state.DGPrices.mana, 2)}</p>
             </span>
 
             <div>
@@ -336,7 +343,7 @@ const Balances = (props) => {
               <p className={styles.bold_text}>
                 {parseInt(state.userBalances[0][1]).toLocaleString()} DAI
               </p>
-              <p className={styles.bold_text}>${(state.userBalances[0][1] * state.DGPrices.dai).toFixed(2)}</p>
+              <p className={styles.bold_text}>${formatPrice(state.userBalances[0][1] * state.DGPrices.dai, 2)}</p>
             </span>
 
             <div>
@@ -458,7 +465,7 @@ const Balances = (props) => {
           <div className={styles.float_right}>
             <span className={styles.balance_column_header}>
               <p className={styles.bold_text}>{Number(state.userBalances[2][3]).toFixed(3)} ETH</p>
-              <p className={styles.bold_text}>${(state.userBalances[2][3] * state.DGPrices.eth).toFixed(2)}</p>
+              <p className={styles.bold_text}>${formatPrice(state.userBalances[2][3] * state.DGPrices.eth, 2)}</p>
             </span>
 
             <div>
@@ -504,26 +511,18 @@ const Balances = (props) => {
           <div className={styles.float_right}>
             <span className={styles.balance_column_header}>
               <p className={styles.bold_text}>{parseInt(state.iceAmounts.ICE_AVAILABLE_AMOUNT).toLocaleString()} ICE</p>
-              <p className={styles.bold_text}>${(state.iceAmounts.ICE_AVAILABLE_AMOUNT * state.DGPrices.ice).toFixed(2)}</p>
+              <p className={styles.bold_text}>${formatPrice(state.iceAmounts.ICE_AVAILABLE_AMOUNT * state.DGPrices.ice, 2)}</p>
             </span>
 
             <div>
               {state.userInfo.tokenArray[5] ? (
                 <span>
                   <Button
-                    className={styles.deposit_button}
-                    href="https://wallet.matic.network/bridge/"
+                    className={styles.temp_deposit}
+                    href="https://wallet.polygon.technology/bridge"
                     target="_blank"
                   >
-                    Deposit
-                  </Button>
-
-                  <Button
-                    className={styles.deposit_button}
-                    href="https://wallet.matic.network/bridge/"
-                    target="_blank"
-                  >
-                    Withdraw
+                    Deposit & withdraw
                   </Button>
                 </span>
               ) : (

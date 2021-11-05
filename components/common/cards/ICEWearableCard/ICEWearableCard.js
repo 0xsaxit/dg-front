@@ -132,7 +132,7 @@ const ICEWearableCard = props => {
           {imageAndDescription()}
 
           <div className={styles.button_area}>
-            {rank.value === 0 ? (
+            {!props.isActivated ? (
               state.DGBalances.BALANCE_CHILD_DG <
               state.tokenAmounts.DG_MOVE_AMOUNT ? (
                 <NeedMoreDGActivateModal />
@@ -165,6 +165,7 @@ const ICEWearableCard = props => {
                     tokenID={props.tokenID}
                     ownerAddress={state.userAddress}
                     delegateAddress={delegateAddress}
+                    rank={rank.value}
                     buttonName={buttonUndelegate}
                   />
                 )}

@@ -5,15 +5,14 @@ import { Button } from 'semantic-ui-react';
 import styles from './Wearables.module.scss';
 import Fetch from '../../../../../../common/Fetch';
 
-
 const Wearables = ({ state }) => {
   // define local variables
   const [maxICEBonus, setMaxICEBonus] = useState(0);
   const activeWearables = state.iceWearableItems.filter(
-    item => item.meta_data && item.meta_data.attributes.at(-1).value > 0
+    item => item.meta_data && item.isActivated && item.meta_data.attributes.at(-2).value > 0
   );
   const delegatedWearables = state.iceDelegatedItems.filter(
-    item => item.meta_data && item.meta_data.attributes.at(-1).value > 0
+    item => item.meta_data && item.meta_data.attributes.at(-2).value > 0
   );
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -140,6 +139,7 @@ const Wearables = ({ state }) => {
       setMaxICEBonus(Math.round(maxICEValue * 1000) / 1000);
     })();
   }, [state.refreshDelegateInfo]);
+
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////

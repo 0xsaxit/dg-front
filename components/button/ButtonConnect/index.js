@@ -33,6 +33,8 @@ const assignToken = async () => {
 
     localStorage.setItem('token', token);
     localStorage.setItem('expiretime', Number(timestamp / 1000 + 12 * 3600));
+
+    window.location.reload();
   }
 };
 
