@@ -399,10 +399,9 @@ const MarketPlace = () => {
                       if (appOptions.isMintWearableEnabled || APP_ENV !== 'production') {
                         if (state.userStatus && state.userLoggedIn) {
                           return <div
-                            className={cn(styles.flex_50)}>
+                            className={styles.flex_50}>
                             <ModalMintWearable
                               index={i}
-                              className={styles.flex_50}
                               wearableImg={detailsICESuit[item][0]}
                               wearableBodyType={detailsICESuit[item][3]}
                               wearableBodyImg={detailsICESuit[item][5]}
@@ -410,7 +409,9 @@ const MarketPlace = () => {
                             />
                           </div>
                         } else {
-                          return <ModalLoginICE className={styles.flex_50} />
+                          return <div
+                              className={styles.flex_50}><ModalLoginICE />
+                          </div>
                         }
                       }
                     }
@@ -423,10 +424,10 @@ const MarketPlace = () => {
                         width: '100%',
                       }}
                     >
-                      <Button
-                        className={cn(styles.opensea)}>
-                        Buy on Opensea
-                      </Button>
+                        <Button
+                            className={styles.wearable_button}>
+                            Buy on Opensea
+                        </Button>
                     </a>
                   </div>
                 </div>
