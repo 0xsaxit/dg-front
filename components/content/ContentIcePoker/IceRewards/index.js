@@ -4,6 +4,7 @@ import { Button } from 'semantic-ui-react'
 import cn from 'classnames'
 import styles from './IceRewards.module.scss'
 import Fetch from '../../../../common/Fetch';
+import FoxAnimation from 'components/lottieAnimation/animations/fox'
 
 const IceRewards = () => {
   // dispatch user's ICE amounts to the Context API store
@@ -121,62 +122,70 @@ const IceRewards = () => {
     }
 
     dispatch({
-        type: 'show_toastMessage',
-        data: msg,
+      type: 'show_toastMessage',
+      data: msg,
     });
   }
 
   return (
-    <div className={styles.main_wrapper}>
-      <div className={styles.title}>
-        <h1>Claim Your ICE Rewards!</h1>
-        <p>
-          Payouts at midnight UTC daily. Next payout in{' '}
-          <abbr>{payoutTime}</abbr>
-        </p>
-      </div>
-
-      <div className={styles.lower}>
-        <p className={styles.lower_header}>Claim ICE Rewards</p>
-        <div className={styles.lower_value}>
-          <p className={styles.ICE_value}>
-            {totalICE}
-          </p>
-          <img
-            style={{ marginTop: '-4px' }}
-            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
-          />
+    <>
+      {!state.userStatus ?
+        <div className={styles.fullWidth}>
+          <FoxAnimation />
         </div>
-        <p className={styles.price}>
-          $
-          {formatPrice(
-            totalICE * state.DGPrices.ice,
-            2
-          )}
-        </p>
+        :
+        <div className={styles.main_wrapper}>
+          <div className={styles.title}>
+            <h1>Claim Your ICE Rewards!</h1>
+            <p>
+              Payouts at midnight UTC daily. Next payout in{' '}
+              <abbr>{payoutTime}</abbr>
+            </p>
+          </div>
 
-        <p className={styles.lower_text}>
-          ICE Earnings vary based on your total equipped wearables, wearable
-          ranks, and your placement in daily ICE Poker tournaments.
-        </p>
+          <div className={styles.lower}>
+            <p className={styles.lower_header}>Claim ICE Rewards</p>
+            <div className={styles.lower_value}>
+              <p className={styles.ICE_value}>
+                {totalICE}
+              </p>
+              <img
+                style={{ marginTop: '-4px' }}
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
+              />
+            </div>
+            <p className={styles.price}>
+              $
+              {formatPrice(
+                totalICE * state.DGPrices.ice,
+                2
+              )}
+            </p>
 
-        {!clicked ? (
-          <Button
-            className={cn(styles.claim_ICE, styles.lower_button)}
-            onClick={() => claimTokens()}
-          >
-            Claim {formatPrice(totalICE, 0)} ICE
-          </Button>
-        ) : (
-          <Button
-            className={cn(styles.claim_ICE, styles.lower_button)}
-            disabled
-          >
-            Claim {formatPrice(totalICE, 0)} ICE
-          </Button>
-        )}
-      </div>
-    </div>
+            <p className={styles.lower_text}>
+              ICE Earnings vary based on your total equipped wearables, wearable
+              ranks, and your placement in daily ICE Poker tournaments.
+            </p>
+
+            {!clicked ? (
+              <Button
+                className={cn(styles.claim_ICE, styles.lower_button)}
+                onClick={() => claimTokens()}
+              >
+                Claim {formatPrice(totalICE, 0)} ICE
+              </Button>
+            ) : (
+              <Button
+                className={cn(styles.claim_ICE, styles.lower_button)}
+                disabled
+              >
+                Claim {formatPrice(totalICE, 0)} ICE
+              </Button>
+            )}
+          </div>
+        </div >
+      }
+    </>
   );
 };
 
