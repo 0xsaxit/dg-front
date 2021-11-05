@@ -232,34 +232,31 @@ const MarketPlace = () => {
                   <h3 className={styles.nft_other_h3}>{detailsICE[item][1]}</h3>
                 </div>
 
-                <div
-                    style={{
-                        marginTop: '24px',
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        width: '100%',
-                    }}
-                >
+                <div className={styles.button_container}>
 
                   {(() => {
                     // Always show in non-production env, only show in production env if flag is enabled
                         if (appOptions.isMintWearableEnabled || APP_ENV !== 'production') {
                           if (state.userStatus && state.userLoggedIn) {
-                            return <ModalMintWearable
+                            return <div
+                                className={cn(styles.flex_50)}>
+                              <ModalMintWearable
                                 index={i}
-                                className={styles.right_button}
+                                className={styles.flex_50}
                                 wearableImg={detailsICE[item][0]}
                                 wearableBodyType={detailsICE[item][3]}
                                 wearableBodyImg={detailsICE[item][5]}
                                 wearableName={detailsICE[item][1]}
-                            />
+                            ></ModalMintWearable>
+                            </div>
                           } else {
-                            return <ModalLoginICE/>
+                            return <ModalLoginICE className={styles.flex_50}></ModalLoginICE>
                           }
                         }
                       }
                   )()}
                     <a
+                        className={styles.flex_50}
                         href="https://opensea.io/collection/decentral-games-ice"
                         target="_blank"
                         style={{
@@ -267,7 +264,7 @@ const MarketPlace = () => {
                         }}
                     >
                         <Button
-                            className={styles.opensea}>
+                            className={cn(styles.opensea)}>
                             Buy on Opensea
                         </Button>
                     </a>
