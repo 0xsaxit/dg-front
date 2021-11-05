@@ -15,7 +15,7 @@ const ICEWearableCard = props => {
   // define local variables
   const buttonUndelegate = 'Withdraw Delegation';
   const { name, description, image, attributes } = props.data;
-  const rank = GetRank(parseInt(attributes.at(-1).value));
+  const rank = GetRank(parseInt(attributes.at(-2).value));
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////

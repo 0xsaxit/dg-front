@@ -5,15 +5,14 @@ import { Button } from 'semantic-ui-react';
 import styles from './Wearables.module.scss';
 import Fetch from '../../../../../../common/Fetch';
 
-
 const Wearables = ({ state }) => {
   // define local variables
   const [maxICEBonus, setMaxICEBonus] = useState(0);
   const activeWearables = state.iceWearableItems.filter(
-    item => item.meta_data && item.meta_data.attributes.at(-1).value > 0
+    item => item.meta_data && item.isActivated && item.meta_data.attributes.at(-2).value > 0
   );
   const delegatedWearables = state.iceDelegatedItems.filter(
-    item => item.meta_data && item.meta_data.attributes.at(-1).value > 0
+    item => item.meta_data && item.meta_data.attributes.at(-2).value > 0
   );
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -143,6 +142,7 @@ const Wearables = ({ state }) => {
     }
   }, [state.refreshDelegateInfo]);
 
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   return (
@@ -152,7 +152,7 @@ const Wearables = ({ state }) => {
           <h2>ICED Wearables</h2>
           <p>{`(${activeWearables.length + delegatedWearables.length} of ${
             state.iceWearableItems.length + state.iceDelegatedItems.length
-          } Active) ${maxICEBonus}% Max ICE Bonus`}</p>
+          } Active)`}</p>
         </div>
         <Button className={styles.open_sea} href="/ice/marketplace">
           Mint Wearable
@@ -182,6 +182,7 @@ const Wearables = ({ state }) => {
               data={item.meta_data}
               tokenID={item.tokenID}
               itemID={item.itemID}
+              isActivated={item.isActivated}
             />
           ))}
 

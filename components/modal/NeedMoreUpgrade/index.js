@@ -179,7 +179,7 @@ const NeedMoreUpgrade = ({
               </Button>
 
               <p className={styles.availability_info}>
-                {state.xpAmounts} XP Available
+                {state.userInfo.balanceXP} XP Available
               </p>
             </div>
           </div>

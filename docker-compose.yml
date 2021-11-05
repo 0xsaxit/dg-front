@@ -8,7 +8,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_API_URL: https://api.decentral.games
+        APP_ENV: production # change this to adjust which environments APIs are called
     restart: always
     user: root
     ports:

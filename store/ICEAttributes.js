@@ -78,10 +78,12 @@ function ICEAttributes() {
   useEffect(() => {
     if (instances) {
       async function fetchData() {
-        dispatch({
-          type: 'ice_wearable_items_loading',
-          data: true,
-        });
+        if (!state.iceWearableItems || state.iceWearableItems.length === 0) {
+          dispatch({
+            type: 'ice_wearable_items_loading',
+            data: true,
+          });
+        }
 
         const tokenIDs = [];
         try {
@@ -107,6 +109,7 @@ function ICEAttributes() {
         let iceWearableItems = [];
         for (var i = 0; i < tokenIDs.length; i++) {
           try {
+            const is_activated = await ICERegistrantContract.methods.isIceEnabled(state.userAddress, "0xcb06f6aee0655252a3f6f2884680421d55d3c645", tokenIDs[i].tokenID).call()
             const json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
               Global.ADDRESSES.COLLECTION_V2_ADDRESS,
               tokenIDs[i].tokenID
@@ -118,6 +121,7 @@ function ICEAttributes() {
                 tokenID: tokenIDs[i].tokenID,
                 itemID: json.id.split(':').slice(-1),
                 meta_data: json,
+                isActivated: is_activated
               });
             }
           } catch (error) {
@@ -180,6 +184,7 @@ function ICEAttributes() {
             }
           });
         }
+      
 
         dispatch({
           type: 'ice_delegated_items',

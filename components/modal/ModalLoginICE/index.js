@@ -25,7 +25,7 @@ const ModalLoginICE = () => {
   // get network ID
   useEffect(() => {
     if (window.ethereum) {
-      web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
       (async () => {
         const networkID = await web3.eth.net.getId();

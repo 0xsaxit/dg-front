@@ -27,15 +27,15 @@ const TreasuryTooltipDG = props => {
       const dg = state.treasuryNumbers.totalDgUSD;
       setDgTreasury(formatPrice(dg.graph.slice(-1)[0].secondary, 0));
 
-      setTempLoad(Number(state.treasuryNumbers.vestedDgBalance.graph[0].secondary));
+      setTempLoad(state.treasuryNumbers.vestedDgBalance.graph[0].secondary);
       setTempLoad2(tempLoad * state.DGPrices.dg);
-      setUnvestedDG(formatPrice(tempLoad2, 0));
+      setUnvestedDG(tempLoad2);
     }
   }, [state.treasuryNumbers, tempLoad, tempLoad2]);
 
   return (
     <>
-       <Popup
+      <Popup
         trigger={
           <div className={styles.info_mark}>
             <svg
@@ -52,7 +52,7 @@ const TreasuryTooltipDG = props => {
             </svg>
           </div>
         }
-        position="right center"        
+        position="right center"
         hideOnScroll={true}
         className={styles.popup}
       >
@@ -64,13 +64,13 @@ const TreasuryTooltipDG = props => {
             />
             <div>
               <p style={{ marginBottom: '4px' }}>
-                DAO $DG: ${dgTreasury}         
+                DAO $DG: ${dgTreasury}
               </p>
               <p style={{ marginTop: '0px' }}>
-                Vested Gameplay $DG: ${unvestedDG}            
+                Vested Gameplay $DG: ${formatPrice(unvestedDG, 0)}
               </p>
             </div>
-          </div>          
+          </div>
         </Popup.Content>
       </Popup>
     </>

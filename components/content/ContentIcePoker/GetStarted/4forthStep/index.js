@@ -28,7 +28,7 @@ const ForthStep = () => {
                     </div>
                 </div>
 
-                <div className={styles.box_div} style={{ paddingRight: '10px' }}>
+                <div className={styles.box_div}>
                     <div className={styles.box_title}>
                         <h1>Play On Your Browser</h1>
                     </div>

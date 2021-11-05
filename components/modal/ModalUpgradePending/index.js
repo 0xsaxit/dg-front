@@ -25,7 +25,6 @@ const ModalUpgradePending = props => {
   const [updateStatus, setUpdateStatus] = useState({});
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(true);
-  const [openUpgradeSuccess, setOpenUpgradeSuccess] = useState(false);
   const [web3, setWeb3] = useState({});
   const [spenderAddress, setSpenderAddress] = useState('');
   const [authStatusICE, setAuthStatusICE] = useState(false);
@@ -126,11 +125,14 @@ const ModalUpgradePending = props => {
         data: false,
       });
 
+      props.setUpgrade(3);
       setAuthStatusUpgrade(true);
-      setOpenUpgradeSuccess(true);
       setOpen(false);
-
       setInstance(true);
+
+      console.log('WEARABLE upgrading successful');
+      setLoading(false);
+      setUpdateStatus({ name: 'WEARABLE', value: 'done' });
     }
   }, [state.iceWearableItems]);
 
@@ -477,12 +479,33 @@ const ModalUpgradePending = props => {
 
       if (json.status) {
         console.log("success in upgrading:", json);
-        props.setUpgrade(3);
 
-        console.log('WEARABLE upgrading successful');
-        setLoading(false);
-        setUpdateStatus({ name: token, value: 'done' });
-        
+        // update global state token amounts
+        const refreshTokenAmounts = !state.refreshTokenAmounts;
+        dispatch({
+          type: 'refresh_token_amounts',
+          data: refreshTokenAmounts,
+        });
+
+        // update global state wearables data
+        const refreshWearable = !state.refreshWearable;
+        dispatch({
+          type: 'refresh_wearable_items',
+          data: refreshWearable,
+        });
+
+        // update global state balances
+        const refreshBalances = !state.refreshBalances;
+        dispatch({
+          type: 'refresh_balances',
+          data: refreshBalances,
+        });
+
+        // update global state iceWearableUpdatedSuccess
+        dispatch({
+          type: 'ice_wearable_update_success',
+          data: true,
+        });
       } else if (!json.status) {
         setLoading(false);
         setUpdateStatus({ name: token, value: 'initial' });
@@ -507,64 +530,54 @@ const ModalUpgradePending = props => {
 
   return (
     <Aux>
-      {!openUpgradeSuccess ? (
-        <Modal
-          className={styles.withdraw_modal}
-          onClose={() => setOpen(false)}
-          onOpen={() => setOpen(true)}
-          open={open}
-          close
-          trigger={<Button className={styles.open_button}>Upgrade</Button>}
-        >
-          <div
-            className={styles.header_buttons}
-            onClick={() => {
-              setOpen(false);
-            }}
-          >
-            {modalButtons('close')}
-            {modalButtons('help')}
-          </div>
-
-          <div
-            style={{
-              color: 'white',
-              display: 'flex',
-              justifyContent: 'center',
-              textAlign: 'center',
-              flexDirection: 'column',
-            }}
-          >
-            <div className={styles.upgrade_container}>
-              <p className={styles.header}>
-                <img
-                  className={styles.logo}
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
-                />
-                Authorize & Upgrade
-              </p>
-
-              <p className={styles.description}>
-                To upgrade your wearable, you will have to complete 4
-                transactions in MetaMask.
-              </p>
-
-              {/* {authButtons()} */}
-              {populateButtons()}
-            </div>
-
-            {activeItem && proceedButton()}
-          </div>
-        </Modal>
-      ) : (
-        <ModalUpgradeSuccess
-          show={openUpgradeSuccess}
-          tokenID={props.tokenID}
-          close={() => {
-            setOpenUpgradeSuccess(false);
+      <Modal
+        className={styles.withdraw_modal}
+        onClose={() => setOpen(false)}
+        onOpen={() => setOpen(true)}
+        open={open}
+        close
+        trigger={<Button className={styles.open_button}>Upgrade</Button>}
+      >
+        <div
+          className={styles.header_buttons}
+          onClick={() => {
+            setOpen(false);
           }}
-        />
-      )}
+        >
+          {modalButtons('close')}
+          {modalButtons('help')}
+        </div>
+
+        <div
+          style={{
+            color: 'white',
+            display: 'flex',
+            justifyContent: 'center',
+            textAlign: 'center',
+            flexDirection: 'column',
+          }}
+        >
+          <div className={styles.upgrade_container}>
+            <p className={styles.header}>
+              <img
+                className={styles.logo}
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
+              />
+              Authorize & Upgrade
+            </p>
+
+            <p className={styles.description}>
+              To upgrade your wearable, you will have to complete 4
+              transactions in MetaMask.
+            </p>
+
+            {/* {authButtons()} */}
+            {populateButtons()}
+          </div>
+
+          {activeItem && proceedButton()}
+        </div>
+      </Modal>
     </Aux>
   );
 };

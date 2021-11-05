@@ -183,7 +183,7 @@ const ModalDelegate = props => {
             <ul>
               <li>Let another player Play-to-Earn with your item</li>
               <li>Earn 30% of all ICE profits from their gameplay</li>
-              <li>Withdraw your delegation instantly at any time.</li>
+              <li>Withdraw your delegation at any time.</li>
             </ul>
           </div>
         </div>
@@ -363,7 +363,7 @@ const ModalDelegate = props => {
           open={open}
           close
           trigger={
-            <Button className={styles.open_button}>{props.buttonName}</Button>
+            <Button className={props.rank === 5 ? styles.open_button_fullWidth : styles.open_button}>{props.buttonName}</Button>
           }
         >
           <div className={styles.top_buttons}>

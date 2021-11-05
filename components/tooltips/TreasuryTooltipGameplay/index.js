@@ -25,16 +25,16 @@ const TreasuryTooltipGameplay = props => {
       const usd = state.treasuryNumbers.totalBalanceUSD.graph;
 
       const mana = state.treasuryNumbers.manaBalance.graph;
-      setManaBalance(formatPrice(mana.slice(-1)[0].secondary * state.DGPrices.mana, 0));
+      setManaBalance(formatPrice(mana.slice(-1)[0].secondary, 0));
 
       const dai = state.treasuryNumbers.daiBalance.graph;
       setDaiBalance(formatPrice(dai.slice(-1)[0].secondary, 0));
 
       const eth = state.treasuryNumbers.ethBalance.graph;
-      setEthBalance(formatPrice(eth.slice(-1)[0].secondary * state.DGPrices.eth, 0));
+      setEthBalance(formatPrice(eth.slice(-1)[0].secondary, 2));
 
       const ice = state.treasuryNumbers.iceBalance.graph;
-      setIceBalance(formatPrice(ice.slice(-1)[0].secondary * state.DGPrices.ice, 0));
+      setIceBalance(formatPrice(ice.slice(-1)[0].secondary, 0));
     }
   }, [state.treasuryNumbers]);
 
@@ -69,16 +69,16 @@ const TreasuryTooltipGameplay = props => {
             />
             <div>
               <p style={{ marginBottom: '4px' }}>
-                MANA: ${manaBalance}         
+                MANA: {manaBalance}         
               </p>
               <p style={{ marginBottom: '4px' }}>
-                DAI: ${daiBalance}         
+                DAI: {daiBalance}         
               </p>
               <p style={{ marginBottom: '4px' }}>
-                ETH: ${ethBalance}
+                ETH: {ethBalance}
               </p>
               <p style={{ marginTop: '0px' }}>
-                ICE: ${iceBalance}            
+                ICE: {iceBalance}            
               </p>
             </div>
           </div>          

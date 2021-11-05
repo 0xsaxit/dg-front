@@ -53,6 +53,13 @@ const Balances = (props) => {
   const [resumeModal6, setResumeModal6] = useState(0); // USDT withdraw
   const [lock, setLock] = useState(0);
 
+  function formatPrice(balanceDG, units) {
+    const priceFormatted = Number(balanceDG)
+      .toFixed(units)
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+    return priceFormatted;
+  }
 
   useEffect(() => {
     if (state.dgLoading === 1) {
@@ -71,17 +78,17 @@ const Balances = (props) => {
       const lockID = state.openModal.lockID;
       const resumeID = state.openModal.resumeID;
       setLock(lockID);
- 
-      if(lockID == 1) {
+
+      if (lockID == 1) {
         setResumeModal1(resumeID);
       } else if (lockID == 2) {
         setResumeModal2(resumeID);
       } else if (lockID == 3) {
         setResumeModal3(resumeID);
       } else if (lockID == 4) {
-        setResumeModal4(resumeID);        
+        setResumeModal4(resumeID);
       } else if (lockID == 5) {
-        setResumeModal5(resumeID);        
+        setResumeModal5(resumeID);
       } else if (lockID == 6) {
         setResumeModal6(resumeID);
       } else {
@@ -89,14 +96,14 @@ const Balances = (props) => {
       }
     }
 
-    if(state.dgShow) {
-      
+    if (state.dgShow) {
+
       fetchResumeModel();
       setStateAndEvent(state.openModal.lockID, true, '');
       dispatch({
         type: 'set_dgShow',
         data: false,
-      });      
+      });
     }
   }, [state.dgShow]);
 
@@ -127,7 +134,7 @@ const Balances = (props) => {
       console.log('Posting Connext transaction to db: ' + event);
       console.log("TxHash: ", txHash);
       console.log("Amount: ", amount);
-      
+
       Fetch.POST_HISTORY(
         state.userAddress,
         amount,
@@ -164,7 +171,7 @@ const Balances = (props) => {
   function Balances() {
     return (
       <div className={styles.balances_container}>
-        <h2 className={styles.balances_container_title}>Your Assets</h2>        
+        <h2 className={styles.balances_container_title}>Your Assets</h2>
         <div className={styles.balance_column}>
           <span className={styles.float_left}>
             <span className={styles.img_left}>
@@ -211,13 +218,13 @@ const Balances = (props) => {
           <div className={styles.float_right}>
             <span className={styles.balance_column_header}>
               <p className={styles.bold_text}>{parseInt(state.userBalances[1][1]).toLocaleString()} MANA</p>
-              <p className={styles.bold_text}>${(state.userBalances[1][1] * state.DGPrices.mana).toFixed(2)}</p>
+              <p className={styles.bold_text}>${formatPrice(state.userBalances[1][1] * state.DGPrices.mana, 2)}</p>
             </span>
 
             <div>
               {state.userInfo.tokenArray[1] ? (
-              <span>
-                {/*<Button
+                <span>
+                  {/*<Button
                   className={styles.deposit_button}
                   onClick={() => setStateAndEvent(1, true, 'MANA Deposit')}
                   style={{display: lock === 2? 'none':'flex', width: lock === 2? '':'100%'}}
@@ -294,32 +301,32 @@ const Balances = (props) => {
                 />
               </span>*/}
 
-                <Button 
-                  className={styles.temp_deposit}
-                  href="https://wallet.polygon.technology/bridge"
-                  target="_blank"
-                >
-                  Deposit & withdraw
-                </Button>
-              </span>
-            ) : (
-              <ModalAcceptMANA />
-            )}
+                  <Button
+                    className={styles.temp_deposit}
+                    href="https://wallet.polygon.technology/bridge"
+                    target="_blank"
+                  >
+                    Deposit & withdraw
+                  </Button>
+                </span>
+              ) : (
+                <ModalAcceptMANA />
+              )}
               <Button
-                className={styles.newLink}  
+                className={styles.newLink}
                 href="https://www.binance.com/en/trade/MANA_ETH"
                 target="_blank"
               >
                 Buy
                 <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12.125 8.4292L12.1177 1.09033C12.1177 0.504395 11.7295 0.101562 11.1289 0.101562H3.78271C3.21875 0.101562 2.81592 0.519043 2.81592 1.02441C2.81592 1.52246 3.24072 1.92529 3.76807 1.92529H6.45605L9.19531 1.83008L7.8916 2.97998L1.17529 9.70361C0.977539 9.90869 0.867676 10.1504 0.867676 10.3921C0.867676 10.8828 1.32178 11.3516 1.82715 11.3516C2.06885 11.3516 2.31055 11.2417 2.5083 11.0439L9.23193 4.32764L10.3965 3.0166L10.2866 5.65332V8.45117C10.2866 8.97119 10.6821 9.40332 11.1948 9.40332C11.7002 9.40332 12.125 8.97852 12.125 8.4292Z" fill="white"/>
+                  <path d="M12.125 8.4292L12.1177 1.09033C12.1177 0.504395 11.7295 0.101562 11.1289 0.101562H3.78271C3.21875 0.101562 2.81592 0.519043 2.81592 1.02441C2.81592 1.52246 3.24072 1.92529 3.76807 1.92529H6.45605L9.19531 1.83008L7.8916 2.97998L1.17529 9.70361C0.977539 9.90869 0.867676 10.1504 0.867676 10.3921C0.867676 10.8828 1.32178 11.3516 1.82715 11.3516C2.06885 11.3516 2.31055 11.2417 2.5083 11.0439L9.23193 4.32764L10.3965 3.0166L10.2866 5.65332V8.45117C10.2866 8.97119 10.6821 9.40332 11.1948 9.40332C11.7002 9.40332 12.125 8.97852 12.125 8.4292Z" fill="white" />
                 </svg>
               </Button>
             </div>
           </div>
         </div>
 
-       {/* ////// DAI ////// */}
+        {/* ////// DAI ////// */}
         <div className={styles.balance_column}>
           <span className={styles.float_left}>
             <span className={styles.img_left}>
@@ -333,16 +340,16 @@ const Balances = (props) => {
 
           <div className={styles.float_right}>
             <span className={styles.balance_column_header}>
-              <p className={styles.bold_text}>                
+              <p className={styles.bold_text}>
                 {parseInt(state.userBalances[0][1]).toLocaleString()} DAI
               </p>
-              <p className={styles.bold_text}>${(state.userBalances[0][1] * state.DGPrices.dai).toFixed(2)}</p>
+              <p className={styles.bold_text}>${formatPrice(state.userBalances[0][1] * state.DGPrices.dai, 2)}</p>
             </span>
 
             <div>
-             {state.userInfo.tokenArray[0] ? (
-              <span>
-                {/*<Button 
+              {state.userInfo.tokenArray[0] ? (
+                <span>
+                  {/*<Button 
                   onClick={() => setStateAndEvent(3, true, 'DAI Deposit')}
                   className={styles.deposit_button}
                   style={{display: lock === 4? 'none':'flex', width: lock === 4? '':'100%'}}
@@ -418,24 +425,24 @@ const Balances = (props) => {
                   }}
                 />
               </span>*/}
-                <Button 
-                  className={styles.temp_deposit}
-                  href="https://wallet.polygon.technology/bridge"
-                  target="_blank"
-                >
-                  Deposit & withdraw
-                </Button>
-              </span>
-            ) : (
-              <ModalAcceptDAI />
-            )}
+                  <Button
+                    className={styles.temp_deposit}
+                    href="https://wallet.polygon.technology/bridge"
+                    target="_blank"
+                  >
+                    Deposit & withdraw
+                  </Button>
+                </span>
+              ) : (
+                <ModalAcceptDAI />
+              )}
               <Button
                 className={styles.newLink}
                 onClick={() => rampDAI.show()}
               >
                 Buy
                 <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12.125 8.4292L12.1177 1.09033C12.1177 0.504395 11.7295 0.101562 11.1289 0.101562H3.78271C3.21875 0.101562 2.81592 0.519043 2.81592 1.02441C2.81592 1.52246 3.24072 1.92529 3.76807 1.92529H6.45605L9.19531 1.83008L7.8916 2.97998L1.17529 9.70361C0.977539 9.90869 0.867676 10.1504 0.867676 10.3921C0.867676 10.8828 1.32178 11.3516 1.82715 11.3516C2.06885 11.3516 2.31055 11.2417 2.5083 11.0439L9.23193 4.32764L10.3965 3.0166L10.2866 5.65332V8.45117C10.2866 8.97119 10.6821 9.40332 11.1948 9.40332C11.7002 9.40332 12.125 8.97852 12.125 8.4292Z" fill="white"/>
+                  <path d="M12.125 8.4292L12.1177 1.09033C12.1177 0.504395 11.7295 0.101562 11.1289 0.101562H3.78271C3.21875 0.101562 2.81592 0.519043 2.81592 1.02441C2.81592 1.52246 3.24072 1.92529 3.76807 1.92529H6.45605L9.19531 1.83008L7.8916 2.97998L1.17529 9.70361C0.977539 9.90869 0.867676 10.1504 0.867676 10.3921C0.867676 10.8828 1.32178 11.3516 1.82715 11.3516C2.06885 11.3516 2.31055 11.2417 2.5083 11.0439L9.23193 4.32764L10.3965 3.0166L10.2866 5.65332V8.45117C10.2866 8.97119 10.6821 9.40332 11.1948 9.40332C11.7002 9.40332 12.125 8.97852 12.125 8.4292Z" fill="white" />
                 </svg>
               </Button>
             </div>
@@ -443,7 +450,7 @@ const Balances = (props) => {
 
         </div>
 
-       {/* ////// ICE ////// */}
+        {/* ////// ETHEREUM ////// */}
         <div className={styles.balance_column}>
           <span className={styles.float_left}>
             <span className={styles.img_left}>
@@ -458,30 +465,30 @@ const Balances = (props) => {
           <div className={styles.float_right}>
             <span className={styles.balance_column_header}>
               <p className={styles.bold_text}>{Number(state.userBalances[2][3]).toFixed(3)} ETH</p>
-              <p className={styles.bold_text}>${(state.userBalances[2][3] * state.DGPrices.eth).toFixed(2)}</p>
+              <p className={styles.bold_text}>${formatPrice(state.userBalances[2][3] * state.DGPrices.eth, 2)}</p>
             </span>
 
             <div>
               {state.userInfo.tokenArray[4] ? (
-              <span>
-                <Button 
-                  className={styles.temp_deposit}
-                  href="https://wallet.polygon.technology/bridge"
-                  target="_blank"
-                >
-                  Deposit & withdraw
-                </Button>
-              </span>
-            ) : (
-              <ModalAcceptETH />
-            )}
+                <span>
+                  <Button
+                    className={styles.temp_deposit}
+                    href="https://wallet.polygon.technology/bridge"
+                    target="_blank"
+                  >
+                    Deposit & withdraw
+                  </Button>
+                </span>
+              ) : (
+                <ModalAcceptETH />
+              )}
               <Button
                 className={styles.newLink}
                 onClick={() => rampETH.show()}
               >
                 Buy
                 <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12.125 8.4292L12.1177 1.09033C12.1177 0.504395 11.7295 0.101562 11.1289 0.101562H3.78271C3.21875 0.101562 2.81592 0.519043 2.81592 1.02441C2.81592 1.52246 3.24072 1.92529 3.76807 1.92529H6.45605L9.19531 1.83008L7.8916 2.97998L1.17529 9.70361C0.977539 9.90869 0.867676 10.1504 0.867676 10.3921C0.867676 10.8828 1.32178 11.3516 1.82715 11.3516C2.06885 11.3516 2.31055 11.2417 2.5083 11.0439L9.23193 4.32764L10.3965 3.0166L10.2866 5.65332V8.45117C10.2866 8.97119 10.6821 9.40332 11.1948 9.40332C11.7002 9.40332 12.125 8.97852 12.125 8.4292Z" fill="white"/>
+                  <path d="M12.125 8.4292L12.1177 1.09033C12.1177 0.504395 11.7295 0.101562 11.1289 0.101562H3.78271C3.21875 0.101562 2.81592 0.519043 2.81592 1.02441C2.81592 1.52246 3.24072 1.92529 3.76807 1.92529H6.45605L9.19531 1.83008L7.8916 2.97998L1.17529 9.70361C0.977539 9.90869 0.867676 10.1504 0.867676 10.3921C0.867676 10.8828 1.32178 11.3516 1.82715 11.3516C2.06885 11.3516 2.31055 11.2417 2.5083 11.0439L9.23193 4.32764L10.3965 3.0166L10.2866 5.65332V8.45117C10.2866 8.97119 10.6821 9.40332 11.1948 9.40332C11.7002 9.40332 12.125 8.97852 12.125 8.4292Z" fill="white" />
                 </svg>
               </Button>
             </div>
@@ -489,7 +496,7 @@ const Balances = (props) => {
         </div>
 
 
-        {/* ////// ETHEREUM ////// */}
+        {/* ////// ICE ////// */}
         <div className={styles.balance_column}>
           <span className={styles.float_left}>
             <span className={styles.img_left}>
@@ -504,30 +511,23 @@ const Balances = (props) => {
           <div className={styles.float_right}>
             <span className={styles.balance_column_header}>
               <p className={styles.bold_text}>{parseInt(state.iceAmounts.ICE_AVAILABLE_AMOUNT).toLocaleString()} ICE</p>
-              <p className={styles.bold_text}>${(state.iceAmounts.ICE_AVAILABLE_AMOUNT * state.DGPrices.ice).toFixed(2)}</p>
+              <p className={styles.bold_text}>${formatPrice(state.iceAmounts.ICE_AVAILABLE_AMOUNT * state.DGPrices.ice, 2)}</p>
             </span>
 
             <div>
-              {/*{state.userInfo.tokenArray[4] ? (
-              <span>
-                <Button
-                  className={styles.deposit_button}
-                  href="https://wallet.matic.network/bridge/"
-                  target="_blank"
-                >
-                  Deposit
-                </Button>
-                
-                <Button
-                  className={styles.deposit_button}
-                  href="https://wallet.matic.network/bridge/"
-                  target="_blank"
-                >
-                  Withdraw
-                </Button>
-              </span>
-            ) : (*/}
-              <ModalAcceptICE />
+              {state.userInfo.tokenArray[5] ? (
+                <span>
+                  <Button
+                    className={styles.temp_deposit}
+                    href="https://wallet.polygon.technology/bridge"
+                    target="_blank"
+                  >
+                    Deposit & withdraw
+                  </Button>
+                </span>
+              ) : (
+                <ModalAcceptICE />
+              )}
 
               <Button
                 className={styles.newLink}
@@ -536,7 +536,7 @@ const Balances = (props) => {
               >
                 Buy
                 <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12.125 8.4292L12.1177 1.09033C12.1177 0.504395 11.7295 0.101562 11.1289 0.101562H3.78271C3.21875 0.101562 2.81592 0.519043 2.81592 1.02441C2.81592 1.52246 3.24072 1.92529 3.76807 1.92529H6.45605L9.19531 1.83008L7.8916 2.97998L1.17529 9.70361C0.977539 9.90869 0.867676 10.1504 0.867676 10.3921C0.867676 10.8828 1.32178 11.3516 1.82715 11.3516C2.06885 11.3516 2.31055 11.2417 2.5083 11.0439L9.23193 4.32764L10.3965 3.0166L10.2866 5.65332V8.45117C10.2866 8.97119 10.6821 9.40332 11.1948 9.40332C11.7002 9.40332 12.125 8.97852 12.125 8.4292Z" fill="white"/>
+                  <path d="M12.125 8.4292L12.1177 1.09033C12.1177 0.504395 11.7295 0.101562 11.1289 0.101562H3.78271C3.21875 0.101562 2.81592 0.519043 2.81592 1.02441C2.81592 1.52246 3.24072 1.92529 3.76807 1.92529H6.45605L9.19531 1.83008L7.8916 2.97998L1.17529 9.70361C0.977539 9.90869 0.867676 10.1504 0.867676 10.3921C0.867676 10.8828 1.32178 11.3516 1.82715 11.3516C2.06885 11.3516 2.31055 11.2417 2.5083 11.0439L9.23193 4.32764L10.3965 3.0166L10.2866 5.65332V8.45117C10.2866 8.97119 10.6821 9.40332 11.1948 9.40332C11.7002 9.40332 12.125 8.97852 12.125 8.4292Z" fill="white" />
                 </svg>
               </Button>
             </div>
@@ -549,7 +549,7 @@ const Balances = (props) => {
   // set modal state and event type
   function setStateAndEvent(number, state, type) {
 
-    if (number === 1) {     
+    if (number === 1) {
       setShowModal(state);
     } else if (number === 2) {
       setShowModal_2(state);
@@ -563,7 +563,7 @@ const Balances = (props) => {
       setShowModal_6(state);
     }
 
-    if(type) {
+    if (type) {
       setEvent(type);
     }
   }
@@ -575,16 +575,16 @@ const Balances = (props) => {
   }
 
   function updateStatus(resumeID, lockID) {
-    
+
     dispatch({
       type: 'set_dgLoading',
       data: resumeID === 0 ? 2 : 1,
     });
-    
+
     dispatch({
       type: 'set_openModal',
       data: {
-        resumeID: resumeID === 0? 0 : resumeID,
+        resumeID: resumeID === 0 ? 0 : resumeID,
         lockID: lockID,
       }
     });
