@@ -36,7 +36,7 @@ function SectionTwo() {
             )}
           </div>
           <span className={styles.tout_span}>
-            <Button className={styles.grey_button} href="/ice/getStarted">
+            <Button className={styles.grey_button} href="/ice/start">
               {mobile ? 'Start' : 'Get Started'}
             </Button>
             <Button
