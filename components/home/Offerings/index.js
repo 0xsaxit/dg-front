@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { GlobalContext } from '../../../store';
 import Link from 'next/link';
 import ContentOfferings from '../../content/ContentOfferings';
-import ContentLeaderboard from '../../content/ContentLeaderboard';
+import ContentLeaderboard from '../../content/ContentLeaderboard/index';
 import Aux from '../../_Aux';
 import { useMediaQuery } from 'hooks';
 import styles from './Offerings.module.scss';
@@ -196,81 +196,11 @@ const Offerings = (props) => {
   // get leaderboard data from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
-  // define local variables
-  const [gameSelect, setGameSelect] = useState('play');
-  const [imageSelect, setImageSelect] = useState('');
-  const [timePeriod, setTimePeriod] = useState('ALL TIME');
-
   const gameState = props.gameState;
 
   // Responsive
   const [mobileOpen, setMobileOpen] = useState(false);
   const isMobile = useMediaQuery('(max-width: 1040px)');
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  function handleChange(value) {
-    var gameSelect = '';
-    if (value === 'play') {
-      gameSelect = 'play';
-    } else if (value === 'mana') {
-      gameSelect = 'mana';
-    } else if (value === 'dai') {
-      gameSelect = 'dai';
-    } else if (value === 'eth') {
-      gameSelect = 'eth'
-    } else if (value === 'usdt') {
-      gameSelect = 'usdt'
-    } else {
-      gameSelect = 'atri'
-    }
-    setGameSelect(gameSelect);
-  }
-
-  const timePeriods = ['ALL TIME', 'WEEKLY', 'DAILY', 'COMPETITION'];
-  const coins = ['play', 'mana', 'dai', 'eth', 'usdt', 'atri'];
-
-  function coinChangeForward() {
-    var i = gameSelect;
-    var j = coins.indexOf(i);
-    if (j < 5) {
-      setGameSelect(coins[j + 1]);
-    } else {
-      j = 0;
-      setGameSelect(coins[j]);
-    }
-  }
-
-  function coinChangeBackward() {
-    var i = gameSelect;
-    var j = coins.indexOf(i);
-    if (j === 0) {
-      j = coins.length;
-    }
-    setGameSelect(coins[j - 1]);
-  }
-
-  function timeChangeForward() {
-    var i = timePeriod;
-    var j = timePeriods.indexOf(i);
-    if (j < 3) {
-      setTimePeriod(timePeriods[j + 1]);
-    } else {
-      j = 0;
-      setTimePeriod(timePeriods[j]);
-    }
-  }
-
-  function timeChangeBackward() {
-    var i = timePeriod;
-    var j = timePeriods.indexOf(i);
-    if (j < 1) {
-      j = 3;
-      setTimePeriod(timePeriods[j]);
-    } else {
-      setTimePeriod(timePeriods[j - 1]);
-    }
-  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -801,117 +731,6 @@ const Offerings = (props) => {
     );
   }
 
-  function leaderboardLink(link) {
-    if (state.userStatus >= 4) {
-      if (link) {
-        return (
-          <Link href="/games/leaderboard">
-            <span className="account-hover">
-              <b>Leaderboard</b>
-            </span>
-          </Link>
-        );
-      } else {
-        return (
-          <span className="account-hover active">
-            <b>Leaderboard</b>
-          </span>
-        );
-      }
-    } else {
-      return null;
-    }
-  }
-
-  function coinSelect() {
-    return (
-      <Aux>
-        <div style={{ marginTop: '120px', display: 'flex', justifyContent: 'flex-end' }}>
-
-          <div className="account-hover-time-tablet">
-            <svg
-              width="9"
-              height="15"
-              viewBox="0 0 6 10"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              onClick={coinChangeBackward}
-              style={{ transform: 'rotate(180deg)', margin: '2px 8px 0px 8px' }}
-            >
-              <path
-                d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
-                stroke="white"
-                strokeWidth="1.7"
-                stroke-opacity="1"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            {gameSelect}
-            <svg
-              width="9"
-              height="15"
-              viewBox="0 0 6 10"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              onClick={coinChangeForward}
-              style={{ margin: '2px 8px 0px 8px' }}
-            >
-              <path
-                d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
-                stroke="white"
-                strokeWidth="1.7"
-                stroke-opacity="1"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </div>
-
-          <div className="account-hover-time-tablet" style={{ marginLeft: '24px' }}>
-            <svg
-              width="9"
-              height="15"
-              viewBox="0 0 6 10"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              onClick={timeChangeBackward}
-              style={{ transform: 'rotate(180deg)', margin: '2px 8px 0px 8px' }}
-            >
-              <path
-                d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
-                stroke="white"
-                strokeWidth="1.7"
-                stroke-opacity="1"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            {timePeriod.toLowerCase()}
-            <svg
-              width="9"
-              height="15"
-              viewBox="0 0 6 10"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              onClick={timeChangeForward}
-              style={{ margin: '2px 8px 0px 8px' }}
-            >
-              <path
-                d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
-                stroke="white"
-                strokeWidth="1.7"
-                stroke-opacity="1"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </div>
-        </div>
-      </Aux>
-    );
-  }
-
   return (
     <div>
       <div className="d-flex flex-row">
@@ -921,9 +740,6 @@ const Offerings = (props) => {
           <span className={styles.main_container}>
             <ContentLeaderboard
               gameRecords={state.gameRecords}
-              gameSelect={gameSelect}
-              timePeriod={timePeriod}
-              coinSelector={coinSelect}
             />
           </span>
         ) : (
