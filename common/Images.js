@@ -29,6 +29,8 @@ const Images = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1620413765/TETHER_xhvz1p.png',
   ATRI_CIRCLE:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1620413783/ATARI_ttfcry.png',
+  CHIP_CIRCLE:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636210172/FREE_CHIP_uuvqcx.png',
   ICON_PLAY:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1599762928/Group_qxqvxl.png',
   MATIC_TOP:
