@@ -55,8 +55,14 @@ const ButtonConnect = () => {
 
   useEffect(() => {
     if (window.ethereum && window.ethereum.selectedAddress) {
-      window.ethereum.on('accountsChanged', () => {
-        assignToken(true);
+      window.addEventListener('load', function() {
+        window.ethereum.on('accountsChanged', () => {
+          dispatch({
+            type: 'user_address',
+            data: window.ethereum.selectedAddress,
+          });
+          assignToken(true);
+        });
       });
 
       const currentTimestamp = new Date().getTime() / 1000;
