@@ -69,15 +69,15 @@ const FirstStep = (props) => {
                                 <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636423902/check-mark_fvx9a4.png" alt="Ready" />
                             </div>
                             <div className={styles.button_div}>
-                                    <Button
-                                        className={styles.button}
-                                        onClick={() => {
-                                            props.nextStep();
-                                        }}
-                                    >
-                                        Next Step
-                                        <img className={styles.nextIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634587739/next_zxguep.png" alt="" />
-                                    </Button>
+                                <Button
+                                    className={styles.button}
+                                    onClick={() => {
+                                        props.nextStep();
+                                    }}
+                                >
+                                    Next Step
+                                    <img className={styles.nextIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634587739/next_zxguep.png" alt="" />
+                                </Button>
                             </div>
                         </>
                     }
