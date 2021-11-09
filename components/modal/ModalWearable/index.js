@@ -113,7 +113,7 @@ const ModalWearable = props => {
     ],
   };
 
-  // console.log("state.userInfo", state.userInfo);
+  console.log(parseFloat());
 
   return (
     <>
@@ -250,7 +250,7 @@ const ModalWearable = props => {
                   {(
                     icePrices[Math.min(props.rank + 1, 5)] *
                       state.DGPrices.ice +
-                    0.1 * state.DGPrices.dg
+                    dgPrices[Math.min(props.rank + 1, 5)] * state.DGPrices.dg
                   ).toFixed(2)}
                   )
                 </span>
@@ -261,7 +261,11 @@ const ModalWearable = props => {
                       <span className={styles.not_enough}>Not Enough</span>
                     )}
                     <div className={styles.card}>
-                      {icePrices[Math.min(props.rank + 1, 5)] / 1000 + 'K'} ICE
+                      {`${
+                        parseFloat(
+                          icePrices[Math.min(props.rank + 1, 5)]
+                        ).toFixed() / 1000
+                      }K ICE`}
                       <img
                         src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png"
                         className={styles.img_card1}
