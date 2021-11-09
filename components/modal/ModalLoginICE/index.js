@@ -156,7 +156,7 @@ const ModalLoginICE = () => {
   }
 
   return (
-    <span className={styles.top_span}>
+    <>
       {metamaskEnabled && !state.userLoggedIn ? (
         <Modal
           className={styles.connect_metamask_modal}
@@ -165,7 +165,7 @@ const ModalLoginICE = () => {
           open={open}
           close
           trigger={
-            <Button className={styles.play_now_modal}>Mint New Wearable</Button>
+            <Button className={styles.wearable_button}>Mint New Wearable</Button>
           }
         >
           <div
@@ -226,7 +226,7 @@ const ModalLoginICE = () => {
           open={open}
           close
           trigger={
-            <Button className={styles.play_now_modal}>Mint New Wearable</Button>
+            <Button className={styles.wearable_button}>Mint New Wearable</Button>
           }
         >
           <div
@@ -306,7 +306,7 @@ const ModalLoginICE = () => {
           open={open}
           close
           trigger={
-            <Button className={styles.play_now_modal}>Mint New Wearable</Button>
+            <Button className={styles.wearable_button}>Mint New Wearable</Button>
           }
         >
           <div
@@ -374,7 +374,7 @@ const ModalLoginICE = () => {
           </div>
         </Modal>
       )}
-    </span>
+    </>
   );
 };
 

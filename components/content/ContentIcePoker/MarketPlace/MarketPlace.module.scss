@@ -10,7 +10,7 @@
     .iceWearablesMarketplace {
         .header {
             width: calc(100vw - 315px);
-            margin-top: 50px;
+            margin-top: 100px;
             margin-left: 40px;
             margin-bottom: -120px;
 
@@ -34,12 +34,6 @@
                         transition: 0.2s ease-in;
                     }
                 }
-            }
-
-            h3 {
-                font-size: 19px;
-                line-height: 26px;
-                margin-top: 48px;
             }
 
             @media (max-width: 1040px) {
@@ -73,7 +67,14 @@
             grid-template-columns: none !important;
             margin: 18px 0px 120px 40px;
             margin-bottom: 30px;
-            margin-top: 150px;
+            margin-top: 165px;
+
+            h3 {
+                font-size: 19px;
+                line-height: 26px;
+                margin-top: 48px;
+                margin-bottom: 25px;
+            }
 
             @media (max-width: 1040px) {
                 width: calc(100vw - 120px);
@@ -83,6 +84,13 @@
                 width: calc(100vw - 110px);
             }
 
+            @include mq($until: medium) {
+                h3 {
+                    font-size: 16px;
+                    margin-top: 48px;
+                }
+            }
+
             .button_container {
                 margin-top: 24px;
                 display: flex;
@@ -90,7 +98,18 @@
                 width: 100%;
             }
 
-            .opensea {
+            .comingSoon {
+                width: 100%;
+                height: 35px;
+                font-family: Larsseit-Bold;
+                font-size: 12px;
+                border-radius: 8px;
+                background: #4E4E4E;
+                color: white;
+                line-height: 15px;
+            }
+
+            .wearable_button {
                 width: 100%;
                 height: 50px;
                 font-family: Larsseit-Bold;
