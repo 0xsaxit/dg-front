@@ -1,9 +1,7 @@
 @import 'styles/base.scss';
 
 .button_right {
-  background: #006eff !important;
-  width: 100%;
-  height: 50px;
+  height: 34px;
   border-radius: 8px !important;
   font-family: Larsseit-Bold;
   font-size: 12px !important;
@@ -12,7 +10,9 @@
   align-self: center;
   color: white !important;
   line-height: 17px !important;
-  margin-left: 3px !important;
+  background: #006eff !important;
+  margin: 0 !important;
+  width: 100%;
 }
 
 .mintable_modal {
