@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Button } from 'semantic-ui-react';
 import styles from './secondStep.module.scss'
 
-const FirstStep = () => {
+const SecondStep = () => {
     return (
         <div className={styles.main_wrapper}>
             <div className={styles.title}>
@@ -52,4 +52,4 @@ const FirstStep = () => {
     )
 }
 
-export default FirstStep
+export default SecondStep

@@ -13,6 +13,18 @@ const ModalWearable = props => {
   const [open, setOpen] = useState(false);
   const [upgrade, setUpgrade] = useState(0);
   const [upgradeCost, setUpgradeCost] = useState(0);
+  const {
+    ICE_COST_AMOUNT_2,
+    ICE_COST_AMOUNT_3,
+    ICE_COST_AMOUNT_4,
+    ICE_COST_AMOUNT_5,
+    DG_COST_AMOUNT_2,
+    DG_COST_AMOUNT_3,
+    DG_COST_AMOUNT_4,
+    DG_COST_AMOUNT_5,
+  } = state.tokenAmounts;
+
+  console.log(state.tokenAmounts);
 
   /////////////////////////////////////////////////////////////////////
   /////////////// TODO: please add some logic to calculate the "not enough" tags' visibility on top of the
@@ -37,10 +49,19 @@ const ModalWearable = props => {
   const icePrices = [
     0, // Rank 0
     0, // Rank 1
-    10000, // Rank 2
-    15000, // Rank 3
-    20000, // Rank 4
-    25000, // Rank 5
+    ICE_COST_AMOUNT_2, // Rank 2
+    ICE_COST_AMOUNT_3, // Rank 3
+    ICE_COST_AMOUNT_4, // Rank 4
+    ICE_COST_AMOUNT_5, // Rank 5
+  ];
+
+  const dgPrices = [
+    0, // Rank 0
+    0, // Rank 1
+    DG_COST_AMOUNT_2, // Rank 2
+    DG_COST_AMOUNT_3, // Rank 3
+    DG_COST_AMOUNT_4, // Rank 4
+    DG_COST_AMOUNT_5, // Rank 5
   ];
 
   const imgUrls = {
@@ -217,16 +238,22 @@ const ModalWearable = props => {
 
               <div className={styles.price_area}>
                 Price
-                <span style={{ opacity: 0.75 }}>{' '}
-                  (${((icePrices[Math.min(props.rank + 1, 5)] 
-                    * state.DGPrices.ice)
-                  + (0.1 * state.DGPrices.dg)).toFixed(2)})</span>
+                <span style={{ opacity: 0.75 }}>
+                  {' '}
+                  ($
+                  {(
+                    icePrices[Math.min(props.rank + 1, 5)] *
+                      state.DGPrices.ice +
+                    0.1 * state.DGPrices.dg
+                  ).toFixed(2)}
+                  )
+                </span>
                 <div className={styles.card_area}>
                   <div className={styles.card_area_body}>
                     {state.iceAmounts.ICE_AVAILABLE_AMOUNT <
                       icePrices[Math.min(props.rank + 1, 5)] && (
-                        <span className={styles.not_enough}>Not Enough</span>
-                      )}
+                      <span className={styles.not_enough}>Not Enough</span>
+                    )}
                     <div className={styles.card}>
                       {icePrices[Math.min(props.rank + 1, 5)] / 1000 + 'K'} ICE
                       <img
@@ -235,16 +262,31 @@ const ModalWearable = props => {
                       />
                     </div>
 
-
-                    {state.iceAmounts.ICE_AVAILABLE_AMOUNT < icePrices[Math.min(props.rank + 1, 5)] ? (
+                    {state.iceAmounts.ICE_AVAILABLE_AMOUNT <
+                    icePrices[Math.min(props.rank + 1, 5)] ? (
                       <div className={styles.description}>
-                        {parseFloat(state.iceAmounts.ICE_AVAILABLE_AMOUNT).toLocaleString()}{' '}
+                        {parseFloat(
+                          state.iceAmounts.ICE_AVAILABLE_AMOUNT
+                        ).toLocaleString()}{' '}
                         ICE Available
-                      </div>) : (
+                      </div>
+                    ) : (
                       <div className={styles.greenCheck}>
-                        {parseFloat(state.iceAmounts.ICE_AVAILABLE_AMOUNT).toLocaleString()}{' '} ICE Available
-                        <svg width="9" height="8" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M3.83203 7.73047C4.10547 7.73047 4.32031 7.625 4.46875 7.40625L8.10547 1.86328C8.21094 1.70312 8.25391 1.55078 8.25391 1.41016C8.25391 1.03125 7.96484 0.75 7.57422 0.75C7.30859 0.75 7.14062 0.847656 6.97656 1.10156L3.81641 6.08594L2.21484 4.12109C2.06641 3.94141 1.90234 3.86328 1.67578 3.86328C1.28125 3.86328 0.996094 4.14453 0.996094 4.52734C0.996094 4.69922 1.04688 4.84766 1.19531 5.01562L3.21094 7.4375C3.37891 7.63672 3.57422 7.73047 3.83203 7.73047Z" fill="#67DD6C" />
+                        {parseFloat(
+                          state.iceAmounts.ICE_AVAILABLE_AMOUNT
+                        ).toLocaleString()}{' '}
+                        ICE Available
+                        <svg
+                          width="9"
+                          height="8"
+                          viewBox="0 0 9 8"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M3.83203 7.73047C4.10547 7.73047 4.32031 7.625 4.46875 7.40625L8.10547 1.86328C8.21094 1.70312 8.25391 1.55078 8.25391 1.41016C8.25391 1.03125 7.96484 0.75 7.57422 0.75C7.30859 0.75 7.14062 0.847656 6.97656 1.10156L3.81641 6.08594L2.21484 4.12109C2.06641 3.94141 1.90234 3.86328 1.67578 3.86328C1.28125 3.86328 0.996094 4.14453 0.996094 4.52734C0.996094 4.69922 1.04688 4.84766 1.19531 5.01562L3.21094 7.4375C3.37891 7.63672 3.57422 7.73047 3.83203 7.73047Z"
+                            fill="#67DD6C"
+                          />
                         </svg>
                       </div>
                     )}
@@ -268,11 +310,12 @@ const ModalWearable = props => {
                   </div>
 
                   <div className={styles.card_area_body}>
-                    {state.DGBalances.BALANCE_CHILD_DG < 0.1 && (
+                    {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(2) <
+                      dgPrices[Math.min(props.rank + 1, 5)] && (
                       <span className={styles.not_enough}>Not Enough</span>
                     )}
                     <div className={styles.card}>
-                      0.1 DG
+                      {dgPrices[Math.min(props.rank + 1, 5)]}
                       <img
                         src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png"
                         className={styles.img_card2}
@@ -280,14 +323,28 @@ const ModalWearable = props => {
                     </div>
                     {state.DGBalances.BALANCE_CHILD_DG < 0.1 ? (
                       <div className={styles.description}>
-                        {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(2)}{' '}
+                        {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(
+                          2
+                        )}{' '}
                         DG Available
                       </div>
                     ) : (
                       <div className={styles.greenCheck}>
-                        {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(2)}{' '} DG Available
-                        <svg width="9" height="8" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M3.83203 7.73047C4.10547 7.73047 4.32031 7.625 4.46875 7.40625L8.10547 1.86328C8.21094 1.70312 8.25391 1.55078 8.25391 1.41016C8.25391 1.03125 7.96484 0.75 7.57422 0.75C7.30859 0.75 7.14062 0.847656 6.97656 1.10156L3.81641 6.08594L2.21484 4.12109C2.06641 3.94141 1.90234 3.86328 1.67578 3.86328C1.28125 3.86328 0.996094 4.14453 0.996094 4.52734C0.996094 4.69922 1.04688 4.84766 1.19531 5.01562L3.21094 7.4375C3.37891 7.63672 3.57422 7.73047 3.83203 7.73047Z" fill="#67DD6C" />
+                        {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(
+                          2
+                        )}{' '}
+                        DG Available
+                        <svg
+                          width="9"
+                          height="8"
+                          viewBox="0 0 9 8"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M3.83203 7.73047C4.10547 7.73047 4.32031 7.625 4.46875 7.40625L8.10547 1.86328C8.21094 1.70312 8.25391 1.55078 8.25391 1.41016C8.25391 1.03125 7.96484 0.75 7.57422 0.75C7.30859 0.75 7.14062 0.847656 6.97656 1.10156L3.81641 6.08594L2.21484 4.12109C2.06641 3.94141 1.90234 3.86328 1.67578 3.86328C1.28125 3.86328 0.996094 4.14453 0.996094 4.52734C0.996094 4.69922 1.04688 4.84766 1.19531 5.01562L3.21094 7.4375C3.37891 7.63672 3.57422 7.73047 3.83203 7.73047Z"
+                            fill="#67DD6C"
+                          />
                         </svg>
                       </div>
                     )}
@@ -311,7 +368,8 @@ const ModalWearable = props => {
                   </div>
 
                   <div className={styles.card_area_body}>
-                    {(!state.userInfo.balanceXP || state.userInfo.balanceXP < 50) && (
+                    {(!state.userInfo.balanceXP ||
+                      state.userInfo.balanceXP < 50) && (
                       <span className={styles.not_enough}>Not Enough</span>
                     )}
                     <div className={styles.card}>
@@ -321,16 +379,27 @@ const ModalWearable = props => {
                         className={styles.img_card3}
                       />
                     </div>
-                    {(!state.userInfo.balanceXP || state.userInfo.balanceXP < 50) ? (
+                    {!state.userInfo.balanceXP ||
+                    state.userInfo.balanceXP < 50 ? (
                       <div className={styles.description}>
-                        {parseFloat(state.userInfo.balanceXP).toFixed(0)}{' '}
-                        XP Available
+                        {parseFloat(state.userInfo.balanceXP).toFixed(0)} XP
+                        Available
                       </div>
                     ) : (
                       <div className={styles.greenCheck}>
-                        {parseFloat(state.userInfo.balanceXP).toFixed(2)}{' '} XP Available
-                        <svg width="9" height="8" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M3.83203 7.73047C4.10547 7.73047 4.32031 7.625 4.46875 7.40625L8.10547 1.86328C8.21094 1.70312 8.25391 1.55078 8.25391 1.41016C8.25391 1.03125 7.96484 0.75 7.57422 0.75C7.30859 0.75 7.14062 0.847656 6.97656 1.10156L3.81641 6.08594L2.21484 4.12109C2.06641 3.94141 1.90234 3.86328 1.67578 3.86328C1.28125 3.86328 0.996094 4.14453 0.996094 4.52734C0.996094 4.69922 1.04688 4.84766 1.19531 5.01562L3.21094 7.4375C3.37891 7.63672 3.57422 7.73047 3.83203 7.73047Z" fill="#67DD6C" />
+                        {parseFloat(state.userInfo.balanceXP).toFixed(2)} XP
+                        Available
+                        <svg
+                          width="9"
+                          height="8"
+                          viewBox="0 0 9 8"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M3.83203 7.73047C4.10547 7.73047 4.32031 7.625 4.46875 7.40625L8.10547 1.86328C8.21094 1.70312 8.25391 1.55078 8.25391 1.41016C8.25391 1.03125 7.96484 0.75 7.57422 0.75C7.30859 0.75 7.14062 0.847656 6.97656 1.10156L3.81641 6.08594L2.21484 4.12109C2.06641 3.94141 1.90234 3.86328 1.67578 3.86328C1.28125 3.86328 0.996094 4.14453 0.996094 4.52734C0.996094 4.69922 1.04688 4.84766 1.19531 5.01562L3.21094 7.4375C3.37891 7.63672 3.57422 7.73047 3.83203 7.73047Z"
+                            fill="#67DD6C"
+                          />
                         </svg>
                       </div>
                     )}
@@ -339,8 +408,9 @@ const ModalWearable = props => {
               </div>
               <div className={styles.button_area}>
                 {state.userInfo.balanceXP >= 50 &&
-                  state.DGBalances.BALANCE_CHILD_DG >= 0.1 &&
-                  state.iceAmounts.ICE_AVAILABLE_AMOUNT >= icePrices[Math.min(props.rank + 1, 5)] ? (
+                state.DGBalances.BALANCE_CHILD_DG >= 0.1 &&
+                state.iceAmounts.ICE_AVAILABLE_AMOUNT >=
+                  icePrices[Math.min(props.rank + 1, 5)] ? (
                   <Button
                     className={styles.button_upgrade}
                     onClick={() => {
@@ -364,7 +434,10 @@ const ModalWearable = props => {
                 <Button
                   className={styles.button_close}
                   onClick={() => {
-                    window.open("https://ice.decentral.games/ice-nft-wearables", "_blank");
+                    window.open(
+                      'https://ice.decentral.games/ice-nft-wearables',
+                      '_blank'
+                    );
                   }}
                 >
                   Learn More
@@ -393,10 +466,7 @@ const ModalWearable = props => {
       )}
 
       {upgrade == 3 && (
-        <ModalUpgradeSuccess
-          tokenID={props.tokenID}
-          setUpgrade={setUpgrade}
-        />
+        <ModalUpgradeSuccess tokenID={props.tokenID} setUpgrade={setUpgrade} />
       )}
     </>
   );

@@ -3699,6 +3699,10 @@ div.ui.input.withdraw_input>input {
   text-align: center;
 }
 
+.spinner-animation-div {
+  margin-right: 12px;
+}
+
 .gamesLeaderboardCoinSelect {
   position: absolute;
   right: 5px;
