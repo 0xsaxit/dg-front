@@ -22,14 +22,11 @@ const ModalWearable = props => {
     DG_COST_AMOUNT_3,
     DG_COST_AMOUNT_4,
     DG_COST_AMOUNT_5,
+    XP_COST_AMOUNT_2,
+    XP_COST_AMOUNT_3,
+    XP_COST_AMOUNT_4,
+    XP_COST_AMOUNT_5,
   } = state.tokenAmounts;
-
-  console.log(state.tokenAmounts);
-
-  /////////////////////////////////////////////////////////////////////
-  /////////////// TODO: please add some logic to calculate the "not enough" tags' visibility on top of the
-  /////////////// token price tags. (spans on lines 124, 155 and 183)
-  ////////////////////////////////////////////////////////////////////
 
   ////////////////////////////////////////////////////////////////////
   /////////////// Bonus Array, ICE Prices, Img Array
@@ -62,6 +59,15 @@ const ModalWearable = props => {
     DG_COST_AMOUNT_3, // Rank 3
     DG_COST_AMOUNT_4, // Rank 4
     DG_COST_AMOUNT_5, // Rank 5
+  ];
+
+  const xpPrices = [
+    0, // Rank 0
+    0, // Rank 1
+    XP_COST_AMOUNT_2, // Rank 2
+    XP_COST_AMOUNT_3, // Rank 3
+    XP_COST_AMOUNT_4, // Rank 4
+    XP_COST_AMOUNT_5, // Rank 5
   ];
 
   const imgUrls = {
@@ -321,7 +327,8 @@ const ModalWearable = props => {
                         className={styles.img_card2}
                       />
                     </div>
-                    {state.DGBalances.BALANCE_CHILD_DG < 0.1 ? (
+                    {state.DGBalances.BALANCE_CHILD_DG <
+                    dgPrices[Math.min(props.rank + 1, 5)] ? (
                       <div className={styles.description}>
                         {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(
                           2
@@ -368,27 +375,25 @@ const ModalWearable = props => {
                   </div>
 
                   <div className={styles.card_area_body}>
-                    {(!state.userInfo.balanceXP ||
-                      state.userInfo.balanceXP < 50) && (
+                    {state.userInfo.balanceXP <
+                      xpPrices[Math.min(props.rank + 1, 5)] && (
                       <span className={styles.not_enough}>Not Enough</span>
                     )}
                     <div className={styles.card}>
-                      50
+                      {xpPrices[Math.min(props.rank + 1, 5)]}
                       <img
                         src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629727455/XP_zbnvuf.png"
                         className={styles.img_card3}
                       />
                     </div>
-                    {!state.userInfo.balanceXP ||
-                    state.userInfo.balanceXP < 50 ? (
+                    {state.userInfo.balanceXP <
+                    xpPrices[Math.min(props.rank + 1, 5)] ? (
                       <div className={styles.description}>
-                        {parseFloat(state.userInfo.balanceXP).toFixed(0)} XP
-                        Available
+                        {state.userInfo.balanceXP} XP Available
                       </div>
                     ) : (
                       <div className={styles.greenCheck}>
-                        {parseFloat(state.userInfo.balanceXP).toFixed(2)} XP
-                        Available
+                        {state.userInfo.balanceXP} XP Available
                         <svg
                           width="9"
                           height="8"
