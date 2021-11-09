@@ -113,11 +113,12 @@
                 width: 100%;
                 height: 34px;
                 font-family: Larsseit-Bold;
-                font-size: 12px;
-                border-radius: 8px;
-                background: #006EFF;
-                color: white;
+                font-size: 12px !important;
+                border-radius: 8px !important;
+                background: #006EFF !important;
+                color: white !important;
                 line-height: 15px;
+                margin: 0 5px;
             }
 
             .flex_50 {
@@ -538,18 +539,16 @@
 }
 
 .opensea_button {
-  height: 34px;
-  border-radius: 8px !important;
-  font-family: Larsseit-Bold;
-  font-size: 12px !important;
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  color: white !important;
-  line-height: 17px !important;
-  background: #006eff !important;
-  margin: 0 !important;
-  width: 100%;
+    height: 34px;
+    border-radius: 8px !important;
+    font-family: Larsseit-Bold;
+    font-size: 12px !important;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    color: white !important;
+    line-height: 17px !important;
+    background: #006eff !important;
 }
 
 @keyframes fadein {

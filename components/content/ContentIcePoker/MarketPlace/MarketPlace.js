@@ -409,24 +409,26 @@ const MarketPlace = () => {
                             />
                           </div>
                         } else {
-                          return 
-                            <a
-                              className={styles.flex_50}
-                              href="https://opensea.io/collection/decentral-games-ice"
-                              target="_blank"
-                              style={{
-                                width: '100%',
-                              }}
-                            >
-                                <Button
-                                    className={styles.wearable_button}>
-                                    Buy on Opensea
-                                </Button>
-                            </a>
+                          return <div
+                              className={styles.flex_50}><ModalLoginICE />
+                          </div>
                         }
                       }
                     }
                     )()}
+                    <a
+                      className={styles.flex_50}
+                      href="https://opensea.io/collection/decentral-games-ice"
+                      target="_blank"
+                      style={{
+                        width: '100%',
+                      }}
+                    >
+                        <Button
+                            className={styles.wearable_button}>
+                            Buy on Opensea
+                        </Button>
+                    </a>
                   </div>
                 </div>
               ))}
