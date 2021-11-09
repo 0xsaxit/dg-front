@@ -39,24 +39,6 @@ const ContentLeaderboard = (props) => {
             value: 'Eth',
             image: { avatar: true, src: Images["ETH_CIRCLE"] }
         },
-        {
-            key: 'Usdt',
-            text: null,
-            value: 'Usdt',
-            image: { avatar: true, src: Images["USDT_CIRCLE"] }
-        },
-        {
-            key: 'Atri',
-            text: null,
-            value: 'Atri',
-            image: { avatar: true, src: Images["ATRI_CIRCLE"] }
-        },
-        {
-            key: 'Chip',
-            text: null,
-            value: 'Chip',
-            image: { avatar: true, src: Images["CHIP_CIRCLE"] }
-        }
     ]
 
     const [gameRecords, setGameRecords] = useState([]);

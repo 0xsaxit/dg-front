@@ -3738,6 +3738,7 @@ div.ui.input.withdraw_input>input {
   max-height: 300px !important;
   border-radius: 8px;
   border: none !important;
+  width: 100%;
 }
 
 .gamesLeaderboardCoinSelect .ui.selection.dropdown .visible.menu .item {
