@@ -111,7 +111,7 @@
 
             .wearable_button {
                 width: 100%;
-                height: 50px;
+                height: 34px;
                 font-family: Larsseit-Bold;
                 font-size: 12px;
                 border-radius: 8px;
@@ -121,11 +121,7 @@
             }
 
             .flex_50 {
-                flex-basis: 49%;
-
-                &:first-of-type{
-                    margin: 0 5px;
-                }
+                flex-basis: 100%;
             }
 
             .games_container {
@@ -542,7 +538,7 @@
 }
 
 .opensea_button {
-  height: 50px;
+  height: 34px;
   border-radius: 8px !important;
   font-family: Larsseit-Bold;
   font-size: 12px !important;
