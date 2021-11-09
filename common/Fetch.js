@@ -69,6 +69,10 @@ const apiCall = {
     return call(`${API_BASE_URL}/ice/getUnclaimedRewardsAmount`, 'GET');
   },
 
+  GET_REWARDS_CONFIG: () => {
+    return call(`${API_BASE_URL}/ice/getRewardsConfig`, 'GET');
+  },
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // GET API calls (wallet address necessary)
@@ -221,7 +225,7 @@ const apiCall = {
       'GET',
       false
     );
-  }, 
+  },
 
   ATRI_PRICE: () => {
     return call(`https://api.coingecko.com/api/v3/coins/atari`, 'GET', false);

@@ -407,6 +407,8 @@ function ICEAttributes() {
         ICE_AMOUNT / Global.CONSTANTS.FACTOR
       ).toString();
 
+      const { xpUpgradeCosts } = await Fetch.GET_REWARDS_CONFIG();
+
       return {
         WETH_COST_AMOUNT: WETH_COST_AMOUNT,
         DG_MOVE_AMOUNT: DG_MOVE_AMOUNT,
@@ -418,6 +420,10 @@ function ICEAttributes() {
         ICE_COST_AMOUNT_4: ICE_COST_AMOUNT_4,
         DG_COST_AMOUNT_5: DG_COST_AMOUNT_5,
         ICE_COST_AMOUNT_5: ICE_COST_AMOUNT_5,
+        XP_COST_AMOUNT_2: xpUpgradeCosts[0],
+        XP_COST_AMOUNT_3: xpUpgradeCosts[1],
+        XP_COST_AMOUNT_4: xpUpgradeCosts[2],
+        XP_COST_AMOUNT_5: xpUpgradeCosts[3],
       };
     } catch (error) {
       console.log('Get token amounts error: ' + error);

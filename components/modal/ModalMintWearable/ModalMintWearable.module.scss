@@ -1,18 +1,15 @@
 @import 'styles/base.scss';
 
-.button_right {
-  background: #006eff !important;
+.wearable_button {
   width: 100%;
-  height: 50px;
-  border-radius: 8px !important;
+  height: 34px;
   font-family: Larsseit-Bold;
   font-size: 12px !important;
-  display: flex;
-  justify-content: center;
-  align-self: center;
+  border-radius: 8px !important;
+  background: #006EFF !important;
   color: white !important;
-  line-height: 17px !important;
-  margin-left: 3px !important;
+  line-height: 15px;
+  margin: 0 5px;
 }
 
 .mintable_modal {

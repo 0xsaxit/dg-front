@@ -3699,6 +3699,10 @@ div.ui.input.withdraw_input>input {
   text-align: center;
 }
 
+.spinner-animation-div {
+  margin-right: 12px;
+}
+
 .gamesLeaderboardCoinSelect {
   position: absolute;
   right: 5px;
@@ -3734,6 +3738,7 @@ div.ui.input.withdraw_input>input {
   max-height: 300px !important;
   border-radius: 8px;
   border: none !important;
+  width: 100%;
 }
 
 .gamesLeaderboardCoinSelect .ui.selection.dropdown .visible.menu .item {
