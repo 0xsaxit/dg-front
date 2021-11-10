@@ -312,7 +312,7 @@ const ModalDelegate = props => {
     );
 
     if (json.status) {
-      console.log('NFT delegation request successful');
+      console.log('NFT delegation request: ' + json.result);
 
       // close this modal and open the success modal
       setOpen(false);
@@ -320,11 +320,13 @@ const ModalDelegate = props => {
     } else {
       console.log('NFT delegation request error. Code: ' + json.code);
 
-      if (json.code === 2) {
-        setErrorMsg(json.reason); // this wearable has already been checked-in today
-      } else {
-        setErrorMsg('Delegation failed. Code: ' + json.code);
-      }
+      setErrorMsg('Delegation failed: ' + json.result);
+
+      // if (json.code === 2) {
+      //   setErrorMsg(json.reason); // this wearable has already been checked-in today
+      // } else {
+      //   setErrorMsg('Delegation failed. Code: ' + json.code);
+      // }
       setClicked(false);
     }
   }
