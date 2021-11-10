@@ -354,73 +354,32 @@ function ICEAttributes() {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   async function getItemLimits() {
-    let itemsArray = [];
-
     try {
-      const collections = collectionArray.map(async (item, index) => {
-        const itemObject0 = await collectionArray[index][0].methods
-          .items(0)
-          .call();
-        const ITEM_LIMIT_0 =
-          itemObject0[Object.keys(itemObject0)[1]] -
-          itemObject0[Object.keys(itemObject0)[2]];
+      const ITEM_LIMIT_0 = await ICERegistrantContract.methods.limits(0).call();
+      const ITEM_LIMIT_5 = await ICERegistrantContract.methods.limits(5).call();
+      const ITEM_LIMIT_10 = await ICERegistrantContract.methods
+        .limits(10)
+        .call();
+      const ITEM_LIMIT_15 = await ICERegistrantContract.methods
+        .limits(15)
+        .call();
+      const ITEM_LIMIT_20 = await ICERegistrantContract.methods
+        .limits(20)
+        .call();
 
-        const itemObject5 = await collectionArray[index][0].methods
-          .items(5)
-          .call();
-        const ITEM_LIMIT_5 =
-          itemObject5[Object.keys(itemObject5)[1]] -
-          itemObject5[Object.keys(itemObject5)[2]];
+      console.log('Item limit (0): ' + ITEM_LIMIT_0);
+      console.log('Item limit (5): ' + ITEM_LIMIT_5);
+      console.log('Item limit (10): ' + ITEM_LIMIT_10);
+      console.log('Item limit (15): ' + ITEM_LIMIT_15);
+      console.log('Item limit (20): ' + ITEM_LIMIT_20);
 
-        const itemObject10 = await collectionArray[index][0].methods
-          .items(10)
-          .call();
-        const ITEM_LIMIT_10 =
-          itemObject10[Object.keys(itemObject10)[1]] -
-          itemObject10[Object.keys(itemObject10)[2]];
-
-        const itemObject15 = await collectionArray[index][0].methods
-          .items(15)
-          .call();
-        const ITEM_LIMIT_15 =
-          itemObject15[Object.keys(itemObject15)[1]] -
-          itemObject15[Object.keys(itemObject15)[2]];
-
-        const itemObject20 = await collectionArray[index][0].methods
-          .items(20)
-          .call();
-        const ITEM_LIMIT_20 =
-          itemObject20[Object.keys(itemObject20)[1]] -
-          itemObject20[Object.keys(itemObject20)[2]];
-
-        // console.log('Item limit (0): ' + ITEM_LIMIT_0);
-        // console.log('Item limit (5): ' + ITEM_LIMIT_5);
-        // console.log('Item limit (10): ' + ITEM_LIMIT_10);
-        // console.log('Item limit (15): ' + ITEM_LIMIT_15);
-        // console.log('Item limit (20): ' + ITEM_LIMIT_20);
-
-        itemsArray.push([
-          [parseInt(ITEM_LIMIT_0), 0],
-          [parseInt(ITEM_LIMIT_5), 5],
-          [parseInt(ITEM_LIMIT_10), 10],
-          [parseInt(ITEM_LIMIT_15), 15],
-          [parseInt(ITEM_LIMIT_20), 20],
-        ]);
-      });
-
-      await Promise.all(collections);
-      // console.log('items array');
-      // console.log(itemsArray);
-
-      // let arrayArray = [];
-      // arrayArray.push(itemsArray);
-
-      // return itemsArray;
-
-      return {
-        COLLECTION_1: itemsArray[1],
-        COLLECTION_2: itemsArray[0],
-      };
+      return [
+        [parseInt(ITEM_LIMIT_0), 0],
+        [parseInt(ITEM_LIMIT_5), 5],
+        [parseInt(ITEM_LIMIT_10), 10],
+        [parseInt(ITEM_LIMIT_15), 15],
+        [parseInt(ITEM_LIMIT_20), 20],
+      ];
     } catch (error) {
       console.log('Get item limits error: ' + error);
     }
