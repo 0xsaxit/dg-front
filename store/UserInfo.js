@@ -40,6 +40,7 @@ function UserInfo() {
     if (state.userAddress) {
       (async function () {
         const jsonInfo = await Fetch.PLAYER_INFO(state.userAddress);
+        console.log("%c jsonInfo: ", "color: red", jsonInfo);
 
         if (jsonInfo && jsonInfo._id) {
           const name = jsonInfo.avatarName;

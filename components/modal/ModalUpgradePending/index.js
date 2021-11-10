@@ -44,6 +44,7 @@ const ModalUpgradePending = props => {
   const [progSteps, setProgSteps] = useState([]);
   const [activeItem, setActiveItem] = useState({});
   const [refreshActiveItem, setRefreshActiveItem] = useState(false);
+  const [successInUpgrade, setSuccessInUpgrade] = useState(false);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -131,6 +132,20 @@ const ModalUpgradePending = props => {
     setAuthStatusDG(authStatusDG);
     setInstance(true);
   }, [state.tokenAuths]);
+
+  useEffect(() => {
+    if(successInUpgrade) {      
+      console.log('WEARABLE upgrading successful');
+      setLoading(false);
+      setUpdateStatus({ name: 'WEARABLE', value: 'done' });
+      setSuccessInUpgrade(false);
+
+      props.setUpgrade(3);
+      setAuthStatusUpgrade(true);
+      setOpen(false);
+      setInstance(true);
+    }
+  }, [successInUpgrade]);
 
   // get NFT authorization state based on props.tokenID
   useEffect(() => {
@@ -319,6 +334,7 @@ const ModalUpgradePending = props => {
           analytics.track(activeItem.trackEvent);
           activeItem.handleClick();
         }}
+        disabled={loading? true:false}
       >
         <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
 
@@ -501,37 +517,14 @@ const ModalUpgradePending = props => {
     setUpdateStatus({ name: token, value: 'clicked' });
 
     try {
-      const json = await Fetch.UPGRADE_TOKEN(props.tokenID, props.address);
-
+      const json = await Fetch.UPGRADE_TOKEN(
+        props.tokenID,
+        Global.ADDRESSES.COLLECTION_V2_ADDRESS
+      );
+      
       if (json.status) {
-        console.log('success in upgrading:', json);
-
-        // update global state token amounts
-        const refreshTokenAmounts = !state.refreshTokenAmounts;
-        dispatch({
-          type: 'refresh_token_amounts',
-          data: refreshTokenAmounts,
-        });
-
-        // update global state wearables data
-        const refreshWearable = !state.refreshWearable;
-        dispatch({
-          type: 'refresh_wearable_items',
-          data: refreshWearable,
-        });
-
-        // update global state balances
-        const refreshBalances = !state.refreshBalances;
-        dispatch({
-          type: 'refresh_balances',
-          data: refreshBalances,
-        });
-
-        // update global state iceWearableUpdatedSuccess
-        dispatch({
-          type: 'ice_wearable_update_success',
-          data: true,
-        });
+        console.log("success in upgrading:", json);
+        setSuccessInUpgrade(true);
       } else if (!json.status) {
         setLoading(false);
         setUpdateStatus({ name: token, value: 'initial' });
