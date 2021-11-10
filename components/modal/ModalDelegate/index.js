@@ -7,6 +7,7 @@ import ModalSuccessDelegation from '../ModalSuccessDelegation';
 import Global from '../../Constants';
 import Aux from '../../_Aux';
 import ABI_COLLECTION_V2 from '../../../components/ABI/ABICollectionV2';
+import ABI_COLLECTION_PH from '../../../components/ABI/ABICollectionPH';
 import Web3 from 'web3';
 
 const ModalDelegate = props => {
@@ -18,8 +19,7 @@ const ModalDelegate = props => {
   const [success, setSuccess] = useState(false);
   const [open, setOpen] = useState(false);
   const [enteredAddress, setEnteredAddress] = useState('');
-  // const [isDelegated, setIsDelegated] = useState(false);
-  const [collectionV2Contract, setCollectionV2Contract] = useState({});
+  const [collectionArray, setCollectionArray] = useState([]);
   const [web3, setWeb3] = useState({});
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -33,14 +33,31 @@ const ModalDelegate = props => {
 
       const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
-      // setMaticWeb3(maticWeb3);
-      // const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL);
+      // const collectionV2Contract = new maticWeb3.eth.Contract(
+      //   ABI_COLLECTION_V2,
+      //   Global.ADDRESSES.COLLECTION_V2_ADDRESS
+      // );
+      // setCollectionV2Contract(collectionV2Contract);
 
       const collectionV2Contract = new maticWeb3.eth.Contract(
         ABI_COLLECTION_V2,
         Global.ADDRESSES.COLLECTION_V2_ADDRESS
       );
-      setCollectionV2Contract(collectionV2Contract);
+      const collectionV2Contract2 = new maticWeb3.eth.Contract(
+        ABI_COLLECTION_PH,
+        Global.ADDRESSES.COLLECTION_PH_ADDRESS
+      );
+
+      const collectionArray = [];
+      collectionArray.push([
+        collectionV2Contract,
+        Global.ADDRESSES.COLLECTION_V2_ADDRESS,
+      ]);
+      collectionArray.push([
+        collectionV2Contract2,
+        Global.ADDRESSES.COLLECTION_PH_ADDRESS,
+      ]);
+      setCollectionArray(collectionArray);
     }
   }, [state.userStatus]);
 
@@ -48,38 +65,33 @@ const ModalDelegate = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
 
   async function hasDataByAddress(address) {
-    // let hasData = false;
+    const tokenID = 0;
 
-    try {
-      for (
-        let nIndex = 0;
-        nIndex < Global.CONSTANTS.MAX_DELEGATION_COUNT;
-        nIndex++
-      ) {
-        const tokenID = await collectionV2Contract.methods
-          .tokenOfOwnerByIndex(address, nIndex)
-          .call();
+    const tokenById = collectionArray.map(async (item, index) => {
+      try {
+        for (
+          let nIndex = 0;
+          nIndex < Global.CONSTANTS.MAX_DELEGATION_COUNT;
+          nIndex++
+        ) {
+          const tokenID = await collectionArray[index][0].methods
+            .tokenOfOwnerByIndex(address, nIndex)
+            .call();
 
-        if (parseInt(tokenID) > 0) {
-          return true;
-        } // else {
-        // hasData = false;
-        // }
+          if (parseInt(tokenID) > 0) {
+            return true;
+          }
+        }
+      } catch (error) {
+        console.log('Index out-of-bounds: ', error.message);
       }
-    } catch (error) {
-      console.log('Index out-of-bounds: ', error.message);
 
-      // setErrorMsg(error.message);
-
-      // return false;
-    }
+      return tokenID;
+    });
+    await Promise.all(tokenById);
 
     return false;
   }
-
-  // function isArrayEmpty(arr) {
-  //   return arr.length === 0;
-  // }
 
   async function checkDelegatedStatus(address) {
     let errorMsg = '';
@@ -92,10 +104,6 @@ const ModalDelegate = props => {
       isDelegated = true;
     } else {
       const delegationInfo = await Fetch.DELEGATE_INFO(address);
-      // const delegationInfo = state.iceDelegatedItems;
-
-      console.log('delegation info...');
-      console.log(delegationInfo);
 
       // ensure no-one has delegated to target address yet (besides me)
       delegationInfo.incomingDelegations.forEach((item, i) => {
@@ -119,35 +127,8 @@ const ModalDelegate = props => {
     }
 
     setErrorMsg(errorMsg);
-    // setIsDelegated(isDelegated);
     return isDelegated;
   }
-
-  // async function getDelegated(address) {
-  //   console.log('Entered address: ' + address);
-
-  //   const delegationInfo = state.iceDelegatedItems;
-
-  //   console.log('Incoming delegation information:');
-  //   console.log(delegationInfo.incomingDelegations);
-
-  //   delegationInfo.incomingDelegations.forEach((item, i) => {
-  //     if (item) {
-  //       const tokenOwner = item.tokenOwner.toLowerCase();
-  //       console.log('Entered address incoming delegator: ' + tokenOwner);
-
-  //       // if entered address has delegated wearables and the delegator is not me
-  //       if (
-  //         tokenOwner !== '' &&
-  //         tokenOwner !== state.userAddress.toLowerCase()
-  //       ) {
-  //         setIsDelegated(true);
-  //       }
-  //     } else {
-  //       console.log('Entered address has no incoming delegator');
-  //     }
-  //   });
-  // }
 
   function imageDetails() {
     return (
@@ -236,8 +217,6 @@ const ModalDelegate = props => {
                   setErrorMsg('');
 
                   if (evt.target.value.length > 0) {
-                    // setErrorMsg('');
-
                     if (web3.utils.isAddress(evt.target.value)) {
                       const isDelegated = await checkDelegatedStatus(
                         evt.target.value
@@ -254,7 +233,6 @@ const ModalDelegate = props => {
                     }
                   } else {
                     setEnteredAddress('');
-                    // setErrorMsg('');
                   }
                 }}
               />
@@ -324,15 +302,13 @@ const ModalDelegate = props => {
   async function delegateNFT() {
     console.log('Delegate token ID: ' + props.tokenID);
     console.log('Delegate address: ' + enteredAddress);
-    console.log(
-      'Collection address: ' + Global.ADDRESSES.COLLECTION_V2_ADDRESS
-    );
+    console.log('Collection address: ' + props.address);
     setClicked(true);
 
     const json = await Fetch.DELEGATE_NFT(
       enteredAddress,
       props.tokenID,
-      Global.ADDRESSES.COLLECTION_V2_ADDRESS
+      props.address
     );
 
     if (json.status) {
@@ -363,7 +339,15 @@ const ModalDelegate = props => {
           open={open}
           close
           trigger={
-            <Button className={props.rank === 5 ? styles.open_button_fullWidth : styles.open_button}>{props.buttonName}</Button>
+            <Button
+              className={
+                props.rank === 5
+                  ? styles.open_button_fullWidth
+                  : styles.open_button
+              }
+            >
+              {props.buttonName}
+            </Button>
           }
         >
           <div className={styles.top_buttons}>

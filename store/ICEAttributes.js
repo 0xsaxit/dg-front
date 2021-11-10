@@ -6,6 +6,7 @@ import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
 import ABI_CHILD_TOKEN_WETH from '../components/ABI/ABIChildTokenWETH';
 import ABI_CHILD_TOKEN_ICE from '../components/ABI/ABIChildTokenICE';
 import ABI_COLLECTION_V2 from '../components/ABI/ABICollectionV2';
+import ABI_COLLECTION_PH from '../components/ABI/ABICollectionPH';
 import ABI_ICEToken from '../components/ABI/ABIICEToken';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
@@ -21,7 +22,7 @@ function ICEAttributes() {
   const [DGMaticContract, setDGMaticContract] = useState({});
   const [WETHMaticContract, setWETHMaticContract] = useState({});
   const [ICEMaticContract, setICEMaticContract] = useState({});
-  const [collectionV2Contract, setCollectionV2Contract] = useState({});
+  const [collectionArray, setCollectionArray] = useState([]);
   const [iceTokenContract, setIceTokenContract] = useState({});
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -59,7 +60,21 @@ function ICEAttributes() {
           ABI_COLLECTION_V2,
           Global.ADDRESSES.COLLECTION_V2_ADDRESS
         );
-        setCollectionV2Contract(collectionV2Contract);
+        const collectionV2Contract2 = new maticWeb3.eth.Contract(
+          ABI_COLLECTION_PH,
+          Global.ADDRESSES.COLLECTION_PH_ADDRESS
+        );
+
+        const collectionArray = [];
+        collectionArray.push([
+          collectionV2Contract,
+          Global.ADDRESSES.COLLECTION_V2_ADDRESS,
+        ]);
+        collectionArray.push([
+          collectionV2Contract2,
+          Global.ADDRESSES.COLLECTION_PH_ADDRESS,
+        ]);
+        setCollectionArray(collectionArray);
 
         const IceTokenContract = new maticWeb3.eth.Contract(
           ABI_ICEToken,
@@ -86,32 +101,49 @@ function ICEAttributes() {
         }
 
         const tokenIDs = [];
-        try {
-          for (
-            let nIndex = 0;
-            nIndex < Global.CONSTANTS.MAX_ITEM_COUNT;
-            nIndex++
-          ) {
-            const tokenID = await collectionV2Contract.methods
-              .tokenOfOwnerByIndex(state.userAddress, nIndex)
-              .call();
+        const tokensById = collectionArray.map(async (item, index) => {
+          try {
+            for (
+              let nIndex = 0;
+              nIndex < Global.CONSTANTS.MAX_ITEM_COUNT;
+              nIndex++
+            ) {
+              const tokenID = await collectionArray[index][0].methods
+                .tokenOfOwnerByIndex(state.userAddress, nIndex)
+                .call();
 
-            if (parseInt(tokenID) > 0) {
-              tokenIDs.push({ index: nIndex, tokenID: tokenID });
+              if (parseInt(tokenID) > 0) {
+                tokenIDs.push({
+                  index: nIndex,
+                  tokenID: tokenID,
+                  collection: collectionArray[index][0],
+                  address: collectionArray[index][1],
+                });
+              }
             }
+          } catch (error) {
+            console.log('Stack error: =>', error.message);
           }
-        } catch (error) {
-          console.log('Stack error: =>', error.message);
-        }
+
+          return tokenIDs;
+        });
+        await Promise.all(tokensById);
 
         console.log('Fetching metadata =========================');
 
         let iceWearableItems = [];
         for (var i = 0; i < tokenIDs.length; i++) {
           try {
-            const is_activated = await ICERegistrantContract.methods.isIceEnabled(state.userAddress, "0xcb06f6aee0655252a3f6f2884680421d55d3c645", tokenIDs[i].tokenID).call()
+            const is_activated = await ICERegistrantContract.methods
+              .isIceEnabled(
+                state.userAddress,
+                tokenIDs[i].address,
+                tokenIDs[i].tokenID
+              )
+              .call();
+
             const json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
-              Global.ADDRESSES.COLLECTION_V2_ADDRESS,
+              tokenIDs[i].address,
               tokenIDs[i].tokenID
             );
 
@@ -121,7 +153,9 @@ function ICEAttributes() {
                 tokenID: tokenIDs[i].tokenID,
                 itemID: json.id.split(':').slice(-1),
                 meta_data: json,
-                isActivated: is_activated
+                isActivated: is_activated,
+                collection: tokenIDs[i].collection,
+                address: tokenIDs[i].address,
               });
             }
           } catch (error) {
@@ -129,7 +163,7 @@ function ICEAttributes() {
           }
         }
 
-        console.log('iceWearableItems:', iceWearableItems);
+        console.log('iceWearableItems: ', iceWearableItems);
 
         dispatch({
           type: 'ice_wearable_items',
@@ -147,7 +181,7 @@ function ICEAttributes() {
 
   // anytime user undelegates an NFT this code will execute
   useEffect(() => {
-    if (state.userStatus >= 4) {
+    if (instances) {
       (async function () {
         dispatch({
           type: 'ice_delegated_items_loading',
@@ -167,7 +201,7 @@ function ICEAttributes() {
 
             try {
               const json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
-                Global.ADDRESSES.COLLECTION_V2_ADDRESS,
+                item.contractAddress,
                 tokenId
               );
 
@@ -177,6 +211,7 @@ function ICEAttributes() {
                   tokenID: tokenId,
                   itemID: json.id.split(':').slice(-1),
                   meta_data: json,
+                  address: item.contractAddress,
                 });
               }
             } catch (error) {
@@ -184,7 +219,6 @@ function ICEAttributes() {
             }
           });
         }
-      
 
         dispatch({
           type: 'ice_delegated_items',
@@ -196,7 +230,7 @@ function ICEAttributes() {
         });
       })();
     }
-  }, [state.userStatus, state.refreshDelegation]);
+  }, [instances, state.refreshDelegation]);
 
   // anytime user mints/upgrades/activates NFTs on /ice pages this code will execute
   useEffect(() => {
@@ -295,13 +329,14 @@ function ICEAttributes() {
         state.iceWearableItems.map(async (item, i) => {
           try {
             const NFTAuthorization = await Transactions.NFTApproved(
-              collectionV2Contract,
+              item.collection,
               item.tokenID
             );
 
             authArray.push({
               tokenID: item.tokenID,
               authStatus: NFTAuthorization,
+              address: item.address,
             });
           } catch (error) {
             console.log('Get NFT approved error: ' + error);

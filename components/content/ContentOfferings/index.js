@@ -8,7 +8,7 @@ import ModalLoginICE from 'components/modal/ModalLoginICE';
 import { Popup } from 'semantic-ui-react';
 import cn from 'classnames';
 import Carousel from 'react-multi-carousel';
-import "react-multi-carousel/lib/styles.css";
+import 'react-multi-carousel/lib/styles.css';
 
 const ContentOfferings = props => {
   // dispatch new user status to Context API store
@@ -380,10 +380,6 @@ const ContentOfferings = props => {
                   ) : (
                     <ModalLoginICE />
                   )}
-
-                  {/* <ModalMintActivation /> */}
-                  {/* <ActivateWearableModal /> */}
-                  {/* <ModalActivationSuccess setPending={false} /> */}
                 </div>
               </div>
             ))}

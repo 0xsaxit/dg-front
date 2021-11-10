@@ -79,8 +79,14 @@ const NeedMoreDGActivateModal = props => {
           <div className={styles.desc}>
             In order to earn ICE, you must first activate your wearable. ICE
             Wearables are activated on the Polygon sidechain. If you already own
-            enough $DG on mainnet, you can bridge it to Polygon using 
-            <a href="https://wallet.polygon.technology/login?next=%2Fbridge" target="_blank"> matic bridge</a>
+            enough $DG on mainnet, you can bridge it to Polygon using
+            <a
+              href="https://wallet.polygon.technology/login?next=%2Fbridge"
+              target="_blank"
+            >
+              {' '}
+              matic bridge
+            </a>
           </div>
 
           <div className={styles.logo}>
@@ -89,16 +95,23 @@ const NeedMoreDGActivateModal = props => {
               alt="logo"
             />
           </div>
-          <div className={styles.round_desc}>Need {(0.5 - state.DGBalances.BALANCE_CHILD_DG).toFixed(2)} more</div>
+          <div className={styles.round_desc}>
+            Need {(0.5 - state.DGBalances.BALANCE_CHILD_DG).toFixed(2)} more
+          </div>
 
           <div className={styles.buttons}>
             <div className={styles.button}>
               <Button
                 className={styles.gray}
                 onClick={() => {
-                  window.open("https://ice.decentral.games/ice-nft-wearables", "_blank");
+                  window.open(
+                    'https://ice.decentral.games/ice-nft-wearables',
+                    '_blank'
+                  );
                 }}
-              >Learn More</Button>
+              >
+                Learn More
+              </Button>
             </div>
 
             <div className={styles.button}>
@@ -133,7 +146,6 @@ const NeedMoreDGActivateModal = props => {
           </div>
         </Modal>
       ) : (
-        // <ActivateWearableModal setPending={setPending} />
         <ModalActivationSuccess setPending={setPending} />
       )}
     </>
