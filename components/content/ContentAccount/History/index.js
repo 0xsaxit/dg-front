@@ -62,17 +62,20 @@ function History({ state }) {
     ...(dataPlay === 'false'
       ? []
       : dataPlay.filter(
-          p => get(p, 'gameType', 0) < 10 && get(p, 'gameType', 0) !== 9
+          p =>
+            get(p, 'gameType', 0) < 10 &&
+            get(p, 'gameType', 0) !== 9 &&
+            p.txid != ''
         )),
     ...newPokerData,
   ].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-  console.log("->PlayData: ", playData);
+  console.log('->PlayData: ', playData);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
-    console.log("->State.transactions[0]: ", state.transactions[0]);
+    console.log('->State.transactions[0]: ', state.transactions[0]);
     if (state.transactions[0].length && state.transactions[1]) {
       setIsLoading(false);
     }
@@ -222,7 +225,7 @@ function History({ state }) {
                   </div>
                 </Grid.Column>
               );
-            })}            
+            })}
           </Grid>
         )}
       </div>
