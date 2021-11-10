@@ -17,25 +17,25 @@ const ContentLeaderboard = (props) => {
     const coinOptions = [
         {
             key: 'Play',
-            text: null,
+            text: 'PLAY',
             value: 'Play',
             image: { avatar: true, src: Images["PLAY_CIRCLE"] }
         },
         {
             key: 'Mana',
-            text: null,
+            text: 'MANA',
             value: 'Mana',
             image: { avatar: true, src: Images["MANA_CIRCLE"] }
         },
         {
             key: 'Dai',
-            text: null,
+            text: 'DAI',
             value: 'Dai',
             image: { avatar: true, src: Images["DAI_CIRCLE"] }
         },
         {
             key: 'Eth',
-            text: null,
+            text: 'ETH',
             value: 'Eth',
             image: { avatar: true, src: Images["ETH_CIRCLE"] }
         },
