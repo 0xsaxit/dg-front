@@ -270,13 +270,8 @@ function History({ state }) {
           ) : (
             playData.map((row, i) => {
               const timestamp = moment(row.createdAt).format('MM/DD/YY hh:mmA');
-              const amount = Number(
-                row.betAmount / Global.CONSTANTS.FACTOR
-              ).toFixed(0);
-              const result = Number(
-                row.amountWin / Global.CONSTANTS.FACTOR
-              ).toFixed(0);
-
+              const amount = row.betAmount / Global.CONSTANTS.FACTOR;
+              const result = row.amountWin / Global.CONSTANTS.FACTOR;
               let action = '';
               if (row.gameType === 1) {
                 action = 'Slots';
