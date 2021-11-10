@@ -181,10 +181,7 @@ const ModalEthAuth = props => {
 
   async function fetchMintToken() {
     try {
-      const json = await Fetch.MINT_TOKEN(
-        props.itemID,
-        Global.ADDRESSES.COLLECTION_V2_ADDRESS
-      );
+      const json = await Fetch.MINT_TOKEN(props.itemID, props.address);
       console.log('pooling json: ', json);
 
       if (json.status) {
@@ -210,10 +207,7 @@ const ModalEthAuth = props => {
     setClickedConfirm(true);
 
     console.log('props.itemID', props.itemID);
-    console.log(
-      'COLLECTION_V2_ADDRESS',
-      Global.ADDRESSES.COLLECTION_V2_ADDRESS
-    );
+    console.log('props.address', props.address);
 
     const intervalid = setInterval(() => {
       setTickCount(prevCount => prevCount + 1);

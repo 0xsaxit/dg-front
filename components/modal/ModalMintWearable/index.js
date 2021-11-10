@@ -72,7 +72,7 @@ const ModalMint = props => {
             />
           </div>
           <div className={styles.card}>
-            {(itemLimitsArray[props.index][0])} of 100 left
+            {itemLimitsArray[props.index][0]} of 100 left
           </div>
         </div>
       </div>
@@ -264,6 +264,7 @@ const ModalMint = props => {
     return (
       <ModalETHAuth
         itemID={itemLimitsArray[props.index][1]}
+        address={'0x4cd15dcd96362cF85E19039C3C2D661e5e43145E'}
         wearableImg={props.wearableImg}
         show={openETHAuth}
         back={() => {
