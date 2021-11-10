@@ -1,42 +1,133 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { GlobalContext } from '../../../../../store';
 import { Button } from 'semantic-ui-react';
+import Web3 from 'web3';
+import BigNumber from 'bignumber.js';
 import Spinner from 'components/lottieAnimation/animations/spinner';
 import styles from './secondStep.module.scss'
+import Global from 'components/Constants';
+import Transactions from '../../../../../common/Transactions';
 
 const SecondStep = (props) => {
     // dispatch user's ICE amounts to the Context API store
     const [state, dispatch] = useContext(GlobalContext);
 
     // define local variables
-    const [dgAmount, setDGAmount] = useState(21);
-    const [unstaked, setUnstake] = useState(false);
+    const [uniDGAmount, setUniDGAmount] = useState(0);
+    const [lpStakedAmount, setLpStakedAmount] = useState(0);
+    const [hash, setHash] = useState('');
+    const [unstaked, setUnstaked] = useState(false);
     const [loading, setLoading] = useState(false);
     const [withdrawn, setWithDrawn] = useState(false);
+    const [stakingContractUniswap, setStakeContractUniswap] = useState(null);
+    const [uniswapContract, setUniswapContract] = useState(null);
 
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
-    // helper functions
-    function formatPrice(balanceDG, units) {
-        const balanceAdjusted = Number(balanceDG)
-            .toFixed(units)
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    async function createContracts() {
+        const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
-        return balanceAdjusted;
+        const [
+            stakingContract,
+            poolContract
+        ] = await Promise.all([
+            Transactions.stakingContractUniswap(web3),
+            Transactions.uniswapContract(web3)
+        ]);
+        setStakeContractUniswap(stakingContract);
+        setUniswapContract(poolContract);
     }
 
+    async function fetchInfo() {
+        if (!stakingContractUniswap || !uniswapContract) {
+            return;
+        }
 
-    function handleClickUnstakeLPTokens() {
-        setLoading(true);
-        setTimeout(() => {
-            setUnstake(true);
+        const [
+            amount,
+            lpAmount,
+            reserves,
+            totalSupply
+        ] = await Promise.all([
+            stakingContractUniswap.methods.balanceOf(state.userAddress).call(),
+            uniswapContract.methods.balanceOf(state.userAddress).call(),
+            uniswapContract.methods.getReserves().call(),
+            uniswapContract.methods.totalSupply().call()
+        ]);
+        
+        const dgAmount = BigNumber(reserves[1])
+            .times(lpAmount)
+            .div(totalSupply)
+            .div(Global.CONSTANTS.FACTOR).toFixed();
+
+        if (BigNumber(amount).isZero()) {
+            setUnstaked(true);
+        } else {
+            setUnstaked(false);
+        }
+
+        if (BigNumber(dgAmount).isZero()) {
+            setWithDrawn(true);
+        } else {
+            setWithDrawn(false);
+        }
+
+        setLpStakedAmount(BigNumber(amount).div(Global.CONSTANTS.FACTOR).toFixed());
+        setUniDGAmount(dgAmount);
+    }
+
+    async function unstake() {
+        const amount = BigNumber(lpStakedAmount)
+            .times(Global.CONSTANTS.FACTOR).toFixed();
+
+        console.log('Call withdraw() function to unstake tokens');
+
+        try {
+            console.log(amount, state.userAddress)
+            await stakingContractUniswap.methods
+                .withdraw(amount)
+                .send({ from: state.userAddress })
+                .on('transactionHash', function(hash) {
+                    setHash(hash);
+                    setLoading(true);
+                })
+                .on('confirmation', function(confirmation, receipt) {
+                    setUnstaked(true);
+                    setLoading(false);
+                    console.log('withdraw() transaction completed: ' + hash);
+                });
+
+            // update global state staking balances
+            const refresh = !state.refreshBalances;
+
+            dispatch({
+                type: 'refresh_balances',
+                data: refresh,
+            });
+            dispatch({
+              type: 'show_toastMessage',
+              data: '$DG unstaked successfully!',
+            });
+        } catch (error) {
+            console.log('Withdraw transaction error: ' + error);
             setLoading(false);
-
-            setTimeout(() => {
-                setWithDrawn(true);
-            }, 3000)
-        }, 5000);
+            dispatch({
+              type: 'show_toastMessage',
+              data: 'Failed to unstake $DG!',
+            });
+        }
     }
+
+    // fetch staking contract data
+    useEffect(() => {
+        if (state.userStatus >= 4) {   
+            createContracts();
+        }
+    }, [state.userStatus]);
+
+    fetchInfo();
+    if (Global.intervalID) {
+        clearInterval(Global.intervalID);
+    }
+    Global.intervalID = setInterval(fetchInfo, 5000);
 
     return (
         <div className={styles.main_wrapper}>
@@ -55,15 +146,18 @@ const SecondStep = (props) => {
                             </div>
                             <div className={styles.center_content}>
                                 <div>
-                                    {formatPrice(dgAmount, 2)} <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
+                                    {props.formatPrice(lpStakedAmount, 2)}
+                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
                                 </div>
-                                <p>${formatPrice(dgAmount * state.DGPrices.dg, 2)}</p>
+                                <p>
+                                    ${props.formatPrice((state.DGPrices.dg * lpStakedAmount).toFixed(2), 2)}
+                                </p>
                             </div>
                             <div className={styles.button_div}>
                                 {loading ?
                                     <Button
                                         className={styles.button}
-                                        href="/"
+                                        href={`https://etherscan.io/tx/${hash}`}
                                         target="_blank"
                                     >
                                         <Spinner />
@@ -74,7 +168,7 @@ const SecondStep = (props) => {
                                     <Button
                                         className={styles.button}
                                         onClick={() => {
-                                            handleClickUnstakeLPTokens();
+                                            unstake();
                                         }}
                                     >
                                         <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" alt="metamask" />
@@ -136,15 +230,18 @@ const SecondStep = (props) => {
                         </div>
                         <div className={styles.center_content}>
                             <div>
-                                {formatPrice(dgAmount, 2)} <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
+                                {props.formatPrice(uniDGAmount, 2)}
+                                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
                             </div>
-                            <p>${formatPrice(dgAmount * state.DGPrices.dg, 2)}</p>
+                            <p>
+                                ${props.formatPrice((state.DGPrices.dg * uniDGAmount).toFixed(2), 2)}
+                            </p>
                         </div>
                         <div className={styles.button_div}>
                             <Button
                                 className={styles.button}
                                 onClick={() => {
-                                    window.open("/", "_blank");
+                                    window.open("https://app.uniswap.org/#/remove/v2/0xee06a81a695750e71a662b51066f2c74cf4478a0/ETH", "_blank");
                                 }}
                             >
                                 <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636428353/uniswap_tkdx8e.png" alt="uniswap" />

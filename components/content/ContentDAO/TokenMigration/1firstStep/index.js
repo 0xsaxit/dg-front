@@ -1,18 +1,84 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Button } from 'semantic-ui-react';
+import Web3 from 'web3';
+import BigNumber from 'bignumber.js';
 import Spinner from 'components/lottieAnimation/animations/spinner';
 import styles from './firstStep.module.scss'
+import Global from 'components/Constants';
+import { GlobalContext } from '../../../../../store';
+import Transactions from '../../../../../common/Transactions';
 
 const FirstStep = (props) => {
+    // get the treasury's balances numbers from the Context API store
+    const [state, dispatch] = useContext(GlobalContext);
+
+    const [hash, setHash] = useState('');
     const [unstaked, setUnstaked] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [stakingContract, setStakeContract] = useState({});
 
-    function handleClickUnstake() {
-        setLoading(true);
-        setTimeout(() => {
-            setUnstaked(true);
+    // fetch staking contract data
+    useEffect(() => {
+        if (state.userStatus >= 4) {
+            const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+
+            async function fetchData() {
+                const contract =
+                    await Transactions.stakingContractGovernance(web3);
+                setStakeContract(contract);
+
+                const stakedAmount =
+                    await contract.methods.balanceOf(state.userAddress).call();
+
+                if (BigNumber(stakedAmount).isZero()) {
+                    setUnstaked(true);
+                }
+            }
+
+            fetchData();
+        }
+    }, [state.userStatus]);
+
+    async function unstake() {
+        const amount = BigNumber(state.stakingBalances.BALANCE_USER_GOVERNANCE)
+            .times(Global.CONSTANTS.FACTOR).toFixed();
+
+        console.log('Call withdraw() function to unstake tokens');
+
+        try {
+            console.log(amount, state.userAddress)
+            await stakingContract.methods
+                .withdraw(amount)
+                .send({ from: state.userAddress })
+                .on('transactionHash', function(hash) {
+                    setHash(hash);
+                    setLoading(true);
+                })
+                .on('confirmation', function(confirmation, receipt) {
+                    setUnstaked(true);
+                    setLoading(false);
+                    console.log('withdraw() transaction completed: ' + hash);
+                });
+
+            // update global state staking balances
+            const refresh = !state.refreshBalances;
+
+            dispatch({
+                type: 'refresh_balances',
+                data: refresh,
+            });
+            dispatch({
+              type: 'show_toastMessage',
+              data: '$DG unstaked successfully!',
+            });
+        } catch (error) {
+            console.log('Withdraw transaction error: ' + error);
             setLoading(false);
-        }, 5000);
+            dispatch({
+              type: 'show_toastMessage',
+              data: 'Failed to unstake $DG!',
+            });
+        }
     }
 
     return (
@@ -31,15 +97,18 @@ const FirstStep = (props) => {
                             </div>
                             <div className={styles.center_content}>
                                 <div>
-                                    14.21 <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
+                                    {props.formatPrice(state.stakingBalances.BALANCE_USER_GOVERNANCE, 2)}
+                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
                                 </div>
-                                <p>$7,332.42</p>
+                                <p>
+                                    ${props.formatPrice((state.DGPrices.dg * state.stakingBalances.BALANCE_USER_GOVERNANCE).toFixed(2), 2)}
+                                </p>
                             </div>
                             <div className={styles.button_div}>
                                 {loading ?
                                     <Button
                                         className={styles.button}
-                                        href="/"
+                                        href={`https://etherscan.io/tx/${hash}`}
                                         target="_blank"
                                     >
                                         <Spinner />
@@ -50,11 +119,11 @@ const FirstStep = (props) => {
                                     <Button
                                         className={styles.button}
                                         onClick={() => {
-                                            handleClickUnstake();
+                                            unstake();
                                         }}
                                     >
                                         <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" alt="metamask" />
-                                        Unstake 14.21 $DG
+                                        Unstake {props.formatPrice(state.stakingBalances.BALANCE_USER_GOVERNANCE, 2)} $DG
                                     </Button>
                                 }
                             </div>

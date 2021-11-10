@@ -7,7 +7,7 @@ import ForthStep from './4forthStep'
 import FifthStep from './5fifthStep'
 import styles from './TokenMigration.module.scss'
 
-const TokenMigration = () => {
+const TokenMigration = (props) => {
     const [currentStep, setCurrentStep] = useState(1);
     const steps = ["Unstake Your $DG", "Withdraw Your Liquidity Provision $DG", "Swap Your Mainnet $DG", "Stake in New Governance", "Swap Your Polygon DG"];
 
@@ -44,10 +44,13 @@ const TokenMigration = () => {
             <div className={styles.content}>
                 {currentStep === 1 ?
                     <FirstStep
+                        formatPrice={props.formatPrice}
+                        price={props.price}
                         nextStep={() => setCurrentStep(2)}
                     />
                     : currentStep === 2 ?
                         <SecondStep
+                            formatPrice={props.formatPrice}
                             nextStep={() => setCurrentStep(3)}
                         />
                         : currentStep === 3 ?

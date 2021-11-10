@@ -877,7 +877,10 @@ const DAO = props => {
                   <FoxAnimation />
                 </section>
               ) : (
-                <TokenMigration />
+                <TokenMigration
+                  formatPrice={formatPrice}
+                  price={price}
+                />
               )}
             </>
           ) : null}
