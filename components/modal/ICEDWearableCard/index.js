@@ -49,25 +49,27 @@ const ICEDWearableCard = props => {
               <span className="w-100 d-flex justify-content-between">
                 <ModalDelegate
                   tokenID={props.tokenID}
+                  address={props.address}
                   imgSrc={props.url}
                   rank={props.rank}
                   bonus={props.bonus}
                 />
 
-                <ModalWearable tokenID={props.tokenID} itemID={props.itemID} />
+                <ModalWearable
+                  tokenID={props.tokenID}
+                  itemID={props.itemID}
+                  address={props.address}
+                />
               </span>
             ) : props.state == 2 ? (
               props.balance >= 0.5 ? (
                 <ActivateWearableModal
                   setPending={setPending}
                   tokenID={props.tokenID}
+                  address={props.address}
                 />
               ) : (
                 <NeedMoreDGActivateModal balance={props.balance} />
-                // <ActivateWearableModal
-                //   setPending={setPending}
-                //   tokenID={props.tokenID}
-                // />
               )
             ) : (
               <ModalWithdrawDelegation />

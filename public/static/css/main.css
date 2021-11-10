@@ -3710,9 +3710,23 @@ div.ui.input.withdraw_input>input {
   z-index: 10;
 }
 
+.gamesLeaderboardCoinSelect .ui.ui.selection.dropdown .divider.text {
+  position: relative;
+  left: 10px;
+  font-size: 0px;
+}
+
+.gamesLeaderboardCoinSelect .ui.ui.selection.dropdown .divider.text img {
+  left: 30px;
+  font-size: 11px;
+  top: -5px;
+}
+
 .gamesLeaderboardCoinSelect .ui.selection.dropdown {
   background: transparent !important;
   min-width: 40px;
+  width: 105px;
+  border: none;
 }
 
 .gamesLeaderboardCoinSelect .ui.selection.dropdown:focus {
@@ -3730,19 +3744,28 @@ div.ui.input.withdraw_input>input {
   margin-right: 0px;
 }
 
+.gamesLeaderboardCoinSelect .ui.selection.dropdown span {
+  font-family: 'Larsseit-Regular';
+}
+
 .gamesLeaderboardCoinSelect .ui.selection.dropdown .icon {
   color: #FFF;
 }
 
 .gamesLeaderboardCoinSelect .ui.selection.dropdown .visible.menu {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+  left: 40px;
   max-height: 300px !important;
   border-radius: 8px;
   border: none !important;
+  width: 100%;
 }
 
 .gamesLeaderboardCoinSelect .ui.selection.dropdown .visible.menu .item {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   border: none;
   height: 36px;

@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Button } from 'semantic-ui-react';
 import FirstStep from './1firstStep'
-// import SecondStep from './2secondStep'
-// import ThirdStep from './3thirdStep'
-// import ForthStep from './4forthStep'
-// import FifthStep from './5fifthStep'
+import SecondStep from './2secondStep'
+import ThirdStep from './3thirdStep'
+import ForthStep from './4forthStep'
+import FifthStep from './5fifthStep'
 import styles from './TokenMigration.module.scss'
 
 const TokenMigration = () => {
@@ -47,19 +47,19 @@ const TokenMigration = () => {
                         nextStep={() => setCurrentStep(2)}
                     />
                     : currentStep === 2 ?
-                        <FirstStep
+                        <SecondStep
                             nextStep={() => setCurrentStep(3)}
                         />
                         : currentStep === 3 ?
-                            <FirstStep
+                            <ThirdStep
                                 nextStep={() => setCurrentStep(4)}
                             />
                             : currentStep === 4 ?
-                                <FirstStep
+                                <ForthStep
                                     nextStep={() => setCurrentStep(5)}
                                 />
                                 : currentStep === 5 ?
-                                    <FirstStep />
+                                    <FifthStep />
                                     : null
                 }
             </div>

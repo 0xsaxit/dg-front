@@ -17,46 +17,28 @@ const ContentLeaderboard = (props) => {
     const coinOptions = [
         {
             key: 'Play',
-            text: null,
+            text: 'PLAY',
             value: 'Play',
             image: { avatar: true, src: Images["PLAY_CIRCLE"] }
         },
         {
             key: 'Mana',
-            text: null,
+            text: 'MANA',
             value: 'Mana',
             image: { avatar: true, src: Images["MANA_CIRCLE"] }
         },
         {
             key: 'Dai',
-            text: null,
+            text: 'DAI',
             value: 'Dai',
             image: { avatar: true, src: Images["DAI_CIRCLE"] }
         },
         {
             key: 'Eth',
-            text: null,
+            text: 'ETH',
             value: 'Eth',
             image: { avatar: true, src: Images["ETH_CIRCLE"] }
         },
-        {
-            key: 'Usdt',
-            text: null,
-            value: 'Usdt',
-            image: { avatar: true, src: Images["USDT_CIRCLE"] }
-        },
-        {
-            key: 'Atri',
-            text: null,
-            value: 'Atri',
-            image: { avatar: true, src: Images["ATRI_CIRCLE"] }
-        },
-        {
-            key: 'Chip',
-            text: null,
-            value: 'Chip',
-            image: { avatar: true, src: Images["CHIP_CIRCLE"] }
-        }
     ]
 
     const [gameRecords, setGameRecords] = useState([]);
