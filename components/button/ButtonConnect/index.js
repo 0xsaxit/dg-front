@@ -11,7 +11,7 @@ import ModalLoginTop from 'components/modal/ModalLoginTop';
 import styles from './ButtonConnect.module.scss';
 import Global from 'components/Constants';
 
-const assignToken = async () => {
+const assignToken = async (accountSwitch = false) => {
   const userAddress = window.ethereum.selectedAddress;
   if (userAddress && document.visibilityState === 'visible') {
     const timestamp = Date.now();
@@ -34,7 +34,9 @@ const assignToken = async () => {
     localStorage.setItem('token', token);
     localStorage.setItem('expiretime', Number(timestamp / 1000 + 12 * 3600));
 
-    // window.location.reload();
+    if (accountSwitch) {
+      window.location.reload();
+    }
   }
 };
 
@@ -53,8 +55,14 @@ const ButtonConnect = () => {
 
   useEffect(() => {
     if (window.ethereum && window.ethereum.selectedAddress) {
-      window.ethereum.on('accountsChanged', () => {
-        assignToken();
+      window.addEventListener('load', function() {
+        window.ethereum.on('accountsChanged', () => {
+          dispatch({
+            type: 'user_address',
+            data: window.ethereum.selectedAddress,
+          });
+          assignToken(true);
+        });
       });
 
       const currentTimestamp = new Date().getTime() / 1000;

@@ -19,127 +19,125 @@ const Wearables = ({ state }) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   // fetch user's incoming/outgoing delegate mapping data. Refreshes upon delegation/undelegation
   useEffect(() => {
-    if (state.iceDelegatedItems.length) {
-      (async function () {
-        let maxICEValue = 0;
-        let maxICEDelegatedWearableBonuses = [];
-        let maxICEActiveWearableBonuses = {
-          Trousers: 0,
-          Blazer: 0,
-          Cigar: 0,
-          Loafers: 0,
-          Shades: 0,
-        };
+    (async function () {
+      let maxICEValue = 0;
+      let maxICEDelegatedWearableBonuses = [];
+      let maxICEActiveWearableBonuses = {
+        Trousers: 0,
+        Blazer: 0,
+        Cigar: 0,
+        Loafers: 0,
+        Shades: 0,
+      };
 
-        const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
+      const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
 
-        // console.log('delegation info (Wearables): ');
-        // console.log(delegationInfo);
+      // console.log('delegation info (Wearables): ');
+      // console.log(delegationInfo);
 
-        activeWearables.map(activeWearable => {
-          if (
-            delegationInfo.outgoingDelegations &&
-            delegationInfo.outgoingDelegations.findIndex(
-              e => e.tokenId === activeWearable.tokenID
-            ) >= 0
-          ) {
-            var indexOfDelegated = maxICEDelegatedWearableBonuses.findIndex(
-              e => e.tokenID === activeWearable.tokenID
-            );
-            if (indexOfDelegated < 0) {
-              const newDelegatedWearableBonuses = {
-                tokenID: activeWearable.tokenID,
-                wearableBonuses: {
-                  Trousers: 0,
-                  Blazer: 0,
-                  Cigar: 0,
-                  Loafers: 0,
-                  Shades: 0,
-                },
-              };
+      activeWearables.map(activeWearable => {
+        if (
+          delegationInfo.outgoingDelegations &&
+          delegationInfo.outgoingDelegations.findIndex(
+            e => e.tokenId === activeWearable.tokenID
+          ) >= 0
+        ) {
+          var indexOfDelegated = maxICEDelegatedWearableBonuses.findIndex(
+            e => e.tokenID === activeWearable.tokenID
+          );
+          if (indexOfDelegated < 0) {
+            const newDelegatedWearableBonuses = {
+              tokenID: activeWearable.tokenID,
+              wearableBonuses: {
+                Trousers: 0,
+                Blazer: 0,
+                Cigar: 0,
+                Loafers: 0,
+                Shades: 0,
+              },
+            };
 
-              Object.keys(newDelegatedWearableBonuses.wearableBonuses).map(
-                item => {
-                  if (activeWearable.meta_data.name.search(item) >= 0) {
-                    if (
-                      newDelegatedWearableBonuses.wearableBonuses[item] <
-                      parseInt(
-                        activeWearable.meta_data.attributes.at(-1).value
-                      ) *
-                        0.3
-                    ) {
-                      newDelegatedWearableBonuses.wearableBonuses[item] =
-                        parseInt(
-                          activeWearable.meta_data.attributes.at(-1).value
-                        ) * 0.3;
-                    }
-                  }
-                }
-              );
-              maxICEDelegatedWearableBonuses.push(newDelegatedWearableBonuses);
-            } else {
-              const delegatedWearableBonuses =
-                maxICEDelegatedWearableBonuses[indexOfDelegated]
-                  .wearableBonuses;
-
-              Object.keys(delegatedWearableBonuses).map(item => {
+            Object.keys(newDelegatedWearableBonuses.wearableBonuses).map(
+              item => {
                 if (activeWearable.meta_data.name.search(item) >= 0) {
                   if (
-                    delegatedWearableBonuses[item] <
-                    parseInt(activeWearable.meta_data.attributes.at(-1).value) *
-                      0.3
+                    newDelegatedWearableBonuses.wearableBonuses[item] <
+                    parseInt(
+                      activeWearable.meta_data.attributes.at(-2).value
+                    ) *
+                    0.3
                   ) {
-                    delegatedWearableBonuses[item] =
+                    newDelegatedWearableBonuses.wearableBonuses[item] =
                       parseInt(
-                        activeWearable.meta_data.attributes.at(-1).value
+                        activeWearable.meta_data.attributes.at(-2).value
                       ) * 0.3;
                   }
                 }
-              });
-            }
+              }
+            );
+            maxICEDelegatedWearableBonuses.push(newDelegatedWearableBonuses);
           } else {
-            Object.keys(maxICEActiveWearableBonuses).map(item => {
+            const delegatedWearableBonuses =
+              maxICEDelegatedWearableBonuses[indexOfDelegated]
+                .wearableBonuses;
+
+            Object.keys(delegatedWearableBonuses).map(item => {
               if (activeWearable.meta_data.name.search(item) >= 0) {
                 if (
-                  maxICEActiveWearableBonuses[item] <
-                  parseInt(activeWearable.meta_data.attributes.at(-1).value)
+                  delegatedWearableBonuses[item] <
+                  parseInt(activeWearable.meta_data.attributes.at(-2).value) *
+                  0.3
                 ) {
-                  maxICEActiveWearableBonuses[item] = parseInt(
-                    activeWearable.meta_data.attributes.at(-1).value
-                  );
+                  delegatedWearableBonuses[item] =
+                    parseInt(
+                      activeWearable.meta_data.attributes.at(-2).value
+                    ) * 0.3;
                 }
               }
             });
           }
-        });
-
-        delegatedWearables.map(delegatedWearable => {
+        } else {
           Object.keys(maxICEActiveWearableBonuses).map(item => {
-            if (delegatedWearable.meta_data.name.search(item) >= 0) {
-              const bonusValue =
-                parseInt(delegatedWearable.meta_data.attributes.at(-1).value) *
-                0.7;
-              if (maxICEActiveWearableBonuses[item] < bonusValue) {
-                maxICEActiveWearableBonuses[item] = bonusValue;
+            if (activeWearable.meta_data.name.search(item) >= 0) {
+              if (
+                maxICEActiveWearableBonuses[item] <
+                parseInt(activeWearable.meta_data.attributes.at(-2).value)
+              ) {
+                maxICEActiveWearableBonuses[item] = parseInt(
+                  activeWearable.meta_data.attributes.at(-2).value
+                );
               }
             }
           });
-        });
+        }
+      });
 
-        // Get maxICEBonus
+      delegatedWearables.map(delegatedWearable => {
         Object.keys(maxICEActiveWearableBonuses).map(item => {
-          maxICEValue += maxICEActiveWearableBonuses[item];
+          if (delegatedWearable.meta_data.name.search(item) >= 0) {
+            const bonusValue =
+              parseInt(delegatedWearable.meta_data.attributes.at(-2).value) *
+              0.7;
+            if (maxICEActiveWearableBonuses[item] < bonusValue) {
+              maxICEActiveWearableBonuses[item] = bonusValue;
+            }
+          }
         });
+      });
 
-        maxICEDelegatedWearableBonuses.map(e => {
-          Object.keys(e.wearableBonuses).map(item => {
-            maxICEValue += e.wearableBonuses[item];
-          });
+      // Get maxICEBonus
+      Object.keys(maxICEActiveWearableBonuses).map(item => {
+        maxICEValue += maxICEActiveWearableBonuses[item];
+      });
+
+      maxICEDelegatedWearableBonuses.map(e => {
+        Object.keys(e.wearableBonuses).map(item => {
+          maxICEValue += e.wearableBonuses[item];
         });
+      });
 
-        setMaxICEBonus(Math.round(maxICEValue * 1000) / 1000);
-      })();
-    }
+      setMaxICEBonus(Math.round(maxICEValue * 1000) / 1000);
+    })();
   }, [state.refreshDelegateInfo]);
 
 
@@ -150,9 +148,8 @@ const Wearables = ({ state }) => {
       <div className={styles.wearableHeader}>
         <div>
           <h2>ICED Wearables</h2>
-          <p>{`(${activeWearables.length + delegatedWearables.length} of ${
-            state.iceWearableItems.length + state.iceDelegatedItems.length
-          } Active)`}</p>
+          <p>{`(${activeWearables.length + delegatedWearables.length} of ${state.iceWearableItems.length + state.iceDelegatedItems.length
+            } Active) ${maxICEBonus}% Max ICE Bonus`}</p>
         </div>
         <Button className={styles.open_sea} href="/ice/marketplace">
           Mint Wearable

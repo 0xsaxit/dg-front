@@ -51,7 +51,7 @@ const ModalMint = props => {
         open={open}
         close
         trigger={
-          <Button className={styles.button_right}>Mint New Wearable</Button>
+          <Button className={styles.wearable_button}>Mint New Wearable</Button>
         }
       >
         <div className={styles.modal_wrapper}>

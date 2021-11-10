@@ -30,11 +30,6 @@ const MessageToast = (props) => {
           // get permission to access accounts
           window.ethereum.enable();
       
-          // detect Metamask account change
-          window.ethereum.on('accountsChanged', function (accounts) {
-            console.log('1. accountsChanges',accounts);
-          });
-      
            // detect Network account change
           window.ethereum.on('networkChanged', function(networkId){
             if (parseInt(networkId) !== parseInt(Global.CONSTANTS.PARENT_NETWORK_ID)) {

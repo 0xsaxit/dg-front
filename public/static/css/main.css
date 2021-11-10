@@ -3050,7 +3050,7 @@ a.ui.button.balances-top-button {
   background-color: #006eff;
   min-width: 198px;
   font-size: 17px;
-  font-family:  Larsseit-Bold;
+  font-family: Larsseit-Bold;
   margin-top: 12px;
   height: 48px;
   display: flex;
@@ -3326,7 +3326,7 @@ i.clone.outline.icon, .account-address {
   font-size: 18px;
   margin-top: 24px;
   padding-top: 21px;
-  line-height:  20px;
+  line-height: 20px;
 }
 
 .ui.button.buy-dg-button.binance {
@@ -3697,4 +3697,82 @@ div.ui.input.withdraw_input>input {
   font-family: 'Larsseit-Bold';
   font-size: 20px;
   text-align: center;
+}
+
+.spinner-animation-div {
+  margin-right: 12px;
+}
+
+.gamesLeaderboardCoinSelect {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  z-index: 10;
+}
+
+.gamesLeaderboardCoinSelect .ui.ui.selection.dropdown .divider.text {
+  position: relative;
+  left: 10px;
+  font-size: 0px;
+}
+
+.gamesLeaderboardCoinSelect .ui.ui.selection.dropdown .divider.text img {
+  left: 30px;
+  font-size: 11px;
+  top: -5px;
+}
+
+.gamesLeaderboardCoinSelect .ui.selection.dropdown {
+  background: transparent !important;
+  min-width: 40px;
+  width: 105px;
+  border: none;
+}
+
+.gamesLeaderboardCoinSelect .ui.selection.dropdown:focus {
+  border: none !important;
+}
+
+.gamesLeaderboardCoinSelect .ui.selection.dropdown:hover {
+  border: none;
+}
+
+.gamesLeaderboardCoinSelect .ui.selection.dropdown img {
+  width: 22px;
+  height: 22px;
+  margin-top: -5px;
+  margin-right: 0px;
+}
+
+.gamesLeaderboardCoinSelect .ui.selection.dropdown span {
+  font-family: 'Larsseit-Regular';
+}
+
+.gamesLeaderboardCoinSelect .ui.selection.dropdown .icon {
+  color: #FFF;
+}
+
+.gamesLeaderboardCoinSelect .ui.selection.dropdown .visible.menu {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+  left: 40px;
+  max-height: 300px !important;
+  border-radius: 8px;
+  border: none !important;
+  width: 100%;
+}
+
+.gamesLeaderboardCoinSelect .ui.selection.dropdown .visible.menu .item {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  border: none;
+  height: 36px;
+  transition: 0.2s ease-in;
+}
+
+.gamesLeaderboardCoinSelect .ui.selection.dropdown .visible.menu .item:hover {
+  opacity: 0.6;
+  transition: 0.2s ease-in;
 }
