@@ -22,10 +22,11 @@
     align-items: center;
     justify-content: flex-start;
 
-    &:hover {
+    &:hover, &:focus, &:active {
       border: 2px solid white;
       color: white;
       background-color: rgba(255, 255, 255, 0);
+      filter: brightness(0.8) !important;
     }
 
     @include mq($until: small) {
@@ -48,10 +49,11 @@
     align-items: center;
     justify-content: flex-start;
 
-    &:hover {
+    &:hover, &:focus, &:active {
       border: 2px solid white;
       background-color: rgba(255, 255, 255, 0);
       color: white;
+      filter: brightness(0.8) !important;
     }
 
     @include mq($until: small) {

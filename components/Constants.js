@@ -33,6 +33,7 @@ const CONSTANTS = {
   DG_STAKED_AMOUNT: 1, // amount of DG user is required to have staked in order to mint wearable
   POOLING_TIME_OUT: 8000, // API endpoint request pool interval (milliseconds)
   POOLING_LIMIT_COUNT: 6, // attempt to call API endpoint this number of times
+  MINT_ENABLED: true
 };
 
 // wallet and contract addresses
@@ -68,6 +69,7 @@ const ADDRESSES = (() => {
   const TOMINOYA_CONTRACT_ADDRESS = '0xF4618abb5E8031454238696A0F013DcD1476dc33';
   const DECENTRAL_GAMES_EVENTS = '0x154620ddfdcd6ab15dd9c1682386debad1eef536';
   const COLLECTION_V2_ADDRESS = '0xCb06f6aeE0655252a3f6f2884680421D55d3C645';
+  const COLLECTION_PH_ADDRESS = '0x4cd15dcd96362cF85E19039C3C2D661e5e43145E';
   const ICE_TOKEN_ADDRESS = '0xc6C855AD634dCDAd23e64DA71Ba85b8C51E5aD7c';
 
   console.log('OWNER_WALLET_ADDRESS: ' + OWNER_WALLET_ADDRESS);
@@ -101,6 +103,7 @@ const ADDRESSES = (() => {
   console.log('TOMINOYA_CONTRACT_ADDRESS: ' + TOMINOYA_CONTRACT_ADDRESS);
   console.log('DECENTRAL_GAMES_EVENTS: ' + DECENTRAL_GAMES_EVENTS)
   console.log('COLLECTION_V2_ADDRESS: ' + COLLECTION_V2_ADDRESS)
+  console.log('COLLECTION_PH_ADDRESS: ' + COLLECTION_PH_ADDRESS)
   console.log('ICE_TOKEN_ADDRESS: ' + ICE_TOKEN_ADDRESS)
 
   return {
@@ -135,6 +138,7 @@ const ADDRESSES = (() => {
     TOMINOYA_CONTRACT_ADDRESS,
     DECENTRAL_GAMES_EVENTS,
     COLLECTION_V2_ADDRESS,
+    COLLECTION_PH_ADDRESS,
     ICE_TOKEN_ADDRESS
   };
 })();

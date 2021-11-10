@@ -470,6 +470,7 @@ const ModalWearable = props => {
         <ModalUpgradePending
           setUpgrade={setUpgrade}
           tokenID={props.tokenID}
+          address={props.address}
           itemID={props.itemID}
         />
       )}

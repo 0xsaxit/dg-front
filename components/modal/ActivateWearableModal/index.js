@@ -81,7 +81,7 @@ const ActivateWearableModal = props => {
       (async function () {
         // update token hash from iceRegistrant contract
         const tokenHash = await iceRegistrantContract.methods
-          .getHash(Global.ADDRESSES.COLLECTION_V2_ADDRESS, props.tokenID)
+          .getHash(props.address, props.tokenID)
           .call();
 
         // get previous owner based on token hash
@@ -186,9 +186,18 @@ const ActivateWearableModal = props => {
           <p>
             <span className={styles.greenCheck}>
               {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(1)} DG
-                Available 
-              <svg width="16" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3.83203 7.73047C4.10547 7.73047 4.32031 7.625 4.46875 7.40625L8.10547 1.86328C8.21094 1.70312 8.25391 1.55078 8.25391 1.41016C8.25391 1.03125 7.96484 0.75 7.57422 0.75C7.30859 0.75 7.14062 0.847656 6.97656 1.10156L3.81641 6.08594L2.21484 4.12109C2.06641 3.94141 1.90234 3.86328 1.67578 3.86328C1.28125 3.86328 0.996094 4.14453 0.996094 4.52734C0.996094 4.69922 1.04688 4.84766 1.19531 5.01562L3.21094 7.4375C3.37891 7.63672 3.57422 7.73047 3.83203 7.73047Z" fill="#67DD6C"/>
+              Available
+              <svg
+                width="16"
+                height="11"
+                viewBox="0 0 12 11"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3.83203 7.73047C4.10547 7.73047 4.32031 7.625 4.46875 7.40625L8.10547 1.86328C8.21094 1.70312 8.25391 1.55078 8.25391 1.41016C8.25391 1.03125 7.96484 0.75 7.57422 0.75C7.30859 0.75 7.14062 0.847656 6.97656 1.10156L3.81641 6.08594L2.21484 4.12109C2.06641 3.94141 1.90234 3.86328 1.67578 3.86328C1.28125 3.86328 0.996094 4.14453 0.996094 4.52734C0.996094 4.69922 1.04688 4.84766 1.19531 5.01562L3.21094 7.4375C3.37891 7.63672 3.57422 7.73047 3.83203 7.73047Z"
+                  fill="#67DD6C"
+                />
               </svg>
             </span>
             <br />
@@ -228,7 +237,6 @@ const ActivateWearableModal = props => {
 
   // Biconomy API meta-transaction. User must authorize DG token contract to access their funds
   async function metaTransactionDG() {
-    
     try {
       setClicked(true);
       console.log('DG authorize amount: ' + Global.CONSTANTS.MAX_AMOUNT);
@@ -265,15 +273,12 @@ const ActivateWearableModal = props => {
       setClicked(false);
       console.log('DG authorization error: ' + error);
     }
-    
   }
 
   function showErrorCase() {
     return (
       <Aux>
-        <div className={styles.error_text}>
-          {errorText? errorText: ''}
-        </div>
+        <div className={styles.error_text}>{errorText ? errorText : ''}</div>
       </Aux>
     );
   }
@@ -285,13 +290,9 @@ const ActivateWearableModal = props => {
 
     try {
       setClicked(true);
-      // get function signature and send Biconomy API meta-transaction      
+      // get function signature and send Biconomy API meta-transaction
       let functionSignature = iceRegistrantContract.methods
-        .reIceNFT(
-          previousOwner,
-          Global.ADDRESSES.COLLECTION_V2_ADDRESS,
-          props.tokenID
-        )
+        .reIceNFT(previousOwner, props.address, props.tokenID)
         .encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(
@@ -329,7 +330,7 @@ const ActivateWearableModal = props => {
         dispatch({
           type: 'refresh_balances',
           data: refreshBalances,
-        })
+        });
 
         // close this modal and open the success modal
         setErrorText(null);
@@ -337,7 +338,6 @@ const ActivateWearableModal = props => {
         setClicked(false);
         setOpenUpgradeSuccess(true);
       }
-
     } catch (error) {
       setOpenUpgradeSuccess(false);
       setClicked(false);
@@ -348,63 +348,65 @@ const ActivateWearableModal = props => {
 
   return (
     <Aux>
-    {!openUpgradeSuccess? (
-      <Modal
-        className={styles.dgactivate_modal}
-        onClose={() => {
-          setOpen(false);
-        }}
-        onOpen={() => {
-          setOpen(true);
-        }}
-        open={open}
-        close
-        trigger={
-          <Button className={styles.open_button}>
-            Activate Wearable ({state.tokenAmounts.DG_MOVE_AMOUNT} DG)
-          </Button>
-        }
-      >
-        <div className={styles.top_buttons}>
-          {modalButtons('close')}
-          {modalButtons('help')}
-        </div>
-  
-        {description()}
-  
-        <div className={styles.buttons}>          
-          <Button
-            disabled={clicked}
-            className={styles.primary}
-            onClick={() => {
-              console.log('authStatus: ', authStatus);
-              if (!authStatus) {
-                metaTransactionDG();
-              } else {
-                metaTransactionReICE();
-              }
-            }}
-          >
-            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
-            {authStatus
-              ? (clicked? 'Confirming...' : 'Confirm Activation')
-              : clicked
+      {!openUpgradeSuccess ? (
+        <Modal
+          className={styles.dgactivate_modal}
+          onClose={() => {
+            setOpen(false);
+          }}
+          onOpen={() => {
+            setOpen(true);
+          }}
+          open={open}
+          close
+          trigger={
+            <Button className={styles.open_button}>
+              Activate Wearable ({state.tokenAmounts.DG_MOVE_AMOUNT} DG)
+            </Button>
+          }
+        >
+          <div className={styles.top_buttons}>
+            {modalButtons('close')}
+            {modalButtons('help')}
+          </div>
+
+          {description()}
+
+          <div className={styles.buttons}>
+            <Button
+              disabled={clicked}
+              className={styles.primary}
+              onClick={() => {
+                console.log('authStatus: ', authStatus);
+                if (!authStatus) {
+                  metaTransactionDG();
+                } else {
+                  metaTransactionReICE();
+                }
+              }}
+            >
+              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
+              {authStatus
+                ? clicked
+                  ? 'Confirming...'
+                  : 'Confirm Activation'
+                : clicked
                 ? 'Authorizing ...'
                 : 'Authorize DG'}
-          </Button>
-        </div>
-        {showErrorCase()}
-      </Modal>
-    ):(
-      <ModalActivationSuccess
-        show={openUpgradeSuccess}
-        setOpenUpgradeSuccess={setOpenUpgradeSuccess}
-        tokenID={props.tokenID}
-        close={() => {
-          setOpenUpgradeSuccess(false);
-        }}
-      />
-    )}
+            </Button>
+          </div>
+          {showErrorCase()}
+        </Modal>
+      ) : (
+        <ModalActivationSuccess
+          show={openUpgradeSuccess}
+          setOpenUpgradeSuccess={setOpenUpgradeSuccess}
+          tokenID={props.tokenID}
+          close={() => {
+            setOpenUpgradeSuccess(false);
+          }}
+        />
+      )}
     </Aux>
   );
 };

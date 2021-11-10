@@ -5,13 +5,12 @@ import Web3 from 'web3';
 import ABI_DG_TOKEN from '../../../components/ABI/ABIDGToken';
 import ABI_CHILD_TOKEN_ICE from '../../../components/ABI/ABIChildTokenICE';
 import ABI_COLLECTION_V2 from '../../../components/ABI/ABICollectionV2';
-// import ABI_ICE_REGISTRANT from '../../../components/ABI/ABIICERegistrant.json';
+// import ABI_COLLECTION_PH from '../../../components/ABI/ABICollectionPH';
 import MetaTx from '../../../common/MetaTx';
 import Fetch from '../../../common/Fetch';
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './ModalUpgradePending.module.scss';
 import MetamaskAction, { ActionLine } from 'components/common/MetamaskAction';
-import ModalUpgradeSuccess from '../ModalUpgradeSuccess';
 import Global from '../../Constants';
 import Aux from '../../_Aux';
 import { Loader } from 'semantic-ui-react';
@@ -31,16 +30,21 @@ const ModalUpgradePending = props => {
   const [authStatusDG, setAuthStatusDG] = useState(false);
   const [authStatusNFT, setAuthStatusNFT] = useState(false);
   const [authStatusUpgrade, setAuthStatusUpgrade] = useState(false);
-  const [clickedICE, setClickedICE] = useState(false);
-  const [clickedDG, setClickedDG] = useState(false);
-  const [clickedNFT, setClickedNFT] = useState(false);
-  const [clickedUpgrade, setClickedUpgrade] = useState(false);
+  // const [clickedICE, setClickedICE] = useState(false);
+  // const [clickedDG, setClickedDG] = useState(false);
+  // const [clickedNFT, setClickedNFT] = useState(false);
+  // const [clickedUpgrade, setClickedUpgrade] = useState(false);
   const [tokenContractICE, setTokenContractICE] = useState({});
   const [tokenContractDG, setTokenContractDG] = useState({});
-  const [collectionV2Contract, setCollectionV2Contract] = useState({});
+
+  // const [collectionV2Contract, setCollectionV2Contract] = useState({});
+  const [collectionContract, setCollectionContract] = useState({});
+  const [collectionID, setCollectionID] = useState(0);
+
   const [progSteps, setProgSteps] = useState([]);
   const [activeItem, setActiveItem] = useState({});
   const [refreshActiveItem, setRefreshActiveItem] = useState(false);
+  const [successInUpgrade, setSuccessInUpgrade] = useState(false);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -77,11 +81,37 @@ const ModalUpgradePending = props => {
       );
       setTokenContractDG(tokenContractDG);
 
-      const collectionV2Contract = new getWeb3.eth.Contract(
-        ABI_COLLECTION_V2,
-        Global.ADDRESSES.COLLECTION_V2_ADDRESS
-      );
-      setCollectionV2Contract(collectionV2Contract);
+      // const collectionV2Contract = new getWeb3.eth.Contract(
+      //   ABI_COLLECTION_V2,
+      //   Global.ADDRESSES.COLLECTION_V2_ADDRESS
+      // );
+      // setCollectionV2Contract(collectionV2Contract);
+
+      let collectionContract = {};
+      let collectionID = 0;
+      if (props.address === '0xCb06f6aeE0655252a3f6f2884680421D55d3C645') {
+        collectionContract = new maticWeb3.eth.Contract(
+          ABI_COLLECTION_V2,
+          Global.ADDRESSES.COLLECTION_V2_ADDRESS
+        );
+        collectionID = 10;
+      } else if (
+        props.address === '0x4cd15dcd96362cF85E19039C3C2D661e5e43145E'
+      ) {
+        collectionContract = new maticWeb3.eth.Contract(
+          ABI_COLLECTION_PH,
+          Global.ADDRESSES.COLLECTION_PH_ADDRESS
+        );
+        collectionID = 12;
+      }
+
+      // const collectionContract = new maticWeb3.eth.Contract(
+      //   ABI_COLLECTION_V2,
+      //   props.address
+      // );
+
+      setCollectionContract(collectionContract);
+      setCollectionID(collectionID);
 
       biconomy
         .onEvent(biconomy.READY, () => {
@@ -102,6 +132,20 @@ const ModalUpgradePending = props => {
     setAuthStatusDG(authStatusDG);
     setInstance(true);
   }, [state.tokenAuths]);
+
+  useEffect(() => {
+    if(successInUpgrade) {      
+      console.log('WEARABLE upgrading successful');
+      setLoading(false);
+      setUpdateStatus({ name: 'WEARABLE', value: 'done' });
+      setSuccessInUpgrade(false);
+
+      props.setUpgrade(3);
+      setAuthStatusUpgrade(true);
+      setOpen(false);
+      setInstance(true);
+    }
+  }, [successInUpgrade]);
 
   // get NFT authorization state based on props.tokenID
   useEffect(() => {
@@ -290,6 +334,7 @@ const ModalUpgradePending = props => {
           analytics.track(activeItem.trackEvent);
           activeItem.handleClick();
         }}
+        disabled={loading? true:false}
       >
         <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
 
@@ -423,14 +468,14 @@ const ModalUpgradePending = props => {
 
     try {
       // get function signature and send Biconomy API meta-transaction
-      let functionSignature = collectionV2Contract.methods
+      let functionSignature = collectionContract.methods
         .approve(Global.ADDRESSES.ICE_REGISTRANT_ADDRESS, props.tokenID)
         .encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(
-        10,
+        collectionID,
         functionSignature,
-        collectionV2Contract,
+        collectionContract,
         state.userAddress,
         web3
       );
@@ -476,36 +521,10 @@ const ModalUpgradePending = props => {
         props.tokenID,
         Global.ADDRESSES.COLLECTION_V2_ADDRESS
       );
-
+      
       if (json.status) {
         console.log("success in upgrading:", json);
-
-        // update global state token amounts
-        const refreshTokenAmounts = !state.refreshTokenAmounts;
-        dispatch({
-          type: 'refresh_token_amounts',
-          data: refreshTokenAmounts,
-        });
-
-        // update global state wearables data
-        const refreshWearable = !state.refreshWearable;
-        dispatch({
-          type: 'refresh_wearable_items',
-          data: refreshWearable,
-        });
-
-        // update global state balances
-        const refreshBalances = !state.refreshBalances;
-        dispatch({
-          type: 'refresh_balances',
-          data: refreshBalances,
-        });
-
-        // update global state iceWearableUpdatedSuccess
-        dispatch({
-          type: 'ice_wearable_update_success',
-          data: true,
-        });
+        setSuccessInUpgrade(true);
       } else if (!json.status) {
         setLoading(false);
         setUpdateStatus({ name: token, value: 'initial' });
@@ -567,8 +586,8 @@ const ModalUpgradePending = props => {
             </p>
 
             <p className={styles.description}>
-              To upgrade your wearable, you will have to complete 4
-              transactions in MetaMask.
+              To upgrade your wearable, you will have to complete 4 transactions
+              in MetaMask.
             </p>
 
             {/* {authButtons()} */}
