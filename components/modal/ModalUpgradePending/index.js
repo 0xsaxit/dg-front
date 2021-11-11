@@ -75,6 +75,7 @@ const ModalUpgradePending = props => {
       setTokenContractDG(tokenContractDG);
 
       let collectionContract = {};
+      let collectionAddress = '';
       let collectionID = 0;
 
       if (props.address === Global.ADDRESSES.COLLECTION_V2_ADDRESS) {
@@ -82,16 +83,19 @@ const ModalUpgradePending = props => {
           ABI_COLLECTION_V2,
           Global.ADDRESSES.COLLECTION_V2_ADDRESS
         );
+        collectionAddress = Global.ADDRESSES.COLLECTION_V2_ADDRESS;
         collectionID = 10;
       } else if (props.address === Global.ADDRESSES.COLLECTION_PH_ADDRESS) {
         collectionContract = new getWeb3.eth.Contract(
           ABI_COLLECTION_PH,
           Global.ADDRESSES.COLLECTION_PH_ADDRESS
         );
+        collectionAddress = Global.ADDRESSES.COLLECTION_PH_ADDRESS;
         collectionID = 12;
       }
 
       setCollectionContract(collectionContract);
+      setCollectionAddress(collectionAddress);
       setCollectionID(collectionID);
 
       biconomy
@@ -498,10 +502,7 @@ const ModalUpgradePending = props => {
     setUpdateStatus({ name: token, value: 'clicked' });
 
     try {
-      const json = await Fetch.UPGRADE_TOKEN(
-        props.tokenID,
-        Global.ADDRESSES.COLLECTION_V2_ADDRESS
-      );
+      const json = await Fetch.UPGRADE_TOKEN(props.tokenID, collectionAddress);
 
       if (json.status) {
         console.log('success in upgrading:', json);
