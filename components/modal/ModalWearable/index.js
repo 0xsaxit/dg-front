@@ -135,7 +135,7 @@ const ModalWearable = props => {
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/robe_4_dovw7i.png',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592479/robe_5_pezqkh.png',
     ],
-    "Captains Hat": [
+    "Captain's Hat": [
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592475/hat_m_1_s3vhqj.png',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592475/hat_m_1_s3vhqj.png',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592477/hat_m_2_tegl1l.png',
