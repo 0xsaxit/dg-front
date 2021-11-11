@@ -64,6 +64,15 @@ const ModalWearable = props => {
     DG_COST_AMOUNT_4, // Rank 4
     DG_COST_AMOUNT_5, // Rank 5
   ];
+
+  const xpPrices = [
+    0, // Rank 0
+    0, // Rank 1
+    XP_COST_AMOUNT_2, // Rank 2
+    XP_COST_AMOUNT_3, // Rank 3
+    XP_COST_AMOUNT_4, // Rank 4
+    XP_COST_AMOUNT_5, // Rank 5
+  ];
   
   return (
     <>

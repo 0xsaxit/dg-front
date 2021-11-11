@@ -19,17 +19,18 @@ async function treasuryContract(web3Default) {
 
 // get user's active status (true or false) from smart contract
 async function getActiveStatus(userAddress, web3Default) {
-  const parentContract = await treasuryContract(web3Default);
+  // const parentContract = await treasuryContract(web3Default);
 
-  try {
-    const activeStatus = await parentContract.methods
-      .isEnabled(userAddress)
-      .call();
+  // try {
+  //   const activeStatus = await parentContract.methods
+  //     .isEnabled(userAddress)
+  //     .call();
 
-    return activeStatus;
-  } catch (error) {
-    console.log('No active status found: ' + error);
-  }
+  //   return activeStatus;
+  // } catch (error) {
+  //   console.log('No active status found: ' + error);
+  // }
+  return true;
 }
 
 // set pointer contract instances

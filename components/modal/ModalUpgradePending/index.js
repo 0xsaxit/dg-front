@@ -5,7 +5,7 @@ import Web3 from 'web3';
 import ABI_DG_TOKEN from '../../../components/ABI/ABIDGToken';
 import ABI_CHILD_TOKEN_ICE from '../../../components/ABI/ABIChildTokenICE';
 import ABI_COLLECTION_V2 from '../../../components/ABI/ABICollectionV2';
-// import ABI_COLLECTION_PH from '../../../components/ABI/ABICollectionPH';
+import ABI_COLLECTION_PH from '../../../components/ABI/ABICollectionPH';
 import MetaTx from '../../../common/MetaTx';
 import Fetch from '../../../common/Fetch';
 import { Modal, Button } from 'semantic-ui-react';
@@ -30,17 +30,11 @@ const ModalUpgradePending = props => {
   const [authStatusDG, setAuthStatusDG] = useState(false);
   const [authStatusNFT, setAuthStatusNFT] = useState(false);
   const [authStatusUpgrade, setAuthStatusUpgrade] = useState(false);
-  // const [clickedICE, setClickedICE] = useState(false);
-  // const [clickedDG, setClickedDG] = useState(false);
-  // const [clickedNFT, setClickedNFT] = useState(false);
-  // const [clickedUpgrade, setClickedUpgrade] = useState(false);
   const [tokenContractICE, setTokenContractICE] = useState({});
   const [tokenContractDG, setTokenContractDG] = useState({});
-
-  // const [collectionV2Contract, setCollectionV2Contract] = useState({});
   const [collectionContract, setCollectionContract] = useState({});
+  const [collectionAddress, setCollectionAddress] = useState('');
   const [collectionID, setCollectionID] = useState(0);
-
   const [progSteps, setProgSteps] = useState([]);
   const [activeItem, setActiveItem] = useState({});
   const [refreshActiveItem, setRefreshActiveItem] = useState(false);
@@ -81,36 +75,28 @@ const ModalUpgradePending = props => {
       );
       setTokenContractDG(tokenContractDG);
 
-      // const collectionV2Contract = new getWeb3.eth.Contract(
-      //   ABI_COLLECTION_V2,
-      //   Global.ADDRESSES.COLLECTION_V2_ADDRESS
-      // );
-      // setCollectionV2Contract(collectionV2Contract);
-
       let collectionContract = {};
+      let collectionAddress = '';
       let collectionID = 0;
-      if (props.address === '0xCb06f6aeE0655252a3f6f2884680421D55d3C645') {
-        collectionContract = new maticWeb3.eth.Contract(
+
+      if (props.address === Global.ADDRESSES.COLLECTION_V2_ADDRESS) {
+        collectionContract = new getWeb3.eth.Contract(
           ABI_COLLECTION_V2,
           Global.ADDRESSES.COLLECTION_V2_ADDRESS
         );
+        collectionAddress = Global.ADDRESSES.COLLECTION_V2_ADDRESS;
         collectionID = 10;
-      } else if (
-        props.address === '0x4cd15dcd96362cF85E19039C3C2D661e5e43145E'
-      ) {
-        collectionContract = new maticWeb3.eth.Contract(
+      } else if (props.address === Global.ADDRESSES.COLLECTION_PH_ADDRESS) {
+        collectionContract = new getWeb3.eth.Contract(
           ABI_COLLECTION_PH,
           Global.ADDRESSES.COLLECTION_PH_ADDRESS
         );
+        collectionAddress = Global.ADDRESSES.COLLECTION_PH_ADDRESS;
         collectionID = 12;
       }
 
-      // const collectionContract = new maticWeb3.eth.Contract(
-      //   ABI_COLLECTION_V2,
-      //   props.address
-      // );
-
       setCollectionContract(collectionContract);
+      setCollectionAddress(collectionAddress);
       setCollectionID(collectionID);
 
       biconomy
@@ -134,7 +120,7 @@ const ModalUpgradePending = props => {
   }, [state.tokenAuths]);
 
   useEffect(() => {
-    if(successInUpgrade) {      
+    if (successInUpgrade) {
       console.log('WEARABLE upgrading successful');
       setLoading(false);
       setUpdateStatus({ name: 'WEARABLE', value: 'done' });
@@ -334,7 +320,7 @@ const ModalUpgradePending = props => {
           analytics.track(activeItem.trackEvent);
           activeItem.handleClick();
         }}
-        disabled={loading? true:false}
+        disabled={loading ? true : false}
       >
         <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
 
@@ -517,32 +503,29 @@ const ModalUpgradePending = props => {
     setUpdateStatus({ name: token, value: 'clicked' });
 
     try {
-      // const json = await Fetch.UPGRADE_TOKEN(
-      //   props.tokenID,
-      //   Global.ADDRESSES.COLLECTION_V2_ADDRESS
-      // );
+      // const json = await Fetch.UPGRADE_TOKEN(props.tokenID, collectionAddress);
       const json = {status: true};
-      
+
       if (json.status) {
-        console.log("success in upgrading:", json);
+        console.log('success in upgrading:', json);
         setSuccessInUpgrade(true);
       } else if (!json.status) {
         setLoading(false);
         setUpdateStatus({ name: token, value: 'initial' });
 
-        setClickedUpgrade(false);
+        // setClickedUpgrade(false);
         console.log('WEARABLE upgrading error (a): ' + json.result);
       } else if (json.status === 'error') {
         setLoading(false);
         setUpdateStatus({ name: token, value: 'initial' });
 
-        setClickedUpgrade(false);
+        // setClickedUpgrade(false);
         console.log('WEARABLE upgrading error (b): ' + json.result);
       }
     } catch (error) {
       setLoading(false);
       setUpdateStatus({ name: token, value: 'initial' });
-      setClickedUpgrade(false);
+      // setClickedUpgrade(false);
 
       console.log(error); // API request timeout error
     }
