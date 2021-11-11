@@ -218,7 +218,7 @@ const MenuTop = props => {
 
           {!isTablet && (
             <a
-              href="https://docs.decentral.games"
+              href="https://ice.decentral.games"
               id="docs-top-menu"
               target="_blank"
             >
@@ -306,7 +306,7 @@ const MenuTop = props => {
 
         {isTablet && (
           <a
-            href="https://docs.decentral.games"
+            href="https://ice.decentral.games"
             id="docs-top-menu"
             className="d-flex"
             target="_blank"
