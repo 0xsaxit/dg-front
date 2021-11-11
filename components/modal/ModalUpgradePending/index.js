@@ -510,19 +510,19 @@ const ModalUpgradePending = props => {
         setLoading(false);
         setUpdateStatus({ name: token, value: 'initial' });
 
-        setClickedUpgrade(false);
+        // setClickedUpgrade(false);
         console.log('WEARABLE upgrading error (a): ' + json.result);
       } else if (json.status === 'error') {
         setLoading(false);
         setUpdateStatus({ name: token, value: 'initial' });
 
-        setClickedUpgrade(false);
+        // setClickedUpgrade(false);
         console.log('WEARABLE upgrading error (b): ' + json.result);
       }
     } catch (error) {
       setLoading(false);
       setUpdateStatus({ name: token, value: 'initial' });
-      setClickedUpgrade(false);
+      // setClickedUpgrade(false);
 
       console.log(error); // API request timeout error
     }
