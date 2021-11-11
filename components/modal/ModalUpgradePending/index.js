@@ -504,7 +504,7 @@ const ModalUpgradePending = props => {
 
     try {
       const json = await Fetch.UPGRADE_TOKEN(props.tokenID, collectionAddress);
-
+      
       if (json.status) {
         console.log('success in upgrading:', json);
         setSuccessInUpgrade(true);
