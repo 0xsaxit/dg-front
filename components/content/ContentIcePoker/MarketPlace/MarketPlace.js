@@ -296,7 +296,7 @@ const MarketPlace = () => {
                 </div>
 
                 <div className={styles.button_container}>
-                  {state.userStatus >= 4 && state.userLoggedIn && state.itemLimits2[i][0] ? (
+                  {state.userStatus >= 20 && state.userLoggedIn && state.itemLimits2[i][0] > 0 ? (
                     <div className={styles.flex_50}>
                       <ModalMintWearable
                         index={i}
@@ -308,9 +308,13 @@ const MarketPlace = () => {
                         wearableName={detailsICEPartyHost[item][1]}
                       />
                     </div>
-                  ) : !state.itemLimits2[i][0] && state.userStatus >= 4 ? (
+                  ) : state.itemLimits2[i][0] < 1 && state.userStatus >= 4 ? (
                     <Button disabled className={styles.sold_button}>
                       Sold Out!
+                    </Button>
+                  ) : state.itemLimits2[i][0] > 0 && state.userStatus < 20 ? (
+                    <Button disabled className={styles.sold_button}>
+                      Coming Soon!
                     </Button>
                   ) : (
                     <div className={styles.flex_50}>
