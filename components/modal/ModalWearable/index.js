@@ -241,9 +241,6 @@ const ModalWearable = props => {
                 </div>
               </div>
 
-              {console.log('wearable name...')}
-              {console.log(wearableName)}
-
               <div className={styles.wear_box_pink}>
                 <img
                   src={

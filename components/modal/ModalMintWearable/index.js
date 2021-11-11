@@ -36,7 +36,7 @@ const ModalMint = props => {
               className={styles.img_card}
             />
           </div>
-          <div className={styles.card}>{props.numberLeft} of 100 left</div>
+          <div className={styles.card}>{101 - props.numberLeft} of 100</div>
         </div>
       </div>
     );
