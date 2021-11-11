@@ -281,7 +281,11 @@ const MarketPlace = () => {
                     <p className={styles.nft_info}>
                       {detailsICEPartyHost[item][3]}
                     </p>
-                    <p className={styles.nft_info}>{state.itemLimits2[i][0]}</p>
+                    {state.userStatus >= 4 && state.userLoggedIn ? (
+                      <p className={styles.nft_info}>{state.itemLimits2[i][0]} of 100 left</p>
+                    ) : (
+                      <p className={styles.nft_info}>- of 100 left</p>
+                    )}
                   </span>
                   <p className={styles.nft_other_p}>
                     {detailsICEPartyHost[item][2]}
@@ -292,25 +296,27 @@ const MarketPlace = () => {
                 </div>
 
                 <div className={styles.button_container}>
-                  {state.itemLimits2[i][0] ? (
-                    state.userStatus >= 4 && state.userLoggedIn ? (
-                      <div className={styles.flex_50}>
-                        <ModalMintWearable
-                          index={i}
-                          numberLeft={state.itemLimits2[i][0]}
-                          itemID={state.itemLimits2[i][1]}
-                          wearableImg={detailsICEPartyHost[item][0]}
-                          wearableBodyType={detailsICEPartyHost[item][3]}
-                          wearableBodyImg={detailsICEPartyHost[item][5]}
-                          wearableName={detailsICEPartyHost[item][1]}
-                        />
-                      </div>
-                    ) : (
-                      <div className={styles.flex_50}>
-                        <ModalLoginICE />
-                      </div>
-                    )
-                  ) : null}
+                  {state.userStatus >= 4 && state.userLoggedIn && state.itemLimits2[i][0] ? (
+                    <div className={styles.flex_50}>
+                      <ModalMintWearable
+                        index={i}
+                        numberLeft={state.itemLimits2[i][0]}
+                        itemID={state.itemLimits2[i][1]}
+                        wearableImg={detailsICEPartyHost[item][0]}
+                        wearableBodyType={detailsICEPartyHost[item][3]}
+                        wearableBodyImg={detailsICEPartyHost[item][5]}
+                        wearableName={detailsICEPartyHost[item][1]}
+                      />
+                    </div>
+                  ) : !state.itemLimits2[i][0] && state.userStatus >= 4 ? (
+                    <Button disabled className={styles.sold_button}>
+                      Sold Out!
+                    </Button>
+                  ) : (
+                    <div className={styles.flex_50}>
+                      <ModalLoginICE />
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
@@ -413,7 +419,11 @@ const MarketPlace = () => {
                 <div className={styles.nft_description}>
                   <span style={{ display: 'flex', justifyContent: 'center' }}>
                     <p className={styles.nft_info}>{detailsICESuit[item][3]}</p>
-                    <p className={styles.nft_info}>{state.itemLimits1[i][0]}</p>
+                    {state.userStatus >= 4 && state.userLoggedIn ? (
+                      <p className={styles.nft_info}>{state.itemLimits1[i][0]} of 100 left</p>
+                    ) : (
+                      <p className={styles.nft_info}>- of 100 left</p>
+                    )}
                   </span>
                   <p className={styles.nft_other_p}>
                     {detailsICESuit[item][2]}
@@ -446,14 +456,14 @@ const MarketPlace = () => {
 
                   <a
                     className={styles.flex_50}
-                    href="https://opensea.io/collection/decentral-games-ice"
+                    href="https://market.decentraland.org/browse?assetType=nft&section=wearables&contracts=0xcb06f6aee0655252a3f6f2884680421d55d3c645"
                     target="_blank"
                     style={{
-                      width: '100%',
+                      width: '100%'
                     }}
                   >
                     <Button className={styles.wearable_button}>
-                      Buy on Opensea
+                      Buy on Secondary
                     </Button>
                   </a>
                 </div>
