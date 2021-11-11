@@ -65,6 +65,7 @@ const ModalWearable = props => {
     DG_COST_AMOUNT_5, // Rank 5
   ];
 
+  /*
   const xpPrices = [
     0, // Rank 0
     0, // Rank 1
@@ -73,6 +74,7 @@ const ModalWearable = props => {
     XP_COST_AMOUNT_4, // Rank 4
     XP_COST_AMOUNT_5, // Rank 5
   ];
+  */
   
   return (
     <>
@@ -390,7 +392,7 @@ const ModalWearable = props => {
                     className={styles.button_upgrade}
                     onClick={() => {
                       setOpen(false);
-                      setUpgrade(2);
+                      setUpgrade(1);
                     }}
                   >
                     Upgrade Wearable
