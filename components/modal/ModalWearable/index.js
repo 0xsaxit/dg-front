@@ -6,6 +6,7 @@ import IceUpgradeWearableTooltip from 'components/tooltips/IceUpgradeWearableToo
 import NeedMoreUpgrade from 'components/modal/NeedMoreUpgrade';
 import ModalUpgradeSuccess from 'components/modal/ModalUpgradeSuccess';
 import ModalUpgradePending from 'components/modal/ModalUpgradePending';
+import Global from '../../../components/Constants';
 
 const ModalWearable = props => {
   // get user's unclaimed DG balance from the Context API store
@@ -22,11 +23,14 @@ const ModalWearable = props => {
     DG_COST_AMOUNT_3,
     DG_COST_AMOUNT_4,
     DG_COST_AMOUNT_5,
-    XP_COST_AMOUNT_2,
-    XP_COST_AMOUNT_3,
-    XP_COST_AMOUNT_4,
-    XP_COST_AMOUNT_5,
   } = state.tokenAmounts;
+
+  console.log(state.tokenAmounts);
+
+  /////////////////////////////////////////////////////////////////////
+  /////////////// TODO: please add some logic to calculate the "not enough" tags' visibility on top of the
+  /////////////// token price tags. (spans on lines 124, 155 and 183)
+  ////////////////////////////////////////////////////////////////////
 
   ////////////////////////////////////////////////////////////////////
   /////////////// Bonus Array, ICE Prices, Img Array
@@ -60,61 +64,7 @@ const ModalWearable = props => {
     DG_COST_AMOUNT_4, // Rank 4
     DG_COST_AMOUNT_5, // Rank 5
   ];
-
-  const xpPrices = [
-    0, // Rank 0
-    0, // Rank 1
-    XP_COST_AMOUNT_2, // Rank 2
-    XP_COST_AMOUNT_3, // Rank 3
-    XP_COST_AMOUNT_4, // Rank 4
-    XP_COST_AMOUNT_5, // Rank 5
-  ];
-
-  const imgUrls = {
-    Trousers: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank1_lower_body_o18u5h.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank1_lower_body_o18u5h.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank2_lower_body_x8duyn.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank3_lower_body_cogifo.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank4_lower_body_bdz0gt.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank5_lower_body_jz4bwy.png',
-    ],
-    Blazer: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank1_upper_body_zw12j7.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank1_upper_body_zw12j7.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank2_upper_body_jifiuq.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank3_upper_body_suw9ai.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank4_upper_body_cyz0gk.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank5_upper_body_ff5n1t.png',
-    ],
-    Cigar: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank1_eyewear_kt6mqk.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank1_eyewear_kt6mqk.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank2_eyewear_r55vvl.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank3_eyewear_uydyit.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank4_eyewear_mtyrtr.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank5_eyewear_hromtz.png',
-    ],
-    Loafers: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank1_shoes_feet_nxazsi.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank1_shoes_feet_nxazsi.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank2_shoes_feet_l83rhe.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank3_shoes_feet_gvjjb8.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank4_shoes_feet_avry6l.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank5_shoes_feet_tpnzfv.png',
-    ],
-    Shades: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank1_eyewear_shmmce.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank1_eyewear_shmmce.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank2_eyewear_xqvbkf.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank3_eyewear_anyqat.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank4_eyewear_eejcjh.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank5_eyewear_umdmvc.png',
-    ],
-  };
-
-  console.log(parseFloat());
-
+  
   return (
     <>
       {upgrade == 0 && (
@@ -206,7 +156,7 @@ const ModalWearable = props => {
               <div className={styles.wear_box_pink}>
                 <img
                   src={
-                    imgUrls[wearableName][parseInt(Math.min(props.rank + 1, 5))]
+                    Global.IMG_URLS_UPGRADE[wearableName][parseInt(Math.min(props.rank + 1, 5))]
                   }
                 />
               </div>
@@ -250,7 +200,7 @@ const ModalWearable = props => {
                   {(
                     icePrices[Math.min(props.rank + 1, 5)] *
                       state.DGPrices.ice +
-                    dgPrices[Math.min(props.rank + 1, 5)] * state.DGPrices.dg
+                    0.1 * state.DGPrices.dg
                   ).toFixed(2)}
                   )
                 </span>
@@ -261,11 +211,7 @@ const ModalWearable = props => {
                       <span className={styles.not_enough}>Not Enough</span>
                     )}
                     <div className={styles.card}>
-                      {`${
-                        parseFloat(
-                          icePrices[Math.min(props.rank + 1, 5)]
-                        ).toFixed() / 1000
-                      }K ICE`}
+                      {(icePrices[Math.min(props.rank + 1, 5)] / 1000).toFixed(2) + 'K'} ICE
                       <img
                         src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png"
                         className={styles.img_card1}
@@ -331,8 +277,7 @@ const ModalWearable = props => {
                         className={styles.img_card2}
                       />
                     </div>
-                    {state.DGBalances.BALANCE_CHILD_DG <
-                    dgPrices[Math.min(props.rank + 1, 5)] ? (
+                    {state.DGBalances.BALANCE_CHILD_DG < 0.1 ? (
                       <div className={styles.description}>
                         {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(
                           2
@@ -379,25 +324,27 @@ const ModalWearable = props => {
                   </div>
 
                   <div className={styles.card_area_body}>
-                    {state.userInfo.balanceXP <
-                      xpPrices[Math.min(props.rank + 1, 5)] && (
+                    {(!state.userInfo.balanceXP ||
+                      state.userInfo.balanceXP < 50) && (
                       <span className={styles.not_enough}>Not Enough</span>
                     )}
                     <div className={styles.card}>
-                      {xpPrices[Math.min(props.rank + 1, 5)]}
+                      50
                       <img
                         src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629727455/XP_zbnvuf.png"
                         className={styles.img_card3}
                       />
                     </div>
-                    {state.userInfo.balanceXP <
-                    xpPrices[Math.min(props.rank + 1, 5)] ? (
+                    {!state.userInfo.balanceXP ||
+                    state.userInfo.balanceXP < 50 ? (
                       <div className={styles.description}>
-                        {state.userInfo.balanceXP} XP Available
+                        {parseFloat(state.userInfo.balanceXP).toFixed(0)} XP
+                        Available
                       </div>
                     ) : (
                       <div className={styles.greenCheck}>
-                        {state.userInfo.balanceXP} XP Available
+                        {parseFloat(state.userInfo.balanceXP).toFixed(2)} XP
+                        Available
                         <svg
                           width="9"
                           height="8"
@@ -434,7 +381,7 @@ const ModalWearable = props => {
                     className={styles.button_upgrade}
                     onClick={() => {
                       setOpen(false);
-                      setUpgrade(1);
+                      setUpgrade(2);
                     }}
                   >
                     Upgrade Wearable
@@ -470,13 +417,16 @@ const ModalWearable = props => {
         <ModalUpgradePending
           setUpgrade={setUpgrade}
           tokenID={props.tokenID}
-          address={props.address}
           itemID={props.itemID}
         />
       )}
 
       {upgrade == 3 && (
-        <ModalUpgradeSuccess tokenID={props.tokenID} setUpgrade={setUpgrade} />
+        <ModalUpgradeSuccess 
+          tokenID={props.tokenID} 
+          setUpgrade={setUpgrade}
+          imgURL = {Global.IMG_URLS_UPGRADE[wearableName][parseInt(Math.min(props.rank + 1, 5))]}
+        />
       )}
     </>
   );
