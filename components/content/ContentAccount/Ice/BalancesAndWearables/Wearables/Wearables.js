@@ -31,6 +31,11 @@ const Wearables = ({ state }) => {
         Cigar: 0,
         Loafers: 0,
         Shades: 0,
+        Shoes: 0,
+        Pants: 0,
+        Jacket: 0,
+        Hat: 0,
+        Glasses: 0,
       };
 
       const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
@@ -57,6 +62,11 @@ const Wearables = ({ state }) => {
                 Cigar: 0,
                 Loafers: 0,
                 Shades: 0,
+                Shoes: 0,
+                Pants: 0,
+                Jacket: 0,
+                Hat: 0,
+                Glasses: 0,
               },
             };
 
