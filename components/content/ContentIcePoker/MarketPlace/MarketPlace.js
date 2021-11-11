@@ -9,7 +9,6 @@ import 'react-multi-carousel/lib/styles.css';
 import styles from './MarketPlace.module.scss';
 // import getConfig from 'next/config';
 // import { appOptions } from '../../../../appOptions';
-import Global from '../../../Constants';
 
 // This imports NODE_ENV from next.config.js
 // const { publicRuntimeConfig } = getConfig();
@@ -22,39 +21,15 @@ const MarketPlace = () => {
   // define local variables
   const [previewHughHefLevel, setPreviewHughHefLevel] = useState(0);
   const [previewDGLevel, setPreviewDGLevel] = useState(0);
-  // const [itemLimitsArray, setItemLimitsArray] = useState(
-  //   [
-  //     [0, 0],
-  //     [0, 0],
-  //     [0, 0],
-  //     [0, 0],
-  //     [0, 0],
-  //   ],
-  //   [
-  //     [0, 0],
-  //     [0, 0],
-  //     [0, 0],
-  //     [0, 0],
-  //     [0, 0],
-  //   ]
-  // );
-
-  const [itemLimitsArray1, setItemLimitsArray1] = useState([
-    [0, 0],
-    [0, 5],
-    [0, 10],
-    [0, 15],
-    [0, 20],
-  ]);
-  const [itemLimitsArray2, setItemLimitsArray2] = useState([
-    [0, 0],
-    [0, 5],
-    [0, 10],
-    [0, 15],
-    [0, 20],
-  ]);
-
   const detailsICEPartyHost = {
+    Shoes: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133629/Slippers_Level_1_pmeiq1.png',
+      'Slippers',
+      'Party Host',
+      'Feet',
+      '0 of 100 left',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatShoes_hjvr3p.svg',
+    ],
     Pants: [
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133629/Pants_Level_1_y4iyir.png',
       'Trousers',
@@ -78,14 +53,6 @@ const MarketPlace = () => {
       'Head',
       '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatHat_pypkjx.svg',
-    ],
-    Shoes: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133629/Slippers_Level_1_pmeiq1.png',
-      'Slippers',
-      'Party Host',
-      'Feet',
-      '0 of 100 left',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatShoes_hjvr3p.svg',
     ],
     Glasses: [
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133629/Shades_Level_1_x4axck.png',
@@ -202,17 +169,15 @@ const MarketPlace = () => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  useEffect(() => {
-    // if (Object.keys(state.itemLimits).length !== 0) {
-    if (state.itemLimits.COLLECTION_1[0][0] === 0) {
-      setItemLimitsArray1(state.itemLimits.COLLECTION_1);
-      setItemLimitsArray2(state.itemLimits.COLLECTION_2);
-    } else {
-      setItemLimitsArray2(state.itemLimits.COLLECTION_1);
-      setItemLimitsArray1(state.itemLimits.COLLECTION_2);
-    }
-    // }
-  }, [state.itemLimits]);
+  // useEffect(() => {
+  //   if (state.itemLimits.COLLECTION_1[0][0] === 0) {
+  //     setItemLimitsArray1(state.itemLimits.COLLECTION_1);
+  //     setItemLimitsArray2(state.itemLimits.COLLECTION_2);
+  //   } else {
+  //     setItemLimitsArray2(state.itemLimits.COLLECTION_1);
+  //     setItemLimitsArray1(state.itemLimits.COLLECTION_2);
+  //   }
+  // }, [state.itemLimits]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -311,15 +276,12 @@ const MarketPlace = () => {
                   src={detailsICEPartyHost[item][0]}
                 />
 
-                {/* {console.log('foo foo foo...' + i)}
-                {console.log(state.itemLimits)} */}
-
                 <div className={styles.nft_description}>
                   <span style={{ display: 'flex', justifyContent: 'center' }}>
                     <p className={styles.nft_info}>
                       {detailsICEPartyHost[item][3]}
                     </p>
-                    <p className={styles.nft_info}>{itemLimitsArray2[i][0]} of 100 left</p>
+                    <p className={styles.nft_info}>{state.itemLimits2[i][0]}</p>
                   </span>
                   <p className={styles.nft_other_p}>
                     {detailsICEPartyHost[item][2]}
@@ -329,17 +291,14 @@ const MarketPlace = () => {
                   </h3>
                 </div>
 
-                {/* {console.log('information...')}
-                {console.log(itemLimitsArray2[i][0])} */}
-
                 <div className={styles.button_container}>
-                  {itemLimitsArray2[i][0] ? (
+                  {state.itemLimits2[i][0] ? (
                     state.userStatus >= 4 && state.userLoggedIn ? (
                       <div className={styles.flex_50}>
                         <ModalMintWearable
                           index={i}
-                          numberLeft={itemLimitsArray2[i][0]}
-                          itemID={itemLimitsArray2[i][1]}
+                          numberLeft={state.itemLimits2[i][0]}
+                          itemID={state.itemLimits2[i][1]}
                           wearableImg={detailsICEPartyHost[item][0]}
                           wearableBodyType={detailsICEPartyHost[item][3]}
                           wearableBodyImg={detailsICEPartyHost[item][5]}
@@ -454,7 +413,7 @@ const MarketPlace = () => {
                 <div className={styles.nft_description}>
                   <span style={{ display: 'flex', justifyContent: 'center' }}>
                     <p className={styles.nft_info}>{detailsICESuit[item][3]}</p>
-                    <p className={styles.nft_info}>{itemLimitsArray1[i][0]}</p>
+                    <p className={styles.nft_info}>{state.itemLimits1[i][0]}</p>
                   </span>
                   <p className={styles.nft_other_p}>
                     {detailsICESuit[item][2]}
@@ -465,15 +424,13 @@ const MarketPlace = () => {
                 </div>
 
                 <div className={styles.button_container}>
-                  {/* // Always show in non-production env, only show in production env if flag is enabled  */}
-
-                  {itemLimitsArray1[i][0] ? (
+                  {state.itemLimits1[i][0] ? (
                     state.userStatus >= 4 && state.userLoggedIn ? (
                       <div className={styles.flex_50}>
                         <ModalMintWearable
                           index={i}
-                          numberLeft={itemLimitsArray1[i][0]}
-                          itemID={itemLimitsArray1[i][1]}
+                          numberLeft={state.itemLimits1[i][0]}
+                          itemID={state.itemLimits1[i][1]}
                           wearableImg={detailsICESuit[item][0]}
                           wearableBodyType={detailsICESuit[item][3]}
                           wearableBodyImg={detailsICESuit[item][5]}

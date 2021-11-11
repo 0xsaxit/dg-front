@@ -81,34 +81,25 @@ const ModalUpgradePending = props => {
       );
       setTokenContractDG(tokenContractDG);
 
-      // const collectionV2Contract = new getWeb3.eth.Contract(
-      //   ABI_COLLECTION_V2,
-      //   Global.ADDRESSES.COLLECTION_V2_ADDRESS
-      // );
-      // setCollectionV2Contract(collectionV2Contract);
+      // console.log('collection address...');
+      // console.log(props.address);
 
       let collectionContract = {};
       let collectionID = 0;
-      if (props.address === '0xCb06f6aeE0655252a3f6f2884680421D55d3C645') {
-        collectionContract = new maticWeb3.eth.Contract(
+
+      if (props.address === Global.ADDRESSES.COLLECTION_V2_ADDRESS) {
+        collectionContract = new getWeb3.eth.Contract(
           ABI_COLLECTION_V2,
           Global.ADDRESSES.COLLECTION_V2_ADDRESS
         );
         collectionID = 10;
-      } else if (
-        props.address === '0x4cd15dcd96362cF85E19039C3C2D661e5e43145E'
-      ) {
-        collectionContract = new maticWeb3.eth.Contract(
+      } else if (props.address === Global.ADDRESSES.COLLECTION_PH_ADDRESS) {
+        collectionContract = new getWeb3.eth.Contract(
           ABI_COLLECTION_PH,
           Global.ADDRESSES.COLLECTION_PH_ADDRESS
         );
         collectionID = 12;
       }
-
-      // const collectionContract = new maticWeb3.eth.Contract(
-      //   ABI_COLLECTION_V2,
-      //   props.address
-      // );
 
       setCollectionContract(collectionContract);
       setCollectionID(collectionID);
@@ -134,7 +125,7 @@ const ModalUpgradePending = props => {
   }, [state.tokenAuths]);
 
   useEffect(() => {
-    if(successInUpgrade) {      
+    if (successInUpgrade) {
       console.log('WEARABLE upgrading successful');
       setLoading(false);
       setUpdateStatus({ name: 'WEARABLE', value: 'done' });
@@ -334,7 +325,7 @@ const ModalUpgradePending = props => {
           analytics.track(activeItem.trackEvent);
           activeItem.handleClick();
         }}
-        disabled={loading? true:false}
+        disabled={loading ? true : false}
       >
         <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
 
@@ -521,9 +512,9 @@ const ModalUpgradePending = props => {
         props.tokenID,
         Global.ADDRESSES.COLLECTION_V2_ADDRESS
       );
-      
+
       if (json.status) {
-        console.log("success in upgrading:", json);
+        console.log('success in upgrading:', json);
         setSuccessInUpgrade(true);
       } else if (!json.status) {
         setLoading(false);
