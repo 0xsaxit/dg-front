@@ -16,8 +16,7 @@ const ModalUpgradeSuccess = props => {
 
   useEffect(() => {
     const itemInfo = state.iceWearableItems.filter(item => item.tokenID === props.tokenID)[0];
-    // setImage(itemInfo.meta_data? itemInfo.meta_data.image : '');
-    setImage(props.imgURL? props.imgURL : '');
+    setImage(itemInfo.meta_data? itemInfo.meta_data.image : '');
     setDescription(itemInfo.meta_data? itemInfo.meta_data.description.split(' ').at(-1).replace('/', ' of '):'');
     setRank(itemInfo.meta_data? GetRank(parseInt(itemInfo.meta_data.attributes.at(-2).value)):0);
   }, [state.iceWearableItems])
