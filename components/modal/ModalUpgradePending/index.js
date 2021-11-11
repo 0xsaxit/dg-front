@@ -33,6 +33,7 @@ const ModalUpgradePending = props => {
   const [tokenContractICE, setTokenContractICE] = useState({});
   const [tokenContractDG, setTokenContractDG] = useState({});
   const [collectionContract, setCollectionContract] = useState({});
+  const [collectionAddress, setCollectionAddress] = useState('');
   const [collectionID, setCollectionID] = useState(0);
   const [progSteps, setProgSteps] = useState([]);
   const [activeItem, setActiveItem] = useState({});
