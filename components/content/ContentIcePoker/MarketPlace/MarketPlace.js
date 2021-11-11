@@ -319,7 +319,7 @@ const MarketPlace = () => {
                     <p className={styles.nft_info}>
                       {detailsICEPartyHost[item][3]}
                     </p>
-                    <p className={styles.nft_info}>{itemLimitsArray2[i][0]}</p>
+                    <p className={styles.nft_info}>{itemLimitsArray2[i][0]} of 100 left</p>
                   </span>
                   <p className={styles.nft_other_p}>
                     {detailsICEPartyHost[item][2]}
