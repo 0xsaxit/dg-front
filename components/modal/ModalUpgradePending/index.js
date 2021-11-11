@@ -5,7 +5,7 @@ import Web3 from 'web3';
 import ABI_DG_TOKEN from '../../../components/ABI/ABIDGToken';
 import ABI_CHILD_TOKEN_ICE from '../../../components/ABI/ABIChildTokenICE';
 import ABI_COLLECTION_V2 from '../../../components/ABI/ABICollectionV2';
-// import ABI_COLLECTION_PH from '../../../components/ABI/ABICollectionPH';
+import ABI_COLLECTION_PH from '../../../components/ABI/ABICollectionPH';
 import MetaTx from '../../../common/MetaTx';
 import Fetch from '../../../common/Fetch';
 import { Modal, Button } from 'semantic-ui-react';
@@ -30,17 +30,10 @@ const ModalUpgradePending = props => {
   const [authStatusDG, setAuthStatusDG] = useState(false);
   const [authStatusNFT, setAuthStatusNFT] = useState(false);
   const [authStatusUpgrade, setAuthStatusUpgrade] = useState(false);
-  // const [clickedICE, setClickedICE] = useState(false);
-  // const [clickedDG, setClickedDG] = useState(false);
-  // const [clickedNFT, setClickedNFT] = useState(false);
-  // const [clickedUpgrade, setClickedUpgrade] = useState(false);
   const [tokenContractICE, setTokenContractICE] = useState({});
   const [tokenContractDG, setTokenContractDG] = useState({});
-
-  // const [collectionV2Contract, setCollectionV2Contract] = useState({});
   const [collectionContract, setCollectionContract] = useState({});
   const [collectionID, setCollectionID] = useState(0);
-
   const [progSteps, setProgSteps] = useState([]);
   const [activeItem, setActiveItem] = useState({});
   const [refreshActiveItem, setRefreshActiveItem] = useState(false);
@@ -80,9 +73,6 @@ const ModalUpgradePending = props => {
         Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DG
       );
       setTokenContractDG(tokenContractDG);
-
-      // console.log('collection address...');
-      // console.log(props.address);
 
       let collectionContract = {};
       let collectionID = 0;

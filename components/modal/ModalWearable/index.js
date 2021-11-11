@@ -111,7 +111,7 @@ const ModalWearable = props => {
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank4_eyewear_eejcjh.png',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank5_eyewear_umdmvc.png',
     ],
-    "Smoking Shoes": [
+    'Smoking Shoes': [
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_1_wwkyrb.png',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_1_wwkyrb.png',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592481/slippers_2_dhwhdy.png',
@@ -119,7 +119,7 @@ const ModalWearable = props => {
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_4_b48srj.png',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_5_nusll8.png',
     ],
-    "Smoking Pants": [
+    'Smoking Pants': [
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592477/pants_1_taafzw.png',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592477/pants_1_taafzw.png',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592477/pants_2_wjenib.png',
@@ -127,7 +127,7 @@ const ModalWearable = props => {
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592479/pants_4_popgjm.png',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592478/pants_5_hj4ezw.png',
     ],
-    "Smoking Jacket": [
+    'Smoking Jacket': [
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592478/robe_1_wjllvx.png',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592478/robe_1_wjllvx.png',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592478/robe_2_hbmlze.png',
@@ -143,18 +143,15 @@ const ModalWearable = props => {
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592476/hat_m_4_y9flz7.png',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592477/hat_m_5_zulgdg.png',
     ],
-    "Smoking Glasses": [
+    'Smoking Glasses': [
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592475/glasses_1_pxzjw6.png',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592475/glasses_1_pxzjw6.png',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592475/glasses_2_dwrwho.png',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592476/glasses_3_y8kgci.png',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592474/glasses_4_ihsifq.png',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592476/glasses_5_b57ugk.png',
-    ]
+    ],
   };
-
-  console.log('!!!');
-  console.log(wearableName);
 
   return (
     <>
@@ -243,6 +240,9 @@ const ModalWearable = props => {
                   />
                 </div>
               </div>
+
+              {console.log('wearable name...')}
+              {console.log(wearableName)}
 
               <div className={styles.wear_box_pink}>
                 <img
