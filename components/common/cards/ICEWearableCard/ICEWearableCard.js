@@ -175,6 +175,7 @@ const ICEWearableCard = props => {
                 {rank.value < 5 && (
                   <ModalWearable
                     tokenID={props.tokenID}
+                    address={props.address}
                     itemID={props.itemID}
                     imgSrc={image}
                     rank={rank.value}
