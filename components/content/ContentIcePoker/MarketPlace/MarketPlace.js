@@ -21,20 +21,6 @@ const MarketPlace = () => {
   // define local variables
   const [previewHughHefLevel, setPreviewHughHefLevel] = useState(0);
   const [previewDGLevel, setPreviewDGLevel] = useState(0);
-  // const [itemLimitsArray1, setItemLimitsArray1] = useState([
-  //   [0, 0],
-  //   [0, 5],
-  //   [0, 10],
-  //   [0, 15],
-  //   [0, 20],
-  // ]);
-  // const [itemLimitsArray2, setItemLimitsArray2] = useState([
-  //   [0, 0],
-  //   [0, 5],
-  //   [0, 10],
-  //   [0, 15],
-  //   [0, 20],
-  // ]);
   const detailsICEPartyHost = {
     Shoes: [
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133629/Slippers_Level_1_pmeiq1.png',
