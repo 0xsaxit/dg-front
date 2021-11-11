@@ -3664,6 +3664,7 @@ div.ui.input.withdraw_input>input {
 
 .ice-wearables-carousel-container .react-multiple-carousel__arrow {
   background-color: #006eff;
+  z-index: 9;
 }
 
 .ice-wearables-carousel-container .react-multiple-carousel__arrow:hover {
