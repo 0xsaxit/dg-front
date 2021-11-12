@@ -19,6 +19,10 @@ const apiCall = {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // GET API calls (no wallet address necessary)
+  APP_CONFIG: () => {
+    return call(`${API_BASE_URL}/admin/getAppConfig`, 'GET');
+  },
+
   TREASURY_STATS_NUMBERS: period => {
     return call(
       `${API_BASE_URL}/admin/getTreasuryBalanceHistory/${period}`,
@@ -256,7 +260,7 @@ const apiCall = {
 
   POAPS: address => {
     return call(`https://api.poap.xyz/actions/scan/${address}`, 'GET', false);
-  },
+  }
 };
 
 export default apiCall;
