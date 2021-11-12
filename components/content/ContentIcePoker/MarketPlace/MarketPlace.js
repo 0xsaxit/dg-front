@@ -26,7 +26,7 @@ const MarketPlace = () => {
     ],
     Pants: [
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133629/Pants_Level_1_y4iyir.png',
-      'Trousers',
+      'Smoking Pants',
       'Party Host',
       'Legs',
       '0 of 100 left',
@@ -42,7 +42,7 @@ const MarketPlace = () => {
     ],
     Hat: [
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133628/Sailor-Hat-_Level-1_jq3fnn.png',
-      'Sailor Hat',
+      'Captains Hat',
       'Party Host',
       'Head',
       '0 of 100 left',
@@ -50,7 +50,7 @@ const MarketPlace = () => {
     ],
     Glasses: [
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133629/Shades_Level_1_x4axck.png',
-      'Shades',
+      'Smoking Glasses',
       'Party Host',
       'Accessory',
       '0 of 100 left',
