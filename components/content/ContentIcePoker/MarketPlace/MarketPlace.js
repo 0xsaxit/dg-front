@@ -1,18 +1,12 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { GlobalContext } from '../../../../store';
+import React, {useContext, useState} from 'react';
+import {GlobalContext} from '../../../../store';
 import ModalMintWearable from 'components/modal/ModalMintWearable';
 import ModalLoginICE from 'components/modal/ModalLoginICE';
-import { Button, Popup } from 'semantic-ui-react';
+import {Button, Popup} from 'semantic-ui-react';
 import cn from 'classnames';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import styles from './MarketPlace.module.scss';
-// import getConfig from 'next/config';
-// import { appOptions } from '../../../../appOptions';
-
-// This imports NODE_ENV from next.config.js
-// const { publicRuntimeConfig } = getConfig();
-// const { APP_ENV } = publicRuntimeConfig;
 
 const MarketPlace = () => {
   // dispatch new user status to Context API store
@@ -296,31 +290,49 @@ const MarketPlace = () => {
                 </div>
 
                 <div className={styles.button_container}>
-                  {state.userStatus >= 20 && state.userLoggedIn && state.itemLimits2[i][0] > 0 ? (
-                    <div className={styles.flex_50}>
-                      <ModalMintWearable
-                        index={i}
-                        numberLeft={state.itemLimits2[i][0]}
-                        itemID={state.itemLimits2[i][1]}
-                        wearableImg={detailsICEPartyHost[item][0]}
-                        wearableBodyType={detailsICEPartyHost[item][3]}
-                        wearableBodyImg={detailsICEPartyHost[item][5]}
-                        wearableName={detailsICEPartyHost[item][1]}
-                      />
-                    </div>
-                  ) : state.itemLimits2[i][0] < 1 && state.userStatus >= 4 ? (
-                    <Button disabled className={styles.sold_button}>
-                      Sold Out!
-                    </Button>
-                  ) : state.itemLimits2[i][0] > 0 && state.userStatus < 20 ? (
-                    <Button disabled className={styles.sold_button}>
-                      Coming Soon!
-                    </Button>
-                  ) : (
-                    <div className={styles.flex_50}>
-                      <ModalLoginICE />
-                    </div>
-                  )}
+                  {(() => {
+                    // Minting Enabled State
+                    if (state.appConfig?.isWebsiteMintingEnabled && state.userStatus >= 20 && state.userLoggedIn && state.itemLimits2[i][0] > 0) {
+                      return (
+                          <div className={styles.flex_50}>
+                            <ModalMintWearable
+                                index={i}
+                                numberLeft={state.itemLimits2[i][0]}
+                                itemID={state.itemLimits2[i][1]}
+                                wearableImg={detailsICEPartyHost[item][0]}
+                                wearableBodyType={detailsICEPartyHost[item][3]}
+                                wearableBodyImg={detailsICEPartyHost[item][5]}
+                                wearableName={detailsICEPartyHost[item][1]}
+                            />
+                          </div>
+                      )
+                    } else {
+                      // Sold Out State
+                      if (state.itemLimits2[i][0] < 1 && state.userStatus >= 4) {
+                        return (
+                            <Button disabled className={styles.sold_button}>
+                              Sold Out!
+                            </Button>
+                        )
+                      } else {
+                        // Coming Soon State
+                        if (state.itemLimits2[i][0] > 0) {
+                          return (
+                              <Button disabled className={styles.sold_button}>
+                                Coming Soon!
+                              </Button>
+                          )
+                          // Logged Out State
+                        } else if (!state.userLoggedIn) {
+                          return (
+                              <div className={styles.flex_50}>
+                                <ModalLoginICE/>
+                              </div>
+                          )
+                        }
+                      }
+                    }
+                  })()}
                 </div>
               </div>
             ))}
@@ -438,7 +450,7 @@ const MarketPlace = () => {
                 </div>
 
                 <div className={styles.button_container}>
-                  {state.itemLimits1[i][0] ? (
+                  {state.appConfig?.isWebsiteMintingEnabled && state.itemLimits1[i][0] ? (
                     state.userStatus >= 4 && state.userLoggedIn ? (
                       <div className={styles.flex_50}>
                         <ModalMintWearable

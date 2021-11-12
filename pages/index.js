@@ -6,9 +6,11 @@ import Images from '../common/Images';
 
 import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../store';
+import Fetch from "../common/Fetch";
 
 const Index = () => {
-  const [state, dispatch] = useContext(GlobalContext);  
+  const [state, dispatch] = useContext(GlobalContext);
+
   return (
     <>
       <Layout>
