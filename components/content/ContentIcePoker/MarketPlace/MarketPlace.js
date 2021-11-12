@@ -316,7 +316,7 @@ const MarketPlace = () => {
                         )
                       } else {
                         // Coming Soon State
-                        if (state.itemLimits2[i][0] > 0 && state.userStatus < 20) {
+                        if (state.itemLimits2[i][0] > 0) {
                           return (
                               <Button disabled className={styles.sold_button}>
                                 Coming Soon!
