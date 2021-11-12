@@ -292,7 +292,7 @@ const MarketPlace = () => {
                 <div className={styles.button_container}>
                   {(() => {
                     // Minting Enabled State
-                    if (state.appConfig?.isWebsiteMintingEnabled && state.userStatus >= 20 && state.userLoggedIn && state.itemLimits2[i][0] > 0) {
+                    if (state.appConfig?.isWebsiteMintingEnabled && state.userLoggedIn && state.itemLimits2[i][0] > 0) {
                       return (
                           <div className={styles.flex_50}>
                             <ModalMintWearable
