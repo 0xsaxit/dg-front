@@ -1,6 +1,7 @@
 import {useContext, useEffect} from 'react';
 import {GlobalContext} from './index';
 import Fetch from '../common/Fetch';
+import {assignToken} from "../components/button/ButtonStartConnect";
 
 function AppConfig() {
   // dispatch user's status value to the Context API store
@@ -11,6 +12,13 @@ function AppConfig() {
   useEffect(() => {
     // fetch user status
     async function fetchData() {
+      const accessToken = localStorage.getItem('token');
+
+      // Get authToken if not already available
+      if (!accessToken) {
+        console.log('Getting access token...');
+        await assignToken();
+      }
       const response = await getAppConfig();
 
       if (response) {

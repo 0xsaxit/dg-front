@@ -307,8 +307,16 @@ const MarketPlace = () => {
                           </div>
                       )
                     } else {
+                      // Logged Out State
+                      if (!state.userLoggedIn) {
+                        return (
+                            <div className={styles.flex_50}>
+                              <ModalLoginICE/>
+                            </div>
+                        )
+                      }
                       // Sold Out State
-                      if (state.itemLimits2[i][0] < 1 && state.userStatus >= 4) {
+                      else if (state.itemLimits2[i][0] < 1 && state.userStatus >= 4) {
                         return (
                             <Button disabled className={styles.sold_button}>
                               Sold Out!
@@ -321,13 +329,6 @@ const MarketPlace = () => {
                               <Button disabled className={styles.sold_button}>
                                 Coming Soon!
                               </Button>
-                          )
-                          // Logged Out State
-                        } else if (!state.userLoggedIn) {
-                          return (
-                              <div className={styles.flex_50}>
-                                <ModalLoginICE/>
-                              </div>
                           )
                         }
                       }
