@@ -306,6 +306,7 @@ const MarketPlace = () => {
                             />
                           </div>
                       )
+                      // Minting Disabled States
                     } else {
                       // Logged Out State
                       if (!state.userLoggedIn) {
