@@ -1,31 +1,29 @@
-import React, { useContext, useState } from 'react'
-import { GlobalContext } from '../../../../store';
+import React, {useContext, useState} from 'react';
+import {GlobalContext} from '../../../../store';
 import ModalMintWearable from 'components/modal/ModalMintWearable';
 import ModalLoginICE from 'components/modal/ModalLoginICE';
-import { Button, Popup } from 'semantic-ui-react';
+import {Button, Popup} from 'semantic-ui-react';
 import cn from 'classnames';
 import Carousel from 'react-multi-carousel';
-import "react-multi-carousel/lib/styles.css";
-import styles from './MarketPlace.module.scss'
-import getConfig from "next/config";
-import { appOptions } from "../../../../appOptions";
-
-// This imports NODE_ENV from next.config.js
-const { publicRuntimeConfig } = getConfig()
-const { APP_ENV } = publicRuntimeConfig;
-// let renderCount = 1;
+import 'react-multi-carousel/lib/styles.css';
+import styles from './MarketPlace.module.scss';
 
 const MarketPlace = () => {
   // dispatch new user status to Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
-  // console.log('render count: ', renderCount);  renderCount++;
-
   // define local variables
   const [previewHughHefLevel, setPreviewHughHefLevel] = useState(0);
   const [previewDGLevel, setPreviewDGLevel] = useState(0);
-
   const detailsICEPartyHost = {
+    Shoes: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133629/Slippers_Level_1_pmeiq1.png',
+      'Slippers',
+      'Party Host',
+      'Feet',
+      '0 of 100 left',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatShoes_hjvr3p.svg',
+    ],
     Pants: [
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133629/Pants_Level_1_y4iyir.png',
       'Trousers',
@@ -50,14 +48,6 @@ const MarketPlace = () => {
       '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatHat_pypkjx.svg',
     ],
-    Shoes: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133629/Slippers_Level_1_pmeiq1.png',
-      'Slippers',
-      'Party Host',
-      'Feet',
-      '0 of 100 left',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatShoes_hjvr3p.svg',
-    ],
     Glasses: [
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133629/Shades_Level_1_x4axck.png',
       'Shades',
@@ -67,7 +57,6 @@ const MarketPlace = () => {
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatAccessory_s1cjpg.svg',
     ],
   };
-
   const detailsICESuit = {
     Pants: [
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_suit_bottom_rank1_lower_body_trd5yw.png',
@@ -110,7 +99,6 @@ const MarketPlace = () => {
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatAccessory_s1cjpg.svg',
     ],
   };
-
   const responsive = {
     largeDesktop: {
       breakpoint: { max: 3000, min: 1440 },
@@ -158,7 +146,6 @@ const MarketPlace = () => {
       partialVisibilityGutter: 0,
     },
   };
-
   const previewHughHefImages = [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1636054316/Level_1_Hugh_mwzapj.png',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1636054315/Level_2_Hugh_t2g9tc.png',
@@ -166,7 +153,6 @@ const MarketPlace = () => {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1636054316/Level_4_Hugh_jwxah3.png',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1636054316/Level_5_Hugh_ogwkwo.png',
   ];
-
   const previewDGSuitImages = [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_1_h5zizs.png',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_2_y8onmu.png',
@@ -175,11 +161,344 @@ const MarketPlace = () => {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_5_mmcqjy.png',
   ];
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // useEffect(() => {
+  //   if (state.itemLimits.COLLECTION_1[0][0] === 0) {
+  //     setItemLimitsArray1(state.itemLimits.COLLECTION_1);
+  //     setItemLimitsArray2(state.itemLimits.COLLECTION_2);
+  //   } else {
+  //     setItemLimitsArray2(state.itemLimits.COLLECTION_1);
+  //     setItemLimitsArray1(state.itemLimits.COLLECTION_2);
+  //   }
+  // }, [state.itemLimits]);
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // helper functions
+  function getCarousel(row) {
+    if (row === 'partyHost') {
+      return (
+        <section className={styles.wearable_section}>
+          <h3>Party Host</h3>
+          <Carousel
+            arrows
+            draggable
+            swipeable
+            partialVisible
+            autoPlaySpeed={3000}
+            focusOnSelect={false}
+            infinite={false}
+            keyBoardControl={true}
+            minimumTouchDrag={80}
+            renderButtonGroupOutside={false}
+            renderDotsOutside={false}
+            responsive={responsive}
+            showDots={false}
+            slidesToSlide={1}
+            containerClass="ice-wearables-carousel-container"
+            itemClass="carousel-item"
+          >
+            <div
+              className={styles.games_container}
+              style={{ paddingBottom: '20px' }}
+            >
+              <img
+                key={previewHughHefLevel}
+                className={styles.preview_nft_image}
+                src={previewHughHefImages[previewHughHefLevel]}
+              />
+              <div className={styles.preview_description}>
+                <h1 className={styles.title}>PREVIEW FIT LEVELS</h1>
+                <div className={styles.preview_level_select_div}>
+                  {previewHughHefImages.map((img, i) => (
+                    <div
+                      key={i}
+                      className={
+                        previewHughHefLevel === i
+                          ? styles.selectActive
+                          : styles.select
+                      }
+                      onClick={() => setPreviewHughHefLevel(i)}
+                    >
+                      {i + 1}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {Object.keys(detailsICEPartyHost).map((item, i) => (
+              <div key={i} className={styles.games_container}>
+                <div className={styles.wear_box_purple}>
+                  <div className={styles.fullDiv}>
+                    <div className={styles.imgDiv}>
+                      <img
+                        className={styles.img}
+                        src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640051/p2e_enabled_wgqui5.svg"
+                      />
+                      <Popup
+                        trigger={
+                          <img
+                            className={styles.tooltip}
+                            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
+                          />
+                        }
+                        position="top left"
+                        hideOnScroll={true}
+                        className={cn('p2e_enabled_tooltip', styles.popup)}
+                      >
+                        <Popup.Content className={styles.tooltipContent}>
+                          <img
+                            className={styles.popup_info}
+                            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
+                          />
+                          <p className={styles.popup_content}>
+                            P2E Enabled (aka Play-to-Earn)
+                            <br /> wearables allow you to earn real
+                            <br /> cash value from free-to-play ICE
+                            <br /> poker tables.
+                          </p>
+                        </Popup.Content>
+                      </Popup>
+                    </div>
+                  </div>
+                </div>
+
+                <img
+                  className={styles.nft_image}
+                  src={detailsICEPartyHost[item][0]}
+                />
+
+                <div className={styles.nft_description}>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                    <p className={styles.nft_info}>
+                      {detailsICEPartyHost[item][3]}
+                    </p>
+                    {state.userStatus >= 4 && state.userLoggedIn ? (
+                      <p className={styles.nft_info}>{state.itemLimits2[i][0]} of 100 left</p>
+                    ) : (
+                      <p className={styles.nft_info}>- of 100 left</p>
+                    )}
+                  </span>
+                  <p className={styles.nft_other_p}>
+                    {detailsICEPartyHost[item][2]}
+                  </p>
+                  <h3 className={styles.nft_other_h3}>
+                    {detailsICEPartyHost[item][1]}
+                  </h3>
+                </div>
+
+                <div className={styles.button_container}>
+                  {(() => {
+                    // Minting Enabled State
+                    if (state.appConfig?.isWebsiteMintingEnabled && state.userStatus >= 20 && state.userLoggedIn && state.itemLimits2[i][0] > 0) {
+                      return (
+                          <div className={styles.flex_50}>
+                            <ModalMintWearable
+                                index={i}
+                                numberLeft={state.itemLimits2[i][0]}
+                                itemID={state.itemLimits2[i][1]}
+                                wearableImg={detailsICEPartyHost[item][0]}
+                                wearableBodyType={detailsICEPartyHost[item][3]}
+                                wearableBodyImg={detailsICEPartyHost[item][5]}
+                                wearableName={detailsICEPartyHost[item][1]}
+                            />
+                          </div>
+                      )
+                      // Minting Disabled States
+                    } else {
+                      // Logged Out State
+                      if (!state.userLoggedIn) {
+                        return (
+                            <div className={styles.flex_50}>
+                              <ModalLoginICE/>
+                            </div>
+                        )
+                      }
+                      // Sold Out State
+                      else if (state.itemLimits2[i][0] < 1 && state.userStatus >= 4) {
+                        return (
+                            <Button disabled className={styles.sold_button}>
+                              Sold Out!
+                            </Button>
+                        )
+                      } else {
+                        // Coming Soon State
+                        if (state.itemLimits2[i][0] > 0) {
+                          return (
+                              <Button disabled className={styles.sold_button}>
+                                Coming Soon!
+                              </Button>
+                          )
+                        }
+                      }
+                    }
+                  })()}
+                </div>
+              </div>
+            ))}
+          </Carousel>
+        </section>
+      );
+    } else if (row === 'dgSuit') {
+      return (
+        <section className={styles.wearable_section}>
+          <h3>DG Suit</h3>
+          <Carousel
+            arrows
+            draggable
+            swipeable
+            partialVisible
+            autoPlaySpeed={3000}
+            focusOnSelect={false}
+            infinite={false}
+            keyBoardControl={true}
+            minimumTouchDrag={80}
+            renderButtonGroupOutside={false}
+            renderDotsOutside={false}
+            responsive={responsive}
+            showDots={false}
+            slidesToSlide={1}
+            containerClass="ice-wearables-carousel-container"
+            itemClass="carousel-item"
+          >
+            <div
+              className={styles.games_container}
+              style={{ paddingBottom: '20px' }}
+            >
+              <img
+                key={previewDGLevel}
+                className={styles.preview_nft_image}
+                src={previewDGSuitImages[previewDGLevel]}
+              />
+              <div className={styles.preview_description}>
+                <h1 className={styles.title}>PREVIEW FIT LEVELS</h1>
+                <div className={styles.preview_level_select_div}>
+                  {previewDGSuitImages.map((img, i) => (
+                    <div
+                      key={i}
+                      className={
+                        previewDGLevel === i
+                          ? styles.selectActive
+                          : styles.select
+                      }
+                      onClick={() => setPreviewDGLevel(i)}
+                    >
+                      {i + 1}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {Object.keys(detailsICESuit).map((item, i) => (
+              <div key={i} className={styles.games_container}>
+                <div className={styles.wear_box_purple}>
+                  <div className={styles.fullDiv}>
+                    <div className={styles.imgDiv}>
+                      <img
+                        className={styles.img}
+                        src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640051/p2e_enabled_wgqui5.svg"
+                      />
+                      <Popup
+                        trigger={
+                          <img
+                            className={styles.tooltip}
+                            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
+                          />
+                        }
+                        position="top left"
+                        hideOnScroll={true}
+                        className={cn('p2e_enabled_tooltip', styles.popup)}
+                      >
+                        <Popup.Content className={styles.tooltipContent}>
+                          <img
+                            className={styles.popup_info}
+                            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
+                          />
+                          <p className={styles.popup_content}>
+                            P2E Enabled (aka Play-to-Earn)
+                            <br /> wearables allow you to earn real
+                            <br /> cash value from free-to-play ICE
+                            <br /> poker tables.
+                          </p>
+                        </Popup.Content>
+                      </Popup>
+                    </div>
+                  </div>
+                </div>
+
+                <img
+                  className={styles.nft_image}
+                  src={detailsICESuit[item][0]}
+                />
+
+                <div className={styles.nft_description}>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                    <p className={styles.nft_info}>{detailsICESuit[item][3]}</p>
+                    {state.userStatus >= 4 && state.userLoggedIn ? (
+                      <p className={styles.nft_info}>{state.itemLimits1[i][0]} of 100 left</p>
+                    ) : (
+                      <p className={styles.nft_info}>- of 100 left</p>
+                    )}
+                  </span>
+                  <p className={styles.nft_other_p}>
+                    {detailsICESuit[item][2]}
+                  </p>
+                  <h3 className={styles.nft_other_h3}>
+                    {detailsICESuit[item][1]}
+                  </h3>
+                </div>
+
+                <div className={styles.button_container}>
+                  {state.appConfig?.isWebsiteMintingEnabled && state.itemLimits1[i][0] ? (
+                    state.userStatus >= 4 && state.userLoggedIn ? (
+                      <div className={styles.flex_50}>
+                        <ModalMintWearable
+                          index={i}
+                          numberLeft={state.itemLimits1[i][0]}
+                          itemID={state.itemLimits1[i][1]}
+                          wearableImg={detailsICESuit[item][0]}
+                          wearableBodyType={detailsICESuit[item][3]}
+                          wearableBodyImg={detailsICESuit[item][5]}
+                          wearableName={detailsICESuit[item][1]}
+                        />
+                      </div>
+                    ) : (
+                      <div className={styles.flex_50}>
+                        <ModalLoginICE />
+                      </div>
+                    )
+                  ) : null}
+
+                  <a
+                    className={styles.flex_50}
+                    href="https://market.decentraland.org/browse?assetType=nft&section=wearables&contracts=0xcb06f6aee0655252a3f6f2884680421d55d3c645"
+                    target="_blank"
+                    style={{
+                      width: '100%'
+                    }}
+                  >
+                    <Button className={styles.wearable_button}>
+                      Buy on Secondary
+                    </Button>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </Carousel>
+        </section>
+      );
+    }
+  }
+
   return (
     <div className={styles.main_wrapper}>
       <span className={styles.iceWearablesMarketplace}>
         <div className={styles.header}>
           <h1>ICE Wearables Marketplace</h1>
+
           <p className={styles.marketplace_p}>
             ICE Wearables give you table access to free to play, play-to-earn
             poker. Learn more by{' '}
@@ -190,250 +509,8 @@ const MarketPlace = () => {
         </div>
 
         <div className={styles.outter_games_container}>
-          <section className={styles.wearable_section}>
-            <h3>Party Host</h3>
-            <Carousel
-              arrows
-              draggable
-              swipeable
-              partialVisible
-              autoPlaySpeed={3000}
-              focusOnSelect={false}
-              infinite={false}
-              keyBoardControl={true}
-              minimumTouchDrag={80}
-              renderButtonGroupOutside={false}
-              renderDotsOutside={false}
-              responsive={responsive}
-              showDots={false}
-              slidesToSlide={1}
-              containerClass="ice-wearables-carousel-container"
-              itemClass="carousel-item"
-            >
-              <div
-                className={styles.games_container}
-                style={{ paddingBottom: '20px' }}
-              >
-                <img
-                  key={previewHughHefLevel}
-                  className={styles.preview_nft_image}
-                  src={previewHughHefImages[previewHughHefLevel]}
-                />
-                <div className={styles.preview_description}>
-                  <h1 className={styles.title}>PREVIEW FIT LEVELS</h1>
-                  <div className={styles.preview_level_select_div}>
-                    {previewHughHefImages.map((img, i) => (
-                      <div
-                        key={i}
-                        className={
-                          previewHughHefLevel === i ? styles.selectActive : styles.select
-                        }
-                        onClick={() => setPreviewHughHefLevel(i)}
-                      >
-                        {i + 1}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {Object.keys(detailsICEPartyHost).map((item, i) => (
-                <div key={i} className={styles.games_container}>
-                  <div className={styles.wear_box_purple}>
-                    <div className={styles.fullDiv}>
-                      <div className={styles.imgDiv}>
-                        <img
-                          className={styles.img}
-                          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640051/p2e_enabled_wgqui5.svg"
-                        />
-                        <Popup
-                          trigger={
-                            <img
-                              className={styles.tooltip}
-                              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
-                            />
-                          }
-                          position="top left"
-                          hideOnScroll={true}
-                          className={cn('p2e_enabled_tooltip', styles.popup)}
-                        >
-                          <Popup.Content className={styles.tooltipContent}>
-                            <img
-                              className={styles.popup_info}
-                              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
-                            />
-                            <p className={styles.popup_content}>
-                              P2E Enabled (aka Play-to-Earn)
-                              <br /> wearables allow you to earn real
-                              <br /> cash value from free-to-play ICE
-                              <br /> poker tables.
-                            </p>
-                          </Popup.Content>
-                        </Popup>
-                      </div>
-                    </div>
-                  </div>
-
-                  <img className={styles.nft_image} src={detailsICEPartyHost[item][0]} />
-
-                  <div className={styles.nft_description}>
-                    <span style={{ display: 'flex', justifyContent: 'center' }}>
-                      <p className={styles.nft_info}>{detailsICEPartyHost[item][3]}</p>
-                      <p className={styles.nft_info}>{detailsICEPartyHost[item][4]}</p>
-                    </span>
-                    <p className={styles.nft_other_p}>{detailsICEPartyHost[item][2]}</p>
-                    <h3 className={styles.nft_other_h3}>{detailsICEPartyHost[item][1]}</h3>
-                  </div>
-
-                  <div className={styles.button_container}>
-                    <Button
-                      disabled
-                      className={cn(styles.comingSoon)}>
-                      Coming Soon!
-                    </Button>
-                  </div>
-                </div>
-              ))}
-            </Carousel>
-          </section>
-
-          <section className={styles.wearable_section}>
-            <h3>DG Suit</h3>
-            <Carousel
-              arrows
-              draggable
-              swipeable
-              partialVisible
-              autoPlaySpeed={3000}
-              focusOnSelect={false}
-              infinite={false}
-              keyBoardControl={true}
-              minimumTouchDrag={80}
-              renderButtonGroupOutside={false}
-              renderDotsOutside={false}
-              responsive={responsive}
-              showDots={false}
-              slidesToSlide={1}
-              containerClass="ice-wearables-carousel-container"
-              itemClass="carousel-item"
-            >
-              <div
-                className={styles.games_container}
-                style={{ paddingBottom: '20px' }}
-              >
-                <img
-                  key={previewDGLevel}
-                  className={styles.preview_nft_image}
-                  src={previewDGSuitImages[previewDGLevel]}
-                />
-                <div className={styles.preview_description}>
-                  <h1 className={styles.title}>PREVIEW FIT LEVELS</h1>
-                  <div className={styles.preview_level_select_div}>
-                    {previewDGSuitImages.map((img, i) => (
-                      <div
-                        key={i}
-                        className={
-                          previewDGLevel === i ? styles.selectActive : styles.select
-                        }
-                        onClick={() => setPreviewDGLevel(i)}
-                      >
-                        {i + 1}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {Object.keys(detailsICESuit).map((item, i) => (
-                <div key={i} className={styles.games_container}>
-                  <div className={styles.wear_box_purple}>
-                    <div className={styles.fullDiv}>
-                      <div className={styles.imgDiv}>
-                        <img
-                          className={styles.img}
-                          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640051/p2e_enabled_wgqui5.svg"
-                        />
-                        <Popup
-                          trigger={
-                            <img
-                              className={styles.tooltip}
-                              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
-                            />
-                          }
-                          position="top left"
-                          hideOnScroll={true}
-                          className={cn('p2e_enabled_tooltip', styles.popup)}
-                        >
-                          <Popup.Content className={styles.tooltipContent}>
-                            <img
-                              className={styles.popup_info}
-                              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
-                            />
-                            <p className={styles.popup_content}>
-                              P2E Enabled (aka Play-to-Earn)
-                              <br /> wearables allow you to earn real
-                              <br /> cash value from free-to-play ICE
-                              <br /> poker tables.
-                            </p>
-                          </Popup.Content>
-                        </Popup>
-                      </div>
-                    </div>
-                  </div>
-
-                  <img className={styles.nft_image} src={detailsICESuit[item][0]} />
-
-                  <div className={styles.nft_description}>
-                    <span style={{ display: 'flex', justifyContent: 'center' }}>
-                      <p className={styles.nft_info}>{detailsICESuit[item][3]}</p>
-                      <p className={styles.nft_info}>{detailsICESuit[item][4]}</p>
-                    </span>
-                    <p className={styles.nft_other_p}>{detailsICESuit[item][2]}</p>
-                    <h3 className={styles.nft_other_h3}>{detailsICESuit[item][1]}</h3>
-                  </div>
-
-                  <div className={styles.button_container}>
-
-                    {(() => {
-                      // Always show in non-production env, only show in production env if flag is enabled
-                      if (appOptions.isMintWearableEnabled || APP_ENV !== 'production') {
-                        if (state.userStatus && state.userLoggedIn) {
-                          return <div
-                            className={styles.flex_50}>
-                            <ModalMintWearable
-                              index={i}
-                              wearableImg={detailsICESuit[item][0]}
-                              wearableBodyType={detailsICESuit[item][3]}
-                              wearableBodyImg={detailsICESuit[item][5]}
-                              wearableName={detailsICESuit[item][1]}
-                            />
-                          </div>
-                        } else {
-                          return <div
-                              className={styles.flex_50}><ModalLoginICE />
-                          </div>
-                        }
-                      }
-                    }
-                    )()}
-                    <a
-                      className={styles.flex_50}
-                      href="https://opensea.io/collection/decentral-games-ice"
-                      target="_blank"
-                      style={{
-                        width: '100%',
-                      }}
-                    >
-                        <Button
-                            className={styles.wearable_button}>
-                            Buy on Opensea
-                        </Button>
-                    </a>
-                  </div>
-                </div>
-              ))}
-            </Carousel>
-          </section>
+          {getCarousel('partyHost')}
+          {getCarousel('dgSuit')}
         </div>
       </span>
     </div>

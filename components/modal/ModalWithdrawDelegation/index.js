@@ -30,17 +30,21 @@ const ModalWithdrawDelegation = props => {
           <div className={styles.description}>
             You’ve been delegated this wearable.
             <br />
-            Profits can be claimed from your <a href="/ice/claim">ICE rewards page</a>.
+            Profits can be claimed from your{' '}
+            <a href="/ice/claim">ICE rewards page</a>.
           </div>
         ) : (
           <div className={styles.description}>
-            You’ve delegated this wearable to 
-              <a 
-                href={`https://polygonscan.com/address/${props.delegateAddress}`}
-                target="_blank"
-              >{props.delegateAddress}
-            </a>.<br />
-            Profits can be claimed from your <a href="/ice/claim">ICE rewards page</a>.
+            You’ve delegated this wearable to
+            <a
+              href={`https://polygonscan.com/address/${props.delegateAddress}`}
+              target="_blank"
+            >
+              {props.delegateAddress}
+            </a>
+            .<br />
+            Profits can be claimed from your{' '}
+            <a href="/ice/claim">ICE rewards page</a>.
           </div>
         )}
 
@@ -133,16 +137,14 @@ const ModalWithdrawDelegation = props => {
     console.log('Undelegate token ID: ' + props.tokenID);
     console.log('Token owner address: ' + props.ownerAddress);
     console.log('Delegate address: ' + props.delegateAddress);
-    console.log(
-      'Collection address: ' + Global.ADDRESSES.COLLECTION_V2_ADDRESS
-    );
+    console.log('Collection address: ' + props.address);
     setClicked(true);
 
     const json = await Fetch.UNDELEGATE_NFT(
       props.ownerAddress,
       props.delegateAddress,
       props.tokenID,
-      Global.ADDRESSES.COLLECTION_V2_ADDRESS
+      props.address
     );
 
     if (json.status) {

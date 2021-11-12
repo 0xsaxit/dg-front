@@ -96,7 +96,7 @@ function SectionTwo() {
             <span className={styles.button_span}>
               <Button
                 className={styles.grey_button}
-                href="https://docs.decentral.games/"
+                href="https://ice.decentral.games/"
                 target="_blank"
               >
                 {

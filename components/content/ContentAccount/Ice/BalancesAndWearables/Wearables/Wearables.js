@@ -9,7 +9,10 @@ const Wearables = ({ state }) => {
   // define local variables
   const [maxICEBonus, setMaxICEBonus] = useState(0);
   const activeWearables = state.iceWearableItems.filter(
-    item => item.meta_data && item.isActivated && item.meta_data.attributes.at(-2).value > 0
+    item =>
+      item.meta_data &&
+      item.isActivated &&
+      item.meta_data.attributes.at(-2).value > 0
   );
   const delegatedWearables = state.iceDelegatedItems.filter(
     item => item.meta_data && item.meta_data.attributes.at(-2).value > 0
@@ -28,6 +31,11 @@ const Wearables = ({ state }) => {
         Cigar: 0,
         Loafers: 0,
         Shades: 0,
+        Shoes: 0,
+        Pants: 0,
+        Jacket: 0,
+        Hat: 0,
+        Glasses: 0,
       };
 
       const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
@@ -54,6 +62,11 @@ const Wearables = ({ state }) => {
                 Cigar: 0,
                 Loafers: 0,
                 Shades: 0,
+                Shoes: 0,
+                Pants: 0,
+                Jacket: 0,
+                Hat: 0,
+                Glasses: 0,
               },
             };
 
@@ -62,10 +75,8 @@ const Wearables = ({ state }) => {
                 if (activeWearable.meta_data.name.search(item) >= 0) {
                   if (
                     newDelegatedWearableBonuses.wearableBonuses[item] <
-                    parseInt(
-                      activeWearable.meta_data.attributes.at(-2).value
-                    ) *
-                    0.3
+                    parseInt(activeWearable.meta_data.attributes.at(-2).value) *
+                      0.3
                   ) {
                     newDelegatedWearableBonuses.wearableBonuses[item] =
                       parseInt(
@@ -78,20 +89,18 @@ const Wearables = ({ state }) => {
             maxICEDelegatedWearableBonuses.push(newDelegatedWearableBonuses);
           } else {
             const delegatedWearableBonuses =
-              maxICEDelegatedWearableBonuses[indexOfDelegated]
-                .wearableBonuses;
+              maxICEDelegatedWearableBonuses[indexOfDelegated].wearableBonuses;
 
             Object.keys(delegatedWearableBonuses).map(item => {
               if (activeWearable.meta_data.name.search(item) >= 0) {
                 if (
                   delegatedWearableBonuses[item] <
                   parseInt(activeWearable.meta_data.attributes.at(-2).value) *
-                  0.3
+                    0.3
                 ) {
                   delegatedWearableBonuses[item] =
-                    parseInt(
-                      activeWearable.meta_data.attributes.at(-2).value
-                    ) * 0.3;
+                    parseInt(activeWearable.meta_data.attributes.at(-2).value) *
+                    0.3;
                 }
               }
             });
@@ -140,7 +149,6 @@ const Wearables = ({ state }) => {
     })();
   }, [state.refreshDelegateInfo]);
 
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   return (
@@ -148,8 +156,9 @@ const Wearables = ({ state }) => {
       <div className={styles.wearableHeader}>
         <div>
           <h2>ICED Wearables</h2>
-          <p>{`(${activeWearables.length + delegatedWearables.length} of ${state.iceWearableItems.length + state.iceDelegatedItems.length
-            } Active) ${maxICEBonus}% Max ICE Bonus`}</p>
+          <p>{`(${activeWearables.length + delegatedWearables.length} of ${
+            state.iceWearableItems.length + state.iceDelegatedItems.length
+          } Active) ${maxICEBonus}% Max ICE Bonus`}</p>
         </div>
         <Button className={styles.open_sea} href="/ice/marketplace">
           Mint Wearable
@@ -178,6 +187,7 @@ const Wearables = ({ state }) => {
               key={index}
               data={item.meta_data}
               tokenID={item.tokenID}
+              address={item.address}
               itemID={item.itemID}
               isActivated={item.isActivated}
             />
@@ -189,6 +199,7 @@ const Wearables = ({ state }) => {
               data={item.meta_data}
               ownerAddress={item.ownerAddress}
               tokenID={item.tokenID}
+              address={item.address}
               itemID={item.itemID}
             />
           ))}
