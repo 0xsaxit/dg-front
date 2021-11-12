@@ -27,7 +27,6 @@ function AppConfig() {
 
     try {
       const appConfig = await Fetch.APP_CONFIG();
-      console.log('APP_CONFIG (appConfig): ', appConfig);
 
       return appConfig;
     } catch (e) {

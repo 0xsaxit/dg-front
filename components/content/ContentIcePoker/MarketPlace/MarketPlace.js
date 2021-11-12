@@ -306,6 +306,7 @@ const MarketPlace = () => {
                             />
                           </div>
                       )
+                      // Minting Disabled States
                     } else {
                       // Sold Out State
                       if (state.itemLimits2[i][0] < 1 && state.userStatus >= 4) {
