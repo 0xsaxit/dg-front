@@ -12,10 +12,17 @@ const ModalDelegateConfirm = props => {
 
   // update global state delegation information
   function setGlobalState() {
+
+    // update global state delegated items
+    /*
+    const refresh = !state.refreshDelegation;
+    dispatch({
+      type: 'refresh_delegation',
+      data: refresh,
+    });
+    */
+
     const refresh = !state.refreshDelegateInfo;
-
-    // console.log('refresh status (undelegate): ' + refresh);
-
     dispatch({
       type: 'refresh_delegate_info',
       data: refresh,
