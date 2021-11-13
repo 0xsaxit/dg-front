@@ -9,11 +9,18 @@ LABEL maintainer="support@secureimages.dev"
 
 ARG CI=true
 
-# Receive NODE_ENV from --build-arg
-ARG APP_ENV
+# Receive APP_ENV from --build-arg
+# Default to production mode
+ARG APP_ENV=production
 ENV APP_ENV=$APP_ENV
 
-RUN echo build APP_ENV: $APP_ENV
+# Receive NODE_ENV from --build-arg - NOTE: Can only be "test", "development" or "production" per NextJS config rules
+# Default to production mode
+ARG NODE_ENV=production
+ENV NODE_ENV=$NODE_ENV
+
+RUN echo "build APP_ENV: $APP_ENV"
+RUN echo "build NODE_ENV: $NODE_ENV"
 
 RUN apk add --no-cache ca-certificates git build-base python2 &&\
     rm -rf /var/cache/apk/*
@@ -48,13 +55,15 @@ LABEL maintainer="support@secureimages.dev"
 # This just clears the Cache for the proceeding RUN commands
 ARG TEST
 
-# Receive NODE_ENV from --build-arg
+# Receive from previous build stage
 ARG APP_ENV
-ENV NODE_ENV=production \
+ARG NODE_ENV
+
+ENV NODE_ENV=$NODE_ENV \
     PATH="/app/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" \
     APP_ENV=$APP_ENV
 
-RUN echo runtime APP_ENV: $APP_ENV
+RUN echo "runtime APP_ENV: $APP_ENV"
 RUN env
 
 WORKDIR /app
