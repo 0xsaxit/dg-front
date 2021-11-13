@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
-import { Modal, Button, Loader } from 'semantic-ui-react';
+import { Modal, Button } from 'semantic-ui-react';
+import Spinner from 'components/lottieAnimation/animations/spinner_updated';
 import { GlobalContext } from '../../../store';
 import Fetch from '../../../common/Fetch';
 import styles from './ModalInfo.module.scss';
@@ -50,7 +51,7 @@ const ModalInfo = () => {
   useEffect(() => {
     (async function () {
       const json = await Fetch.DG_SUPPLY_GECKO();
-      if(json && json.market_data) {
+      if (json && json.market_data) {
         setSupply(json.market_data.circulating_supply);
         setDGPrice(json.market_data.current_price.usd);
       }
@@ -86,17 +87,10 @@ const ModalInfo = () => {
         <span>
           {!state.DGBalances.BALANCE_KEEPER_DG ? (
             <Button className="account-button" style={{ marginTop: 0 }}>
-              <p className="right-menu-text bnb">
-                <Loader
-                  active
-                  inline
-                  size="small"
-                  style={{
-                    fontSize: '12px',
-                    marginTop: '-4px',
-                    marginLeft: '0px',
-                    marginBottom: '0px',
-                  }}
+              <p className="right-menu-text bnb" style={{ marginTop: '-5px' }}>
+                <Spinner
+                  width={30}
+                  height={30}
                 />
               </p>
             </Button>
