@@ -106,11 +106,23 @@
     height: 40px;
     font-family: Larsseit-Bold;
     font-size: 14px;
+    transition: 0.2s ease-in !important;
+
+    &:active,
+    &:focus {
+        opacity: 1;
+        background: #006eff !important;
+        color: white !important;
+        filter: none !important;
+        transition: 0.2s ease-in;
+    }
 
     &:hover {
-      color: white;
-      background: #006eff;
-      filter: brightness(0.9) !important;
+        opacity: 0.6;
+        background: #006eff !important;
+        color: white !important;
+        filter: none !important;
+        transition: 0.2s ease-in;
     }
   }
 
@@ -128,13 +140,23 @@
   .lower_button {
     background: rgb(31, 31, 31);
     color: white;
+    transition: 0.2s ease-in !important;
 
-    &:hover,
-    &:focus,
-    &:active {
-      color: white;
-      background: rgb(31, 31, 31);
-      filter: brightness(0.9) !important;
+    &:active,
+    &:focus {
+        opacity: 1;
+        background: rgb(31, 31, 31) !important;
+        color: white !important;
+        filter: none !important;
+        transition: 0.2s ease-in;
+    }
+
+    &:hover {
+        opacity: 0.6;
+        background: rgb(31, 31, 31) !important;
+        color: white !important;
+        filter: none !important;
+        transition: 0.2s ease-in;
     }
   }
 

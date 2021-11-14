@@ -1,13 +1,12 @@
 import cn from 'classnames';
 import { useEffect, useContext, useState, React } from 'react';
 import { GlobalContext } from '../../../../store';
-import { Loader, Popup, Icon, Button, Table, Divider, Input } from 'semantic-ui-react';
+import { Button, Input } from 'semantic-ui-react';
+import Spinner from 'components/lottieAnimation/animations/spinner_updated';
 import Aux from '../../../_Aux';
 import styles from './Governance.module.scss';
-import axios from 'axios';
 import Web3 from 'web3';
 import Transactions from '../../../../common/Transactions';
-import Images from '../../../../common/Images';
 import Global from '../../../Constants';
 
 
@@ -113,10 +112,10 @@ const Governance = (props) => {
               <p className={styles.DG_value}>
                 {props.formatPrice(state.DGBalances.BALANCE_STAKING_GOVERNANCE, 3)}
               </p>
-              <img 
+              <img
                 style={{ marginTop: '-4px' }}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1624411671/Spinning-Logo-DG_n9f4xd.gif" 
-                />
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1624411671/Spinning-Logo-DG_n9f4xd.gif"
+              />
             </div>
             <p className={styles.price}>
               ${props.formatPrice((props.price * state.DGBalances.BALANCE_STAKING_GOVERNANCE).toFixed(2), 2)}
@@ -129,7 +128,7 @@ const Governance = (props) => {
 
             <span>
               {Number(state.DGBalances.BALANCE_STAKING_GOVERNANCE) ? (
-                <Button 
+                <Button
                   className={styles.lower_button}
                   onClick={() => {
                     props.reward(stakeContractGovernance);
@@ -140,14 +139,14 @@ const Governance = (props) => {
                       type: 'show_toastMessage',
                       data: msg,
                     });
-                    
+
                   }}
                 >
                   Claim {state.DGBalances.BALANCE_STAKING_GOVERNANCE} $DG
                 </Button>
               ) : (
-                <Button 
-                  disabled 
+                <Button
+                  disabled
                   className={styles.lower_button}
                 >
                   Claim {state.DGBalances.BALANCE_STAKING_GOVERNANCE} $DG
@@ -158,162 +157,142 @@ const Governance = (props) => {
 
           <div className={styles.lower} style={{ width: '391px', minWidth: '391px' }}>
             <p className={styles.lower_header}> Governance Staking</p>
-              <p className={styles.apy_text}>Total $DG Staked</p>
-              {state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE ? (
-                <p className={styles.apy_percent}>
-                  {props.formatPrice(
-                    state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE,
-                    0
-                  )}
-                </p>
-              ) : (
-                <Loader
-                  active
-                  inline
-                  size="small"
-                  style={{
-                    fontSize: '12px',
-                    marginTop: '5px',
-                    marginBottom: '-2px',
-                  }}
-                />
-              )}
+            <p className={styles.apy_text}>Total $DG Staked</p>
+            {state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE ? (
+              <p className={styles.apy_percent}>
+                {props.formatPrice(
+                  state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE,
+                  0
+                )}
+              </p>
+            ) : (
+              <Spinner
+                width={33}
+                height={33}
+              />
+            )}
 
-              <div style={{ display: 'flex' }}>
-                <span className="gameplay-left-column">
-                  <span
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      paddingBottom: '17px',
-                    }}
-                  >
-                    <p className={styles.apy_text}>APY</p>
-                    {APYGovernance ? (
-                      <p className="earned-amount stat">{APYGovernance}%</p>
-                    ) : (
-                      <Loader
-                        active
-                        inline
-                        size="small"
-                        style={{
-                          fontSize: '12px',
-                          marginTop: '5px',
-                          marginLeft: '-1px',
-                          marginBottom: '-2px',
-                        }}
-                      />
-                    )}
-                  </span>
-                </span>
-
+            <div style={{ display: 'flex' }}>
+              <span className="gameplay-left-column">
                 <span
                   style={{
                     display: 'flex',
-                    justifyContent: 'center',
-                    width: '50%',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    paddingBottom: '17px',
                   }}
                 >
-                  <span
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <p className={styles.apy_text}>% of pool</p>
-                    {percentGovernanceContract ? (
-                      <p className="earned-amount stat">
-                        {percentGovernanceContract}%
-                      </p>
-                    ) : (
-                      <Loader
-                        active
-                        inline
-                        size="small"
-                        style={{
-                          fontSize: '12px',
-                          marginTop: '5px',
-                          marginLeft: '-1px',
-                          marginBottom: '-2px',
-                        }}
-                      />
-                    )}
-                  </span>
+                  <p className={styles.apy_text}>APY</p>
+                  {APYGovernance ? (
+                    <p className="earned-amount stat">{APYGovernance}%</p>
+                  ) : (
+                    <Spinner
+                      width={33}
+                      height={33}
+                    />
+                  )}
                 </span>
-              </div>
-
-              <Input
-                className="liquidity-input"
-                fluid
-                placeholder="Amount"
-                value={amountInput}
-                onChange={handleChange}
-              />
-
-              <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <p
-                  className={styles.stake_text} 
-                  style={{ textDecoration: 'underline' }}
-                  onClick={() => setAmountInput(state.DGBalances.BALANCE_ROOT_DG)}
-                >
-                  {props.formatPrice(state.DGBalances.BALANCE_ROOT_DG, 3)} DG
-                </p>
-                <p
-                  className={styles.stake_text} 
-                  style={{ textDecoration: 'underline' }}
-                  onClick={() =>
-                    setAmountInput(state.stakingBalances.BALANCE_USER_GOVERNANCE)
-                  }
-                >
-                  {props.formatPrice(
-                    state.stakingBalances.BALANCE_USER_GOVERNANCE,
-                    3
-                  )}{' '}
-                  DG STAKED
-                </p>
               </span>
 
-              <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-                {Number(amountInput) ? (
-                  <Button
-                    className={styles.button_stake}
-                    onClick={() => {
-                      props.staking(
-                        DGTokenContract,
-                        Global.ADDRESSES.DG_STAKING_GOVERNANCE_ADDRESS,
-                        stakeContractGovernance,
-                        amountInput
-                      );
-                      setAmountInput('');
-                    }}
-                  >
-                    Stake
-                  </Button>
-                ) : (
-                  <Button disabled className={styles.button_stake}>
-                    Stake
-                  </Button>
-                )}
-
-                {percentGovernanceStaked && Number(amountInput) ? (
-                  <Button
-                    className={styles.button_stake}
-                    onClick={() => {
-                      props.withdrawal(stakeContractGovernance, amountInput);
-                      setAmountInput('');
-                    }}
-                  >
-                    Unstake
-                  </Button>
-                ) : (
-                  <Button disabled className={styles.button_stake}>
-                    Unstake
-                  </Button>
-                )}
+              <span
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  width: '50%',
+                }}
+              >
+                <span
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <p className={styles.apy_text}>% of pool</p>
+                  {percentGovernanceContract ? (
+                    <p className="earned-amount stat">
+                      {percentGovernanceContract}%
+                    </p>
+                  ) : (
+                    <Spinner
+                      width={33}
+                      height={33}
+                    />
+                  )}
+                </span>
               </span>
             </div>
+
+            <Input
+              className="liquidity-input"
+              fluid
+              placeholder="Amount"
+              value={amountInput}
+              onChange={handleChange}
+            />
+
+            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <p
+                className={styles.stake_text}
+                style={{ textDecoration: 'underline' }}
+                onClick={() => setAmountInput(state.DGBalances.BALANCE_ROOT_DG)}
+              >
+                {props.formatPrice(state.DGBalances.BALANCE_ROOT_DG, 3)} DG
+              </p>
+              <p
+                className={styles.stake_text}
+                style={{ textDecoration: 'underline' }}
+                onClick={() =>
+                  setAmountInput(state.stakingBalances.BALANCE_USER_GOVERNANCE)
+                }
+              >
+                {props.formatPrice(
+                  state.stakingBalances.BALANCE_USER_GOVERNANCE,
+                  3
+                )}{' '}
+                DG STAKED
+              </p>
+            </span>
+
+            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              {Number(amountInput) ? (
+                <Button
+                  className={styles.button_stake}
+                  onClick={() => {
+                    props.staking(
+                      DGTokenContract,
+                      Global.ADDRESSES.DG_STAKING_GOVERNANCE_ADDRESS,
+                      stakeContractGovernance,
+                      amountInput
+                    );
+                    setAmountInput('');
+                  }}
+                >
+                  Stake
+                </Button>
+              ) : (
+                <Button disabled className={styles.button_stake}>
+                  Stake
+                </Button>
+              )}
+
+              {percentGovernanceStaked && Number(amountInput) ? (
+                <Button
+                  className={styles.button_stake}
+                  onClick={() => {
+                    props.withdrawal(stakeContractGovernance, amountInput);
+                    setAmountInput('');
+                  }}
+                >
+                  Unstake
+                </Button>
+              ) : (
+                <Button disabled className={styles.button_stake}>
+                  Unstake
+                </Button>
+              )}
+            </span>
+          </div>
 
         </div>
       </div>
