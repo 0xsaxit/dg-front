@@ -879,6 +879,7 @@ const DAO = props => {
               ) : (
                 <TokenMigration
                   formatPrice={formatPrice}
+                  getAmounts={getAmounts}
                   price={price}
                 />
               )}

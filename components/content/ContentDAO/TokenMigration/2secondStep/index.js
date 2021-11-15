@@ -118,7 +118,14 @@ const SecondStep = (props) => {
 
     // fetch staking contract data
     useEffect(() => {
-        if (state.userStatus >= 4) {   
+        if (state.userStatus >= 4) {  
+            if (state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID) {
+                dispatch({
+                    type: 'show_toastMessage',
+                    data: `Please switch your Network to Ethereum Mainnet`,
+                });
+            }
+ 
             createContracts();
         }
     }, [state.userStatus]);

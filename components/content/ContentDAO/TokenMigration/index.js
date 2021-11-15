@@ -55,6 +55,8 @@ const TokenMigration = (props) => {
                         />
                         : currentStep === 3 ?
                             <ThirdStep
+                                formatPrice={props.formatPrice}
+                                getAmounts={props.getAmounts}
                                 nextStep={() => setCurrentStep(4)}
                             />
                             : currentStep === 4 ?
@@ -62,7 +64,10 @@ const TokenMigration = (props) => {
                                     nextStep={() => setCurrentStep(5)}
                                 />
                                 : currentStep === 5 ?
-                                    <FifthStep />
+                                    <FifthStep
+                                        formatPrice={props.formatPrice}
+                                        getAmounts={props.getAmounts}
+                                    />
                                     : null
                 }
             </div>

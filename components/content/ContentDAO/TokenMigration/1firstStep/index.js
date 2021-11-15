@@ -22,6 +22,13 @@ const FirstStep = (props) => {
         if (state.userStatus >= 4) {
             const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
+            if (state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID) {
+                dispatch({
+                    type: 'show_toastMessage',
+                    data: `Please switch your Network to Ethereum Mainnet`,
+                });
+            }
+
             async function fetchData() {
                 const contract =
                     await Transactions.stakingContractGovernance(web3);
@@ -40,7 +47,7 @@ const FirstStep = (props) => {
     }, [state.userStatus]);
 
     async function unstake() {
-        const amount = BigNumber(state.stakingBalances.BALANCE_USER_GOVERNANCE)
+        const amount = BigNumber(state.stakingBalances.BALANCE_USER_GOVERNANCE || 0)
             .times(Global.CONSTANTS.FACTOR).toFixed();
 
         console.log('Call withdraw() function to unstake tokens');
@@ -97,11 +104,11 @@ const FirstStep = (props) => {
                             </div>
                             <div className={styles.center_content}>
                                 <div>
-                                    {props.formatPrice(state.stakingBalances.BALANCE_USER_GOVERNANCE, 2)}
+                                    {props.formatPrice(state.stakingBalances.BALANCE_USER_GOVERNANCE || 0, 2)}
                                     <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
                                 </div>
                                 <p>
-                                    ${props.formatPrice((state.DGPrices.dg * state.stakingBalances.BALANCE_USER_GOVERNANCE).toFixed(2), 2)}
+                                    ${props.formatPrice((state.DGPrices.dg * state.stakingBalances.BALANCE_USER_GOVERNANCE || 0).toFixed(2), 2)}
                                 </p>
                             </div>
                             <div className={styles.button_div}>
@@ -123,7 +130,7 @@ const FirstStep = (props) => {
                                         }}
                                     >
                                         <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" alt="metamask" />
-                                        Unstake {props.formatPrice(state.stakingBalances.BALANCE_USER_GOVERNANCE, 2)} $DG
+                                        Unstake {props.formatPrice(state.stakingBalances.BALANCE_USER_GOVERNANCE || 0, 2)} $DG
                                     </Button>
                                 }
                             </div>
