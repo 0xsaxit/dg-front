@@ -86,12 +86,19 @@
             margin-bottom: 0px !important;
             background: rgb(31, 31, 31);
             color: white;
+            transition: 0.2s ease-in !important;
 
-            &:hover,
+            &:active,
             &:focus {
-                color: white;
-                background: rgb(31, 31, 31);
-                filter: brightness(0.9) !important;
+                opacity: 1;
+                filter: none !important;
+                transition: 0.2s ease-in;
+            }
+    
+            &:hover {
+                opacity: 0.6;
+                filter: none !important;
+                transition: 0.2s ease-in;
             }
         }
 

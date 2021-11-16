@@ -658,7 +658,7 @@ const DAO = props => {
                   </div>
                 </Link>
 
-                <Link href="/dg/migration">
+                {/*<Link href="/dg/migration">
                   <div
                     className={
                       DGState === 'tokenMigration'
@@ -693,7 +693,7 @@ const DAO = props => {
 
                     <div className={styles.menu_title}>Token Migration</div>
                   </div>
-                </Link>
+                </Link>*/}
               </div>
             </div>
           </div>

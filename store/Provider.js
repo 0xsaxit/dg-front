@@ -98,7 +98,14 @@ const initialState = {
     BALANCE_STAKED_UNISWAP: 0,
     BALANCE_WALLET_UNISWAP: 0,
   },
-  itemLimits: [
+  itemLimits1: [
+    [0, 0],
+    [0, 5],
+    [0, 10],
+    [0, 15],
+    [0, 20],
+  ],
+  itemLimits2: [
     [0, 0],
     [0, 5],
     [0, 10],
@@ -226,6 +233,12 @@ const reducer = (state, action) => {
         transactions: action.data,
       };
 
+    case 'app_config':
+      return {
+        ...state,
+        appConfig: action.data,
+      };
+
     case 'treasury_numbers':
       return {
         ...state,
@@ -292,10 +305,16 @@ const reducer = (state, action) => {
         stakingBalances: action.data,
       };
 
-    case 'item_limits':
+    case 'item_limits_1':
       return {
         ...state,
-        itemLimits: action.data,
+        itemLimits1: action.data,
+      };
+
+    case 'item_limits_2':
+      return {
+        ...state,
+        itemLimits2: action.data,
       };
 
     case 'ice_wearable_items':

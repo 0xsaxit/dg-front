@@ -1,4 +1,4 @@
-import { useEffect, useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { Modal, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
 import ModalETHAuth from 'components/modal/ModalEthAuth';
@@ -8,7 +8,6 @@ import styles from './ModalMintWearable.module.scss';
 import Images from 'common/Images';
 import Global from '../../Constants';
 import Aux from '../../_Aux';
-// import ButtonStartConnect from 'components/button/ButtonStartConnect';
 
 const ModalMint = props => {
   // get user's unclaimed DG balance from the Context API store
@@ -17,40 +16,6 @@ const ModalMint = props => {
   // define local variables
   const [open, setOpen] = useState(false);
   const [openETHAuth, setOpenETHAuth] = useState(false);
-  // const [safari, setSafari] = useState(false);
-  const [itemLimitsArray, setItemLimitsArray] = useState([
-    [0, 0],
-    [0, 0],
-    [0, 0],
-    [0, 0],
-    [0, 0],
-  ]);
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // using Safari browser
-  useEffect(() => {
-    if (window.safari !== undefined) {
-      setSafari(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    const itemLimit0 = state.itemLimits[0];
-    const itemLimit5 = state.itemLimits[1];
-    const itemLimit10 = state.itemLimits[2];
-    const itemLimit15 = state.itemLimits[3];
-    const itemLimit20 = state.itemLimits[4];
-
-    let itemLimitsArray = [];
-    itemLimitsArray.push(itemLimit0);
-    itemLimitsArray.push(itemLimit5);
-    itemLimitsArray.push(itemLimit10);
-    itemLimitsArray.push(itemLimit15);
-    itemLimitsArray.push(itemLimit20);
-
-    setItemLimitsArray(itemLimitsArray);
-  }, [state.itemLimits]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -71,9 +36,7 @@ const ModalMint = props => {
               className={styles.img_card}
             />
           </div>
-          <div className={styles.card}>
-            {itemLimitsArray[props.index][0]} of 100 left
-          </div>
+          <div className={styles.card}>{101 - props.numberLeft} of 100</div>
         </div>
       </div>
     );
@@ -82,7 +45,7 @@ const ModalMint = props => {
   function priceAndStaked() {
     return (
       <div className={styles.price_area}>
-        Price <span>(${(state.DGPrices.eth / 10).toFixed(2)})</span>
+        Price <span>(${(state.DGPrices.eth * state.tokenAmounts.WETH_COST_AMOUNT).toFixed(2)})</span>
         <div className={styles.card_area}>
           <div className={styles.card_area_body}>
             {state.userBalances[2][3] < Global.CONSTANTS.WETH_MINT_AMOUNT ? (
@@ -99,7 +62,7 @@ const ModalMint = props => {
 
             {state.userBalances[2][3] >= Global.CONSTANTS.WETH_MINT_AMOUNT ? (
               <div className={styles.green_check}>
-                {roundup(state.userBalances[2][3])} ETH Available &nbsp;
+                {Number(state.userBalances[2][3]).toFixed(3)} ETH Available &nbsp;
                 <svg
                   width="9"
                   height="8"
@@ -115,7 +78,7 @@ const ModalMint = props => {
               </div>
             ) : (
               <div className={styles.description}>
-                {roundup(state.userBalances[2][3])} ETH Available
+                {Number(state.userBalances[2][3]).toFixed(3)} ETH Available
               </div>
             )}
 
@@ -221,7 +184,7 @@ const ModalMint = props => {
   function buttons() {
     return (
       <div className={styles.button_area}>
-        {itemLimitsArray[props.index][0] ? (
+        {props.numberLeft ? (
           state.userBalances[2][3] < state.tokenAmounts.WETH_COST_AMOUNT ||
           state.stakingBalances.BALANCE_USER_GOVERNANCE <
             Global.CONSTANTS.DG_STAKED_AMOUNT ? (
@@ -263,7 +226,7 @@ const ModalMint = props => {
   function ethAuthModal() {
     return (
       <ModalETHAuth
-        itemID={itemLimitsArray[props.index][1]}
+        itemID={props.itemID}
         address={'0x4cd15dcd96362cF85E19039C3C2D661e5e43145E'}
         wearableImg={props.wearableImg}
         show={openETHAuth}
@@ -308,7 +271,9 @@ const ModalMint = props => {
         open={open}
         close
         trigger={
-          <Button className={styles.wearable_button}>Mint New Wearable</Button>
+          <Button className={styles.wearable_button}>
+            Mint New Wearable
+          </Button>
         }
       >
         {closeButton()}

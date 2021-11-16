@@ -29,10 +29,11 @@ const CONSTANTS = {
   MAX_ITEM_COUNT: 10, // maximum number of tokenOfOwner indexes to query on the accessories contract
   MAX_DELEGATION_COUNT: 5, // maximum number of delegated NFTs a user can have
   VERIFY_URL: 'staging.decentral.games',
-  WETH_MINT_AMOUNT: 0.1, // amount of WETH required for minting
+  WETH_MINT_AMOUNT: 0.25, // amount of WETH required for minting
   DG_STAKED_AMOUNT: 1, // amount of DG user is required to have staked in order to mint wearable
   POOLING_TIME_OUT: 8000, // API endpoint request pool interval (milliseconds)
   POOLING_LIMIT_COUNT: 6, // attempt to call API endpoint this number of times
+  MINT_ENABLED: true
 };
 
 // wallet and contract addresses
