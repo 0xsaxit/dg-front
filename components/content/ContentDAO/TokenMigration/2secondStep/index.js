@@ -41,37 +41,40 @@ const SecondStep = (props) => {
             return;
         }
 
-        const [
-            amount,
-            lpAmount,
-            reserves,
-            totalSupply
-        ] = await Promise.all([
-            stakingContractUniswap.methods.balanceOf(state.userAddress).call(),
-            uniswapContract.methods.balanceOf(state.userAddress).call(),
-            uniswapContract.methods.getReserves().call(),
-            uniswapContract.methods.totalSupply().call()
-        ]);
-        
-        const dgAmount = BigNumber(reserves[1])
-            .times(lpAmount)
-            .div(totalSupply)
-            .div(Global.CONSTANTS.FACTOR).toFixed();
+        try {
+            const [
+                amount,
+                lpAmount,
+                reserves,
+                totalSupply
+            ] = await Promise.all([
+                stakingContractUniswap.methods.balanceOf(state.userAddress).call(),
+                uniswapContract.methods.balanceOf(state.userAddress).call(),
+                uniswapContract.methods.getReserves().call(),
+                uniswapContract.methods.totalSupply().call()
+            ]);
+            
+            const dgAmount = BigNumber(reserves[1])
+                .times(lpAmount)
+                .div(totalSupply)
+                .div(Global.CONSTANTS.FACTOR).toFixed();
 
-        if (BigNumber(amount).isZero()) {
-            setUnstaked(true);
-        } else {
-            setUnstaked(false);
+            if (BigNumber(amount).isZero()) {
+                setUnstaked(true);
+            } else {
+                setUnstaked(false);
+            }
+
+            if (BigNumber(dgAmount).isZero()) {
+                setWithDrawn(true);
+            } else {
+                setWithDrawn(false);
+            }
+
+            setLpStakedAmount(BigNumber(amount).div(Global.CONSTANTS.FACTOR).toFixed());
+            setUniDGAmount(dgAmount);
+        } catch {
         }
-
-        if (BigNumber(dgAmount).isZero()) {
-            setWithDrawn(true);
-        } else {
-            setWithDrawn(false);
-        }
-
-        setLpStakedAmount(BigNumber(amount).div(Global.CONSTANTS.FACTOR).toFixed());
-        setUniDGAmount(dgAmount);
     }
 
     async function unstake() {
@@ -119,7 +122,7 @@ const SecondStep = (props) => {
     // fetch staking contract data
     useEffect(() => {
         if (state.userStatus >= 4) {  
-            if (state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID) {
+            if (state.networkID != Global.CONSTANTS.PARENT_NETWORK_ID) {
                 dispatch({
                     type: 'show_toastMessage',
                     data: `Please switch your Network to Ethereum Mainnet`,

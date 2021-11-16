@@ -22,7 +22,7 @@ const FirstStep = (props) => {
         if (state.userStatus >= 4) {
             const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
-            if (state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID) {
+            if (state.networkID != Global.CONSTANTS.PARENT_NETWORK_ID) {
                 dispatch({
                     type: 'show_toastMessage',
                     data: `Please switch your Network to Ethereum Mainnet`,
@@ -30,15 +30,19 @@ const FirstStep = (props) => {
             }
 
             async function fetchData() {
-                const contract =
-                    await Transactions.stakingContractGovernance(web3);
-                setStakeContract(contract);
+                try {
+                    const contract =
+                        await Transactions.stakingContractGovernance(web3);
+                    setStakeContract(contract);
 
-                const stakedAmount =
-                    await contract.methods.balanceOf(state.userAddress).call();
+                    const stakedAmount =
+                        await contract.methods.balanceOf(state.userAddress).call();
 
-                if (BigNumber(stakedAmount).isZero()) {
-                    setUnstaked(true);
+                    if (BigNumber(stakedAmount).isZero()) {
+                        setUnstaked(true);
+                    }
+                } catch (e) {
+                    console.log(e.message);
                 }
             }
 

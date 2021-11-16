@@ -160,6 +160,7 @@ const initialState = {
     resumeID: 0,
     lockID: 0,
   },
+  openModalInfo: false,
   dgWarningMsg: false,
   toastMessage: '',
   selectedLang: 0,
@@ -520,6 +521,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         openModal: action.data,
+      };
+    case 'set_openModalInfo':
+      return {
+        ...state,
+        openModalInfo: action.data,
       };
     case 'set_dgShow':
       return {
