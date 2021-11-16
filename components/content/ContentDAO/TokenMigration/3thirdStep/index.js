@@ -240,8 +240,6 @@ const ThirdStep = (props) => {
     // fetch DGLight contract data
     useEffect(() => {
         if (state.userStatus >= 4) {
-            const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
-
             checkNetworkId(window.ethereum.networkVersion);
             window.ethereum.on('networkChanged', function(networkId){
                 checkNetworkId(networkId);

@@ -324,7 +324,7 @@ const FifthStep = (props) => {
 
                                         <div className={styles.description}>
                                             <h4 className={direct ? styles.active : null}>
-                                                {props.formatPrice(state.DGBalances.BALANCE_ROOT_DG || 0, 2)} DG (Old) {direct ? 'Detected!' : 'Total'}
+                                                {props.formatPrice(state.DGBalances.BALANCE_CHILD_DG || 0, 2)} DG (Old) {direct ? 'Detected!' : 'Total'}
                                             </h4>
                                             <p>On Polygon</p>
                                         </div>
@@ -332,7 +332,7 @@ const FifthStep = (props) => {
                                     <div
                                         className={styles.arrow}
                                         style={{transform: !direct ? 'rotateY(180deg)' : ''}}
-                                        onClick={() => {setDirect(!direct)}}
+                                        // onClick={() => {setDirect(!direct)}}
                                     >
                                         <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1635534332/arrow2_n1fwsf.png" alt="" />
                                     </div>
@@ -356,7 +356,7 @@ const FifthStep = (props) => {
 
                                         <div className={styles.description}>
                                             <h4 className={!direct ? styles.active : null}>
-                                                {props.formatPrice(state.DGBalances.BALANCE_ROOT_DG_LIGHT || 0, 2)} New DG {!direct ? 'Detected!' : 'Total'}
+                                                {props.formatPrice(state.DGBalances.BALANCE_CHILD_DG_LIGHT || 0, 2)} New DG {!direct ? 'Detected!' : 'Total'}
                                             </h4>
                                             <p>On Polygon</p>
                                         </div>

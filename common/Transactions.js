@@ -5,6 +5,7 @@ import ABI_DG_STAKING from '../components/ABI/ABIDGStaking';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
 import ABI_DG_LIGHT_TOKEN from '../components/ABI/ABIDGLightToken';
 import ABI_DG_LIGHT_BRIDGE from '../components/ABI/ABIDGLightBridge';
+import ABI_DG_TOWN_HALL from '../components/ABI/ABIDGTownHall';
 import ABI_BP_TOKEN from '../components/ABI/ABIBalancerPoolToken';
 import ABI_DG_KEEPER from '../components/ABI/ABIDGKeeper';
 import Global from '../components/Constants';
@@ -96,6 +97,19 @@ async function DGLightBridgeContract(web3Default) {
   );
 
   return DGLightToken;
+}
+
+// set DGLightBridge main contract instance
+async function DGTownHallContract(web3Default) {
+  const chainId = await web3Default.eth.getChainId();
+  const DGTownHall = new web3Default.eth.Contract(
+    ABI_DG_TOWN_HALL,
+    chainId == 1
+      ? Global.ADDRESSES.ROOT_DG_TOWN_HALL_ADDRESS
+      : Global.ADDRESSES.ROPSTEN_DG_TOWN_HALL_ADDRESS
+  );
+
+  return DGTownHall;
 }
 
 // set DG staking governance contract instance
@@ -273,6 +287,7 @@ export default {
   DGTokenContract,
   DGLightTokenContract,
   DGLightBridgeContract,
+  DGTownHallContract,
   stakingContractGovernance,
   stakingContractPool1,
   stakingContractPool2,

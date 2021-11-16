@@ -61,6 +61,8 @@ const TokenMigration = (props) => {
                             />
                             : currentStep === 4 ?
                                 <ForthStep
+                                    formatPrice={props.formatPrice}
+                                    getAmounts={props.getAmounts}
                                     nextStep={() => setCurrentStep(5)}
                                 />
                                 : currentStep === 5 ?
