@@ -142,6 +142,16 @@
                             width: 24px;
                             margin-right: 8px;
                         }
+                        
+                        .swap_input {
+                            width: 80px
+                        }
+                        
+                        .swap_input>input {
+                            padding: 0px !important;
+                            outline: none;
+                            border: none !important;
+                        }
 
                         abbr {
                             color: rgba(255, 255, 255, 0.5);
@@ -178,6 +188,7 @@
                 .arrow {
                     width: 25px;
                     margin: 0px 12px;
+                    cursor: pointer;
                 }
             }
 
@@ -237,6 +248,14 @@
                         margin-right: 10px;
                         margin-top: -1px;
                         background: transparent;
+                    }
+
+                    .ethereum {
+                        width: 20.5px;
+                        height: 21px;
+                        padding: 4px;
+                        border-radius: 50%;
+                        background: #fff;
                     }
 
                     .arrowIcon {

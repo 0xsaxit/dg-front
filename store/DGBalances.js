@@ -20,7 +20,9 @@ function DGBalances() {
   const [stakingContractUniswap, setStakingContractUniswap] = useState({});
   const [stakeContractGovernance, setStakeContractGovernance] = useState({});
   const [DGTokenContract, setDGTokenContract] = useState({});
+  const [DGLightTokenContract, setDGLightTokenContract] = useState({});
   const [DGMaticContract, setDGMaticContract] = useState({});
+  const [DGLightMaticContract, setDGLightMaticContract] = useState({});
   const [BPTContract1, setBPTContract1] = useState({});
   const [BPTContract2, setBPTContract2] = useState({});
   const [uniswapContract, setUniswapContract] = useState({});
@@ -42,119 +44,138 @@ function DGBalances() {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  
+  async function fetchData() {
+    const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+    const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
+
+    // this is for mining DG
+    const pointerContract = await Transactions.pointerContract(maticWeb3);
+    setPointerContract(pointerContract);
+
+    // this is for affiliates
+    const pointerContractNew = await Transactions.pointerContractNew(
+      maticWeb3
+    );
+    setPointerContractNew(pointerContractNew);
+
+    // set up dg token contract (same for both pools)
+    const DGTokenContract = await Transactions.DGTokenContract(web3);
+    setDGTokenContract(DGTokenContract);
+
+    // set up dg token contract (same for both pools)
+    const DGLightTokenContract = await Transactions.DGLightTokenContract(web3);
+    setDGLightTokenContract(DGLightTokenContract);
+
+    // matic contract to get DG balance on matic chain for modal
+    const DGMaticContract = await Transactions.DGTokenContract(maticWeb3);
+    setDGMaticContract(DGMaticContract);
+
+    // matic contract to get DGLight balance on matic chain for modal
+    const DGLightMaticContract = await Transactions.DGLightTokenContract(maticWeb3);
+    setDGLightMaticContract(DGLightMaticContract);
+
+    const DAI_BPT = new web3.eth.Contract(
+      ABI_DG_TOKEN,
+      Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DAI
+    );
+    setDAI_BPT(DAI_BPT);
+
+    const ETH_UNI = new web3.eth.Contract(
+      ABI_DG_TOKEN,
+      Global.ADDRESSES.UNISWAP_ADDRESS_WETH
+    );
+    setETH_UNI(ETH_UNI);
+
+    const DG_MANA = new web3.eth.Contract(
+      ABI_DG_TOKEN,
+      Global.ADDRESSES.ROOT_TOKEN_ADDRESS_MANA
+    );
+    setMANA_BPT(DG_MANA);
+
+    const MATIC_MANA = new maticWeb3.eth.Contract(
+      ABI_CHILD_TOKEN_MANA,
+      Global.ADDRESSES.CHILD_TOKEN_ADDRESS_MANA
+    );
+    setMaticMana(MATIC_MANA);
+
+    const maticDAIContract = new maticWeb3.eth.Contract(
+      ABI_CHILD_TOKEN_MANA,
+      Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DAI
+    );
+    setMaticDAIContract(maticDAIContract);
+
+    const maticICEContract = new maticWeb3.eth.Contract(
+      ABI_CHILD_TOKEN_MANA,
+      Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ICE
+    );
+    setIceContract(maticICEContract);
+
+    const maticLPContract = new maticWeb3.eth.Contract(
+      ABI_ICE_LP,
+      "0x9e3880647C07BA13E65663DE29783eCD96Ec21dE"
+    );
+    setMaticLPContract(maticLPContract); 
+
+    const maticWethContract = new maticWeb3.eth.Contract(
+      ABI_CHILD_TOKEN_MANA,
+      "0x7ceb23fd6bc0add59e62ac25578270cff1b9f619"
+    );
+    setMaticWethContract(maticWethContract); 
+
+    const stakingContractPool1 = await Transactions.stakingContractPool1(
+      web3
+    );
+    setStakingContractPool1(stakingContractPool1);
+
+    const stakingContractPool2 = await Transactions.stakingContractPool2(
+      web3
+    );
+    setStakingContractPool2(stakingContractPool2);
+
+    const keeperContract = await Transactions.keeperContract(web3);
+    setKeeperContract(keeperContract);
+
+    const stakeContractGovernance = await Transactions.stakingContractGovernance(
+      web3
+    );
+    setStakeContractGovernance(stakeContractGovernance);
+
+    const BPTContract1 = await Transactions.BPTContract1(web3);
+    setBPTContract1(BPTContract1);
+
+    const BPTContract2 = await Transactions.BPTContract2(web3);
+    setBPTContract2(BPTContract2);
+
+    const stakingContractUniswap = await Transactions.stakingContractUniswap(
+      web3
+    );
+    setStakingContractUniswap(stakingContractUniswap);
+
+    const uniswapContract = await Transactions.uniswapContract(web3);
+    setUniswapContract(uniswapContract);
+
+    setInstances(true); // contract instantiation complete
+  }
+
   useEffect(() => {
     if (state.userStatus >= 4) {
-      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
-      const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
-
-      async function fetchData() {
-        // this is for mining DG
-        const pointerContract = await Transactions.pointerContract(maticWeb3);
-        setPointerContract(pointerContract);
-
-        // this is for affiliates
-        const pointerContractNew = await Transactions.pointerContractNew(
-          maticWeb3
-        );
-        setPointerContractNew(pointerContractNew);
-
-        // set up dg token contract (same for both pools)
-        const DGTokenContract = await Transactions.DGTokenContract(web3);
-        setDGTokenContract(DGTokenContract);
-
-        // matic contract to get DG balance on matic chain for modal
-        const DGMaticContract = new maticWeb3.eth.Contract(
-          ABI_DG_TOKEN,
-          Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DG
-        );
-        setDGMaticContract(DGMaticContract);
-
-        const DAI_BPT = new web3.eth.Contract(
-          ABI_DG_TOKEN,
-          Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DAI
-        );
-        setDAI_BPT(DAI_BPT);
-
-        const ETH_UNI = new web3.eth.Contract(
-          ABI_DG_TOKEN,
-          Global.ADDRESSES.UNISWAP_ADDRESS_WETH
-        );
-        setETH_UNI(ETH_UNI);
-
-        const DG_MANA = new web3.eth.Contract(
-          ABI_DG_TOKEN,
-          Global.ADDRESSES.ROOT_TOKEN_ADDRESS_MANA
-        );
-        setMANA_BPT(DG_MANA);
-
-        const MATIC_MANA = new maticWeb3.eth.Contract(
-          ABI_CHILD_TOKEN_MANA,
-          Global.ADDRESSES.CHILD_TOKEN_ADDRESS_MANA
-        );
-        setMaticMana(MATIC_MANA);
-
-        const maticDAIContract = new maticWeb3.eth.Contract(
-          ABI_CHILD_TOKEN_MANA,
-          Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DAI
-        );
-        setMaticDAIContract(maticDAIContract);
-
-        const maticICEContract = new maticWeb3.eth.Contract(
-          ABI_CHILD_TOKEN_MANA,
-          Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ICE
-        );
-        setIceContract(maticICEContract);
-
-        const maticLPContract = new maticWeb3.eth.Contract(
-          ABI_ICE_LP,
-          "0x9e3880647C07BA13E65663DE29783eCD96Ec21dE"
-        );
-        setMaticLPContract(maticLPContract); 
-
-        const maticWethContract = new maticWeb3.eth.Contract(
-          ABI_CHILD_TOKEN_MANA,
-          "0x7ceb23fd6bc0add59e62ac25578270cff1b9f619"
-        );
-        setMaticWethContract(maticWethContract); 
-
-        const stakingContractPool1 = await Transactions.stakingContractPool1(
-          web3
-        );
-        setStakingContractPool1(stakingContractPool1);
-
-        const stakingContractPool2 = await Transactions.stakingContractPool2(
-          web3
-        );
-        setStakingContractPool2(stakingContractPool2);
-
-        const keeperContract = await Transactions.keeperContract(web3);
-        setKeeperContract(keeperContract);
-
-        const stakeContractGovernance = await Transactions.stakingContractGovernance(
-          web3
-        );
-        setStakeContractGovernance(stakeContractGovernance);
-
-        const BPTContract1 = await Transactions.BPTContract1(web3);
-        setBPTContract1(BPTContract1);
-
-        const BPTContract2 = await Transactions.BPTContract2(web3);
-        setBPTContract2(BPTContract2);
-
-        const stakingContractUniswap = await Transactions.stakingContractUniswap(
-          web3
-        );
-        setStakingContractUniswap(stakingContractUniswap);
-
-        const uniswapContract = await Transactions.uniswapContract(web3);
-        setUniswapContract(uniswapContract);
-
-        setInstances(true); // contract instantiation complete
-      }
-
       fetchData();
     }
   }, [state.userStatus]);
+
+  useEffect(async () => {
+    if (state.userStatus >= 4) {
+      await fetchData();
+
+      const refresh = !state.refreshBalances;
+
+      dispatch({
+        type: 'refresh_balances',
+        data: refresh,
+      });
+    }
+  }, [state.networkID]);
 
   // anytime user updates values on /dg pages this code will execute
   useEffect(() => {
@@ -247,6 +268,12 @@ function DGBalances() {
         0
       );
 
+      const BALANCE_ROOT_DG_LIGHT = await Transactions.balanceOfToken(
+        DGLightTokenContract, // was DG_BPT
+        state.userAddress,
+        0
+      );
+
       const UNVESTED_DG_1 = await Transactions.balanceOfToken(
         DGTokenContract,
         "0x9e78ADcc93eA1CD666f37ECfC3c5a868Ae55d274",
@@ -267,6 +294,12 @@ function DGBalances() {
 
       const BALANCE_CHILD_DG = await Transactions.balanceOfToken(
         DGMaticContract,
+        state.userAddress,
+        3
+      );
+
+      const BALANCE_CHILD_DG_LIGHT = await Transactions.balanceOfToken(
+        DGLightMaticContract,
         state.userAddress,
         3
       );
@@ -358,7 +391,9 @@ function DGBalances() {
         BALANCE_BP_DG_2: BALANCE_BP_DG_2,
         BALANCE_BP_DAI: BALANCE_BP_DAI,
         BALANCE_ROOT_DG: BALANCE_ROOT_DG,
+        BALANCE_ROOT_DG_LIGHT: BALANCE_ROOT_DG_LIGHT,
         BALANCE_CHILD_DG: BALANCE_CHILD_DG,
+        BALANCE_CHILD_DG_LIGHT: BALANCE_CHILD_DG_LIGHT,
         UNVESTED_DG_1: UNVESTED_DG_1,
         UNVESTED_DG_2: UNVESTED_DG_2,
         BALANCE_ICE: BALANCE_ICE,

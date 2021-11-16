@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { useEffect, useContext, useState, React } from 'react';
 import { GlobalContext } from '../../../../store';
-import { Loader, Popup, Icon, Button, Table } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 import Global from 'components/Constants';
 import Transactions from 'common/Transactions';
 import Aux from '../../../_Aux';

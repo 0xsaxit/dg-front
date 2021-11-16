@@ -181,6 +181,7 @@ p {
 .ui.button {
   font-family: 'Larsseit-Bold';
   border-radius: 16px;
+  transition: 0.2s ease-in !important;
 }
 
 .ui.divider:not(.vertical):not(.horizontal) {
@@ -2562,7 +2563,7 @@ div.ui.grid.admin-balances-container {
 
 .ui.button:hover {
   transform: translateY(0px);
-  filter: brightness(0.8) !important;
+  opacity: 0.6;
   transition: all linear 0.2s;
 }
 
@@ -3143,6 +3144,15 @@ a.ui.blue.button.play-button-binance, .ui.blue.button.play-button-binance {
   color: white;
   margin-right: 16px;
   font-size: 18px !important;
+  transition: 0.2s ease-in;
+}
+
+.ui.button.account-button:hover {
+  opacity: 0.6;
+  background-color: #1f1f1f;
+  color: white !important;
+  filter: none !important;
+  transition: 0.2s ease-in;
 }
 
 .right-menu-text.bnb {

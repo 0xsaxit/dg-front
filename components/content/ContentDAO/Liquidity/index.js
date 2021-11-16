@@ -1,7 +1,8 @@
 import cn from 'classnames';
 import { useEffect, useContext, useState, React } from 'react';
 import { GlobalContext } from '../../../../store';
-import { Loader, Button, Input } from 'semantic-ui-react';
+import { Button, Input } from 'semantic-ui-react';
+import Spinner from 'components/lottieAnimation/animations/spinner_updated';
 import Aux from '../../../_Aux';
 import styles from './Liquidity.module.scss';
 import Web3 from 'web3';
@@ -91,7 +92,7 @@ const Liquidity = props => {
       const percentageUniswap = Number(
         (state.stakingBalances.BALANCE_STAKED_UNISWAP /
           state.stakingBalances.BALANCE_CONTRACT_UNISWAP) *
-          100
+        100
       ).toFixed(2);
 
       setPercentageUniswap(percentageUniswap);
@@ -160,21 +161,21 @@ const Liquidity = props => {
                   onClick={() => {
                     props.reward(stakingContractUniswap);
 
-                     //Show Toast Message3
-                     const msg = 'Claiming Liquidity DG!';
-                     dispatch({
-                       type: 'show_toastMessage',
-                       data: msg,
-                     });
+                    //Show Toast Message3
+                    const msg = 'Claiming Liquidity DG!';
+                    dispatch({
+                      type: 'show_toastMessage',
+                      data: msg,
+                    });
                   }}
                 >
                   Claim
                 </Button>
               ) : (
                 <Button
-                  disabled 
-                  className={styles.lower_button} 
-                  onClick={()=> {
+                  disabled
+                  className={styles.lower_button}
+                  onClick={() => {
                     //Show Toast Message3
                     const msg = 'Claiming Liquidity DG!';
                     dispatch({
@@ -212,16 +213,9 @@ const Liquidity = props => {
                   {APYUniswap ? (
                     <p className="earned-amount stat">{APYUniswap}%</p>
                   ) : (
-                    <Loader
-                      active
-                      inline
-                      size="small"
-                      style={{
-                        fontSize: '12px',
-                        marginTop: '5px',
-                        marginLeft: '-1px',
-                        marginBottom: '-3px',
-                      }}
+                    <Spinner
+                      width={33}
+                      height={33}
                     />
                   )}
                 </span>
@@ -245,16 +239,9 @@ const Liquidity = props => {
                   {percentageUniswap ? (
                     <p className="earned-amount">{percentageUniswap}%</p>
                   ) : (
-                    <Loader
-                      active
-                      inline
-                      size="small"
-                      style={{
-                        fontSize: '12px',
-                        marginTop: '5px',
-                        marginLeft: '-1px',
-                        marginBottom: '-3px',
-                      }}
+                    <Spinner
+                      width={33}
+                      height={33}
                     />
                   )}
                 </span>
@@ -315,7 +302,7 @@ const Liquidity = props => {
                   Stake
                 </Button>
               ) : (
-                <Button disabled className={styles.button_stake}>
+                <Button className={styles.button_stake}>
                   Stake
                 </Button>
               )}
