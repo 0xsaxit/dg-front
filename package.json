@@ -10,6 +10,8 @@
     "start": "next start -p 3000",
     "start:testing": "APP_ENV=testing next dev",
     "start:development": "APP_ENV=development next dev",
+    "start:staging": "APP_ENV=staging next dev",
+    "start:production": "APP_ENV=production next dev",
     "start:docker-compose": "sudo docker-compose down && sudo docker-compose build && sudo docker-compose up",
     "build:testing": "env-cmd -f .env.testing next build",
     "build:development": "env-cmd -f .env.development next build",
