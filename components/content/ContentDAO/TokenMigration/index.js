@@ -7,7 +7,7 @@ import ForthStep from './4forthStep'
 import FifthStep from './5fifthStep'
 import styles from './TokenMigration.module.scss'
 
-const TokenMigration = () => {
+const TokenMigration = (props) => {
     const [currentStep, setCurrentStep] = useState(1);
     const steps = ["Unstake Your $DG", "Withdraw Your Liquidity Provision $DG", "Swap Your Mainnet $DG", "Stake in New Governance", "Swap Your Polygon DG"];
 
@@ -44,22 +44,32 @@ const TokenMigration = () => {
             <div className={styles.content}>
                 {currentStep === 1 ?
                     <FirstStep
+                        formatPrice={props.formatPrice}
+                        price={props.price}
                         nextStep={() => setCurrentStep(2)}
                     />
                     : currentStep === 2 ?
                         <SecondStep
+                            formatPrice={props.formatPrice}
                             nextStep={() => setCurrentStep(3)}
                         />
                         : currentStep === 3 ?
                             <ThirdStep
+                                formatPrice={props.formatPrice}
+                                getAmounts={props.getAmounts}
                                 nextStep={() => setCurrentStep(4)}
                             />
                             : currentStep === 4 ?
                                 <ForthStep
+                                    formatPrice={props.formatPrice}
+                                    getAmounts={props.getAmounts}
                                     nextStep={() => setCurrentStep(5)}
                                 />
                                 : currentStep === 5 ?
-                                    <FifthStep />
+                                    <FifthStep
+                                        formatPrice={props.formatPrice}
+                                        getAmounts={props.getAmounts}
+                                    />
                                     : null
                 }
             </div>

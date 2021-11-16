@@ -40,6 +40,13 @@ const ModalInfo = () => {
     setDGTotal_2(totalDGAdjusted_2);
   }, [state.DGBalances, state.stakingBalances]);
 
+  useEffect(() => {
+    if (state.openModalInfo) {
+      setOpen(true);
+    }
+    state.openModalInfo = false;
+  }, [state.openModalInfo]);
+
   // total unclaimed
   const unclaimed =
     Number(state.DGBalances.BALANCE_STAKING_GOVERNANCE) +

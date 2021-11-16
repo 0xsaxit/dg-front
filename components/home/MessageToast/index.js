@@ -36,18 +36,15 @@ const MessageToast = (props) => {
                 console.log("1. networkId: ", networkId);
                 console.log("2. Global.CONSTANTS.PARENT_NETWORK_ID: ", Global.CONSTANTS.PARENT_NETWORK_ID);
 
-                //Show Toast Message
-                let msg = 'Please switch your Network to Ethereum Mainnet';
                 if (window.innerWidth < 499) {
                     setMobile(true);
-                    msg = 'Please configure metamask on a desktop browser';
                 }
-                
-                dispatch({
-                  type: 'show_toastMessage',
-                  data: msg,
-                });
             }
+
+            dispatch({
+                type: 'network_id',
+                data: networkId,
+            });
           });
         } else {
           console.warn(
@@ -139,7 +136,10 @@ const MessageToast = (props) => {
     } else if (mobile) {
       setMessage('Please configure metamask on a desktop browser');
     } else if (!mobile && state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID) {
-      setMessage('Please switch your Network to Ethereum Mainnet');
+      if (!Global.pageSelfNetwork) {
+        setMessage('Please switch your Network to Ethereum Mainnet');
+      }
+      Global.pageSelfNetwork = false;
     } else if (!mobile && pause && !state.userInfo.tokenArray.includes(true)) {
       setMessage(
         `Make sure you've enabled cypto gameplay on your account page`
