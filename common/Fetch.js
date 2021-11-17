@@ -1,19 +1,20 @@
 import call from 'common/API';
-import getConfig from 'next/config'
-import { ApiUrlsByAppEnv } from './environments'
+import getConfig from 'next/config';
+import { ApiUrlsByAppEnv } from './environments';
 
 // This imports NODE_ENV from next.config.js
-const { publicRuntimeConfig } = getConfig()
+const { publicRuntimeConfig } = getConfig();
 const { APP_ENV } = publicRuntimeConfig;
 
 // APP_ENV must be set in the .env.{environment} files
-export const API_BASE_URL = ApiUrlsByAppEnv[APP_ENV] || 'https://api.decentral.games';
+export const API_BASE_URL =
+  ApiUrlsByAppEnv[APP_ENV] || 'https://api.decentral.games';
 
 // temp, should be removed
 // export const API_BASE_URL = 'https://api.dev.decentral.games';
 
-console.log('APP_ENV (NODE_ENV): ', APP_ENV)
-console.log('API_BASE_URL: ', API_BASE_URL)
+console.log('APP_ENV (NODE_ENV): ', APP_ENV);
+console.log('API_BASE_URL: ', API_BASE_URL);
 
 const apiCall = {
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -79,6 +80,10 @@ const apiCall = {
   GET_REWARDS_CONFIG: () => {
     return call(`${API_BASE_URL}/ice/getRewardsConfig`, 'GET');
   },
+
+  // GET_TOKEN_MAPPINGS: () => {
+  //   return call(`${API_BASE_URL}/ice/getRewardsConfig`, 'GET');
+  // },
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -260,7 +265,7 @@ const apiCall = {
 
   POAPS: address => {
     return call(`https://api.poap.xyz/actions/scan/${address}`, 'GET', false);
-  }
+  },
 };
 
 export default apiCall;

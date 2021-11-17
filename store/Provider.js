@@ -141,6 +141,7 @@ const initialState = {
     ICE_AUTHORIZATION: false,
     WETH_AUTHORIZATION: false,
   },
+  collectionMappings: {},
   refreshTokens: 'Initial',
   refreshBalances: true,
   refreshTokenAmounts: true,
@@ -380,6 +381,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         tokenAuths: action.data,
+      };
+
+    case 'collection_mappings':
+      return {
+        ...state,
+        collectionMappings: action.data,
       };
 
     case 'dg_prices':
