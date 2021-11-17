@@ -22,6 +22,27 @@ const ModalWithdrawDelegation = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
+  
+  // get Remaining Time
+  function getRemainingTime() {
+    const today = new Date();
+    const todayUTC = new Date(
+      today.getUTCFullYear(),
+      today.getUTCMonth(),
+      today.getUTCDate(),
+      today.getUTCHours(),
+      today.getUTCMinutes(),
+      today.getUTCSeconds()
+    );
+    const tomorrowUTC = new Date(todayUTC.getTime());
+    tomorrowUTC.setDate(tomorrowUTC.getDate() + 1);
+    tomorrowUTC.setHours(0);
+    tomorrowUTC.setMinutes(0);
+    tomorrowUTC.setSeconds(0);
+
+    return ((tomorrowUTC.getTime() - todayUTC.getTime()) / 1000 / 3600).toFixed(0);
+  }
+
   function description() {
     return (
       <Aux>
@@ -229,10 +250,11 @@ const ModalWithdrawDelegation = props => {
                     ) : (
                       <div className={styles.withdraw_button}>
                         <div className={styles.mainText}>
-                          W ithdraw Delegation                          
+                          Withdraw Delegation                          
                         </div>
                         <div className={styles.subText}>
-                          {withdrawStatus == 1? 'Withdraw Immediately' : 'Schedule Withdraw: 12am UTC'}
+                          {withdrawStatus == 1? 'Withdraw Immediately': 'Schedule Withdraw: 12am UTC' + 
+                          ' (In ' + getRemainingTime() + 'Hours)'}
                         </div>
                       </div>
                     )}

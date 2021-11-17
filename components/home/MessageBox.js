@@ -75,7 +75,9 @@ const MessageBar = () => {
       //     'You must switch to Matic Network to deposit and withdraw funds'
       //   );
     } else if (state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID) {
-      setMessage('Please switch your Network to Ethereum Mainnet');
+      if (!Global.pageSelfNetwork) {
+        setMessage('Please switch your Network to Ethereum Mainnet');
+      }
     } else if (!state.userInfo.tokenArray.includes(true)) {
       setMessage(
         `Make sure you've enabled cypto gameplay on your account page`
