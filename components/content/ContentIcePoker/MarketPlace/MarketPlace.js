@@ -374,7 +374,9 @@ const MarketPlace = () => {
                     <p className={styles.nft_info}>
                       {detailsICEPartyHost[item][3]}
                     </p>
-                    {state.userStatus >= 4 && state.userLoggedIn ? (
+                    {state.appConfig?.isWebsiteMintingEnabled && 
+                      state.userStatus >= 4 && 
+                      state.userLoggedIn ? (
                       <p className={styles.nft_info}>
                         {state.itemLimits2[i][0]} of 100 left
                       </p>
@@ -395,7 +397,7 @@ const MarketPlace = () => {
                     // Minting Enabled State
                     if (
                       state.appConfig?.isWebsiteMintingEnabled &&
-                      state.userStatus >= 4 &&
+                      state.userStatus >= 20 &&
                       state.userLoggedIn &&
                       state.itemLimits2[i][0] > 0
                     ) {
