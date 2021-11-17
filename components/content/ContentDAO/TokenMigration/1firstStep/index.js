@@ -111,9 +111,6 @@ const FirstStep = (props) => {
                                     {props.formatPrice(state.stakingBalances.BALANCE_USER_GOVERNANCE || 0, 2)}
                                     <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
                                 </div>
-                                <p>
-                                    ${props.formatPrice((state.DGPrices.dg * state.stakingBalances.BALANCE_USER_GOVERNANCE || 0).toFixed(2), 2)}
-                                </p>
                             </div>
                             <div className={styles.button_div}>
                                 {loading ?
@@ -169,7 +166,7 @@ const FirstStep = (props) => {
                     </div>
                     <div className={styles.content}>
                         <li>
-                            To account for high ETH gas fees, <br /><abbr /> the new DG gov rewards APY will <br /><abbr /> start at <a href="/">100% and higher</a>.
+                            To account for high ETH gas fees, <br /><abbr /> the new DG gov rewards APY will <br /><abbr /> start at <a href="/">40% and higher</a>.
                         </li>
                         <li>
                             The new gov rewards will also cut <br /><abbr /> ETH gas fees by claiming and <br /><abbr /> restaking yields automatically.
