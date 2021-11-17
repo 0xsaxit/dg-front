@@ -924,8 +924,19 @@ const MarketPlace = () => {
     <div className={styles.main_wrapper}>
       <span className={styles.iceWearablesMarketplace}>
         <div className={styles.header}>
-          <h1>ICE Wearables Marketplace</h1>
-
+          <div className={styles.header_top}>
+            <h1>
+              ICE Wearables Marketplace
+            </h1>
+            { state.userStatus > 20 && (<span className={styles.white_listed_address}>
+                Whitelisted Address &nbsp;
+                <svg width="7" height="6" viewBox="0 0 7 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3.06563 5.68435C3.28438 5.68435 3.45625 5.59998 3.575 5.42498L6.48438 0.990601C6.56875 0.862476 6.60313 0.740601 6.60313 0.628101C6.60313 0.324976 6.37188 0.0999755 6.05938 0.0999755C5.84688 0.0999755 5.7125 0.178101 5.58125 0.381226L3.05313 4.36873L1.77188 2.79685C1.65313 2.6531 1.52188 2.5906 1.34063 2.5906C1.025 2.5906 0.796875 2.8156 0.796875 3.12185C0.796875 3.25935 0.8375 3.3781 0.95625 3.51248L2.56875 5.44998C2.70313 5.60935 2.85938 5.68435 3.06563 5.68435Z" fill="#1F1F1F"/>
+                </svg>
+              </span>)
+            }
+          </div>
+          
           <p className={styles.marketplace_p}>
             ICE Wearables give you table access to free to play, play-to-earn
             poker. Learn more by{' '}
