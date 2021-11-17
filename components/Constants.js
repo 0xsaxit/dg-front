@@ -29,54 +29,11 @@ const CONSTANTS = {
   MAX_ITEM_COUNT: 10, // maximum number of tokenOfOwner indexes to query on the accessories contract
   MAX_DELEGATION_COUNT: 5, // maximum number of delegated NFTs a user can have
   VERIFY_URL: 'staging.decentral.games',
-  WETH_MINT_AMOUNT: 0.1, // amount of WETH required for minting
+  WETH_MINT_AMOUNT: 0.25, // amount of WETH required for minting
   DG_STAKED_AMOUNT: 1, // amount of DG user is required to have staked in order to mint wearable
   POOLING_TIME_OUT: 8000, // API endpoint request pool interval (milliseconds)
   POOLING_LIMIT_COUNT: 6, // attempt to call API endpoint this number of times
   MINT_ENABLED: true
-};
-
-const IMG_URLS_UPGRADE = {
-  Trousers: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank1_lower_body_o18u5h.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank1_lower_body_o18u5h.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank2_lower_body_x8duyn.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank3_lower_body_cogifo.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank4_lower_body_bdz0gt.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank5_lower_body_jz4bwy.png',
-  ],
-  Blazer: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank1_upper_body_zw12j7.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank1_upper_body_zw12j7.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank2_upper_body_jifiuq.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank3_upper_body_suw9ai.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank4_upper_body_cyz0gk.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank5_upper_body_ff5n1t.png',
-  ],
-  Cigar: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank1_eyewear_kt6mqk.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank1_eyewear_kt6mqk.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank2_eyewear_r55vvl.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank3_eyewear_uydyit.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank4_eyewear_mtyrtr.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank5_eyewear_hromtz.png',
-  ],
-  Loafers: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank1_shoes_feet_nxazsi.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank1_shoes_feet_nxazsi.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank2_shoes_feet_l83rhe.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank3_shoes_feet_gvjjb8.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank4_shoes_feet_avry6l.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank5_shoes_feet_tpnzfv.png',
-  ],
-  Shades: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank1_eyewear_shmmce.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank1_eyewear_shmmce.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank2_eyewear_xqvbkf.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank3_eyewear_anyqat.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank4_eyewear_eejcjh.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank5_eyewear_umdmvc.png',
-  ],
 };
 
 // wallet and contract addresses
@@ -86,16 +43,25 @@ const ADDRESSES = (() => {
   const ROOT_TOKEN_ADDRESS_DAI = '0x6b175474e89094c44da98b954eedeac495271d0f';
   const ROOT_TOKEN_ADDRESS_MANA = '0x0f5d2fb29fb7d3cfee444a200298f468908cc942';
   const ROOT_TOKEN_ADDRESS_DG = '0xee06a81a695750e71a662b51066f2c74cf4478a0';
+  const ROOT_TOKEN_ADDRESS_DG_LIGHT = '';
   const ROOT_TOKEN_ADDRESS_USDT = '0xdac17f958d2ee523a2206206994597c13d831ec7';
   const ROOT_TOKEN_ADDRESS_ATRI = '0xdacD69347dE42baBfAEcD09dC88958378780FB62';
   const ROOT_TOKEN_ADDRESS_ICE = '';
+  const ROOT_DG_LIGHT_BRIDGE_ADDRESS = '';
+  const ROOT_DG_TOWN_HALL_ADDRESS = '';
   const CHILD_TOKEN_ADDRESS_DAI = '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063';
   const CHILD_TOKEN_ADDRESS_MANA = '0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4';
   const CHILD_TOKEN_ADDRESS_DG = '0x2a93172c8DCCbfBC60a39d56183B7279a2F647b4';
+  const CHILD_TOKEN_ADDRESS_DG_LIGHT = '0x246cca939a65b5e5b9bfeb053b9c962ae7fbd54b';
   const CHILD_TOKEN_ADDRESS_USDT = '0xc2132D05D31c914a87C6611C10748AEb04B58e8F';
   const CHILD_TOKEN_ADDRESS_ATRI = '0xB140665ddE25c644c6B418e417C930dE8A8a6Ac9';
   const CHILD_TOKEN_ADDRESS_WETH = '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619';
   const CHILD_TOKEN_ADDRESS_ICE = '0xc6c855ad634dcdad23e64da71ba85b8c51e5ad7c';
+  const CHILD_DG_LIGHT_BRIDGE_ADDRESS = '0xe25d59004A615e11C43ea984eF92BB0E9ff16F1e';
+  const ROPSTEN_TOKEN_ADDRESS_DG = '0x5f3f4a1f10C8F2ca2D589A19D8Fe488f49FAb04A';
+  const ROPSTEN_TOKEN_ADDRESS_DG_LIGHT = '0x40E25786ACE1a546b61CE7BD0C0E04bdBd52dF76';
+  const ROPSTEN_DG_LIGHT_BRIDGE_ADDRESS = '';
+  const ROPSTEN_DG_TOWN_HALL_ADDRESS = '0xAa4Add3f618a59D05d1Ba8c9e6Ce22bB5d819C8f';
   const TREASURY_CONTRACT_ADDRESS = '0xBF79cE2fbd819e5aBC2327563D02a200255B7Cb3';
   const DG_POINTER_CONTRACT_ADDRESS = '0x11e46DB40d4438D1c64f68993CA43b03Ac1B6A6B';
   const DG_POINTER_CONTRACT_ADDRESS_NEW = '0xC751C3D67291E95e02E71E713E51D8CD27e8d04B';
@@ -120,9 +86,12 @@ const ADDRESSES = (() => {
   console.log('ROOT_TOKEN_ADDRESS_DAI: ' + ROOT_TOKEN_ADDRESS_DAI);
   console.log('ROOT_TOKEN_ADDRESS_MANA: ' + ROOT_TOKEN_ADDRESS_MANA);
   console.log('ROOT_TOKEN_ADDRESS_DG: ' + ROOT_TOKEN_ADDRESS_DG);
+  console.log('ROOT_TOKEN_ADDRESS_DG_LIGHT: ' + ROOT_TOKEN_ADDRESS_DG_LIGHT);
   console.log('ROOT_TOKEN_ADDRESS_USDT: ' + ROOT_TOKEN_ADDRESS_USDT);
   console.log('ROOT_TOKEN_ADDRESS_ATRI: ' + ROOT_TOKEN_ADDRESS_ATRI);
   console.log('ROOT_TOKEN_ADDRESS_ICE: ' + ROOT_TOKEN_ADDRESS_ICE);
+  console.log('ROOT_DG_LIGHT_BRIDGE_ADDRESS: ' + ROOT_DG_LIGHT_BRIDGE_ADDRESS);
+  console.log('ROOT_DG_TOWN_HALL_ADDRESS: ' + ROOT_DG_TOWN_HALL_ADDRESS);
   console.log('CHILD_TOKEN_ADDRESS_DAI: ' + CHILD_TOKEN_ADDRESS_DAI);
   console.log('CHILD_TOKEN_ADDRESS_MANA: ' + CHILD_TOKEN_ADDRESS_MANA);
   console.log('CHILD_TOKEN_ADDRESS_DG: ' + CHILD_TOKEN_ADDRESS_DG);
@@ -130,6 +99,7 @@ const ADDRESSES = (() => {
   console.log('CHILD_TOKEN_ADDRESS_ATRI: ' + CHILD_TOKEN_ADDRESS_ATRI);
   console.log('CHILD_TOKEN_ADDRESS_WETH: ' + CHILD_TOKEN_ADDRESS_WETH);
   console.log('CHILD_TOKEN_ADDRESS_ICE: ' + CHILD_TOKEN_ADDRESS_ICE);
+  console.log('CHILD_DG_LIGHT_BRIDGE_ADDRESS: ' + CHILD_DG_LIGHT_BRIDGE_ADDRESS);
   console.log('TREASURY_CONTRACT_ADDRESS: ' + TREASURY_CONTRACT_ADDRESS);
   console.log('DG_POINTER_CONTRACT_ADDRESS: ' + DG_POINTER_CONTRACT_ADDRESS);
   console.log('DG_POINTER_CONTRACT_ADDRESS_NEW: ' + DG_POINTER_CONTRACT_ADDRESS_NEW);
@@ -155,16 +125,25 @@ const ADDRESSES = (() => {
     ROOT_TOKEN_ADDRESS_DAI,
     ROOT_TOKEN_ADDRESS_MANA,
     ROOT_TOKEN_ADDRESS_DG,
+    ROOT_TOKEN_ADDRESS_DG_LIGHT,
     ROOT_TOKEN_ADDRESS_USDT,
     ROOT_TOKEN_ADDRESS_ATRI,
     ROOT_TOKEN_ADDRESS_ICE,
+    ROOT_DG_LIGHT_BRIDGE_ADDRESS,
+    ROOT_DG_TOWN_HALL_ADDRESS,
     CHILD_TOKEN_ADDRESS_DAI,
     CHILD_TOKEN_ADDRESS_MANA,
     CHILD_TOKEN_ADDRESS_DG,
+    CHILD_TOKEN_ADDRESS_DG_LIGHT,
     CHILD_TOKEN_ADDRESS_USDT,
     CHILD_TOKEN_ADDRESS_ATRI,
     CHILD_TOKEN_ADDRESS_WETH,
     CHILD_TOKEN_ADDRESS_ICE,
+    CHILD_DG_LIGHT_BRIDGE_ADDRESS,
+    ROPSTEN_TOKEN_ADDRESS_DG,
+    ROPSTEN_TOKEN_ADDRESS_DG_LIGHT,
+    ROPSTEN_DG_LIGHT_BRIDGE_ADDRESS,
+    ROPSTEN_DG_TOWN_HALL_ADDRESS,
     TREASURY_CONTRACT_ADDRESS,
     DG_POINTER_CONTRACT_ADDRESS,
     DG_POINTER_CONTRACT_ADDRESS_NEW,
@@ -190,5 +169,4 @@ export default {
   KEYS,
   CONSTANTS,
   ADDRESSES,
-  IMG_URLS_UPGRADE,
 };

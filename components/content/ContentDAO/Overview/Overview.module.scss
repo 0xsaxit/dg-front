@@ -96,6 +96,20 @@
         border-radius: 14px;
         height: 48px;
         width: 177px;
+        transition: 0.2s ease-in !important;
+
+        &:active,
+        &:focus {
+            opacity: 1;
+            filter: none !important;
+            transition: 0.2s ease-in;
+        }
+
+        &:hover {
+            opacity: 0.6;
+            filter: none !important;
+            transition: 0.2s ease-in;
+        }
       }
     }
 
@@ -201,6 +215,20 @@
         font-family: Larsseit-Bold;
         font-size: 14px;
         color: white;
+        transition: 0.2s ease-in !important;
+
+        &:active,
+        &:focus {
+            opacity: 1;
+            filter: none !important;
+            transition: 0.2s ease-in;
+        }
+
+        &:hover {
+            opacity: 0.6;
+            filter: none !important;
+            transition: 0.2s ease-in;
+        }
       }
     }
   }
@@ -247,13 +275,16 @@
     .lower_button {
       background: rgb(31, 31, 31);
       color: white;
+      transition: 0.2s ease-in !important;
 
       &:hover,
       &:active,
       &:focus {
-        background: rgb(31, 31, 31);
-        color: white;
-        filter: brightness(0.9);
+          opacity: 0.6;
+          background: rgb(31, 31, 31) !important;
+          color: white !important;
+          filter: none !important;
+          transition: 0.2s ease-in;
       }
     }
 
@@ -361,13 +392,23 @@
     height: 40px;
     font-family: Larsseit-Bold;
     font-size: 14px;
+    transition: 0.2s ease-in !important;
 
-    &:hover,
     &:active,
     &:focus {
-      color: white;
-      background: #006eff;
-      filter: brightness(0.9) !important;
+        opacity: 1;
+        background: #006eff;
+        color: white !important;
+        filter: none !important;
+        transition: 0.2s ease-in;
+    }
+
+    &:hover {
+        opacity: 0.6;
+        background: #006eff;
+        color: white !important;
+        filter: none !important;
+        transition: 0.2s ease-in;
     }
   }
 
@@ -439,6 +480,20 @@
       font-size: 14px;
       width: 47.5%;
       color: white;
+      transition: 0.2s ease-in !important;
+
+      &:active,
+      &:focus {
+          opacity: 1;
+          filter: none !important;
+          transition: 0.2s ease-in;
+      }
+
+      &:hover {
+          opacity: 0.6;
+          filter: none !important;
+          transition: 0.2s ease-in;
+      }
     }
   }
 }

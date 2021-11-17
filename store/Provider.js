@@ -167,6 +167,7 @@ const initialState = {
     resumeID: 0,
     lockID: 0,
   },
+  openModalInfo: false,
   dgWarningMsg: false,
   toastMessage: '',
   selectedLang: 0,
@@ -236,6 +237,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         transactions: action.data,
+      };
+
+    case 'app_config':
+      return {
+        ...state,
+        appConfig: action.data,
       };
 
     case 'treasury_numbers':
@@ -539,6 +546,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         openModal: action.data,
+      };
+    case 'set_openModalInfo':
+      return {
+        ...state,
+        openModalInfo: action.data,
       };
     case 'set_dgShow':
       return {

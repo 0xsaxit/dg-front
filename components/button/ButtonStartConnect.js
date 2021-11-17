@@ -5,9 +5,8 @@ import { Button } from 'semantic-ui-react';
 import Fetch, { API_BASE_URL } from 'common/Fetch';
 import call from 'common/API';
 import Aux from '../_Aux';
-import ModalLoginTop from '../modal/ModalLoginTop';
 
-const assignToken = async () => {
+export const assignToken = async () => {
   const userAddress = window.ethereum.selectedAddress;
   if (userAddress) {
     const timestamp = Date.now();

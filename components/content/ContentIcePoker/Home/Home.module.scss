@@ -98,10 +98,18 @@
 
         a {
           color: #ffffff;
+          transition: 0.2s ease-in;
+        }
 
-          &:hover {
-            color: #ffffff;
-          }
+        &:active,
+        &:focus {
+            opacity: 1;
+            transition: 0.2s ease-in;
+        }
+
+        &:hover {
+            opacity: 0.6;
+            transition: 0.2s ease-in;
         }
       }
 
@@ -115,6 +123,18 @@
         font-size: 13px;
         margin-left: 12px;
         border-radius: 12px;
+        transition: 0.2s ease-in;
+
+        &:active,
+        &:focus {
+            opacity: 1;
+            transition: 0.2s ease-in;
+        }
+
+        &:hover {
+            opacity: 0.6;
+            transition: 0.2s ease-in;
+        }
       }
     }
 
