@@ -198,6 +198,12 @@ const reducer = (state, action) => {
       };
 
     case 'user_address':
+      if (!action.data) {
+        return {
+          ...state
+        };
+      }
+      
       return {
         ...state,
         userAddress: action.data,
