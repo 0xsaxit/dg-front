@@ -234,7 +234,7 @@ function ICEAttributes() {
 
   // anytime user mints/upgrades/activates NFTs on /ice pages this code will execute
   useEffect(() => {
-    if (instances) {
+    if (instances && Object.keys(state.collectionMappings).length !== 0) {
       (async function () {
         // update global state wearables limit amounts for each collection
         const itemLimits1 = await getItemLimits(0);
@@ -273,7 +273,7 @@ function ICEAttributes() {
         console.log('Token status updates completed!');
       })();
     }
-  }, [instances, state.refreshTokenAmounts]);
+  }, [instances, state.collectionMappings, state.refreshTokenAmounts]);
 
   // anytime user claims ICE rewards this code will execute
   useEffect(() => {
@@ -358,9 +358,46 @@ function ICEAttributes() {
     }
   }, [instances, state.iceWearableItems, state.refreshNFTAuths]);
 
+  // get token ID mappings for each particular accessories collection
+  useEffect(() => {
+    if (instances) {
+      (async function () {
+        // let tokenIDMappings = {};
+
+        // try {
+        //   tokenIDMappings = await Transactions.GET_TOKEN_MAPPINGS();
+        // } catch (error) {
+        //   console.log('Get tokenID mappings error: ' + error);
+        // }
+
+        const tokenIDMappings = {
+          '0xcb06f6aee0655252a3f6f2884680421d55d3c645': [0, 5, 10, 15, 20],
+          '0x4cd15dcd96362cf85e19039c3c2d661e5e43145e': [0, 5, 10, 15, 20],
+          '0xd07a56f7198ae6e4e3d6738bd8c4b81d21bf0403': [0, 5, 10, 15, 20],
+        };
+
+        dispatch({
+          type: 'collection_mappings',
+          data: tokenIDMappings,
+        });
+      })();
+    }
+  }, [instances]);
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   async function getItemLimits(index) {
+    const collectionAddress = collectionArray[index][1];
+
+    // console.log('collection mappings...');
+    // console.log(state.collectionMappings);
+
+    const tokenIDArray =
+      state.collectionMappings[collectionAddress.toLowerCase()];
+
+    // console.log('token ID array...');
+    // console.log(tokenIDArray);
+
     let itemsArray = [];
 
     try {
@@ -399,23 +436,31 @@ function ICEAttributes() {
         itemObject20[Object.keys(itemObject20)[1]] -
         itemObject20[Object.keys(itemObject20)[2]];
 
-      // console.log('Item limit (0): ' + ITEM_LIMIT_0);
-      // console.log('Item limit (5): ' + ITEM_LIMIT_5);
-      // console.log('Item limit (10): ' + ITEM_LIMIT_10);
-      // console.log('Item limit (15): ' + ITEM_LIMIT_15);
-      // console.log('Item limit (20): ' + ITEM_LIMIT_20);
+      // itemsArray.push(
+      //   [parseInt(ITEM_LIMIT_0), 0],
+      //   [parseInt(ITEM_LIMIT_5), 5],
+      //   [parseInt(ITEM_LIMIT_10), 10],
+      //   [parseInt(ITEM_LIMIT_15), 15],
+      //   [parseInt(ITEM_LIMIT_20), 20]
+      // );
+
+      console.log('token ID index 0: ' + tokenIDArray[0]);
+      console.log('token ID index 1: ' + tokenIDArray[1]);
+      console.log('token ID index 2: ' + tokenIDArray[2]);
+      console.log('token ID index 3: ' + tokenIDArray[3]);
+      console.log('token ID index 4: ' + tokenIDArray[4]);
 
       itemsArray.push(
-        [parseInt(ITEM_LIMIT_0), 0],
-        [parseInt(ITEM_LIMIT_5), 5],
-        [parseInt(ITEM_LIMIT_10), 10],
-        [parseInt(ITEM_LIMIT_15), 15],
-        [parseInt(ITEM_LIMIT_20), 20]
+        [parseInt(ITEM_LIMIT_0), tokenIDArray[0]],
+        [parseInt(ITEM_LIMIT_5), tokenIDArray[1]],
+        [parseInt(ITEM_LIMIT_10), tokenIDArray[2]],
+        [parseInt(ITEM_LIMIT_15), tokenIDArray[3]],
+        [parseInt(ITEM_LIMIT_20), tokenIDArray[4]]
       );
 
       return itemsArray;
     } catch (error) {
-      console.log('Get item limits item ' + item + ', error: ' + error);
+      console.log('Get item limits index: ' + index + ', error: ' + error);
     }
   }
 
