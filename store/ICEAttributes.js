@@ -7,6 +7,8 @@ import ABI_CHILD_TOKEN_WETH from '../components/ABI/ABIChildTokenWETH';
 import ABI_CHILD_TOKEN_ICE from '../components/ABI/ABIChildTokenICE';
 import ABI_COLLECTION_V2 from '../components/ABI/ABICollectionV2';
 import ABI_COLLECTION_PH from '../components/ABI/ABICollectionPH';
+import ABI_COLLECTION_LINENS from '../components/ABI/ABICollectionLinens';
+import ABI_COLLECTION_BOMBER from '../components/ABI/ABICollectionBomber';
 import ABI_ICEToken from '../components/ABI/ABIICEToken';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
@@ -24,6 +26,13 @@ function ICEAttributes() {
   const [ICEMaticContract, setICEMaticContract] = useState({});
   const [collectionArray, setCollectionArray] = useState([]);
   const [iceTokenContract, setIceTokenContract] = useState({});
+
+  const tokenIDMappings = {
+    '0xcb06f6aee0655252a3f6f2884680421d55d3c645': [0, 5, 10, 15, 20],
+    '0x4cd15dcd96362cf85e19039c3c2d661e5e43145e': [0, 5, 10, 15, 20],
+    '0xd79cf5a41d8caec4688e01b4754ea2da6f51e856': [0, 5, 17, 13, 21],
+    '0xd07a56f7198ae6e4e3d6738bd8c4b81d21bf0403': [2, 12, 16, 20, 7],
+  };
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -64,6 +73,14 @@ function ICEAttributes() {
           ABI_COLLECTION_PH,
           Global.ADDRESSES.COLLECTION_PH_ADDRESS
         );
+        const collectionV2Contract3 = new maticWeb3.eth.Contract(
+          ABI_COLLECTION_LINENS,
+          Global.ADDRESSES.COLLECTION_LINENS_ADDRESS
+        );
+        const collectionV2Contract4 = new maticWeb3.eth.Contract(
+          ABI_COLLECTION_BOMBER,
+          Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS
+        );
 
         const collectionArray = [];
         collectionArray.push([
@@ -73,6 +90,14 @@ function ICEAttributes() {
         collectionArray.push([
           collectionV2Contract2,
           Global.ADDRESSES.COLLECTION_PH_ADDRESS,
+        ]);
+        collectionArray.push([
+          collectionV2Contract3,
+          Global.ADDRESSES.COLLECTION_LINENS_ADDRESS,
+        ]);
+        collectionArray.push([
+          collectionV2Contract4,
+          Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS,
         ]);
         setCollectionArray(collectionArray);
 
@@ -238,17 +263,27 @@ function ICEAttributes() {
       (async function () {
         // update global state wearables limit amounts for each collection
         const itemLimits1 = await getItemLimits(0);
-
         dispatch({
           type: 'item_limits_1',
           data: itemLimits1,
         });
 
         const itemLimits2 = await getItemLimits(1);
-
         dispatch({
           type: 'item_limits_2',
           data: itemLimits2,
+        });
+
+        const itemLimits3 = await getItemLimits(2);
+        dispatch({
+          type: 'item_limits_3',
+          data: itemLimits3,
+        });
+
+        const itemLimits4 = await getItemLimits(3);
+        dispatch({
+          type: 'item_limits_4',
+          data: itemLimits4,
         });
 
         // get the user's cool-down status
@@ -361,6 +396,8 @@ function ICEAttributes() {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   async function getItemLimits(index) {
+    const collectionAddress = collectionArray[index][1];
+    const tokenIDArray = tokenIDMappings[collectionAddress.toLowerCase()];
     let itemsArray = [];
 
     try {
@@ -399,23 +436,31 @@ function ICEAttributes() {
         itemObject20[Object.keys(itemObject20)[1]] -
         itemObject20[Object.keys(itemObject20)[2]];
 
-      // console.log('Item limit (0): ' + ITEM_LIMIT_0);
-      // console.log('Item limit (5): ' + ITEM_LIMIT_5);
-      // console.log('Item limit (10): ' + ITEM_LIMIT_10);
-      // console.log('Item limit (15): ' + ITEM_LIMIT_15);
-      // console.log('Item limit (20): ' + ITEM_LIMIT_20);
+      // itemsArray.push(
+      //   [parseInt(ITEM_LIMIT_0), 0],
+      //   [parseInt(ITEM_LIMIT_5), 5],
+      //   [parseInt(ITEM_LIMIT_10), 10],
+      //   [parseInt(ITEM_LIMIT_15), 15],
+      //   [parseInt(ITEM_LIMIT_20), 20]
+      // );
+
+      console.log('token ID index 0: ' + tokenIDArray[0]);
+      console.log('token ID index 1: ' + tokenIDArray[1]);
+      console.log('token ID index 2: ' + tokenIDArray[2]);
+      console.log('token ID index 3: ' + tokenIDArray[3]);
+      console.log('token ID index 4: ' + tokenIDArray[4]);
 
       itemsArray.push(
-        [parseInt(ITEM_LIMIT_0), 0],
-        [parseInt(ITEM_LIMIT_5), 5],
-        [parseInt(ITEM_LIMIT_10), 10],
-        [parseInt(ITEM_LIMIT_15), 15],
-        [parseInt(ITEM_LIMIT_20), 20]
+        [parseInt(ITEM_LIMIT_0), tokenIDArray[0]],
+        [parseInt(ITEM_LIMIT_5), tokenIDArray[1]],
+        [parseInt(ITEM_LIMIT_10), tokenIDArray[2]],
+        [parseInt(ITEM_LIMIT_15), tokenIDArray[3]],
+        [parseInt(ITEM_LIMIT_20), tokenIDArray[4]]
       );
 
       return itemsArray;
     } catch (error) {
-      console.log('Get item limits item ' + item + ', error: ' + error);
+      console.log('Get item limits index: ' + index + ', error: ' + error);
     }
   }
 

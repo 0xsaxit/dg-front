@@ -22,6 +22,10 @@ const FifthStep = (props) => {
     const [DGTokenContract, setDGTokenContract] = useState({});
     const [DGLightTokenContract, setDGLightTokenContract] = useState({});
     const [DGLightBridgeContract, setDGLightBridgeContract] = useState({});
+    const [swapSubmitted, setSwapSubmitted] = useState(false);
+    const [swapped, setSwaped] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [approving, setApproving] = useState(false);
     const networkInfo = {
         id: 137,
         name: 'Mainnet',
@@ -94,11 +98,16 @@ const FifthStep = (props) => {
             if (Number(amountAllowance) < amountAdjusted) {
                 console.log("Approve DGLight contract to spend user's tokens");
 
-                const data = await dgTokenContract.methods
+                await dgTokenContract.methods
                     .approve(dgLightBridgeContract._address, Global.CONSTANTS.MAX_AMOUNT)
-                    .send({ from: state.userAddress });
-
-                console.log('approve() transaction completed: ' + data.transactionHash);
+                    .send({ from: state.userAddress })
+                    .on('transactionHash', function(hash) {
+                        setApproving(true);
+                    })
+                    .on('confirmation', function(confirmation, receipt) {
+                        console.log('approve() transaction completed');
+                        setApproving(false);
+                    });
 
                 dispatch({
                     type: 'show_toastMessage',
@@ -137,6 +146,7 @@ const FifthStep = (props) => {
         } catch (error) {
             console.log('Staking transactions error: ' + error);
             setLoading(false);
+            setApproving(false);
 
             dispatch({
                 type: 'show_toastMessage',
@@ -188,11 +198,16 @@ const FifthStep = (props) => {
             if (Number(amountAllowance) < amountAdjusted) {
                 console.log("Approve DGLightBridge contract to spend user's tokens");
 
-                const data = await dgLightTokenContract.methods
+                await dgLightTokenContract.methods
                     .approve(dgLightBridgeContract._address, Global.CONSTANTS.MAX_AMOUNT)
-                    .send({ from: state.userAddress });
-
-                console.log('approve() transaction completed: ' + data.transactionHash);
+                    .send({ from: state.userAddress })
+                    .on('transactionHash', function(hash) {
+                        setApproving(true);
+                    })
+                    .on('confirmation', function(confirmation, receipt) {
+                        console.log('approve() transaction completed');
+                        setApproving(false);
+                    });
 
                 dispatch({
                     type: 'show_toastMessage',
@@ -231,6 +246,7 @@ const FifthStep = (props) => {
         } catch (error) {
             console.log('Staking transactions error: ' + error);
             setLoading(false);
+            setApproving(false);
 
             dispatch({
                 type: 'show_toastMessage',
@@ -240,16 +256,20 @@ const FifthStep = (props) => {
     }
 
     async function fetchData() {
-        const DGTokenContract =
-            await Transactions.DGTokenContract(web3);
+        const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+
+        const [
+            DGTokenContract,
+            DGLightTokenContract,
+            DGLightBridgeContract
+        ] = await Promise.all([
+            Transactions.DGTokenContract(web3),
+            Transactions.DGLightTokenContract(web3),
+            Transactions.DGLightBridgeContract(web3)
+        ]);
+
         setDGTokenContract(DGTokenContract);
-
-        const DGLightTokenContract =
-            await Transactions.DGLightTokenContract(web3);
         setDGLightTokenContract(DGLightTokenContract);
-
-        const DGLightBridgeContract =
-            await Transactions.DGLightBridgeContract(web3);
         setDGLightBridgeContract(DGLightBridgeContract);
     }
 
@@ -281,10 +301,6 @@ const FifthStep = (props) => {
             fetchData();
         }
     }, [state.userStatus]);
-
-    const [swapSubmitted, setSwapSubmitted] = useState(false);
-    const [swapped, setSwaped] = useState(false);
-    const [loading, setLoading] = useState(false);
 
     return (
         <div className={styles.main_wrapper}>
@@ -415,9 +431,16 @@ const FifthStep = (props) => {
                                                 }}
                                             >
                                                 {
-                                                    direct
-                                                        ? `Swap ${BigNumber(amountDG).toFormat()} $DG for ${BigNumber(amountDGLight).toFormat()} DG`
-                                                        : `Swap ${BigNumber(amountDGLight).toFormat()} DG for ${BigNumber(amountDG).toFormat()} $DG`
+                                                    approving
+                                                        ? <Spinner />
+                                                        : null
+                                                }
+                                                {
+                                                    approving
+                                                        ? 'Approving'
+                                                        : direct
+                                                            ? `Swap ${BigNumber(amountDG).toFormat()} $DG for ${BigNumber(amountDGLight).toFormat()} DG`
+                                                            : `Swap ${BigNumber(amountDGLight).toFormat()} DG for ${BigNumber(amountDG).toFormat()} $DG`
                                                 }
                                             </Button>
                                     }

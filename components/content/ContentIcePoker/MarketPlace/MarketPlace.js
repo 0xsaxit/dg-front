@@ -1,8 +1,8 @@
-import React, {useContext, useState} from 'react';
-import {GlobalContext} from '../../../../store';
+import React, { useContext, useState } from 'react';
+import { GlobalContext } from '../../../../store';
 import ModalMintWearable from 'components/modal/ModalMintWearable';
 import ModalLoginICE from 'components/modal/ModalLoginICE';
-import {Button, Popup} from 'semantic-ui-react';
+import { Button, Popup } from 'semantic-ui-react';
 import cn from 'classnames';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -99,90 +99,88 @@ const MarketPlace = () => {
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatAccessory_s1cjpg.svg',
     ],
   };
-
   const detailsICELinen = {
-    Pants: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091410/Linen%20Fit/pants_grey_m_ofahds.png',
-      'Trousers',
+    Hat: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091409/Linen%20Fit/hat_grey_m_m8dbi3.png',
+      'Boater Hat',
       'Linen',
-      'Legs',
+      'Head',
       '0 of 100 left',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091410/Linen%20Fit/pants_grey_m_ofahds.png',
-    ],
-    Top: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091412/Linen%20Fit/shirt_grey_m_e61mwo.png',
-      'Shirt',
-      'Linen',
-      'Torso',
-      '0 of 100 left',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091412/Linen%20Fit/shirt_grey_m_e61mwo.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091409/Linen%20Fit/hat_grey_m_m8dbi3.png',
     ],
     Cigar: [
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091411/Linen%20Fit/pipe_grery_lhnu6p.png',
-      'Pipe',
+      'XL Pipe',
       'Linen',
       'Head',
       '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091411/Linen%20Fit/pipe_grery_lhnu6p.png',
     ],
+    Top: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091412/Linen%20Fit/shirt_grey_m_e61mwo.png',
+      'Linen Shirt',
+      'Linen',
+      'Torso',
+      '0 of 100 left',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091412/Linen%20Fit/shirt_grey_m_e61mwo.png',
+    ],
+    Pants: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091410/Linen%20Fit/pants_grey_m_ofahds.png',
+      'Linen Pants',
+      'Linen',
+      'Legs',
+      '0 of 100 left',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091410/Linen%20Fit/pants_grey_m_ofahds.png',
+    ],
     Shoes: [
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091413/Linen%20Fit/shoes_grey_mkdkto.png',
-      'Shoes',
+      'Boater Shoes',
       'Linen',
       'Feet',
       '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091413/Linen%20Fit/shoes_grey_mkdkto.png',
     ],
-    Hat: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091409/Linen%20Fit/hat_grey_m_m8dbi3.png',
-      'Hat',
-      'Linen',
-      'Head',
-      '0 of 100 left',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091409/Linen%20Fit/hat_grey_m_m8dbi3.png',
-    ],
   };
-
   const detailsICEBomber = {
     Pants: [
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091242/Bomber%20Fit/pants_grey_m_zfrety.png',
-      'Pants',
+      'Bomber Pants',
       'Bomber',
       'Legs',
       '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091242/Bomber%20Fit/pants_grey_m_zfrety.png',
     ],
-    Top: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091243/Bomber%20Fit/upperbody_grey_m_exs6ms.png',
-      'Bomber',
-      'Bomber',
-      'Torso',
-      '0 of 100 left',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091243/Bomber%20Fit/upperbody_grey_m_exs6ms.png',
-    ],
-    Shoes: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091243/Bomber%20Fit/shoes_grey_gftpjo.png',
-      'Shoes',
-      'Bomber',
-      'Feet',
-      '0 of 100 left',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091243/Bomber%20Fit/shoes_grey_gftpjo.png',
-    ],
     Hat: [
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091241/Bomber%20Fit/hat_grey_m_ptl8se.png',
-      'Hat',
+      'Bomber Hat',
       'Bomber',
       'Head',
       '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091241/Bomber%20Fit/hat_grey_m_ptl8se.png',
     ],
+    Top: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091243/Bomber%20Fit/upperbody_grey_m_exs6ms.png',
+      'Bomber Jacket',
+      'Bomber',
+      'Torso',
+      '0 of 100 left',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091243/Bomber%20Fit/upperbody_grey_m_exs6ms.png',
+    ],
     Glasses: [
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091240/Bomber%20Fit/glasses_grey_qmjxqp.png',
-      'Glasses',
+      'Bomber Glasses',
       'Bomber',
       'Accessory',
       '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091240/Bomber%20Fit/glasses_grey_qmjxqp.png',
+    ],
+    Shoes: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091243/Bomber%20Fit/shoes_grey_gftpjo.png',
+      'Bomber Shoes',
+      'Bomber',
+      'Feet',
+      '0 of 100 left',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091243/Bomber%20Fit/shoes_grey_gftpjo.png',
     ],
   };
 
@@ -706,7 +704,7 @@ const MarketPlace = () => {
                     </p>
                     {state.userStatus >= 4 && state.userLoggedIn ? (
                       <p className={styles.nft_info}>
-                        {state.itemLimits1[i][0]} of 100 left
+                        {state.itemLimits4[i][0]} of 100 left
                       </p>
                     ) : (
                       <p className={styles.nft_info}>- of 100 left</p>
@@ -720,19 +718,20 @@ const MarketPlace = () => {
                   </h3>
                 </div>
 
+                {/* state.appConfig?.isWebsiteMintingEnabled && */}
+
                 <div className={styles.button_container}>
-                  {state.appConfig?.isWebsiteMintingEnabled &&
-                  state.itemLimits1[i][0] ? (
+                  {state.itemLimits4[i][0] ? (
                     state.userStatus >= 4 && state.userLoggedIn ? (
                       <div className={styles.flex_50}>
                         <ModalMintWearable
                           index={i}
-                          numberLeft={state.itemLimits1[i][0]}
-                          itemID={state.itemLimits1[i][1]}
-                          wearableImg={detailsICESuit[item][0]}
-                          wearableBodyType={detailsICESuit[item][3]}
-                          wearableBodyImg={detailsICESuit[item][5]}
-                          wearableName={detailsICESuit[item][1]}
+                          numberLeft={state.itemLimits4[i][0]}
+                          itemID={state.itemLimits4[i][1]}
+                          wearableImg={detailsICEBomber[item][0]}
+                          wearableBodyType={detailsICEBomber[item][3]}
+                          wearableBodyImg={detailsICEBomber[item][5]}
+                          wearableName={detailsICEBomber[item][1]}
                         />
                       </div>
                     ) : (
@@ -740,20 +739,20 @@ const MarketPlace = () => {
                         <ModalLoginICE />
                       </div>
                     )
-                  ) : null}
-
-                  <a
-                    className={styles.flex_50}
-                    href="https://market.decentraland.org/browse?assetType=nft&section=wearables&contracts=0xcb06f6aee0655252a3f6f2884680421d55d3c645"
-                    target="_blank"
-                    style={{
-                      width: '100%',
-                    }}
-                  >
-                    <Button className={styles.wearable_button}>
-                      Buy on Secondary
-                    </Button>
-                  </a>
+                  ) : (
+                    <a
+                      className={styles.flex_50}
+                      href="https://market.decentraland.org/browse?assetType=nft&section=wearables&contracts=0xcb06f6aee0655252a3f6f2884680421d55d3c645"
+                      target="_blank"
+                      style={{
+                        width: '100%',
+                      }}
+                    >
+                      <Button className={styles.wearable_button}>
+                        Buy on Secondary
+                      </Button>
+                    </a>
+                  )}
                 </div>
               </div>
             ))}
@@ -861,7 +860,7 @@ const MarketPlace = () => {
                     </p>
                     {state.userStatus >= 4 && state.userLoggedIn ? (
                       <p className={styles.nft_info}>
-                        {state.itemLimits1[i][0]} of 100 left
+                        {state.itemLimits3[i][0]} of 100 left
                       </p>
                     ) : (
                       <p className={styles.nft_info}>- of 100 left</p>
@@ -875,19 +874,20 @@ const MarketPlace = () => {
                   </h3>
                 </div>
 
+                {/* state.appConfig?.isWebsiteMintingEnabled && */}
+
                 <div className={styles.button_container}>
-                  {state.appConfig?.isWebsiteMintingEnabled &&
-                  state.itemLimits1[i][0] ? (
+                  {state.itemLimits3[i][0] ? (
                     state.userStatus >= 4 && state.userLoggedIn ? (
                       <div className={styles.flex_50}>
                         <ModalMintWearable
                           index={i}
-                          numberLeft={state.itemLimits1[i][0]}
-                          itemID={state.itemLimits1[i][1]}
-                          wearableImg={detailsICESuit[item][0]}
-                          wearableBodyType={detailsICESuit[item][3]}
-                          wearableBodyImg={detailsICESuit[item][5]}
-                          wearableName={detailsICESuit[item][1]}
+                          numberLeft={state.itemLimits3[i][0]}
+                          itemID={state.itemLimits3[i][1]}
+                          wearableImg={detailsICELinen[item][0]}
+                          wearableBodyType={detailsICELinen[item][3]}
+                          wearableBodyImg={detailsICELinen[item][5]}
+                          wearableName={detailsICELinen[item][1]}
                         />
                       </div>
                     ) : (
@@ -895,20 +895,20 @@ const MarketPlace = () => {
                         <ModalLoginICE />
                       </div>
                     )
-                  ) : null}
-
-                  <a
-                    className={styles.flex_50}
-                    href="https://market.decentraland.org/browse?assetType=nft&section=wearables&contracts=0xcb06f6aee0655252a3f6f2884680421d55d3c645"
-                    target="_blank"
-                    style={{
-                      width: '100%',
-                    }}
-                  >
-                    <Button className={styles.wearable_button}>
-                      Buy on Secondary
-                    </Button>
-                  </a>
+                  ) : (
+                    <a
+                      className={styles.flex_50}
+                      href="https://market.decentraland.org/browse?assetType=nft&section=wearables&contracts=0xcb06f6aee0655252a3f6f2884680421d55d3c645"
+                      target="_blank"
+                      style={{
+                        width: '100%',
+                      }}
+                    >
+                      <Button className={styles.wearable_button}>
+                        Buy on Secondary
+                      </Button>
+                    </a>
+                  )}
                 </div>
               </div>
             ))}

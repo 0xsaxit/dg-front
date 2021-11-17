@@ -112,6 +112,20 @@ const initialState = {
     [0, 15],
     [0, 20],
   ],
+  itemLimits3: [
+    [0, 0],
+    [0, 5],
+    [0, 10],
+    [0, 15],
+    [0, 20],
+  ],
+  itemLimits4: [
+    [0, 0],
+    [0, 5],
+    [0, 10],
+    [0, 15],
+    [0, 20],
+  ],
   iceWearableItems: [],
   iceWearableItemsLoading: false,
   iceWearableUpdatedSuccess: false,
@@ -141,6 +155,7 @@ const initialState = {
     ICE_AUTHORIZATION: false,
     WETH_AUTHORIZATION: false,
   },
+  // collectionMappings: {},
   refreshTokens: 'Initial',
   refreshBalances: true,
   refreshTokenAmounts: true,
@@ -198,6 +213,12 @@ const reducer = (state, action) => {
       };
 
     case 'user_address':
+      if (!action.data) {
+        return {
+          ...state,
+        };
+      }
+
       return {
         ...state,
         userAddress: action.data,
@@ -317,6 +338,18 @@ const reducer = (state, action) => {
         itemLimits2: action.data,
       };
 
+    case 'item_limits_3':
+      return {
+        ...state,
+        itemLimits3: action.data,
+      };
+
+    case 'item_limits_4':
+      return {
+        ...state,
+        itemLimits4: action.data,
+      };
+
     case 'ice_wearable_items':
       return {
         ...state,
@@ -382,6 +415,12 @@ const reducer = (state, action) => {
         ...state,
         tokenAuths: action.data,
       };
+
+    // case 'collection_mappings':
+    //   return {
+    //     ...state,
+    //     collectionMappings: action.data,
+    //   };
 
     case 'dg_prices':
       return {
