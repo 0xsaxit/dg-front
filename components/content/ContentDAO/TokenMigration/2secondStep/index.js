@@ -149,7 +149,7 @@ const SecondStep = (props) => {
             <div className={styles.content}>
 
                 <div className={styles.box_div}>
-                    {unstaked ?
+                    {!unstaked ?
                         <>
                             <div className={styles.box_title}>
                                 <h1>Unstake Uniswap ETH-DG LP</h1>
