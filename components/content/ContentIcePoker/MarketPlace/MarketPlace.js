@@ -99,6 +99,93 @@ const MarketPlace = () => {
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatAccessory_s1cjpg.svg',
     ],
   };
+
+  const detailsICELinen = {
+    Pants: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091410/Linen%20Fit/pants_grey_m_ofahds.png',
+      'Trousers',
+      'Linen',
+      'Legs',
+      '0 of 100 left',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091410/Linen%20Fit/pants_grey_m_ofahds.png',
+    ],
+    Top: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091412/Linen%20Fit/shirt_grey_m_e61mwo.png',
+      'Shirt',
+      'Linen',
+      'Torso',
+      '0 of 100 left',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091412/Linen%20Fit/shirt_grey_m_e61mwo.png',
+    ],
+    Cigar: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091411/Linen%20Fit/pipe_grery_lhnu6p.png',
+      'Pipe',
+      'Linen',
+      'Head',
+      '0 of 100 left',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091411/Linen%20Fit/pipe_grery_lhnu6p.png',
+    ],
+    Shoes: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091413/Linen%20Fit/shoes_grey_mkdkto.png',
+      'Shoes',
+      'Linen',
+      'Feet',
+      '0 of 100 left',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091413/Linen%20Fit/shoes_grey_mkdkto.png',
+    ],
+    Hat: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091409/Linen%20Fit/hat_grey_m_m8dbi3.png',
+      'Hat',
+      'Linen',
+      'Head',
+      '0 of 100 left',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091409/Linen%20Fit/hat_grey_m_m8dbi3.png',
+    ],
+  };
+
+  const detailsICEBomber = {
+    Pants: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091242/Bomber%20Fit/pants_grey_m_zfrety.png',
+      'Pants',
+      'Bomber',
+      'Legs',
+      '0 of 100 left',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091242/Bomber%20Fit/pants_grey_m_zfrety.png',
+    ],
+    Top: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091243/Bomber%20Fit/upperbody_grey_m_exs6ms.png',
+      'Bomber',
+      'Bomber',
+      'Torso',
+      '0 of 100 left',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091243/Bomber%20Fit/upperbody_grey_m_exs6ms.png',
+    ],
+    Shoes: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091243/Bomber%20Fit/shoes_grey_gftpjo.png',
+      'Shoes',
+      'Bomber',
+      'Feet',
+      '0 of 100 left',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091243/Bomber%20Fit/shoes_grey_gftpjo.png',
+    ],
+    Hat: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091241/Bomber%20Fit/hat_grey_m_ptl8se.png',
+      'Hat',
+      'Bomber',
+      'Head',
+      '0 of 100 left',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091241/Bomber%20Fit/hat_grey_m_ptl8se.png',
+    ],
+    Glasses: [
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091240/Bomber%20Fit/glasses_grey_qmjxqp.png',
+      'Glasses',
+      'Bomber',
+      'Accessory',
+      '0 of 100 left',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091240/Bomber%20Fit/glasses_grey_qmjxqp.png',
+    ],
+  };
+
   const responsive = {
     largeDesktop: {
       breakpoint: { max: 3000, min: 1440 },
@@ -159,6 +246,20 @@ const MarketPlace = () => {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_4_uribpq.png',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_3_xhaxho.png',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_5_mmcqjy.png',
+  ];
+  const previewBomberImages = [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637107740/Bomber%20Fit/Bomber_1_aqjlun.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637107740/Bomber%20Fit/Bomber_2_eg3o0c.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637107740/Bomber%20Fit/Bomber_3_sxwgci.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637107740/Bomber%20Fit/Bomber_4_ad2vxh.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637107740/Bomber%20Fit/Bomber_5_ixqifi.png',
+  ];
+  const previewLinenImages = [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637088369/Linens_1_hqogna.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637088370/Linens_2_s3wrak.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637088369/Linens_3_qrbcbx.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637088370/Linens_4_jgqlue.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637088370/Linens_5_vplmii.png',
   ];
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -276,7 +377,9 @@ const MarketPlace = () => {
                       {detailsICEPartyHost[item][3]}
                     </p>
                     {state.userStatus >= 4 && state.userLoggedIn ? (
-                      <p className={styles.nft_info}>{state.itemLimits2[i][0]} of 100 left</p>
+                      <p className={styles.nft_info}>
+                        {state.itemLimits2[i][0]} of 100 left
+                      </p>
                     ) : (
                       <p className={styles.nft_info}>- of 100 left</p>
                     )}
@@ -292,45 +395,53 @@ const MarketPlace = () => {
                 <div className={styles.button_container}>
                   {(() => {
                     // Minting Enabled State
-                    if (state.appConfig?.isWebsiteMintingEnabled && state.userStatus >= 4 && state.userLoggedIn && state.itemLimits2[i][0] > 0) {
+                    if (
+                      state.appConfig?.isWebsiteMintingEnabled &&
+                      state.userStatus >= 4 &&
+                      state.userLoggedIn &&
+                      state.itemLimits2[i][0] > 0
+                    ) {
                       return (
-                          <div className={styles.flex_50}>
-                            <ModalMintWearable
-                                index={i}
-                                numberLeft={state.itemLimits2[i][0]}
-                                itemID={state.itemLimits2[i][1]}
-                                wearableImg={detailsICEPartyHost[item][0]}
-                                wearableBodyType={detailsICEPartyHost[item][3]}
-                                wearableBodyImg={detailsICEPartyHost[item][5]}
-                                wearableName={detailsICEPartyHost[item][1]}
-                            />
-                          </div>
-                      )
+                        <div className={styles.flex_50}>
+                          <ModalMintWearable
+                            index={i}
+                            numberLeft={state.itemLimits2[i][0]}
+                            itemID={state.itemLimits2[i][1]}
+                            wearableImg={detailsICEPartyHost[item][0]}
+                            wearableBodyType={detailsICEPartyHost[item][3]}
+                            wearableBodyImg={detailsICEPartyHost[item][5]}
+                            wearableName={detailsICEPartyHost[item][1]}
+                          />
+                        </div>
+                      );
                       // Minting Disabled States
                     } else {
                       // Logged Out State
                       if (!state.userLoggedIn) {
                         return (
-                            <div className={styles.flex_50}>
-                              <ModalLoginICE/>
-                            </div>
-                        )
+                          <div className={styles.flex_50}>
+                            <ModalLoginICE />
+                          </div>
+                        );
                       }
                       // Sold Out State
-                      else if (state.itemLimits2[i][0] < 1 && state.userStatus >= 4) {
+                      else if (
+                        state.itemLimits2[i][0] < 1 &&
+                        state.userStatus >= 4
+                      ) {
                         return (
-                            <Button disabled className={styles.sold_button}>
-                              Sold Out!
-                            </Button>
-                        )
+                          <Button disabled className={styles.sold_button}>
+                            Sold Out!
+                          </Button>
+                        );
                       } else {
                         // Coming Soon State
                         if (state.itemLimits2[i][0] > 0) {
                           return (
-                              <Button disabled className={styles.sold_button}>
-                                Coming Soon!
-                              </Button>
-                          )
+                            <Button disabled className={styles.sold_button}>
+                              Coming Soon!
+                            </Button>
+                          );
                         }
                       }
                     }
@@ -341,7 +452,8 @@ const MarketPlace = () => {
           </Carousel>
         </section>
       );
-    } else if (row === 'dgSuit') {
+    }
+    if (row === 'dgSuit') {
       return (
         <section className={styles.wearable_section}>
           <h3>DG Suit</h3>
@@ -438,7 +550,9 @@ const MarketPlace = () => {
                   <span style={{ display: 'flex', justifyContent: 'center' }}>
                     <p className={styles.nft_info}>{detailsICESuit[item][3]}</p>
                     {state.userStatus >= 4 && state.userLoggedIn ? (
-                      <p className={styles.nft_info}>{state.itemLimits1[i][0]} of 100 left</p>
+                      <p className={styles.nft_info}>
+                        {state.itemLimits1[i][0]} of 100 left
+                      </p>
                     ) : (
                       <p className={styles.nft_info}>- of 100 left</p>
                     )}
@@ -452,7 +566,8 @@ const MarketPlace = () => {
                 </div>
 
                 <div className={styles.button_container}>
-                  {state.appConfig?.isWebsiteMintingEnabled && state.itemLimits1[i][0] ? (
+                  {state.appConfig?.isWebsiteMintingEnabled &&
+                  state.itemLimits1[i][0] ? (
                     state.userStatus >= 4 && state.userLoggedIn ? (
                       <div className={styles.flex_50}>
                         <ModalMintWearable
@@ -477,7 +592,317 @@ const MarketPlace = () => {
                     href="https://market.decentraland.org/browse?assetType=nft&section=wearables&contracts=0xcb06f6aee0655252a3f6f2884680421d55d3c645"
                     target="_blank"
                     style={{
-                      width: '100%'
+                      width: '100%',
+                    }}
+                  >
+                    <Button className={styles.wearable_button}>
+                      Buy on Secondary
+                    </Button>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </Carousel>
+        </section>
+      );
+    }
+    if (row === 'bomber') {
+      return (
+        <section className={styles.wearable_section}>
+          <h3>Bomber</h3>
+          <Carousel
+            arrows
+            draggable
+            swipeable
+            partialVisible
+            autoPlaySpeed={3000}
+            focusOnSelect={false}
+            infinite={false}
+            keyBoardControl={true}
+            minimumTouchDrag={80}
+            renderButtonGroupOutside={false}
+            renderDotsOutside={false}
+            responsive={responsive}
+            showDots={false}
+            slidesToSlide={1}
+            containerClass="ice-wearables-carousel-container"
+            itemClass="carousel-item"
+          >
+            <div
+              className={styles.games_container}
+              style={{ paddingBottom: '20px' }}
+            >
+              <img
+                key={previewDGLevel}
+                className={styles.preview_nft_image}
+                src={previewBomberImages[previewDGLevel]}
+              />
+              <div className={styles.preview_description}>
+                <h1 className={styles.title}>PREVIEW FIT LEVELS</h1>
+                <div className={styles.preview_level_select_div}>
+                  {previewBomberImages.map((img, i) => (
+                    <div
+                      key={i}
+                      className={
+                        previewDGLevel === i
+                          ? styles.selectActive
+                          : styles.select
+                      }
+                      onClick={() => setPreviewDGLevel(i)}
+                    >
+                      {i + 1}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {Object.keys(detailsICEBomber).map((item, i) => (
+              <div key={i} className={styles.games_container}>
+                <div className={styles.wear_box_purple}>
+                  <div className={styles.fullDiv}>
+                    <div className={styles.imgDiv}>
+                      <img
+                        className={styles.img}
+                        src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640051/p2e_enabled_wgqui5.svg"
+                      />
+                      <Popup
+                        trigger={
+                          <img
+                            className={styles.tooltip}
+                            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
+                          />
+                        }
+                        position="top left"
+                        hideOnScroll={true}
+                        className={cn('p2e_enabled_tooltip', styles.popup)}
+                      >
+                        <Popup.Content className={styles.tooltipContent}>
+                          <img
+                            className={styles.popup_info}
+                            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
+                          />
+                          <p className={styles.popup_content}>
+                            P2E Enabled (aka Play-to-Earn)
+                            <br /> wearables allow you to earn real
+                            <br /> cash value from free-to-play ICE
+                            <br /> poker tables.
+                          </p>
+                        </Popup.Content>
+                      </Popup>
+                    </div>
+                  </div>
+                </div>
+
+                <img
+                  className={styles.nft_image}
+                  src={detailsICEBomber[item][0]}
+                />
+
+                <div className={styles.nft_description}>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                    <p className={styles.nft_info}>
+                      {detailsICEBomber[item][3]}
+                    </p>
+                    {state.userStatus >= 4 && state.userLoggedIn ? (
+                      <p className={styles.nft_info}>
+                        {state.itemLimits1[i][0]} of 100 left
+                      </p>
+                    ) : (
+                      <p className={styles.nft_info}>- of 100 left</p>
+                    )}
+                  </span>
+                  <p className={styles.nft_other_p}>
+                    {detailsICEBomber[item][2]}
+                  </p>
+                  <h3 className={styles.nft_other_h3}>
+                    {detailsICEBomber[item][1]}
+                  </h3>
+                </div>
+
+                <div className={styles.button_container}>
+                  {state.appConfig?.isWebsiteMintingEnabled &&
+                  state.itemLimits1[i][0] ? (
+                    state.userStatus >= 4 && state.userLoggedIn ? (
+                      <div className={styles.flex_50}>
+                        <ModalMintWearable
+                          index={i}
+                          numberLeft={state.itemLimits1[i][0]}
+                          itemID={state.itemLimits1[i][1]}
+                          wearableImg={detailsICESuit[item][0]}
+                          wearableBodyType={detailsICESuit[item][3]}
+                          wearableBodyImg={detailsICESuit[item][5]}
+                          wearableName={detailsICESuit[item][1]}
+                        />
+                      </div>
+                    ) : (
+                      <div className={styles.flex_50}>
+                        <ModalLoginICE />
+                      </div>
+                    )
+                  ) : null}
+
+                  <a
+                    className={styles.flex_50}
+                    href="https://market.decentraland.org/browse?assetType=nft&section=wearables&contracts=0xcb06f6aee0655252a3f6f2884680421d55d3c645"
+                    target="_blank"
+                    style={{
+                      width: '100%',
+                    }}
+                  >
+                    <Button className={styles.wearable_button}>
+                      Buy on Secondary
+                    </Button>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </Carousel>
+        </section>
+      );
+    }
+    if (row === 'linen') {
+      return (
+        <section className={styles.wearable_section}>
+          <h3>Linen</h3>
+          <Carousel
+            arrows
+            draggable
+            swipeable
+            partialVisible
+            autoPlaySpeed={3000}
+            focusOnSelect={false}
+            infinite={false}
+            keyBoardControl={true}
+            minimumTouchDrag={80}
+            renderButtonGroupOutside={false}
+            renderDotsOutside={false}
+            responsive={responsive}
+            showDots={false}
+            slidesToSlide={1}
+            containerClass="ice-wearables-carousel-container"
+            itemClass="carousel-item"
+          >
+            <div
+              className={styles.games_container}
+              style={{ paddingBottom: '20px' }}
+            >
+              <img
+                key={previewDGLevel}
+                className={styles.preview_nft_image}
+                src={previewLinenImages[previewDGLevel]}
+              />
+              <div className={styles.preview_description}>
+                <h1 className={styles.title}>PREVIEW FIT LEVELS</h1>
+                <div className={styles.preview_level_select_div}>
+                  {previewLinenImages.map((img, i) => (
+                    <div
+                      key={i}
+                      className={
+                        previewDGLevel === i
+                          ? styles.selectActive
+                          : styles.select
+                      }
+                      onClick={() => setPreviewDGLevel(i)}
+                    >
+                      {i + 1}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {Object.keys(detailsICELinen).map((item, i) => (
+              <div key={i} className={styles.games_container}>
+                <div className={styles.wear_box_purple}>
+                  <div className={styles.fullDiv}>
+                    <div className={styles.imgDiv}>
+                      <img
+                        className={styles.img}
+                        src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640051/p2e_enabled_wgqui5.svg"
+                      />
+                      <Popup
+                        trigger={
+                          <img
+                            className={styles.tooltip}
+                            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
+                          />
+                        }
+                        position="top left"
+                        hideOnScroll={true}
+                        className={cn('p2e_enabled_tooltip', styles.popup)}
+                      >
+                        <Popup.Content className={styles.tooltipContent}>
+                          <img
+                            className={styles.popup_info}
+                            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
+                          />
+                          <p className={styles.popup_content}>
+                            P2E Enabled (aka Play-to-Earn)
+                            <br /> wearables allow you to earn real
+                            <br /> cash value from free-to-play ICE
+                            <br /> poker tables.
+                          </p>
+                        </Popup.Content>
+                      </Popup>
+                    </div>
+                  </div>
+                </div>
+
+                <img
+                  className={styles.nft_image}
+                  src={detailsICELinen[item][0]}
+                />
+
+                <div className={styles.nft_description}>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                    <p className={styles.nft_info}>
+                      {detailsICELinen[item][3]}
+                    </p>
+                    {state.userStatus >= 4 && state.userLoggedIn ? (
+                      <p className={styles.nft_info}>
+                        {state.itemLimits1[i][0]} of 100 left
+                      </p>
+                    ) : (
+                      <p className={styles.nft_info}>- of 100 left</p>
+                    )}
+                  </span>
+                  <p className={styles.nft_other_p}>
+                    {detailsICELinen[item][2]}
+                  </p>
+                  <h3 className={styles.nft_other_h3}>
+                    {detailsICELinen[item][1]}
+                  </h3>
+                </div>
+
+                <div className={styles.button_container}>
+                  {state.appConfig?.isWebsiteMintingEnabled &&
+                  state.itemLimits1[i][0] ? (
+                    state.userStatus >= 4 && state.userLoggedIn ? (
+                      <div className={styles.flex_50}>
+                        <ModalMintWearable
+                          index={i}
+                          numberLeft={state.itemLimits1[i][0]}
+                          itemID={state.itemLimits1[i][1]}
+                          wearableImg={detailsICESuit[item][0]}
+                          wearableBodyType={detailsICESuit[item][3]}
+                          wearableBodyImg={detailsICESuit[item][5]}
+                          wearableName={detailsICESuit[item][1]}
+                        />
+                      </div>
+                    ) : (
+                      <div className={styles.flex_50}>
+                        <ModalLoginICE />
+                      </div>
+                    )
+                  ) : null}
+
+                  <a
+                    className={styles.flex_50}
+                    href="https://market.decentraland.org/browse?assetType=nft&section=wearables&contracts=0xcb06f6aee0655252a3f6f2884680421d55d3c645"
+                    target="_blank"
+                    style={{
+                      width: '100%',
                     }}
                   >
                     <Button className={styles.wearable_button}>
@@ -509,6 +934,8 @@ const MarketPlace = () => {
         </div>
 
         <div className={styles.outter_games_container}>
+          {getCarousel('bomber')}
+          {getCarousel('linen')}
           {getCarousel('partyHost')}
           {getCarousel('dgSuit')}
         </div>
