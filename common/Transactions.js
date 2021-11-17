@@ -1,3 +1,4 @@
+import BigNumber from 'bignumber.js';
 import ABI_TREASURY_CONTRACT from '../components/ABI/ABITreasury';
 import ABI_DG_POINTER from '../components/ABI/ABIDGPointer';
 import ABI_DG_POINTER_NEW from '../components/ABI/ABIDGPointerNew';
@@ -200,11 +201,11 @@ async function balanceOfToken(tokenContract, userOrContractAddress, units) {
       .balanceOf(userOrContractAddress)
       .call();
 
-    let amountAdjusted = 0;
+    let amountAdjusted = "0";
     if (units) {
-      amountAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(units);
+      amountAdjusted = BigNumber(amount).div(Global.CONSTANTS.FACTOR).toFixed(units);
     } else {
-      amountAdjusted = (amount / Global.CONSTANTS.FACTOR).toString();
+      amountAdjusted = BigNumber(amount).div(Global.CONSTANTS.FACTOR).toString();
     }
 
     return amountAdjusted;
