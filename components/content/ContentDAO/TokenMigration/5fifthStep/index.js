@@ -22,6 +22,9 @@ const FifthStep = (props) => {
     const [DGTokenContract, setDGTokenContract] = useState({});
     const [DGLightTokenContract, setDGLightTokenContract] = useState({});
     const [DGLightBridgeContract, setDGLightBridgeContract] = useState({});
+    const [swapSubmitted, setSwapSubmitted] = useState(false);
+    const [swapped, setSwaped] = useState(false);
+    const [loading, setLoading] = useState(false);
     const networkInfo = {
         id: 137,
         name: 'Mainnet',
@@ -282,10 +285,6 @@ const FifthStep = (props) => {
         }
     }, [state.userStatus]);
 
-    const [swapSubmitted, setSwapSubmitted] = useState(false);
-    const [swapped, setSwaped] = useState(false);
-    const [loading, setLoading] = useState(false);
-
     return (
         <div className={styles.main_wrapper}>
             <div className={styles.title}>
@@ -330,7 +329,7 @@ const FifthStep = (props) => {
                                     <div
                                         className={styles.arrow}
                                         style={{transform: !direct ? 'rotateY(180deg)' : ''}}
-                                        // onClick={() => {setDirect(!direct)}}
+                                        onClick={() => {setDirect(!direct)}}
                                     >
                                         <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1635534332/arrow2_n1fwsf.png" alt="" />
                                     </div>

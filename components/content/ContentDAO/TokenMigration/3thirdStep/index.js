@@ -21,6 +21,8 @@ const ThirdStep = (props) => {
     const [amountDGLight, setAmountDGLight] = useState('0');
     const [DGTokenContract, setDGTokenContract] = useState({});
     const [DGLightTokenContract, setDGLightTokenContract] = useState({});
+    const [swapSubmitted, setSwapSubmitted] = useState(false);
+    const [loading, setLoading] = useState(false);
     const networkInfo = {
         id: 3,
         name: 'Ropsten',
@@ -248,9 +250,6 @@ const ThirdStep = (props) => {
             fetchData();
         }
     }, [state.userStatus]);
-
-    const [swapSubmitted, setSwapSubmitted] = useState(false);
-    const [loading, setLoading] = useState(false);
 
     return (
         <div className={styles.main_wrapper}>

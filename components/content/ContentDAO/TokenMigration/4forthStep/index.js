@@ -17,11 +17,13 @@ const ForthStep = (props) => {
     const [availabeStake, setAvailableStake] = useState(3400);
     const [DGTownHallContract, setDGTownHallContract] = useState({});
     const [DGLightTokenContract, setDGLightTokenContract] = useState({});
+    const [stakeSubmitted, setStakeSubmitted] = useState(false);
     const networkInfo = {
         id: 3,
         name: 'Ropsten',
         etherscan: 'https://ropsten.etherscan.io',
-        dgLightAddress: Global.ADDRESSES.ROPSTEN_TOKEN_ADDRESS_DG_LIGHT
+        dgLightAddress: Global.ADDRESSES.ROPSTEN_TOKEN_ADDRESS_DG_LIGHT,
+        dgTownHallAddress: Global.ADDRESSES.ROPSTEN_DG_TOWN_HALL_ADDRESS
     };
 
     useEffect(() => {
@@ -32,12 +34,30 @@ const ForthStep = (props) => {
         setStakeAmount(Number(e.target.value));
     }
 
+    async function addToken() {
+        try {
+            await window.ethereum.request({
+                method: "wallet_watchAsset",
+                params: {
+                    type: 'ERC20',
+                    options: {
+                      address: networkInfo.dgTownHallAddress,
+                      symbol: 'xDG',
+                      decimals: 18,
+                      image: 'https://assets.coingecko.com/coins/images/13267/small/Decentral_Games_Logo-1.png',
+                    },
+                },
+            });
+        } catch {
+        }
+    }
+
     async function stake() {
         console.log('Call stepInside() function to stake tokens');
 
         const { amountAdjusted, amountToString } = props.getAmounts(stakeAmount);
-        console.log('Swap amount input (number): ' + amountAdjusted);
-        console.log('Swap amount input (string): ' + amountToString);
+        console.log('Stake amount input (number): ' + amountAdjusted);
+        console.log('Stake amount input (string): ' + amountToString);
 
         try {
             console.log(
@@ -71,10 +91,12 @@ const ForthStep = (props) => {
                 .send({ from: state.userAddress })
                 .on('transactionHash', function(hash) {
                     setHash(hash);
+                    setStakeSubmitted(true);
                     setLoading(true);
                 })
                 .on('confirmation', function(confirmation, receipt) {
                     setStaked(true);
+                    setStakeSubmitted(false);
                     setLoading(false);
                     console.log('stepInside() transaction completed: ' + hash);
                 });
@@ -144,67 +166,110 @@ const ForthStep = (props) => {
 
             <div className={styles.content}>
                 {!staked ?
-                    <div className={styles.box_div}>
-                        <div className={styles.box_title}>
-                            <h1>New DG Gov Staking <abbr>(112% APY)</abbr></h1>
-                        </div>
+                    (
+                        !stakeSubmitted ?
+                            <div className={styles.box_div}>
+                                <div className={styles.box_title}>
+                                    <h1>New DG Gov Staking <abbr>(112% APY)</abbr></h1>
+                                </div>
 
-                        <div className={styles.contract_div}>
-                            <div className={styles.content}>
-                                <img className={styles.dg} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
-                                <input
-                                    type="number"
-                                    className={styles.dg_input}
-                                    value={stakeAmount.toString()}
-                                    onChange={handleStakeAmountChange}
-                                    style={{
-                                        minWidth: `${5 + (stakeAmount.toString().length + 1) * 12}px`,
-                                        maxWidth: `${5 + (stakeAmount.toString().length + 1) * 12}px`
+                                <div className={styles.contract_div}>
+                                    <div className={styles.content}>
+                                        <img className={styles.dg} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
+                                        <input
+                                            type="number"
+                                            className={styles.dg_input}
+                                            value={stakeAmount.toString()}
+                                            onChange={handleStakeAmountChange}
+                                            style={{
+                                                minWidth: `${5 + (stakeAmount.toString().length + 1) * 12}px`,
+                                                maxWidth: `${5 + (stakeAmount.toString().length + 1) * 12}px`
+                                            }}
+                                        />
+                                    </div>
+
+                                    <Button
+                                        className={styles.max_button}
+                                        onClick={() => {
+                                            setStakeAmount(availabeStake);
+                                        }}
+                                    >
+                                        MAX
+                                    </Button>
+
+                                    <div className={styles.description}>
+                                        <h4 className={stakeAmount <= availabeStake ? styles.success : styles.error}>
+                                            {props.formatPrice(availabeStake || 0, 2)} DG Available to Stake
+                                        </h4>
+                                        <p>On Eth {networkInfo.name}</p>
+                                    </div>
+                                </div>
+
+                                <div className={styles.button_div}>
+                                    {loading ?
+                                        <Button
+                                            className={styles.button_blue}
+                                            href={`${networkInfo.etherscan}/tx/${hash}`}
+                                            target="_blank"
+                                        >
+                                            <Spinner />
+                                            View on Etherscan
+                                            <img className={styles.arrowIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636424323/TransBgArrow_ukntvi.png" alt="" />
+                                        </Button>
+                                        :
+                                        <Button
+                                            className={styles.button_blue}
+                                            onClick={() => {
+                                                stake();
+                                            }}
+                                            disabled={stakeAmount <= 0 || stakeAmount > availabeStake ? true : false}
+                                        >
+                                            Stake {stakeAmount} DG
+                                        </Button>
+                                    }
+                                </div>
+                            </div>
+                            :
+                            <div className={styles.box_div_big}>
+                                <img
+                                    className={styles.close}
+                                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636431892/transClose_v26kgi.png"
+                                    alt="close"
+                                    onClick={() => {
+                                        setStakeSubmitted(false);
                                     }}
                                 />
+
+                                <div className={styles.box_title}>
+                                    <h1>Stake Transaction Submitted!</h1>
+                                </div>
+
+                                <div className={styles.center_swap_submitted}>
+                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636423902/check-mark_fvx9a4.png" alt="Ready" />
+                                </div>
+
+                                <div className={styles.button_div} style={{ marginTop: '30px' }}>
+                                    <Button
+                                        className={styles.button}
+                                        onClick={() => addToken()}
+                                    >
+                                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" alt="metamask" />
+                                        Add xDG to Metamask
+                                    </Button>
+                                </div>
+
+                                <div className={styles.button_div}>
+                                    <Button
+                                        className={styles.button_transparent}
+                                        href={`${networkInfo.etherscan}/tx/${hash}`}
+                                        target="_blank"
+                                    >
+                                        View on Etherscan
+                                        <img className={styles.arrowIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636424323/TransBgArrow_ukntvi.png" alt="" />
+                                    </Button>
+                                </div>
                             </div>
-
-                            <Button
-                                className={styles.max_button}
-                                onClick={() => {
-                                    setStakeAmount(availabeStake);
-                                }}
-                            >
-                                MAX
-                            </Button>
-
-                            <div className={styles.description}>
-                                <h4 className={stakeAmount <= availabeStake ? styles.success : styles.error}>
-                                    {props.formatPrice(availabeStake || 0, 2)} DG Available to Stake
-                                </h4>
-                                <p>On Eth {networkInfo.name}</p>
-                            </div>
-                        </div>
-
-                        <div className={styles.button_div}>
-                            {loading ?
-                                <Button
-                                    className={styles.button_blue}
-                                    href={`${networkInfo.etherscan}/tx/${hash}`}
-                                    target="_blank"
-                                >
-                                    <Spinner />
-                                    View on Etherscan
-                                    <img className={styles.arrowIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636424323/TransBgArrow_ukntvi.png" alt="" />
-                                </Button>
-                                :
-                                <Button
-                                    className={styles.button_blue}
-                                    onClick={() => {
-                                        stake();
-                                    }}
-                                    disabled={stakeAmount <= 0 || stakeAmount > availabeStake ? true : false}
-                                >
-                                    Stake {stakeAmount} DG
-                                </Button>
-                            }
-                        </div>
-                    </div>
+                    )
                     :
                     <div className={styles.box_div_small}>
                         <div className={styles.box_title}>
