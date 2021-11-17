@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { Button } from 'semantic-ui-react';
 import Spinner from 'components/lottieAnimation/animations/spinner';
 import styles from './forthStep.module.scss'
+import Web3 from 'web3';
 import Global from 'components/Constants';
 import { GlobalContext } from '../../../../../store'
 import Transactions from '../../../../../common/Transactions'
@@ -18,6 +19,7 @@ const ForthStep = (props) => {
     const [DGTownHallContract, setDGTownHallContract] = useState({});
     const [DGLightTokenContract, setDGLightTokenContract] = useState({});
     const [stakeSubmitted, setStakeSubmitted] = useState(false);
+    const [approving, setApproving] = useState(false);
     const networkInfo = {
         id: 3,
         name: 'Ropsten',
@@ -73,11 +75,16 @@ const ForthStep = (props) => {
             if (Number(amountAllowance) < amountAdjusted) {
                 console.log("Approve DGTownHall contract to spend user's tokens");
 
-                const data = await DGLightTokenContract.methods
+                await DGLightTokenContract.methods
                     .approve(DGTownHallContract._address, Global.CONSTANTS.MAX_AMOUNT)
-                    .send({ from: state.userAddress });
-
-                console.log('approve() transaction completed: ' + data.transactionHash);
+                    .send({ from: state.userAddress })
+                    .on('transactionHash', function(hash) {
+                        setApproving(true);
+                    })
+                    .on('confirmation', function(confirmation, receipt) {
+                        console.log('approve() transaction completed');
+                        setApproving(false);
+                    });
 
                 dispatch({
                     type: 'show_toastMessage',
@@ -115,6 +122,8 @@ const ForthStep = (props) => {
         } catch (error) {
             console.log('StepInside transaction error: ' + error);
             setLoading(false);
+            setApproving(false);
+
             dispatch({
               type: 'show_toastMessage',
               data: 'Failed to stake DG!',
@@ -123,12 +132,17 @@ const ForthStep = (props) => {
     }
 
     async function fetchData() {
-        const DGTownHallContract =
-            await Transactions.DGTownHallContract(web3);
-        setDGTownHallContract(DGTownHallContract);
+        const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
-        const DGLightTokenContract =
-            await Transactions.DGLightTokenContract(web3);
+        const [
+            DGTownHallContract,
+            DGLightTokenContract
+        ] = await Promise.all([
+            Transactions.DGTownHallContract(web3),
+            Transactions.DGLightTokenContract(web3)
+        ]);
+
+        setDGTownHallContract(DGTownHallContract);
         setDGLightTokenContract(DGLightTokenContract);
     }
 
@@ -222,9 +236,18 @@ const ForthStep = (props) => {
                                             onClick={() => {
                                                 stake();
                                             }}
-                                            disabled={stakeAmount <= 0 || stakeAmount > availabeStake ? true : false}
+                                            disabled={stakeAmount <= 0 || stakeAmount > availabeStake || approving}
                                         >
-                                            Stake {stakeAmount} DG
+                                            {
+                                                approving
+                                                    ? <Spinner />
+                                                    : null
+                                            }
+                                            {
+                                                approving
+                                                    ? 'Approving'
+                                                    : `Stake ${stakeAmount} DG`
+                                            }
                                         </Button>
                                     }
                                 </div>

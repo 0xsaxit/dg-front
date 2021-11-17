@@ -23,6 +23,7 @@ const ThirdStep = (props) => {
     const [DGLightTokenContract, setDGLightTokenContract] = useState({});
     const [swapSubmitted, setSwapSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [approving, setApproving] = useState(false);
     const networkInfo = {
         id: 3,
         name: 'Ropsten',
@@ -95,11 +96,16 @@ const ThirdStep = (props) => {
             if (Number(amountAllowance) < amountAdjusted) {
                 console.log("Approve DGLight contract to spend user's tokens");
 
-                const data = await dgTokenContract.methods
+                await dgTokenContract.methods
                     .approve(dgLightTokenContract._address, Global.CONSTANTS.MAX_AMOUNT)
-                    .send({ from: state.userAddress });
-
-                console.log('approve() transaction completed: ' + data.transactionHash);
+                    .send({ from: state.userAddress })
+                    .on('transactionHash', function(hash) {
+                        setApproving(true);
+                    })
+                    .on('confirmation', function(confirmation, receipt) {
+                        console.log('approve() transaction completed');
+                        setApproving(false);
+                    });
 
                 dispatch({
                     type: 'show_toastMessage',
@@ -137,6 +143,7 @@ const ThirdStep = (props) => {
         } catch (error) {
             console.log('Staking transactions error: ' + error);
             setLoading(false);
+            setApproving(false);
 
             dispatch({
                 type: 'show_toastMessage',
@@ -213,13 +220,22 @@ const ThirdStep = (props) => {
     }
 
     async function fetchData() {
-        const DGTokenContract =
-            await Transactions.DGTokenContract(web3);
-        setDGTokenContract(DGTokenContract);
+        const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
-        const DGLightTokenContract =
-            await Transactions.DGLightTokenContract(web3);
+        const [
+            DGTokenContract,
+            DGLightTokenContract
+        ] = await Promise.all([
+            Transactions.DGTokenContract(web3),
+            Transactions.DGLightTokenContract(web3)
+        ]);
+
+        setDGTokenContract(DGTokenContract);
         setDGLightTokenContract(DGLightTokenContract);
+
+        const amountInWei = await DGTokenContract.methods.balanceOf(state.userAddress).call();
+        const dgAmount = BigNumber(amountInWei).div(Global.CONSTANTS.FACTOR).toFixed();
+        setAmountDG(dgAmount);
     }
 
     async function checkNetworkId(networkId) {
@@ -358,7 +374,7 @@ const ThirdStep = (props) => {
                                             :
                                             <Button
                                                 className={styles.button_blue}
-                                                disabled={Number(amountDG) <= 0}
+                                                disabled={Number(amountDG) <= 0 || approving}
                                                 onClick={() => {
                                                     direct
                                                     ? goLight(
@@ -379,9 +395,16 @@ const ThirdStep = (props) => {
                                                 }}
                                             >
                                                 {
-                                                    direct
-                                                        ? `Swap ${BigNumber(amountDG).toFormat()} $DG for ${BigNumber(amountDGLight).toFormat()} DG`
-                                                        : `Swap ${BigNumber(amountDGLight).toFormat()} DG for ${BigNumber(amountDG).toFormat()} $DG`
+                                                    approving
+                                                        ? <Spinner />
+                                                        : null
+                                                }
+                                                {
+                                                    approving
+                                                        ? 'Approving'
+                                                        : direct
+                                                            ? `Swap ${BigNumber(amountDG).toFormat()} $DG for ${BigNumber(amountDGLight).toFormat()} DG`
+                                                            : `Swap ${BigNumber(amountDGLight).toFormat()} DG for ${BigNumber(amountDG).toFormat()} $DG`
                                                 }
                                             </Button>
                                     }
