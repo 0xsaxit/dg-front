@@ -6,6 +6,8 @@ import ABI_DG_TOKEN from '../../../components/ABI/ABIDGToken';
 import ABI_CHILD_TOKEN_ICE from '../../../components/ABI/ABIChildTokenICE';
 import ABI_COLLECTION_V2 from '../../../components/ABI/ABICollectionV2';
 import ABI_COLLECTION_PH from '../../../components/ABI/ABICollectionPH';
+import ABI_COLLECTION_LINENS from '../../../components/ABI/ABICollectionLinens';
+import ABI_COLLECTION_BOMBER from '../../../components/ABI/ABICollectionBomber';
 import MetaTx from '../../../common/MetaTx';
 import Fetch from '../../../common/Fetch';
 import { Modal, Button } from 'semantic-ui-react';
@@ -93,6 +95,18 @@ const ModalUpgradePending = props => {
         );
         // collectionAddress = Global.ADDRESSES.COLLECTION_PH_ADDRESS;
         collectionID = 12;
+      } else if (props.address === Global.ADDRESSES.COLLECTION_LINENS_ADDRESS) {
+        collectionContract = new getWeb3.eth.Contract(
+          ABI_COLLECTION_LINENS,
+          Global.ADDRESSES.COLLECTION_LINENS_ADDRESS
+        );
+        collectionID = 13;
+      } else if (props.address === Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS) {
+        collectionContract = new getWeb3.eth.Contract(
+          ABI_COLLECTION_BOMBER,
+          Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS
+        );
+        collectionID = 14;
       }
 
       setCollectionContract(collectionContract);
@@ -447,7 +461,7 @@ const ModalUpgradePending = props => {
     const token = 'NFT';
     console.log('Meta-transaction NFT: ' + props.tokenID);
     console.log('Spender address: ' + spenderAddress);
-
+    console.log('Collection address: ' + props.address);
     setLoading(true);
     setUpdateStatus({ name: token, value: 'clicked' });
 
