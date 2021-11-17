@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { GlobalContext } from '../../../../store'
 import { Button } from 'semantic-ui-react'
+import { Bar } from 'react-chartjs-2';
 import cn from 'classnames'
 import styles from './IceRewards.module.scss'
 import Fetch from '../../../../common/Fetch';
@@ -14,6 +15,8 @@ const IceRewards = () => {
   const [clicked, setClicked] = useState(false);
   const [payoutTime, setPayoutTime] = useState('--');
   const [totalICE, setTotalICE] = useState(0);
+  const [statsUSDX, setStatsUSDX] = useState([]);
+  const [statsUSDY, setStatsUSDY] = useState([]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -37,21 +40,47 @@ const IceRewards = () => {
       // Set Remain Time Text
       if (remainingTime >= 60) {
         remainingTime = Math.floor(remainingTime / 60);
-        setPayoutTime(
-          remainingTime > 1
-            ? remainingTime + ' hours.'
-            : remainingTime + ' hour.'
-        );
+        setPayoutTime(remainingTime + 'h');
       } else {
-        setPayoutTime(
-          remainingTime > 1
-            ? Math.floor(remainingTime) + ' minutes.'
-            : '1 minute.'
-        );
+        setPayoutTime(Math.floor(remainingTime) + 'min');
       }
     }, 1000);
     return () => clearInterval(id);
   });
+
+  useEffect(() => {
+    // Set xAxis
+    let xAxis = [];
+    const today = new Date();
+    for (var i = 7; i >= 1; i--) {
+      var date = new Date(today)
+      date.setDate(date.getDate() - i);
+      console.log(date);
+      xAxis.push(date.toDateString().slice(0, 1));
+    }
+    setStatsUSDX(xAxis);
+
+    // Set yAxis
+    let datasets = [
+      {
+        label: 'Gameplay',
+        data: [10, 50, 80, 60, 50, 90, 50],
+        backgroundColor: ['#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF'],
+        barThickness: 20,
+        borderWidth: 2,
+        borderRadius: 10,
+      },
+      {
+        label: 'Delegation',
+        data: [100, 100, 100, 100, 100, 100, 100],
+        backgroundColor: ['#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5'],
+        barThickness: 20,
+        borderWidth: 2,
+        borderRadius: 10,
+      }
+    ]
+    setStatsUSDY(datasets);
+  }, [])
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -135,53 +164,122 @@ const IceRewards = () => {
         </div>
         :
         <div className={styles.main_wrapper}>
-          <div className={styles.title}>
-            <h1>Claim Your ICE Rewards!</h1>
-            <p>
-              Payouts at midnight UTC daily. Next payout in{' '}
-              <abbr>{payoutTime}</abbr>
-            </p>
-          </div>
+          <div className={styles.topDiv}>
+            <div className={styles.claimICEDiv}>
+              <div className={styles.title}>
+                <h1>Claim ICE Reward!</h1>
+              </div>
 
-          <div className={styles.lower}>
-            <p className={styles.lower_header}>Claim ICE Rewards</p>
-            <div className={styles.lower_value}>
-              <p className={styles.ICE_value}>
-                {totalICE}
-              </p>
-              <img
-                style={{ marginTop: '-4px' }}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
-              />
+              <div className={styles.lower}>
+                <div className={styles.lower_header}>
+                  <h1>Play-to-Earn ICE Rewards</h1>
+                  <p>
+                    Payouts at midnight UTC daily&nbsp;
+                    <abbr>(in {payoutTime})</abbr>
+                  </p>
+                </div>
+
+                <div>
+                  <div className={styles.lower_value}>
+                    <p className={styles.ICE_value}>
+                      {totalICE}
+                    </p>
+                    <img
+                      style={{ marginTop: '-4px' }}
+                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
+                    />
+                  </div>
+                  <p className={styles.price}>
+                    $
+                    {formatPrice(
+                      totalICE * state.DGPrices.ice,
+                      2
+                    )}
+                  </p>
+                </div>
+
+                {!clicked ? (
+                  <Button
+                    className={cn(styles.claim_ICE, styles.lower_button)}
+                    onClick={() => claimTokens()}
+                  >
+                    Claim {formatPrice(totalICE, 0)} ICE
+                  </Button>
+                ) : (
+                  <Button
+                    className={cn(styles.claim_ICE, styles.lower_button)}
+                    disabled
+                  >
+                    Claim {formatPrice(totalICE, 0)} ICE
+                  </Button>
+                )}
+              </div>
             </div>
-            <p className={styles.price}>
-              $
-              {formatPrice(
-                totalICE * state.DGPrices.ice,
-                2
-              )}
-            </p>
 
-            <p className={styles.lower_text}>
-              ICE Earnings vary based on your total equipped wearables, wearable
-              ranks, and your placement in daily ICE Poker tournaments.
-            </p>
+            <div className={styles.iceEarnedDiv}>
+              <div className={styles.title}>
+                <h1>ICE Earned (past 7 Days)</h1>
+              </div>
+              <div className={styles.graph}>
+                <Bar
+                  height={180}
+                  data={{
+                    labels: statsUSDX,
+                    datasets: statsUSDY,
+                  }}
+                  options={{
+                    maintainAspectRatio: false,
+                    cornerRadius: 10,
+                    title: { display: false },
+                    legend: { display: false },
+                    scales: {
+                      xAxes: [
+                        {
+                          stacked: true,
+                        }
+                      ],
+                      yAxes: [
+                        {
+                          stacked: true,
+                          ticks: {
+                            autoSkip: true,
+                            autoSkipPadding: 25,
+                            maxRotation: 0,
+                            minRotation: 0,
+                          },
+                        },
+                      ],
+                    },
+                    elements: {
+                      point: { radius: 10 },
+                    }
+                  }}
+                />
 
-            {!clicked ? (
-              <Button
-                className={cn(styles.claim_ICE, styles.lower_button)}
-                onClick={() => claimTokens()}
-              >
-                Claim {formatPrice(totalICE, 0)} ICE
-              </Button>
-            ) : (
-              <Button
-                className={cn(styles.claim_ICE, styles.lower_button)}
-                disabled
-              >
-                Claim {formatPrice(totalICE, 0)} ICE
-              </Button>
-            )}
+                <div className={styles.bottomDiv}>
+                  <div className={styles.legend}>
+                    <div>
+                      <section className={styles.delegationBG} />
+                      Delegation
+                    </div>
+                    <div>
+                      <section className={styles.gamePlayBG} />
+                      Gameplay
+                    </div>
+                  </div>
+                  <div className={styles.info}>
+                    <div className={styles.ice}>
+                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
+                      2091 ICE
+                    </div>
+                    <div className={styles.xp}>
+                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_XP_ICN_f9w2se.svg" alt="ice" />
+                      3 XP
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div >
       }
