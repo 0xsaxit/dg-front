@@ -306,7 +306,7 @@ const FifthStep = (props) => {
         <div className={styles.main_wrapper}>
             <div className={styles.title}>
                 <h1>Swap Your Polygon $DG</h1>
-                <p>Let’s finish off by swapping any Polygon $DG you may have.</p>
+                <p>Now that we’ve swapped and staked your Mainnet DG, let’s migrate any Polygon DG you may have.</p>
             </div>
 
             <div className={styles.content}>

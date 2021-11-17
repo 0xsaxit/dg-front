@@ -159,9 +159,6 @@ const SecondStep = (props) => {
                                     {props.formatPrice(lpStakedAmount, 2)}
                                     <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
                                 </div>
-                                <p>
-                                    ${props.formatPrice((state.DGPrices.dg * lpStakedAmount).toFixed(2), 2)}
-                                </p>
                             </div>
                             <div className={styles.button_div}>
                                 {loading ?
