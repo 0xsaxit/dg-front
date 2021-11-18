@@ -21,7 +21,6 @@ const MarketPlace = () => {
       'Slippers',
       'Party Host',
       'Feet',
-      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatShoes_hjvr3p.svg',
     ],
     Pants: [
@@ -29,7 +28,6 @@ const MarketPlace = () => {
       'Smoking Pants',
       'Party Host',
       'Legs',
-      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatLegs_tn9b57.svg',
     ],
     SmokingJacket: [
@@ -37,7 +35,6 @@ const MarketPlace = () => {
       'Smoking Jacket',
       'Party Host',
       'Torso',
-      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631728323/FlatClothes-01_1_kbpyfj.svg',
     ],
     Hat: [
@@ -45,7 +42,6 @@ const MarketPlace = () => {
       'Captains Hat',
       'Party Host',
       'Head',
-      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatHat_pypkjx.svg',
     ],
     Glasses: [
@@ -53,7 +49,6 @@ const MarketPlace = () => {
       'Smoking Glasses',
       'Party Host',
       'Accessory',
-      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatAccessory_s1cjpg.svg',
     ],
   };
@@ -63,7 +58,6 @@ const MarketPlace = () => {
       'Trousers',
       'DG Suit',
       'Legs',
-      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatLegs_tn9b57.svg',
     ],
     Top: [
@@ -71,7 +65,6 @@ const MarketPlace = () => {
       'Blazer',
       'DG Suit',
       'Torso',
-      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631728323/FlatClothes-01_1_kbpyfj.svg',
     ],
     Cigar: [
@@ -79,7 +72,6 @@ const MarketPlace = () => {
       'Cigar',
       'DG Suit',
       'Head',
-      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatHat_pypkjx.svg',
     ],
     Shoes: [
@@ -87,7 +79,6 @@ const MarketPlace = () => {
       'Loafers',
       'DG Suit',
       'Feet',
-      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatShoes_hjvr3p.svg',
     ],
     Glasses: [
@@ -95,7 +86,6 @@ const MarketPlace = () => {
       'Shades',
       'DG Suit',
       'Accessory',
-      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatAccessory_s1cjpg.svg',
     ],
   };
@@ -105,7 +95,6 @@ const MarketPlace = () => {
       'Boater Hat',
       'Linen',
       'Head',
-      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091409/Linen%20Fit/hat_grey_m_m8dbi3.png',
     ],
     Cigar: [
@@ -113,7 +102,6 @@ const MarketPlace = () => {
       'XL Pipe',
       'Linen',
       'Head',
-      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091411/Linen%20Fit/pipe_grery_lhnu6p.png',
     ],
     Top: [
@@ -121,7 +109,6 @@ const MarketPlace = () => {
       'Linen Shirt',
       'Linen',
       'Torso',
-      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091412/Linen%20Fit/shirt_grey_m_e61mwo.png',
     ],
     Pants: [
@@ -129,7 +116,6 @@ const MarketPlace = () => {
       'Linen Pants',
       'Linen',
       'Legs',
-      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091410/Linen%20Fit/pants_grey_m_ofahds.png',
     ],
     Shoes: [
@@ -137,7 +123,6 @@ const MarketPlace = () => {
       'Boater Shoes',
       'Linen',
       'Feet',
-      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091413/Linen%20Fit/shoes_grey_mkdkto.png',
     ],
   };
@@ -147,7 +132,6 @@ const MarketPlace = () => {
       'Bomber Pants',
       'Bomber',
       'Legs',
-      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091242/Bomber%20Fit/pants_grey_m_zfrety.png',
     ],
     Hat: [
@@ -155,7 +139,6 @@ const MarketPlace = () => {
       'Bomber Hat',
       'Bomber',
       'Head',
-      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091241/Bomber%20Fit/hat_grey_m_ptl8se.png',
     ],
     Top: [
@@ -163,7 +146,6 @@ const MarketPlace = () => {
       'Bomber Jacket',
       'Bomber',
       'Torso',
-      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091243/Bomber%20Fit/upperbody_grey_m_exs6ms.png',
     ],
     Glasses: [
@@ -171,7 +153,6 @@ const MarketPlace = () => {
       'Bomber Glasses',
       'Bomber',
       'Accessory',
-      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091240/Bomber%20Fit/glasses_grey_qmjxqp.png',
     ],
     Shoes: [
@@ -179,11 +160,9 @@ const MarketPlace = () => {
       'Bomber Shoes',
       'Bomber',
       'Feet',
-      '0 of 100 left',
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091243/Bomber%20Fit/shoes_grey_gftpjo.png',
     ],
   };
-
   const responsive = {
     largeDesktop: {
       breakpoint: { max: 3000, min: 1440 },
@@ -374,9 +353,9 @@ const MarketPlace = () => {
                     <p className={styles.nft_info}>
                       {detailsICEPartyHost[item][3]}
                     </p>
-                    {state.appConfig?.isWebsiteMintingEnabled && 
-                      state.userStatus >= 4 && 
-                      state.userLoggedIn ? (
+                    {state.appConfig?.isWebsiteMintingEnabled &&
+                    state.userStatus >= 4 &&
+                    state.userLoggedIn ? (
                       <p className={styles.nft_info}>
                         {state.itemLimits2[i][0]} of 100 left
                       </p>
@@ -407,6 +386,7 @@ const MarketPlace = () => {
                             index={i}
                             numberLeft={state.itemLimits2[i][0]}
                             itemID={state.itemLimits2[i][1]}
+                            address={state.itemLimits2[5]}
                             wearableImg={detailsICEPartyHost[item][0]}
                             wearableBodyType={detailsICEPartyHost[item][3]}
                             wearableBodyImg={detailsICEPartyHost[item][5]}
@@ -574,6 +554,7 @@ const MarketPlace = () => {
                           index={i}
                           numberLeft={state.itemLimits1[i][0]}
                           itemID={state.itemLimits1[i][1]}
+                          address={state.itemLimits1[5]}
                           wearableImg={detailsICESuit[item][0]}
                           wearableBodyType={detailsICESuit[item][3]}
                           wearableBodyImg={detailsICESuit[item][5]}
@@ -720,16 +701,16 @@ const MarketPlace = () => {
                   </h3>
                 </div>
 
-                {/* state.appConfig?.isWebsiteMintingEnabled && */}
-
                 <div className={styles.button_container}>
-                  {state.itemLimits4[i][0] ? (
+                  {state.appConfig?.isWebsiteMintingEnabled &&
+                  state.itemLimits4[i][0] ? (
                     state.userStatus >= 4 && state.userLoggedIn ? (
                       <div className={styles.flex_50}>
                         <ModalMintWearable
                           index={i}
                           numberLeft={state.itemLimits4[i][0]}
                           itemID={state.itemLimits4[i][1]}
+                          address={state.itemLimits4[5]}
                           wearableImg={detailsICEBomber[item][0]}
                           wearableBodyType={detailsICEBomber[item][3]}
                           wearableBodyImg={detailsICEBomber[item][5]}
@@ -876,16 +857,16 @@ const MarketPlace = () => {
                   </h3>
                 </div>
 
-                {/* state.appConfig?.isWebsiteMintingEnabled && */}
-
                 <div className={styles.button_container}>
-                  {state.itemLimits3[i][0] ? (
+                  {state.appConfig?.isWebsiteMintingEnabled &&
+                  state.itemLimits3[i][0] ? (
                     state.userStatus >= 4 && state.userLoggedIn ? (
                       <div className={styles.flex_50}>
                         <ModalMintWearable
                           index={i}
                           numberLeft={state.itemLimits3[i][0]}
                           itemID={state.itemLimits3[i][1]}
+                          address={state.itemLimits3[5]}
                           wearableImg={detailsICELinen[item][0]}
                           wearableBodyType={detailsICELinen[item][3]}
                           wearableBodyImg={detailsICELinen[item][5]}
@@ -925,18 +906,26 @@ const MarketPlace = () => {
       <span className={styles.iceWearablesMarketplace}>
         <div className={styles.header}>
           <div className={styles.header_top}>
-            <h1>
-              ICE Wearables Marketplace
-            </h1>
-            { state.userStatus > 20 && (<span className={styles.white_listed_address}>
+            <h1>ICE Wearables Marketplace</h1>
+            {state.userStatus > 20 && (
+              <span className={styles.white_listed_address}>
                 Whitelisted Address &nbsp;
-                <svg width="7" height="6" viewBox="0 0 7 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M3.06563 5.68435C3.28438 5.68435 3.45625 5.59998 3.575 5.42498L6.48438 0.990601C6.56875 0.862476 6.60313 0.740601 6.60313 0.628101C6.60313 0.324976 6.37188 0.0999755 6.05938 0.0999755C5.84688 0.0999755 5.7125 0.178101 5.58125 0.381226L3.05313 4.36873L1.77188 2.79685C1.65313 2.6531 1.52188 2.5906 1.34063 2.5906C1.025 2.5906 0.796875 2.8156 0.796875 3.12185C0.796875 3.25935 0.8375 3.3781 0.95625 3.51248L2.56875 5.44998C2.70313 5.60935 2.85938 5.68435 3.06563 5.68435Z" fill="#1F1F1F"/>
+                <svg
+                  width="7"
+                  height="6"
+                  viewBox="0 0 7 6"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.06563 5.68435C3.28438 5.68435 3.45625 5.59998 3.575 5.42498L6.48438 0.990601C6.56875 0.862476 6.60313 0.740601 6.60313 0.628101C6.60313 0.324976 6.37188 0.0999755 6.05938 0.0999755C5.84688 0.0999755 5.7125 0.178101 5.58125 0.381226L3.05313 4.36873L1.77188 2.79685C1.65313 2.6531 1.52188 2.5906 1.34063 2.5906C1.025 2.5906 0.796875 2.8156 0.796875 3.12185C0.796875 3.25935 0.8375 3.3781 0.95625 3.51248L2.56875 5.44998C2.70313 5.60935 2.85938 5.68435 3.06563 5.68435Z"
+                    fill="#1F1F1F"
+                  />
                 </svg>
-              </span>)
-            }
+              </span>
+            )}
           </div>
-          
+
           <p className={styles.marketplace_p}>
             ICE Wearables give you table access to free to play, play-to-earn
             poker. Learn more by{' '}
