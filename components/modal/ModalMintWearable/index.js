@@ -235,7 +235,7 @@ const ModalMint = props => {
     return (
       <ModalETHAuth
         itemID={props.itemID}
-        address={'0x4cd15dcd96362cF85E19039C3C2D661e5e43145E'}
+        address={props.address}
         wearableImg={props.wearableImg}
         show={openETHAuth}
         back={() => {

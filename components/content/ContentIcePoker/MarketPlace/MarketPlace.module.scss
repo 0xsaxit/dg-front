@@ -14,48 +14,71 @@
             margin-left: 40px;
             margin-bottom: -120px;
 
-            h1 {
-                font-size: 24px;
-                font-family: "Larsseit-Medium";
-                line-height: 32px;
-                letter-spacing: 0.7px;
-            }
+            .header_top {
+                display: flex;
+                align-items: center;            
 
-            p {
-                font-size: 20px;
-                font-family: "Larsseit-Regular";
-                line-height: 32px;
-                letter-spacing: 0.3px;
+                .white_listed_address {
+                    width: 112px;
+                    height: 24px;
+                    background: #FFFFFF;
+                    border-radius: 8px;
+                    margin-left: 8px;
 
-                a {
-                    color: #509bff;
-
-                    &:hover {
-                        transition: 0.2s ease-in;
-                    }
+                    font-family: Larsseit-Bold;
+                    font-style: normal;
+                    font-size: 9px;
+                    line-height: 16px;
+                    text-align: center;
+                    color: #1F1F1F;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                 }
-            }
-
-            @media (max-width: 1040px) {
-                width: calc(100% - 80px);
-            }
-
-            @include mq($until: medium) {
-                width: calc(100% - 50px);
-                margin-left: 40px;
 
                 h1 {
-                    font-size: 18px;
+                    font-size: 24px;
+                    font-family: "Larsseit-Medium";
+                    line-height: 32px;
+                    letter-spacing: 0.7px;
                 }
 
                 p {
-                    font-size: 15px;
-                    line-height: 20px;
+                    font-size: 20px;
+                    font-family: "Larsseit-Regular";
+                    line-height: 32px;
+                    letter-spacing: 0.3px;
+
+                    a {
+                        color: #509bff;
+
+                        &:hover {
+                            transition: 0.2s ease-in;
+                        }
+                    }
                 }
 
-                h3 {
-                    font-size: 16px;
-                    margin-top: 48px;
+                @media (max-width: 1040px) {
+                    width: calc(100% - 80px);
+                }
+
+                @include mq($until: medium) {
+                    width: calc(100% - 50px);
+                    margin-left: 40px;
+
+                    h1 {
+                        font-size: 18px;
+                    }
+
+                    p {
+                        font-size: 15px;
+                        line-height: 20px;
+                    }
+
+                    h3 {
+                        font-size: 16px;
+                        margin-top: 48px;
+                    }
                 }
             }
         }
