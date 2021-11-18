@@ -10,8 +10,12 @@
 .main_wrapper {
     position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: flex-start;
+    margin-left: 40px;
     margin-top: 80px;
+    margin-bottom: 100px;
     width: 100%;
 
     .topDiv {
@@ -259,6 +263,84 @@
         }
     }
 
+    .history {
+        position: relative;
+        max-width: 900px;
+        margin-top: 50px;
+        font-family: "Larsseit-Light";
+        font-size: 18px;
+        letter-spacing: 1px;
+
+        .title {
+            margin-bottom: 30px;
+
+            h1 {
+                font-family: "Larsseit-ExtraBold";
+                font-weight: 800 !important;
+                font-size: 24px;
+                margin-bottom: 0;
+                line-height: 32px;
+                text-align: left;
+            }
+
+            @include mq($until: 499px) {
+                h1 {
+                    font-size: 24px;
+                }
+            }
+        }
+
+        table {
+            margin-bottom: 100px;
+
+            tr {
+                th {
+                    text-align: center;
+                }
+
+                td {
+                    position: relative;
+                    text-align: center;
+                }
+
+                .iceEarned {
+                    .earnedDiv {
+                        width: 60%;
+                        text-align: right;
+                    }
+                    img {
+                        position: absolute;
+                        top: 27px;
+                        left: calc(60% + 2px);
+                        width: 18px;
+                    }
+                }
+
+                .xpEarned {
+                    .earnedDiv {
+                        width: 55%;
+                        text-align: right;
+                    }
+                    img {
+                        position: absolute;
+                        top: 29px;
+                        left: 55%;
+                        width: 22px;
+                        margin-left: 3px;
+                    }
+                }
+
+                button {
+                    background: transparent !important;
+                    color: #fff !important;
+                    font-family: "Larsseit-Light";
+                    letter-spacing: 0.5px;
+                    border: 2px solid rgba(255, 255, 255, 0.08);
+                }
+            }
+        }
+    }
+
     @include mq($until: 1200px) {
         .topDiv {
             display: flex;
@@ -281,6 +363,9 @@
                     }
                 }
             }
+        }
+        .history {
+            max-width: 750px;
         }
     }
 
@@ -317,9 +402,12 @@
                 }
             }
         }
+        .history {
+            max-width: calc(100% - 50px);
+        }
     }
 
-    @include mq($until: 499px) {
+    @include mq($until: 530px) {
         margin-top: 50px;
         margin-left: 20px;
         width: calc(100vw - 120px);
@@ -374,6 +462,53 @@
 
                         .legend {
                             margin-bottom: 10px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .history {
+            max-width: calc(100%);
+            margin-top: 0px;
+
+            .title {
+                margin-bottom: 15px;
+                h1 {
+                    font-size: 20px;
+                }
+            }
+
+            table {
+                margin-bottom: 100px;
+    
+                tr {
+                    th {
+                        font-size: 12px !important;
+                        padding-left: 3px;
+                        padding-right: 3px;
+                        padding-bottom: 10px;
+                    }
+    
+                    td {
+                        font-size: 12px !important;
+                        padding: 3px 5px;
+                        height: 50px;
+                    }
+    
+                    .iceEarned {
+                        img {
+                            top: 18px;
+                        }
+                    }
+    
+                    .xpEarned {
+                        img {
+                            position: absolute;
+                            top: 20px;
+                            left: 55%;
+                            width: 18px;
+                            margin-left: 3px;
                         }
                     }
                 }
