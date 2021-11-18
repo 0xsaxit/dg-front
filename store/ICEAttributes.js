@@ -227,6 +227,11 @@ function ICEAttributes() {
                 tokenId
               );
 
+              const isCheckedIn = await Fetch.WEARABLE_CHECKIN_STATUS(
+                ownerAddress,
+                tokenId
+              );
+
               if (Object.keys(json).length) {
                 iceDelegatedItems.push({
                   ownerAddress: ownerAddress,
@@ -234,6 +239,7 @@ function ICEAttributes() {
                   itemID: json.id.split(':').slice(-1),
                   meta_data: json,
                   address: item.contractAddress,
+                  isCheckedIn,
                 });
               }
             } catch (error) {

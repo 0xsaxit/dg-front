@@ -201,6 +201,7 @@ const Wearables = ({ state }) => {
               tokenID={item.tokenID}
               address={item.address}
               itemID={item.itemID}
+              isCheckedIn={item.isCheckedIn}
             />
           ))}
         </div>
