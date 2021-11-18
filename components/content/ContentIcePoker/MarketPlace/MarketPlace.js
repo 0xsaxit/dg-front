@@ -389,7 +389,7 @@ const MarketPlace = () => {
                             address={state.itemLimits2[5]}
                             wearableImg={detailsICEPartyHost[item][0]}
                             wearableBodyType={detailsICEPartyHost[item][3]}
-                            wearableBodyImg={detailsICEPartyHost[item][5]}
+                            wearableBodyImg={detailsICEPartyHost[item][4]}
                             wearableName={detailsICEPartyHost[item][1]}
                           />
                         </div>
@@ -557,7 +557,7 @@ const MarketPlace = () => {
                           address={state.itemLimits1[5]}
                           wearableImg={detailsICESuit[item][0]}
                           wearableBodyType={detailsICESuit[item][3]}
-                          wearableBodyImg={detailsICESuit[item][5]}
+                          wearableBodyImg={detailsICESuit[item][4]}
                           wearableName={detailsICESuit[item][1]}
                         />
                       </div>
@@ -713,7 +713,7 @@ const MarketPlace = () => {
                           address={state.itemLimits4[5]}
                           wearableImg={detailsICEBomber[item][0]}
                           wearableBodyType={detailsICEBomber[item][3]}
-                          wearableBodyImg={detailsICEBomber[item][5]}
+                          wearableBodyImg={detailsICEBomber[item][4]}
                           wearableName={detailsICEBomber[item][1]}
                         />
                       </div>
@@ -869,7 +869,7 @@ const MarketPlace = () => {
                           address={state.itemLimits3[5]}
                           wearableImg={detailsICELinen[item][0]}
                           wearableBodyType={detailsICELinen[item][3]}
-                          wearableBodyImg={detailsICELinen[item][5]}
+                          wearableBodyImg={detailsICELinen[item][4]}
                           wearableName={detailsICELinen[item][1]}
                         />
                       </div>
