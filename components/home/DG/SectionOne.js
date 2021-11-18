@@ -39,7 +39,7 @@ function SectionOne(props) {
             <p className={cn(styles.content, mobile ? 'px-6 mx-auto' : 'px-0')}>
               {mobile
                 ? ''
-                : 'With $DG, you are the house: You control the profits, vote on new games, and earn money back directly by playing' //t('Home.YOUAREHOUSE')
+                : 'Free to play, play to earn gaming in the metaverse. Play ICE Poker, trade NFTs, vote in the DAO, and earn real value from your favorite games' //t('Home.YOUAREHOUSE')
                }
             </p>
             <span className={styles.button_group}>
