@@ -180,6 +180,15 @@ const apiCall = {
     });
   },
 
+  WEARABLE_CHECKIN_STATUS: (address, tokenID) => {
+    return call(
+      `${API_BASE_URL}/ice/fetchWearableCheckinStatus`,
+      'POST',
+      true,
+      { address, tokenID }
+    );
+  },
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // third-party API calls
