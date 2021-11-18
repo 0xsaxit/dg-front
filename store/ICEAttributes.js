@@ -27,13 +27,6 @@ function ICEAttributes() {
   const [collectionArray, setCollectionArray] = useState([]);
   const [iceTokenContract, setIceTokenContract] = useState({});
 
-  const tokenIDMappings = {
-    '0xcb06f6aee0655252a3f6f2884680421d55d3c645': [0, 5, 10, 15, 20],
-    '0x4cd15dcd96362cf85e19039c3c2d661e5e43145e': [0, 5, 10, 15, 20],
-    '0xd79cf5a41d8caec4688e01b4754ea2da6f51e856': [0, 5, 17, 13, 21],
-    '0xd07a56f7198ae6e4e3d6738bd8c4b81d21bf0403': [2, 12, 16, 20, 7],
-  };
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
@@ -86,18 +79,22 @@ function ICEAttributes() {
         collectionArray.push([
           collectionV2Contract,
           Global.ADDRESSES.COLLECTION_V2_ADDRESS,
+          [0, 5, 10, 15, 20],
         ]);
         collectionArray.push([
           collectionV2Contract2,
           Global.ADDRESSES.COLLECTION_PH_ADDRESS,
+          [0, 5, 10, 15, 20],
         ]);
         collectionArray.push([
           collectionV2Contract3,
           Global.ADDRESSES.COLLECTION_LINENS_ADDRESS,
+          [0, 5, 17, 13, 21],
         ]);
         collectionArray.push([
           collectionV2Contract4,
           Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS,
+          [2, 12, 16, 20, 7],
         ]);
         setCollectionArray(collectionArray);
 
@@ -397,7 +394,7 @@ function ICEAttributes() {
   /////////////////////////////////////////////////////////////////////////////////////////
   async function getItemLimits(index) {
     const collectionAddress = collectionArray[index][1];
-    const tokenIDArray = tokenIDMappings[collectionAddress.toLowerCase()];
+    const tokenIDArray = collectionArray[index][2];
     let itemsArray = [];
 
     try {
@@ -455,7 +452,8 @@ function ICEAttributes() {
         [parseInt(ITEM_LIMIT_5), tokenIDArray[1]],
         [parseInt(ITEM_LIMIT_10), tokenIDArray[2]],
         [parseInt(ITEM_LIMIT_15), tokenIDArray[3]],
-        [parseInt(ITEM_LIMIT_20), tokenIDArray[4]]
+        [parseInt(ITEM_LIMIT_20), tokenIDArray[4]],
+        collectionAddress
       );
 
       return itemsArray;
