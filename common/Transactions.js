@@ -1,8 +1,12 @@
+import BigNumber from 'bignumber.js';
 import ABI_TREASURY_CONTRACT from '../components/ABI/ABITreasury';
 import ABI_DG_POINTER from '../components/ABI/ABIDGPointer';
 import ABI_DG_POINTER_NEW from '../components/ABI/ABIDGPointerNew';
 import ABI_DG_STAKING from '../components/ABI/ABIDGStaking';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
+import ABI_DG_LIGHT_TOKEN from '../components/ABI/ABIDGLightToken';
+import ABI_DG_LIGHT_BRIDGE from '../components/ABI/ABIDGLightBridge';
+import ABI_DG_TOWN_HALL from '../components/ABI/ABIDGTownHall';
 import ABI_BP_TOKEN from '../components/ABI/ABIBalancerPoolToken';
 import ABI_DG_KEEPER from '../components/ABI/ABIDGKeeper';
 import Global from '../components/Constants';
@@ -54,12 +58,60 @@ async function pointerContractNew(web3Default) {
 
 // set DG main contract instance
 async function DGTokenContract(web3Default) {
+  const chainId = await web3Default.eth.getChainId();
   const DGToken = new web3Default.eth.Contract(
     ABI_DG_TOKEN,
-    Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DG
+    chainId == 1
+      ? Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DG
+      : chainId == 137
+        ? Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DG
+        : Global.ADDRESSES.ROPSTEN_TOKEN_ADDRESS_DG
   );
 
   return DGToken;
+}
+
+// set DGLight main contract instance
+async function DGLightTokenContract(web3Default) {
+  const chainId = await web3Default.eth.getChainId();
+  const DGLightToken = new web3Default.eth.Contract(
+    ABI_DG_LIGHT_TOKEN,
+    chainId == 1
+      ? Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DG_LIGHT
+      : chainId == 137
+        ? Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DG_LIGHT
+        : Global.ADDRESSES.ROPSTEN_TOKEN_ADDRESS_DG_LIGHT
+  );
+
+  return DGLightToken;
+}
+
+// set DGLightBridge main contract instance
+async function DGLightBridgeContract(web3Default) {
+  const chainId = await web3Default.eth.getChainId();
+  const DGLightToken = new web3Default.eth.Contract(
+    ABI_DG_LIGHT_BRIDGE,
+    chainId == 1
+      ? Global.ADDRESSES.ROOT_DG_LIGHT_BRIDGE_ADDRESS
+      : chainId == 137
+        ? Global.ADDRESSES.CHILD_DG_LIGHT_BRIDGE_ADDRESS
+        : Global.ADDRESSES.ROPSTEN_DG_LIGHT_BRIDGE_ADDRESS
+  );
+
+  return DGLightToken;
+}
+
+// set DGLightBridge main contract instance
+async function DGTownHallContract(web3Default) {
+  const chainId = await web3Default.eth.getChainId();
+  const DGTownHall = new web3Default.eth.Contract(
+    ABI_DG_TOWN_HALL,
+    chainId == 1
+      ? Global.ADDRESSES.ROOT_DG_TOWN_HALL_ADDRESS
+      : Global.ADDRESSES.ROPSTEN_DG_TOWN_HALL_ADDRESS
+  );
+
+  return DGTownHall;
 }
 
 // set DG staking governance contract instance
@@ -149,11 +201,11 @@ async function balanceOfToken(tokenContract, userOrContractAddress, units) {
       .balanceOf(userOrContractAddress)
       .call();
 
-    let amountAdjusted = 0;
+    let amountAdjusted = "0";
     if (units) {
-      amountAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(units);
+      amountAdjusted = BigNumber(amount).div(Global.CONSTANTS.FACTOR).toFixed(units);
     } else {
-      amountAdjusted = (amount / Global.CONSTANTS.FACTOR).toString();
+      amountAdjusted = BigNumber(amount).div(Global.CONSTANTS.FACTOR).toString();
     }
 
     return amountAdjusted;
@@ -235,6 +287,9 @@ export default {
   pointerContract,
   pointerContractNew,
   DGTokenContract,
+  DGLightTokenContract,
+  DGLightBridgeContract,
+  DGTownHallContract,
   stakingContractGovernance,
   stakingContractPool1,
   stakingContractPool2,

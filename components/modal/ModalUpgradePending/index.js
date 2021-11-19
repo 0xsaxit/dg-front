@@ -6,6 +6,8 @@ import ABI_DG_TOKEN from '../../../components/ABI/ABIDGToken';
 import ABI_CHILD_TOKEN_ICE from '../../../components/ABI/ABIChildTokenICE';
 import ABI_COLLECTION_V2 from '../../../components/ABI/ABICollectionV2';
 import ABI_COLLECTION_PH from '../../../components/ABI/ABICollectionPH';
+import ABI_COLLECTION_LINENS from '../../../components/ABI/ABICollectionLinens';
+import ABI_COLLECTION_BOMBER from '../../../components/ABI/ABICollectionBomber';
 import MetaTx from '../../../common/MetaTx';
 import Fetch from '../../../common/Fetch';
 import { Modal, Button } from 'semantic-ui-react';
@@ -33,7 +35,7 @@ const ModalUpgradePending = props => {
   const [tokenContractICE, setTokenContractICE] = useState({});
   const [tokenContractDG, setTokenContractDG] = useState({});
   const [collectionContract, setCollectionContract] = useState({});
-  const [collectionAddress, setCollectionAddress] = useState('');
+  // const [collectionAddress, setCollectionAddress] = useState('');
   const [collectionID, setCollectionID] = useState(0);
   const [progSteps, setProgSteps] = useState([]);
   const [activeItem, setActiveItem] = useState({});
@@ -76,7 +78,7 @@ const ModalUpgradePending = props => {
       setTokenContractDG(tokenContractDG);
 
       let collectionContract = {};
-      let collectionAddress = '';
+      // let collectionAddress = '';
       let collectionID = 0;
 
       if (props.address === Global.ADDRESSES.COLLECTION_V2_ADDRESS) {
@@ -84,19 +86,31 @@ const ModalUpgradePending = props => {
           ABI_COLLECTION_V2,
           Global.ADDRESSES.COLLECTION_V2_ADDRESS
         );
-        collectionAddress = Global.ADDRESSES.COLLECTION_V2_ADDRESS;
+        // collectionAddress = Global.ADDRESSES.COLLECTION_V2_ADDRESS;
         collectionID = 10;
       } else if (props.address === Global.ADDRESSES.COLLECTION_PH_ADDRESS) {
         collectionContract = new getWeb3.eth.Contract(
           ABI_COLLECTION_PH,
           Global.ADDRESSES.COLLECTION_PH_ADDRESS
         );
-        collectionAddress = Global.ADDRESSES.COLLECTION_PH_ADDRESS;
+        // collectionAddress = Global.ADDRESSES.COLLECTION_PH_ADDRESS;
         collectionID = 12;
+      } else if (props.address === Global.ADDRESSES.COLLECTION_LINENS_ADDRESS) {
+        collectionContract = new getWeb3.eth.Contract(
+          ABI_COLLECTION_LINENS,
+          Global.ADDRESSES.COLLECTION_LINENS_ADDRESS
+        );
+        collectionID = 13;
+      } else if (props.address === Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS) {
+        collectionContract = new getWeb3.eth.Contract(
+          ABI_COLLECTION_BOMBER,
+          Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS
+        );
+        collectionID = 14;
       }
 
       setCollectionContract(collectionContract);
-      setCollectionAddress(collectionAddress);
+      // setCollectionAddress(collectionAddress);
       setCollectionID(collectionID);
 
       biconomy
@@ -286,7 +300,7 @@ const ModalUpgradePending = props => {
       <div className={styles.steps_container}>
         {progSteps &&
           progSteps.map(item => (
-            <>
+            <Aux>
               <MetamaskAction
                 primaryText={item.text}
                 actionState={item.actionState}
@@ -302,31 +316,30 @@ const ModalUpgradePending = props => {
                   previousAction={item.authState ? 'done' : 'initial'}
                 />
               )}
-            </>
+            </Aux>
           ))}
       </div>
     );
   }
 
   function proceedButton() {
-    // const activeItem = getActiveItem();
-    // console.log('active Proceed Item: ', activeItem);
+    if (instance) {
+      return (
+        <Button
+          className={styles.proceed_button}
+          onClick={() => {
+            console.log('active Item: ', activeItem);
+            analytics.track(activeItem.trackEvent);
+            activeItem.handleClick();
+          }}
+          disabled={loading ? true : false}
+        >
+          <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
 
-    return (
-      <Button
-        className={styles.proceed_button}
-        onClick={() => {
-          console.log('active Item: ', activeItem);
-          analytics.track(activeItem.trackEvent);
-          activeItem.handleClick();
-        }}
-        disabled={loading ? true : false}
-      >
-        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
-
-        {loading ? <Loader /> : activeItem.text}
-      </Button>
-    );
+          {loading ? <Loader /> : activeItem.text}
+        </Button>
+      );
+    }
   }
 
   function modalButtons(type) {
@@ -448,7 +461,7 @@ const ModalUpgradePending = props => {
     const token = 'NFT';
     console.log('Meta-transaction NFT: ' + props.tokenID);
     console.log('Spender address: ' + spenderAddress);
-
+    console.log('Collection address: ' + props.address);
     setLoading(true);
     setUpdateStatus({ name: token, value: 'clicked' });
 
@@ -496,14 +509,14 @@ const ModalUpgradePending = props => {
   // send the API request to upgrade the user's wearable
   async function upgradeToken() {
     console.log('Upgrading NFT token ID: ' + props.tokenID);
-    // setClickedUpgrade(true);
+    console.log('Collection address: ' + props.address);
 
     const token = 'WEARABLE';
     setLoading(true);
     setUpdateStatus({ name: token, value: 'clicked' });
 
     try {
-      const json = await Fetch.UPGRADE_TOKEN(props.tokenID, collectionAddress);
+      const json = await Fetch.UPGRADE_TOKEN(props.tokenID, props.address);
 
       if (json.status) {
         console.log('success in upgrading:', json);

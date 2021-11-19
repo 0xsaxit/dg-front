@@ -142,6 +142,16 @@
                             width: 24px;
                             margin-right: 8px;
                         }
+                        
+                        .swap_input {
+                            width: 80px
+                        }
+                        
+                        .swap_input>input {
+                            padding: 0px !important;
+                            outline: none;
+                            border: none !important;
+                        }
 
                         abbr {
                             color: rgba(255, 255, 255, 0.5);
@@ -178,6 +188,7 @@
                 .arrow {
                     width: 25px;
                     margin: 0px 12px;
+                    cursor: pointer;
                 }
             }
 

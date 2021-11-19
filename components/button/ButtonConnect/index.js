@@ -57,10 +57,12 @@ const ButtonConnect = () => {
     if (window.ethereum && window.ethereum.selectedAddress) {
       window.addEventListener('load', function() {
         window.ethereum.on('accountsChanged', () => {
-          dispatch({
-            type: 'user_address',
-            data: window.ethereum.selectedAddress,
-          });
+          if (window.ethereum.selectedAddress) {
+            dispatch({
+              type: 'user_address',
+              data: window.ethereum.selectedAddress,
+            });
+          }
           assignToken(true);
         });
       });

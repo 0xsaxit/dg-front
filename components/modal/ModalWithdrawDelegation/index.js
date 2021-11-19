@@ -15,12 +15,34 @@ const ModalWithdrawDelegation = props => {
   const [clicked, setClicked] = useState(false);
   const [open, setOpen] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [withdrawStatus, setWithdrawStatus] =  useState(0);
 
   const isDelegator = props.ownerAddress === state.userAddress;
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
+  
+  // get Remaining Time
+  function getRemainingTime() {
+    const today = new Date();
+    const todayUTC = new Date(
+      today.getUTCFullYear(),
+      today.getUTCMonth(),
+      today.getUTCDate(),
+      today.getUTCHours(),
+      today.getUTCMinutes(),
+      today.getUTCSeconds()
+    );
+    const tomorrowUTC = new Date(todayUTC.getTime());
+    tomorrowUTC.setDate(tomorrowUTC.getDate() + 1);
+    tomorrowUTC.setHours(0);
+    tomorrowUTC.setMinutes(0);
+    tomorrowUTC.setSeconds(0);
+
+    return ((tomorrowUTC.getTime() - todayUTC.getTime()) / 1000 / 3600).toFixed(0);
+  }
+
   function description() {
     return (
       <Aux>
@@ -133,6 +155,11 @@ const ModalWithdrawDelegation = props => {
     }
   }
 
+  async function completeWithdraw() {
+    setOpen(false);
+    setSuccess(true);
+  }
+
   async function undelegateNFT() {
     console.log('Undelegate token ID: ' + props.tokenID);
     console.log('Token owner address: ' + props.ownerAddress);
@@ -149,21 +176,17 @@ const ModalWithdrawDelegation = props => {
 
     if (json.status) {
       console.log('NFT undelegation request successful');
+      setClicked(false);
+      setWithdrawStatus(1);
 
-      // update global state delegated items
-      const refresh = !state.refreshDelegation;
-
-      dispatch({
-        type: 'refresh_delegation',
-        data: refresh,
-      });
-
-      // close this modal and open the success modal
-      setOpen(false);
-      setSuccess(true);
     } else {
       console.log('NFT undelegation request error: ' + json.reason);
 
+      if (json.code === 2) {
+        setWithdrawStatus(2);
+      } else {
+        console.log('Delegation failed. Code: ' + json.code);
+      }
       setClicked(false);
     }
   }
@@ -202,19 +225,39 @@ const ModalWithdrawDelegation = props => {
                   <Button
                     className={styles.button_close}
                     onClick={() => {
-                      analytics.track(
-                        isDelegator
-                          ? 'DELEGATOR CLICKED WITHDRAW'
-                          : 'DELEGATEE CLICKED WITHDRAW'
-                      );
-                      undelegateNFT();
+                      if(withdrawStatus == 0) {
+                        analytics.track(
+                          isDelegator
+                            ? 'DELEGATOR CLICKED WITHDRAW'
+                            : 'DELEGATEE CLICKED WITHDRAW'
+                        );
+                        undelegateNFT();
+                      } else if (withdrawStatus == 1) { // success case
+                        completeWithdraw();
+                      } else {
+                        completeWithdraw();
+                      }
                     }}
                   >
-                    <img
-                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
-                      className={styles.icon}
-                    />
-                    {props.buttonName}
+                    {withdrawStatus == 0 ? (
+                      <>
+                        <img
+                          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
+                          className={styles.icon}
+                        />
+                        {props.buttonName}
+                        </>
+                    ) : (
+                      <div className={styles.withdraw_button}>
+                        <div className={styles.mainText}>
+                          Withdraw Delegation                          
+                        </div>
+                        <div className={styles.subText}>
+                          {withdrawStatus == 1? 'Withdraw Immediately': 'Schedule Withdraw: 12am UTC' + 
+                          ' (In ' + getRemainingTime() + 'Hours)'}
+                        </div>
+                      </div>
+                    )}
                   </Button>
                 ) : (
                   <Button className={styles.button_close} disabled={true}>
