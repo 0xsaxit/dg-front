@@ -255,7 +255,7 @@ const Governance = (props) => {
                 <Button
                   className={styles.max_button}
                   onClick={() => {
-                    setAmountInput(state.DGBalances.BALANCE_ROOT_DG);
+                    setAmountInput(props.formatPrice(stakeType === 'Stake' ? state.DGBalances.BALANCE_ROOT_DG : state.stakingBalances.BALANCE_USER_GOVERNANCE, 3));
                   }}
                 >
                   MAX
@@ -295,7 +295,7 @@ const Governance = (props) => {
                       props.withdrawal(stakeContractGovernance, amountInput);
                       setAmountInput('');
                     }}
-                    disabled={amountInput <= 0 || amountInput > state.stakingBalances.BALANCE_USER_GOVERNANCE ? true : false}
+                    disabled={amountInput <= 0 || parseFloat(amountInput.toString(), 10) > state.stakingBalances.BALANCE_USER_GOVERNANCE ? true : false}
                   >
                     {stakeType} {amountInput > 0 ? amountInput : ''} DG
                   </Button>
