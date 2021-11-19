@@ -56,7 +56,7 @@ const ModalChooseGamePlay = ({
                             src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637263761/GamePlayDext_grjsqp.png"
                             alt=""
                             onClick={() => {
-                                window.open("https://play.decentraland.org/?position=-118%2C135&realm=dg", "_blank");
+                                window.open("https://play.decentraland.org/?position=-110,129&realm=dg", "_blank");
                             }}
                         />
                         <h1>Play to Earn<br />ICE Poker</h1>
