@@ -15,6 +15,8 @@ const MarketPlace = () => {
   // define local variables
   const [previewHughHefLevel, setPreviewHughHefLevel] = useState(0);
   const [previewDGLevel, setPreviewDGLevel] = useState(0);
+  const [previewBomberLevel, setPreviewBomberLevel] = useState(0);
+  const [previewLinenLevel, setPreviewLinenLevel] = useState(0);
   const detailsICEPartyHost = {
     Shoes: [
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133629/Slippers_Level_1_pmeiq1.png',
@@ -164,8 +166,13 @@ const MarketPlace = () => {
     ],
   };
   const responsive = {
+    veryLargeDesktop: {
+      breakpoint: { max: 6000, min: 2400 },
+      items: 6,
+      partialVisibilityGutter: 2,
+    },
     largeDesktop: {
-      breakpoint: { max: 3000, min: 1440 },
+      breakpoint: { max: 2400, min: 1440 },
       items: 4,
       partialVisibilityGutter: 40,
     },
@@ -281,11 +288,15 @@ const MarketPlace = () => {
               className={styles.games_container}
               style={{ paddingBottom: '20px' }}
             >
-              <img
-                key={previewHughHefLevel}
-                className={styles.preview_nft_image}
-                src={previewHughHefImages[previewHughHefLevel]}
-              />
+              <div>
+                {previewHughHefImages.map((img, i) => (
+                  <img
+                    key={i}
+                    className={i === previewHughHefLevel ? styles.preview_nft_image : styles.preview_nft_image_none}
+                    src={img}
+                  />
+                ))}
+              </div>
               <div className={styles.preview_description}>
                 <h1 className={styles.title}>PREVIEW FIT LEVELS</h1>
                 <div className={styles.preview_level_select_div}>
@@ -354,8 +365,8 @@ const MarketPlace = () => {
                       {detailsICEPartyHost[item][3]}
                     </p>
                     {state.appConfig?.isWebsiteMintingEnabled &&
-                    state.userStatus >= 4 &&
-                    state.userLoggedIn ? (
+                      state.userStatus >= 4 &&
+                      state.userLoggedIn ? (
                       <p className={styles.nft_info}>
                         {state.itemLimits2[i][0]} of 100 left
                       </p>
@@ -459,11 +470,15 @@ const MarketPlace = () => {
               className={styles.games_container}
               style={{ paddingBottom: '20px' }}
             >
-              <img
-                key={previewDGLevel}
-                className={styles.preview_nft_image}
-                src={previewDGSuitImages[previewDGLevel]}
-              />
+              <div>
+                {previewDGSuitImages.map((img, i) => (
+                  <img
+                    key={i}
+                    className={i === previewDGLevel ? styles.preview_nft_image : styles.preview_nft_image_none}
+                    src={img}
+                  />
+                ))}
+              </div>
               <div className={styles.preview_description}>
                 <h1 className={styles.title}>PREVIEW FIT LEVELS</h1>
                 <div className={styles.preview_level_select_div}>
@@ -547,7 +562,7 @@ const MarketPlace = () => {
 
                 <div className={styles.button_container}>
                   {state.appConfig?.isWebsiteMintingEnabled &&
-                  state.itemLimits1[i][0] ? (
+                    state.itemLimits1[i][0] ? (
                     state.userStatus >= 4 && state.userLoggedIn ? (
                       <div className={styles.flex_50}>
                         <ModalMintWearable
@@ -613,11 +628,15 @@ const MarketPlace = () => {
               className={styles.games_container}
               style={{ paddingBottom: '20px' }}
             >
-              <img
-                key={previewDGLevel}
-                className={styles.preview_nft_image}
-                src={previewBomberImages[previewDGLevel]}
-              />
+              <div>
+                {previewBomberImages.map((img, i) => (
+                  <img
+                    key={i}
+                    className={i === previewBomberLevel ? styles.preview_nft_image : styles.preview_nft_image_none}
+                    src={img}
+                  />
+                ))}
+              </div>
               <div className={styles.preview_description}>
                 <h1 className={styles.title}>PREVIEW FIT LEVELS</h1>
                 <div className={styles.preview_level_select_div}>
@@ -625,11 +644,11 @@ const MarketPlace = () => {
                     <div
                       key={i}
                       className={
-                        previewDGLevel === i
+                        previewBomberLevel === i
                           ? styles.selectActive
                           : styles.select
                       }
-                      onClick={() => setPreviewDGLevel(i)}
+                      onClick={() => setPreviewBomberLevel(i)}
                     >
                       {i + 1}
                     </div>
@@ -703,7 +722,7 @@ const MarketPlace = () => {
 
                 <div className={styles.button_container}>
                   {state.appConfig?.isWebsiteMintingEnabled &&
-                  state.itemLimits4[i][0] ? (
+                    state.itemLimits4[i][0] ? (
                     state.userStatus >= 4 && state.userLoggedIn ? (
                       <div className={styles.flex_50}>
                         <ModalMintWearable
@@ -769,11 +788,15 @@ const MarketPlace = () => {
               className={styles.games_container}
               style={{ paddingBottom: '20px' }}
             >
-              <img
-                key={previewDGLevel}
-                className={styles.preview_nft_image}
-                src={previewLinenImages[previewDGLevel]}
-              />
+              <div>
+                {previewLinenImages.map((img, i) => (
+                  <img
+                    key={i}
+                    className={i === previewLinenLevel ? styles.preview_nft_image : styles.preview_nft_image_none}
+                    src={img}
+                  />
+                ))}
+              </div>
               <div className={styles.preview_description}>
                 <h1 className={styles.title}>PREVIEW FIT LEVELS</h1>
                 <div className={styles.preview_level_select_div}>
@@ -781,11 +804,11 @@ const MarketPlace = () => {
                     <div
                       key={i}
                       className={
-                        previewDGLevel === i
+                        previewLinenLevel === i
                           ? styles.selectActive
                           : styles.select
                       }
-                      onClick={() => setPreviewDGLevel(i)}
+                      onClick={() => setPreviewLinenLevel(i)}
                     >
                       {i + 1}
                     </div>
@@ -859,7 +882,7 @@ const MarketPlace = () => {
 
                 <div className={styles.button_container}>
                   {state.appConfig?.isWebsiteMintingEnabled &&
-                  state.itemLimits3[i][0] ? (
+                    state.itemLimits3[i][0] ? (
                     state.userStatus >= 4 && state.userLoggedIn ? (
                       <div className={styles.flex_50}>
                         <ModalMintWearable

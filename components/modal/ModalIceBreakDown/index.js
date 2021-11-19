@@ -1,5 +1,5 @@
-import { useEffect, useState, useContext } from 'react';
-import { Modal, Button } from 'semantic-ui-react';
+import React, { useState } from 'react';
+import { Modal } from 'semantic-ui-react';
 import styles from './ModalIceBreakDown.module.scss';
 
 const ModalIceBreakDown = ({
@@ -595,7 +595,7 @@ const ModalIceBreakDown = ({
                 className={styles.breakdown_modal}
                 onClose={() => {
                     setOpen(false),
-                        setShowingBreakDown(-1)
+                    setShowingBreakDown(-1)
                 }}
                 onOpen={() => setOpen(true)}
                 open={open}
