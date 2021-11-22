@@ -1,8 +1,8 @@
-import React, { useContext, useState } from 'react';
-import { GlobalContext } from '../../../../store';
+import React, {useContext, useState} from 'react';
+import {GlobalContext} from '../../../../store';
 import ModalMintWearable from 'components/modal/ModalMintWearable';
 import ModalLoginICE from 'components/modal/ModalLoginICE';
-import { Button, Popup } from 'semantic-ui-react';
+import {Button, Popup} from 'semantic-ui-react';
 import cn from 'classnames';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -505,6 +505,27 @@ const MarketPlace = () => {
                 </div>
 
                 <div className={styles.button_container}>
+                  {state.appConfig?.isPublicWebsiteMintingEnabled &&
+                    state.itemLimits1[i][0] ? (
+                    state.userStatus >= 4 && state.userLoggedIn ? (
+                      <div className={styles.flex_50}>
+                        <ModalMintWearable
+                          index={i}
+                          numberLeft={state.itemLimits1[i][0]}
+                          itemID={state.itemLimits1[i][1]}
+                          address={state.itemLimits1[5]}
+                          wearableImg={detailsICESuit[item][0]}
+                          wearableBodyType={detailsICESuit[item][3]}
+                          wearableBodyImg={detailsICESuit[item][4]}
+                          wearableName={detailsICESuit[item][1]}
+                        />
+                      </div>
+                    ) : (
+                      <div className={styles.flex_50}>
+                        <ModalLoginICE />
+                      </div>
+                    )
+                  ) : null}
                   <a
                     className={styles.flex_50}
                     href="https://opensea.io/collection/decentral-games-ice"
