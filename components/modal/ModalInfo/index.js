@@ -1,7 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import Link from 'next/link';
-import { Modal, Button } from 'semantic-ui-react';
-import Spinner from 'components/lottieAnimation/animations/spinner_updated';
+import { Modal, Button, Loader } from 'semantic-ui-react';
 import { GlobalContext } from '../../../store';
 import Fetch from '../../../common/Fetch';
 import styles from './ModalInfo.module.scss';
@@ -41,13 +39,6 @@ const ModalInfo = () => {
     setDGTotal_2(totalDGAdjusted_2);
   }, [state.DGBalances, state.stakingBalances]);
 
-  useEffect(() => {
-    if (state.openModalInfo) {
-      setOpen(true);
-    }
-    state.openModalInfo = false;
-  }, [state.openModalInfo]);
-
   // total unclaimed
   const unclaimed =
     Number(state.DGBalances.BALANCE_STAKING_GOVERNANCE) +
@@ -59,7 +50,7 @@ const ModalInfo = () => {
   useEffect(() => {
     (async function () {
       const json = await Fetch.DG_SUPPLY_GECKO();
-      if (json && json.market_data) {
+      if(json && json.market_data) {
         setSupply(json.market_data.circulating_supply);
         setDGPrice(json.market_data.current_price.usd);
       }
@@ -95,10 +86,17 @@ const ModalInfo = () => {
         <span>
           {!state.DGBalances.BALANCE_KEEPER_DG ? (
             <Button className="account-button" style={{ marginTop: 0 }}>
-              <p className="right-menu-text bnb" style={{ marginTop: '-5px' }}>
-                <Spinner
-                  width={30}
-                  height={30}
+              <p className="right-menu-text bnb">
+                <Loader
+                  active
+                  inline
+                  size="small"
+                  style={{
+                    fontSize: '12px',
+                    marginTop: '-4px',
+                    marginLeft: '0px',
+                    marginBottom: '0px',
+                  }}
                 />
               </p>
             </Button>
@@ -138,67 +136,20 @@ const ModalInfo = () => {
       <div>
         <span>
           <span style={{ display: 'flex', justifyContent: 'center' }}>
-            <span style={{ display: 'flex', flexDirection: 'column', width: '280px' }}>
+            <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className={styles.title}>Your DG Breakdown</h3>
-
-              <section style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                  <img
-                    className={styles.dg_image}
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631325895/dgNewLogo_hkvlps.png"
-                  />
-                  {state.DGBalances.BALANCE_KEEPER_DG == 10 ? (
-                    <h4 className={styles.subtitle_1}>0.000 DG</h4>
-                  ) : (
-                    <h4 className={styles.subtitle_1}>
-                      {formatPrice(DGTotal_2, 3)} DG
-                    </h4>
-                  )}
-                  <p className={styles.subtitle_2}>${unclaimedUSD}</p>
-                </div>
-
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                  <img
-                    className={styles.dg_image}
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637260602/grayLogo_ojx2hi.png"
-                  />
-                  {state.DGBalances.BALANCE_KEEPER_DG == 10 ? (
-                    <h4 className={styles.subtitle_1}>0.000 DG</h4>
-                  ) : (
-                    <h4 className={styles.subtitle_1}>
-                      {formatPrice(DGTotal_2, 3)} DG
-                    </h4>
-                  )}
-                  <p className={styles.subtitle_2}>${unclaimedUSD}</p>
-                </div>
-              </section>
-
-            </span>
-          </span>
-
-          <span
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              padding: '0px 12px 0px 12px',
-            }}
-          >
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h5 className={styles.row_title}>Staked DG (xDG)</h5>
-              <p className={styles.row_subtitle}>Staked in Governance</p>
-            </span>
-
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
-                {formatPrice(state.stakingBalances.BALANCE_USER_GOVERNANCE, 3)}
-              </h5>
-              <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
-                $
-                {formatPrice(
-                  state.stakingBalances.BALANCE_USER_GOVERNANCE * DGPrice,
-                  2
-                )}
-              </p>
+              <img
+                className={styles.dg_image}
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1624411671/Spinning-Logo-DG_n9f4xd.gif"
+              />
+              {state.DGBalances.BALANCE_KEEPER_DG == 10 ? (
+                <h4 className={styles.subtitle_1}>0.000 DG</h4>
+              ) : (
+                <h4 className={styles.subtitle_1}>
+                  {formatPrice(DGTotal_2, 3)} DG
+                </h4>
+              )}
+              <p className={styles.subtitle_2}>${unclaimedUSD}</p>
             </span>
           </span>
 
@@ -232,7 +183,7 @@ const ModalInfo = () => {
             }}
           >
             <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h5 className={styles.row_title}>Polygon DG</h5>
+              <h5 className={styles.row_title}>Polygon Wallet DG</h5>
               <p className={styles.row_subtitle}>Polygon Network Total</p>
             </span>
 
@@ -250,12 +201,38 @@ const ModalInfo = () => {
             style={{
               display: 'flex',
               justifyContent: 'space-between',
+              padding: '0px 12px 0px 12px',
+            }}
+          >
+            <span style={{ display: 'flex', flexDirection: 'column' }}>
+              <h5 className={styles.row_title}>Staked DG</h5>
+              <p className={styles.row_subtitle}>Staked in Governance</p>
+            </span>
+
+            <span style={{ display: 'flex', flexDirection: 'column' }}>
+              <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
+                {formatPrice(state.stakingBalances.BALANCE_USER_GOVERNANCE, 3)}
+              </h5>
+              <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
+                $
+                {formatPrice(
+                  state.stakingBalances.BALANCE_USER_GOVERNANCE * DGPrice,
+                  2
+                )}
+              </p>
+            </span>
+          </span>
+
+          <span
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
               padding: '0px 12px 6px 12px',
             }}
           >
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h5 className={styles.row_title}>Unclaimed DG</h5>
-              <p className={styles.row_subtitle}>Gameplay Rewards</p>
+              <p className={styles.row_subtitle}>Total From All Sources</p>
             </span>
 
             <span style={{ display: 'flex', flexDirection: 'column' }}>
@@ -272,50 +249,6 @@ const ModalInfo = () => {
             style={{
               display: 'flex',
               justifyContent: 'space-between',
-              padding: '6px 12px 0px 12px',
-            }}
-          >
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h5 className={styles.row_title}>Mainchain (Old) $DG</h5>
-              <p className={styles.row_subtitle}>Total From All Sources</p>
-            </span>
-
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
-                {formatPrice(state.DGBalances.BALANCE_ROOT_DG, 3)}
-              </h5>
-              <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
-                ${formatPrice(state.DGBalances.BALANCE_ROOT_DG * DGPrice, 2)}
-              </p>
-            </span>
-          </span>
-
-          <span
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              padding: '0px 12px 0px 12px',
-            }}
-          >
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h5 className={styles.row_title}>Polygon (Old) $DG</h5>
-              <p className={styles.row_subtitle}>Total From All Sources</p>
-            </span>
-
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
-                {formatPrice(state.DGBalances.BALANCE_CHILD_DG, 3)}
-              </h5>
-              <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
-                ${formatPrice(state.DGBalances.BALANCE_CHILD_DG * DGPrice, 2)}
-              </p>
-            </span>
-          </span>
-
-          <span
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
               marginTop: '24px',
             }}
           >
@@ -323,13 +256,13 @@ const ModalInfo = () => {
               href={`https://app.uniswap.org/#/swap?outputCurrency=${Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DG}`}
               target="_blank"
             >
-              <button className={cn('btn', styles.buy_button)}>Buy DG</button>
+              <button className={cn('btn', styles.buy_button)}>Buy $DG</button>
             </a>
-            <Link href="/dg/governance" target="_blank">
+            <a href="https://docs.decentral.games/faq" target="_blank">
               <button className={cn('btn', styles.learn_button)}>
-                Stake DG
+                Learn More
               </button>
-            </Link>
+            </a>
           </span>
         </span>
       </div>
