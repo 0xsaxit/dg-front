@@ -45,7 +45,14 @@ const ModalMint = props => {
   function priceAndStaked() {
     return (
       <div className={styles.price_area}>
-        Price <span>(${(state.DGPrices.eth * state.tokenAmounts.WETH_COST_AMOUNT).toFixed(2)})</span>
+        Price{' '}
+        <span>
+          ($
+          {(state.DGPrices.eth * state.tokenAmounts.WETH_COST_AMOUNT).toFixed(
+            2
+          )}
+          )
+        </span>
         <div className={styles.card_area}>
           <div className={styles.card_area_body}>
             {state.userBalances[2][3] < Global.CONSTANTS.WETH_MINT_AMOUNT ? (
@@ -62,7 +69,8 @@ const ModalMint = props => {
 
             {state.userBalances[2][3] >= Global.CONSTANTS.WETH_MINT_AMOUNT ? (
               <div className={styles.green_check}>
-                {Number(state.userBalances[2][3]).toFixed(3)} ETH Available &nbsp;
+                {Number(state.userBalances[2][3]).toFixed(3)} ETH Available
+                &nbsp;
                 <svg
                   width="9"
                   height="8"
@@ -227,7 +235,7 @@ const ModalMint = props => {
     return (
       <ModalETHAuth
         itemID={props.itemID}
-        address={'0x4cd15dcd96362cF85E19039C3C2D661e5e43145E'}
+        address={props.address}
         wearableImg={props.wearableImg}
         show={openETHAuth}
         back={() => {

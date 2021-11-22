@@ -5,7 +5,7 @@ import Web3 from 'web3';
 import ABI_DG_TOKEN from '../../../components/ABI/ABIDGToken';
 import ABI_ICE_REGISTRANT from '../../../components/ABI/ABIICERegistrant.json';
 import MetaTx from '../../../common/MetaTx';
-import MetamaskAction from './MetamaskAction';
+// import MetamaskAction from './MetamaskAction';
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './ActivateWearableModal.module.scss';
 import ModalActivationSuccess from '../ModalActivationSuccess';
@@ -26,7 +26,7 @@ const ActivateWearableModal = props => {
   const [previousOwner, setPreviousOwner] = useState('');
   const [authStatus, setAuthStatus] = useState(false);
   const [clicked, setClicked] = useState(false);
-
+  const [biconomyReady, setBiconomyReady] = useState(false);
   const [openUpgradeSuccess, setOpenUpgradeSuccess] = useState(false);
   const [errorText, setErrorText] = useState(null);
 
@@ -69,6 +69,7 @@ const ActivateWearableModal = props => {
       biconomy
         .onEvent(biconomy.READY, () => {
           console.log('Mexa is Ready: Re-ICE (wearables)');
+          setBiconomyReady(true);
         })
         .onEvent(biconomy.ERROR, (error, message) => {
           console.error(error);
@@ -210,31 +211,6 @@ const ActivateWearableModal = props => {
     );
   }
 
-  /*
-  function approveDG() {
-    return (
-      <Aux>
-        <div className={styles.upgrade_inner_container}>
-          <MetamaskAction
-            actionState={
-              authStatus
-                ? 'done'
-                : !clicked
-                ? 'initial'
-                : clicked
-                ? 'clicked'
-                : null
-            }
-            onClick={metaTransactionDG}
-            primaryText="Authorize DG"
-            secondaryText="Enables DG Transaction"
-          />
-        </div>
-      </Aux>
-    );
-  }
-  */
-
   // Biconomy API meta-transaction. User must authorize DG token contract to access their funds
   async function metaTransactionDG() {
     try {
@@ -286,6 +262,7 @@ const ActivateWearableModal = props => {
   async function metaTransactionReICE() {
     console.log('Meta-transaction NFT Activation');
     console.log('Previous owner: ' + previousOwner);
+    console.log('Collection address: ' + props.address);
     console.log('Token ID: ' + props.tokenID);
 
     try {
@@ -378,10 +355,13 @@ const ActivateWearableModal = props => {
               className={styles.primary}
               onClick={() => {
                 console.log('authStatus: ', authStatus);
-                if (!authStatus) {
-                  metaTransactionDG();
-                } else {
-                  metaTransactionReICE();
+
+                if (biconomyReady) {
+                  if (!authStatus) {
+                    metaTransactionDG();
+                  } else {
+                    metaTransactionReICE();
+                  }
                 }
               }}
             >

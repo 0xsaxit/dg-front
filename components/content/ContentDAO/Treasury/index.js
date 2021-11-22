@@ -1,19 +1,13 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { useRouter } from 'next/router';
-import cn from 'classnames';
-import Biconomy from '@biconomy/mexa';
-import Web3 from 'web3';
-import axios from 'axios';
-import { Loader, Popup, Icon, Button, Table } from 'semantic-ui-react';
+import { Table } from 'semantic-ui-react';
 import { Line } from 'react-chartjs-2';
 import { GlobalContext } from 'store';
-import MetaTx from 'common/MetaTx';
-import Global from 'components/Constants';
-import Transactions from 'common/Transactions';
 import styles from './Treasury.module.scss';
 import TooltipOne from 'components/tooltips/TreasuryTooltipDG/index.js';
 import TooltipTwo from 'components/tooltips/TreasuryTooltipGameplay/index.js';
 import TooltipThree from 'components/tooltips/TreasuryTooltipLP/index.js';
+import Spinner from 'components/lottieAnimation/animations/spinner_updated';
 
 
 const Treasury = props => {
@@ -203,8 +197,8 @@ const Treasury = props => {
 
   function getLoader() {
     return (
-      <Table.Cell textAlign="right">
-        <Loader active inline size="small" className="treasury-loader" />
+      <Table.Cell textAlign="right" style={{ position: 'relative', top: '-5px' }}>
+        <Spinner height={33} width={33} />
       </Table.Cell>
     );
   }
@@ -297,7 +291,7 @@ const Treasury = props => {
               ) : null}
             </p>
           </div>
-        </div>  
+        </div>
 
         <div className={styles.stat}>
           <span style={{ display: 'flex', justifyContent: 'center' }}>
