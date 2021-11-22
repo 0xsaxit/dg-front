@@ -1,8 +1,8 @@
-import React, { useContext, useState } from 'react';
-import { GlobalContext } from '../../../../store';
+import React, {useContext, useState} from 'react';
+import {GlobalContext} from '../../../../store';
 import ModalMintWearable from 'components/modal/ModalMintWearable';
 import ModalLoginICE from 'components/modal/ModalLoginICE';
-import { Button, Popup } from 'semantic-ui-react';
+import {Button, Popup} from 'semantic-ui-react';
 import cn from 'classnames';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -364,7 +364,7 @@ const MarketPlace = () => {
                     <p className={styles.nft_info}>
                       {detailsICEPartyHost[item][3]}
                     </p>
-                    {state.appConfig?.isWebsiteMintingEnabled &&
+                    {state.appConfig?.isPublicWebsiteMintingEnabled &&
                       state.userStatus >= 4 &&
                       state.userLoggedIn ? (
                       <p className={styles.nft_info}>
@@ -385,11 +385,10 @@ const MarketPlace = () => {
                 <div className={styles.button_container}>
                   {(() => {
                     // Minting Enabled State
-                    if (
-                      state.appConfig?.isWebsiteMintingEnabled &&
-                      state.userStatus >= 20 &&
-                      state.userLoggedIn &&
-                      state.itemLimits2[i][0] > 0
+                    if ((state.appConfig?.isPublicWebsiteMintingEnabled
+                            || (state.appConfig?.isPrivateWebsiteMintingEnabled && state.userStatus > 20)) &&
+                        state.userLoggedIn &&
+                        state.itemLimits2[i][0] > 0
                     ) {
                       return (
                         <div className={styles.flex_50}>
@@ -561,7 +560,7 @@ const MarketPlace = () => {
                 </div>
 
                 <div className={styles.button_container}>
-                  {state.appConfig?.isWebsiteMintingEnabled &&
+                  {state.appConfig?.isPublicWebsiteMintingEnabled &&
                     state.itemLimits1[i][0] ? (
                     state.userStatus >= 4 && state.userLoggedIn ? (
                       <div className={styles.flex_50}>
@@ -721,7 +720,7 @@ const MarketPlace = () => {
                 </div>
 
                 <div className={styles.button_container}>
-                  {state.appConfig?.isWebsiteMintingEnabled &&
+                  {state.appConfig?.isPublicWebsiteMintingEnabled &&
                     state.itemLimits4[i][0] ? (
                     state.userStatus >= 4 && state.userLoggedIn ? (
                       <div className={styles.flex_50}>
@@ -881,7 +880,7 @@ const MarketPlace = () => {
                 </div>
 
                 <div className={styles.button_container}>
-                  {state.appConfig?.isWebsiteMintingEnabled &&
+                  {state.appConfig?.isPublicWebsiteMintingEnabled &&
                     state.itemLimits3[i][0] ? (
                     state.userStatus >= 4 && state.userLoggedIn ? (
                       <div className={styles.flex_50}>
