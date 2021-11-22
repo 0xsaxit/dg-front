@@ -364,15 +364,7 @@ const MarketPlace = () => {
                     <p className={styles.nft_info}>
                       {detailsICEPartyHost[item][3]}
                     </p>
-                    {state.appConfig?.isWebsiteMintingEnabled &&
-                      state.userStatus >= 4 &&
-                      state.userLoggedIn ? (
-                      <p className={styles.nft_info}>
-                        {state.itemLimits2[i][0]} of 100 left
-                      </p>
-                    ) : (
-                      <p className={styles.nft_info}>- of 100 left</p>
-                    )}
+                    <p className={styles.nft_info}>0 of 100 left</p>
                   </span>
                   <p className={styles.nft_other_p}>
                     {detailsICEPartyHost[item][2]}
@@ -383,60 +375,18 @@ const MarketPlace = () => {
                 </div>
 
                 <div className={styles.button_container}>
-                  {(() => {
-                    // Minting Enabled State
-                    if (
-                      state.appConfig?.isWebsiteMintingEnabled &&
-                      state.userStatus >= 20 &&
-                      state.userLoggedIn &&
-                      state.itemLimits2[i][0] > 0
-                    ) {
-                      return (
-                        <div className={styles.flex_50}>
-                          <ModalMintWearable
-                            index={i}
-                            numberLeft={state.itemLimits2[i][0]}
-                            itemID={state.itemLimits2[i][1]}
-                            address={state.itemLimits2[5]}
-                            wearableImg={detailsICEPartyHost[item][0]}
-                            wearableBodyType={detailsICEPartyHost[item][3]}
-                            wearableBodyImg={detailsICEPartyHost[item][4]}
-                            wearableName={detailsICEPartyHost[item][1]}
-                          />
-                        </div>
-                      );
-                      // Minting Disabled States
-                    } else {
-                      // Logged Out State
-                      if (!state.userLoggedIn) {
-                        return (
-                          <div className={styles.flex_50}>
-                            <ModalLoginICE />
-                          </div>
-                        );
-                      }
-                      // Sold Out State
-                      else if (
-                        state.itemLimits2[i][0] < 1 &&
-                        state.userStatus >= 4
-                      ) {
-                        return (
-                          <Button disabled className={styles.sold_button}>
-                            Sold Out!
-                          </Button>
-                        );
-                      } else {
-                        // Coming Soon State
-                        if (state.itemLimits2[i][0] > 0) {
-                          return (
-                            <Button disabled className={styles.sold_button}>
-                              Coming Soon!
-                            </Button>
-                          );
-                        }
-                      }
-                    }
-                  })()}
+                  <a
+                    className={styles.flex_50}
+                    href="https://opensea.io/collection/decentral-games-ice"
+                    target="_blank"
+                    style={{
+                      width: '100%',
+                    }}
+                  >
+                    <Button className={styles.wearable_button}>
+                      Buy on Secondary
+                    </Button>
+                  </a>
                 </div>
               </div>
             ))}
@@ -544,13 +494,7 @@ const MarketPlace = () => {
                 <div className={styles.nft_description}>
                   <span style={{ display: 'flex', justifyContent: 'center' }}>
                     <p className={styles.nft_info}>{detailsICESuit[item][3]}</p>
-                    {state.userStatus >= 4 && state.userLoggedIn ? (
-                      <p className={styles.nft_info}>
-                        {state.itemLimits1[i][0]} of 100 left
-                      </p>
-                    ) : (
-                      <p className={styles.nft_info}>- of 100 left</p>
-                    )}
+                    <p className={styles.nft_info}>0 of 100 left</p>
                   </span>
                   <p className={styles.nft_other_p}>
                     {detailsICESuit[item][2]}
@@ -561,31 +505,9 @@ const MarketPlace = () => {
                 </div>
 
                 <div className={styles.button_container}>
-                  {state.appConfig?.isWebsiteMintingEnabled &&
-                    state.itemLimits1[i][0] ? (
-                    state.userStatus >= 4 && state.userLoggedIn ? (
-                      <div className={styles.flex_50}>
-                        <ModalMintWearable
-                          index={i}
-                          numberLeft={state.itemLimits1[i][0]}
-                          itemID={state.itemLimits1[i][1]}
-                          address={state.itemLimits1[5]}
-                          wearableImg={detailsICESuit[item][0]}
-                          wearableBodyType={detailsICESuit[item][3]}
-                          wearableBodyImg={detailsICESuit[item][4]}
-                          wearableName={detailsICESuit[item][1]}
-                        />
-                      </div>
-                    ) : (
-                      <div className={styles.flex_50}>
-                        <ModalLoginICE />
-                      </div>
-                    )
-                  ) : null}
-
                   <a
                     className={styles.flex_50}
-                    href="https://market.decentraland.org/browse?assetType=nft&section=wearables&contracts=0xcb06f6aee0655252a3f6f2884680421d55d3c645"
+                    href="https://opensea.io/collection/decentral-games-ice"
                     target="_blank"
                     style={{
                       width: '100%',
@@ -721,40 +643,60 @@ const MarketPlace = () => {
                 </div>
 
                 <div className={styles.button_container}>
-                  {state.appConfig?.isWebsiteMintingEnabled &&
-                    state.itemLimits4[i][0] ? (
-                    state.userStatus >= 4 && state.userLoggedIn ? (
-                      <div className={styles.flex_50}>
-                        <ModalMintWearable
-                          index={i}
-                          numberLeft={state.itemLimits4[i][0]}
-                          itemID={state.itemLimits4[i][1]}
-                          address={state.itemLimits4[5]}
-                          wearableImg={detailsICEBomber[item][0]}
-                          wearableBodyType={detailsICEBomber[item][3]}
-                          wearableBodyImg={detailsICEBomber[item][4]}
-                          wearableName={detailsICEBomber[item][1]}
-                        />
-                      </div>
-                    ) : (
-                      <div className={styles.flex_50}>
-                        <ModalLoginICE />
-                      </div>
-                    )
-                  ) : (
-                    <a
-                      className={styles.flex_50}
-                      href="https://market.decentraland.org/browse?assetType=nft&section=wearables&contracts=0xcb06f6aee0655252a3f6f2884680421d55d3c645"
-                      target="_blank"
-                      style={{
-                        width: '100%',
-                      }}
-                    >
-                      <Button className={styles.wearable_button}>
-                        Buy on Secondary
-                      </Button>
-                    </a>
-                  )}
+                  {(() => {
+                    // Minting Enabled State
+                    if (
+                      state.appConfig?.isWebsiteMintingEnabled &&
+                      state.userStatus >= 20 &&
+                      state.userLoggedIn &&
+                      state.itemLimits4[i][0] > 0
+                    ) {
+                      return (
+                        <div className={styles.flex_50}>
+                          <ModalMintWearable
+                            index={i}
+                            numberLeft={state.itemLimits4[i][0]}
+                            itemID={state.itemLimits4[i][1]}
+                            address={state.itemLimits4[5]}
+                            wearableImg={detailsICEPartyHost[item][0]}
+                            wearableBodyType={detailsICEBomber[item][3]}
+                            wearableBodyImg={detailsICEBomber[item][4]}
+                            wearableName={detailsICEBomber[item][1]}
+                          />
+                        </div>
+                      );
+                      // Minting Disabled States
+                    } else {
+                      // Logged Out State
+                      if (!state.userLoggedIn) {
+                        return (
+                          <div className={styles.flex_50}>
+                            <ModalLoginICE />
+                          </div>
+                        );
+                      }
+                      // Sold Out State
+                      else if (
+                        state.itemLimits4[i][0] < 1 &&
+                        state.userStatus >= 4
+                      ) {
+                        return (
+                          <Button disabled className={styles.sold_button}>
+                            Sold Out!
+                          </Button>
+                        );
+                      } else {
+                        // Coming Soon State
+                        if (state.itemLimits4[i][0] > 0) {
+                          return (
+                            <Button disabled className={styles.sold_button}>
+                              Coming Soon!
+                            </Button>
+                          );
+                        }
+                      }
+                    }
+                  })()}
                 </div>
               </div>
             ))}
@@ -881,40 +823,60 @@ const MarketPlace = () => {
                 </div>
 
                 <div className={styles.button_container}>
-                  {state.appConfig?.isWebsiteMintingEnabled &&
-                    state.itemLimits3[i][0] ? (
-                    state.userStatus >= 4 && state.userLoggedIn ? (
-                      <div className={styles.flex_50}>
-                        <ModalMintWearable
-                          index={i}
-                          numberLeft={state.itemLimits3[i][0]}
-                          itemID={state.itemLimits3[i][1]}
-                          address={state.itemLimits3[5]}
-                          wearableImg={detailsICELinen[item][0]}
-                          wearableBodyType={detailsICELinen[item][3]}
-                          wearableBodyImg={detailsICELinen[item][4]}
-                          wearableName={detailsICELinen[item][1]}
-                        />
-                      </div>
-                    ) : (
-                      <div className={styles.flex_50}>
-                        <ModalLoginICE />
-                      </div>
-                    )
-                  ) : (
-                    <a
-                      className={styles.flex_50}
-                      href="https://market.decentraland.org/browse?assetType=nft&section=wearables&contracts=0xcb06f6aee0655252a3f6f2884680421d55d3c645"
-                      target="_blank"
-                      style={{
-                        width: '100%',
-                      }}
-                    >
-                      <Button className={styles.wearable_button}>
-                        Buy on Secondary
-                      </Button>
-                    </a>
-                  )}
+                  {(() => {
+                    // Minting Enabled State
+                    if (
+                      state.appConfig?.isWebsiteMintingEnabled &&
+                      state.userStatus >= 20 &&
+                      state.userLoggedIn &&
+                      state.itemLimits3[i][0] > 0
+                    ) {
+                      return (
+                        <div className={styles.flex_50}>
+                          <ModalMintWearable
+                            index={i}
+                            numberLeft={state.itemLimits3[i][0]}
+                            itemID={state.itemLimits3[i][1]}
+                            address={state.itemLimits3[5]}
+                            wearableImg={detailsICELinen[item][0]}
+                            wearableBodyType={detailsICELinen[item][3]}
+                            wearableBodyImg={detailsICELinen[item][4]}
+                            wearableName={detailsICELinen[item][1]}
+                          />
+                        </div>
+                      );
+                      // Minting Disabled States
+                    } else {
+                      // Logged Out State
+                      if (!state.userLoggedIn) {
+                        return (
+                          <div className={styles.flex_50}>
+                            <ModalLoginICE />
+                          </div>
+                        );
+                      }
+                      // Sold Out State
+                      else if (
+                        state.itemLimits3[i][0] < 1 &&
+                        state.userStatus >= 4
+                      ) {
+                        return (
+                          <Button disabled className={styles.sold_button}>
+                            Sold Out!
+                          </Button>
+                        );
+                      } else {
+                        // Coming Soon State
+                        if (state.itemLimits3[i][0] > 0) {
+                          return (
+                            <Button disabled className={styles.sold_button}>
+                              Coming Soon!
+                            </Button>
+                          );
+                        }
+                      }
+                    }
+                  })()}
                 </div>
               </div>
             ))}
