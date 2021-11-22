@@ -9,8 +9,7 @@ import Web3 from 'web3';
 import Transactions from '../../../../common/Transactions';
 import Global from '../../../Constants';
 
-
-const Governance = (props) => {
+const Governance = props => {
   // get the treasury's balances numbers from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -23,7 +22,6 @@ const Governance = (props) => {
   const [stakeContractGovernance, setStakeContractGovernance] = useState({});
   const [DGTokenContract, setDGTokenContract] = useState({});
   const [instances, setInstances] = useState(false);
-
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -95,23 +93,20 @@ const Governance = (props) => {
     }
   }, [instances, state.stakingBalances.BALANCE_USER_GOVERNANCE]);
 
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   return (
     <Aux>
       <div>
-        <div
-          className={cn(
-            'd-flex',
-            styles.stake_DG_container
-          )}
-        >
+        <div className={cn('d-flex', styles.stake_DG_container)}>
           <div className={styles.lower}>
             <p className={styles.lower_header}>Claim $DG Rewards</p>
             <div className={styles.lower_value}>
               <p className={styles.DG_value}>
-                {props.formatPrice(state.DGBalances.BALANCE_STAKING_GOVERNANCE, 3)}
+                {props.formatPrice(
+                  state.DGBalances.BALANCE_STAKING_GOVERNANCE,
+                  3
+                )}
               </p>
               <img
                 style={{ marginTop: '-4px' }}
@@ -119,7 +114,13 @@ const Governance = (props) => {
               />
             </div>
             <p className={styles.price}>
-              ${props.formatPrice((props.price * state.DGBalances.BALANCE_STAKING_GOVERNANCE).toFixed(2), 2)}
+              $
+              {props.formatPrice(
+                (
+                  props.price * state.DGBalances.BALANCE_STAKING_GOVERNANCE
+                ).toFixed(2),
+                2
+              )}
             </p>
 
             <p className={styles.lower_text}>
@@ -140,23 +141,28 @@ const Governance = (props) => {
                       type: 'show_toastMessage',
                       data: msg,
                     });
-
                   }}
                 >
                   Claim {state.DGBalances.BALANCE_STAKING_GOVERNANCE} $DG
                 </Button>
               ) : (
-                <Button
-                  disabled
-                  className={styles.lower_button}
-                >
+                <Button disabled className={styles.lower_button}>
                   Claim {state.DGBalances.BALANCE_STAKING_GOVERNANCE} $DG
                 </Button>
               )}
             </span>
           </div>
 
-          <div className={styles.lower} style={{ width: '500px', minWidth: '500px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <div
+            className={styles.lower}
+            style={{
+              width: '500px',
+              minWidth: '500px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
             <div className={styles.type_div}>
               <div
                 className={stakeType === 'Stake' ? styles.active : null}
@@ -177,15 +183,21 @@ const Governance = (props) => {
             </div>
 
             <p className={styles.lower_header}> New Governance Staking</p>
-            <p className={styles.apy_text}>Your DG {stakeType === 'Stake' ? 'Staked' : 'Unstaked'}</p>
+            <p className={styles.apy_text}>Your DG Staked</p>
             <p className={styles.apy_percent}>
-              { }
-              {stakeType === 'Stake' ?
-                props.formatPrice(state.stakingBalances.BALANCE_USER_GOVERNANCE, 2)
-                : props.formatPrice(state.DGBalances.BALANCE_ROOT_DG, 2)
-              }
+              {props.formatPrice(
+                state.stakingBalances.BALANCE_USER_GOVERNANCE,
+                2
+              )}
               <br />
-              <abbr>${props.formatPrice((stakeType === 'Stake' ? state.stakingBalances.BALANCE_USER_GOVERNANCE : state.DGBalances.BALANCE_ROOT_DG) * state.DGPrices.dg, 2)}</abbr>
+              <abbr>
+                $
+                {props.formatPrice(
+                  state.stakingBalances.BALANCE_USER_GOVERNANCE *
+                    state.DGPrices.dg,
+                  2
+                )}
+              </abbr>
             </p>
 
             <div style={{ display: 'flex', width: '80%' }}>
@@ -208,10 +220,7 @@ const Governance = (props) => {
                   {APYGovernance ? (
                     <p className="earned-amount stat">{APYGovernance}%</p>
                   ) : (
-                    <Spinner
-                      width={33}
-                      height={33}
-                    />
+                    <Spinner width={33} height={33} />
                   )}
                 </span>
               </span>
@@ -239,15 +248,23 @@ const Governance = (props) => {
             <div className={styles.content}>
               <div className={styles.contract_div}>
                 <div className={styles.content}>
-                  <img className={styles.dg} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
+                  <img
+                    className={styles.dg}
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png"
+                    alt="DG"
+                  />
                   <input
                     type="number"
                     className={styles.dg_input}
                     value={amountInput.toString()}
                     onChange={handleAmountInputChange}
                     style={{
-                      minWidth: `${5 + (amountInput.toString().length + 1) * 12}px`,
-                      maxWidth: `${5 + (amountInput.toString().length + 1) * 12}px`
+                      minWidth: `${
+                        5 + (amountInput.toString().length + 1) * 12
+                      }px`,
+                      maxWidth: `${
+                        5 + (amountInput.toString().length + 1) * 12
+                      }px`,
                     }}
                   />
                 </div>
@@ -255,15 +272,33 @@ const Governance = (props) => {
                 <Button
                   className={styles.max_button}
                   onClick={() => {
-                    setAmountInput(props.formatPrice(stakeType === 'Stake' ? state.DGBalances.BALANCE_ROOT_DG : state.stakingBalances.BALANCE_USER_GOVERNANCE, 3));
+                    setAmountInput(
+                      props.formatPrice(
+                        stakeType === 'Stake'
+                          ? state.DGBalances.BALANCE_ROOT_DG
+                          : state.stakingBalances.BALANCE_USER_GOVERNANCE,
+                        3
+                      )
+                    );
                   }}
                 >
                   MAX
                 </Button>
 
                 <div className={styles.description}>
-                  <h4 className={amountInput <= state.DGBalances.BALANCE_ROOT_DG ? styles.success : styles.error}>
-                    {props.formatPrice(stakeType === 'Stake' ? state.DGBalances.BALANCE_ROOT_DG : state.stakingBalances.BALANCE_USER_GOVERNANCE, 3)}
+                  <h4
+                    className={
+                      amountInput <= state.DGBalances.BALANCE_ROOT_DG
+                        ? styles.success
+                        : styles.error
+                    }
+                  >
+                    {props.formatPrice(
+                      stakeType === 'Stake'
+                        ? state.DGBalances.BALANCE_ROOT_DG
+                        : state.stakingBalances.BALANCE_USER_GOVERNANCE,
+                      3
+                    )}
                     &nbsp;DG Available to&nbsp;
                     {stakeType}
                   </h4>
@@ -284,7 +319,12 @@ const Governance = (props) => {
                       );
                       setAmountInput('');
                     }}
-                    disabled={amountInput <= 0 || amountInput > state.DGBalances.BALANCE_ROOT_DG ? true : false}
+                    disabled={
+                      amountInput <= 0 ||
+                      amountInput > state.DGBalances.BALANCE_ROOT_DG
+                        ? true
+                        : false
+                    }
                   >
                     {stakeType} {amountInput > 0 ? amountInput : ''} DG
                   </Button>
@@ -295,7 +335,13 @@ const Governance = (props) => {
                       props.withdrawal(stakeContractGovernance, amountInput);
                       setAmountInput('');
                     }}
-                    disabled={amountInput <= 0 || parseFloat(amountInput.toString(), 10) > state.stakingBalances.BALANCE_USER_GOVERNANCE ? true : false}
+                    disabled={
+                      amountInput <= 0 ||
+                      parseFloat(amountInput.toString(), 10) >
+                        state.stakingBalances.BALANCE_USER_GOVERNANCE
+                        ? true
+                        : false
+                    }
                   >
                     {stakeType} {amountInput > 0 ? amountInput : ''} DG
                   </Button>
@@ -307,6 +353,6 @@ const Governance = (props) => {
       </div>
     </Aux>
   );
-}
+};
 
 export default Governance;
