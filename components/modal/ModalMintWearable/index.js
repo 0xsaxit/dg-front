@@ -280,7 +280,7 @@ const ModalMint = props => {
         close
         trigger={
           <Button className={styles.wearable_button}>
-            Mint New Wearable ID: {props.itemID}
+            Mint New Wearable
           </Button>
         }
       >

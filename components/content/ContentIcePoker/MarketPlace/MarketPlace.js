@@ -505,27 +505,6 @@ const MarketPlace = () => {
                 </div>
 
                 <div className={styles.button_container}>
-                  {state.appConfig?.isPublicWebsiteMintingEnabled &&
-                    state.itemLimits1[i][0] ? (
-                    state.userStatus >= 4 && state.userLoggedIn ? (
-                      <div className={styles.flex_50}>
-                        <ModalMintWearable
-                          index={i}
-                          numberLeft={state.itemLimits1[i][0]}
-                          itemID={state.itemLimits1[i][1]}
-                          address={state.itemLimits1[5]}
-                          wearableImg={detailsICESuit[item][0]}
-                          wearableBodyType={detailsICESuit[item][3]}
-                          wearableBodyImg={detailsICESuit[item][4]}
-                          wearableName={detailsICESuit[item][1]}
-                        />
-                      </div>
-                    ) : (
-                      <div className={styles.flex_50}>
-                        <ModalLoginICE />
-                      </div>
-                    )
-                  ) : null}
                   <a
                     className={styles.flex_50}
                     href="https://opensea.io/collection/decentral-games-ice"
@@ -647,7 +626,9 @@ const MarketPlace = () => {
                     <p className={styles.nft_info}>
                       {detailsICEBomber[item][3]}
                     </p>
-                    {state.userStatus >= 4 && state.userLoggedIn ? (
+                    {state.appConfig?.isPublicWebsiteMintingEnabled &&
+                      state.userStatus >= 4 && 
+                      state.userLoggedIn ? (
                       <p className={styles.nft_info}>
                         {state.itemLimits4[i][0]} of 100 left
                       </p>
@@ -666,9 +647,8 @@ const MarketPlace = () => {
                 <div className={styles.button_container}>
                   {(() => {
                     // Minting Enabled State
-                    if (
-                      state.appConfig?.isWebsiteMintingEnabled &&
-                      state.userStatus >= 20 &&
+                    if ((state.appConfig?.isPublicWebsiteMintingEnabled
+                        || (state.appConfig?.isPrivateWebsiteMintingEnabled && state.userStatus > 20)) &&
                       state.userLoggedIn &&
                       state.itemLimits4[i][0] > 0
                     ) {
@@ -679,7 +659,7 @@ const MarketPlace = () => {
                             numberLeft={state.itemLimits4[i][0]}
                             itemID={state.itemLimits4[i][1]}
                             address={state.itemLimits4[5]}
-                            wearableImg={detailsICEPartyHost[item][0]}
+                            wearableImg={detailsICEBomber[item][0]}
                             wearableBodyType={detailsICEBomber[item][3]}
                             wearableBodyImg={detailsICEBomber[item][4]}
                             wearableName={detailsICEBomber[item][1]}
@@ -827,7 +807,9 @@ const MarketPlace = () => {
                     <p className={styles.nft_info}>
                       {detailsICELinen[item][3]}
                     </p>
-                    {state.userStatus >= 4 && state.userLoggedIn ? (
+                    {state.appConfig?.isPublicWebsiteMintingEnabled &&
+                      state.userStatus >= 4 && 
+                      state.userLoggedIn ? (
                       <p className={styles.nft_info}>
                         {state.itemLimits3[i][0]} of 100 left
                       </p>
@@ -846,9 +828,8 @@ const MarketPlace = () => {
                 <div className={styles.button_container}>
                   {(() => {
                     // Minting Enabled State
-                    if (
-                      state.appConfig?.isWebsiteMintingEnabled &&
-                      state.userStatus >= 20 &&
+                    if ((state.appConfig?.isPublicWebsiteMintingEnabled
+                        || (state.appConfig?.isPrivateWebsiteMintingEnabled && state.userStatus > 20)) &&
                       state.userLoggedIn &&
                       state.itemLimits3[i][0] > 0
                     ) {
