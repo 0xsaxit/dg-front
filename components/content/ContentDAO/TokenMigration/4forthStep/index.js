@@ -21,11 +21,11 @@ const ForthStep = (props) => {
     const [stakeSubmitted, setStakeSubmitted] = useState(false);
     const [approving, setApproving] = useState(false);
     const networkInfo = {
-        id: 3,
-        name: 'Ropsten',
-        etherscan: 'https://ropsten.etherscan.io',
-        dgLightAddress: Global.ADDRESSES.ROPSTEN_TOKEN_ADDRESS_DG_LIGHT,
-        dgTownHallAddress: Global.ADDRESSES.ROPSTEN_DG_TOWN_HALL_ADDRESS
+        id: 1,
+        name: 'Mainnet',
+        etherscan: 'https://etherscan.io',
+        dgLightAddress: Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DG_LIGHT,
+        dgTownHallAddress: Global.ADDRESSES.ROOT_DG_TOWN_HALL_ADDRESS
     };
 
     useEffect(() => {
