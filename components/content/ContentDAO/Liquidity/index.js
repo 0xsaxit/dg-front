@@ -15,6 +15,7 @@ const Liquidity = props => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
+  const [stakeType, setStakeType] = useState('Stake');
   const [amountInput, setAmountInput] = useState('');
   const [percentageUniswap, setPercentageUniswap] = useState(0);
   const [percentagePool, setPercentagePool] = useState(0);
@@ -190,17 +191,46 @@ const Liquidity = props => {
             </span>
           </div>
 
-          <div
-            className={styles.lower}
-            style={{ width: '391px', minWidth: '391px' }}
-          >
-            <p className={styles.lower_header}> Liquidity Provision</p>
+          <div className={styles.lower} style={{ width: '500px', minWidth: '500px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div className={styles.type_div}>
+              <div
+                className={stakeType === 'Stake' ? styles.active : null}
+                onClick={() => {
+                  setStakeType('Stake');
+                }}
+              >
+                Stake
+              </div>
+              <div
+                className={stakeType === 'Unstake' ? styles.active : null}
+                onClick={() => {
+                  setStakeType('Unstake');
+                }}
+              >
+                Unstake
+              </div>
+            </div>
 
-            <p className={styles.apy_text}>Uniswap</p>
-            <p className={styles.apy_percent}>ETH-DG</p>
+            <p className={styles.lower_header}>Liquidity Provision</p>
+            <p className={styles.apy_text}>Your DG {stakeType === 'Stake' ? 'Staked' : 'Unstaked'}</p>
+            <p className={styles.apy_percent}>
+              { }
+              {stakeType === 'Stake' ?
+                props.formatPrice(state.stakingBalances.BALANCE_USER_GOVERNANCE, 2)
+                : props.formatPrice(state.DGBalances.BALANCE_ROOT_DG, 2)
+              }
+              <br />
+              <abbr>${props.formatPrice((stakeType === 'Stake' ? state.stakingBalances.BALANCE_USER_GOVERNANCE : state.DGBalances.BALANCE_ROOT_DG) * state.DGPrices.dg, 2)}</abbr>
+            </p>
 
-            <div style={{ display: 'flex' }}>
-              <span className="gameplay-left-column">
+            <div style={{ display: 'flex', width: '80%' }}>
+              <span
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  width: '50%',
+                }}
+              >
                 <span
                   style={{
                     display: 'flex',
@@ -209,7 +239,7 @@ const Liquidity = props => {
                     paddingBottom: '17px',
                   }}
                 >
-                  <p className={styles.apy_text}>APY</p>
+                  <p className={styles.apy_text}>Uniswap Staking APY</p>
                   {APYUniswap ? (
                     <p className="earned-amount stat">{APYUniswap}%</p>
                   ) : (
@@ -235,98 +265,82 @@ const Liquidity = props => {
                     alignItems: 'center',
                   }}
                 >
-                  <p className={styles.apy_text}>% of pool</p>
-                  {percentageUniswap ? (
-                    <p className="earned-amount">{percentageUniswap}%</p>
-                  ) : (
-                    <Spinner
-                      width={33}
-                      height={33}
-                    />
-                  )}
+                  <p className={styles.apy_text}>Your DG Yielded</p>
+                  <p className="earned-amount stat">0</p>
                 </span>
               </span>
             </div>
 
-            <Input
-              className="liquidity-input"
-              fluid
-              placeholder="Amount"
-              value={amountInput}
-              onChange={handleChange}
-            />
+            <div className={styles.content}>
+              <div className={styles.contract_div}>
+                <div className={styles.content}>
+                  <img className={styles.dg} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
+                  <input
+                    type="number"
+                    className={styles.dg_input}
+                    value={amountInput.toString()}
+                    onChange={handleChange}
+                    style={{
+                      minWidth: `${5 + (amountInput.toString().length + 1) * 12}px`,
+                      maxWidth: `${5 + (amountInput.toString().length + 1) * 12}px`
+                    }}
+                  />
+                </div>
 
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p
-                className={styles.stake_text}
-                style={{ textDecoration: 'underline' }}
-                onClick={() =>
-                  setAmountInput(state.stakingBalances.BALANCE_WALLET_UNISWAP)
-                }
-              >
-                {props.formatPrice(
-                  state.stakingBalances.BALANCE_WALLET_UNISWAP,
-                  3
-                )}{' '}
-                DG
-              </p>
-              <p
-                className={styles.stake_text}
-                style={{ textDecoration: 'underline' }}
-                onClick={() =>
-                  setAmountInput(state.stakingBalances.BALANCE_STAKED_UNISWAP)
-                }
-              >
-                {props.formatPrice(
-                  state.stakingBalances.BALANCE_STAKED_UNISWAP,
-                  3
-                )}{' '}
-                DG STAKED
-              </p>
-            </span>
-
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              {Number(amountInput) ? (
                 <Button
-                  className={styles.button_stake}
+                  className={styles.max_button}
                   onClick={() => {
-                    props.staking(
-                      uniswapContract,
-                      Global.ADDRESSES.DG_STAKING_UNISWAP_ADDRESS,
-                      stakingContractUniswap,
-                      amountInput
-                    );
-                    setAmountInput('');
+                    setAmountInput(props.formatPrice(stakeType === 'Stake' ? state.stakingBalances.BALANCE_WALLET_UNISWAP : state.stakingBalances.BALANCE_STAKED_UNISWAP, 3));
                   }}
                 >
-                  Stake
+                  MAX
                 </Button>
-              ) : (
-                <Button className={styles.button_stake}>
-                  Stake
-                </Button>
-              )}
 
-              {percentagePool && Number(amountInput) ? (
-                <Button
-                  className={styles.button_stake}
-                  onClick={() => {
-                    props.withdrawal(stakingContractUniswap, amountInput);
-                    setAmountInput('');
-                  }}
-                >
-                  Unstake
-                </Button>
-              ) : (
-                <Button disabled className={styles.button_stake}>
-                  Unstake
-                </Button>
-              )}
-            </span>
+                <div className={styles.description}>
+                  <h4 className={amountInput <= state.DGBalances.BALANCE_ROOT_DG ? styles.success : styles.error}>
+                    {props.formatPrice(stakeType === 'Stake' ? state.stakingBalances.BALANCE_WALLET_UNISWAP : state.stakingBalances.BALANCE_STAKED_UNISWAP, 3)}
+                    &nbsp;DG Available to&nbsp;
+                    {stakeType}
+                  </h4>
+                  <p>On ETH Mainnet</p>
+                </div>
+              </div>
+
+              <div className={styles.button_div}>
+                {stakeType === 'Stake' ? (
+                  <Button
+                    className={styles.button_blue}
+                    onClick={() => {
+                      props.staking(
+                        uniswapContract,
+                        Global.ADDRESSES.DG_STAKING_UNISWAP_ADDRESS,
+                        stakingContractUniswap,
+                        amountInput
+                      );
+                      setAmountInput('');
+                    }}
+                    disabled={amountInput <= 0 || amountInput > state.stakingBalances.BALANCE_WALLET_UNISWAP ? true : false}
+                  >
+                    {stakeType} {amountInput > 0 ? amountInput : ''} DG
+                  </Button>
+                ) : (
+                  <Button
+                    className={styles.button_blue}
+                    onClick={() => {
+                      props.withdrawal(stakingContractUniswap, amountInput);
+                      setAmountInput('');
+                    }}
+                    disabled={amountInput <= 0 || parseFloat(amountInput.toString(), 10) > state.stakingBalances.BALANCE_STAKED_UNISWAP ? true : false}
+                  >
+                    {stakeType} {amountInput > 0 ? amountInput : ''} DG
+                  </Button>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </Aux>
+    </Aux >
   );
 };
 
