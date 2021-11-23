@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Modal, Button } from 'semantic-ui-react';
+import React from 'react'
+import { Modal } from 'semantic-ui-react';
 import styles from './ModalChooseGamePlay.module.scss';
 
 const ModalChooseGamePlay = ({
