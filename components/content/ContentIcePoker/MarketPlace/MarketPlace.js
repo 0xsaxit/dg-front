@@ -645,50 +645,22 @@ const MarketPlace = () => {
                 </div>
 
                 <div className={styles.button_container}>
-                  {(() => {
-                    // Minting Enabled State
-                    if ((state.appConfig?.isPublicWebsiteMintingEnabled
-                        || (state.appConfig?.isPrivateWebsiteMintingEnabled && state.userStatus > 20)) &&
-                      state.userLoggedIn &&
-                      state.itemLimits4[i][0] > 0
-                    ) {
-                      return (
-                        <div className={styles.flex_50}>
-                          <ModalMintWearable
-                            index={i}
-                            numberLeft={state.itemLimits4[i][0]}
-                            itemID={state.itemLimits4[i][1]}
-                            address={state.itemLimits4[5]}
-                            wearableImg={detailsICEBomber[item][0]}
-                            wearableBodyType={detailsICEBomber[item][3]}
-                            wearableBodyImg={detailsICEBomber[item][4]}
-                            wearableName={detailsICEBomber[item][1]}
-                          />
-                        </div>
-                      );
-                      // Minting Disabled States
-                    } else {
-                      // Logged Out State
-                      if (!state.userLoggedIn) {
-                        return (
-                          <div className={styles.flex_50}>
-                            <ModalLoginICE />
-                          </div>
-                        );
-                      } else {
-                        // Coming Soon State
-                        if (state.itemLimits4[i][0] > 0) {
-                          return (
-                            <Button disabled className={styles.sold_button}>
-                              Coming Soon!
-                            </Button>
-                          );
-                        }
-                      }
-                    }
-                  })()}
-                </div>*/}
-                <div className={styles.nft_description}>
+
+                  <div className={styles.flex_50}>
+                    <ModalMintWearable
+                      index={i}
+                      numberLeft={state.itemLimits4[i][0]}
+                      itemID={state.itemLimits4[i][1]}
+                      address={state.itemLimits4[5]}
+                      wearableImg={detailsICEBomber[item][0]}
+                      wearableBodyType={detailsICEBomber[item][3]}
+                      wearableBodyImg={detailsICEBomber[item][4]}
+                      wearableName={detailsICEBomber[item][1]}
+                    />
+                  </div>
+ 
+                </div>
+                {/*<div className={styles.nft_description}>
                   <span style={{ display: 'flex', justifyContent: 'center' }}>
                     <p className={styles.nft_info}>
                       {detailsICEBomber[item][3]}
@@ -716,7 +688,7 @@ const MarketPlace = () => {
                       Buy on Secondary
                     </Button>
                   </a>
-                </div>
+                </div>*/}
               </div>
             ))}
           </Carousel>
