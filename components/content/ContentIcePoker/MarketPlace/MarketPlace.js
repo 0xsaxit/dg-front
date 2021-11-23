@@ -675,20 +675,7 @@ const MarketPlace = () => {
                             <ModalLoginICE />
                           </div>
                         );
-                      }
-                      {/*// Sold Out State
-                      else if (
-                        state.itemLimits4[i][0] < 1 &&
-                        state.userStatus >= 4
-                      ) {
-                        return (
-                          <Button disabled className={styles.sold_button}>
-                            Sold Out!
-                          </Button>
-                        );
-                      } */}
-
-                      else {
+                      } else {
                         // Coming Soon State
                         if (state.itemLimits4[i][0] > 0) {
                           return (
