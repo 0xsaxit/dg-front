@@ -97,7 +97,7 @@ const ModalActivationSuccess = props => {
             <div className={styles.toppercent}>
               {rank.percentage}
               <img
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
                 style={{ width: '20px' }}
               />
             </div>
@@ -109,7 +109,7 @@ const ModalActivationSuccess = props => {
               <div className={styles.round}>
                 {rank.percentage}
                 <img
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630486742/image_2_pm0jck.png"
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1630486742/image_2_pm0jck.png"
                   style={{ width: '20px' }}
                 />
               </div>

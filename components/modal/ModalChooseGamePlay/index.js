@@ -42,7 +42,7 @@ const ModalChooseGamePlay = ({
                 <div className={styles.content}>
                     <div className={styles.section}>
                         <img
-                            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637263761/GamePlayTominoya_shvjsc.png"
+                            src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637263761/GamePlayTominoya_shvjsc.png"
                             alt=""
                             onClick={() => {
                                 window.open("https://play.decentraland.org/?position=-118%2C135&realm=dg", "_blank");
@@ -53,7 +53,7 @@ const ModalChooseGamePlay = ({
                     </div>
                     <div className={styles.section}>
                         <img
-                            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637263761/GamePlayDext_grjsqp.png"
+                            src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637263761/GamePlayDext_grjsqp.png"
                             alt=""
                             onClick={() => {
                                 window.open("https://play.decentraland.org/?position=-110,129&realm=dg", "_blank");

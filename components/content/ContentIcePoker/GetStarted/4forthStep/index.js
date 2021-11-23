@@ -15,14 +15,14 @@ const ForthStep = () => {
                     <div className={styles.box_title}>
                         <h1>Play in the 3D Metaverse</h1>
                     </div>
-                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634617669/metaverse_kmhmrf.png" alt="avatar" />
+                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1634617669/metaverse_kmhmrf.png" alt="avatar" />
                     <div className={styles.button_div}>
                         <Button
                             onClick={() => {
                                 window.open("https://play.decentral.games/dext", "_blank");
                             }}
                         >
-                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620413783/MANA_jw7ylg.png" alt="mana" />
+                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620413783/MANA_jw7ylg.png" alt="mana" />
                             Enter Decentraland
                         </Button>
                     </div>
@@ -32,7 +32,7 @@ const ForthStep = () => {
                     <div className={styles.box_title}>
                         <h1>Play On Your Browser</h1>
                     </div>
-                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634617750/Poker_Table_seodln.png" style={{ width: '130px' }} alt="marketplace" />
+                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1634617750/Poker_Table_seodln.png" style={{ width: '130px' }} alt="marketplace" />
                     <div className={styles.button_div}>
                         <Button disabled>
                             Coming Soon

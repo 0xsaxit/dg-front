@@ -32,7 +32,7 @@ const ModalMint = props => {
           <div className={styles.card}>
             + 1 - 7%
             <img
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
               className={styles.img_card}
             />
           </div>
@@ -105,7 +105,7 @@ const ModalMint = props => {
             <div className={styles.card} style={{ width: '150px' }}>
               {Global.CONSTANTS.DG_STAKED_AMOUNT} DG Staked
               <img
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631325895/dgNewLogo_hkvlps.png"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631325895/dgNewLogo_hkvlps.png"
                 className={styles.img_card2}
               />
             </div>

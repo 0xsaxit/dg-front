@@ -87,7 +87,7 @@ const ModalMintSuccess = props => {
             1-7%
             <img
               src={
-                'https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png'
+                'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png'
               }
               style={{ width: '20px' }}
             />
@@ -100,7 +100,7 @@ const ModalMintSuccess = props => {
             <div className={styles.round}>
               1-7%
               <img
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631326183/ICE_Diamon_ICN_k27aap.png"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631326183/ICE_Diamon_ICN_k27aap.png"
                 style={{ width: '14px', marginLeft: '2px' }}
               />
             </div>

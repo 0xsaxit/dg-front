@@ -189,7 +189,7 @@ const ForthStep = (props) => {
 
                                 <div className={styles.contract_div}>
                                     <div className={styles.content}>
-                                        <img className={styles.dg} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
+                                        <img className={styles.dg} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
                                         <input
                                             type="number"
                                             className={styles.dg_input}
@@ -228,7 +228,7 @@ const ForthStep = (props) => {
                                         >
                                             <Spinner />
                                             View on Etherscan
-                                            <img className={styles.arrowIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636424323/TransBgArrow_ukntvi.png" alt="" />
+                                            <img className={styles.arrowIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636424323/TransBgArrow_ukntvi.png" alt="" />
                                         </Button>
                                         :
                                         <Button
@@ -256,7 +256,7 @@ const ForthStep = (props) => {
                             <div className={styles.box_div_big}>
                                 <img
                                     className={styles.close}
-                                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636431892/transClose_v26kgi.png"
+                                    src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636431892/transClose_v26kgi.png"
                                     alt="close"
                                     onClick={() => {
                                         setStakeSubmitted(false);
@@ -268,7 +268,7 @@ const ForthStep = (props) => {
                                 </div>
 
                                 <div className={styles.center_swap_submitted}>
-                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636423902/check-mark_fvx9a4.png" alt="Ready" />
+                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636423902/check-mark_fvx9a4.png" alt="Ready" />
                                 </div>
 
                                 <div className={styles.button_div} style={{ marginTop: '30px' }}>
@@ -276,7 +276,7 @@ const ForthStep = (props) => {
                                         className={styles.button}
                                         onClick={() => addToken()}
                                     >
-                                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" alt="metamask" />
+                                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png" alt="metamask" />
                                         Add xDG to Metamask
                                     </Button>
                                 </div>
@@ -288,7 +288,7 @@ const ForthStep = (props) => {
                                         target="_blank"
                                     >
                                         View on Etherscan
-                                        <img className={styles.arrowIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636424323/TransBgArrow_ukntvi.png" alt="" />
+                                        <img className={styles.arrowIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636424323/TransBgArrow_ukntvi.png" alt="" />
                                     </Button>
                                 </div>
                             </div>
@@ -300,7 +300,7 @@ const ForthStep = (props) => {
                         </div>
                         <div className={styles.center_ready_content}>
                             <p>No DG Left to Stake</p>
-                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636423902/check-mark_fvx9a4.png" alt="Ready" />
+                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636423902/check-mark_fvx9a4.png" alt="Ready" />
                         </div>
                         <div className={styles.button_div}>
                             <Button
@@ -310,7 +310,7 @@ const ForthStep = (props) => {
                                 }}
                             >
                                 Next Step
-                                <img className={styles.nextIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634587739/next_zxguep.png" alt="" />
+                                <img className={styles.nextIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1634587739/next_zxguep.png" alt="" />
                             </Button>
                         </div>
                     </div>

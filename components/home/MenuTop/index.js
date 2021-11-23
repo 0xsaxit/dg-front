@@ -151,8 +151,8 @@ const MenuTop = props => {
           src={
             // AMNESIA_COMMENT: remove the amnesia logo
             state.isAmnesiaPage
-              ? 'https://res.cloudinary.com/dnzambf4m/image/upload/v1632943973/amnesia/amnesia_dg_logo_uvqb6x.png'
-              : 'https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png'
+              ? 'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632943973/amnesia/amnesia_dg_logo_uvqb6x.png'
+              : 'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1621630083/android-chrome-512x512_rmiw1y.png'
           }
         />
       </Link>
@@ -169,8 +169,8 @@ const MenuTop = props => {
             src={
               // AMNESIA_COMMENT: remove the amnesia logo
               state.isAmnesiaPage
-                ? 'https://res.cloudinary.com/dnzambf4m/image/upload/v1632943973/amnesia/amnesia_dg_logo_uvqb6x.png'
-                : 'https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png'
+                ? 'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632943973/amnesia/amnesia_dg_logo_uvqb6x.png'
+                : 'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1621630083/android-chrome-512x512_rmiw1y.png'
             }
           />
         </Link>

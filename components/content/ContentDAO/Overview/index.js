@@ -374,7 +374,7 @@ const Overview = props => {
         </div>
         <img
           className={styles.blue_img}
-          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627992941/Bitcoin_Dashboard_mhyajb.png"
+          src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1627992941/Bitcoin_Dashboard_mhyajb.png"
         />
         <div className={styles.close_button} onClick={() => setVisible(false)}>
           <svg
@@ -579,7 +579,7 @@ const Overview = props => {
             <div className={styles.lower}>
               <p className={styles.lower_header}>Stake Your $DG</p>
               <video
-                src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626798440/Wallet_1_k0dqit.webm"
+                src="https://res.cloudinary.com/dnzambf4m/video/upload/q_auto:best/v1626798440/Wallet_1_k0dqit.webm"
                 className={styles.lower_img}
                 type="video/mp4"
                 frameBorder="0"
@@ -752,7 +752,7 @@ const Overview = props => {
           <div className={cn(styles.lower)}>
             <p className={styles.lower_header}>Gameplay Rewards</p>
             <video
-              src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626409937/Play_to_Earn_w4deik.webm"
+              src="https://res.cloudinary.com/dnzambf4m/video/upload/q_auto:best/v1626409937/Play_to_Earn_w4deik.webm"
               className={styles.lower_img_gameplay}
               type="video/mp4"
               frameBorder="0"
@@ -777,7 +777,7 @@ const Overview = props => {
           <div className={cn(styles.lower)}>
             <p className={styles.lower_header}>Liquidity Provision</p>
             <img
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1628854697/image_14_jshx1l.svg"
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1628854697/image_14_jshx1l.svg"
               className={styles.lower_img}
             />
             <p className={styles.lower_text}>
