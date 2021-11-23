@@ -621,7 +621,7 @@ const MarketPlace = () => {
                   src={detailsICEBomber[item][0]}
                 />
 
-                {/*<div className={styles.nft_description}>
+                <div className={styles.nft_description}>
                   <span style={{ display: 'flex', justifyContent: 'center' }}>
                     <p className={styles.nft_info}>
                       {detailsICEBomber[item][3]}
@@ -676,7 +676,7 @@ const MarketPlace = () => {
                           </div>
                         );
                       }
-                      // Sold Out State
+                      {/*// Sold Out State
                       else if (
                         state.itemLimits4[i][0] < 1 &&
                         state.userStatus >= 4
@@ -686,7 +686,9 @@ const MarketPlace = () => {
                             Sold Out!
                           </Button>
                         );
-                      } else {
+                      } */}
+
+                      else {
                         // Coming Soon State
                         if (state.itemLimits4[i][0] > 0) {
                           return (
