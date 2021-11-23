@@ -21,11 +21,11 @@ const ForthStep = (props) => {
     const [stakeSubmitted, setStakeSubmitted] = useState(false);
     const [approving, setApproving] = useState(false);
     const networkInfo = {
-        id: 3,
-        name: 'Ropsten',
-        etherscan: 'https://ropsten.etherscan.io',
-        dgLightAddress: Global.ADDRESSES.ROPSTEN_TOKEN_ADDRESS_DG_LIGHT,
-        dgTownHallAddress: Global.ADDRESSES.ROPSTEN_DG_TOWN_HALL_ADDRESS
+        id: 1,
+        name: 'Mainnet',
+        etherscan: 'https://etherscan.io',
+        dgLightAddress: Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DG_LIGHT,
+        dgTownHallAddress: Global.ADDRESSES.ROOT_DG_TOWN_HALL_ADDRESS
     };
 
     useEffect(() => {
@@ -184,7 +184,7 @@ const ForthStep = (props) => {
                         !stakeSubmitted ?
                             <div className={styles.box_div}>
                                 <div className={styles.box_title}>
-                                    <h1>New DG Gov Staking <abbr>(112% APY)</abbr></h1>
+                                    <h1>New DG Gov Staking <abbr>(40% APY)</abbr></h1>
                                 </div>
 
                                 <div className={styles.contract_div}>
