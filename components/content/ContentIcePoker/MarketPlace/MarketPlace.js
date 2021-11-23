@@ -621,7 +621,7 @@ const MarketPlace = () => {
                   src={detailsICEBomber[item][0]}
                 />
 
-                <div className={styles.nft_description}>
+                {/*<div className={styles.nft_description}>
                   <span style={{ display: 'flex', justifyContent: 'center' }}>
                     <p className={styles.nft_info}>
                       {detailsICEBomber[item][3]}
@@ -659,8 +659,8 @@ const MarketPlace = () => {
                     />
                   </div>
  
-                </div>
-                {/*<div className={styles.nft_description}>
+                </div>*/}
+                <div className={styles.nft_description}>
                   <span style={{ display: 'flex', justifyContent: 'center' }}>
                     <p className={styles.nft_info}>
                       {detailsICEBomber[item][3]}
@@ -688,7 +688,7 @@ const MarketPlace = () => {
                       Buy on Secondary
                     </Button>
                   </a>
-                </div>*/}
+                </div>
               </div>
             ))}
           </Carousel>
