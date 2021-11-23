@@ -5,7 +5,7 @@ const NoWearablesSplash = () => (
   <div className={styles.ice}>
     <div className={styles.ice_container}>
       <img
-        src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631007583/Group_190_qjjjgr.png"
+        src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,q_auto:good/v1631007583/Group_190_qjjjgr.png"
         className={styles.ice_img}
       />
       <p className={styles.play_text}> Play-to-Earn with ICE Wearables </p>

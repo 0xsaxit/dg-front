@@ -23,14 +23,14 @@ function SectionTwo() {
             {!mobile && (
               <img
                 className={styles.tout_image}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632060620/Group_805_gxueoj.png"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,q_auto:best/v1632060620/Group_805_gxueoj.png"
                 type="video/mp4"
               ></img>
             )}
             {mobile && (
               <img
                 className={styles.tout_image}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632060620/Group_805_gxueoj.png"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,q_auto:best/v1632060620/Group_805_gxueoj.png"
                 alt="img"
               />
             )}
@@ -128,7 +128,7 @@ function SectionTwo() {
             {!mobile && (
               <video
                 className={styles.image}
-                src="https://res.cloudinary.com/dnzambf4m/video/upload/c_scale,w_210,q_auto:good/v1626798440/Play_to_Earn_1_mrum0a.webm"
+                src="https://res.cloudinary.com/dnzambf4m/video/upload/c_scale,q_auto:best/v1626798440/Play_to_Earn_1_mrum0a.webm"
                 type="video/mp4"
                 frameBorder="0"
                 autoPlay={true}
@@ -139,7 +139,7 @@ function SectionTwo() {
             {mobile && (
               <img
                 className={styles.image}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/c_crop,h_1324,w_1950/v1626536789/Screen_Shot_2021-07-17_at_5.46.07_PM_p672iu.png"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,q_auto:best/c_crop,h_1324,w_1950/v1626536789/Screen_Shot_2021-07-17_at_5.46.07_PM_p672iu.png"
                 alt="img"
               />
             )}
@@ -159,7 +159,7 @@ function SectionTwo() {
             {!mobile && (
               <video
                 className={styles.image}
-                src="https://res.cloudinary.com/dnzambf4m/video/upload/c_scale,w_210,q_auto:good/v1626798440/Wallet_1_k0dqit.webm"
+                src="https://res.cloudinary.com/dnzambf4m/video/upload/c_scale,q_auto:best/v1626798440/Wallet_1_k0dqit.webm"
                 type="video/mp4"
                 frameBorder="0"
                 autoPlay={true}
@@ -171,7 +171,7 @@ function SectionTwo() {
             {mobile && (
               <img
                 className={styles.image}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1626804495/Screen_Shot_2021-07-17_at_5.45.43_PM_wv07nl.png"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,q_auto:best/v1626804495/Screen_Shot_2021-07-17_at_5.45.43_PM_wv07nl.png"
                 alt="img"
               />
             )}
@@ -281,7 +281,7 @@ function SectionTwo() {
             {!mobile && (
               <video
                 className={cn(mobile ? styles.image_mobile : styles.image)}
-                src="https://res.cloudinary.com/dnzambf4m/video/upload/c_scale,w_210,q_auto:good/v1626798440/Vote_ydj8br.webm"
+                src="https://res.cloudinary.com/dnzambf4m/video/upload/c_scale,q_auto:best/v1626798440/Vote_ydj8br.webm"
                 type="video/mp4"
                 frameBorder="0"
                 autoPlay={true}
@@ -292,7 +292,7 @@ function SectionTwo() {
             {mobile && (
               <img
                 className={styles.image}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1626804590/Screen_Shot_2021-07-17_at_5.45.16_PM_fo1juv.png"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,q_auto:best/v1626804590/Screen_Shot_2021-07-17_at_5.45.16_PM_fo1juv.png"
                 alt="img"
               />
             )}

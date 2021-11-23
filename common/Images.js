@@ -38,7 +38,7 @@ const Images = {
   SNAPSHOT_ICON:
     'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1601537777/spaces_-MG4Ulnnabb2Xz3Lei9__avatar-1598893807850_ex4fgh.png',
   FEATURED_IMAGE:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635455391/ice_blog_post_2.0_w2vt7t.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,q_auto:good/v1635455391/ice_blog_post_2.0_w2vt7t.png',
   DG_COIN_LOGO:
     'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1602117903/Group_14_Copy_2_afhe39.png',
   METAMASK:

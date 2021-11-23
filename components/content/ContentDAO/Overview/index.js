@@ -579,7 +579,7 @@ const Overview = props => {
             <div className={styles.lower}>
               <p className={styles.lower_header}>Stake Your $DG</p>
               <video
-                src="https://res.cloudinary.com/dnzambf4m/video/upload/c_scale,w_210,q_auto:good/v1626798440/Wallet_1_k0dqit.webm"
+                src="https://res.cloudinary.com/dnzambf4m/video/upload/q_auto:best/v1626798440/Wallet_1_k0dqit.webm"
                 className={styles.lower_img}
                 type="video/mp4"
                 frameBorder="0"
@@ -752,7 +752,7 @@ const Overview = props => {
           <div className={cn(styles.lower)}>
             <p className={styles.lower_header}>Gameplay Rewards</p>
             <video
-              src="https://res.cloudinary.com/dnzambf4m/video/upload/c_scale,w_210,q_auto:good/v1626409937/Play_to_Earn_w4deik.webm"
+              src="https://res.cloudinary.com/dnzambf4m/video/upload/q_auto:best/v1626409937/Play_to_Earn_w4deik.webm"
               className={styles.lower_img_gameplay}
               type="video/mp4"
               frameBorder="0"
