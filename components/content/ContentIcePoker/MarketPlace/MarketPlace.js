@@ -621,7 +621,7 @@ const MarketPlace = () => {
                   src={detailsICEBomber[item][0]}
                 />
 
-                <div className={styles.nft_description}>
+                {/*<div className={styles.nft_description}>
                   <span style={{ display: 'flex', justifyContent: 'center' }}>
                     <p className={styles.nft_info}>
                       {detailsICEBomber[item][3]}
@@ -698,6 +698,35 @@ const MarketPlace = () => {
                       }
                     }
                   })()}
+                </div>*/}
+                <div className={styles.nft_description}>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                    <p className={styles.nft_info}>
+                      {detailsICEBomber[item][3]}
+                    </p>
+                    <p className={styles.nft_info}>0 of 100 left</p>
+                  </span>
+                  <p className={styles.nft_other_p}>
+                    {detailsICEBomber[item][2]}
+                  </p>
+                  <h3 className={styles.nft_other_h3}>
+                    {detailsICEBomber[item][1]}
+                  </h3>
+                </div>
+
+                <div className={styles.button_container}>
+                  <a
+                    className={styles.flex_50}
+                    href="https://opensea.io/collection/decentral-games-ice"
+                    target="_blank"
+                    style={{
+                      width: '100%',
+                    }}
+                  >
+                    <Button className={styles.wearable_button}>
+                      Buy on Secondary
+                    </Button>
+                  </a>
                 </div>
               </div>
             ))}
@@ -802,7 +831,7 @@ const MarketPlace = () => {
                   src={detailsICELinen[item][0]}
                 />
 
-                <div className={styles.nft_description}>
+                {/*<div className={styles.nft_description}>
                   <span style={{ display: 'flex', justifyContent: 'center' }}>
                     <p className={styles.nft_info}>
                       {detailsICELinen[item][3]}
@@ -879,6 +908,36 @@ const MarketPlace = () => {
                       }
                     }
                   })()}
+                </div>*/}
+
+                <div className={styles.nft_description}>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                    <p className={styles.nft_info}>
+                      {detailsICELinen[item][3]}
+                    </p>
+                    <p className={styles.nft_info}>0 of 100 left</p>
+                  </span>
+                  <p className={styles.nft_other_p}>
+                    {detailsICELinen[item][2]}
+                  </p>
+                  <h3 className={styles.nft_other_h3}>
+                    {detailsICELinen[item][1]}
+                  </h3>
+                </div>
+
+                <div className={styles.button_container}>
+                  <a
+                    className={styles.flex_50}
+                    href="https://opensea.io/collection/decentral-games-ice"
+                    target="_blank"
+                    style={{
+                      width: '100%',
+                    }}
+                  >
+                    <Button className={styles.wearable_button}>
+                      Buy on Secondary
+                    </Button>
+                  </a>
                 </div>
               </div>
             ))}
