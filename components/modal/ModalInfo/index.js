@@ -163,10 +163,10 @@ const ModalInfo = () => {
                     src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637260602/grayLogo_ojx2hi.png"
                   />
                   {state.DGBalances.BALANCE_KEEPER_DG == 10 ? (
-                    <h4 className={styles.subtitle_1}>0.000 DG</h4>
+                    <h4 className={styles.subtitle_1}>0.000 xDG</h4>
                   ) : (
                     <h4 className={styles.subtitle_1}>
-                      {formatPrice(DGTotal_2, 3)} DG
+                      {formatPrice(DGTotal_2, 3)} xDG
                     </h4>
                   )}
                   <p className={styles.subtitle_2}>${unclaimedUSD}</p>
