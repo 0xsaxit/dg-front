@@ -52,7 +52,7 @@ const BinanceHome = () => {
       <div className="binance-video-container">
         <video
           id="my-video"
-          src="https://res.cloudinary.com/dnzambf4m/video/upload/v1619719236/-Full_Screen_BG_nq4suo.mp4"
+          src="https://res.cloudinary.com/dnzambf4m/video/upload/c_scale,w_210,q_auto:good/v1619719236/-Full_Screen_BG_nq4suo.mp4"
           type="video/mp4"
           frameBorder="0"
           autoPlay={videoPlay}
@@ -70,7 +70,7 @@ const BinanceHome = () => {
 
         <div className="home-dashboard-content" style={{ marginTop: '-63px' }}>
           <img
-            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1619577485/-Option_1_Play_sparkles_coins_high_res__1_a3qcxc_hswc38.gif"
+            src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1619577485/-Option_1_Play_sparkles_coins_high_res__1_a3qcxc_hswc38.gif"
             className="home-gif"
           />
           <h1

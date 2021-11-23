@@ -188,7 +188,7 @@ const ModalBreakdown = ({ breakdown = {}, totalAmount, address = null }) => {
           <div className="d-flex align-items-center">
             <img
               className={styles.circle_icon}
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610421682/rwugnpwexjpfzfaiwdv1.png"
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1610421682/rwugnpwexjpfzfaiwdv1.png"
             />
             <div className="d-flex flex-column">
               <span className={cn('mb-0', styles.coin_title)}>USD</span>

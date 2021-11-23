@@ -7,7 +7,7 @@ const Home = () => {
     return (
         <div className={styles.main_wrapper}>
             <video
-                src="https://res.cloudinary.com/dnzambf4m/video/upload/v1634761194/Web_Landing_2_1_gqgruf.webm"
+                src="https://res.cloudinary.com/dnzambf4m/video/upload/c_scale,w_210,q_auto:good/v1634761194/Web_Landing_2_1_gqgruf.webm"
                 className={styles.home_video}
                 type="video/mp4"
                 frameBorder="0"

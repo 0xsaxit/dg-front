@@ -141,7 +141,7 @@ const ModalDelegate = props => {
           <div className={styles.card}>
             +{props.bonus}%
             <img
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
               className={styles.img_card}
             />
           </div>
@@ -178,7 +178,7 @@ const ModalDelegate = props => {
                 <div className={styles.info}>You Earn</div>
                 30%
                 <img
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card1}
                 />
               </div>
@@ -189,7 +189,7 @@ const ModalDelegate = props => {
                 <div className={styles.info}>They Earn</div>
                 70%
                 <img
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card2}
                 />
               </div>

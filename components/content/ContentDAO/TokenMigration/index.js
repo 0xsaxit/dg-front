@@ -81,7 +81,7 @@ const TokenMigration = (props) => {
                         setCurrentStep(currentStep > 1 ? currentStep - 1 : currentStep)
                     }}
                 >
-                    <img className={styles.left} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634587739/back_cskr0x.png" alt="prev" />
+                    <img className={styles.left} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1634587739/back_cskr0x.png" alt="prev" />
                     Back
                 </Button>
 
@@ -92,7 +92,7 @@ const TokenMigration = (props) => {
                     }}
                 >
                     Next
-                    <img className={styles.right} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634587739/next_zxguep.png" alt="next" />
+                    <img className={styles.right} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1634587739/next_zxguep.png" alt="next" />
                 </Button>
             </div>
         </div>

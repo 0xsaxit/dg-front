@@ -109,7 +109,7 @@ const FirstStep = (props) => {
                             <div className={styles.center_content}>
                                 <div>
                                     {props.formatPrice(state.stakingBalances.BALANCE_USER_GOVERNANCE || 0, 2)}
-                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
+                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
                                 </div>
                             </div>
                             <div className={styles.button_div}>
@@ -121,7 +121,7 @@ const FirstStep = (props) => {
                                     >
                                         <Spinner />
                                         View on Etherscan
-                                        <img className={styles.arrowIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636424323/TransBgArrow_ukntvi.png" alt="" />
+                                        <img className={styles.arrowIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636424323/TransBgArrow_ukntvi.png" alt="" />
                                     </Button>
                                     :
                                     <Button
@@ -130,7 +130,7 @@ const FirstStep = (props) => {
                                             unstake();
                                         }}
                                     >
-                                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" alt="metamask" />
+                                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png" alt="metamask" />
                                         Unstake {props.formatPrice(state.stakingBalances.BALANCE_USER_GOVERNANCE || 0, 2)} $DG
                                     </Button>
                                 }
@@ -143,7 +143,7 @@ const FirstStep = (props) => {
                             </div>
                             <div className={styles.center_ready_content}>
                                 <p>No (Old) $DG Left to Unstake</p>
-                                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636423902/check-mark_fvx9a4.png" alt="Ready" />
+                                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636423902/check-mark_fvx9a4.png" alt="Ready" />
                             </div>
                             <div className={styles.button_div}>
                                 <Button
@@ -153,7 +153,7 @@ const FirstStep = (props) => {
                                     }}
                                 >
                                     Next Step
-                                    <img className={styles.nextIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634587739/next_zxguep.png" alt="" />
+                                    <img className={styles.nextIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1634587739/next_zxguep.png" alt="" />
                                 </Button>
                             </div>
                         </>

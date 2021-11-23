@@ -110,7 +110,7 @@ const ModalWearable = props => {
                 <div className={styles.wear_box_mark}>
                   +{props.bonus}%
                   <img
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png"
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1630857308/diamond_1_1_r6etkk.png"
                     className={styles.img_card}
                   />
                 </div>
@@ -123,7 +123,7 @@ const ModalWearable = props => {
                 <div className={styles.card}>
                   +{props.bonus}%
                   <img
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png"
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1630857308/diamond_1_1_r6etkk.png"
                     className={styles.img_card}
                   />
                 </div>
@@ -135,7 +135,7 @@ const ModalWearable = props => {
 
             <div className={styles.upgrade_arrow}>
               <img
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632104564/blue-arrow_Traced_oy95nf.svg"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632104564/blue-arrow_Traced_oy95nf.svg"
                 alt="Upgrade"
               />
             </div>
@@ -153,7 +153,7 @@ const ModalWearable = props => {
                 <div className={styles.wear_box_mark}>
                   {bonus[Math.min(props.rank + 1, 5)]}
                   <img
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png"
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1630857308/diamond_1_1_r6etkk.png"
                     className={styles.img_card}
                   />
                 </div>
@@ -174,7 +174,7 @@ const ModalWearable = props => {
                 <div className={styles.card}>
                   {bonus[Math.min(props.rank + 1, 5)]}
                   <img
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png"
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1630857308/diamond_1_1_r6etkk.png"
                     className={styles.img_card}
                   />
                 </div>
@@ -223,7 +223,7 @@ const ModalWearable = props => {
                         ).toFixed() / 1000
                       }K ICE`}
                       <img
-                        src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png"
+                        src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1630857308/diamond_1_1_r6etkk.png"
                         className={styles.img_card1}
                       />
                     </div>
@@ -283,7 +283,7 @@ const ModalWearable = props => {
                     <div className={styles.card}>
                       {dgPrices[Math.min(props.rank + 1, 5)]}
                       <img
-                        src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png"
+                        src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1621630083/android-chrome-512x512_rmiw1y.png"
                         className={styles.img_card2}
                       />
                     </div>
@@ -342,7 +342,7 @@ const ModalWearable = props => {
                     <div className={styles.card}>
                       {xpPrices[Math.min(props.rank + 1, 5)]}
                       <img
-                        src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629727455/XP_zbnvuf.png"
+                        src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1629727455/XP_zbnvuf.png"
                         className={styles.img_card3}
                       />
                     </div>
