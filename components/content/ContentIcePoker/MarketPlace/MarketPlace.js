@@ -626,7 +626,7 @@ const MarketPlace = () => {
                     <p className={styles.nft_info}>
                       {detailsICEBomber[item][3]}
                     </p>
-                    {state.appConfig?.isPublicWebsiteMintingEnabled &&
+                    {state.appConfig?.isPrivateWebsiteMintingEnabled &&
                       state.userStatus >= 4 && 
                       state.userLoggedIn ? (
                       <p className={styles.nft_info}>
@@ -807,7 +807,7 @@ const MarketPlace = () => {
                     <p className={styles.nft_info}>
                       {detailsICELinen[item][3]}
                     </p>
-                    {state.appConfig?.isPublicWebsiteMintingEnabled &&
+                    {state.appConfig?.isPrivateWebsiteMintingEnabled &&
                       state.userStatus >= 4 && 
                       state.userLoggedIn ? (
                       <p className={styles.nft_info}>
