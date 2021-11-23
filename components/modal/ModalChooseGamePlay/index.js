@@ -1,24 +1,21 @@
-import React, { useState } from 'react'
-import { Modal, Button } from 'semantic-ui-react';
+import React from 'react'
+import { Modal } from 'semantic-ui-react';
 import styles from './ModalChooseGamePlay.module.scss';
 
 const ModalChooseGamePlay = ({
     setShowingGamePlay
 }) => {
-    const [open, setOpen] = useState(true);
 
     return (
         <Modal
             className={styles.gamePlay_modal}
             onClose={() => {
-                setOpen(false),
-                    setShowingGamePlay(false)
+                setShowingGamePlay(false)
             }}
-            onOpen={() => setOpen(true)}
-            open={open}
+            open={true}
             close
         >
-            <div className={styles.close_icon} onClick={() => setOpen(false)}>
+            <div className={styles.close_icon} onClick={() => setShowingGamePlay(false)}>
                 <span className={styles.button_close}>
                     <svg
                         width="12"
@@ -42,17 +39,6 @@ const ModalChooseGamePlay = ({
                 <div className={styles.content}>
                     <div className={styles.section}>
                         <img
-                            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637263761/GamePlayTominoya_shvjsc.png"
-                            alt=""
-                            onClick={() => {
-                                window.open("https://play.decentraland.org/?position=-118%2C135&realm=dg", "_blank");
-                            }}
-                        />
-                        <h1>Tominoya<br />Casino</h1>
-                        <p>Play with free play or crypto in <br />blackjack, roulette, and slots</p>
-                    </div>
-                    <div className={styles.section}>
-                        <img
                             src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637263761/GamePlayDext_grjsqp.png"
                             alt=""
                             onClick={() => {
@@ -61,6 +47,17 @@ const ModalChooseGamePlay = ({
                         />
                         <h1>Play to Earn<br />ICE Poker</h1>
                         <p>Play-to-Earn, free to play poker in <br />our skyline ICE Poker Lounge.</p>
+                    </div>
+                    <div className={styles.section}>
+                        <img
+                            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637263761/GamePlayTominoya_shvjsc.png"
+                            alt=""
+                            onClick={() => {
+                                window.open("https://play.decentraland.org/?position=-118%2C135&realm=dg", "_blank");
+                            }}
+                        />
+                        <h1>Tominoya<br />Casino</h1>
+                        <p>Play with free play or crypto in <br />blackjack, roulette, and slots</p>
                     </div>
                 </div>
             </div>
