@@ -41,7 +41,7 @@ function SectionTwo() {
             </Button>
             <Button
               className={styles.blue_button}
-              href="https://play.decentral.games/dext"
+              href="https://api.decentral.games/ice/play?position=-110%2C129"
               target="_blank"
             >
               {mobile ? 'Play' : 'Play Now'}

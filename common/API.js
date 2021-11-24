@@ -13,7 +13,7 @@ const call = (url, method, withToken = true, data = {}) => {
       !(window.ethereum && window.ethereum.selectedAddress))
   ) {
     return new Promise((resolve, reject) => {
-      reject('Unauthorized Error');
+      reject(`Couldn't get an access token`);
     });
   }
 

@@ -76,7 +76,7 @@ const detailsCasinos = {
     'Blackjack',
   ],
   Dext: [
-    'https://play.decentral.games/dext',
+    'https://api.decentral.games/ice/play?position=-110%2C129',
     'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1627209301/Dext_Timelapse_1_oh5bnz.gif',
     'games-pic',
     'DEXT Poker Lounge',

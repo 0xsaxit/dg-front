@@ -42,8 +42,8 @@ function AppConfig() {
       console.log('APP_CONFIG (appConfig): ', appConfig);
 
       return appConfig;
-    } catch (e) {
-      console.error(`Couldn't get appConfig`);
+    } catch (err) {
+      console.error(`Couldn't get appConfig`, err);
       return;
     }
   }
