@@ -1,19 +1,13 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { useRouter } from 'next/router';
-import cn from 'classnames';
-import Biconomy from '@biconomy/mexa';
-import Web3 from 'web3';
-import axios from 'axios';
-import { Loader, Popup, Icon, Button, Table } from 'semantic-ui-react';
+import { Table } from 'semantic-ui-react';
 import { Line } from 'react-chartjs-2';
 import { GlobalContext } from 'store';
-import MetaTx from 'common/MetaTx';
-import Global from 'components/Constants';
-import Transactions from 'common/Transactions';
 import styles from './Treasury.module.scss';
 import TooltipOne from 'components/tooltips/TreasuryTooltipDG/index.js';
 import TooltipTwo from 'components/tooltips/TreasuryTooltipGameplay/index.js';
 import TooltipThree from 'components/tooltips/TreasuryTooltipLP/index.js';
+import Spinner from 'components/lottieAnimation/animations/spinner_updated';
 
 
 const Treasury = props => {
@@ -55,109 +49,112 @@ const Treasury = props => {
   // that data will include the percent changes for both daily/weekly in the changes object
   // call .weekly to match labels
   useEffect(() => {
-    if (Object.keys(state.treasuryNumbers).length !== 0) {
-      const usd = state.treasuryNumbers.totalBalanceUSD.graph;
-      let xAxis = [];
-      let i;
-      for (i = 0; i < usd.length; i += 4) {
-        let temp_x = new Date(usd[i].primary);
-        let temp_x2 = temp_x.toDateString();
-        xAxis.push(temp_x2.slice(0, 1));
+    try {
+      if (Object.keys(state.treasuryNumbers).length !== 0) {
+        const usd = state.treasuryNumbers.totalBalanceUSD.graph;
+        let xAxis = [];
+        let i;
+        for (i = 0; i < usd.length; i += 4) {
+          let temp_x = new Date(usd[i].primary);
+          let temp_x2 = temp_x.toDateString();
+          xAxis.push(temp_x2.slice(0, 1));
+        }
+
+        let yAxis = [];
+        let j;
+        for (j = 0; j < usd.length; j += 4) {
+          let temp_y = usd[j].secondary;
+          yAxis.push(temp_y / 1000000);
+        }
+
+        const totalUSD = state.treasuryNumbers.totalBalanceUSD.graph;
+        const api_usd = Number(totalUSD.slice(-1)[0].secondary);
+        setTreasuryTotal(props.formatPrice(api_usd, 0));
+
+        const wearable_sales = Number(state.DGBalances.BALANCE_WETH_WEARABLES * state.DGPrices.eth);
+
+        setStatsUSDX(xAxis);
+        setStatsUSDY(yAxis);
+
+        const temp_start = totalUSD[0].secondary;
+        const temp_end = api_usd;
+        const change = temp_end - temp_start;
+        setWeeklyChange(change);
+
+        const gameplayTotal = state.treasuryNumbers.allTimeGameplayUSD;
+        const game_temp = Number(gameplayTotal.graph.slice(-1)[0].secondary);
+        setGameplayAll(
+          props.formatPrice(game_temp, 0)
+        );
+
+        const gameplayTotal_temp =
+          gameplayTotal.changes.weekly.percent.toFixed(2);
+        setGameplayAllPercent(Number(gameplayTotal_temp));
+
+        const gameplay = state.treasuryNumbers.totalGameplayUSD;
+        const gameplay_temp = Number(gameplay.graph.slice(-1)[0].secondary);
+        setGameplayTreasury(
+          props.formatPrice(gameplay_temp, 0)
+        );
+
+        const gameplay_temp2 = gameplay.changes.weekly.percent.toFixed(2);
+        setGameplayHotPercent(Number(gameplay_temp2));
+
+        const land = state.treasuryNumbers?.totalLandUSD;
+        setLandTreasury(props.formatPrice(land.graph.slice(-1)[0].secondary, 0));
+
+        const land_temp = land?.changes?.weekly?.percent.toFixed(2);
+        setLandTreasuryPercent(Number(land_temp));
+
+        const wearables = state?.treasuryNumbers?.totalWearablesUSD;
+        setNftTreasury(
+          props.formatPrice(wearables.graph.slice(-1)[0].secondary, 0)
+        );
+
+        const wearables_temp = wearables?.changes?.weekly?.percent.toFixed(2);
+        setNftTreasuryPercent(Number(wearables_temp));
+
+        const ice_wearables = state.treasuryNumbers.totalIceWearablesUSD;
+        setWearableSales(
+          props.formatPrice(ice_wearables.graph.slice(-1)[0].secondary, 0)
+        );
+
+        const ice_percent = ice_wearables.changes.weekly.percent.toFixed(2);
+        setWearableSalesPercent(Number(ice_percent));
+
+        setDgTreasury(Number(state.treasuryNumbers.totalDgWalletUSD.graph[0].secondary));
+        setUnvestedDG(props.formatPrice(dgTreasury, 0));
+
+        const dg_temp = state.treasuryNumbers.totalDgWalletUSD.changes.weekly.percent.toFixed(2);
+        setDgTreasuryPercent(Number(dg_temp));
+
+        const liq = state.treasuryNumbers.totalLiquidityProvided;
+        const old_liq = Number(liq.graph.slice(-1)[0].secondary);
+        setLiquidityTreasury(
+          props.formatPrice(old_liq, 0)
+        );
+
+        const liq_temp = liq.changes.weekly.percent.toFixed(2);
+        setLpPercent(Number(liq_temp));
+
+        const maticBal = state.treasuryNumbers.totalMaticUSD;
+        setMaticTreasury(
+          props.formatPrice(maticBal.graph.slice(-1)[0].secondary, 0)
+        );
+
+        const maticTemp = state?.treasuryNumbers?.maticBalance?.graph
+          .slice(-1)[0]
+          .secondary.toFixed(0);
+        setMaticTokens(maticTemp);
+
+        const matic_temp = maticBal?.changes?.weekly?.percent.toFixed(2);
+        setMaticTreasuryPercent(Number(matic_temp));
+
+        const dgbal = state.treasuryNumbers.dgBalance.graph;
+        setDgBalance(props.formatPrice(dgbal.slice(-1)[0].secondary, 0));
       }
-
-      let yAxis = [];
-      let j;
-      for (j = 0; j < usd.length; j += 4) {
-        let temp_y = usd[j].secondary;
-        yAxis.push(temp_y / 1000000);
-      }
-
-      const totalUSD = state.treasuryNumbers.totalBalanceUSD.graph;
-      const api_usd = Number(totalUSD.slice(-1)[0].secondary);
-      setTreasuryTotal(props.formatPrice(api_usd, 0));
-
-      const wearable_sales = Number(state.DGBalances.BALANCE_WETH_WEARABLES * state.DGPrices.eth);
-
-      setStatsUSDX(xAxis);
-      setStatsUSDY(yAxis);
-
-      const temp_start = totalUSD[0].secondary;
-      const temp_end = api_usd;
-      const change = temp_end - temp_start;
-      setWeeklyChange(change);
-
-      const gameplayTotal = state.treasuryNumbers.allTimeGameplayUSD;
-      const game_temp = Number(gameplayTotal.graph.slice(-1)[0].secondary);
-      setGameplayAll(
-        props.formatPrice(game_temp, 0)
-      );
-
-      const gameplayTotal_temp =
-        gameplayTotal.changes.weekly.percent.toFixed(2);
-      setGameplayAllPercent(Number(gameplayTotal_temp));
-
-      const gameplay = state.treasuryNumbers.totalGameplayUSD;
-      const gameplay_temp = Number(gameplay.graph.slice(-1)[0].secondary);
-      setGameplayTreasury(
-        props.formatPrice(gameplay_temp, 0)
-      );
-
-      const gameplay_temp2 = gameplay.changes.weekly.percent.toFixed(2);
-      setGameplayHotPercent(Number(gameplay_temp2));
-
-      const land = state.treasuryNumbers.totalLandUSD;
-      setLandTreasury(props.formatPrice(land.graph.slice(-1)[0].secondary, 0));
-
-      const land_temp = land.changes.weekly.percent.toFixed(2);
-      setLandTreasuryPercent(Number(land_temp));
-
-      const wearables = state.treasuryNumbers.totalWearablesUSD;
-      setNftTreasury(
-        props.formatPrice(wearables.graph.slice(-1)[0].secondary, 0)
-      );
-
-      const wearables_temp = wearables.changes.weekly.percent.toFixed(2);
-      setNftTreasuryPercent(Number(wearables_temp));
-
-      const ice_wearables = state.treasuryNumbers.totalIceWearablesUSD;
-      setWearableSales(
-        props.formatPrice(ice_wearables.graph.slice(-1)[0].secondary, 0)
-      );
-
-      const ice_percent = ice_wearables.changes.weekly.percent.toFixed(2);
-      setWearableSalesPercent(Number(ice_percent));
-
-      setDgTreasury(Number(state.treasuryNumbers.totalDgWalletUSD.graph[0].secondary));
-      setUnvestedDG(props.formatPrice(dgTreasury, 0));
-
-      const dg_temp = state.treasuryNumbers.totalDgWalletUSD.changes.weekly.percent.toFixed(2);
-      setDgTreasuryPercent(Number(dg_temp));
-
-      const liq = state.treasuryNumbers.totalLiquidityProvided;
-      const old_liq = Number(liq.graph.slice(-1)[0].secondary);
-      setLiquidityTreasury(
-        props.formatPrice(old_liq, 0)
-      );
-
-      const liq_temp = liq.changes.weekly.percent.toFixed(2);
-      setLpPercent(Number(liq_temp));
-
-      const maticBal = state.treasuryNumbers.totalMaticUSD;
-      setMaticTreasury(
-        props.formatPrice(maticBal.graph.slice(-1)[0].secondary, 0)
-      );
-
-      const maticTemp = state.treasuryNumbers.maticBalance.graph
-        .slice(-1)[0]
-        .secondary.toFixed(0);
-      setMaticTokens(maticTemp);
-
-      const matic_temp = maticBal.changes.weekly.percent.toFixed(2);
-      setMaticTreasuryPercent(Number(matic_temp));
-
-      const dgbal = state.treasuryNumbers.dgBalance.graph;
-      setDgBalance(props.formatPrice(dgbal.slice(-1)[0].secondary, 0));
-
+    } catch(error) {
+      console.log('Treasury Numbers Error: ' + error);
     }
   }, [state.treasuryNumbers, dgTreasury]);
 
@@ -200,8 +197,8 @@ const Treasury = props => {
 
   function getLoader() {
     return (
-      <Table.Cell textAlign="right">
-        <Loader active inline size="small" className="treasury-loader" />
+      <Table.Cell textAlign="right" style={{ position: 'relative', top: '-5px' }}>
+        <Spinner height={33} width={33} />
       </Table.Cell>
     );
   }
@@ -294,7 +291,7 @@ const Treasury = props => {
               ) : null}
             </p>
           </div>
-        </div>  
+        </div>
 
         <div className={styles.stat}>
           <span style={{ display: 'flex', justifyContent: 'center' }}>

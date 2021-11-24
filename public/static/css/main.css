@@ -181,6 +181,7 @@ p {
 .ui.button {
   font-family: 'Larsseit-Bold';
   border-radius: 16px;
+  transition: 0.2s ease-in !important;
 }
 
 .ui.divider:not(.vertical):not(.horizontal) {
@@ -837,7 +838,7 @@ p.home-dashboard-p {
 }
 
 .section-5-outter {
-  background: url('https://res.cloudinary.com/dnzambf4m/image/upload/v1609554150/2020-11-22_19-53-47_zkzcbt.png') rgba(0, 0, 0, 0.3);
+  background: url('https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1609554150/2020-11-22_19-53-47_zkzcbt.png') rgba(0, 0, 0, 0.3);
   background-size: cover;
   background-blend-mode: multiply;
 }
@@ -2562,7 +2563,7 @@ div.ui.grid.admin-balances-container {
 
 .ui.button:hover {
   transform: translateY(0px);
-  filter: brightness(0.8) !important;
+  opacity: 0.6;
   transition: all linear 0.2s;
 }
 
@@ -3143,6 +3144,15 @@ a.ui.blue.button.play-button-binance, .ui.blue.button.play-button-binance {
   color: white;
   margin-right: 16px;
   font-size: 18px !important;
+  transition: 0.2s ease-in;
+}
+
+.ui.button.account-button:hover {
+  opacity: 0.6;
+  background-color: #1f1f1f;
+  color: white !important;
+  filter: none !important;
+  transition: 0.2s ease-in;
 }
 
 .right-menu-text.bnb {

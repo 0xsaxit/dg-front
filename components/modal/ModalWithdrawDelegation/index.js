@@ -22,6 +22,27 @@ const ModalWithdrawDelegation = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
+  
+  // get Remaining Time
+  function getRemainingTime() {
+    const today = new Date();
+    const todayUTC = new Date(
+      today.getUTCFullYear(),
+      today.getUTCMonth(),
+      today.getUTCDate(),
+      today.getUTCHours(),
+      today.getUTCMinutes(),
+      today.getUTCSeconds()
+    );
+    const tomorrowUTC = new Date(todayUTC.getTime());
+    tomorrowUTC.setDate(tomorrowUTC.getDate() + 1);
+    tomorrowUTC.setHours(0);
+    tomorrowUTC.setMinutes(0);
+    tomorrowUTC.setSeconds(0);
+
+    return ((tomorrowUTC.getTime() - todayUTC.getTime()) / 1000 / 3600).toFixed(0);
+  }
+
   function description() {
     return (
       <Aux>
@@ -56,7 +77,7 @@ const ModalWithdrawDelegation = props => {
                 <div className={styles.info}>You Earn</div>
                 {!isDelegator ? '70%' : '30%'}
                 <img
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card}
                 />
               </div>
@@ -67,7 +88,7 @@ const ModalWithdrawDelegation = props => {
                 <div className={styles.info}>They Earn</div>
                 {!isDelegator ? '30%' : '70%'}
                 <img
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card}
                 />
               </div>
@@ -221,7 +242,7 @@ const ModalWithdrawDelegation = props => {
                     {withdrawStatus == 0 ? (
                       <>
                         <img
-                          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
+                          src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png"
                           className={styles.icon}
                         />
                         {props.buttonName}
@@ -229,10 +250,11 @@ const ModalWithdrawDelegation = props => {
                     ) : (
                       <div className={styles.withdraw_button}>
                         <div className={styles.mainText}>
-                          W ithdraw Delegation                          
+                          Withdraw Delegation                          
                         </div>
                         <div className={styles.subText}>
-                          {withdrawStatus == 1? 'Withdraw Immediately' : 'Schedule Withdraw: 12am UTC'}
+                          {withdrawStatus == 1? 'Withdraw Immediately': 'Schedule Withdraw: 12am UTC' + 
+                          ' (In ' + getRemainingTime() + 'Hours)'}
                         </div>
                       </div>
                     )}

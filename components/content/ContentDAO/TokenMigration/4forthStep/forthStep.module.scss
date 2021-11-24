@@ -38,7 +38,8 @@
         width: 100%;
 
         .box_div,
-        .box_div_small {
+        .box_div_small,
+        .box_div_big {
             position: relative;
             display: flex;
             flex-direction: column;
@@ -50,6 +51,18 @@
             padding: 28px;
             border: 1px solid #2a2a2a;
             border-radius: 16px;
+
+            .close {
+                position: absolute;
+                width: 12px;
+                left: 25px;
+                top: 25px;
+                cursor: pointer;
+
+                &:hover {
+                    opacity: 0.4;
+                }
+            }
 
             .box_title {
                 display: flex;
@@ -192,6 +205,14 @@
                 }
             }
 
+            .center_swap_submitted {
+                margin-top: 30px;
+
+                img {
+                    width: 78px;
+                }
+            }
+
             .center_ready_content {
                 display: flex;
                 justify-content: center;
@@ -219,7 +240,8 @@
                 margin-top: 30px;
 
                 .button,
-                .button_blue {
+                .button_blue,
+                .button_transparent {
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -268,12 +290,31 @@
                 .button_blue {
                     background: #006eff;
                 }
+
+                .button_transparent {
+                    background: transparent;
+                    margin-top: -25px;
+
+                    &:active,
+                    &:focus,
+                    &:hover {
+                        color: #ffffff;
+                        background: transparent;
+                        opacity: 1;
+                        transition: 0.2s ease-in;
+                    }
+                }
             }
         }
 
         .box_div_small {
             width: 340px !important;
             height: 240px !important;
+        }
+
+        .box_div_big {
+            width: 420px;
+            height: 300px;
         }
     }
 

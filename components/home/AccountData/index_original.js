@@ -170,32 +170,32 @@ const AccountData = (props) => {
             <div style={{ display: 'flex' }}>
               <div className={styles.token_container}>
                 <div className={styles.tokenImgDiv}>
-                  <img className={styles.token_background} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/image_24_geei7u.png" />
-                  <img className={styles.token_ice_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" />
+                  <img className={styles.token_background} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/image_24_geei7u.png" />
+                  <img className={styles.token_ice_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" />
                 </div>
-                {/* <img className={styles.token_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/image_23_nm4wev.png" /> */}
+                {/* <img className={styles.token_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1629713504/image_23_nm4wev.png" /> */}
                 <div className={styles.tokenBalance} >
-                  <p className={styles.title}> ICE Mined <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631365915/w706j6tiotm1gdp0p8nu.svg" /> </p>
+                  <p className={styles.title}> ICE Mined <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631365915/w706j6tiotm1gdp0p8nu.svg" /> </p>
                   <p className={styles.amount} > {state.iceAmount} </p>
                 </div>
               </div>
               <div className={styles.token_container}>
                 <div className={styles.tokenImgDiv}>
-                  <img className={styles.token_xp_background} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/image_24_geei7u.png" />
-                  <img className={styles.token_xp_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_XP_ICN_f9w2se.svg" />
+                  <img className={styles.token_xp_background} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/image_24_geei7u.png" />
+                  <img className={styles.token_xp_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_XP_ICN_f9w2se.svg" />
                 </div>
-                {/* <img className={styles.token_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/Group_175_hajl2h.png" /> */}
+                {/* <img className={styles.token_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1629713504/Group_175_hajl2h.png" /> */}
                 <div className={styles.tokenBalance} >
-                  <p className={styles.title}> Unused XP <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631365915/w706j6tiotm1gdp0p8nu.svg" /> </p>
+                  <p className={styles.title}> Unused XP <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631365915/w706j6tiotm1gdp0p8nu.svg" /> </p>
                   <p className={styles.amount}> 0 </p>
                 </div>
               </div>
               <div className={styles.token_container}>
                 <div className={styles.tokenImgDiv}>
-                  <img className={styles.token_DG_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631325895/dgNewLogo_hkvlps.png" />
+                  <img className={styles.token_DG_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631325895/dgNewLogo_hkvlps.png" />
                 </div>
                 <div className={styles.tokenBalance} >
-                  <p className={styles.title}> DG Mined <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631365915/w706j6tiotm1gdp0p8nu.svg" /> </p>
+                  <p className={styles.title}> DG Mined <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631365915/w706j6tiotm1gdp0p8nu.svg" /> </p>
                   <p className={styles.amount}> 0 </p>
                 </div>
               </div>
@@ -232,7 +232,7 @@ const AccountData = (props) => {
                     state.userAddress.substr(-4)}
                 </p>
               </span>
-              <img className={styles.laurel} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627310333/Laurel_tl9ms6.png" />
+              <img className={styles.laurel} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1627310333/Laurel_tl9ms6.png" />
             </span>
             <p className={styles.mined_amount}> 
               {DGMined.toFixed(3)} DG Mined
@@ -250,7 +250,7 @@ const AccountData = (props) => {
                   {DGMined < 5 ? (
                     <span style={{ display: 'flex', justifyContent: 'center' }}>
                       <p className={styles.stat_value}> Bronze </p>
-                      <img className={styles.stat_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627313187/Medal_gu7cub.png" />
+                      <img className={styles.stat_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1627313187/Medal_gu7cub.png" />
                     </span>
                   ) : (
                     null
@@ -437,7 +437,7 @@ const AccountData = (props) => {
 
             <div className={styles.popup_row}>
               <div className={styles.popup_column}>
-                <img className={styles.popup_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627313187/Medal_gu7cub.png" />
+                <img className={styles.popup_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1627313187/Medal_gu7cub.png" />
                 <p className={styles.row_header}>
                   Bronze (1 - 5)
                 </p>
@@ -447,7 +447,7 @@ const AccountData = (props) => {
               </div>
 
               <div className={styles.popup_column}>
-                <img className={styles.popup_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627313187/Ribbon_akemn5.png" />
+                <img className={styles.popup_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1627313187/Ribbon_akemn5.png" />
                 <p className={styles.row_header}>
                   Silver (6 - 10)
                 </p>
@@ -459,7 +459,7 @@ const AccountData = (props) => {
 
             <div className={styles.popup_row}>
               <div className={styles.popup_column}>
-                <img className={styles.popup_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627313187/Cup_v2ouux.png" />
+                <img className={styles.popup_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1627313187/Cup_v2ouux.png" />
                 <p className={styles.row_header}>
                   Gold (11 - 15)
                 </p>
@@ -469,7 +469,7 @@ const AccountData = (props) => {
               </div>
 
               <div className={styles.popup_column}>
-                <img className={styles.popup_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627313185/diamond_light_vwookl.png" />
+                <img className={styles.popup_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1627313185/diamond_light_vwookl.png" />
                 <p className={styles.row_header}>
                   Diamond (16 - 19)
                 </p>
@@ -481,7 +481,7 @@ const AccountData = (props) => {
 
             <div className={styles.popup_row}>
               <div className={styles.popup_column}>
-                <img className={styles.popup_img_high} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627313185/Money_Bags_dyuttz.png" />
+                <img className={styles.popup_img_high} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1627313185/Money_Bags_dyuttz.png" />
                 <p className={styles.row_header}>
                   High Roller (20+)
                 </p>

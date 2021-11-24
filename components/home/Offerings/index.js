@@ -7,10 +7,9 @@ import Aux from '../../_Aux';
 import { useMediaQuery } from 'hooks';
 import styles from './Offerings.module.scss';
 
-
 const detailsGames = {
   Poker: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1632335323/Poker_pb8rco.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632335323/Poker_pb8rco.png',
     'games-pic',
     'Poker',
     'Decentral Games poker is in beta and currently only playable using FREE tokens.',
@@ -19,7 +18,7 @@ const detailsGames = {
     'https://play.decentraland.org/?position=-110%2C129&realm=dg',
   ],
   BlackJack: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1624919297/Blackjack_logt66.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1624919297/Blackjack_logt66.jpg',
     'games-pic',
     'Blackjack',
     'Decentral Games blackjack follows standard blackjack rules. ',
@@ -28,7 +27,7 @@ const detailsGames = {
     'https://play.decentraland.org/?position=-119%2C136&realm=dg',
   ],
   Roulette: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1624919296/Roulette_hptwtf.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1624919296/Roulette_hptwtf.jpg',
     'games-pic',
     'Roulette',
     'Decentral Games roulette is standard European Roulette.',
@@ -37,7 +36,7 @@ const detailsGames = {
     'https://play.decentraland.org/?position=-119%2C136&realm=dg',
   ],
   Slots: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1624919947/SLOTS_hegzzk.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1624919947/SLOTS_hegzzk.jpg',
     'games-pic',
     'Slots',
     'Decentral Games slots are skin-able machines featuring five spinning reels each with four icons.',
@@ -50,7 +49,7 @@ const detailsGames = {
 const detailsCasinos = {
   Tominoya: [
     'https://play.decentral.games/tominoya',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1624916730/Tominoya_Lapse_om9erf.gif',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1624916730/Tominoya_Lapse_om9erf.gif',
     'games-pic',
     'Tominoya',
     'Tominoya is a Japanese-themed scene featuring two floors with three wings each and a conference center upstairs where live video streams are held.',
@@ -60,7 +59,7 @@ const detailsCasinos = {
   ],
   Atari: [
     'https://play.decentral.games/atari',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1625022643/ATARI_TIMELAPSE_1_brvynj.gif',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1625022643/ATARI_TIMELAPSE_1_brvynj.gif',
     'games-pic',
     'Atari',
     'Atari is situated on a 20-parcel estate. The scene features an open-concept floor plan and building design modelled after the iconic Atari logo.',
@@ -69,7 +68,7 @@ const detailsCasinos = {
   ],
   Chateau: [
     'https://play.decentral.games/chateau',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1624916719/Chateau_Chatoshi_lapse_2_gbjrgn.gif',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1624916719/Chateau_Chatoshi_lapse_2_gbjrgn.gif',
     'games-pic',
     'Chateau Satoshi',
     'Chateau Satoshi is an art deco inspired experience, theatre, nightclub, and stratosphere.',
@@ -78,7 +77,7 @@ const detailsCasinos = {
   ],
   Dext: [
     'https://api.decentral.games/ice/play?position=-110%2C129',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1627209301/Dext_Timelapse_1_oh5bnz.gif',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1627209301/Dext_Timelapse_1_oh5bnz.gif',
     'games-pic',
     'DEXT Poker Lounge',
     'The DEXT Poker Lounge features eight Texas Holdem poker tables located in a skyscraper penthouse, accessible via teleporter on the ground floor.',
@@ -86,7 +85,7 @@ const detailsCasinos = {
   ],
   BAYC: [
     'https://play.decentral.games/bayc',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1628340721/cloudinary_zjohvr.gif',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1628340721/cloudinary_zjohvr.gif',
     'games-pic',
     'Bored Ape Yacht Club',
     'The Bored Ape Yacht Club is a riverboat themed venue. The scene has Ape-themed croupiers stylized in the likeness of the immensely popular NFT series',
@@ -96,7 +95,7 @@ const detailsCasinos = {
   ],
   Aquarium: [
     'https://play.decentral.games/aquarium',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1628340722/Aquarium_timelaps_2_lpqj2r.gif',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1628340722/Aquarium_timelaps_2_lpqj2r.gif',
     'games-pic',
     'The Aquarium',
     'The Aquarium is an underwater-themed venue featuring neon lights, aquatic artwork, and virtual fish navigating the scene floor.',
@@ -107,7 +106,7 @@ const detailsCasinos = {
 
 const detailsShop = {
   shop_dcl: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1605741773/nftshop_yojy7q.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1605741773/nftshop_yojy7q.png',
     'games-pic',
     'NFT Shop',
     'Our NFT shop is located right next door to Chateau Satoshi. The scene is accessible from the most northwestern Decentraland Genesis Plaza and is adjacent to the Vegas City Welcome Plaza.',
@@ -116,7 +115,7 @@ const detailsShop = {
     'https://opensea.io/blog/guides/non-fungible-tokens/',
   ],
   shop_opensea: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1613266160/OpenSea_y26zkp.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1613266160/OpenSea_y26zkp.png',
     'games-pic',
     'OpenSea',
     'Decentral Games wearables are also available on OpenSea. Here, users can smoothly buy and sell our wearables, get custom stats and analytics, and earn revenue by trading goods.',
@@ -128,7 +127,7 @@ const detailsShop = {
 
 const detailsNFTs = {
   mink_coat: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566940/unnamed_y8ozak.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1619566940/unnamed_y8ozak.png',
     'nft-pic',
     'DG Fur Mink',
     'outfit name',
@@ -137,7 +136,7 @@ const detailsNFTs = {
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   tracksuit_top: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566941/unnamed-1_anqn8z.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1619566941/unnamed-1_anqn8z.png',
     'nft-pic',
     'DG Tracksuit Jacket',
     'outfit name',
@@ -146,7 +145,7 @@ const detailsNFTs = {
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   tracksuit_bottom: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566939/unnamed-2_eiirjc.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1619566939/unnamed-2_eiirjc.png',
     'nft-pic',
     'DG Tracksuit Pants',
     'outfit name',
@@ -155,7 +154,7 @@ const detailsNFTs = {
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   shades: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566939/unnamed-3_ey4xpe.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1619566939/unnamed-3_ey4xpe.png',
     'nft-pic',
     'DG Flip Up Spectacles',
     'outfit name',
@@ -164,7 +163,7 @@ const detailsNFTs = {
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   yeezies: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566939/unnamed-4_ccrxbx.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1619566939/unnamed-4_ccrxbx.png',
     'nft-pic',
     'DG Deezys',
     'outfit name',
@@ -173,7 +172,7 @@ const detailsNFTs = {
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   slides: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566940/unnamed-5_pdvxqy.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1619566940/unnamed-5_pdvxqy.png',
     'nft-pic',
     'DG Slides',
     'outfit name',
@@ -182,7 +181,7 @@ const detailsNFTs = {
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   headphones: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1626511651/unnamed_apacqs.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1626511651/unnamed_apacqs.png',
     'nft-pic',
     'DG Headphones',
     'outfit name',
@@ -192,7 +191,7 @@ const detailsNFTs = {
   ],
 };
 
-const Offerings = (props) => {
+const Offerings = props => {
   // get leaderboard data from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -235,7 +234,10 @@ const Offerings = (props) => {
             <div className={styles.menu_list}>
               <div>
                 <Link href="/games">
-                  <div className={styles.menu_item} style={{ marginTop: '2px' }}>
+                  <div
+                    className={styles.menu_item}
+                    style={{ marginTop: '2px' }}
+                  >
                     <svg
                       width="24"
                       height="24"
@@ -273,8 +275,7 @@ const Offerings = (props) => {
                 </Link>
 
                 <Link href="/games/scenes">
-                  <div className={styles.menu_item}
-                  >
+                  <div className={styles.menu_item}>
                     <svg
                       width="24"
                       height="24"
@@ -419,7 +420,9 @@ const Offerings = (props) => {
                         width="6"
                         height="9"
                         rx="1"
-                        stroke={gameState === 'leaderboard' ? 'white' : '#808080'}
+                        stroke={
+                          gameState === 'leaderboard' ? 'white' : '#808080'
+                        }
                         strokeWidth="2"
                       />
                       <rect
@@ -428,7 +431,9 @@ const Offerings = (props) => {
                         width="7"
                         height="16"
                         rx="1"
-                        stroke={gameState === 'leaderboard' ? 'white' : '#808080'}
+                        stroke={
+                          gameState === 'leaderboard' ? 'white' : '#808080'
+                        }
                         strokeWidth="2"
                       />
                       <rect
@@ -437,7 +442,9 @@ const Offerings = (props) => {
                         width="7"
                         height="13"
                         rx="1"
-                        stroke={gameState === 'leaderboard' ? 'white' : '#808080'}
+                        stroke={
+                          gameState === 'leaderboard' ? 'white' : '#808080'
+                        }
                         strokeWidth="2"
                       />
                     </svg>
@@ -482,11 +489,7 @@ const Offerings = (props) => {
                         ? styles.menu_item_active
                         : styles.menu_item
                     }
-                    id={
-                      gameState === 'games'
-                        ? styles.active_padding
-                        : ''
-                    }
+                    id={gameState === 'games' ? styles.active_padding : ''}
                   >
                     <svg
                       width="24"
@@ -698,7 +701,9 @@ const Offerings = (props) => {
                         width="6"
                         height="9"
                         rx="1"
-                        stroke={gameState === 'leaderboard' ? 'white' : '#808080'}
+                        stroke={
+                          gameState === 'leaderboard' ? 'white' : '#808080'
+                        }
                         strokeWidth="2"
                       />
                       <rect
@@ -707,7 +712,9 @@ const Offerings = (props) => {
                         width="7"
                         height="16"
                         rx="1"
-                        stroke={gameState === 'leaderboard' ? 'white' : '#808080'}
+                        stroke={
+                          gameState === 'leaderboard' ? 'white' : '#808080'
+                        }
                         strokeWidth="2"
                       />
                       <rect
@@ -716,7 +723,9 @@ const Offerings = (props) => {
                         width="7"
                         height="13"
                         rx="1"
-                        stroke={gameState === 'leaderboard' ? 'white' : '#808080'}
+                        stroke={
+                          gameState === 'leaderboard' ? 'white' : '#808080'
+                        }
                         strokeWidth="2"
                       />
                     </svg>
@@ -738,9 +747,7 @@ const Offerings = (props) => {
 
         {gameState === 'leaderboard' ? (
           <span className={styles.main_container}>
-            <ContentLeaderboard
-              gameRecords={state.gameRecords}
-            />
+            <ContentLeaderboard gameRecords={state.gameRecords} />
           </span>
         ) : (
           <ContentOfferings

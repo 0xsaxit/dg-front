@@ -16,7 +16,8 @@ const ModalUpgradeSuccess = props => {
 
   useEffect(() => {
     const itemInfo = state.iceWearableItems.filter(item => item.tokenID === props.tokenID)[0];
-    setImage(itemInfo.meta_data? itemInfo.meta_data.image : '');
+    // setImage(itemInfo.meta_data? itemInfo.meta_data.image : '');
+    setImage(props.imgURL? props.imgURL : '');
     setDescription(itemInfo.meta_data? itemInfo.meta_data.description.split(' ').at(-1).replace('/', ' of '):'');
     setRank(itemInfo.meta_data? GetRank(parseInt(itemInfo.meta_data.attributes.at(-2).value)):0);
   }, [state.iceWearableItems])
@@ -130,7 +131,7 @@ const ModalUpgradeSuccess = props => {
           <div className={styles.toppercent}>
             {rank.percentage}
             <img
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631326183/ICE_Diamon_ICN_k27aap.png"
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631326183/ICE_Diamon_ICN_k27aap.png"
               style={{ width: '20px', marginLeft: '3px' }}
             />
           </div>
@@ -145,7 +146,7 @@ const ModalUpgradeSuccess = props => {
             <div className={styles.round}>
               {rank.percentage}
               <img
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631326183/ICE_Diamon_ICN_k27aap.png"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631326183/ICE_Diamon_ICN_k27aap.png"
                 style={{ width: '14px', marginLeft: '2px' }}
               />
             </div>

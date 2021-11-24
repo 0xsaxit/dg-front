@@ -139,7 +139,7 @@ const Liquidity = props => {
               </p>
               <img
                 style={{ marginTop: '-4px' }}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1624411671/Spinning-Logo-DG_n9f4xd.gif"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1624411671/Spinning-Logo-DG_n9f4xd.gif"
               />
             </div>
             <p className={styles.price}>

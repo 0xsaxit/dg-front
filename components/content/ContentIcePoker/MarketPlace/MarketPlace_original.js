@@ -27,87 +27,87 @@ const MarketPlace = () => {
 
   const detailsICEPartyHost = {
     Pants: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133629/Pants_Level_1_y4iyir.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636133629/Pants_Level_1_y4iyir.png',
       'Trousers',
       'Party Host',
       'Legs',
       '0 of 100 left',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatLegs_tn9b57.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631806696/FlatLegs_tn9b57.svg',
     ],
     SmokingJacket: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133628/Smoking_Jacket_Level_1_h8khui.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636133628/Smoking_Jacket_Level_1_h8khui.png',
       'Smoking Jacket',
       'Party Host',
       'Torso',
       '0 of 100 left',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1631728323/FlatClothes-01_1_kbpyfj.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631728323/FlatClothes-01_1_kbpyfj.svg',
     ],
     Hat: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133628/Sailor-Hat-_Level-1_jq3fnn.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636133628/Sailor-Hat-_Level-1_jq3fnn.png',
       'Sailor Hat',
       'Party Host',
       'Head',
       '0 of 100 left',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatHat_pypkjx.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631806696/FlatHat_pypkjx.svg',
     ],
     Shoes: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133629/Slippers_Level_1_pmeiq1.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636133629/Slippers_Level_1_pmeiq1.png',
       'Slippers',
       'Party Host',
       'Feet',
       '0 of 100 left',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatShoes_hjvr3p.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631806696/FlatShoes_hjvr3p.svg',
     ],
     Glasses: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133629/Shades_Level_1_x4axck.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636133629/Shades_Level_1_x4axck.png',
       'Shades',
       'Party Host',
       'Accessory',
       '0 of 100 left',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatAccessory_s1cjpg.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631806696/FlatAccessory_s1cjpg.svg',
     ],
   };
 
   const detailsICESuit = {
     Pants: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_suit_bottom_rank1_lower_body_trd5yw.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631638434/dg_suit_bottom_rank1_lower_body_trd5yw.png',
       'Trousers',
       'DG Suit',
       'Legs',
       '0 of 100 left',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatLegs_tn9b57.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631806696/FlatLegs_tn9b57.svg',
     ],
     Top: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_suit_top_rank1_upper_body_qlnqky.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631638434/dg_suit_top_rank1_upper_body_qlnqky.png',
       'Blazer',
       'DG Suit',
       'Torso',
       '0 of 100 left',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1631728323/FlatClothes-01_1_kbpyfj.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631728323/FlatClothes-01_1_kbpyfj.svg',
     ],
     Cigar: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_cigar_rank1_eyewear_lk5lnu.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631638434/dg_cigar_rank1_eyewear_lk5lnu.png',
       'Cigar',
       'DG Suit',
       'Head',
       '0 of 100 left',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatHat_pypkjx.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631806696/FlatHat_pypkjx.svg',
     ],
     Shoes: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_dress_rank1_shoes_feet_w7ncwa.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631638434/dg_dress_rank1_shoes_feet_w7ncwa.png',
       'Loafers',
       'DG Suit',
       'Feet',
       '0 of 100 left',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatShoes_hjvr3p.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631806696/FlatShoes_hjvr3p.svg',
     ],
     Glasses: [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_money_shades_rank1_eyewear_knm0f4.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631638434/dg_money_shades_rank1_eyewear_knm0f4.png',
       'Shades',
       'DG Suit',
       'Accessory',
       '0 of 100 left',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatAccessory_s1cjpg.svg',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631806696/FlatAccessory_s1cjpg.svg',
     ],
   };
 
@@ -160,19 +160,19 @@ const MarketPlace = () => {
   };
 
   const previewHughHefImages = [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636054316/Level_1_Hugh_mwzapj.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636054315/Level_2_Hugh_t2g9tc.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636054316/Level_3_Hugh_nhbkdo.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636054316/Level_4_Hugh_jwxah3.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636054316/Level_5_Hugh_ogwkwo.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636054316/Level_1_Hugh_mwzapj.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636054315/Level_2_Hugh_t2g9tc.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636054316/Level_3_Hugh_nhbkdo.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636054316/Level_4_Hugh_jwxah3.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636054316/Level_5_Hugh_ogwkwo.png',
   ];
 
   const previewDGSuitImages = [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_1_h5zizs.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_2_y8onmu.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_4_uribpq.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_3_xhaxho.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_5_mmcqjy.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1633727889/Fit_1_h5zizs.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1633727889/Fit_2_y8onmu.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1633727889/Fit_4_uribpq.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1633727889/Fit_3_xhaxho.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1633727889/Fit_5_mmcqjy.png',
   ];
 
   return (
@@ -246,13 +246,13 @@ const MarketPlace = () => {
                       <div className={styles.imgDiv}>
                         <img
                           className={styles.img}
-                          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640051/p2e_enabled_wgqui5.svg"
+                          src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631640051/p2e_enabled_wgqui5.svg"
                         />
                         <Popup
                           trigger={
                             <img
                               className={styles.tooltip}
-                              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
+                              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631640045/ICE_Info_bbiag6.svg"
                             />
                           }
                           position="top left"
@@ -262,7 +262,7 @@ const MarketPlace = () => {
                           <Popup.Content className={styles.tooltipContent}>
                             <img
                               className={styles.popup_info}
-                              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
+                              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631640045/ICE_Info_bbiag6.svg"
                             />
                             <p className={styles.popup_content}>
                               P2E Enabled (aka Play-to-Earn)
@@ -364,13 +364,13 @@ const MarketPlace = () => {
                       <div className={styles.imgDiv}>
                         <img
                           className={styles.img}
-                          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640051/p2e_enabled_wgqui5.svg"
+                          src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631640051/p2e_enabled_wgqui5.svg"
                         />
                         <Popup
                           trigger={
                             <img
                               className={styles.tooltip}
-                              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
+                              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631640045/ICE_Info_bbiag6.svg"
                             />
                           }
                           position="top left"
@@ -380,7 +380,7 @@ const MarketPlace = () => {
                           <Popup.Content className={styles.tooltipContent}>
                             <img
                               className={styles.popup_info}
-                              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
+                              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631640045/ICE_Info_bbiag6.svg"
                             />
                             <p className={styles.popup_content}>
                               P2E Enabled (aka Play-to-Earn)
