@@ -621,12 +621,12 @@ const MarketPlace = () => {
                   src={detailsICEBomber[item][0]}
                 />
 
-                <div className={styles.nft_description}>
+                {/*<div className={styles.nft_description}>
                   <span style={{ display: 'flex', justifyContent: 'center' }}>
                     <p className={styles.nft_info}>
                       {detailsICEBomber[item][3]}
                     </p>
-                    {state.appConfig?.isPublicWebsiteMintingEnabled &&
+                    {state.appConfig?.isPrivateWebsiteMintingEnabled &&
                       state.userStatus >= 4 && 
                       state.userLoggedIn ? (
                       <p className={styles.nft_info}>
@@ -645,59 +645,49 @@ const MarketPlace = () => {
                 </div>
 
                 <div className={styles.button_container}>
-                  {(() => {
-                    // Minting Enabled State
-                    if ((state.appConfig?.isPublicWebsiteMintingEnabled
-                        || (state.appConfig?.isPrivateWebsiteMintingEnabled && state.userStatus > 20)) &&
-                      state.userLoggedIn &&
-                      state.itemLimits4[i][0] > 0
-                    ) {
-                      return (
-                        <div className={styles.flex_50}>
-                          <ModalMintWearable
-                            index={i}
-                            numberLeft={state.itemLimits4[i][0]}
-                            itemID={state.itemLimits4[i][1]}
-                            address={state.itemLimits4[5]}
-                            wearableImg={detailsICEBomber[item][0]}
-                            wearableBodyType={detailsICEBomber[item][3]}
-                            wearableBodyImg={detailsICEBomber[item][4]}
-                            wearableName={detailsICEBomber[item][1]}
-                          />
-                        </div>
-                      );
-                      // Minting Disabled States
-                    } else {
-                      // Logged Out State
-                      if (!state.userLoggedIn) {
-                        return (
-                          <div className={styles.flex_50}>
-                            <ModalLoginICE />
-                          </div>
-                        );
-                      }
-                      // Sold Out State
-                      else if (
-                        state.itemLimits4[i][0] < 1 &&
-                        state.userStatus >= 4
-                      ) {
-                        return (
-                          <Button disabled className={styles.sold_button}>
-                            Sold Out!
-                          </Button>
-                        );
-                      } else {
-                        // Coming Soon State
-                        if (state.itemLimits4[i][0] > 0) {
-                          return (
-                            <Button disabled className={styles.sold_button}>
-                              Coming Soon!
-                            </Button>
-                          );
-                        }
-                      }
-                    }
-                  })()}
+
+                  <div className={styles.flex_50}>
+                    <ModalMintWearable
+                      index={i}
+                      numberLeft={state.itemLimits4[i][0]}
+                      itemID={state.itemLimits4[i][1]}
+                      address={state.itemLimits4[5]}
+                      wearableImg={detailsICEBomber[item][0]}
+                      wearableBodyType={detailsICEBomber[item][3]}
+                      wearableBodyImg={detailsICEBomber[item][4]}
+                      wearableName={detailsICEBomber[item][1]}
+                    />
+                  </div>
+ 
+                </div>*/}
+                <div className={styles.nft_description}>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                    <p className={styles.nft_info}>
+                      {detailsICEBomber[item][3]}
+                    </p>
+                    <p className={styles.nft_info}>0 of 100 left</p>
+                  </span>
+                  <p className={styles.nft_other_p}>
+                    {detailsICEBomber[item][2]}
+                  </p>
+                  <h3 className={styles.nft_other_h3}>
+                    {detailsICEBomber[item][1]}
+                  </h3>
+                </div>
+
+                <div className={styles.button_container}>
+                  <a
+                    className={styles.flex_50}
+                    href="https://opensea.io/collection/decentral-games-ice"
+                    target="_blank"
+                    style={{
+                      width: '100%',
+                    }}
+                  >
+                    <Button className={styles.wearable_button}>
+                      Buy on Secondary
+                    </Button>
+                  </a>
                 </div>
               </div>
             ))}
@@ -802,12 +792,12 @@ const MarketPlace = () => {
                   src={detailsICELinen[item][0]}
                 />
 
-                <div className={styles.nft_description}>
+                {/*<div className={styles.nft_description}>
                   <span style={{ display: 'flex', justifyContent: 'center' }}>
                     <p className={styles.nft_info}>
                       {detailsICELinen[item][3]}
                     </p>
-                    {state.appConfig?.isPublicWebsiteMintingEnabled &&
+                    {state.appConfig?.isPrivateWebsiteMintingEnabled &&
                       state.userStatus >= 4 && 
                       state.userLoggedIn ? (
                       <p className={styles.nft_info}>
@@ -879,6 +869,36 @@ const MarketPlace = () => {
                       }
                     }
                   })()}
+                </div>*/}
+
+                <div className={styles.nft_description}>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                    <p className={styles.nft_info}>
+                      {detailsICELinen[item][3]}
+                    </p>
+                    <p className={styles.nft_info}>0 of 100 left</p>
+                  </span>
+                  <p className={styles.nft_other_p}>
+                    {detailsICELinen[item][2]}
+                  </p>
+                  <h3 className={styles.nft_other_h3}>
+                    {detailsICELinen[item][1]}
+                  </h3>
+                </div>
+
+                <div className={styles.button_container}>
+                  <a
+                    className={styles.flex_50}
+                    href="https://opensea.io/collection/decentral-games-ice"
+                    target="_blank"
+                    style={{
+                      width: '100%',
+                    }}
+                  >
+                    <Button className={styles.wearable_button}>
+                      Buy on Secondary
+                    </Button>
+                  </a>
                 </div>
               </div>
             ))}
