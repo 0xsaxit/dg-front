@@ -24,7 +24,7 @@ const Home = () => {
                     </Button>
                     <Button
                         className={styles.play_button}
-                        href="https://play.decentral.games/dext"
+                        href="https://api.decentral.games/ice/play?position=-110%2C129"
                         target="_blank"
                     >
                         Play
