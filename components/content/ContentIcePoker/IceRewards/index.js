@@ -203,7 +203,7 @@ const IceRewards = () => {
           <div className={styles.topDiv}>
             <div className={styles.claimICEDiv}>
               <div className={styles.title}>
-                <h1>Claim ICE Reward!</h1>
+                <h1>Claim ICE Rewards</h1>
               </div>
 
               <div className={styles.lower}>
@@ -252,7 +252,7 @@ const IceRewards = () => {
               </div>
             </div>
 
-            <div className={styles.iceEarnedDiv}>
+            {/*<div className={styles.iceEarnedDiv}>
               <div className={styles.title}>
                 <h1>ICE Earned (past 7 Days)</h1>
               </div>
@@ -390,7 +390,7 @@ const IceRewards = () => {
               </Table>
               :
               <NoResult />
-            }
+            }*/}
           </div>
 
           {showBreakDown !== -1 ?

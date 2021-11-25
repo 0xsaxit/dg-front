@@ -19,7 +19,7 @@ const ModalUpgradeSuccess = props => {
     // setImage(itemInfo.meta_data? itemInfo.meta_data.image : '');
     setImage(props.imgURL? props.imgURL : '');
     setDescription(itemInfo.meta_data? itemInfo.meta_data.description.split(' ').at(-1).replace('/', ' of '):'');
-    setRank(itemInfo.meta_data? GetRank(parseInt(itemInfo.meta_data.attributes.at(-2).value)):0);
+    setRank(itemInfo.meta_data? GetRank(parseInt(itemInfo.meta_data.attributes.find(el => el.trait_type === 'Bonus').value)):0);
   }, [state.iceWearableItems])
 
   function refresh() {
