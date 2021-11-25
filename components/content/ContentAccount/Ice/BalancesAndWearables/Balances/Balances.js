@@ -17,7 +17,7 @@ const Balances = () => {
 
   const balenceItems = [
     {
-      icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg',
+      icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg',
       name: 'ICE',
       type: 'ICE',
       model: formatPrice(
@@ -30,7 +30,7 @@ const Balances = () => {
       ),
     },
     {
-      icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_XP_ICN_f9w2se.svg',
+      icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_XP_ICN_f9w2se.svg',
       name: 'Gameplay XP',
       type: 'XP',
       model: formatPrice(
@@ -40,7 +40,7 @@ const Balances = () => {
       price: '0.00',
     },
     {
-      icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1631325895/dgNewLogo_hkvlps.png',
+      icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631325895/dgNewLogo_hkvlps.png',
       name: 'Decentral Games',
       type: 'DG',
       model: formatPrice(state.DGBalances.BALANCE_CHILD_DG, 3),
@@ -180,7 +180,7 @@ const Balances = () => {
           <p className={styles.DG_value}>{totalICE}</p>
           <img
             style={{ marginTop: '-4px' }}
-            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
+            src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
           />
         </div>
         <p className={styles.price}>

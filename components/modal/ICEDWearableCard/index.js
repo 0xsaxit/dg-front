@@ -23,7 +23,7 @@ const ICEDWearableCard = props => {
             <div className={styles.delegatebtn}>
               Delegated To {props.address ? props.address : 'You'}
               <img
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632105564/next_i5mqo5.svg"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632105564/next_i5mqo5.svg"
                 alt="icon"
               />
             </div>

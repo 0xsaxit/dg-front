@@ -410,7 +410,7 @@ const ModalEthAuth = props => {
                     }
                   }}
                 >
-                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
+                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png" />
                   {loading ? (
                     <Loader />
                   ) : authStatus ? (

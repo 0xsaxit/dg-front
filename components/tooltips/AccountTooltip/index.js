@@ -29,7 +29,7 @@ const AccountTooltip = (props) => {
           <div className="tooltip_body">
             <img
               className="info"
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631640045/ICE_Info_bbiag6.svg"
             />
             <p>
               This is your total {props.data} through gameplay.            

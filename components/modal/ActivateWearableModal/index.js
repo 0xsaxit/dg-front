@@ -181,7 +181,7 @@ const ActivateWearableModal = props => {
           <div className={styles.dgAmount}>
             <div>
               {state.tokenAmounts.DG_MOVE_AMOUNT}
-              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631325895/dgNewLogo_hkvlps.png" />
+              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631325895/dgNewLogo_hkvlps.png" />
             </div>
           </div>
           <p>
@@ -365,7 +365,7 @@ const ActivateWearableModal = props => {
                 }
               }}
             >
-              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
+              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png" />
               {authStatus
                 ? clicked
                   ? 'Confirming...'

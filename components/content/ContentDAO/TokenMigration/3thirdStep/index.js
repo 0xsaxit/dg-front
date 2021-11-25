@@ -287,11 +287,11 @@ const ThirdStep = (props) => {
                                     <div className={styles.contract_box}>
                                         <div className={styles.tag}>
                                             Old DG Contract
-                                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1635530963/arrow_b8xsav.png" alt="" />
+                                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635530963/arrow_b8xsav.png" alt="" />
                                         </div>
 
                                         <div className={styles.content}>
-                                            <img className={styles.dg} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
+                                            <img className={styles.dg} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
                                             <Input
                                                 className={styles.swap_input}
                                                 fluid
@@ -313,17 +313,17 @@ const ThirdStep = (props) => {
                                         style={{transform: !direct ? 'rotateY(180deg)' : ''}}
                                         onClick={() => {setDirect(!direct)}}
                                     >
-                                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1635534332/arrow2_n1fwsf.png" alt="" />
+                                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635534332/arrow2_n1fwsf.png" alt="" />
                                     </div>
                                     <div className={styles.contract_box}>
                                         <div className={styles.tag}>
                                             New DG Contract
-                                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1635530963/arrow_b8xsav.png" alt="" />
+                                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635530963/arrow_b8xsav.png" alt="" />
                                         </div>
 
                                         <div className={styles.content}>
-                                            <img className={styles.new} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1635540038/NEW_dqqtn6.png" alt="new" />
-                                            <img className={styles.dg} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
+                                            <img className={styles.new} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635540038/NEW_dqqtn6.png" alt="new" />
+                                            <img className={styles.dg} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
                                             <Input
                                                 className={styles.swap_input}
                                                 fluid
@@ -369,7 +369,7 @@ const ThirdStep = (props) => {
                                             >
                                                 <Spinner />
                                                 View on Etherscan
-                                                <img className={styles.arrowIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636424323/TransBgArrow_ukntvi.png" alt="" />
+                                                <img className={styles.arrowIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636424323/TransBgArrow_ukntvi.png" alt="" />
                                             </Button>
                                             :
                                             <Button
@@ -414,7 +414,7 @@ const ThirdStep = (props) => {
                             <div className={styles.box_div}>
                                 <img
                                     className={styles.close}
-                                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636431892/transClose_v26kgi.png"
+                                    src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636431892/transClose_v26kgi.png"
                                     alt="close"
                                     onClick={() => {
                                         setSwapSubmitted(false);
@@ -426,7 +426,7 @@ const ThirdStep = (props) => {
                                 </div>
 
                                 <div className={styles.center_swap_submitted}>
-                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636423902/check-mark_fvx9a4.png" alt="Ready" />
+                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636423902/check-mark_fvx9a4.png" alt="Ready" />
                                 </div>
 
                                 <div className={styles.button_div} style={{ marginTop: '30px' }}>
@@ -434,7 +434,7 @@ const ThirdStep = (props) => {
                                         className={styles.button}
                                         onClick={() => addToken()}
                                     >
-                                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" alt="metamask" />
+                                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png" alt="metamask" />
                                         Add { direct ? 'New' : 'Old' } DG to Metamask
                                     </Button>
                                 </div>
@@ -446,7 +446,7 @@ const ThirdStep = (props) => {
                                         target="_blank"
                                     >
                                         View on Etherscan
-                                        <img className={styles.arrowIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636424323/TransBgArrow_ukntvi.png" alt="" />
+                                        <img className={styles.arrowIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636424323/TransBgArrow_ukntvi.png" alt="" />
                                     </Button>
                                 </div>
                             </div>
@@ -458,7 +458,7 @@ const ThirdStep = (props) => {
                         </div>
                         <div className={styles.center_ready_content}>
                             <p>No (Old) $DG Left to Swap</p>
-                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636423902/check-mark_fvx9a4.png" alt="Ready" />
+                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636423902/check-mark_fvx9a4.png" alt="Ready" />
                         </div>
                         <div className={styles.button_div}>
                             <Button
@@ -468,7 +468,7 @@ const ThirdStep = (props) => {
                                 }}
                             >
                                 Next Step
-                                <img className={styles.nextIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634587739/next_zxguep.png" alt="" />
+                                <img className={styles.nextIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1634587739/next_zxguep.png" alt="" />
                             </Button>
                         </div>
                     </div>
