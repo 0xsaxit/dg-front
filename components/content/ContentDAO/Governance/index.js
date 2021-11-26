@@ -322,7 +322,7 @@ const Governance = props => {
               </div>
             </div>
           </div>
-          <div className="col-xl-4 d-flex pt-10 flex-column">
+          <div className="col-xl-4 d-flex pt-xl-10 flex-column">
             <div className="mx-auto">
               <p className={styles.welcome_content}>(Old) $DG Staked</p>
               <div className={cn(styles.lower, 'mx-auto')}>
