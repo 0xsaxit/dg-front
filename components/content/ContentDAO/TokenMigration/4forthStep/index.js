@@ -5,6 +5,7 @@ import styles from './forthStep.module.scss'
 import Web3 from 'web3';
 import Global from 'components/Constants';
 import { GlobalContext } from '../../../../../store'
+import Images from '../../../../../common/Images'
 import Transactions from '../../../../../common/Transactions'
 
 const ForthStep = (props) => {
@@ -46,7 +47,7 @@ const ForthStep = (props) => {
                       address: networkInfo.dgTownHallAddress,
                       symbol: 'xDG',
                       decimals: 18,
-                      image: 'https://assets.coingecko.com/coins/images/13267/small/Decentral_Games_Logo-1.png',
+                      image: Images.XDG_COIN_LOGO,
                     },
                 },
             });
