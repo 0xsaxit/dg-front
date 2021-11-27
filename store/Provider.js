@@ -254,11 +254,11 @@ const reducer = (state, action) => {
         transactions: action.data,
       };
 
-    case 'app_config':
-      return {
-        ...state,
-        appConfig: action.data,
-      };
+    // case 'app_config':
+    //   return {
+    //     ...state,
+    //     appConfig: action.data,
+    //   };
 
     case 'treasury_numbers':
       return {
