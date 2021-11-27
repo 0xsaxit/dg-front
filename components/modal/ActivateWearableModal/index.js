@@ -186,7 +186,7 @@ const ActivateWearableModal = props => {
           </div>
           <p>
             <span className={styles.greenCheck}>
-              {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(1)} DG
+              {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(3)} DG
               Available
               <svg
                 width="16"
@@ -354,7 +354,7 @@ const ActivateWearableModal = props => {
               disabled={clicked}
               className={styles.primary}
               onClick={() => {
-                console.log('authStatus: ', authStatus);
+                console.log('DG authStatus (activation): ', authStatus);
 
                 if (biconomyReady) {
                   if (!authStatus) {

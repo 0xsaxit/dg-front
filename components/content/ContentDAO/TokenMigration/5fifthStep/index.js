@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Button, Input } from 'semantic-ui-react'
 import BigNumber from 'bignumber.js'
-import Spinner from 'components/lottieAnimation/animations/spinner';
+import Spinner from 'components/lottieAnimation/animations/spinner'
 import styles from './fifthStep.module.scss'
 import Web3 from 'web3';
-import Global from 'components/Constants';
+import Global from 'components/Constants'
 import { GlobalContext } from '../../../../../store'
+import Images from '../../../../../common/Images'
 import Transactions from '../../../../../common/Transactions'
 
 const FifthStep = (props) => {
@@ -165,7 +166,7 @@ const FifthStep = (props) => {
                       address: direct ? networkInfo.dgLightAddress : networkInfo.dgAddress,
                       symbol: direct ? 'DG' : '$DG',
                       decimals: 18,
-                      image: 'https://assets.coingecko.com/coins/images/13267/small/Decentral_Games_Logo-1.png',
+                      image: Images.DG_COIN_LOGO,
                     },
                 },
             });

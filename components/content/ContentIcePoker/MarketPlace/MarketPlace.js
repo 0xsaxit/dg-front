@@ -7,6 +7,7 @@ import cn from 'classnames';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import styles from './MarketPlace.module.scss';
+import Global from '../../../Constants';
 
 const MarketPlace = () => {
   // dispatch new user status to Context API store
@@ -292,7 +293,11 @@ const MarketPlace = () => {
                 {previewHughHefImages.map((img, i) => (
                   <img
                     key={i}
-                    className={i === previewHughHefLevel ? styles.preview_nft_image : styles.preview_nft_image_none}
+                    className={
+                      i === previewHughHefLevel
+                        ? styles.preview_nft_image
+                        : styles.preview_nft_image_none
+                    }
                     src={img}
                   />
                 ))}
@@ -364,9 +369,8 @@ const MarketPlace = () => {
                     <p className={styles.nft_info}>
                       {detailsICEPartyHost[item][3]}
                     </p>
-                    {state.appConfig?.isWebsiteMintingEnabled &&
-                      state.userStatus >= 4 &&
-                      state.userLoggedIn ? (
+
+                    {state.userStatus >= 4 && state.userLoggedIn ? (
                       <p className={styles.nft_info}>
                         {state.itemLimits2[i][0]} of 100 left
                       </p>
@@ -383,60 +387,40 @@ const MarketPlace = () => {
                 </div>
 
                 <div className={styles.button_container}>
-                  {(() => {
-                    // Minting Enabled State
-                    if (
-                      state.appConfig?.isWebsiteMintingEnabled &&
-                      state.userStatus >= 20 &&
-                      state.userLoggedIn &&
-                      state.itemLimits2[i][0] > 0
-                    ) {
-                      return (
-                        <div className={styles.flex_50}>
-                          <ModalMintWearable
-                            index={i}
-                            numberLeft={state.itemLimits2[i][0]}
-                            itemID={state.itemLimits2[i][1]}
-                            address={state.itemLimits2[5]}
-                            wearableImg={detailsICEPartyHost[item][0]}
-                            wearableBodyType={detailsICEPartyHost[item][3]}
-                            wearableBodyImg={detailsICEPartyHost[item][4]}
-                            wearableName={detailsICEPartyHost[item][1]}
-                          />
-                        </div>
-                      );
-                      // Minting Disabled States
-                    } else {
-                      // Logged Out State
-                      if (!state.userLoggedIn) {
-                        return (
-                          <div className={styles.flex_50}>
-                            <ModalLoginICE />
-                          </div>
-                        );
-                      }
-                      // Sold Out State
-                      else if (
-                        state.itemLimits2[i][0] < 1 &&
-                        state.userStatus >= 4
-                      ) {
-                        return (
-                          <Button disabled className={styles.sold_button}>
-                            Sold Out!
-                          </Button>
-                        );
-                      } else {
-                        // Coming Soon State
-                        if (state.itemLimits2[i][0] > 0) {
-                          return (
-                            <Button disabled className={styles.sold_button}>
-                              Coming Soon!
-                            </Button>
-                          );
-                        }
-                      }
-                    }
-                  })()}
+                  {state.itemLimits2[i][0] ? (
+                    state.userStatus >= Global.MINT_STATUS &&
+                    state.userLoggedIn ? (
+                      <div className={styles.flex_50}>
+                        <ModalMintWearable
+                          index={i}
+                          numberLeft={state.itemLimits2[i][0]}
+                          itemID={state.itemLimits2[i][1]}
+                          address={state.itemLimits2[5]}
+                          wearableImg={detailsICEPartyHost[item][0]}
+                          wearableBodyType={detailsICEPartyHost[item][3]}
+                          wearableBodyImg={detailsICEPartyHost[item][4]}
+                          wearableName={detailsICEPartyHost[item][1]}
+                        />
+                      </div>
+                    ) : (
+                      <div className={styles.flex_50}>
+                        <ModalLoginICE />
+                      </div>
+                    )
+                  ) : (
+                    <a
+                      className={styles.flex_50}
+                      href="https://market.decentraland.org/browse?assetType=nft&section=wearables&contracts=0xcb06f6aee0655252a3f6f2884680421d55d3c645"
+                      target="_blank"
+                      style={{
+                        width: '100%',
+                      }}
+                    >
+                      <Button className={styles.wearable_button}>
+                        Buy on Secondary
+                      </Button>
+                    </a>
+                  )}
                 </div>
               </div>
             ))}
@@ -474,7 +458,11 @@ const MarketPlace = () => {
                 {previewDGSuitImages.map((img, i) => (
                   <img
                     key={i}
-                    className={i === previewDGLevel ? styles.preview_nft_image : styles.preview_nft_image_none}
+                    className={
+                      i === previewDGLevel
+                        ? styles.preview_nft_image
+                        : styles.preview_nft_image_none
+                    }
                     src={img}
                   />
                 ))}
@@ -544,6 +532,7 @@ const MarketPlace = () => {
                 <div className={styles.nft_description}>
                   <span style={{ display: 'flex', justifyContent: 'center' }}>
                     <p className={styles.nft_info}>{detailsICESuit[item][3]}</p>
+
                     {state.userStatus >= 4 && state.userLoggedIn ? (
                       <p className={styles.nft_info}>
                         {state.itemLimits1[i][0]} of 100 left
@@ -561,9 +550,9 @@ const MarketPlace = () => {
                 </div>
 
                 <div className={styles.button_container}>
-                  {state.appConfig?.isWebsiteMintingEnabled &&
-                    state.itemLimits1[i][0] ? (
-                    state.userStatus >= 4 && state.userLoggedIn ? (
+                  {state.itemLimits1[i][0] ? (
+                    state.userStatus >= Global.MINT_STATUS &&
+                    state.userLoggedIn ? (
                       <div className={styles.flex_50}>
                         <ModalMintWearable
                           index={i}
@@ -581,20 +570,20 @@ const MarketPlace = () => {
                         <ModalLoginICE />
                       </div>
                     )
-                  ) : null}
-
-                  <a
-                    className={styles.flex_50}
-                    href="https://market.decentraland.org/browse?assetType=nft&section=wearables&contracts=0xcb06f6aee0655252a3f6f2884680421d55d3c645"
-                    target="_blank"
-                    style={{
-                      width: '100%',
-                    }}
-                  >
-                    <Button className={styles.wearable_button}>
-                      Buy on Secondary
-                    </Button>
-                  </a>
+                  ) : (
+                    <a
+                      className={styles.flex_50}
+                      href="https://market.decentraland.org/browse?assetType=nft&section=wearables&contracts=0xcb06f6aee0655252a3f6f2884680421d55d3c645"
+                      target="_blank"
+                      style={{
+                        width: '100%',
+                      }}
+                    >
+                      <Button className={styles.wearable_button}>
+                        Buy on Secondary
+                      </Button>
+                    </a>
+                  )}
                 </div>
               </div>
             ))}
@@ -632,7 +621,11 @@ const MarketPlace = () => {
                 {previewBomberImages.map((img, i) => (
                   <img
                     key={i}
-                    className={i === previewBomberLevel ? styles.preview_nft_image : styles.preview_nft_image_none}
+                    className={
+                      i === previewBomberLevel
+                        ? styles.preview_nft_image
+                        : styles.preview_nft_image_none
+                    }
                     src={img}
                   />
                 ))}
@@ -704,6 +697,7 @@ const MarketPlace = () => {
                     <p className={styles.nft_info}>
                       {detailsICEBomber[item][3]}
                     </p>
+
                     {state.userStatus >= 4 && state.userLoggedIn ? (
                       <p className={styles.nft_info}>
                         {state.itemLimits4[i][0]} of 100 left
@@ -721,9 +715,9 @@ const MarketPlace = () => {
                 </div>
 
                 <div className={styles.button_container}>
-                  {state.appConfig?.isWebsiteMintingEnabled &&
-                    state.itemLimits4[i][0] ? (
-                    state.userStatus >= 4 && state.userLoggedIn ? (
+                  {state.itemLimits4[i][0] ? (
+                    state.userStatus >= Global.MINT_STATUS &&
+                    state.userLoggedIn ? (
                       <div className={styles.flex_50}>
                         <ModalMintWearable
                           index={i}
@@ -792,7 +786,11 @@ const MarketPlace = () => {
                 {previewLinenImages.map((img, i) => (
                   <img
                     key={i}
-                    className={i === previewLinenLevel ? styles.preview_nft_image : styles.preview_nft_image_none}
+                    className={
+                      i === previewLinenLevel
+                        ? styles.preview_nft_image
+                        : styles.preview_nft_image_none
+                    }
                     src={img}
                   />
                 ))}
@@ -864,6 +862,7 @@ const MarketPlace = () => {
                     <p className={styles.nft_info}>
                       {detailsICELinen[item][3]}
                     </p>
+
                     {state.userStatus >= 4 && state.userLoggedIn ? (
                       <p className={styles.nft_info}>
                         {state.itemLimits3[i][0]} of 100 left
@@ -881,9 +880,9 @@ const MarketPlace = () => {
                 </div>
 
                 <div className={styles.button_container}>
-                  {state.appConfig?.isWebsiteMintingEnabled &&
-                    state.itemLimits3[i][0] ? (
-                    state.userStatus >= 4 && state.userLoggedIn ? (
+                  {state.itemLimits3[i][0] ? (
+                    state.userStatus >= Global.MINT_STATUS &&
+                    state.userLoggedIn ? (
                       <div className={styles.flex_50}>
                         <ModalMintWearable
                           index={i}

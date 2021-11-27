@@ -23,7 +23,9 @@ const ICEWearableCard = props => {
   const buttonDelegate = 'Delegate';
   const buttonUndelegate = 'Undelegate';
   const { name, description, image, attributes } = props.data;
-  const rank = GetRank(parseInt(attributes.at(-2).value));
+  const rank = GetRank(
+    parseInt(attributes.find(el => el.trait_type === 'Bonus').value)
+  );
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -135,12 +137,7 @@ const ICEWearableCard = props => {
             {!props.isActivated ? (
               state.DGBalances.BALANCE_CHILD_DG <
               state.tokenAmounts.DG_MOVE_AMOUNT ? (
-                // <NeedMoreDGActivateModal />
-                <ActivateWearableModal
-                  tokenID={props.tokenID}
-                  itemID={props.itemID}
-                  address={props.address}
-                />
+                <NeedMoreDGActivateModal />
               ) : (
                 <ActivateWearableModal
                   tokenID={props.tokenID}
@@ -163,7 +160,9 @@ const ICEWearableCard = props => {
                     itemID={props.itemID}
                     imgSrc={image}
                     rank={rank.value}
-                    bonus={attributes.at(-2).value}
+                    bonus={
+                      attributes.find(el => el.trait_type === 'Bonus').value
+                    }
                     description={description}
                     buttonName={buttonDelegate}
                   />
@@ -185,7 +184,9 @@ const ICEWearableCard = props => {
                     imgSrc={image}
                     rank={rank.value}
                     percentage={rank.percentage}
-                    bonus={attributes.at(-2).value}
+                    bonus={
+                      attributes.find(el => el.trait_type === 'Bonus').value
+                    }
                     description={description}
                     name={name.split('(ICE')[0].trim()}
                   />

@@ -16,13 +16,13 @@ export const API_BASE_URL =
 console.log('APP_ENV (NODE_ENV): ', APP_ENV);
 console.log('API_BASE_URL: ', API_BASE_URL);
 
-const apiCall = {
+const Fetch = {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // GET API calls (no wallet address necessary)
-  APP_CONFIG: () => {
-    return call(`${API_BASE_URL}/admin/getAppConfig`, 'GET');
-  },
+  // APP_CONFIG: () => {
+  //   return call(`${API_BASE_URL}/admin/getAppConfig`, 'GET');
+  // },
 
   TREASURY_STATS_NUMBERS: period => {
     return call(
@@ -277,4 +277,4 @@ const apiCall = {
   },
 };
 
-export default apiCall;
+export default Fetch;
