@@ -15,8 +15,8 @@ const ModalActivationSuccess = props => {
   useEffect(() => {
     const itemInfo = state.iceWearableItems.filter(item => item.tokenID === props.tokenID)[0];
     setImage(itemInfo.meta_data.image);
-    setDescription(itemInfo.meta_data.description.split(' ').at(-1).replace('/', ' of '));
-    setRank(GetRank(parseInt(itemInfo.meta_data.attributes.at(-1).value)));
+    setDescription(itemInfo.meta_data.description.split(' ').at(-2).replace('/', ' of '));
+    setRank(GetRank(parseInt(itemInfo.meta_data.attributes.at(-2).value)));
   }, [state.iceWearableItems])
 
   return (
