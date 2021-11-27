@@ -13,25 +13,15 @@ const Migration = () => {
 
   return (
     <Layout>
-      {state.userStatus >= 20 ? (
-        <Aux>
-          <Header
-            title={Global.CONSTANTS.TITLE + ' | $DG | Token Migration'}
-            description={Global.CONSTANTS.DESCRIPTION}
-            image={Images.SOCIAL_SHARE}
-          />
+      <Aux>
+        <Header
+          title={Global.CONSTANTS.TITLE + ' | $DG | Token Migration'}
+          description={Global.CONSTANTS.DESCRIPTION}
+          image={Images.SOCIAL_SHARE}
+        />
 
-          <DAO DGState={'tokenMigration'} />
-        </Aux>
-      ) : (
-        <Aux>
-          <Header
-            title={Global.CONSTANTS.TITLE + ' | $DG | Token Migration'}
-            description={Global.CONSTANTS.DESCRIPTION}
-            image={Images.SOCIAL_SHARE}
-          />
-        </Aux>
-      )}
+        <DAO DGState={'tokenMigration'} />
+      </Aux>
     </Layout>
   );
 };
