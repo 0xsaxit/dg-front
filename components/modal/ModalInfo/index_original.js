@@ -16,7 +16,7 @@ const ModalInfo = () => {
   const [open, setOpen] = useState(false);
   const [DGTotal, setDGTotal] = useState(0);
   const [DGTotal_2, setDGTotal_2] = useState(0);
-  // const [supply, setSupply] = useState(0);
+  const [supply, setSupply] = useState(0);
   const [DGPrice, setDGPrice] = useState(0);
 
   useEffect(() => {
@@ -59,21 +59,21 @@ const ModalInfo = () => {
     (async function () {
       const json = await Fetch.DG_SUPPLY_GECKO();
       if (json && json.market_data) {
-        // setSupply(json.market_data.circulating_supply);
+        setSupply(json.market_data.circulating_supply);
         setDGPrice(json.market_data.current_price.usd);
       }
     })();
   }, []);
 
   // calculate market cap
-  // const temp = supply * DGPrice;
-  // const marketCap = temp.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const temp = supply * DGPrice;
+  const marketCap = temp.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   const temp_2 = DGTotal_2 * DGPrice;
   const unclaimedUSD = temp_2.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-  // const gov_staked = Number(state.stakingBalances.BALANCE_USER_GOVERNANCE);
-  // const gov_unclaimed = Number(state.DGBalances.BALANCE_STAKING_GOVERNANCE); // governance
+  const gov_staked = Number(state.stakingBalances.BALANCE_USER_GOVERNANCE);
+  const gov_unclaimed = Number(state.DGBalances.BALANCE_STAKING_GOVERNANCE); // governance
 
   function formatPrice(balanceDG, units) {
     const balanceAdjusted = Number(balanceDG)
