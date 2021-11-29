@@ -316,6 +316,11 @@
       border: 1px solid #2a2a2a;
       border-radius: 16px;
 
+      @media screen and (max-width: 680px) {
+        height: fit-content;
+        padding: 23px;
+      }
+
       .box_title {
           display: flex;
           justify-content: center;
@@ -327,6 +332,10 @@
               font-family: "Larsseit-Bold";
               letter-spacing: 0.5px;
               margin-top: 0px;
+
+              @media screen and (max-width: 680px) {
+                font-size: 18px;
+              }
           }
       }
 
