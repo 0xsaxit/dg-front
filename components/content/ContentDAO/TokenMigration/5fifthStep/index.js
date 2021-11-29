@@ -307,7 +307,11 @@ const FifthStep = (props) => {
         <div className={styles.main_wrapper}>
             <div className={styles.title}>
                 <h1>Swap Your Polygon $DG</h1>
-                <p>Now that we’ve swapped and staked your Mainnet DG, let’s migrate any Polygon DG you may have.</p>
+                {
+                    !isPolygonNetwork ?
+                        <p>Now that we’ve swapped and staked your Mainnet DG, let’s migrate any Polygon DG you may have.</p>
+                        :   <p>Let's finish off by swapping any Polygon $DG you may have.</p>
+                }
             </div>
 
             <div className={styles.content}>
@@ -489,28 +493,51 @@ const FifthStep = (props) => {
                             </div>
                     )
                     :
-                    <div className={styles.box_div_small}>
-                        <div className={styles.box_title}>
-                            <h1>You're Good to Go!</h1>
+                    <>
+                        <div className={styles.box_div_small}>
+                            <div className={styles.box_title}>
+                                <h1>You're Good to Go!</h1>
+                            </div>
+                            <div className={styles.center_ready_content}>
+                                <p>Your Polygon DG is Migrated!</p>
+                                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636423902/check-mark_fvx9a4.png" alt="Ready" />
+                            </div>
+                            <div className={styles.button_div}>
+                                <Button
+                                    className={styles.button}
+                                    onClick={() => {
+                                        dispatch({
+                                            type: 'set_openModalInfo',
+                                            data: true,
+                                        });
+                                    }}
+                                >
+                                    See My DG BreakDown
+                                </Button>
+                            </div>
                         </div>
-                        <div className={styles.center_ready_content}>
-                            <p>You’ve Swapped Your DG to the New Token!</p>
-                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636423902/check-mark_fvx9a4.png" alt="Ready" />
+                        <div className={styles.box_div_small}>
+                            <div className={styles.box_title}>
+                                <h1>Swap for xDG to Earn 40% APR</h1>
+                            </div>
+                            <div className={styles.center_ready_content}>
+                                <p>Holding xDG is Equivalent Staking in Gov V2</p>
+                                <img src="https://res.cloudinary.com/dze4ze7xd/image/upload/c_scale,h_48/v1638204611/swap_nc2aq6.png" alt="Ready" />
+                            </div>
+                            <div className={styles.button_div}>
+                                <Button
+                                    className={styles.button}
+                                    onClick={() => {
+                                        window.open("https://quickswap.exchange/#/swap?inputCurrency=0xef938b6da8576a896f6E0321ef80996F4890f9c4&outputCurrency=0xc6480Da81151B2277761024599E8Db2Ad4C388C8", "_blank");
+                                    }}
+                                >
+                                    <img src="https://res.cloudinary.com/dze4ze7xd/image/upload/v1638205186/Ellipse_15_q4vvs0.png" alt="metamask" />
+                                    Swap for xDG on Quickswap
+                                    <img className={styles.arrowIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636424323/TransBgArrow_ukntvi.png" alt="" />
+                                </Button>
+                            </div>
                         </div>
-                        <div className={styles.button_div}>
-                            <Button
-                                className={styles.button}
-                                onClick={() => {
-                                    dispatch({
-                                        type: 'set_openModalInfo',
-                                        data: true,
-                                    });
-                                }}
-                            >
-                                See My DG BreakDown
-                            </Button>
-                        </div>
-                    </div>
+                    </>
                 }
             </div>
         </div >
