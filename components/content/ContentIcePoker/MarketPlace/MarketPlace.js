@@ -4,10 +4,12 @@ import ModalMintWearable from 'components/modal/ModalMintWearable';
 import ModalLoginICE from 'components/modal/ModalLoginICE';
 import { Button, Popup } from 'semantic-ui-react';
 import cn from 'classnames';
-import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import styles from './MarketPlace.module.scss';
 import Global from '../../../Constants';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const MarketPlace = () => {
   // dispatch new user status to Context API store
@@ -166,58 +168,6 @@ const MarketPlace = () => {
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091243/Bomber%20Fit/shoes_grey_gftpjo.png',
     ],
   };
-  const responsive = {
-    veryLargeDesktop: {
-      breakpoint: { max: 6000, min: 2400 },
-      items: 6,
-      partialVisibilityGutter: 2,
-    },
-    largeDesktop: {
-      breakpoint: { max: 2400, min: 1440 },
-      items: 4,
-      partialVisibilityGutter: 40,
-    },
-    desktop: {
-      breakpoint: { max: 1440, min: 1240 },
-      items: 3,
-      partialVisibilityGutter: 40,
-    },
-    bigTablet: {
-      breakpoint: { max: 1240, min: 900 },
-      items: 2,
-      partialVisibilityGutter: 125,
-    },
-    mediumTablet: {
-      breakpoint: { max: 900, min: 768 },
-      items: 2,
-      partialVisibilityGutter: 60,
-    },
-    smallTablet: {
-      breakpoint: { max: 768, min: 700 },
-      items: 2,
-      partialVisibilityGutter: 40,
-    },
-    bigMobile: {
-      breakpoint: { max: 700, min: 600 },
-      items: 2,
-      partialVisibilityGutter: 0,
-    },
-    mediumMobile: {
-      breakpoint: { max: 600, min: 420 },
-      items: 1,
-      partialVisibilityGutter: 120,
-    },
-    smallMobile: {
-      breakpoint: { max: 420, min: 0 },
-      items: 1,
-      partialVisibilityGutter: 45,
-    },
-    smallest: {
-      breakpoint: { max: 400, min: 0 },
-      items: 1,
-      partialVisibilityGutter: 0,
-    },
-  };
   const previewHughHefImages = [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1636054316/Level_1_Hugh_mwzapj.png',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1636054315/Level_2_Hugh_t2g9tc.png',
@@ -262,29 +212,43 @@ const MarketPlace = () => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
+
+  function CarouselNextArrow(props) {
+    const { className, onClick } = props;
+    return (
+      <div
+        className={className}
+        onClick={onClick}
+      />
+    );
+  }
+
+  function CarouselPrevArrow(props) {
+    const { className, onClick } = props;
+    return (
+      <div
+        className={className}
+        onClick={onClick}
+      />
+    );
+  }
+
   function getCarousel(row) {
+    const settings = {
+      className: "slider variable-width",
+      dots: false,
+      infinite: false,
+      swipeToSlide: true,
+      variableWidth: true,
+      nextArrow: <CarouselNextArrow />,
+      prevArrow: <CarouselPrevArrow />
+    };
+
     if (row === 'partyHost') {
       return (
         <section className={styles.wearable_section}>
           <h3>Party Host</h3>
-          <Carousel
-            arrows
-            draggable
-            swipeable
-            partialVisible
-            autoPlaySpeed={3000}
-            focusOnSelect={false}
-            infinite={false}
-            keyBoardControl={true}
-            minimumTouchDrag={80}
-            renderButtonGroupOutside={false}
-            renderDotsOutside={false}
-            responsive={responsive}
-            showDots={false}
-            slidesToSlide={1}
-            containerClass="ice-wearables-carousel-container"
-            itemClass="carousel-item"
-          >
+          <Slider {...settings}>
             <div
               className={styles.games_container}
               style={{ paddingBottom: '20px' }}
@@ -389,7 +353,7 @@ const MarketPlace = () => {
                 <div className={styles.button_container}>
                   {state.itemLimits2[i][0] ? (
                     state.userStatus >= Global.MINT_STATUS &&
-                    state.userLoggedIn ? (
+                      state.userLoggedIn ? (
                       <div className={styles.flex_50}>
                         <ModalMintWearable
                           index={i}
@@ -424,7 +388,7 @@ const MarketPlace = () => {
                 </div>
               </div>
             ))}
-          </Carousel>
+          </Slider>
         </section>
       );
     }
@@ -432,24 +396,7 @@ const MarketPlace = () => {
       return (
         <section className={styles.wearable_section}>
           <h3>DG Suit</h3>
-          <Carousel
-            arrows
-            draggable
-            swipeable
-            partialVisible
-            autoPlaySpeed={3000}
-            focusOnSelect={false}
-            infinite={false}
-            keyBoardControl={true}
-            minimumTouchDrag={80}
-            renderButtonGroupOutside={false}
-            renderDotsOutside={false}
-            responsive={responsive}
-            showDots={false}
-            slidesToSlide={1}
-            containerClass="ice-wearables-carousel-container"
-            itemClass="carousel-item"
-          >
+          <Slider {...settings}>
             <div
               className={styles.games_container}
               style={{ paddingBottom: '20px' }}
@@ -552,7 +499,7 @@ const MarketPlace = () => {
                 <div className={styles.button_container}>
                   {state.itemLimits1[i][0] ? (
                     state.userStatus >= Global.MINT_STATUS &&
-                    state.userLoggedIn ? (
+                      state.userLoggedIn ? (
                       <div className={styles.flex_50}>
                         <ModalMintWearable
                           index={i}
@@ -587,7 +534,7 @@ const MarketPlace = () => {
                 </div>
               </div>
             ))}
-          </Carousel>
+          </Slider>
         </section>
       );
     }
@@ -595,24 +542,7 @@ const MarketPlace = () => {
       return (
         <section className={styles.wearable_section}>
           <h3>Bomber</h3>
-          <Carousel
-            arrows
-            draggable
-            swipeable
-            partialVisible
-            autoPlaySpeed={3000}
-            focusOnSelect={false}
-            infinite={false}
-            keyBoardControl={true}
-            minimumTouchDrag={80}
-            renderButtonGroupOutside={false}
-            renderDotsOutside={false}
-            responsive={responsive}
-            showDots={false}
-            slidesToSlide={1}
-            containerClass="ice-wearables-carousel-container"
-            itemClass="carousel-item"
-          >
+          <Slider {...settings}>
             <div
               className={styles.games_container}
               style={{ paddingBottom: '20px' }}
@@ -717,7 +647,7 @@ const MarketPlace = () => {
                 <div className={styles.button_container}>
                   {state.itemLimits4[i][0] ? (
                     state.userStatus >= Global.MINT_STATUS &&
-                    state.userLoggedIn ? (
+                      state.userLoggedIn ? (
                       <div className={styles.flex_50}>
                         <ModalMintWearable
                           index={i}
@@ -752,7 +682,7 @@ const MarketPlace = () => {
                 </div>
               </div>
             ))}
-          </Carousel>
+          </Slider>
         </section>
       );
     }
@@ -760,24 +690,7 @@ const MarketPlace = () => {
       return (
         <section className={styles.wearable_section}>
           <h3>Linen</h3>
-          <Carousel
-            arrows
-            draggable
-            swipeable
-            partialVisible
-            autoPlaySpeed={3000}
-            focusOnSelect={false}
-            infinite={false}
-            keyBoardControl={true}
-            minimumTouchDrag={80}
-            renderButtonGroupOutside={false}
-            renderDotsOutside={false}
-            responsive={responsive}
-            showDots={false}
-            slidesToSlide={1}
-            containerClass="ice-wearables-carousel-container"
-            itemClass="carousel-item"
-          >
+          <Slider {...settings}>
             <div
               className={styles.games_container}
               style={{ paddingBottom: '20px' }}
@@ -882,7 +795,7 @@ const MarketPlace = () => {
                 <div className={styles.button_container}>
                   {state.itemLimits3[i][0] ? (
                     state.userStatus >= Global.MINT_STATUS &&
-                    state.userLoggedIn ? (
+                      state.userLoggedIn ? (
                       <div className={styles.flex_50}>
                         <ModalMintWearable
                           index={i}
@@ -917,7 +830,7 @@ const MarketPlace = () => {
                 </div>
               </div>
             ))}
-          </Carousel>
+          </Slider>
         </section>
       );
     }
