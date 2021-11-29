@@ -14,29 +14,42 @@ const ModalInfo = () => {
 
   // define local variables
   const [open, setOpen] = useState(false);
+
   const [DGTotal, setDGTotal] = useState(0);
   const [DGTotal_2, setDGTotal_2] = useState(0);
+
   // const [supply, setSupply] = useState(0);
   const [DGPrice, setDGPrice] = useState(0);
 
   useEffect(() => {
     const totalDG =
-      parseFloat(state.DGBalances.BALANCE_MINING_DG) +
-      parseFloat(state.DGBalances.BALANCE_STAKING_BALANCER_1) +
-      parseFloat(state.DGBalances.BALANCE_STAKING_BALANCER_2) +
-      parseFloat(state.DGBalances.BALANCE_KEEPER_DG) +
-      parseFloat(state.DGBalances.BALANCE_ROOT_DG) +
-      parseFloat(state.DGBalances.BALANCE_CHILD_DG) +
-      parseFloat(state.stakingBalances.BALANCE_USER_GOVERNANCE) +
-      parseFloat(state.DGBalances.BALANCE_STAKING_UNISWAP) +
-      parseFloat(state.DGBalances.BALANCE_STAKING_GOVERNANCE);
+      // parseFloat(state.DGBalances.BALANCE_MINING_DG) +
 
-    const totalDGAdjusted_temp = totalDG.toFixed(0);
+      // parseFloat(state.DGBalances.BALANCE_STAKING_BALANCER_1) +
+      // parseFloat(state.DGBalances.BALANCE_STAKING_BALANCER_2) +
+
+      // parseFloat(state.DGBalances.BALANCE_KEEPER_DG) +
+      parseFloat(state.DGBalances.BALANCE_ROOT_DG_LIGHT) +
+      parseFloat(state.DGBalances.BALANCE_CHILD_DG_LIGHT);
+
+    // parseFloat(state.stakingBalances.BALANCE_USER_GOVERNANCE); // **************
+
+    // parseFloat(state.DGBalances.BALANCE_STAKING_UNISWAP) +
+    // parseFloat(state.DGBalances.BALANCE_STAKING_GOVERNANCE);
+
+    const totalDGAdjusted_temp = totalDG.toFixed(3);
     const totalDGAdjusted = Number(totalDGAdjusted_temp);
 
     setDGTotal(totalDGAdjusted);
 
-    const totalDGAdjusted_2 = totalDG.toFixed(3);
+    const totalDG_2 =
+      parseFloat(state.stakingBalances.BALANCE_USER_GOVERNANCE) +
+      parseFloat(state.DGBalances.BALANCE_CHILD_TOKEN_XDG);
+
+    const totalDGAdjusted_temp_2 = totalDG_2.toFixed(3);
+    const totalDGAdjusted_2 = Number(totalDGAdjusted_temp_2);
+
+    // const totalDGAdjusted_2 = totalDG.toFixed(0);
     setDGTotal_2(totalDGAdjusted_2);
   }, [state.DGBalances, state.stakingBalances]);
 
@@ -48,16 +61,28 @@ const ModalInfo = () => {
   }, [state.openModalInfo]);
 
   // total unclaimed
-  const unclaimed =
-    Number(state.DGBalances.BALANCE_STAKING_GOVERNANCE) +
-    Number(state.DGBalances.BALANCE_STAKING_UNISWAP) +
-    Number(state.DGBalances.BALANCE_MINING_DG) +
-    Number(state.DGBalances.BALANCE_KEEPER_DG);
+  // const unclaimed = Number(state.stakingBalances.BALANCE_USER_GOVERNANCE);
+  // Number(state.DGBalances.BALANCE_STAKING_UNISWAP) +
+
+  // Number(state.DGBalances.BALANCE_MINING_DG) + // update with new dgPointer once deployed
+  // const unclaimed = Number(0); // ********** update with new dgPointer once deployed **********
+
+  // Number(state.DGBalances.BALANCE_KEEPER_DG);
+
+  // console.log(
+  //   'BALANCE_USER_GOVERNANCE: ' + state.stakingBalances.BALANCE_USER_GOVERNANCE
+  // );
+  // console.log(
+  //   'BALANCE_STAKING_UNISWAP: ' + state.DGBalances.BALANCE_STAKING_UNISWAP
+  // );
+  // console.log('BALANCE_MINING_DG: ' + state.DGBalances.BALANCE_MINING_DG);
+  // console.log('BALANCE_KEEPER_DG: ' + state.DGBalances.BALANCE_KEEPER_DG);
 
   // fetch circulating supply
   useEffect(() => {
     (async function () {
       const json = await Fetch.DG_SUPPLY_GECKO();
+
       if (json && json.market_data) {
         // setSupply(json.market_data.circulating_supply);
         setDGPrice(json.market_data.current_price.usd);
@@ -65,15 +90,8 @@ const ModalInfo = () => {
     })();
   }, []);
 
-  // calculate market cap
-  // const temp = supply * DGPrice;
-  // const marketCap = temp.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
   const temp_2 = DGTotal_2 * DGPrice;
   const unclaimedUSD = temp_2.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-  // const gov_staked = Number(state.stakingBalances.BALANCE_USER_GOVERNANCE);
-  // const gov_unclaimed = Number(state.DGBalances.BALANCE_STAKING_GOVERNANCE); // governance
 
   function formatPrice(balanceDG, units) {
     const balanceAdjusted = Number(balanceDG)
@@ -155,7 +173,7 @@ const ModalInfo = () => {
                     <h4 className={styles.subtitle_1}>0.000 DG</h4>
                   ) : (
                     <h4 className={styles.subtitle_1}>
-                      {formatPrice(DGTotal_2, 3)} DG
+                      {formatPrice(DGTotal, 3)} DG
                     </h4>
                   )}
                   <p className={styles.subtitle_2}>${unclaimedUSD}</p>
@@ -166,6 +184,7 @@ const ModalInfo = () => {
                     className={styles.dg_image}
                     src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637260602/grayLogo_ojx2hi.png"
                   />
+
                   {state.DGBalances.BALANCE_KEEPER_DG == 10 ? (
                     <h4 className={styles.subtitle_1}>0.000 xDG</h4>
                   ) : (
@@ -173,6 +192,7 @@ const ModalInfo = () => {
                       {formatPrice(DGTotal_2, 3)} xDG
                     </h4>
                   )}
+
                   <p className={styles.subtitle_2}>${unclaimedUSD}</p>
                 </div>
               </section>
@@ -219,10 +239,14 @@ const ModalInfo = () => {
 
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
-                {formatPrice(state.DGBalances.BALANCE_ROOT_DG, 3)}
+                {formatPrice(state.DGBalances.BALANCE_ROOT_DG_LIGHT, 3)}
               </h5>
               <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
-                ${formatPrice(state.DGBalances.BALANCE_ROOT_DG * DGPrice, 2)}
+                $
+                {formatPrice(
+                  state.DGBalances.BALANCE_ROOT_DG_LIGHT * DGPrice,
+                  2
+                )}
               </p>
             </span>
           </span>
@@ -241,10 +265,14 @@ const ModalInfo = () => {
 
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
-                {formatPrice(state.DGBalances.BALANCE_CHILD_DG, 3)}
+                {formatPrice(state.DGBalances.BALANCE_CHILD_DG_LIGHT, 3)}
               </h5>
               <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
-                ${formatPrice(state.DGBalances.BALANCE_CHILD_DG * DGPrice, 2)}
+                $
+                {formatPrice(
+                  state.DGBalances.BALANCE_CHILD_DG_LIGHT * DGPrice,
+                  2
+                )}
               </p>
             </span>
           </span>
@@ -263,10 +291,14 @@ const ModalInfo = () => {
 
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
-                {formatPrice(unclaimed, 3)}
+                {formatPrice(state.DGBalances.BALANCE_MINING_DG_V2, 3)}
               </h5>
               <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
-                ${formatPrice(unclaimed * DGPrice, 2)}
+                $
+                {formatPrice(
+                  state.DGBalances.BALANCE_MINING_DG_V2 * DGPrice,
+                  2
+                )}
               </p>
             </span>
           </span>

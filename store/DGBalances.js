@@ -24,6 +24,9 @@ function DGBalances() {
   const [DGTokenContract, setDGTokenContract] = useState({});
   const [DGLightTokenContract, setDGLightTokenContract] = useState({});
   const [DGMaticContract, setDGMaticContract] = useState({});
+
+  const [XDGMaticContract, setXDGMaticContract] = useState({});
+
   const [DGLightMaticContract, setDGLightMaticContract] = useState({});
   const [BPTContract1, setBPTContract1] = useState({});
   const [BPTContract2, setBPTContract2] = useState({});
@@ -68,6 +71,10 @@ function DGBalances() {
     // matic contract to get DG balance on matic chain for modal
     const DGMaticContract = await Transactions.DGTokenContract(maticWeb3);
     setDGMaticContract(DGMaticContract);
+
+    // matic contract to get xDG balance on matic chain for modal
+    const XDGMaticContract = await Transactions.XDGTokenContract(maticWeb3);
+    setXDGMaticContract(XDGMaticContract);
 
     // matic contract to get DGLight balance on matic chain for modal
     const DGLightMaticContract = await Transactions.DGLightTokenContract(
@@ -302,6 +309,15 @@ function DGBalances() {
         3
       );
 
+      const BALANCE_CHILD_TOKEN_XDG = await Transactions.balanceOfToken(
+        XDGMaticContract,
+        state.userAddress,
+        3
+      );
+
+      // console.log('foo foo foo...');
+      // console.log(BALANCE_CHILD_TOKEN_XDG);
+
       const BALANCE_ICE = await Transactions.balanceOfToken(
         iceContract,
         '0x7A61A0Ed364E599Ae4748D1EbE74bf236Dd27B09',
@@ -352,7 +368,7 @@ function DGBalances() {
 
       const BALANCE_AFFILIATES = await getAffiliateBalances(); // affiliate balances
 
-      const BALANCE_UNCLAIMED = await getDGGameplayUnclaimed(); // unclaimed dg in rewards contract
+      // const BALANCE_UNCLAIMED = await getDGGameplayUnclaimed(); // unclaimed dg in rewards contract
 
       const USDC_BALANCE_LP = await getUSDCBalanceLP(); // get USDC balance in LP
 
@@ -368,6 +384,9 @@ function DGBalances() {
         BALANCE_ROOT_DG_LIGHT: BALANCE_ROOT_DG_LIGHT,
         BALANCE_CHILD_DG: BALANCE_CHILD_DG,
         BALANCE_CHILD_DG_LIGHT: BALANCE_CHILD_DG_LIGHT,
+
+        BALANCE_CHILD_TOKEN_XDG: BALANCE_CHILD_TOKEN_XDG,
+
         UNVESTED_DG_1: UNVESTED_DG_1,
         UNVESTED_DG_2: UNVESTED_DG_2,
         BALANCE_ICE: BALANCE_ICE,
@@ -391,7 +410,7 @@ function DGBalances() {
 
         // BALANCE_TREASURY_DG: BALANCE_TREASURY_DG,
         BALANCE_AFFILIATES: BALANCE_AFFILIATES,
-        BALANCE_UNCLAIMED: BALANCE_UNCLAIMED,
+        // BALANCE_UNCLAIMED: BALANCE_UNCLAIMED,
         ICE_BALANCE_LP: ICE_BALANCE_LP,
         USDC_BALANCE_LP: USDC_BALANCE_LP,
         BALANCE_WETH_WEARABLES: BALANCE_WETH_WEARABLES,
@@ -519,18 +538,18 @@ function DGBalances() {
   }
 
   // get contracts DG unclaimed balance from smart contract for keeping funds
-  async function getDGGameplayUnclaimed() {
-    try {
-      const amount = await keeperContract.methods
-        .availableBalance('0x9e78ADcc93eA1CD666f37ECfC3c5a868Ae55d274')
-        .call();
-      const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
+  // async function getDGGameplayUnclaimed() {
+  //   try {
+  //     const amount = await keeperContract.methods
+  //       .availableBalance('0x9e78ADcc93eA1CD666f37ECfC3c5a868Ae55d274')
+  //       .call();
+  //     const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
 
-      return balanceAdjusted;
-    } catch (error) {
-      console.log('No DG keeper balance found: ' + error);
-    }
-  }
+  //     return balanceAdjusted;
+  //   } catch (error) {
+  //     console.log('No DG keeper balance found: ' + error);
+  //   }
+  // }
 
   // get user's affiliate balances
   async function getAffiliateBalances() {

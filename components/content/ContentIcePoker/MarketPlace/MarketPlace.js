@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../../../../store';
 import ModalMintWearable from 'components/modal/ModalMintWearable';
 import ModalLoginICE from 'components/modal/ModalLoginICE';
@@ -213,6 +213,39 @@ const MarketPlace = () => {
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
 
+  function useWindowSize() {
+    // Initialize state with undefined width/height so server and client renders match
+    // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+    const [windowSize, setWindowSize] = useState({
+      width: undefined,
+      height: undefined,
+    });
+
+    useEffect(() => {
+      // only execute all the code below in client side
+      if (typeof window !== 'undefined') {
+        // Handler to call on window resize
+        function handleResize() {
+          // Set window width/height to state
+          setWindowSize({
+            width: window.innerWidth,
+            height: window.innerHeight,
+          });
+        }
+
+        // Add event listener
+        window.addEventListener("resize", handleResize);
+
+        // Call handler right away so state gets updated with initial window size
+        handleResize();
+
+        // Remove event listener on cleanup
+        return () => window.removeEventListener("resize", handleResize);
+      }
+    }, []); // Empty array ensures that effect is only run on mount
+    return windowSize;
+  }
+
   function CarouselNextArrow(props) {
     const { className, onClick } = props;
     return (
@@ -234,12 +267,15 @@ const MarketPlace = () => {
   }
 
   function getCarousel(row) {
+    const size = useWindowSize();
+    console.log(size);
     const settings = {
       className: "slider variable-width",
       dots: false,
       infinite: false,
       swipeToSlide: true,
       variableWidth: true,
+      slidesToShow: size.width <= 499 ? 1 : size.width <= 1040 ? Math.floor((size.width - 120) / 280) : Math.floor((size.width - 300) / 280),
       nextArrow: <CarouselNextArrow />,
       prevArrow: <CarouselPrevArrow />
     };
