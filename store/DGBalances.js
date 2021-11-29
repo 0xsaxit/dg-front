@@ -665,11 +665,11 @@ function DGBalances() {
         Global.ADDRESSES.DG_STAKING_GOVERNANCE_ADDRESS
       );
 
-      // const BALANCE_USER_GOVERNANCE_OLD = await Transactions.balanceOfToken(
-      //   stakeContractGovernance,
-      //   state.userAddress,
-      //   0
-      // );
+      const BALANCE_USER_GOVERNANCE_OLD = await Transactions.balanceOfToken(
+        stakeContractGovernance,
+        state.userAddress,
+        0
+      );
 
       const BALANCE_USER_GOVERNANCE = await Transactions.balanceOfToken(
         townHallGovernance,
@@ -710,7 +710,7 @@ function DGBalances() {
         BALANCE_WALLET_BPT_1: BALANCE_WALLET_BPT_1,
         BALANCE_WALLET_BPT_2: BALANCE_WALLET_BPT_2,
         BALANCE_CONTRACT_GOVERNANCE: BALANCE_CONTRACT_GOVERNANCE,
-        // BALANCE_USER_GOVERNANCE_OLD: BALANCE_USER_GOVERNANCE_OLD,
+        BALANCE_USER_GOVERNANCE_OLD: BALANCE_USER_GOVERNANCE_OLD,
         BALANCE_USER_GOVERNANCE: BALANCE_USER_GOVERNANCE,
         BALANCE_CONTRACT_UNISWAP: BALANCE_CONTRACT_UNISWAP,
         BALANCE_STAKED_UNISWAP: BALANCE_STAKED_UNISWAP,
