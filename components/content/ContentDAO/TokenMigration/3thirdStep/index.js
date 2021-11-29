@@ -305,7 +305,7 @@ const ThirdStep = (props) => {
 
                                         <div className={styles.description}>
                                             <h4 className={direct ? styles.active : null}>
-                                                {props.formatPrice(state.DGBalances.BALANCE_ROOT_DG || 0, 2)} DG (Old) {direct ? 'Detected!' : 'Total'}
+                                                {props.formatNumber(state.DGBalances.BALANCE_ROOT_DG || 0, 4)} DG (Old) {direct ? 'Detected!' : 'Total'}
                                             </h4>
                                             <p>On ETH {networkInfo.name}</p>
                                         </div>
@@ -337,7 +337,7 @@ const ThirdStep = (props) => {
 
                                         <div className={styles.description}>
                                             <h4 className={!direct ? styles.active : null}>
-                                                {props.formatPrice(state.DGBalances.BALANCE_ROOT_DG_LIGHT || 0, 2)} New DG {!direct ? 'Detected!' : 'Total'}
+                                                {props.formatNumber(state.DGBalances.BALANCE_ROOT_DG_LIGHT || 0, 2)} New DG {!direct ? 'Detected!' : 'Total'}
                                             </h4>
                                             <p>On ETH {networkInfo.name}</p>
                                         </div>
@@ -405,8 +405,8 @@ const ThirdStep = (props) => {
                                                     approving
                                                         ? 'Approving'
                                                         : direct
-                                                            ? `Swap ${BigNumber(amountDG).toFormat()} $DG for ${BigNumber(amountDGLight).toFormat()} DG`
-                                                            : `Swap ${BigNumber(amountDGLight).toFormat()} DG for ${BigNumber(amountDG).toFormat()} $DG`
+                                                            ? `Swap ${props.formatNumber(amountDG, 4)} $DG for ${props.formatNumber(amountDGLight, 2)} DG`
+                                                            : `Swap ${props.formatNumber(amountDGLight, 2)} DG for ${props.formatNumber(amountDG, 4)} $DG`
                                                 }
                                             </Button>
                                     }

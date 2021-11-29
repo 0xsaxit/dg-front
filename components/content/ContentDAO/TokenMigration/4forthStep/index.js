@@ -214,7 +214,7 @@ const ForthStep = (props) => {
 
                                     <div className={styles.description}>
                                         <h4 className={stakeAmount <= availabeStake ? styles.success : styles.error}>
-                                            {props.formatPrice(availabeStake || 0, 2)} DG Available to Stake
+                                            {props.formatNumber(availabeStake || 0, 2)} DG Available to Stake
                                         </h4>
                                         <p>On Eth {networkInfo.name}</p>
                                     </div>

@@ -253,7 +253,7 @@
     display: flex;
     justify-content: center;
     align-items: start;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 
     button {
       display: flex;
@@ -293,6 +293,58 @@
         background: #1f1f1f;
         opacity: 0.6;
         transition: 0.2s ease-in;
+      }
+    }
+  }
+  
+  .footer_tip {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    margin-bottom: 50px;
+
+    .box_div {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      width: 700px;
+      height: 140px;
+      margin: 10px 12px 0px 12px;
+      padding: 27px;
+      border: 1px solid #2a2a2a;
+      border-radius: 16px;
+
+      .box_title {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          h1 {
+              font-size: 19px;
+              line-height: 27px;
+              font-family: "Larsseit-Bold";
+              letter-spacing: 0.5px;
+              margin-top: 0px;
+          }
+      }
+
+      .center_content {
+          position: relative;
+
+          p {
+              margin-top: 2px;
+              margin-bottom: 2px;
+              text-align: center;
+              font-size: 15px;
+              font-family: "LARSSEIT-MEDIUM";
+              color: rgba(255, 255, 255, 0.5) !important;
+          }
+
+          label {
+            color: rgba(80, 155, 255) !important;
+          }
       }
     }
   }

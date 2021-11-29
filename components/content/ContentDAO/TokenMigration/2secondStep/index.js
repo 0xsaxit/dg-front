@@ -156,7 +156,7 @@ const SecondStep = (props) => {
                             </div>
                             <div className={styles.center_content}>
                                 <div>
-                                    {props.formatPrice(lpStakedAmount, 2)}
+                                    {props.formatNumber(lpStakedAmount, 4)}
                                     <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
                                 </div>
                             </div>
@@ -237,7 +237,7 @@ const SecondStep = (props) => {
                         </div>
                         <div className={styles.center_content}>
                             <div>
-                                {props.formatPrice(uniDGAmount, 2)}
+                                {props.formatNumber(uniDGAmount, 4)}
                                 <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
                             </div>
                             <p>
