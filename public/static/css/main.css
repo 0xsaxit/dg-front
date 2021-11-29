@@ -3802,7 +3802,7 @@ div.ui.input.withdraw_input>input {
 .slick-slider {}
 
 .slick-slider .slick-arrow {
-  background-color: transparent;
+  background-color: #006eff;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -3822,10 +3822,26 @@ div.ui.input.withdraw_input>input {
 
 .slick-slider .slick-arrow.slick-prev {
   left: 25px;
-  content: "\e824";
+  content: "\e824" !important;
+  font-family: revicons;
+}
+
+.slick-slider .slick-arrow.slick-prev::before {
+  content: "\e824" !important;
+  font-family: revicons;
 }
 
 .slick-slider .slick-arrow.slick-next {
   right: 45px;
-  content: "\e824";
+}
+
+.slick-slider .slick-arrow.slick-next::before {
+  content: "\e825" !important;
+  font-family: revicons;
+}
+
+@media (max-width: 31.1875em) {
+  .slick-slider .slick-arrow {
+    display: none;
+  }
 }
