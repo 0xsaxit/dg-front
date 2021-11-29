@@ -5,6 +5,9 @@ import ABI_DG_POINTER_NEW from '../components/ABI/ABIDGPointerNew';
 import ABI_TOWN_HALL from '../components/ABI/ABIDGTownHall';
 import ABI_DG_STAKING from '../components/ABI/ABIDGStaking';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
+
+import ABI_XDG_TOKEN from '../components/ABI/ABIChildTokenXDG';
+
 import ABI_DG_LIGHT_TOKEN from '../components/ABI/ABIDGLightToken';
 import ABI_DG_LIGHT_BRIDGE from '../components/ABI/ABIDGLightBridge';
 import ABI_DG_TOWN_HALL from '../components/ABI/ABIDGTownHall';
@@ -70,6 +73,16 @@ async function DGTokenContract(web3Default) {
   );
 
   return DGToken;
+}
+
+// set xDG Polygon contract instance
+async function XDGTokenContract(web3Default) {
+  const XDGToken = new web3Default.eth.Contract(
+    ABI_XDG_TOKEN,
+    Global.ADDRESSES.CHILD_TOKEN_XDG_ADDRESS
+  );
+
+  return XDGToken;
 }
 
 // set DGLight main contract instance
@@ -302,6 +315,7 @@ export default {
   pointerContract,
   pointerContractNew,
   DGTokenContract,
+  XDGTokenContract,
   DGLightTokenContract,
   DGLightBridgeContract,
   DGTownHallContract,
