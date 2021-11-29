@@ -14,8 +14,10 @@ const ModalInfo = () => {
 
   // define local variables
   const [open, setOpen] = useState(false);
+
   const [DGTotal, setDGTotal] = useState(0);
   const [DGTotal_2, setDGTotal_2] = useState(0);
+
   // const [supply, setSupply] = useState(0);
   const [DGPrice, setDGPrice] = useState(0);
 
@@ -28,18 +30,26 @@ const ModalInfo = () => {
 
       // parseFloat(state.DGBalances.BALANCE_KEEPER_DG) +
       parseFloat(state.DGBalances.BALANCE_ROOT_DG_LIGHT) +
-      parseFloat(state.DGBalances.BALANCE_CHILD_DG_LIGHT) +
-      parseFloat(state.stakingBalances.BALANCE_USER_GOVERNANCE);
+      parseFloat(state.DGBalances.BALANCE_CHILD_DG_LIGHT);
+
+    // parseFloat(state.stakingBalances.BALANCE_USER_GOVERNANCE); // **************
 
     // parseFloat(state.DGBalances.BALANCE_STAKING_UNISWAP) +
     // parseFloat(state.DGBalances.BALANCE_STAKING_GOVERNANCE);
 
-    const totalDGAdjusted_temp = totalDG.toFixed(0);
+    const totalDGAdjusted_temp = totalDG.toFixed(3);
     const totalDGAdjusted = Number(totalDGAdjusted_temp);
 
     setDGTotal(totalDGAdjusted);
 
-    const totalDGAdjusted_2 = totalDG.toFixed(0);
+    const totalDG_2 =
+      parseFloat(state.stakingBalances.BALANCE_USER_GOVERNANCE) +
+      parseFloat(state.DGBalances.BALANCE_CHILD_TOKEN_XDG);
+
+    const totalDGAdjusted_temp_2 = totalDG_2.toFixed(3);
+    const totalDGAdjusted_2 = Number(totalDGAdjusted_temp_2);
+
+    // const totalDGAdjusted_2 = totalDG.toFixed(0);
     setDGTotal_2(totalDGAdjusted_2);
   }, [state.DGBalances, state.stakingBalances]);
 
@@ -51,9 +61,12 @@ const ModalInfo = () => {
   }, [state.openModalInfo]);
 
   // total unclaimed
-  const unclaimed = Number(state.stakingBalances.BALANCE_USER_GOVERNANCE);
+  // const unclaimed = Number(state.stakingBalances.BALANCE_USER_GOVERNANCE);
   // Number(state.DGBalances.BALANCE_STAKING_UNISWAP) +
+
   // Number(state.DGBalances.BALANCE_MINING_DG) + // update with new dgPointer once deployed
+  // const unclaimed = Number(0); // ********** update with new dgPointer once deployed **********
+
   // Number(state.DGBalances.BALANCE_KEEPER_DG);
 
   // console.log(
@@ -160,7 +173,7 @@ const ModalInfo = () => {
                     <h4 className={styles.subtitle_1}>0.000 DG</h4>
                   ) : (
                     <h4 className={styles.subtitle_1}>
-                      {formatPrice(DGTotal_2, 0)} DG
+                      {formatPrice(DGTotal, 3)} DG
                     </h4>
                   )}
                   <p className={styles.subtitle_2}>${unclaimedUSD}</p>
@@ -176,7 +189,7 @@ const ModalInfo = () => {
                     <h4 className={styles.subtitle_1}>0.000 xDG</h4>
                   ) : (
                     <h4 className={styles.subtitle_1}>
-                      {formatPrice(DGTotal_2, 0)} xDG
+                      {formatPrice(DGTotal_2, 3)} xDG
                     </h4>
                   )}
 
@@ -273,15 +286,19 @@ const ModalInfo = () => {
           >
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h5 className={styles.row_title}>Unclaimed DG</h5>
-              <p className={styles.row_subtitle}>Gameplay & Staking Rewards</p>
+              <p className={styles.row_subtitle}>Gameplay Rewards</p>
             </span>
 
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
-                {formatPrice(unclaimed, 3)}
+                {formatPrice(state.DGBalances.BALANCE_MINING_DG_V2, 3)}
               </h5>
               <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
-                ${formatPrice(unclaimed * DGPrice, 2)}
+                $
+                {formatPrice(
+                  state.DGBalances.BALANCE_MINING_DG_V2 * DGPrice,
+                  2
+                )}
               </p>
             </span>
           </span>
