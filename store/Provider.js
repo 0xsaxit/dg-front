@@ -32,6 +32,7 @@ const initialState = {
   ],
   userLoggedIn: false,
   transactions: [{}, {}],
+  appConfig: {},
   treasuryNumbers: {},
   txHash: '',
   gameRecords: {},
@@ -51,7 +52,13 @@ const initialState = {
     BALANCE_BP_DG_2: 0,
     BALANCE_BP_DAI: 0,
     BALANCE_ROOT_DG: 0,
+    BALANCE_ROOT_DG_LIGHT: 0,
     BALANCE_CHILD_DG: 0,
+    BALANCE_CHILD_DG_LIGHT: 0,
+    BALANCE_CHILD_TOKEN_XDG: 0,
+    UNVESTED_DG_1: 0,
+    UNVESTED_DG_2: 0,
+    BALANCE_ICE: 0,
     BALANCE_UNISWAP_DG: 0,
     BALANCE_UNISWAP_ETH: 0,
     BALANCE_STAKING_BALANCER_1: 0,
@@ -59,11 +66,12 @@ const initialState = {
     BALANCE_STAKING_GOVERNANCE: 0,
     BALANCE_STAKING_UNISWAP: 0,
     BALANCE_MINING_DG: 0,
+    BALANCE_MINING_DG_V2: 0,
     BALANCE_KEEPER_DG: 0,
-    TOTAL_MANA: 0,
-    SUPPLY_BPT_1: 0,
-    SUPPLY_BPT_2: 0,
     BALANCE_AFFILIATES: [0, 0],
+    ICE_BALANCE_LP: 0,
+    USDC_BALANCE_LP: 0,
+    BALANCE_WETH_WEARABLES: 0,
   },
   DGPrices: {
     eth: 0,
@@ -254,11 +262,11 @@ const reducer = (state, action) => {
         transactions: action.data,
       };
 
-    // case 'app_config':
-    //   return {
-    //     ...state,
-    //     appConfig: action.data,
-    //   };
+    case 'app_config':
+      return {
+        ...state,
+        appConfig: action.data,
+      };
 
     case 'treasury_numbers':
       return {
