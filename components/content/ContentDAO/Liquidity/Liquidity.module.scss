@@ -331,43 +331,6 @@
         transition: 0.2s ease-in;
       }
     }
-
-    .description {
-      position: absolute;
-      top: 70px;
-
-      h4 {
-        font-family: "Larsseit-Regular";
-        font-size: 11px;
-        line-height: 14px;
-        letter-spacing: 0.5px;
-        text-align: center;
-        margin-bottom: 2px;
-      }
-
-      h4.success {
-        color: #67dd6c !important;
-      }
-
-      h4.error {
-        color: #ffb5b5 !important;
-      }
-
-      h4.active {
-        font-size: 11px;
-        line-height: 14px;
-        letter-spacing: 0.5px;
-        color: #67dd6c !important;
-        margin-bottom: 2px;
-      }
-
-      p {
-        text-align: center;
-        font-size: 9px;
-        line-height: 12px;
-        color: rgba(255, 255, 255, 0.5) !important;
-      }
-    }
   }
 
   .button_div {
@@ -375,7 +338,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-top: 55px;
+    margin-top: 30px;
 
     .button,
     .button_blue {
