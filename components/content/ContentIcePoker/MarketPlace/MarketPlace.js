@@ -252,7 +252,9 @@ const MarketPlace = () => {
       <div
         className={className}
         onClick={onClick}
-      />
+      >
+        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1638236358/Right_Chevron_3x_cxt9x8.png" alt="nextArrow" />
+      </div>
     );
   }
 
@@ -262,20 +264,21 @@ const MarketPlace = () => {
       <div
         className={className}
         onClick={onClick}
-      />
+      >
+        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1638236358/Right_Chevron_3x_cxt9x8.png" alt="nextArrow" />
+      </div>
     );
   }
 
   function getCarousel(row) {
     const size = useWindowSize();
-    console.log(size);
     const settings = {
       className: "slider variable-width",
       dots: false,
       infinite: false,
       swipeToSlide: true,
       variableWidth: true,
-      slidesToShow: size.width <= 499 ? 1 : size.width <= 1040 ? Math.floor((size.width - 120) / 280) : Math.floor((size.width - 300) / 280),
+      slidesToShow: size.width <= 499 ? 1 : size.width <= 1040 ? Math.floor((size.width - 120) / 300) : Math.min(Math.floor((size.width - 300) / 300), 6),
       nextArrow: <CarouselNextArrow />,
       prevArrow: <CarouselPrevArrow />
     };
