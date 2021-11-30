@@ -163,7 +163,7 @@ const ThirdStep = (props) => {
                       address: direct ? networkInfo.dgLightAddress : networkInfo.dgAddress,
                       symbol: direct ? 'DG' : '$DG',
                       decimals: 18,
-                      image: Images.DG_COIN_LOGO,
+                      image: 'https://res.cloudinary.com/dze4ze7xd/image/upload/c_scale,h_256/v1638231952/DG_LOGO_ch4uj6.png',
                     },
                 },
             });
