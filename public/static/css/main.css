@@ -3826,18 +3826,33 @@ div.ui.input.withdraw_input>input {
   font-family: revicons;
 }
 
+.slick-slider .slick-arrow.slick-prev img {
+  position: relative;
+  width: 12px;
+  left: -1px;
+  transform: rotate(180deg) !important;
+}
+
 .slick-slider .slick-arrow.slick-prev::before {
   content: "\e824" !important;
   font-family: revicons;
+  display: none;
 }
 
 .slick-slider .slick-arrow.slick-next {
   right: 45px;
 }
 
+.slick-slider .slick-arrow.slick-next img {
+  position: relative;
+  width: 12px;
+  left: 2px;
+}
+
 .slick-slider .slick-arrow.slick-next::before {
   content: "\e825" !important;
   font-family: revicons;
+  display: none;
 }
 
 @media (max-width: 31.1875em) {
