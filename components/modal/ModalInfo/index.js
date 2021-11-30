@@ -17,7 +17,13 @@ const ModalInfo = () => {
   const [xdgTotal, setXDGTotal] = useState(0);
   const [dgTotalUSD, setDGTotalUSD] = useState(0);
   const [xdgTotalUSD, setXDGTotalUSD] = useState(0);
-  const [dgSummation, setDGSummation] = useState(0);
+  const [dgMining, setDGMining] = useState(0);
+  const [dgMiningUSD, setDGMiningUSD] = useState(0);
+
+  const [dgSummationOld, setDGSummationOld] = useState(0);
+  const [dgSummationNew, setDGSummationNew] = useState(0);
+  const [dgSummationAll, setDGSummationAll] = useState(0);
+
   const [DGPrice, setDGPrice] = useState(0);
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -37,13 +43,37 @@ const ModalInfo = () => {
     setXDGTotal(xdgTotal);
     setXDGTotalUSD(xdgTotal * DGPrice);
 
-    const dgSummation = dgTotal + xdgTotal;
-    setDGSummation(dgSummation);
+    const dgMining = 0; // ********** we will set this to the correct value once the new dgPointer is deployed **********
+    setDGMining(dgMining);
+    setDGMiningUSD(dgMining + DGPrice);
+
+    const dgSummationNew = dgTotal + xdgTotal + dgMining;
+    setDGSummationNew(dgSummationNew);
   }, [state.DGBalances, state.stakingBalances]);
 
   useEffect(() => {
-    const balanceMining = state.DGBalances.BALANCE_MINING_DG_V2;
-    const balanceMiningAdjusted = balanceMining * 1000;
+    console.log('start...');
+
+    const balanceMiningOld = state.DGBalances.BALANCE_MINING_DG_V2;
+    const balanceMiningAdjustedOld = balanceMiningOld * 1000;
+
+    const balanceStakingB1 = state.DGBalances.BALANCE_STAKING_BALANCER_1;
+    const balanceStakingB1Adjusted = balanceStakingB1 * 1000;
+
+    const balanceStakingB2 = state.DGBalances.BALANCE_STAKING_BALANCER_2;
+    const balanceStakingB2Adjusted = balanceStakingB2 * 1000;
+
+    const balanceKeeperDG = state.DGBalances.BALANCE_KEEPER_DG;
+    const balanceKeeperDGAdjusted = balanceKeeperDG * 1000;
+
+    const balanceStakingUser = state.stakingBalances.BALANCE_USER_GOVERNANCE;
+    const balanceStakingUserAdjusted = balanceStakingUser * 1000;
+
+    const balanceStakingUniswap = state.DGBalances.BALANCE_STAKING_UNISWAP;
+    const balanceStakingUniswapAdjusted = balanceStakingUniswap * 1000;
+
+    const balanceStakingGovOld = state.DGBalances.BALANCE_STAKING_GOVERNANCE;
+    const balanceStakingGovOldAdjusted = balanceStakingGovOld * 1000;
 
     const balanceRootDG = state.DGBalances.BALANCE_ROOT_DG;
     const balanceRootDGAdjusted = balanceRootDG * 1000;
@@ -51,15 +81,36 @@ const ModalInfo = () => {
     const balanceChildDG = state.DGBalances.BALANCE_CHILD_DG;
     const balanceChildDGAdjusted = balanceChildDG * 1000;
 
-    const dgSummation =
-      dgTotal +
-      xdgTotal +
-      balanceMiningAdjusted +
-      balanceRootDGAdjusted +
-      balanceChildDGAdjusted;
+    console.log('ModalInfo numbers...');
+    console.log(balanceMiningAdjustedOld);
+    console.log(balanceStakingB1Adjusted);
+    console.log(balanceStakingB2Adjusted);
+    console.log(balanceKeeperDGAdjusted);
+    console.log(balanceStakingUserAdjusted);
+    console.log(balanceStakingUniswapAdjusted);
+    console.log(balanceStakingGovOldAdjusted);
+    console.log(balanceRootDGAdjusted);
+    console.log(balanceChildDGAdjusted);
 
-    setDGSummation(formatPrice(dgSummation, 0));
-  }, [dgTotal, xdgTotal, state.DGBalances]);
+    const dgSummationOld =
+      parseFloat(balanceMiningAdjustedOld) +
+      parseFloat(balanceStakingB1Adjusted) +
+      parseFloat(balanceStakingB2Adjusted) +
+      parseFloat(1) + // balanceKeeperDGAdjusted
+      parseFloat(1) + // balanceStakingUserAdjusted
+      parseFloat(balanceStakingUniswapAdjusted) +
+      parseFloat(1) + // balanceStakingGovOldAdjusted
+      parseFloat(1) + // balanceRootDGAdjusted
+      parseFloat(balanceChildDGAdjusted);
+
+    setDGSummationOld(formatPrice(dgSummationOld, 0));
+  }, [state.DGBalances, state.stakingBalances]);
+
+  useEffect(() => {
+    const dgSummationAll = dgSummationNew + dgSummationOld;
+
+    setDGSummationAll(formatPrice(dgSummationAll, 0));
+  }, [dgSummationNew, dgSummationOld]);
 
   useEffect(() => {
     if (state.openModalInfo) {
@@ -234,11 +285,11 @@ const ModalInfo = () => {
 
         <span style={{ display: 'flex', flexDirection: 'column' }}>
           <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
-            {formatPrice(state.DGBalances.BALANCE_MINING_DG_V2, 3)}
+            {formatPrice(dgMining, 3)}
           </h5>
 
           {/* <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
-            ${formatPrice(state.DGBalances.BALANCE_MINING_DG_V2 * DGPrice, 2)}
+            ${formatPrice(dgMining * DGPrice, 2)}
           </p> */}
         </span>
       </span>
@@ -262,11 +313,11 @@ const ModalInfo = () => {
 
         <span style={{ display: 'flex', flexDirection: 'column' }}>
           <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
-            {formatPrice(state.DGBalances.BALANCE_ROOT_DG, 3)}
+            {formatPrice(dgSummationOld, 3)}
           </h5>
 
           {/* <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
-            ${formatPrice(state.DGBalances.BALANCE_ROOT_DG * DGPrice, 2)}
+            ${formatPrice(dgSummationOld * DGPrice, 2)}
           </p> */}
         </span>
       </span>
@@ -314,7 +365,7 @@ const ModalInfo = () => {
         ) : (
           <Button className="account-button" style={{ marginTop: 0 }}>
             <p className="right-menu-text bnb">
-              {dgSummation.toLocaleString()} DG
+              {dgSummationAll.toLocaleString()} DG
             </p>
           </Button>
         )}
