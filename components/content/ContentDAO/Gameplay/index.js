@@ -18,23 +18,29 @@ const Gameplay = props => {
 
   // define local variables
   const [pointerContractNew, setPointerContractNew] = useState({});
+
   const [price, setPrice] = useState(0);
+
   const [web3, setWeb3] = useState({});
-  const [gameplayUSD, setGameplayUSD] = useState(0);
+  // const [gameplayUSD, setGameplayUSD] = useState(0);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
 
   // fetch circulating supply
+  // useEffect(() => {
+  //   (async function () {
+  //     const json = await Fetch.DG_SUPPLY_GECKO();
+  //     if(json && json.market_data) {
+  //       setPrice(json.market_data.current_price.usd);
+  //     }
+  //   })();
+  // }, []);
+
   useEffect(() => {
-    (async function () {
-      const json = await Fetch.DG_SUPPLY_GECKO();
-      if(json && json.market_data) {
-        setPrice(json.market_data.current_price.usd);
-      }      
-    })();
-  }, []);
+    setPrice(state.DGPrices.dg);
+  }, [state.DGPrices]);
 
   useEffect(() => {
     if (state.userStatus >= 4) {
@@ -70,14 +76,14 @@ const Gameplay = props => {
     }
   }, [state.userStatus]);
 
-  useEffect(() => {
-    if (props.price && state.DGBalances.BALANCE_MINING_DG_V2) {
-      const gameplayUSD = props.price * state.DGBalances.BALANCE_MINING_DG_V2;
-      const gameplayUSDFormatted = props.formatPrice(gameplayUSD, 2);
+  // useEffect(() => {
+  //   if (props.price && state.DGBalances.BALANCE_MINING_DG_V2) {
+  //     const gameplayUSD = props.price * state.DGBalances.BALANCE_MINING_DG_V2;
+  //     const gameplayUSDFormatted = props.formatPrice(gameplayUSD, 2);
 
-      setGameplayUSD(gameplayUSDFormatted);
-    }
-  }, [props.price, state.DGBalances.BALANCE_MINING_DG_V2]);
+  //     setGameplayUSD(gameplayUSDFormatted);
+  //   }
+  // }, [props.price, state.DGBalances.BALANCE_MINING_DG_V2]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
