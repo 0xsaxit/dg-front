@@ -54,7 +54,7 @@ const ModalLogin = () => {
     if (metamaskEnabled) {
       // open MetaMask for login then get the user's wallet address
       await window.ethereum.enable();
-      userAddress = window.ethereum.selectedAddress;
+      userAddress = window.ethereum?.selectedAddress;
 
       // track MetaMask connect event
       analytics.track('Connected MetaMask', {

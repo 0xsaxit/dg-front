@@ -136,7 +136,7 @@ const MessageToast = (props) => {
     } else if (mobile) {
       setMessage('Please configure metamask on a desktop browser');
     } else if (!mobile && state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID) {
-      if (!Global.pageSelfNetwork) {
+      if (!Global.pageSelfNetwork && window.ethereum) {
         setMessage('Please switch your Network to Ethereum Mainnet');
       }
       Global.pageSelfNetwork = false;
