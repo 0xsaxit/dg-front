@@ -164,7 +164,6 @@ const ModalDelegate = props => {
             <ul>
               <li>Let another player Play-to-Earn with your item</li>
               <li>Earn 30% of all ICE profits from their gameplay</li>
-              <li>Withdraw your delegation at any time.</li>
             </ul>
           </div>
         </div>
@@ -383,7 +382,12 @@ const ModalDelegate = props => {
                     </Button>
                   )}
 
-                  <Button className={styles.button_close}>Learn More</Button>
+                  <Button
+                    className={styles.button_close}
+                    onClick={() => {
+                      window.open("https://ice.decentral.games/ice-nft-wearables", "_blank");
+                    }}
+                  >Learn More</Button>
                 </div>
               </div>
 
