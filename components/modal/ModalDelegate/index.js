@@ -164,6 +164,7 @@ const ModalDelegate = props => {
             <ul>
               <li>Let another player Play-to-Earn with your item</li>
               <li>Earn 30% of all ICE profits from their gameplay</li>
+              <li>NFT stays in your wallet & undelegate any time</li>
             </ul>
           </div>
         </div>
