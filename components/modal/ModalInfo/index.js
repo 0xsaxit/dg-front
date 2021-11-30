@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { Modal, Button } from 'semantic-ui-react';
 import Spinner from 'components/lottieAnimation/animations/spinner_updated';
 import { GlobalContext } from '../../../store';
-import Fetch from '../../../common/Fetch';
 import styles from './ModalInfo.module.scss';
 import cn from 'classnames';
 import Global from '../../Constants';
@@ -14,44 +13,104 @@ const ModalInfo = () => {
 
   // define local variables
   const [open, setOpen] = useState(false);
+  const [dgTotal, setDGTotal] = useState(0);
+  const [xdgTotal, setXDGTotal] = useState(0);
+  const [dgTotalUSD, setDGTotalUSD] = useState(0);
+  const [xdgTotalUSD, setXDGTotalUSD] = useState(0);
+  const [dgMining, setDGMining] = useState(0);
+  const [dgMiningUSD, setDGMiningUSD] = useState(0);
 
-  const [DGTotal, setDGTotal] = useState(0);
-  const [DGTotal_2, setDGTotal_2] = useState(0);
+  const [dgSummationOld, setDGSummationOld] = useState(0);
+  const [dgSummationNew, setDGSummationNew] = useState(0);
+  const [dgSummationAll, setDGSummationAll] = useState(0);
 
-  // const [supply, setSupply] = useState(0);
   const [DGPrice, setDGPrice] = useState(0);
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
-    const totalDG =
-      // parseFloat(state.DGBalances.BALANCE_MINING_DG) +
-
-      // parseFloat(state.DGBalances.BALANCE_STAKING_BALANCER_1) +
-      // parseFloat(state.DGBalances.BALANCE_STAKING_BALANCER_2) +
-
-      // parseFloat(state.DGBalances.BALANCE_KEEPER_DG) +
+    const dgTotal =
       parseFloat(state.DGBalances.BALANCE_ROOT_DG_LIGHT) +
       parseFloat(state.DGBalances.BALANCE_CHILD_DG_LIGHT);
 
-    // parseFloat(state.stakingBalances.BALANCE_USER_GOVERNANCE); // **************
+    setDGTotal(dgTotal);
+    setDGTotalUSD(dgTotal * DGPrice);
 
-    // parseFloat(state.DGBalances.BALANCE_STAKING_UNISWAP) +
-    // parseFloat(state.DGBalances.BALANCE_STAKING_GOVERNANCE);
-
-    const totalDGAdjusted_temp = totalDG.toFixed(3);
-    const totalDGAdjusted = Number(totalDGAdjusted_temp);
-
-    setDGTotal(totalDGAdjusted);
-
-    const totalDG_2 =
+    const xdgTotal =
       parseFloat(state.stakingBalances.BALANCE_USER_GOVERNANCE) +
       parseFloat(state.DGBalances.BALANCE_CHILD_TOKEN_XDG);
 
-    const totalDGAdjusted_temp_2 = totalDG_2.toFixed(3);
-    const totalDGAdjusted_2 = Number(totalDGAdjusted_temp_2);
+    setXDGTotal(xdgTotal);
+    setXDGTotalUSD(xdgTotal * DGPrice);
 
-    // const totalDGAdjusted_2 = totalDG.toFixed(0);
-    setDGTotal_2(totalDGAdjusted_2);
+    const dgMining = 0; // ********** we will set this to the correct value once the new dgPointer is deployed **********
+    setDGMining(dgMining);
+    setDGMiningUSD(dgMining + DGPrice);
+
+    const dgSummationNew = dgTotal + xdgTotal + dgMining;
+    setDGSummationNew(dgSummationNew);
   }, [state.DGBalances, state.stakingBalances]);
+
+  useEffect(() => {
+    console.log('start...');
+
+    const balanceMiningOld = state.DGBalances.BALANCE_MINING_DG_V2;
+    const balanceMiningAdjustedOld = balanceMiningOld * 1000;
+
+    const balanceStakingB1 = state.DGBalances.BALANCE_STAKING_BALANCER_1;
+    const balanceStakingB1Adjusted = balanceStakingB1 * 1000;
+
+    const balanceStakingB2 = state.DGBalances.BALANCE_STAKING_BALANCER_2;
+    const balanceStakingB2Adjusted = balanceStakingB2 * 1000;
+
+    const balanceKeeperDG = state.DGBalances.BALANCE_KEEPER_DG;
+    const balanceKeeperDGAdjusted = balanceKeeperDG * 1000;
+
+    const balanceStakingUser = state.stakingBalances.BALANCE_USER_GOVERNANCE;
+    const balanceStakingUserAdjusted = balanceStakingUser * 1000;
+
+    const balanceStakingUniswap = state.DGBalances.BALANCE_STAKING_UNISWAP;
+    const balanceStakingUniswapAdjusted = balanceStakingUniswap * 1000;
+
+    const balanceStakingGovOld = state.DGBalances.BALANCE_STAKING_GOVERNANCE;
+    const balanceStakingGovOldAdjusted = balanceStakingGovOld * 1000;
+
+    const balanceRootDG = state.DGBalances.BALANCE_ROOT_DG;
+    const balanceRootDGAdjusted = balanceRootDG * 1000;
+
+    const balanceChildDG = state.DGBalances.BALANCE_CHILD_DG;
+    const balanceChildDGAdjusted = balanceChildDG * 1000;
+
+    console.log('ModalInfo numbers...');
+    console.log(balanceMiningAdjustedOld);
+    console.log(balanceStakingB1Adjusted);
+    console.log(balanceStakingB2Adjusted);
+    console.log(balanceKeeperDGAdjusted);
+    console.log(balanceStakingUserAdjusted);
+    console.log(balanceStakingUniswapAdjusted);
+    console.log(balanceStakingGovOldAdjusted);
+    console.log(balanceRootDGAdjusted);
+    console.log(balanceChildDGAdjusted);
+
+    const dgSummationOld =
+      parseFloat(balanceMiningAdjustedOld) +
+      parseFloat(balanceStakingB1Adjusted) +
+      parseFloat(balanceStakingB2Adjusted) +
+      parseFloat(1) + // balanceKeeperDGAdjusted
+      parseFloat(1) + // balanceStakingUserAdjusted
+      parseFloat(balanceStakingUniswapAdjusted) +
+      parseFloat(1) + // balanceStakingGovOldAdjusted
+      parseFloat(1) + // balanceRootDGAdjusted
+      parseFloat(balanceChildDGAdjusted);
+
+    setDGSummationOld(formatPrice(dgSummationOld, 0));
+  }, [state.DGBalances, state.stakingBalances]);
+
+  useEffect(() => {
+    const dgSummationAll = dgSummationNew + dgSummationOld;
+
+    setDGSummationAll(formatPrice(dgSummationAll, 0));
+  }, [dgSummationNew, dgSummationOld]);
 
   useEffect(() => {
     if (state.openModalInfo) {
@@ -60,39 +119,13 @@ const ModalInfo = () => {
     state.openModalInfo = false;
   }, [state.openModalInfo]);
 
-  // total unclaimed
-  // const unclaimed = Number(state.stakingBalances.BALANCE_USER_GOVERNANCE);
-  // Number(state.DGBalances.BALANCE_STAKING_UNISWAP) +
-
-  // Number(state.DGBalances.BALANCE_MINING_DG) + // update with new dgPointer once deployed
-  // const unclaimed = Number(0); // ********** update with new dgPointer once deployed **********
-
-  // Number(state.DGBalances.BALANCE_KEEPER_DG);
-
-  // console.log(
-  //   'BALANCE_USER_GOVERNANCE: ' + state.stakingBalances.BALANCE_USER_GOVERNANCE
-  // );
-  // console.log(
-  //   'BALANCE_STAKING_UNISWAP: ' + state.DGBalances.BALANCE_STAKING_UNISWAP
-  // );
-  // console.log('BALANCE_MINING_DG: ' + state.DGBalances.BALANCE_MINING_DG);
-  // console.log('BALANCE_KEEPER_DG: ' + state.DGBalances.BALANCE_KEEPER_DG);
-
-  // fetch circulating supply
   useEffect(() => {
-    (async function () {
-      const json = await Fetch.DG_SUPPLY_GECKO();
+    setDGPrice(state.DGPrices.dg);
+  }, [state.DGPrices]);
 
-      if (json && json.market_data) {
-        // setSupply(json.market_data.circulating_supply);
-        setDGPrice(json.market_data.current_price.usd);
-      }
-    })();
-  }, []);
-
-  const temp_2 = DGTotal_2 * DGPrice;
-  const unclaimedUSD = temp_2.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // helper functions
   function formatPrice(balanceDG, units) {
     const balanceAdjusted = Number(balanceDG)
       .toFixed(units)
@@ -101,31 +134,247 @@ const ModalInfo = () => {
     return balanceAdjusted;
   }
 
-  return (
-    <Modal
-      className={styles.info_modal}
-      onClose={() => setOpen(false)}
-      onOpen={() => setOpen(true)}
-      open={open}
-      close
-      trigger={
-        <span>
-          {!state.DGBalances.BALANCE_KEEPER_DG ? (
-            <Button className="account-button" style={{ marginTop: 0 }}>
-              <p className="right-menu-text bnb" style={{ marginTop: '-5px' }}>
-                <Spinner width={30} height={30} />
-              </p>
-            </Button>
-          ) : state.DGBalances.BALANCE_KEEPER_DG == 10 ? null : (
-            <Button className="account-button" style={{ marginTop: 0 }}>
-              <p className="right-menu-text bnb">
-                {DGTotal.toLocaleString()} DG
-              </p>
-            </Button>
-          )}
+  function topAmounts() {
+    return (
+      <span style={{ display: 'flex', justifyContent: 'center' }}>
+        <span
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            width: '280px',
+          }}
+        >
+          <h3 className={styles.title}>Your DG Breakdown</h3>
+
+          <section style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <img
+                className={styles.dg_image}
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631325895/dgNewLogo_hkvlps.png"
+              />
+
+              <h4 className={styles.subtitle_1}>
+                {formatPrice(dgTotal, 0)} DG
+              </h4>
+
+              {/* <p className={styles.subtitle_2}>${formatPrice(dgTotalUSD, 2)}</p> */}
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <img
+                className={styles.dg_image}
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637260602/grayLogo_ojx2hi.png"
+              />
+
+              <h4 className={styles.subtitle_1}>
+                {formatPrice(xdgTotal, 0)} xDG
+              </h4>
+
+              {/* <p className={styles.subtitle_2}>
+                ${formatPrice(xdgTotalUSD, 2)}
+              </p> */}
+            </div>
+          </section>
         </span>
-      }
-    >
+      </span>
+    );
+  }
+
+  function stakedDG() {
+    return (
+      <span
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          padding: '0px 12px 0px 12px',
+        }}
+      >
+        <span style={{ display: 'flex', flexDirection: 'column' }}>
+          <h5 className={styles.row_title}>Staked DG (xDG)</h5>
+
+          <p className={styles.row_subtitle}>Staked in Governance</p>
+        </span>
+
+        <span style={{ display: 'flex', flexDirection: 'column' }}>
+          <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
+            {formatPrice(state.stakingBalances.BALANCE_USER_GOVERNANCE, 3)}
+          </h5>
+
+          {/* <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
+            $
+            {formatPrice(
+              state.stakingBalances.BALANCE_USER_GOVERNANCE * DGPrice,
+              2
+            )}
+          </p> */}
+        </span>
+      </span>
+    );
+  }
+
+  function mainchainDG() {
+    return (
+      <span
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          padding: '6px 12px 0px 12px',
+        }}
+      >
+        <span style={{ display: 'flex', flexDirection: 'column' }}>
+          <h5 className={styles.row_title}>Mainchain DG</h5>
+
+          <p className={styles.row_subtitle}>ETH Mainnet Total</p>
+        </span>
+
+        <span style={{ display: 'flex', flexDirection: 'column' }}>
+          <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
+            {formatPrice(state.DGBalances.BALANCE_ROOT_DG_LIGHT, 3)}
+          </h5>
+
+          {/* <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
+            ${formatPrice(state.DGBalances.BALANCE_ROOT_DG_LIGHT * DGPrice, 2)}
+          </p> */}
+        </span>
+      </span>
+    );
+  }
+
+  function polygonDG() {
+    return (
+      <span
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          padding: '0px 12px 0px 12px',
+        }}
+      >
+        <span style={{ display: 'flex', flexDirection: 'column' }}>
+          <h5 className={styles.row_title}>Polygon DG</h5>
+
+          <p className={styles.row_subtitle}>Polygon Network Total</p>
+        </span>
+
+        <span style={{ display: 'flex', flexDirection: 'column' }}>
+          <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
+            {formatPrice(state.DGBalances.BALANCE_CHILD_DG_LIGHT, 3)}
+          </h5>
+
+          {/* <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
+            ${formatPrice(state.DGBalances.BALANCE_CHILD_DG_LIGHT * DGPrice, 2)}
+          </p> */}
+        </span>
+      </span>
+    );
+  }
+
+  function unclaimedDG() {
+    return (
+      <span
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          padding: '0px 12px 6px 12px',
+        }}
+      >
+        <span style={{ display: 'flex', flexDirection: 'column' }}>
+          <h5 className={styles.row_title}>Unclaimed DG</h5>
+
+          <p className={styles.row_subtitle}>Gameplay Rewards</p>
+        </span>
+
+        <span style={{ display: 'flex', flexDirection: 'column' }}>
+          <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
+            {formatPrice(dgMining, 3)}
+          </h5>
+
+          {/* <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
+            ${formatPrice(dgMining * DGPrice, 2)}
+          </p> */}
+        </span>
+      </span>
+    );
+  }
+
+  function mainchainDGOld() {
+    return (
+      <span
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          padding: '6px 12px 0px 12px',
+        }}
+      >
+        <span style={{ display: 'flex', flexDirection: 'column' }}>
+          <h5 className={styles.row_title}>Mainchain (Old) $DG</h5>
+
+          <p className={styles.row_subtitle}>Total From All Sources</p>
+        </span>
+
+        <span style={{ display: 'flex', flexDirection: 'column' }}>
+          <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
+            {formatPrice(dgSummationOld, 3)}
+          </h5>
+
+          {/* <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
+            ${formatPrice(dgSummationOld * DGPrice, 2)}
+          </p> */}
+        </span>
+      </span>
+    );
+  }
+
+  function polygonDGOld() {
+    return (
+      <span
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          padding: '0px 12px 0px 12px',
+        }}
+      >
+        <span style={{ display: 'flex', flexDirection: 'column' }}>
+          <h5 className={styles.row_title}>Polygon (Old) $DG</h5>
+
+          <p className={styles.row_subtitle}>Total From All Sources</p>
+        </span>
+
+        <span style={{ display: 'flex', flexDirection: 'column' }}>
+          <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
+            {formatPrice(state.DGBalances.BALANCE_CHILD_DG, 3)}
+          </h5>
+
+          {/* <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
+            ${formatPrice(state.DGBalances.BALANCE_CHILD_DG * DGPrice, 2)}
+          </p> */}
+        </span>
+      </span>
+    );
+  }
+
+  function breakdownButton() {
+    return (
+      <span>
+        {!state.DGBalances.BALANCE_ROOT_DG ||
+        !state.DGBalances.BALANCE_ROOT_DG_LIGHT ? (
+          <Button className="account-button" style={{ marginTop: 0 }}>
+            <p className="right-menu-text bnb" style={{ marginTop: '-5px' }}>
+              <Spinner width={30} height={30} />
+            </p>
+          </Button>
+        ) : (
+          <Button className="account-button" style={{ marginTop: 0 }}>
+            <p className="right-menu-text bnb">
+              {dgSummationAll.toLocaleString()} DG
+            </p>
+          </Button>
+        )}
+      </span>
+    );
+  }
+
+  function closeButton() {
+    return (
       <div
         style={{
           marginTop: '-60px',
@@ -148,226 +397,50 @@ const ModalInfo = () => {
           </svg>
         </span>
       </div>
+    );
+  }
 
-      <div>
-        <span>
-          <span style={{ display: 'flex', justifyContent: 'center' }}>
-            <span
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                width: '280px',
-              }}
-            >
-              <h3 className={styles.title}>Your DG Breakdown</h3>
+  function buyAndStakeButtons() {
+    return (
+      <span
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          marginTop: '24px',
+        }}
+      >
+        <a
+          href={`https://app.uniswap.org/#/swap?outputCurrency=${Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DG}`}
+          target="_blank"
+        >
+          <button className={cn('btn', styles.buy_button)}>Buy DG</button>
+        </a>
 
-              <section
-                style={{ display: 'flex', justifyContent: 'space-between' }}
-              >
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                  <img
-                    className={styles.dg_image}
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631325895/dgNewLogo_hkvlps.png"
-                  />
-                  {state.DGBalances.BALANCE_KEEPER_DG == 10 ? (
-                    <h4 className={styles.subtitle_1}>0.000 DG</h4>
-                  ) : (
-                    <h4 className={styles.subtitle_1}>
-                      {formatPrice(DGTotal, 3)} DG
-                    </h4>
-                  )}
-                  <p className={styles.subtitle_2}>${unclaimedUSD}</p>
-                </div>
+        <Link href="/dg/governance" target="_blank">
+          <button className={cn('btn', styles.learn_button)}>Stake DG</button>
+        </Link>
+      </span>
+    );
+  }
 
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                  <img
-                    className={styles.dg_image}
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637260602/grayLogo_ojx2hi.png"
-                  />
-
-                  {state.DGBalances.BALANCE_KEEPER_DG == 10 ? (
-                    <h4 className={styles.subtitle_1}>0.000 xDG</h4>
-                  ) : (
-                    <h4 className={styles.subtitle_1}>
-                      {formatPrice(DGTotal_2, 3)} xDG
-                    </h4>
-                  )}
-
-                  <p className={styles.subtitle_2}>${unclaimedUSD}</p>
-                </div>
-              </section>
-            </span>
-          </span>
-
-          <span
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              padding: '0px 12px 0px 12px',
-            }}
-          >
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h5 className={styles.row_title}>Staked DG (xDG)</h5>
-              <p className={styles.row_subtitle}>Staked in Governance</p>
-            </span>
-
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
-                {formatPrice(state.stakingBalances.BALANCE_USER_GOVERNANCE, 3)}
-              </h5>
-              <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
-                $
-                {formatPrice(
-                  state.stakingBalances.BALANCE_USER_GOVERNANCE * DGPrice,
-                  2
-                )}
-              </p>
-            </span>
-          </span>
-
-          <span
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              padding: '6px 12px 0px 12px',
-            }}
-          >
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h5 className={styles.row_title}>Mainchain DG</h5>
-              <p className={styles.row_subtitle}>ETH Mainnet Total</p>
-            </span>
-
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
-                {formatPrice(state.DGBalances.BALANCE_ROOT_DG_LIGHT, 3)}
-              </h5>
-              <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
-                $
-                {formatPrice(
-                  state.DGBalances.BALANCE_ROOT_DG_LIGHT * DGPrice,
-                  2
-                )}
-              </p>
-            </span>
-          </span>
-
-          <span
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              padding: '0px 12px 0px 12px',
-            }}
-          >
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h5 className={styles.row_title}>Polygon DG</h5>
-              <p className={styles.row_subtitle}>Polygon Network Total</p>
-            </span>
-
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
-                {formatPrice(state.DGBalances.BALANCE_CHILD_DG_LIGHT, 3)}
-              </h5>
-              <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
-                $
-                {formatPrice(
-                  state.DGBalances.BALANCE_CHILD_DG_LIGHT * DGPrice,
-                  2
-                )}
-              </p>
-            </span>
-          </span>
-
-          <span
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              padding: '0px 12px 6px 12px',
-            }}
-          >
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h5 className={styles.row_title}>Unclaimed DG</h5>
-              <p className={styles.row_subtitle}>Gameplay Rewards</p>
-            </span>
-
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
-                {formatPrice(state.DGBalances.BALANCE_MINING_DG_V2, 3)}
-              </h5>
-              <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
-                $
-                {formatPrice(
-                  state.DGBalances.BALANCE_MINING_DG_V2 * DGPrice,
-                  2
-                )}
-              </p>
-            </span>
-          </span>
-
-          <span
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              padding: '6px 12px 0px 12px',
-            }}
-          >
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h5 className={styles.row_title}>Mainchain (Old) $DG</h5>
-              <p className={styles.row_subtitle}>Total From All Sources</p>
-            </span>
-
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
-                {formatPrice(state.DGBalances.BALANCE_ROOT_DG, 3)}
-              </h5>
-              <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
-                ${formatPrice(state.DGBalances.BALANCE_ROOT_DG * DGPrice, 2)}
-              </p>
-            </span>
-          </span>
-
-          <span
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              padding: '0px 12px 0px 12px',
-            }}
-          >
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h5 className={styles.row_title}>Polygon (Old) $DG</h5>
-              <p className={styles.row_subtitle}>Total From All Sources</p>
-            </span>
-
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
-                {formatPrice(state.DGBalances.BALANCE_CHILD_DG, 3)}
-              </h5>
-              <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
-                ${formatPrice(state.DGBalances.BALANCE_CHILD_DG * DGPrice, 2)}
-              </p>
-            </span>
-          </span>
-
-          <span
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              marginTop: '24px',
-            }}
-          >
-            <a
-              href={`https://app.uniswap.org/#/swap?outputCurrency=${Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DG}`}
-              target="_blank"
-            >
-              <button className={cn('btn', styles.buy_button)}>Buy DG</button>
-            </a>
-            <Link href="/dg/governance" target="_blank">
-              <button className={cn('btn', styles.learn_button)}>
-                Stake DG
-              </button>
-            </Link>
-          </span>
-        </span>
-      </div>
+  return (
+    <Modal
+      className={styles.info_modal}
+      onClose={() => setOpen(false)}
+      onOpen={() => setOpen(true)}
+      open={open}
+      close
+      trigger={breakdownButton()}
+    >
+      {closeButton()}
+      {topAmounts()}
+      {stakedDG()}
+      {mainchainDG()}
+      {polygonDG()}
+      {unclaimedDG()}
+      {mainchainDGOld()}
+      {polygonDGOld()}
+      {buyAndStakeButtons()}
     </Modal>
   );
 };

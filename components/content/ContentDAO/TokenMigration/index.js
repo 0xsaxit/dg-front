@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Button } from 'semantic-ui-react';
+import BigNumber from 'bignumber.js';
 import FirstStep from './1firstStep'
 import SecondStep from './2secondStep'
 import ThirdStep from './3thirdStep'
@@ -10,6 +11,13 @@ import styles from './TokenMigration.module.scss'
 const TokenMigration = (props) => {
     const [currentStep, setCurrentStep] = useState(1);
     const steps = ["Unstake Your $DG", "Withdraw Your Liquidity Provision $DG", "Swap Your Mainnet $DG", "Stake in New Governance", "Swap Your Polygon DG"];
+
+    function formatNumber(value, decimals = 0) {
+        const valueStr = Number(BigNumber(value).toFixed(decimals)).toString();
+        const decimalPoint = valueStr.indexOf('.');
+        const decimalLength = decimalPoint < 0 ? 1 : valueStr.length - decimalPoint;
+        return BigNumber(valueStr).toFormat(Math.min(decimals, decimalLength - 1));
+    }
 
     return (
         <div className={styles.main_wrapper}>
@@ -44,30 +52,31 @@ const TokenMigration = (props) => {
             <div className={styles.content}>
                 {currentStep === 1 ?
                     <FirstStep
-                        formatPrice={props.formatPrice}
+                        formatNumber={formatNumber}
                         price={props.price}
                         nextStep={() => setCurrentStep(2)}
                     />
                     : currentStep === 2 ?
                         <SecondStep
                             formatPrice={props.formatPrice}
+                            formatNumber={formatNumber}
                             nextStep={() => setCurrentStep(3)}
                         />
                         : currentStep === 3 ?
                             <ThirdStep
-                                formatPrice={props.formatPrice}
+                                formatNumber={formatNumber}
                                 getAmounts={props.getAmounts}
                                 nextStep={() => setCurrentStep(4)}
                             />
                             : currentStep === 4 ?
                                 <ForthStep
-                                    formatPrice={props.formatPrice}
+                                    formatNumber={formatNumber}
                                     getAmounts={props.getAmounts}
                                     nextStep={() => setCurrentStep(5)}
                                 />
                                 : currentStep === 5 ?
                                     <FifthStep
-                                        formatPrice={props.formatPrice}
+                                        formatNumber={formatNumber}
                                         getAmounts={props.getAmounts}
                                     />
                                     : null
@@ -95,6 +104,22 @@ const TokenMigration = (props) => {
                     <img className={styles.right} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1634587739/next_zxguep.png" alt="next" />
                 </Button>
             </div>
+
+            {
+                currentStep === 1 ?
+                    <div className={styles.footer_tip}>
+                        <div className={styles.box_div}>
+                            <div className={styles.box_title}>
+                                <h1>What About Ethereum's Hight Gas Fees?</h1>
+                            </div>
+                            <div className={styles.center_content}>
+                                <p>• To account for high ETH gas fees, the new DG gov rewards APR will start at <label>40% and higher</label>.</p>
+                                <p>• The new gov rewards will also cut ETH gas fees by claiming and restaking yields automatically.</p>
+                            </div>
+                        </div>
+                    </div>
+                : null
+            }
         </div>
     )
 }

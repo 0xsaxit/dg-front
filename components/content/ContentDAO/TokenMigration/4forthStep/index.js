@@ -5,6 +5,7 @@ import styles from './forthStep.module.scss'
 import Web3 from 'web3';
 import Global from 'components/Constants';
 import { GlobalContext } from '../../../../../store'
+import Images from '../../../../../common/Images'
 import Transactions from '../../../../../common/Transactions'
 
 const ForthStep = (props) => {
@@ -21,11 +22,11 @@ const ForthStep = (props) => {
     const [stakeSubmitted, setStakeSubmitted] = useState(false);
     const [approving, setApproving] = useState(false);
     const networkInfo = {
-        id: 3,
-        name: 'Ropsten',
-        etherscan: 'https://ropsten.etherscan.io',
-        dgLightAddress: Global.ADDRESSES.ROPSTEN_TOKEN_ADDRESS_DG_LIGHT,
-        dgTownHallAddress: Global.ADDRESSES.ROPSTEN_DG_TOWN_HALL_ADDRESS
+        id: 1,
+        name: 'Mainnet',
+        etherscan: 'https://etherscan.io',
+        dgLightAddress: Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DG_LIGHT,
+        dgTownHallAddress: Global.ADDRESSES.ROOT_DG_TOWN_HALL_ADDRESS
     };
 
     useEffect(() => {
@@ -46,7 +47,7 @@ const ForthStep = (props) => {
                       address: networkInfo.dgTownHallAddress,
                       symbol: 'xDG',
                       decimals: 18,
-                      image: 'https://assets.coingecko.com/coins/images/13267/small/Decentral_Games_Logo-1.png',
+                      image: Images.XDG_COIN_LOGO,
                     },
                 },
             });
@@ -184,7 +185,7 @@ const ForthStep = (props) => {
                         !stakeSubmitted ?
                             <div className={styles.box_div}>
                                 <div className={styles.box_title}>
-                                    <h1>New DG Gov Staking <abbr>(112% APY)</abbr></h1>
+                                    <h1>New DG Gov Staking <abbr>(40% APY)</abbr></h1>
                                 </div>
 
                                 <div className={styles.contract_div}>
@@ -213,7 +214,7 @@ const ForthStep = (props) => {
 
                                     <div className={styles.description}>
                                         <h4 className={stakeAmount <= availabeStake ? styles.success : styles.error}>
-                                            {props.formatPrice(availabeStake || 0, 2)} DG Available to Stake
+                                            {props.formatNumber(availabeStake || 0, 2)} DG Available to Stake
                                         </h4>
                                         <p>On Eth {networkInfo.name}</p>
                                     </div>

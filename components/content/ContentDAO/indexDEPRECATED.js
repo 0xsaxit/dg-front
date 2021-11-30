@@ -20,22 +20,21 @@ import Governance from './Governance';
 import Liquidity from './Liquidity';
 import Treasury from './Treasury';
 
-
-const contentDAO = props => {
+const ContentDAO = props => {
   // get user's state from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [stakingContractPool1, setStakingContractPool1] = useState({});
-  const [stakingContractPool2, setStakingContractPool2] = useState({});
-  const [instances, setInstances] = useState(false);
+  // const [stakingContractPool1, setStakingContractPool1] = useState({});
+  // const [stakingContractPool2, setStakingContractPool2] = useState({});
+  // const [instances, setInstances] = useState(false);
   const [web3, setWeb3] = useState({});
-  const [currenReward, setCurrentReward] = useState(0);
-  const [finishTime, setFinishTime] = useState(0);
-  const [price, setPrice] = useState(0);
+  // const [currenReward, setCurrentReward] = useState(0);
+  // const [finishTime, setFinishTime] = useState(0);
+  // const [price, setPrice] = useState(0);
   const [amountInput, setAmountInput] = useState('10000000000000000000');
 
-  const DGState = props.DGState;
+  // const DGState = props.DGState;
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -45,64 +44,64 @@ const contentDAO = props => {
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
 
-      async function fetchData() {
-        const stakingContractPool1 = await Transactions.stakingContractPool1(
-          web3
-        );
-        setStakingContractPool1(stakingContractPool1);
+      // async function fetchData() {
+      //   const stakingContractPool1 = await Transactions.stakingContractPool1(
+      //     web3
+      //   );
+      //   setStakingContractPool1(stakingContractPool1);
 
-        const stakingContractPool2 = await Transactions.stakingContractPool2(
-          web3
-        );
-        setStakingContractPool2(stakingContractPool2);
+      //   const stakingContractPool2 = await Transactions.stakingContractPool2(
+      //     web3
+      //   );
+      //   setStakingContractPool2(stakingContractPool2);
 
-        setInstances(true); // contract instantiation complete
-      }
+      //   setInstances(true); // contract instantiation complete
+      // }
 
-      fetchData();
+      // fetchData();
     }
   }, [state.userStatus]);
 
   // fetch circulating supply
-  useEffect(() => {
-    (async function () {
-      const json = await Fetch.DG_SUPPLY_GECKO();
-      if(json && json.market_data) {
-        setPrice(json.market_data.current_price.usd);
-      }
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async function () {
+  //     const json = await Fetch.DG_SUPPLY_GECKO();
+  //     if (json && json.market_data) {
+  //       setPrice(json.market_data.current_price.usd);
+  //     }
+  //   })();
+  // }, []);
 
   // get initial reward and timestamp values
   useEffect(() => {
-    if (instances) {
-      const rewardAdjusted = amountInput / Global.CONSTANTS.FACTOR;
-      rewardData(rewardAdjusted);
-    }
-  }, [instances]);
+    // if (instances) {
+    const rewardAdjusted = amountInput / Global.CONSTANTS.FACTOR;
+    rewardData(rewardAdjusted);
+    // }
+  }, []);
 
   // get timestamp on page load
   useEffect(() => {
-    if (instances) {
-      (async () => {
-        const timestamp = await getPeriodFinish();
+    // if (instances) {
+    (async () => {
+      const timestamp = await getPeriodFinish();
 
-        // dispatch timestamp to the Context API store
-        dispatch({
-          type: 'stake_time',
-          data: timestamp,
-        });
-      })();
-    }
-  }, [instances]);
+      // dispatch timestamp to the Context API store
+      dispatch({
+        type: 'stake_time',
+        data: timestamp,
+      });
+    })();
+    // }
+  }, []);
 
-  function formatPrice(balanceDG, units) {
-    const priceFormatted = Number(balanceDG)
-      .toFixed(units)
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  // function formatPrice(balanceDG, units) {
+  //   const priceFormatted = Number(balanceDG)
+  //     .toFixed(units)
+  //     .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-    return priceFormatted;
-  }
+  //   return priceFormatted;
+  // }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////

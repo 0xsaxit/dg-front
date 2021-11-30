@@ -177,7 +177,7 @@ const ModalWithdrawDelegation = props => {
     if (json.status) {
       console.log('NFT undelegation request successful');
       setClicked(false);
-      setWithdrawStatus(1);
+      setWithdrawStatus(0);
 
     } else {
       console.log('NFT undelegation request error: ' + json.reason);
@@ -232,14 +232,27 @@ const ModalWithdrawDelegation = props => {
                             : 'DELEGATEE CLICKED WITHDRAW'
                         );
                         undelegateNFT();
-                      } else if (withdrawStatus == 1) { // success case
+
+                        // restore
                         completeWithdraw();
+                      } else if (withdrawStatus == 1) { // success case
+                        console.log("1 ===========================");
+                        completeWithdraw();                        
                       } else {
+                        console.log("2 ===========================");
                         completeWithdraw();
                       }
                     }}
                   >
-                    {withdrawStatus == 0 ? (
+                      <>
+                        <img
+                          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
+                          className={styles.icon}
+                        />
+                        {props.buttonName}
+                      </>
+
+                    {/* {withdrawStatus == 0 ? (
                       <>
                         <img
                           src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png"
@@ -257,7 +270,7 @@ const ModalWithdrawDelegation = props => {
                           ' (In ' + getRemainingTime() + 'Hours)'}
                         </div>
                       </div>
-                    )}
+                    )} */}
                   </Button>
                 ) : (
                   <Button className={styles.button_close} disabled={true}>

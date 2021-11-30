@@ -40,7 +40,9 @@ const Images = {
   FEATURED_IMAGE:
     'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,q_auto:good/v1635455391/ice_blog_post_2.0_w2vt7t.png',
   DG_COIN_LOGO:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1602117903/Group_14_Copy_2_afhe39.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1602117903/Group_14_Copy_2_afhe39.png',
+  XDG_COIN_LOGO:
+    'https://res.cloudinary.com/dze4ze7xd/image/upload/v1637930449/xDG_Logo_of4plb.png',
   METAMASK:
     'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1602627513/metamask_uhgfwo.png',
   TRANSAK:

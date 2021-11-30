@@ -12,7 +12,7 @@ import styles from './ButtonConnect.module.scss';
 import Global from 'components/Constants';
 
 const assignToken = async (accountSwitch = false) => {
-  const userAddress = window.ethereum.selectedAddress;
+  const userAddress = window.ethereum?.selectedAddress;
   if (userAddress && document.visibilityState === 'visible') {
     const timestamp = Date.now();
 
@@ -21,7 +21,7 @@ const assignToken = async (accountSwitch = false) => {
     );
     const signature = await window.web3.eth.personal.sign(
       msg,
-      window.ethereum.selectedAddress,
+      window.ethereum?.selectedAddress,
       null
     );
 
@@ -54,13 +54,13 @@ const ButtonConnect = () => {
   let listener = null;
 
   useEffect(() => {
-    if (window.ethereum && window.ethereum.selectedAddress) {
+    if (window.ethereum && window.ethereum?.selectedAddress) {
       window.addEventListener('load', function() {
         window.ethereum.on('accountsChanged', () => {
-          if (window.ethereum.selectedAddress) {
+          if (window.ethereum?.selectedAddress) {
             dispatch({
               type: 'user_address',
-              data: window.ethereum.selectedAddress,
+              data: window.ethereum?.selectedAddress,
             });
           }
           assignToken(true);
@@ -154,7 +154,7 @@ const ButtonConnect = () => {
         });
       }
 
-      userAddress = window.ethereum.selectedAddress;
+      userAddress = window.ethereum?.selectedAddress;
 
       // track MetaMask connect event
       analytics.track('Connected MetaMask', {

@@ -16,7 +16,7 @@ export const API_BASE_URL =
 console.log('APP_ENV (NODE_ENV): ', APP_ENV);
 console.log('API_BASE_URL: ', API_BASE_URL);
 
-const apiCall = {
+const Fetch = {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // GET API calls (no wallet address necessary)
@@ -277,4 +277,4 @@ const apiCall = {
   },
 };
 
-export default apiCall;
+export default Fetch;
