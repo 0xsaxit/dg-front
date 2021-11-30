@@ -1,13 +1,17 @@
 import cn from 'classnames';
+import BigNumber from 'bignumber.js';
+import { useRouter } from 'next/router';
 import { useEffect, useContext, useState, React } from 'react';
-import { GlobalContext } from '../../../../store';
+import Web3 from 'web3';
 import { Button, Input } from 'semantic-ui-react';
 import Spinner from 'components/lottieAnimation/animations/spinner_updated';
 import Aux from '../../../_Aux';
+import { GlobalContext } from '../../../../store';
 import styles from './Governance.module.scss';
-import Web3 from 'web3';
 import Transactions from '../../../../common/Transactions';
 import Global from '../../../Constants';
+import PostPreview from 'components/blog/PostPreview';
+import Constants from '../../../Constants';
 
 const Governance = props => {
   // get the treasury's balances numbers from the Context API store
@@ -21,7 +25,10 @@ const Governance = props => {
   const [APYGovernance, setAPYGovernance] = useState(0);
   const [stakeContractGovernance, setStakeContractGovernance] = useState({});
   const [DGTokenContract, setDGTokenContract] = useState({});
+  const [apy, setAPY] = useState('');
+  const [stakedBalance, setStakedBalance] = useState(0);
   const [instances, setInstances] = useState(false);
+  const router = useRouter();
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -45,6 +52,22 @@ const Governance = props => {
 
         const DGTokenContract = await Transactions.DGTokenContract(web3);
         setDGTokenContract(DGTokenContract);
+
+        const _DGTownHallContract = await Transactions.DGTownHallContract(web3);
+        const balance = await _DGTownHallContract.methods.innerSupply().call();
+        const ratio = await _DGTownHallContract.methods.insideAmount(1).call();
+        const xBalance = await _DGTownHallContract.methods
+          .balanceOf(state.userAddress)
+          .call();
+
+        setStakedBalance(xBalance / ratio);
+
+        setAPY(
+          BigNumber(3910714300)
+            .div(BigNumber(balance))
+            .multipliedBy(Constants.CONSTANTS.FACTOR)
+            .toString()
+        );
 
         setInstances(true); // contract instantiation complete
       }
@@ -124,7 +147,7 @@ const Governance = props => {
                   <Button
                     className={cn(styles.button, styles.blue)}
                     onClick={() => {
-                      router.push('/dg/governance');
+                      router.push('/dg/migration');
                     }}
                   >
                     Swap Now
@@ -132,25 +155,11 @@ const Governance = props => {
                   <Button
                     className={cn(styles.button, styles.grey)}
                     onClick={() => {
-                      router.push('/dg/governance');
+                      router.push('/blog');
                     }}
                   >
                     Learn More
                   </Button>
-                </div>
-                <div className={styles.close_button}>
-                  <svg
-                    width="14"
-                    height="13"
-                    viewBox="0 0 14 13"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M1.18262 10.8501C0.772461 11.2676 0.750488 12.0366 1.19727 12.4761C1.64404 12.9229 2.40576 12.9082 2.82324 12.4907L6.9541 8.35986L11.0776 12.4834C11.5098 12.9229 12.2568 12.9155 12.6963 12.4688C13.1431 12.0293 13.1431 11.2822 12.7109 10.8501L8.5874 6.72656L12.7109 2.5957C13.1431 2.16357 13.1431 1.4165 12.6963 0.977051C12.2568 0.530273 11.5098 0.530273 11.0776 0.962402L6.9541 5.08594L2.82324 0.955078C2.40576 0.544922 1.63672 0.522949 1.19727 0.969727C0.757812 1.4165 0.772461 2.17822 1.18262 2.5957L5.31348 6.72656L1.18262 10.8501Z"
-                      fill="white"
-                    />
-                  </svg>
                 </div>
               </div>
               <div className={cn('d-flex', styles.stake_DG_container)}>
@@ -174,30 +183,19 @@ const Governance = props => {
                     </div>
                   </div>
 
-                  <p className={styles.lower_header}> New Governance Staking</p>
-                  <p className={styles.apy_text}>Your DG Staked</p>
-                  <p className={styles.apy_percent}>
-                    {props.formatPrice(
-                      state.stakingBalances.BALANCE_USER_GOVERNANCE,
-                      2
-                    )}
-                    <br />
-                    <abbr>
-                      $
-                      {props.formatPrice(
-                        state.stakingBalances.BALANCE_USER_GOVERNANCE *
-                          state.DGPrices.dg,
-                        2
-                      )}
-                    </abbr>
+                  <p className={cn(styles.lower_header, 'mb-3')}>
+                    {' '}
+                    New Governance Staking
                   </p>
 
-                  <div className="d-flex w-75">
+                  <div className="d-flex w-100 mb-5">
                     <span className="d-flex justify-content-center w-50">
                       <span className="d-flex flex-column align-items-center pb-3">
-                        <p className={styles.apy_text}>Gov Staking APY</p>
-                        {APYGovernance ? (
-                          <p className="earned-amount stat">{APYGovernance}%</p>
+                        <p className={styles.apy_text}>Your Staked DG Value</p>
+                        {state.stakingBalances.BALANCE_USER_GOVERNANCE ? (
+                          <p className={styles.apy_percent}>
+                            {props.formatPrice(stakedBalance, 2)}
+                          </p>
                         ) : (
                           <Spinner width={33} height={33} />
                         )}
@@ -205,9 +203,13 @@ const Governance = props => {
                     </span>
 
                     <span className="d-flex justify-content-center w-50">
-                      <span className="d-flex flex-column align-items-center">
-                        <p className={styles.apy_text}>Your DG Yielded</p>
-                        <p className="earned-amount stat">0</p>
+                      <span className="d-flex flex-column align-items-center pb-3">
+                        <p className={styles.apy_text}>Gov Staking APY</p>
+                        {apy ? (
+                          <p className={styles.apy_percent}>{apy}%</p>
+                        ) : (
+                          <Spinner width={33} height={33} />
+                        )}
                       </span>
                     </span>
                   </div>
@@ -262,7 +264,7 @@ const Governance = props => {
                         >
                           {props.formatPrice(
                             stakeType === 'Stake'
-                              ? state.DGBalances.BALANCE_ROOT_DG
+                              ? state.DGBalances.BALANCE_ROOT_DG_LIGHT
                               : state.stakingBalances.BALANCE_USER_GOVERNANCE,
                             3
                           )}
@@ -391,7 +393,11 @@ const Governance = props => {
 
                 <div className={styles.lower_value}>
                   <p className={styles.DG_value}>
-                    {state.DGBalances.BALANCE_STAKING_GOVERNANCE} $DG
+                    {props.formatPrice(
+                      state.stakingBalances.BALANCE_USER_GOVERNANCE,
+                      2
+                    )}{' '}
+                    $DG
                   </p>
                 </div>
 
@@ -400,27 +406,14 @@ const Governance = props => {
                 </p>
 
                 <span>
-                  {Number(state.DGBalances.BALANCE_STAKING_GOVERNANCE) ? (
-                    <Button
-                      className={styles.lower_button}
-                      onClick={() => {
-                        props.reward(stakeContractGovernance);
-
-                        //Show Toast Message2
-                        const msg = 'Claiming Governance DG!';
-                        dispatch({
-                          type: 'show_toastMessage',
-                          data: msg,
-                        });
-                      }}
-                    >
-                      Migrate to New DG
-                    </Button>
-                  ) : (
-                    <Button disabled className={styles.lower_button}>
-                      Migrate to New DG
-                    </Button>
-                  )}
+                  <Button
+                    className={styles.lower_button}
+                    onClick={() => {
+                      router.push('/dg/migration');
+                    }}
+                  >
+                    Migrate to New DG
+                  </Button>
                 </span>
               </div>
             </div>
