@@ -8,7 +8,7 @@ const IceDelegatedCheckedInTooltip = () => {
       <div className={styles.imgDiv}>
         <img
           className={styles.img}
-          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637210248/checked_in_kkxwqv.png"
+          src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637210248/checked_in_kkxwqv.png"
         />
         <Popup
           trigger={
@@ -24,7 +24,7 @@ const IceDelegatedCheckedInTooltip = () => {
           <Popup.Content className={styles.tooltipContent}>
             <img
               className={styles.popup_info}
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631640045/ICE_Info_bbiag6.svg"
             />
             <p className={styles.popup_content}>
               This wearable has been

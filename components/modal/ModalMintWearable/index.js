@@ -32,7 +32,7 @@ const ModalMint = props => {
           <div className={styles.card}>
             + 1 - 7%
             <img
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
               className={styles.img_card}
             />
           </div>
@@ -105,7 +105,7 @@ const ModalMint = props => {
             <div className={styles.card} style={{ width: '150px' }}>
               {Global.CONSTANTS.DG_STAKED_AMOUNT} DG Staked
               <img
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631325895/dgNewLogo_hkvlps.png"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631325895/dgNewLogo_hkvlps.png"
                 className={styles.img_card2}
               />
             </div>
@@ -192,8 +192,7 @@ const ModalMint = props => {
   function buttons() {
     return (
       <div className={styles.button_area}>
-        {props.numberLeft ? (
-          state.userBalances[2][3] < state.tokenAmounts.WETH_COST_AMOUNT ||
+        {state.userBalances[2][3] < state.tokenAmounts.WETH_COST_AMOUNT ||
           state.stakingBalances.BALANCE_USER_GOVERNANCE <
             Global.CONSTANTS.DG_STAKED_AMOUNT ? (
             <Button className={styles.button_upgrade} disabled={true}>
@@ -209,12 +208,7 @@ const ModalMint = props => {
             >
               Mint Wearable
             </Button>
-          )
-        ) : (
-          <Button disabled className={styles.open_button}>
-            Sold Out!
-          </Button>
-        )}
+          )}
 
         <Button
           className={styles.button_close}
@@ -280,7 +274,7 @@ const ModalMint = props => {
         close
         trigger={
           <Button className={styles.wearable_button}>
-            Mint New Wearable ID: {props.itemID}
+            Mint New Wearable
           </Button>
         }
       >
