@@ -19,11 +19,9 @@ const ModalInfo = () => {
   const [xdgTotalUSD, setXDGTotalUSD] = useState(0);
   const [dgMining, setDGMining] = useState(0);
   const [dgMiningUSD, setDGMiningUSD] = useState(0);
-
   const [dgSummationOld, setDGSummationOld] = useState(0);
   const [dgSummationNew, setDGSummationNew] = useState(0);
   const [dgSummationAll, setDGSummationAll] = useState(0);
-
   const [DGPrice, setDGPrice] = useState(0);
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -65,9 +63,6 @@ const ModalInfo = () => {
       const balanceKeeperDG = state.DGBalances.BALANCE_KEEPER_DG;
       const balanceKeeperDGAdjusted = balanceKeeperDG * 1000;
 
-      // const balanceUserGov = state.stakingBalances.BALANCE_USER_GOVERNANCE;
-      // const balanceUserGovAdjusted = balanceUserGov * 1000;
-
       const balanceStakingUniswap = state.DGBalances.BALANCE_STAKING_UNISWAP;
       const balanceStakingUniswapAdjusted = balanceStakingUniswap * 1000;
 
@@ -78,25 +73,11 @@ const ModalInfo = () => {
       const balanceRootDG = state.DGBalances.BALANCE_ROOT_DG;
       const balanceRootDGAdjusted = balanceRootDG * 1000;
 
-      const balanceChildDG = state.DGBalances.BALANCE_CHILD_DG;
-      const balanceChildDGAdjusted = balanceChildDG * 1000;
+      // const balanceChildDG = state.DGBalances.BALANCE_CHILD_DG;
+      // const balanceChildDGAdjusted = balanceChildDG * 1000;
 
       const balanceStakingGov = state.DGBalances.BALANCE_STAKING_GOVERNANCE;
       const balanceStakingGovAdjusted = balanceStakingGov * 1000;
-
-      // console.log('balance DG governance: ' + balanceUserGovOld);
-      // console.log('balance DG root: ' + balanceRootDG);
-      // console.log('balance DG staking: ' + balanceStakingGov);
-
-      // parseFloat(state.DGBalances.BALANCE_MINING_DG) +
-      // parseFloat(state.DGBalances.BALANCE_STAKING_BALANCER_1) +
-      // parseFloat(state.DGBalances.BALANCE_STAKING_BALANCER_2) +
-      // parseFloat(state.DGBalances.BALANCE_KEEPER_DG) +
-      // parseFloat(state.DGBalances.BALANCE_ROOT_DG) +
-      // parseFloat(state.DGBalances.BALANCE_CHILD_DG) +
-      // parseFloat(state.stakingBalances.BALANCE_USER_GOVERNANCE) +
-      // parseFloat(state.DGBalances.BALANCE_STAKING_UNISWAP) +
-      // parseFloat(state.DGBalances.BALANCE_STAKING_GOVERNANCE);
 
       const dgSummationOld =
         balanceMiningAdjustedOld +
@@ -106,7 +87,6 @@ const ModalInfo = () => {
         balanceStakingUniswapAdjusted +
         balanceUserGovOldAdjusted +
         balanceRootDGAdjusted +
-        balanceChildDGAdjusted +
         balanceStakingGovAdjusted;
 
       setDGSummationOld(dgSummationOld);
@@ -148,13 +128,13 @@ const ModalInfo = () => {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            width: '280px',
+            width: '90%',
           }}
         >
           <h3 className={styles.title}>Your DG Breakdown</h3>
 
-          <section style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <section style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', width: '50%' }}>
               <img
                 className={styles.dg_image}
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631325895/dgNewLogo_hkvlps.png"
@@ -167,7 +147,7 @@ const ModalInfo = () => {
               {/* <p className={styles.subtitle_2}>${formatPrice(dgTotalUSD, 2)}</p> */}
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', width: '50%' }}>
               <img
                 className={styles.dg_image}
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637260602/grayLogo_ojx2hi.png"
@@ -204,15 +184,12 @@ const ModalInfo = () => {
 
         <span style={{ display: 'flex', flexDirection: 'column' }}>
           <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
-            {formatPrice(state.stakingBalances.BALANCE_USER_GOVERNANCE, 3)}
+            {formatPrice(xdgTotal, 3)}
           </h5>
 
           {/* <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
             $
-            {formatPrice(
-              state.stakingBalances.BALANCE_USER_GOVERNANCE * DGPrice,
-              2
-            )}
+            {formatPrice(xdgTotalUSD, 2)}
           </p> */}
         </span>
       </span>
@@ -320,11 +297,11 @@ const ModalInfo = () => {
 
         <span style={{ display: 'flex', flexDirection: 'column' }}>
           <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
-            {formatPrice(dgSummationOld, 3)}
+            {formatPrice(dgSummationOld / 1000, 3)}
           </h5>
 
           {/* <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
-            ${formatPrice(dgSummationOld * DGPrice, 2)}
+            ${formatPrice((dgSummationOld / 1000) * DGPrice, 2)}
           </p> */}
         </span>
       </span>
@@ -362,17 +339,16 @@ const ModalInfo = () => {
   function breakdownButton() {
     return (
       <span>
-        {!state.DGBalances.BALANCE_ROOT_DG ||
-        !state.DGBalances.BALANCE_ROOT_DG_LIGHT ? (
+        {parseInt(dgSummationAll) ? (
           <Button className="account-button" style={{ marginTop: 0 }}>
-            <p className="right-menu-text bnb" style={{ marginTop: '-5px' }}>
-              <Spinner width={30} height={30} />
+            <p className="right-menu-text bnb">
+              {dgSummationAll.toLocaleString()} DG
             </p>
           </Button>
         ) : (
           <Button className="account-button" style={{ marginTop: 0 }}>
-            <p className="right-menu-text bnb">
-              {dgSummationAll.toLocaleString()} DG
+            <p className="right-menu-text bnb" style={{ marginTop: '-5px' }}>
+              <Spinner width={30} height={30} />
             </p>
           </Button>
         )}
@@ -414,6 +390,8 @@ const ModalInfo = () => {
           display: 'flex',
           justifyContent: 'space-between',
           marginTop: '24px',
+          paddingLeft: '12px',
+          paddingRight: '10px'
         }}
       >
         <a

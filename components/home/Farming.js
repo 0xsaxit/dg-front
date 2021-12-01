@@ -33,6 +33,8 @@ const Farming = props => {
   const [amountInput, setAmountInput] = useState('10000000000000000000');
 
   const DGState = props.DGState;
+  const DGBalances = state.DGBalances.BALANCE_STAKING_UNISWAP;
+  const DGStakingBalances = state.stakingBalances.BALANCE_STAKED_UNISWAP;
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -239,14 +241,14 @@ const Farming = props => {
                   <b>Rewards</b>
                 </span>
               </Link>
-              <Link href="/dg/liquidity">
+              {DGBalances > 0 || DGStakingBalances > 0 && <Link href="/dg/liquidity">
                 <span className="account-hover">
                   <b style={{ marginRight: '4px', paddingTop: '1px' }}>
                     Liquidity
                   </b>
                   <b>Provision</b>
                 </span>
-              </Link>
+              </Link>}
             </p>
           ) : DGState === 'governance' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
@@ -262,14 +264,14 @@ const Farming = props => {
                   <b>Rewards</b>
                 </span>
               </Link>
-              <Link href="/dg/liquidity">
+              {DGBalances > 0 || DGStakingBalances > 0 && <Link href="/dg/liquidity">
                 <span className="account-hover">
                   <b style={{ marginRight: '4px', paddingTop: '1px' }}>
                     Liquidity
                   </b>
                   <b>Provision</b>
                 </span>
-              </Link>
+              </Link>}
             </p>
           ) : DGState === 'mining' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
@@ -285,14 +287,14 @@ const Farming = props => {
                 </b>
                 <b>Rewards</b>
               </span>
-              <Link href="/dg/liquidity">
+              {DGBalances > 0 || DGStakingBalances > 0 && <Link href="/dg/liquidity">
                 <span className="account-hover">
                   <b style={{ marginRight: '4px', paddingTop: '1px' }}>
                     Liquidity
                   </b>
                   <b>Provision</b>
                 </span>
-              </Link>
+              </Link>}
             </p>
           ) : DGState === 'uniswap' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
@@ -335,14 +337,14 @@ const Farming = props => {
                 </b>
                 <b>REWARDS</b>
               </span>
-              <Link href="/dg/liquidity">
+              {DGBalances > 0 || DGStakingBalances > 0 && <Link href="/dg/liquidity">
                 <span className="account-hover active">
                   <b style={{ marginRight: '4px', paddingTop: '1px' }}>
                     LIQUIDITY
                   </b>
                   <b>PROVISION</b>
                 </span>
-              </Link>
+              </Link>}
             </p>
           ) : (
             <p className="account-other-p" style={{ width: '100%' }}>
@@ -358,14 +360,14 @@ const Farming = props => {
                 </b>
                 <b>Rewards</b>
               </span>
-              <Link href="/dg/liquidity">
+              {DGBalances > 0 || DGStakingBalances > 0 && <Link href="/dg/liquidity">
                 <span className="account-hover">
                   <b style={{ marginRight: '4px', paddingTop: '1px' }}>
                     Liquidity
                   </b>
                   <b>Provision</b>
                 </span>
-              </Link>
+              </Link>}
             </p>
           )}
         </div>

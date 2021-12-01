@@ -7,7 +7,7 @@ const { publicRuntimeConfig } = getConfig();
 const { APP_ENV } = publicRuntimeConfig;
 
 // APP_ENV must be set in the .env.{environment} files
-export const API_BASE_URL = 'https://api.decentral.games';
+export const API_BASE_URL = 'https://api.decentral.games'; // temporarily hard-coded due to prod->dev merge breaking this feature
 // ApiUrlsByAppEnv[APP_ENV] || 'https://api.decentral.games';
 
 // temp, should be removed
