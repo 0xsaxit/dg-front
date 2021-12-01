@@ -36,7 +36,7 @@ function blog() {
     <div className="blog-home-container">
 
       <div className="substack-container">
-        <img className="substack-img" src="https://res.cloudinary.com/dnzambf4m/image/upload/v1625093017/loudspeaker_x7ktgd.png" />
+        <img className="substack-img" src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1625093017/loudspeaker_x7ktgd.png" />
         <h1 className="substack-header">
           Stay in the loop with our weekly newsletter
         </h1>

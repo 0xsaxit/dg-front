@@ -67,7 +67,7 @@ export const ICEIcon = () => (
 
 export const DGLogo = () => (
   <img
-    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png"
+    src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1621630083/android-chrome-512x512_rmiw1y.png"
   // className={styles.icon}
   />
 );
