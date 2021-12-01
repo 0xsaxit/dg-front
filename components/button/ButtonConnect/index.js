@@ -281,7 +281,16 @@ const ButtonConnect = () => {
           </a>
         </div>
       ) : (
-        <ModalLoginTop />
+        <div className={styles.main_right_panel}>
+          <ModalLoginTop />
+          <a
+            href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
+            target="_blank"
+            className={styles.get_metamask}
+          >
+            ?
+          </a>
+        </div>
       )}
     </Aux>
   );

@@ -52,56 +52,65 @@ const ModalInfo = () => {
   }, [state.DGBalances, state.stakingBalances]);
 
   useEffect(() => {
-    const balanceMiningOld = state.DGBalances.BALANCE_MINING_DG_V2;
-    const balanceMiningAdjustedOld = balanceMiningOld * 1000;
+    if (state.DGBalances.BALANCE_ROOT_DG) {
+      const balanceMiningOld = state.DGBalances.BALANCE_MINING_DG_V2;
+      const balanceMiningAdjustedOld = balanceMiningOld * 1000;
 
-    const balanceStakingB1 = state.DGBalances.BALANCE_STAKING_BALANCER_1;
-    const balanceStakingB1Adjusted = balanceStakingB1 * 1000;
+      const balanceStakingB1 = state.DGBalances.BALANCE_STAKING_BALANCER_1;
+      const balanceStakingB1Adjusted = balanceStakingB1 * 1000;
 
-    const balanceStakingB2 = state.DGBalances.BALANCE_STAKING_BALANCER_2;
-    const balanceStakingB2Adjusted = balanceStakingB2 * 1000;
+      const balanceStakingB2 = state.DGBalances.BALANCE_STAKING_BALANCER_2;
+      const balanceStakingB2Adjusted = balanceStakingB2 * 1000;
 
-    const balanceKeeperDG = state.DGBalances.BALANCE_KEEPER_DG;
-    const balanceKeeperDGAdjusted = balanceKeeperDG * 1000;
+      const balanceKeeperDG = state.DGBalances.BALANCE_KEEPER_DG;
+      const balanceKeeperDGAdjusted = balanceKeeperDG * 1000;
 
-    const balanceStakingUser = state.stakingBalances.BALANCE_USER_GOVERNANCE;
-    const balanceStakingUserAdjusted = balanceStakingUser * 1000;
+      // const balanceUserGov = state.stakingBalances.BALANCE_USER_GOVERNANCE;
+      // const balanceUserGovAdjusted = balanceUserGov * 1000;
 
-    const balanceStakingUniswap = state.DGBalances.BALANCE_STAKING_UNISWAP;
-    const balanceStakingUniswapAdjusted = balanceStakingUniswap * 1000;
+      const balanceStakingUniswap = state.DGBalances.BALANCE_STAKING_UNISWAP;
+      const balanceStakingUniswapAdjusted = balanceStakingUniswap * 1000;
 
-    const balanceStakingGovOld = state.DGBalances.BALANCE_STAKING_GOVERNANCE;
-    const balanceStakingGovOldAdjusted = balanceStakingGovOld * 1000;
+      const balanceUserGovOld =
+        state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD;
+      const balanceUserGovOldAdjusted = balanceUserGovOld * 1000;
 
-    const balanceRootDG = state.DGBalances.BALANCE_ROOT_DG;
-    const balanceRootDGAdjusted = balanceRootDG * 1000;
+      const balanceRootDG = state.DGBalances.BALANCE_ROOT_DG;
+      const balanceRootDGAdjusted = balanceRootDG * 1000;
 
-    const balanceChildDG = state.DGBalances.BALANCE_CHILD_DG;
-    const balanceChildDGAdjusted = balanceChildDG * 1000;
+      const balanceChildDG = state.DGBalances.BALANCE_CHILD_DG;
+      const balanceChildDGAdjusted = balanceChildDG * 1000;
 
-    console.log('ModalInfo numbers...');
-    console.log(balanceMiningAdjustedOld);
-    console.log(balanceStakingB1Adjusted);
-    console.log(balanceStakingB2Adjusted);
-    console.log(balanceKeeperDGAdjusted);
-    console.log(balanceStakingUserAdjusted);
-    console.log(balanceStakingUniswapAdjusted);
-    console.log(balanceStakingGovOldAdjusted);
-    console.log(balanceRootDGAdjusted);
-    console.log(balanceChildDGAdjusted);
+      const balanceStakingGov = state.DGBalances.BALANCE_STAKING_GOVERNANCE;
+      const balanceStakingGovAdjusted = balanceStakingGov * 1000;
 
-    const dgSummationOld =
-      parseFloat(balanceMiningAdjustedOld) +
-      parseFloat(balanceStakingB1Adjusted) +
-      parseFloat(balanceStakingB2Adjusted) +
-      parseFloat(1) + // balanceKeeperDGAdjusted
-      parseFloat(1) + // balanceStakingUserAdjusted
-      parseFloat(balanceStakingUniswapAdjusted) +
-      parseFloat(1) + // balanceStakingGovOldAdjusted
-      parseFloat(1) + // balanceRootDGAdjusted
-      parseFloat(balanceChildDGAdjusted);
+      // console.log('balance DG governance: ' + balanceUserGovOld);
+      // console.log('balance DG root: ' + balanceRootDG);
+      // console.log('balance DG staking: ' + balanceStakingGov);
 
-    setDGSummationOld(formatPrice(dgSummationOld, 0));
+      // parseFloat(state.DGBalances.BALANCE_MINING_DG) +
+      // parseFloat(state.DGBalances.BALANCE_STAKING_BALANCER_1) +
+      // parseFloat(state.DGBalances.BALANCE_STAKING_BALANCER_2) +
+      // parseFloat(state.DGBalances.BALANCE_KEEPER_DG) +
+      // parseFloat(state.DGBalances.BALANCE_ROOT_DG) +
+      // parseFloat(state.DGBalances.BALANCE_CHILD_DG) +
+      // parseFloat(state.stakingBalances.BALANCE_USER_GOVERNANCE) +
+      // parseFloat(state.DGBalances.BALANCE_STAKING_UNISWAP) +
+      // parseFloat(state.DGBalances.BALANCE_STAKING_GOVERNANCE);
+
+      const dgSummationOld =
+        balanceMiningAdjustedOld +
+        balanceStakingB1Adjusted +
+        balanceStakingB2Adjusted +
+        balanceKeeperDGAdjusted +
+        balanceStakingUniswapAdjusted +
+        balanceUserGovOldAdjusted +
+        balanceRootDGAdjusted +
+        balanceChildDGAdjusted +
+        balanceStakingGovAdjusted;
+
+      setDGSummationOld(dgSummationOld);
+    }
   }, [state.DGBalances, state.stakingBalances]);
 
   useEffect(() => {

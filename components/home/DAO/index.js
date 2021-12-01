@@ -825,6 +825,7 @@ const DAO = props => {
                   staking={staking}
                   withdrawal={withdrawal}
                   reward={reward}
+                  getAmounts={getAmounts}
                 />
               )}
             </>

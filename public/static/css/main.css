@@ -2727,11 +2727,11 @@ a.ui.blue.button.metamask, a.ui.blue.button.casinos {
   color: white;
   padding: 0px;
   line-height: 24px;
-  margin-top: 12.5px;
+  /* margin-top: 12.5px; */
   min-width: 250px !important;
   height: 40px !important;
   border-radius: 16px;
-  margin-right: 30px;
+  /* margin-right: 30px; */
 }
 
 .ui.button.modal-info-button {
