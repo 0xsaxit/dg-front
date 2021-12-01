@@ -129,13 +129,13 @@ const ModalInfo = () => {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            width: '280px',
+            width: '90%',
           }}
         >
           <h3 className={styles.title}>Your DG Breakdown</h3>
 
-          <section style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <section style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', width: '50%' }}>
               <img
                 className={styles.dg_image}
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631325895/dgNewLogo_hkvlps.png"
@@ -148,7 +148,7 @@ const ModalInfo = () => {
               {/* <p className={styles.subtitle_2}>${formatPrice(dgTotalUSD, 2)}</p> */}
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', width: '50%' }}>
               <img
                 className={styles.dg_image}
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637260602/grayLogo_ojx2hi.png"
