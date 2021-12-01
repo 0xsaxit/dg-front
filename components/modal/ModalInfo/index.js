@@ -184,15 +184,12 @@ const ModalInfo = () => {
 
         <span style={{ display: 'flex', flexDirection: 'column' }}>
           <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
-            {formatPrice(state.stakingBalances.BALANCE_USER_GOVERNANCE, 3)}
+            {formatPrice(xdgTotal, 3)}
           </h5>
 
           {/* <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
             $
-            {formatPrice(
-              state.stakingBalances.BALANCE_USER_GOVERNANCE * DGPrice,
-              2
-            )}
+            {formatPrice(xdgTotalUSD, 2)}
           </p> */}
         </span>
       </span>
