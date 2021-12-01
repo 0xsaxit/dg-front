@@ -43,7 +43,7 @@ const MessageToast = (props) => {
 
             dispatch({
                 type: 'network_id',
-                data: networkId,
+                data: parseInt(networkId, 10),
             });
           });
         } else {
