@@ -20,7 +20,7 @@ const CONSTANTS = {
   PARENT_NETWORK_ID: 1, // 1: Mainnet, 3: Ropsten, 5: Goerli
   ACTIVE_PERIOD: 43200, // user account active period: 3600 === 1 hour // 43200
   MATIC_NETWORK_ID: 137, // Mumbai: 80001, Mainnet: 137
-  MATIC_URL: 'https://rpc-mainnet.maticvigil.com/v1/7089dae85151c62193fcd92f53de4d9ff749bcc2', // 'https://rpc-mainnet.matic.network',
+  MATIC_URL: 'https://polygon-rpc.com/', // 'https://rpc-mainnet.matic.network',
   MATIC_EXPLORER: 'https://explorer-mainnet.maticvigil.com',
   TITLE: 'Decentral Games',
   DESCRIPTION: 'Free to play, play to earn gaming in the metaverse. Play ICE Poker, trade NFTs, vote in the DAO, and earn real value from your favorite games.',
@@ -33,169 +33,169 @@ const CONSTANTS = {
   DG_STAKED_AMOUNT: 1, // amount of DG user is required to have staked in order to mint wearable
   POOLING_TIME_OUT: 8000, // API endpoint request pool interval (milliseconds)
   POOLING_LIMIT_COUNT: 6, // attempt to call API endpoint this number of times
-  MINT_ENABLED: true
+  MINT_STATUS: 4, // minimum userStatus level for minting wearables (we can replace with appConfig variable when it's available)
 };
 
 const IMG_URLS_UPGRADE = {
   Trousers: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank1_lower_body_o18u5h.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank1_lower_body_o18u5h.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank2_lower_body_x8duyn.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank3_lower_body_cogifo.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank4_lower_body_bdz0gt.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank5_lower_body_jz4bwy.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank1_lower_body_o18u5h.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank1_lower_body_o18u5h.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank2_lower_body_x8duyn.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank3_lower_body_cogifo.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank4_lower_body_bdz0gt.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_bottom_rank5_lower_body_jz4bwy.png',
   ],
   Blazer: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank1_upper_body_zw12j7.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank1_upper_body_zw12j7.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank2_upper_body_jifiuq.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank3_upper_body_suw9ai.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank4_upper_body_cyz0gk.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank5_upper_body_ff5n1t.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank1_upper_body_zw12j7.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank1_upper_body_zw12j7.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank2_upper_body_jifiuq.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank3_upper_body_suw9ai.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank4_upper_body_cyz0gk.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_suit_top_rank5_upper_body_ff5n1t.png',
   ],
   Cigar: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank1_eyewear_kt6mqk.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank1_eyewear_kt6mqk.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank2_eyewear_r55vvl.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank3_eyewear_uydyit.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank4_eyewear_mtyrtr.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank5_eyewear_hromtz.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank1_eyewear_kt6mqk.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank1_eyewear_kt6mqk.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank2_eyewear_r55vvl.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank3_eyewear_uydyit.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank4_eyewear_mtyrtr.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_cigar_rank5_eyewear_hromtz.png',
   ],
   Loafers: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank1_shoes_feet_nxazsi.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank1_shoes_feet_nxazsi.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank2_shoes_feet_l83rhe.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank3_shoes_feet_gvjjb8.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank4_shoes_feet_avry6l.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank5_shoes_feet_tpnzfv.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank1_shoes_feet_nxazsi.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269376/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank1_shoes_feet_nxazsi.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank2_shoes_feet_l83rhe.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank3_shoes_feet_gvjjb8.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank4_shoes_feet_avry6l.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_dress_rank5_shoes_feet_tpnzfv.png',
   ],
   Shades: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank1_eyewear_shmmce.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank1_eyewear_shmmce.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank2_eyewear_xqvbkf.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank3_eyewear_anyqat.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank4_eyewear_eejcjh.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank5_eyewear_umdmvc.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank1_eyewear_shmmce.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank1_eyewear_shmmce.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank2_eyewear_xqvbkf.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank3_eyewear_anyqat.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269377/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank4_eyewear_eejcjh.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1634269375/DG%20ICE%20Suit%20Thumbnails%20%28Square%29/dg_money_shades_rank5_eyewear_umdmvc.png',
   ],
   'Smoking Shoes': [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_1_wwkyrb.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_1_wwkyrb.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592481/slippers_2_dhwhdy.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_3_l0bpxr.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_4_b48srj.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_5_nusll8.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592480/slippers_1_wwkyrb.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592480/slippers_1_wwkyrb.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592481/slippers_2_dhwhdy.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592480/slippers_3_l0bpxr.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592480/slippers_4_b48srj.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592480/slippers_5_nusll8.png',
   ],
   'Smoking Pants': [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592477/pants_1_taafzw.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592477/pants_1_taafzw.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592477/pants_2_wjenib.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592479/pants_3_dfspif.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592479/pants_4_popgjm.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592478/pants_5_hj4ezw.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592477/pants_1_taafzw.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592477/pants_1_taafzw.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592477/pants_2_wjenib.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592479/pants_3_dfspif.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592479/pants_4_popgjm.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592478/pants_5_hj4ezw.png',
   ],
   'Smoking Jacket': [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592478/robe_1_wjllvx.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592478/robe_1_wjllvx.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592478/robe_2_hbmlze.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592478/robe_3_ckgy99.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/robe_4_dovw7i.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592479/robe_5_pezqkh.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592478/robe_1_wjllvx.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592478/robe_1_wjllvx.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592478/robe_2_hbmlze.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592478/robe_3_ckgy99.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592480/robe_4_dovw7i.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592479/robe_5_pezqkh.png',
   ],
   "Captain's Hat": [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592475/hat_m_1_s3vhqj.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592475/hat_m_1_s3vhqj.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592477/hat_m_2_tegl1l.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592475/hat_m_3_exygib.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592476/hat_m_4_y9flz7.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592477/hat_m_5_zulgdg.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592475/hat_m_1_s3vhqj.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592475/hat_m_1_s3vhqj.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592477/hat_m_2_tegl1l.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592475/hat_m_3_exygib.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592476/hat_m_4_y9flz7.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592477/hat_m_5_zulgdg.png',
   ],
   'Smoking Glasses': [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592475/glasses_1_pxzjw6.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592475/glasses_1_pxzjw6.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592475/glasses_2_dwrwho.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592476/glasses_3_y8kgci.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592474/glasses_4_ihsifq.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1636592476/glasses_5_b57ugk.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592475/glasses_1_pxzjw6.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592475/glasses_1_pxzjw6.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592475/glasses_2_dwrwho.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592476/glasses_3_y8kgci.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592474/glasses_4_ihsifq.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1636592476/glasses_5_b57ugk.png',
   ],
   'Boater Hat': [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172287/hat_grey_m_xfx9s3.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172287/hat_grey_m_xfx9s3.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172286/hat_green_m_n7gcr2.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172286/hat_purple_m_ryoxvh.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172286/hat_pink_m_lotlp6.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172292/hat_gold_m_j840d3.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172287/hat_grey_m_xfx9s3.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172287/hat_grey_m_xfx9s3.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172286/hat_green_m_n7gcr2.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172286/hat_purple_m_ryoxvh.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172286/hat_pink_m_lotlp6.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172292/hat_gold_m_j840d3.png',
   ],
   'XL Pipe': [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172289/pipe_grery_hjgjve.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172289/pipe_grery_hjgjve.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172290/pipe_green_g7chzb.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172289/pipe_purple_hpdrhp.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172291/pipe_pink_ozwkzw.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172289/pipe_gold_o9g9rp.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172289/pipe_grery_hjgjve.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172289/pipe_grery_hjgjve.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172290/pipe_green_g7chzb.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172289/pipe_purple_hpdrhp.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172291/pipe_pink_ozwkzw.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172289/pipe_gold_o9g9rp.png',
   ],
   'Linen Shirt': [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172289/shirt_grey_m_jznjkn.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172289/shirt_grey_m_jznjkn.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172291/shirt_green_m_kcakd1.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172291/shirt_purple_m_djnlxa.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172291/shirt_pink_m_da4udz.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172288/shirt_gold_m_qqpd2b.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172289/shirt_grey_m_jznjkn.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172289/shirt_grey_m_jznjkn.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172291/shirt_green_m_kcakd1.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172291/shirt_purple_m_djnlxa.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172291/shirt_pink_m_da4udz.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172288/shirt_gold_m_qqpd2b.png',
   ],
   'Linen Pants': [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172289/pants_grey_m_zcpmbd.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172289/pants_grey_m_zcpmbd.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172288/pants_green_m_dgkjtv.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172291/pants_purple_m_mublim.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172290/pants_pink_m_sliadb.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172288/pants_gold_m_asyzwz.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172289/pants_grey_m_zcpmbd.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172289/pants_grey_m_zcpmbd.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172288/pants_green_m_dgkjtv.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172291/pants_purple_m_mublim.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172290/pants_pink_m_sliadb.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172288/pants_gold_m_asyzwz.png',
   ],
   'Boater Shoes': [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172287/shoes_grey_tgmj4n.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172287/shoes_grey_tgmj4n.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172290/shoes_green_frnbtm.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172287/shoes_purple_uhoyvi.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172292/shoes_pink_himngr.png',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637172289/shoes_gold_cx4ygw.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172287/shoes_grey_tgmj4n.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172287/shoes_grey_tgmj4n.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172290/shoes_green_frnbtm.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172287/shoes_purple_uhoyvi.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172292/shoes_pink_himngr.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637172289/shoes_gold_cx4ygw.png',
   ],
   'Bomber Pants': [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637024013/ICE%20Bomber%20Thumbnails%20%28Square%29/pants_grey_m_kzmnh3.jpg',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637024013/ICE%20Bomber%20Thumbnails%20%28Square%29/pants_grey_m_kzmnh3.jpg',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637024013/ICE%20Bomber%20Thumbnails%20%28Square%29/pants_green_m_vtdddg.jpg',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637024013/ICE%20Bomber%20Thumbnails%20%28Square%29/pants_purple_m_lqwt9b.jpg',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637024013/ICE%20Bomber%20Thumbnails%20%28Square%29/pants_pink_m_z0beu4.jpg',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637024013/ICE%20Bomber%20Thumbnails%20%28Square%29/pants_gold_m_waxavs.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024013/ICE%20Bomber%20Thumbnails%20%28Square%29/pants_grey_m_kzmnh3.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024013/ICE%20Bomber%20Thumbnails%20%28Square%29/pants_grey_m_kzmnh3.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024013/ICE%20Bomber%20Thumbnails%20%28Square%29/pants_green_m_vtdddg.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024013/ICE%20Bomber%20Thumbnails%20%28Square%29/pants_purple_m_lqwt9b.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024013/ICE%20Bomber%20Thumbnails%20%28Square%29/pants_pink_m_z0beu4.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024013/ICE%20Bomber%20Thumbnails%20%28Square%29/pants_gold_m_waxavs.jpg',
   ],
   'Bomber Hat': [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637023992/ICE%20Bomber%20Thumbnails%20%28Square%29/hat_grey_m_incioq.jpg',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637023992/ICE%20Bomber%20Thumbnails%20%28Square%29/hat_grey_m_incioq.jpg',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637023992/ICE%20Bomber%20Thumbnails%20%28Square%29/hat_green_m_uxmjhy.jpg',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637023992/ICE%20Bomber%20Thumbnails%20%28Square%29/hat_purple_m_tgxs8e.jpg',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637023992/ICE%20Bomber%20Thumbnails%20%28Square%29/hat_pink_m_ruzzlw.jpg',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637023992/ICE%20Bomber%20Thumbnails%20%28Square%29/hat_gold_m_nsmuaq.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637023992/ICE%20Bomber%20Thumbnails%20%28Square%29/hat_grey_m_incioq.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637023992/ICE%20Bomber%20Thumbnails%20%28Square%29/hat_grey_m_incioq.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637023992/ICE%20Bomber%20Thumbnails%20%28Square%29/hat_green_m_uxmjhy.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637023992/ICE%20Bomber%20Thumbnails%20%28Square%29/hat_purple_m_tgxs8e.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637023992/ICE%20Bomber%20Thumbnails%20%28Square%29/hat_pink_m_ruzzlw.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637023992/ICE%20Bomber%20Thumbnails%20%28Square%29/hat_gold_m_nsmuaq.jpg',
   ],
   'Bomber Jacket': [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637024053/ICE%20Bomber%20Thumbnails%20%28Square%29/upperbody_grey_m_jpnabv.jpg',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637024053/ICE%20Bomber%20Thumbnails%20%28Square%29/upperbody_grey_m_jpnabv.jpg',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637024053/ICE%20Bomber%20Thumbnails%20%28Square%29/upperbody_green_m_f8y4a2.jpg',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637024053/ICE%20Bomber%20Thumbnails%20%28Square%29/upperbody_purple_m_cv7uxy.jpg',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637024053/ICE%20Bomber%20Thumbnails%20%28Square%29/upperbody_pink_m_vzcfxl.jpg',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637024053/ICE%20Bomber%20Thumbnails%20%28Square%29/upperbody_gold_m_oxqbqh.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024053/ICE%20Bomber%20Thumbnails%20%28Square%29/upperbody_grey_m_jpnabv.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024053/ICE%20Bomber%20Thumbnails%20%28Square%29/upperbody_grey_m_jpnabv.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024053/ICE%20Bomber%20Thumbnails%20%28Square%29/upperbody_green_m_f8y4a2.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024053/ICE%20Bomber%20Thumbnails%20%28Square%29/upperbody_purple_m_cv7uxy.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024053/ICE%20Bomber%20Thumbnails%20%28Square%29/upperbody_pink_m_vzcfxl.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024053/ICE%20Bomber%20Thumbnails%20%28Square%29/upperbody_gold_m_oxqbqh.jpg',
   ],
   'Bomber Glasses': [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637023960/ICE%20Bomber%20Thumbnails%20%28Square%29/glasses_grey_np5pwz.jpg',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637023960/ICE%20Bomber%20Thumbnails%20%28Square%29/glasses_grey_np5pwz.jpg',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637023960/ICE%20Bomber%20Thumbnails%20%28Square%29/glasses_green_gzoe43.jpg',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637023960/ICE%20Bomber%20Thumbnails%20%28Square%29/glasses_purple_w7yl9g.jpg',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637023960/ICE%20Bomber%20Thumbnails%20%28Square%29/glasses_pink_qqjwa1.jpg',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637023960/ICE%20Bomber%20Thumbnails%20%28Square%29/glasses_gold_fogrzy.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637023960/ICE%20Bomber%20Thumbnails%20%28Square%29/glasses_grey_np5pwz.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637023960/ICE%20Bomber%20Thumbnails%20%28Square%29/glasses_grey_np5pwz.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637023960/ICE%20Bomber%20Thumbnails%20%28Square%29/glasses_green_gzoe43.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637023960/ICE%20Bomber%20Thumbnails%20%28Square%29/glasses_purple_w7yl9g.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637023960/ICE%20Bomber%20Thumbnails%20%28Square%29/glasses_pink_qqjwa1.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637023960/ICE%20Bomber%20Thumbnails%20%28Square%29/glasses_gold_fogrzy.jpg',
   ],
   'Bomber Shoes': [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637024032/ICE%20Bomber%20Thumbnails%20%28Square%29/shoes_grey_r1pu6s.jpg',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637024032/ICE%20Bomber%20Thumbnails%20%28Square%29/shoes_grey_r1pu6s.jpg',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637024032/ICE%20Bomber%20Thumbnails%20%28Square%29/shoes_green_gjqjnt.jpg',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637024032/ICE%20Bomber%20Thumbnails%20%28Square%29/shoes_purple_bsqoyl.jpg',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637024032/ICE%20Bomber%20Thumbnails%20%28Square%29/shoes_pink_cnuzg6.jpg',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1637024032/ICE%20Bomber%20Thumbnails%20%28Square%29/shoes_gold_ishar9.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024032/ICE%20Bomber%20Thumbnails%20%28Square%29/shoes_grey_r1pu6s.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024032/ICE%20Bomber%20Thumbnails%20%28Square%29/shoes_grey_r1pu6s.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024032/ICE%20Bomber%20Thumbnails%20%28Square%29/shoes_green_gjqjnt.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024032/ICE%20Bomber%20Thumbnails%20%28Square%29/shoes_purple_bsqoyl.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024032/ICE%20Bomber%20Thumbnails%20%28Square%29/shoes_pink_cnuzg6.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024032/ICE%20Bomber%20Thumbnails%20%28Square%29/shoes_gold_ishar9.jpg',
   ],
 };
 
@@ -211,16 +211,21 @@ const ADDRESSES = (() => {
   const ROOT_TOKEN_ADDRESS_ATRI = '0xdacD69347dE42baBfAEcD09dC88958378780FB62';
   const ROOT_TOKEN_ADDRESS_ICE = '';
   const ROOT_DG_LIGHT_BRIDGE_ADDRESS = '';
+
   const ROOT_DG_TOWN_HALL_ADDRESS = '0x4f81c790581b240a5c948afd173620ecc8c71c8d';
+  
   const CHILD_TOKEN_ADDRESS_DAI = '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063';
   const CHILD_TOKEN_ADDRESS_MANA = '0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4';
   const CHILD_TOKEN_ADDRESS_DG = '0x2a93172c8DCCbfBC60a39d56183B7279a2F647b4';
-  const CHILD_TOKEN_ADDRESS_DG_LIGHT = '0x246cca939a65b5e5b9bfeb053b9c962ae7fbd54b';
+  const CHILD_TOKEN_ADDRESS_DG_LIGHT = '0xef938b6da8576a896f6E0321ef80996F4890f9c4';
   const CHILD_TOKEN_ADDRESS_USDT = '0xc2132D05D31c914a87C6611C10748AEb04B58e8F';
   const CHILD_TOKEN_ADDRESS_ATRI = '0xB140665ddE25c644c6B418e417C930dE8A8a6Ac9';
   const CHILD_TOKEN_ADDRESS_WETH = '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619';
   const CHILD_TOKEN_ADDRESS_ICE = '0xc6c855ad634dcdad23e64da71ba85b8c51e5ad7c';
-  const CHILD_DG_LIGHT_BRIDGE_ADDRESS = '0xe25d59004A615e11C43ea984eF92BB0E9ff16F1e';
+  const CHILD_DG_LIGHT_BRIDGE_ADDRESS = '0x0f09D3a5ACeA61F7ceBd5f2FeA62c070c9730a53';
+
+  const CHILD_TOKEN_XDG_ADDRESS = '0xc6480Da81151B2277761024599E8Db2Ad4C388C8';
+
   const ROPSTEN_TOKEN_ADDRESS_DG = '0x5f3f4a1f10C8F2ca2D589A19D8Fe488f49FAb04A';
   const ROPSTEN_TOKEN_ADDRESS_DG_LIGHT = '0x40E25786ACE1a546b61CE7BD0C0E04bdBd52dF76';
   const ROPSTEN_DG_LIGHT_BRIDGE_ADDRESS = '';
@@ -228,10 +233,14 @@ const ADDRESSES = (() => {
   const TREASURY_CONTRACT_ADDRESS = '0xBF79cE2fbd819e5aBC2327563D02a200255B7Cb3';
   const DG_POINTER_CONTRACT_ADDRESS = '0x11e46DB40d4438D1c64f68993CA43b03Ac1B6A6B';
   const DG_POINTER_CONTRACT_ADDRESS_NEW = '0xC751C3D67291E95e02E71E713E51D8CD27e8d04B';
+
   const DG_STAKING_BALANCER_ADDRESS_1 = '0xA9380E21fF4Ed3218a7a518D16c464ff0DcBf143';
   const DG_STAKING_BALANCER_ADDRESS_2 = '0x444b3917f08a0c7a39267b1ec2f46713c5492db2';
+  
   const DG_STAKING_UNISWAP_ADDRESS = '0x55ceb773c494cf7ad4f2e3170936866bd7eff1c9';
+
   const DG_STAKING_GOVERNANCE_ADDRESS = '0xf1d113059517dbddd99ab9caffa76fc01f0557cd';
+
   const DG_KEEPER_CONTRACT_ADDRESS = '0x6b5C29B035Ec40a7cE567f1F11cc90eBfa4f1D17';
   const ICE_REGISTRANT_ADDRESS = '0xC9a67eD1472A76d064C826B54c144Ca00DAE4015';
   const BP_TOKEN_ADDRESS_1 = '0xca54c398195fce98856888b0fd97a9470a140f71';
@@ -265,6 +274,9 @@ const ADDRESSES = (() => {
   console.log('CHILD_TOKEN_ADDRESS_WETH: ' + CHILD_TOKEN_ADDRESS_WETH);
   console.log('CHILD_TOKEN_ADDRESS_ICE: ' + CHILD_TOKEN_ADDRESS_ICE);
   console.log('CHILD_DG_LIGHT_BRIDGE_ADDRESS: ' + CHILD_DG_LIGHT_BRIDGE_ADDRESS);
+  
+  console.log('CHILD_TOKEN_XDG_ADDRESS: ' + CHILD_TOKEN_XDG_ADDRESS);
+
   console.log('TREASURY_CONTRACT_ADDRESS: ' + TREASURY_CONTRACT_ADDRESS);
   console.log('DG_POINTER_CONTRACT_ADDRESS: ' + DG_POINTER_CONTRACT_ADDRESS);
   console.log('DG_POINTER_CONTRACT_ADDRESS_NEW: ' + DG_POINTER_CONTRACT_ADDRESS_NEW);
@@ -307,6 +319,7 @@ const ADDRESSES = (() => {
     CHILD_TOKEN_ADDRESS_WETH,
     CHILD_TOKEN_ADDRESS_ICE,
     CHILD_DG_LIGHT_BRIDGE_ADDRESS,
+    CHILD_TOKEN_XDG_ADDRESS,
     ROPSTEN_TOKEN_ADDRESS_DG,
     ROPSTEN_TOKEN_ADDRESS_DG_LIGHT,
     ROPSTEN_DG_LIGHT_BRIDGE_ADDRESS,

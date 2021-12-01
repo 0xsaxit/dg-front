@@ -22,11 +22,11 @@ function History({ state }) {
   const [openId, setOpenId] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const transactions = dataHistory=="false"? [] : (
+  const transactions = dataHistory == "false" ? [] : (
     dataHistory.filter(
-    h =>
-      get(h, 'type', '').includes('Deposit') ||
-      get(h, 'type', '').includes('Withdrawal')
+      h =>
+        get(h, 'type', '').includes('Deposit') ||
+        get(h, 'type', '').includes('Withdrawal')
     )
   );
 
@@ -62,11 +62,11 @@ function History({ state }) {
     ...(dataPlay === 'false'
       ? []
       : dataPlay.filter(
-          p =>
-            get(p, 'gameType', 0) < 10 &&
-            get(p, 'gameType', 0) !== 9 &&
-            p.txid != ''
-        )),
+        p =>
+          get(p, 'gameType', 0) < 10 &&
+          get(p, 'gameType', 0) !== 9 &&
+          p.txid != ''
+      )),
     ...newPokerData,
   ].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
@@ -191,7 +191,7 @@ function History({ state }) {
                           {amount}
                         </h2>
                         {row.type.includes('DAI') ||
-                        row.type.includes('USDT') ? (
+                          row.type.includes('USDT') ? (
                           <h3
                             className={styles.row_date}
                             style={{ textAlign: 'right' }}
@@ -356,6 +356,17 @@ function History({ state }) {
                                 borderRadius: '100%',
                               }}
                             />
+                          ) : row.coinName === 'ICE' ? (
+                            <img
+                              src={Images.ICE_CIRCLE}
+                              style={{
+                                width: '21px',
+                                marginRight: '8px',
+                                verticalAlign: 'middle',
+                                marginTop: '-4px',
+                                borderRadius: '100%',
+                              }}
+                            />
                           ) : (
                             <img
                               src={Images.PLAY_CIRCLE}
@@ -419,6 +430,17 @@ function History({ state }) {
                         ) : row.coinName === 'ETH' ? (
                           <img
                             src={Images.ETH_CIRCLE}
+                            style={{
+                              width: '21px',
+                              marginRight: '8px',
+                              verticalAlign: 'middle',
+                              marginTop: '-4px',
+                              borderRadius: '100%',
+                            }}
+                          />
+                        ) : row.coinName === 'ICE' ? (
+                          <img
+                            src={Images.ICE_CIRCLE}
                             style={{
                               width: '21px',
                               marginRight: '8px',

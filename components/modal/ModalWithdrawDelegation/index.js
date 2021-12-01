@@ -77,7 +77,7 @@ const ModalWithdrawDelegation = props => {
                 <div className={styles.info}>You Earn</div>
                 {!isDelegator ? '70%' : '30%'}
                 <img
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card}
                 />
               </div>
@@ -88,7 +88,7 @@ const ModalWithdrawDelegation = props => {
                 <div className={styles.info}>They Earn</div>
                 {!isDelegator ? '30%' : '70%'}
                 <img
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card}
                 />
               </div>
@@ -177,7 +177,7 @@ const ModalWithdrawDelegation = props => {
     if (json.status) {
       console.log('NFT undelegation request successful');
       setClicked(false);
-      setWithdrawStatus(1);
+      setWithdrawStatus(0);
 
     } else {
       console.log('NFT undelegation request error: ' + json.reason);
@@ -232,17 +232,30 @@ const ModalWithdrawDelegation = props => {
                             : 'DELEGATEE CLICKED WITHDRAW'
                         );
                         undelegateNFT();
-                      } else if (withdrawStatus == 1) { // success case
+
+                        // restore
                         completeWithdraw();
+                      } else if (withdrawStatus == 1) { // success case
+                        console.log("1 ===========================");
+                        completeWithdraw();                        
                       } else {
+                        console.log("2 ===========================");
                         completeWithdraw();
                       }
                     }}
                   >
-                    {withdrawStatus == 0 ? (
                       <>
                         <img
                           src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
+                          className={styles.icon}
+                        />
+                        {props.buttonName}
+                      </>
+
+                    {/* {withdrawStatus == 0 ? (
+                      <>
+                        <img
+                          src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png"
                           className={styles.icon}
                         />
                         {props.buttonName}
@@ -257,7 +270,7 @@ const ModalWithdrawDelegation = props => {
                           ' (In ' + getRemainingTime() + 'Hours)'}
                         </div>
                       </div>
-                    )}
+                    )} */}
                   </Button>
                 ) : (
                   <Button className={styles.button_close} disabled={true}>

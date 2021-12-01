@@ -1,13 +1,12 @@
 import cn from 'classnames';
 import { useEffect, useContext, useState, React } from 'react';
 import { GlobalContext } from '../../../../store';
-import { Button, Input } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 import Spinner from 'components/lottieAnimation/animations/spinner_updated';
 import Aux from '../../../_Aux';
 import styles from './Liquidity.module.scss';
 import Web3 from 'web3';
 import Transactions from '../../../../common/Transactions';
-import Global from '../../../Constants';
 import Fetch from '../../../../common/Fetch';
 
 const Liquidity = props => {
@@ -15,12 +14,10 @@ const Liquidity = props => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [stakeType, setStakeType] = useState('Stake');
   const [amountInput, setAmountInput] = useState('');
   const [percentageUniswap, setPercentageUniswap] = useState(0);
   const [percentagePool, setPercentagePool] = useState(0);
   const [priceUSD, setPriceUSD] = useState(0);
-  const [APYUniswap, setAPYUniswap] = useState(0);
   const [stakingContractUniswap, setStakingContractUniswap] = useState({});
   const [uniswapContract, setUniswapContract] = useState({});
   const [instances, setInstances] = useState(false);
@@ -74,9 +71,6 @@ const Liquidity = props => {
         const uni_denom = locked_DG + locked_ETH;
         const uni_num = 6518 * props.price;
         const uni_APY_temp = (uni_num / uni_denom) * 100;
-        const APYUniswap = Number(uni_APY_temp).toFixed(2);
-
-        setAPYUniswap(APYUniswap);
       })();
     }
   }, [
@@ -192,35 +186,13 @@ const Liquidity = props => {
           </div>
 
           <div className={styles.lower} style={{ width: '500px', minWidth: '500px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <div className={styles.type_div}>
-              <div
-                className={stakeType === 'Stake' ? styles.active : null}
-                onClick={() => {
-                  setStakeType('Stake');
-                }}
-              >
-                Stake
-              </div>
-              <div
-                className={stakeType === 'Unstake' ? styles.active : null}
-                onClick={() => {
-                  setStakeType('Unstake');
-                }}
-              >
-                Unstake
-              </div>
-            </div>
-
             <p className={styles.lower_header}>Liquidity Provision</p>
-            <p className={styles.apy_text}>Your DG {stakeType === 'Stake' ? 'Staked' : 'Unstaked'}</p>
+            <p className={styles.apy_text}>Your DG Staked</p>
             <p className={styles.apy_percent}>
               { }
-              {stakeType === 'Stake' ?
-                props.formatPrice(state.stakingBalances.BALANCE_USER_GOVERNANCE, 2)
-                : props.formatPrice(state.DGBalances.BALANCE_ROOT_DG, 2)
-              }
+              {props.formatPrice(state.stakingBalances.BALANCE_STAKED_UNISWAP, 3)}
               <br />
-              <abbr>${props.formatPrice((stakeType === 'Stake' ? state.stakingBalances.BALANCE_USER_GOVERNANCE : state.DGBalances.BALANCE_ROOT_DG) * state.DGPrices.dg, 2)}</abbr>
+              <abbr>${props.formatPrice(state.stakingBalances.BALANCE_STAKED_UNISWAP * state.DGPrices.dg, 2)}</abbr>
             </p>
 
             <div style={{ display: 'flex', width: '80%' }}>
@@ -240,14 +212,7 @@ const Liquidity = props => {
                   }}
                 >
                   <p className={styles.apy_text}>Uniswap Staking APY</p>
-                  {APYUniswap ? (
-                    <p className="earned-amount stat">{APYUniswap}%</p>
-                  ) : (
-                    <Spinner
-                      width={33}
-                      height={33}
-                    />
-                  )}
+                  <p className="earned-amount stat">N/A</p>
                 </span>
               </span>
 
@@ -290,51 +255,24 @@ const Liquidity = props => {
                 <Button
                   className={styles.max_button}
                   onClick={() => {
-                    setAmountInput(props.formatPrice(stakeType === 'Stake' ? state.stakingBalances.BALANCE_WALLET_UNISWAP : state.stakingBalances.BALANCE_STAKED_UNISWAP, 3));
+                    setAmountInput(props.formatPrice(state.stakingBalances.BALANCE_STAKED_UNISWAP, 3));
                   }}
                 >
                   MAX
                 </Button>
-
-                <div className={styles.description}>
-                  <h4 className={amountInput <= state.DGBalances.BALANCE_ROOT_DG ? styles.success : styles.error}>
-                    {props.formatPrice(stakeType === 'Stake' ? state.stakingBalances.BALANCE_WALLET_UNISWAP : state.stakingBalances.BALANCE_STAKED_UNISWAP, 3)}
-                    &nbsp;DG Available to&nbsp;
-                    {stakeType}
-                  </h4>
-                  <p>On ETH Mainnet</p>
-                </div>
               </div>
 
               <div className={styles.button_div}>
-                {stakeType === 'Stake' ? (
-                  <Button
-                    className={styles.button_blue}
-                    onClick={() => {
-                      props.staking(
-                        uniswapContract,
-                        Global.ADDRESSES.DG_STAKING_UNISWAP_ADDRESS,
-                        stakingContractUniswap,
-                        amountInput
-                      );
-                      setAmountInput('');
-                    }}
-                    disabled={amountInput <= 0 || amountInput > state.stakingBalances.BALANCE_WALLET_UNISWAP ? true : false}
-                  >
-                    {stakeType} {amountInput > 0 ? amountInput : ''} DG
-                  </Button>
-                ) : (
-                  <Button
-                    className={styles.button_blue}
-                    onClick={() => {
-                      props.withdrawal(stakingContractUniswap, amountInput);
-                      setAmountInput('');
-                    }}
-                    disabled={amountInput <= 0 || parseFloat(amountInput.toString(), 10) > state.stakingBalances.BALANCE_STAKED_UNISWAP ? true : false}
-                  >
-                    {stakeType} {amountInput > 0 ? amountInput : ''} DG
-                  </Button>
-                )}
+                <Button
+                  className={styles.button_blue}
+                  onClick={() => {
+                    props.withdrawal(stakingContractUniswap, amountInput);
+                    setAmountInput('');
+                  }}
+                  disabled={amountInput <= 0 || parseFloat(amountInput.toString(), 10) > state.stakingBalances.BALANCE_STAKED_UNISWAP ? true : false}
+                >
+                  Unstake {amountInput > 0 ? amountInput : ''} DG
+                </Button>
               </div>
             </div>
           </div>

@@ -16,7 +16,7 @@ const ModalActivationSuccess = props => {
     const itemInfo = state.iceWearableItems.filter(item => item.tokenID === props.tokenID)[0];
     setImage(itemInfo.meta_data.image);
     setDescription(itemInfo.meta_data.description.split(' ').at(-1).replace('/', ' of '));
-    setRank(GetRank(parseInt(itemInfo.meta_data.attributes.at(-1).value)));
+    setRank(GetRank(parseInt(itemInfo.meta_data.attributes.find(el => el.trait_type === 'Bonus').value)));
   }, [state.iceWearableItems])
 
   return (
@@ -97,7 +97,7 @@ const ModalActivationSuccess = props => {
             <div className={styles.toppercent}>
               {rank.percentage}
               <img
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
                 style={{ width: '20px' }}
               />
             </div>
@@ -109,7 +109,7 @@ const ModalActivationSuccess = props => {
               <div className={styles.round}>
                 {rank.percentage}
                 <img
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630486742/image_2_pm0jck.png"
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1630486742/image_2_pm0jck.png"
                   style={{ width: '20px' }}
                 />
               </div>

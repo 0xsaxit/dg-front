@@ -331,43 +331,6 @@
         transition: 0.2s ease-in;
       }
     }
-
-    .description {
-      position: absolute;
-      top: 70px;
-
-      h4 {
-        font-family: "Larsseit-Regular";
-        font-size: 11px;
-        line-height: 14px;
-        letter-spacing: 0.5px;
-        text-align: center;
-        margin-bottom: 2px;
-      }
-
-      h4.success {
-        color: #67dd6c !important;
-      }
-
-      h4.error {
-        color: #ffb5b5 !important;
-      }
-
-      h4.active {
-        font-size: 11px;
-        line-height: 14px;
-        letter-spacing: 0.5px;
-        color: #67dd6c !important;
-        margin-bottom: 2px;
-      }
-
-      p {
-        text-align: center;
-        font-size: 9px;
-        line-height: 12px;
-        color: rgba(255, 255, 255, 0.5) !important;
-      }
-    }
   }
 
   .button_div {
@@ -375,7 +338,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-top: 55px;
+    margin-top: 30px;
 
     .button,
     .button_blue {
@@ -427,40 +390,5 @@
     .button_blue {
       background: #006eff;
     }
-  }
-}
-
-.type_div {
-  display: flex;
-  justify-content: center;
-  border: 1px solid #1f1f1f;
-  border-radius: 24px;
-  padding: 3px;
-  margin-top: 12px;
-  margin-bottom: 20px;
-  max-width: 180px;
-
-  div {
-    font-family: "Larsseit-Medium";
-    font-size: 14px;
-    line-height: 19px;
-    text-align: center;
-    color: #fff;
-    background: transparent;
-    width: 80px;
-    padding: 4px;
-    margin: 2px;
-    border-radius: 24px;
-    cursor: pointer;
-    transition: 0.2s ease-in;
-
-    &:hover {
-      background: #1f1f1f;
-      transition: 0.2s ease-in;
-    }
-  }
-
-  .active {
-    background: #1f1f1f;
   }
 }

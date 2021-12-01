@@ -54,7 +54,7 @@ const ModalLogin = () => {
   //   if (metamaskEnabled) {
   //     // open MetaMask for login then get the user's wallet address
   //     await window.ethereum.enable();
-  //     userAddress = window.ethereum.selectedAddress;
+  //     userAddress = window.ethereum?.selectedAddress;
 
   //     // track MetaMask connect event
   //     analytics.track('Connected MetaMask', {
@@ -131,7 +131,6 @@ const ModalLogin = () => {
       onOpen={() => setOpen(true)}
       open={open}
       close
-      /*
       trigger={
         <span>
           <Button
@@ -140,7 +139,7 @@ const ModalLogin = () => {
           >
             <span>
               <img 
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png"
                 style={{ height: '24px', paddingRight: '8px', marginBottom: '-7px' }} 
               />
               Connect Metamask
@@ -156,7 +155,6 @@ const ModalLogin = () => {
           </Button>
         </span>
       }
-      */
     >
       <div style={{ margin: '-68px 0px 50px -40px' }}>
         <span className={styles.button_close} onClick={() => setOpen(false)}>
@@ -178,7 +176,7 @@ const ModalLogin = () => {
         <h1 className={styles.title}>Download Metamask</h1>
         <Button
           className={styles.busd_button}
-          href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
+          href="https://metamask.io"
           target="_blank"
         >
           <span style={{ display: 'flex', justifyContent: 'center' }}>
@@ -198,15 +196,16 @@ const ModalLogin = () => {
             </svg>
           </span>
         </Button>
+       
         <p className={styles.subtitle}>
           {' '}
           We currently only support{' '}
-          <a className="modal-a" href="https://metamask.io">
+          <a className="modal-a" href="https://metamask.io" target="_blank">
             {' '}
             Metamask wallets{' '}
           </a>
           . For more instructions on how to set up Metamask,{' '}
-          <a className="modal-a" href="https://metamask.io">
+          <a className="modal-a" href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask" target="_blank">
             {' '}
             click here{' '}
           </a>

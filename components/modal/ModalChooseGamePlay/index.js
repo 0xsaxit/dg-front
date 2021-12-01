@@ -39,10 +39,10 @@ const ModalChooseGamePlay = ({
                 <div className={styles.content}>
                     <div className={styles.section}>
                         <img
-                            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637263761/GamePlayDext_grjsqp.png"
+                            src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637263761/GamePlayTominoya_shvjsc.png"
                             alt=""
                             onClick={() => {
-                                window.open("https://play.decentraland.org/?position=-110,129&realm=dg", "_blank");
+                                window.open("https://api.decentral.games/ice/play?position=-110%2C129", "_blank");
                             }}
                         />
                         <h1>Play to Earn<br />ICE Poker</h1>
@@ -50,7 +50,7 @@ const ModalChooseGamePlay = ({
                     </div>
                     <div className={styles.section}>
                         <img
-                            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637263761/GamePlayTominoya_shvjsc.png"
+                            src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637263761/GamePlayDext_grjsqp.png"
                             alt=""
                             onClick={() => {
                                 window.open("https://play.decentraland.org/?position=-118%2C135&realm=dg", "_blank");

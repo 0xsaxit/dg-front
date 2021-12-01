@@ -12,9 +12,12 @@ const FirstStep = (props) => {
     // get the treasury's balances numbers from the Context API store
     const [state, dispatch] = useContext(GlobalContext);
 
-    const [hash, setHash] = useState('');
+    const [unstakeHash, setUnstakeHash] = useState('');
+    const [claimHash, setClaimHash] = useState('');
     const [unstaked, setUnstaked] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [claimed, setClaimed] = useState(false);
+    const [unstakeLoading, setUnstakeLoading] = useState(false);
+    const [claimLoading, setClaimLoading] = useState(false);
     const [stakingContract, setStakeContract] = useState({});
 
     // fetch staking contract data
@@ -35,11 +38,19 @@ const FirstStep = (props) => {
                         await Transactions.stakingContractGovernance(web3);
                     setStakeContract(contract);
 
-                    const stakedAmount =
-                        await contract.methods.balanceOf(state.userAddress).call();
+                    const [
+                        stakedAmount,
+                        earnedAmount
+                    ] = await Promise.all([
+                        contract.methods.balanceOf(state.userAddress).call(),
+                        contract.methods.earned(state.userAddress).call()
+                    ]);
 
                     if (BigNumber(stakedAmount).isZero()) {
                         setUnstaked(true);
+                    }
+                    if (BigNumber(earnedAmount).isZero()) {
+                        setClaimed(true);
                     }
                 } catch (e) {
                     console.log(e.message);
@@ -51,7 +62,7 @@ const FirstStep = (props) => {
     }, [state.userStatus]);
 
     async function unstake() {
-        const amount = BigNumber(state.stakingBalances.BALANCE_USER_GOVERNANCE || 0)
+        const amount = BigNumber(state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD || 0)
             .times(Global.CONSTANTS.FACTOR).toFixed();
 
         console.log('Call withdraw() function to unstake tokens');
@@ -61,14 +72,14 @@ const FirstStep = (props) => {
             await stakingContract.methods
                 .withdraw(amount)
                 .send({ from: state.userAddress })
-                .on('transactionHash', function(hash) {
-                    setHash(hash);
-                    setLoading(true);
+                .on('transactionHash', function(txHash) {
+                    setUnstakeHash(txHash);
+                    setUnstakeLoading(true);
                 })
                 .on('confirmation', function(confirmation, receipt) {
                     setUnstaked(true);
-                    setLoading(false);
-                    console.log('withdraw() transaction completed: ' + hash);
+                    setUnstakeLoading(false);
+                    console.log('withdraw() transaction completed: ' + unstakeHash);
                 });
 
             // update global state staking balances
@@ -84,7 +95,7 @@ const FirstStep = (props) => {
             });
         } catch (error) {
             console.log('Withdraw transaction error: ' + error);
-            setLoading(false);
+            setUnstakeLoading(false);
             dispatch({
               type: 'show_toastMessage',
               data: 'Failed to unstake $DG!',
@@ -92,87 +103,193 @@ const FirstStep = (props) => {
         }
     }
 
+    async function claim() {
+        console.log('Call getReward() function to unstake tokens');
+
+        try {
+            await stakingContract.methods
+                .getReward()
+                .send({ from: state.userAddress })
+                .on('transactionHash', function(txHash) {
+                    setClaimHash(txHash);
+                    setClaimLoading(true);
+                })
+                .on('confirmation', function(confirmation, receipt) {
+                    setClaimed(true);
+                    setClaimLoading(false);
+                    console.log('getReward() transaction completed: ' + claimHash);
+                });
+
+            // update global state staking balances
+            const refresh = !state.refreshBalances;
+
+            dispatch({
+                type: 'refresh_balances',
+                data: refresh,
+            });
+            dispatch({
+              type: 'show_toastMessage',
+              data: 'Rewards $DG Claimed successfully!',
+            });
+        } catch (error) {
+            console.log('GetReward transaction error: ' + error);
+            setClaimLoading(false);
+            dispatch({
+              type: 'show_toastMessage',
+              data: 'Failed to claim rewards $DG!',
+            });
+        }
+    }
+
     return (
         <div className={styles.main_wrapper}>
             <div className={styles.title}>
-                <h1>Unstake Your $DG</h1>
-                <p>By unstaking first, we’ll aim to swap all your Mainnet $DG in one later transaction and reduce total gas fees.</p>
+                <h1>Unstake Your $DG and Claim Your Rewards</h1>
+                <p>By unstaking & claiming first, we’ll aim to swap all your Mainnet $DG in one later transaction and reduce total gas fees.</p>
             </div>
 
             <div className={styles.content}>
-                <div className={styles.box_div}>
-                    {!unstaked ?
-                        <>
-                            <div className={styles.box_title}>
-                                <h1>Staked Governance $DG</h1>
-                            </div>
-                            <div className={styles.center_content}>
-                                <div>
-                                    {props.formatPrice(state.stakingBalances.BALANCE_USER_GOVERNANCE || 0, 2)}
-                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
-                                </div>
-                            </div>
-                            <div className={styles.button_div}>
-                                {loading ?
-                                    <Button
-                                        className={styles.button}
-                                        href={`https://etherscan.io/tx/${hash}`}
-                                        target="_blank"
-                                    >
-                                        <Spinner />
-                                        View on Etherscan
-                                        <img className={styles.arrowIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636424323/TransBgArrow_ukntvi.png" alt="" />
-                                    </Button>
-                                    :
-                                    <Button
-                                        className={styles.button}
-                                        onClick={() => {
-                                            unstake();
-                                        }}
-                                    >
-                                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" alt="metamask" />
-                                        Unstake {props.formatPrice(state.stakingBalances.BALANCE_USER_GOVERNANCE || 0, 2)} $DG
-                                    </Button>
-                                }
-                            </div>
-                        </>
-                        :
-                        <>
-                            <div className={styles.box_title}>
-                                <h1>You're Ready for Step 2</h1>
-                            </div>
-                            <div className={styles.center_ready_content}>
-                                <p>No (Old) $DG Left to Unstake</p>
-                                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636423902/check-mark_fvx9a4.png" alt="Ready" />
-                            </div>
-                            <div className={styles.button_div}>
-                                <Button
-                                    className={styles.button}
-                                    onClick={() => {
-                                        props.nextStep();
-                                    }}
-                                >
-                                    Next Step
-                                    <img className={styles.nextIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634587739/next_zxguep.png" alt="" />
-                                </Button>
-                            </div>
-                        </>
-                    }
-                </div>
+                {!unstaked || !claimed ?
+                    <>
+                        <div className={styles.box_div}>
+                            {!unstaked ?
+                                <>
+                                    <div className={styles.box_title}>
+                                        <h1>Staked Governance $DG</h1>
+                                    </div>
+                                    <div className={styles.center_content}>
+                                        <div>
+                                            {props.formatNumber(state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD || 0, 4)}
+                                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
+                                        </div>
+                                    </div>
+                                    <div className={styles.button_div}>
+                                        {unstakeLoading ?
+                                            <Button
+                                                className={styles.button}
+                                                href={`https://etherscan.io/tx/${unstakeHash}`}
+                                                target="_blank"
+                                            >
+                                                <Spinner />
+                                                View on Etherscan
+                                                <img className={styles.arrowIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636424323/TransBgArrow_ukntvi.png" alt="" />
+                                            </Button>
+                                            :
+                                            <Button
+                                                className={styles.button}
+                                                onClick={() => {
+                                                    unstake();
+                                                }}
+                                            >
+                                                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" alt="metamask" />
+                                                Unstake {props.formatNumber(state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD || 0, 4)} $DG
+                                            </Button>
+                                        }
+                                    </div>
+                                </>
+                                :
+                                <>
+                                    <div className={styles.box_title}>
+                                        <h1>You're Ready to Claim Rewards</h1>
+                                    </div>
+                                    <div className={styles.center_ready_content}>
+                                        <p>No $DG to Unstake</p>
+                                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636423902/check-mark_fvx9a4.png" alt="Ready" />
+                                    </div>
+                                    <div className={styles.button_div}>
+                                        <Button
+                                            className={styles.button}
+                                            disabled={true}
+                                        >
+                                            Next Step
+                                            <img className={styles.nextIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634587739/next_zxguep.png" alt="" />
+                                        </Button>
+                                    </div>
+                                </>
+                            }
+                        </div>
 
-                <div className={styles.box_div}>
-                    <div className={styles.box_title}>
-                        <h1>What About Gas Fees?</h1>
+                        <div className={styles.box_div}>
+                            {!claimed ?
+                                <>
+                                    <div className={styles.box_title}>
+                                        <h1>Unclaimed Rewards $DG</h1>
+                                    </div>
+                                    <div className={styles.center_content}>
+                                        <div>
+                                            {props.formatNumber(state.DGBalances.BALANCE_STAKING_GOVERNANCE || 0, 4)}
+                                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
+                                        </div>
+                                    </div>
+                                    <div className={styles.button_div}>
+                                        {claimLoading ?
+                                            <Button
+                                                className={styles.button}
+                                                href={`https://etherscan.io/tx/${claimHash}`}
+                                                target="_blank"
+                                            >
+                                                <Spinner />
+                                                View on Etherscan
+                                                <img className={styles.arrowIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636424323/TransBgArrow_ukntvi.png" alt="" />
+                                            </Button>
+                                            :
+                                            <Button
+                                                className={styles.button}
+                                                disabled={!unstaked}
+                                                onClick={() => {
+                                                    claim();
+                                                }}
+                                            >
+                                                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" alt="metamask" />
+                                                Claim {props.formatNumber(state.DGBalances.BALANCE_STAKING_GOVERNANCE || 0, 4)} $DG
+                                            </Button>
+                                        }
+                                    </div>
+                                </>
+                                :
+                                <>
+                                    <div className={styles.box_title}>
+                                        <h1>You're Ready for Step 2</h1>
+                                    </div>
+                                    <div className={styles.center_ready_content}>
+                                        <p>No Rewards $DG to Claim</p>
+                                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636423902/check-mark_fvx9a4.png" alt="Ready" />
+                                    </div>
+                                    <div className={styles.button_div}>
+                                        <Button
+                                            className={styles.button}
+                                            disabled={true}
+                                        >
+                                            Next Step
+                                            <img className={styles.nextIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634587739/next_zxguep.png" alt="" />
+                                        </Button>
+                                    </div>
+                                </>
+                            }
+                        </div>
+                    </>
+                :
+                    <div className={styles.box_div}>
+                        <div className={styles.box_title}>
+                            <h1>You're Ready for Step 2</h1>
+                        </div>
+                        <div className={styles.center_ready_content}>
+                            <p>No (Old) $DG to Unstake or Claim</p>
+                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636423902/check-mark_fvx9a4.png" alt="Ready" />
+                        </div>
+                        <div className={styles.button_div}>
+                            <Button
+                                className={styles.button}
+                                onClick={() => {
+                                    props.nextStep();
+                                }}
+                            >
+                                Next Step
+                                <img className={styles.nextIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634587739/next_zxguep.png" alt="" />
+                            </Button>
+                        </div>
                     </div>
-                    <div className={styles.content}>
-                        <li>
-                            To account for high ETH gas fees, <br /><abbr /> the new DG gov rewards APY will <br /><abbr /> start at <a href="/">40% and higher</a>.
-                        </li>
-                        <li>
-                            The new gov rewards will also cut <br /><abbr /> ETH gas fees by claiming and <br /><abbr /> restaking yields automatically.
-                        </li>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     )

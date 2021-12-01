@@ -109,27 +109,27 @@ const Header = props => {
             <link
               rel="apple-touch-icon"
               sizes="180x180"
-              href="https://res.cloudinary.com/dnzambf4m/image/upload/v1632944120/amnesia/amnesia_favicon_zqlqyz.ico"
+              href="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632944120/amnesia/amnesia_favicon_zqlqyz.ico"
             />
             <link
               rel="icon"
               type="image/png"
               sizes="32x32"
-              href="https://res.cloudinary.com/dnzambf4m/image/upload/v1632944120/amnesia/amnesia_favicon_zqlqyz.ico"
+              href="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632944120/amnesia/amnesia_favicon_zqlqyz.ico"
             />
             <link
               rel="icon"
               type="image/png"
               sizes="16x16"
-              href="https://res.cloudinary.com/dnzambf4m/image/upload/v1632944120/amnesia/amnesia_favicon_zqlqyz.ico"
+              href="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632944120/amnesia/amnesia_favicon_zqlqyz.ico"
             />
             <link
               rel="manifest"
-              href="https://res.cloudinary.com/dnzambf4m/image/upload/v1632944120/amnesia/amnesia_favicon_zqlqyz.ico"
+              href="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632944120/amnesia/amnesia_favicon_zqlqyz.ico"
             />
             <link
               rel="mask-icon"
-              href="https://res.cloudinary.com/dnzambf4m/image/upload/v1632944120/amnesia/amnesia_favicon_zqlqyz.ico"
+              href="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632944120/amnesia/amnesia_favicon_zqlqyz.ico"
               color="#5bbad5"
             />
           </>
@@ -138,24 +138,24 @@ const Header = props => {
             <link
               rel="apple-touch-icon"
               sizes="180x180"
-              href="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/apple-touch-icon_xrz57z.png"
+              href="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1621630083/apple-touch-icon_xrz57z.png"
             />
             <link
               rel="icon"
               type="image/png"
               sizes="32x32"
-              href="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/favicon-32x32_uljekk.png"
+              href="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1621630083/favicon-32x32_uljekk.png"
             />
             <link
               rel="icon"
               type="image/png"
               sizes="16x16"
-              href="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/favicon-16x16_qjnn8u.png"
+              href="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1621630083/favicon-16x16_qjnn8u.png"
             />
             <link rel="manifest" href="/static/js/site.webmanifest" />
             <link
               rel="mask-icon"
-              href="https://res.cloudinary.com/dnzambf4m/image/upload/v1593959829/safari-pinned-tab_brhtah.svg"
+              href="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1593959829/safari-pinned-tab_brhtah.svg"
               color="#5bbad5"
             />
           </>

@@ -203,7 +203,7 @@ const IceRewards = () => {
           <div className={styles.topDiv}>
             <div className={styles.claimICEDiv}>
               <div className={styles.title}>
-                <h1>Claim ICE Reward!</h1>
+                <h1>Claim ICE Rewards</h1>
               </div>
 
               <div className={styles.lower}>
@@ -222,7 +222,7 @@ const IceRewards = () => {
                     </p>
                     <img
                       style={{ marginTop: '-4px' }}
-                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
+                      src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
                     />
                   </div>
                   <p className={styles.price}>
@@ -252,7 +252,7 @@ const IceRewards = () => {
               </div>
             </div>
 
-            <div className={styles.iceEarnedDiv}>
+            {/*<div className={styles.iceEarnedDiv}>
               <div className={styles.title}>
                 <h1>ICE Earned (past 7 Days)</h1>
               </div>
@@ -305,11 +305,11 @@ const IceRewards = () => {
                   </div>
                   <div className={styles.info}>
                     <div className={styles.ice}>
-                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
+                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
                       2091 ICE
                     </div>
                     <div className={styles.xp}>
-                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_XP_ICN_f9w2se.svg" alt="xp" />
+                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_XP_ICN_f9w2se.svg" alt="xp" />
                       3 XP
                     </div>
                   </div>
@@ -372,11 +372,11 @@ const IceRewards = () => {
                         </Table.Cell>
                         <Table.Cell className={styles.iceEarned} style={{ width: '18%' }}>
                           <div className={styles.earnedDiv}>{row.iceEarned.toLocaleString()}</div>
-                          <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
+                          <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
                         </Table.Cell>
                         <Table.Cell className={styles.xpEarned} style={{ width: '18%' }}>
                           <div className={styles.earnedDiv}>{row.xpEarend.toLocaleString()}</div>
-                          <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_XP_ICN_f9w2se.svg" alt="xp" />
+                          <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_XP_ICN_f9w2se.svg" alt="xp" />
                         </Table.Cell>
                         {isTablet && (
                           <Table.Cell style={{ width: '30%', textAlign: 'right' }}>
@@ -390,7 +390,7 @@ const IceRewards = () => {
               </Table>
               :
               <NoResult />
-            }
+            }*/}
           </div>
 
           {showBreakDown !== -1 ?

@@ -181,12 +181,12 @@ const ActivateWearableModal = props => {
           <div className={styles.dgAmount}>
             <div>
               {state.tokenAmounts.DG_MOVE_AMOUNT}
-              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631325895/dgNewLogo_hkvlps.png" />
+              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631325895/dgNewLogo_hkvlps.png" />
             </div>
           </div>
           <p>
             <span className={styles.greenCheck}>
-              {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(1)} DG
+              {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(3)} DG
               Available
               <svg
                 width="16"
@@ -354,7 +354,7 @@ const ActivateWearableModal = props => {
               disabled={clicked}
               className={styles.primary}
               onClick={() => {
-                console.log('authStatus: ', authStatus);
+                console.log('DG authStatus (activation): ', authStatus);
 
                 if (biconomyReady) {
                   if (!authStatus) {
@@ -365,7 +365,7 @@ const ActivateWearableModal = props => {
                 }
               }}
             >
-              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" />
+              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png" />
               {authStatus
                 ? clicked
                   ? 'Confirming...'

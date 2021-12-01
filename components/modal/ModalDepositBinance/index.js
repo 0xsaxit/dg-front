@@ -189,7 +189,7 @@ const ModalDepositBinance = () => {
               <span style={{ display: 'flex', flexDirection: 'row' }}>
                 <img
                   className={styles.busd_img}
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620415238/BUSD_ytjkgd.png"
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620415238/BUSD_ytjkgd.png"
                 />
                 <span style={{ display: 'flex', flexDirection: 'column' }}>
                   <span style={{ display: 'flex' }}>
@@ -212,7 +212,7 @@ const ModalDepositBinance = () => {
             <span style={{ display: 'flex', margin: '32px 24px 32px 24px' }}>
               <img
                 className={styles.busd_img_2}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620415238/BUSD_ytjkgd.png"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620415238/BUSD_ytjkgd.png"
               />
               <span style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
                 <span style={{ display: 'flex', flexDirection: 'column', marginTop: '-4px' }}>
@@ -281,7 +281,7 @@ const ModalDepositBinance = () => {
             <span style={{ display: 'flex', margin: '32px 24px 32px 24px' }}>
               <img
                 className={styles.busd_img_2}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620415238/BUSD_ytjkgd.png"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620415238/BUSD_ytjkgd.png"
               />
               <span style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
                 <span style={{ display: 'flex', flexDirection: 'column', marginTop: '-4px' }}>

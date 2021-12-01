@@ -75,7 +75,7 @@ const FirstStep = () => {
                     <div className={styles.box_title}>
                         <h1>Download Extension</h1>
                     </div>
-                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" alt="metamask" />
+                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png" alt="metamask" />
                     <div className={styles.button_div}>
                         <Button
                             className={styles.firstButton}
@@ -83,7 +83,7 @@ const FirstStep = () => {
                                 window.open("https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en", "_blank");
                             }}
                         >
-                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634606779/chrome_ytab9e.png" alt="chrome" />
+                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1634606779/chrome_ytab9e.png" alt="chrome" />
                             Chrome
                         </Button>
                         <Button
@@ -92,7 +92,7 @@ const FirstStep = () => {
                                 window.open("https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/", "_blank");
                             }}
                         >
-                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634606779/firefox_ky0stl.png" alt="firefox" />
+                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1634606779/firefox_ky0stl.png" alt="firefox" />
                             Firefox
                         </Button>
                     </div>
@@ -103,7 +103,7 @@ const FirstStep = () => {
                         Optional Step
                     </div>
                     <div className={styles.box_title}>
-                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634606779/polygon_rsgtjk.png" alt="polygon" />
+                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1634606779/polygon_rsgtjk.png" alt="polygon" />
                         <h1>Add Polygon to Metamask</h1>
                     </div>
                     <div className={styles.content}>

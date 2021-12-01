@@ -16,7 +16,7 @@ function SectionOne(props) {
       <video
         className={styles.video}
         id="my-video"
-        src="https://res.cloudinary.com/dnzambf4m/video/upload/v1622134332/Full_Screen_Background_Animation_uo9h6b.webm"
+        src="https://res.cloudinary.com/dnzambf4m/video/upload/q_auto:best/v1622134332/Full_Screen_Background_Animation_uo9h6b.webm"
         type="video/mp4"
         frameBorder="0"
         autoPlay={props.autoPlay}

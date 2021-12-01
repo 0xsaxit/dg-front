@@ -331,7 +331,7 @@ div.ui.segment.transparent-menu-segment {
   width: 100%;
   position: sticky;
   top: 0px;
-  background-image: linear-gradient( rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)) !important;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)) !important;
 }
 
 .menu-container-dark {
@@ -661,22 +661,27 @@ p.menu-info-label-link, p.menu-info-label-link:hover, a.menu-info-label-link, a.
     justify-content: center;
     min-width: 100%;
   }
+
   .home-dashboard-main-h1 {
     max-width: 100% !important;
     text-align: center;
   }
+
   .home-dashboard-p.centered {
     max-width: 100% !important;
     text-align: center;
   }
+
   .mobile-center-span {
     display: flex;
     justify-content: center;
     margin-right: -18px !important;
   }
+
   .ModalDepositBinance_deposit_modal_binance__2LhiT {
     margin-top: 8px !important;
   }
+
   i.chevron.down.icon {
     color: white;
     text-shadow: 1px 1px 5px black;
@@ -704,6 +709,7 @@ i.chevron.down.icon {
   from {
     transform: translateY(0px);
   }
+
   to {
     transform: translateY(-6px);
   }
@@ -713,6 +719,7 @@ i.chevron.down.icon {
   from {
     transform: translateY(0px);
   }
+
   to {
     transform: translateY(-6px);
   }
@@ -838,7 +845,7 @@ p.home-dashboard-p {
 }
 
 .section-5-outter {
-  background: url('https://res.cloudinary.com/dnzambf4m/image/upload/v1609554150/2020-11-22_19-53-47_zkzcbt.png') rgba(0, 0, 0, 0.3);
+  background: url('https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1609554150/2020-11-22_19-53-47_zkzcbt.png') rgba(0, 0, 0, 0.3);
   background-size: cover;
   background-blend-mode: multiply;
 }
@@ -1913,6 +1920,7 @@ div.ui.grid.balances-container {
     margin-bottom: 30px;
     width: 100%;
   }
+
   .balances-column-three {
     display: none;
   }
@@ -2211,6 +2219,7 @@ span.treasury-table {
   span.treasury-table {
     justify-content: flex-start !important;
   }
+
   .treasury-stats {
     width: 100%;
   }
@@ -2444,6 +2453,7 @@ span.treasury-table {
   0%, 39%, 100% {
     opacity: 0;
   }
+
   40% {
     opacity: 1;
   }
@@ -2453,6 +2463,7 @@ span.treasury-table {
   0%, 39%, 100% {
     opacity: 0;
   }
+
   40% {
     opacity: 1;
   }
@@ -2716,11 +2727,11 @@ a.ui.blue.button.metamask, a.ui.blue.button.casinos {
   color: white;
   padding: 0px;
   line-height: 24px;
-  margin-top: 12.5px;
+  /* margin-top: 12.5px; */
   min-width: 250px !important;
   height: 40px !important;
   border-radius: 16px;
-  margin-right: 30px;
+  /* margin-right: 30px; */
 }
 
 .ui.button.modal-info-button {
@@ -3164,14 +3175,14 @@ img.avatar-picture-home {
   width: 46px;
   height: 46px;
   border-radius: 100%;
-  background: linear-gradient( 162deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 40%, #006eff 40.1%, #006eff 100%);
+  background: linear-gradient(162deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 40%, #006eff 40.1%, #006eff 100%);
 }
 
 img.avatar-picture-binance {
   width: 46px;
   height: 46px;
   border-radius: 100%;
-  background: linear-gradient( 162deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 40%, #f1cd50 40.1%, #f1cd50 100%);
+  background: linear-gradient(162deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 40%, #f1cd50 40.1%, #f1cd50 100%);
 }
 
 .ui.bottom.right.popup.transition.visible.account-popup {
@@ -3786,4 +3797,66 @@ div.ui.input.withdraw_input>input {
 .gamesLeaderboardCoinSelect .ui.selection.dropdown .visible.menu .item:hover {
   opacity: 0.6;
   transition: 0.2s ease-in;
+}
+
+.slick-slider {}
+
+.slick-slider .slick-arrow {
+  background-color: #006eff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9;
+  transition: 0.2s ease-in;
+}
+.slick-slider .slick-arrow:hover {
+  background: #006eff;
+  transition: 0.2s ease-in;
+}
+.slick-slider .slick-arrow.slick-disabled {
+  display: none;
+}
+
+.slick-slider .slick-arrow.slick-prev {
+  left: 25px;
+  content: "\e824" !important;
+  font-family: revicons;
+}
+
+.slick-slider .slick-arrow.slick-prev img {
+  position: relative;
+  width: 8px;
+  left: -1px;
+  transform: rotate(180deg) !important;
+}
+
+.slick-slider .slick-arrow.slick-prev::before {
+  content: "\e824" !important;
+  font-family: revicons;
+  display: none;
+}
+
+.slick-slider .slick-arrow.slick-next {
+  right: 45px;
+}
+
+.slick-slider .slick-arrow.slick-next img {
+  position: relative;
+  width: 8px;
+  left: 2px;
+}
+
+.slick-slider .slick-arrow.slick-next::before {
+  content: "\e825" !important;
+  font-family: revicons;
+  display: none;
+}
+
+@media (max-width: 31.1875em) {
+  .slick-slider .slick-arrow {
+    display: none;
+  }
 }
