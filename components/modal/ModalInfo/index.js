@@ -73,8 +73,8 @@ const ModalInfo = () => {
       const balanceRootDG = state.DGBalances.BALANCE_ROOT_DG;
       const balanceRootDGAdjusted = balanceRootDG * 1000;
 
-      const balanceChildDG = state.DGBalances.BALANCE_CHILD_DG;
-      const balanceChildDGAdjusted = balanceChildDG * 1000;
+      // const balanceChildDG = state.DGBalances.BALANCE_CHILD_DG;
+      // const balanceChildDGAdjusted = balanceChildDG * 1000;
 
       const balanceStakingGov = state.DGBalances.BALANCE_STAKING_GOVERNANCE;
       const balanceStakingGovAdjusted = balanceStakingGov * 1000;
@@ -87,7 +87,6 @@ const ModalInfo = () => {
         balanceStakingUniswapAdjusted +
         balanceUserGovOldAdjusted +
         balanceRootDGAdjusted +
-        balanceChildDGAdjusted +
         balanceStakingGovAdjusted;
 
       setDGSummationOld(dgSummationOld);
@@ -185,15 +184,12 @@ const ModalInfo = () => {
 
         <span style={{ display: 'flex', flexDirection: 'column' }}>
           <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
-            {formatPrice(state.stakingBalances.BALANCE_USER_GOVERNANCE, 3)}
+            {formatPrice(xdgTotal, 3)}
           </h5>
 
           {/* <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
             $
-            {formatPrice(
-              state.stakingBalances.BALANCE_USER_GOVERNANCE * DGPrice,
-              2
-            )}
+            {formatPrice(xdgTotalUSD, 2)}
           </p> */}
         </span>
       </span>
@@ -301,11 +297,11 @@ const ModalInfo = () => {
 
         <span style={{ display: 'flex', flexDirection: 'column' }}>
           <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
-            {formatPrice(dgSummationOld, 3)}
+            {formatPrice(dgSummationOld / 1000, 3)}
           </h5>
 
           {/* <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
-            ${formatPrice(dgSummationOld * DGPrice, 2)}
+            ${formatPrice((dgSummationOld / 1000) * DGPrice, 2)}
           </p> */}
         </span>
       </span>
@@ -343,16 +339,16 @@ const ModalInfo = () => {
   function breakdownButton() {
     return (
       <span>
-        {!dgSummationNew || !dgSummationOld ? (
+        {parseInt(dgSummationAll) ? (
           <Button className="account-button" style={{ marginTop: 0 }}>
-            <p className="right-menu-text bnb" style={{ marginTop: '-5px' }}>
-              <Spinner width={30} height={30} />
+            <p className="right-menu-text bnb">
+              {dgSummationAll.toLocaleString()} DG
             </p>
           </Button>
         ) : (
           <Button className="account-button" style={{ marginTop: 0 }}>
-            <p className="right-menu-text bnb">
-              {dgSummationAll.toLocaleString()} DG
+            <p className="right-menu-text bnb" style={{ marginTop: '-5px' }}>
+              <Spinner width={30} height={30} />
             </p>
           </Button>
         )}
