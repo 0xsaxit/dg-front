@@ -18,7 +18,6 @@ const Liquidity = props => {
   const [percentageUniswap, setPercentageUniswap] = useState(0);
   const [percentagePool, setPercentagePool] = useState(0);
   const [priceUSD, setPriceUSD] = useState(0);
-  const [APYUniswap, setAPYUniswap] = useState(0);
   const [stakingContractUniswap, setStakingContractUniswap] = useState({});
   const [uniswapContract, setUniswapContract] = useState({});
   const [instances, setInstances] = useState(false);
@@ -72,9 +71,6 @@ const Liquidity = props => {
         const uni_denom = locked_DG + locked_ETH;
         const uni_num = 6518 * props.price;
         const uni_APY_temp = (uni_num / uni_denom) * 100;
-        const APYUniswap = Number(uni_APY_temp).toFixed(2);
-
-        setAPYUniswap(APYUniswap);
       })();
     }
   }, [
@@ -216,14 +212,7 @@ const Liquidity = props => {
                   }}
                 >
                   <p className={styles.apy_text}>Uniswap Staking APY</p>
-                  {APYUniswap ? (
-                    <p className="earned-amount stat">{APYUniswap}%</p>
-                  ) : (
-                    <Spinner
-                      width={33}
-                      height={33}
-                    />
-                  )}
+                  <p className="earned-amount stat">N/A</p>
                 </span>
               </span>
 
