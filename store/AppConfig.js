@@ -30,16 +30,6 @@ function AppConfig() {
           });
         }
       }
-
-      console.log('app config...');
-      console.log(response);
-
-      if (response) {
-        dispatch({
-          type: 'app_config',
-          data: response,
-        });
-      }
     }
   }, [state.userLoggedIn]);
 
