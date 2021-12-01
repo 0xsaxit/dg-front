@@ -412,6 +412,8 @@ const Governance = props => {
                             setAmountInput('');
                           }}
                           disabled={
+                            approving ||
+                            loading ||
                             Number(amountInput) <= 0 ||
                             Number(amountInput) >
                               Number(state.DGBalances.BALANCE_ROOT_DG_LIGHT)
@@ -419,7 +421,15 @@ const Governance = props => {
                               : false
                           }
                         >
-                          {stakeType} {amountInput > 0 ? amountInput : ''} DG
+                          {approving || loading ? (
+                            <Spinner width={33} height={33} />
+                          ) : null}
+                          &nbsp;
+                          {approving || loading
+                            ? ''
+                            : `${stakeType} ${
+                                amountInput > 0 ? amountInput : ''
+                              } DG`}
                         </Button>
                       ) : (
                         <Button
@@ -429,6 +439,8 @@ const Governance = props => {
                             setAmountInput('');
                           }}
                           disabled={
+                            approving ||
+                            loading ||
                             Number(amountInput) <= 0 ||
                             Number(amountInput) >
                               state.stakingBalances.BALANCE_USER_GOVERNANCE
@@ -436,7 +448,15 @@ const Governance = props => {
                               : false
                           }
                         >
-                          {stakeType} {amountInput > 0 ? amountInput : ''} DG
+                          {approving || loading ? (
+                            <Spinner width={33} height={33} />
+                          ) : null}
+                          &nbsp;
+                          {approving || loading
+                            ? ''
+                            : `${stakeType} ${
+                                amountInput > 0 ? amountInput : ''
+                              } DG`}
                         </Button>
                       )}
                     </div>
