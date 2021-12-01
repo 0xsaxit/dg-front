@@ -20,14 +20,18 @@ const Governance = props => {
   // define local variables
   const [stakeType, setStakeType] = useState('Stake');
   const [amountInput, setAmountInput] = useState(0);
-  const [percentGovernanceStaked, setPercentGovernanceStaked] = useState(0);
-  const [percentGovernanceContract, setPercentGovernanceContract] = useState(0);
-  const [APYGovernance, setAPYGovernance] = useState(0);
   const [stakeContractGovernance, setStakeContractGovernance] = useState({});
+  const [DGLightTokenContract, setDGLightTokenContract] = useState({});
+  const [DGTownHallContract, setDGTownHallContract] = useState({});
   const [DGTokenContract, setDGTokenContract] = useState({});
   const [apy, setAPY] = useState('');
   const [stakedBalance, setStakedBalance] = useState(0);
-  const [instances, setInstances] = useState(false);
+  const [hash, setHash] = useState('');
+  const [staked, setStaked] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [stakeSubmitted, setStakeSubmitted] = useState(false);
+  const [approving, setApproving] = useState(false);
+  const [ratio, setRatio] = useState(1);
   const router = useRouter();
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -37,7 +41,7 @@ const Governance = props => {
   }
 
   function handleAmountInputChange(e) {
-    setAmountInput(e.target.value);
+    setAmountInput(Number(e.target.value));
   }
 
   // fetch staking contract data
@@ -46,18 +50,28 @@ const Governance = props => {
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
       async function fetchData() {
-        const stakeContractGovernance =
-          await Transactions.stakingContractGovernance(web3);
+        const [
+          stakeContractGovernance,
+          _DGLightTokenContract,
+          DGTokenContract,
+          _DGTownHallContract,
+        ] = await Promise.all([
+          Transactions.stakingContractGovernance(web3),
+          Transactions.DGLightTokenContract(web3),
+          Transactions.DGTokenContract(web3),
+          Transactions.DGTownHallContract(web3),
+        ]);
+
+        const [balance, _ratio] = await Promise.all([
+          _DGTownHallContract.methods.innerSupply().call(),
+          _DGTownHallContract.methods.insideAmount(1).call(),
+        ]);
+
         setStakeContractGovernance(stakeContractGovernance);
-
-        const DGTokenContract = await Transactions.DGTokenContract(web3);
+        setDGLightTokenContract(_DGLightTokenContract);
         setDGTokenContract(DGTokenContract);
-
-        const _DGTownHallContract = await Transactions.DGTownHallContract(web3);
-        const balance = await _DGTownHallContract.methods.innerSupply().call();
-        const ratio = await _DGTownHallContract.methods.insideAmount(1).call();
-
-        setStakedBalance(state.stakingBalances.BALANCE_USER_GOVERNANCE / ratio);
+        setRatio(_ratio);
+        setDGTownHallContract(_DGTownHallContract);
 
         setAPY(
           BigNumber(3910714300)
@@ -65,53 +79,165 @@ const Governance = props => {
             .multipliedBy(Constants.CONSTANTS.FACTOR)
             .toString()
         );
-
-        setInstances(true); // contract instantiation complete
       }
 
       fetchData();
     }
   }, [state.userStatus]);
 
-  // set APY stat
-  useEffect(() => {
-    if (state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE) {
-      const percentGovernanceContract = (
-        (state.stakingBalances.BALANCE_USER_GOVERNANCE /
-          state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE) *
-        100
-      ).toFixed(2);
+  async function staking() {
+    console.log('Call stepInside() function to stake tokens');
 
-      setPercentGovernanceContract(percentGovernanceContract);
+    const { amountAdjusted, amountToString } = props.getAmounts(amountInput);
+    console.log('Stake amount input (number): ' + amountAdjusted);
+    console.log('Stake amount input (string): ' + amountToString);
 
-      const APYGovernance = (
-        (31285 / state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE) *
-        100
-      ).toFixed(2);
+    try {
+      console.log(
+        'Get amount user has authorized our DGTownHall contract to spend'
+      );
 
-      setAPYGovernance(APYGovernance);
+      const amountAllowance = await DGLightTokenContract.methods
+        .allowance(state.userAddress, DGTownHallContract._address)
+        .call();
+
+      console.log('Authorized amount: ' + amountAllowance);
+
+      if (Number(amountAllowance) < amountAdjusted) {
+        console.log("Approve DGTownHall contract to spend user's tokens");
+
+        await DGLightTokenContract.methods
+          .approve(DGTownHallContract._address, Global.CONSTANTS.MAX_AMOUNT)
+          .send({ from: state.userAddress })
+          .on('transactionHash', function (hash) {
+            setApproving(true);
+          })
+          .on('confirmation', function (confirmation, receipt) {
+            console.log('approve() transaction completed');
+            setApproving(false);
+          });
+
+        dispatch({
+          type: 'show_toastMessage',
+          data: 'DG approved successfully!',
+        });
+      }
+
+      console.log(amountToString, state.userAddress);
+      await DGTownHallContract.methods
+        .stepInside(amountToString)
+        .send({ from: state.userAddress })
+        .on('transactionHash', function (hash) {
+          setHash(hash);
+          setStakeSubmitted(true);
+          setLoading(true);
+        })
+        .on('confirmation', function (confirmation, receipt) {
+          setStaked(true);
+          setStakeSubmitted(false);
+          setLoading(false);
+          console.log('stepInside() transaction completed: ' + hash);
+        });
+
+      // update global state staking balances
+      const refresh = !state.refreshBalances;
+
+      dispatch({
+        type: 'refresh_balances',
+        data: refresh,
+      });
+      dispatch({
+        type: 'show_toastMessage',
+        data: 'DG staked successfully!',
+      });
+    } catch (error) {
+      console.log('StepInside transaction error: ' + error);
+      setLoading(false);
+      setApproving(false);
+
+      dispatch({
+        type: 'show_toastMessage',
+        data: 'Failed to stake DG!',
+      });
     }
-  }, [state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE]);
+  }
 
-  // set % of pool stat
-  useEffect(() => {
-    if (instances) {
-      (async () => {
-        const stakedTotal = await Transactions.getTotalSupply(
-          stakeContractGovernance
-        );
+  async function unstaking() {
+    console.log('Call stepOutside() function to stake tokens');
 
-        if (stakedTotal) {
-          const percentGovernanceStaked =
-            (state.stakingBalances.BALANCE_USER_GOVERNANCE / stakedTotal) * 100;
+    const { amountAdjusted, amountToString } = props.getAmounts(amountInput);
+    console.log('Stake amount input (number): ' + amountAdjusted);
+    console.log('Stake amount input (string): ' + amountToString);
 
-          setPercentGovernanceStaked(percentGovernanceStaked);
-        } else {
-          setPercentageGov(0);
-        }
-      })();
+    try {
+      console.log(
+        'Get amount user has authorized our DGTownHall contract to spend'
+      );
+
+      const amountAllowance = await DGLightTokenContract.methods
+        .allowance(state.userAddress, DGTownHallContract._address)
+        .call();
+
+      console.log('Authorized amount: ' + amountAllowance);
+
+      if (Number(amountAllowance) < amountAdjusted) {
+        console.log("Approve DGTownHall contract to spend user's tokens");
+
+        await DGLightTokenContract.methods
+          .approve(DGTownHallContract._address, Global.CONSTANTS.MAX_AMOUNT)
+          .send({ from: state.userAddress })
+          .on('transactionHash', function (hash) {
+            setApproving(true);
+          })
+          .on('confirmation', function (confirmation, receipt) {
+            console.log('approve() transaction completed');
+            setApproving(false);
+          });
+
+        dispatch({
+          type: 'show_toastMessage',
+          data: 'DG approved successfully!',
+        });
+      }
+
+      console.log(amountToString, state.userAddress);
+      await DGTownHallContract.methods
+        .stepOutside(amountToString)
+        .send({ from: state.userAddress })
+        .on('transactionHash', function (hash) {
+          setHash(hash);
+          setStakeSubmitted(true);
+          setLoading(true);
+        })
+        .on('confirmation', function (confirmation, receipt) {
+          setStaked(true);
+          setStakeSubmitted(false);
+          setLoading(false);
+          console.log('stepOutside() transaction completed: ' + hash);
+        });
+
+      // update global state staking balances
+      const refresh = !state.refreshBalances;
+
+      dispatch({
+        type: 'refresh_balances',
+        data: refresh,
+      });
+      dispatch({
+        type: 'show_toastMessage',
+        data: 'DG unstaked successfully!',
+      });
+    } catch (error) {
+      console.log('StepOuside transaction error: ' + error);
+      setLoading(false);
+      setApproving(false);
+
+      dispatch({
+        type: 'show_toastMessage',
+        data: 'Failed to unstake DG!',
+      });
     }
-  }, [instances, state.stakingBalances.BALANCE_USER_GOVERNANCE]);
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -191,7 +317,10 @@ const Governance = props => {
                         <p className={styles.apy_text}>Your Staked DG Value</p>
                         {state.stakingBalances.BALANCE_USER_GOVERNANCE ? (
                           <p className={styles.apy_percent}>
-                            {props.formatPrice(stakedBalance, 2)}
+                            {props.formatPrice(
+                              state.stakingBalances.BALANCE_USER_GOVERNANCE /
+                                ratio
+                            )}
                           </p>
                         ) : (
                           <Spinner width={33} height={33} />
@@ -239,12 +368,9 @@ const Governance = props => {
                         className={styles.max_button}
                         onClick={() => {
                           setAmountInput(
-                            props.formatPrice(
-                              stakeType === 'Stake'
-                                ? state.DGBalances.BALANCE_ROOT_DG
-                                : state.stakingBalances.BALANCE_USER_GOVERNANCE,
-                              3
-                            )
+                            stakeType === 'Stake'
+                              ? state.DGBalances.BALANCE_ROOT_DG_LIGHT
+                              : state.stakingBalances.BALANCE_USER_GOVERNANCE
                           );
                         }}
                       >
@@ -254,7 +380,12 @@ const Governance = props => {
                       <div className={styles.description}>
                         <h4
                           className={
-                            amountInput <= state.DGBalances.BALANCE_ROOT_DG
+                            Number(amountInput) <=
+                            Number(
+                              stakeType === 'Stake'
+                                ? state.DGBalances.BALANCE_ROOT_DG_LIGHT
+                                : state.stakingBalances.BALANCE_USER_GOVERNANCE
+                            )
                               ? styles.success
                               : styles.error
                           }
@@ -277,17 +408,13 @@ const Governance = props => {
                         <Button
                           className={styles.button_blue}
                           onClick={() => {
-                            props.staking(
-                              DGTokenContract,
-                              Global.ADDRESSES.DG_STAKING_GOVERNANCE_ADDRESS,
-                              stakeContractGovernance,
-                              amountInput
-                            );
+                            staking();
                             setAmountInput('');
                           }}
                           disabled={
-                            amountInput <= 0 ||
-                            amountInput > state.DGBalances.BALANCE_ROOT_DG
+                            Number(amountInput) <= 0 ||
+                            Number(amountInput) >
+                              Number(state.DGBalances.BALANCE_ROOT_DG_LIGHT)
                               ? true
                               : false
                           }
@@ -298,15 +425,12 @@ const Governance = props => {
                         <Button
                           className={styles.button_blue}
                           onClick={() => {
-                            props.withdrawal(
-                              stakeContractGovernance,
-                              amountInput
-                            );
+                            unstaking();
                             setAmountInput('');
                           }}
                           disabled={
-                            amountInput <= 0 ||
-                            parseFloat(amountInput.toString(), 10) >
+                            Number(amountInput) <= 0 ||
+                            Number(amountInput) >
                               state.stakingBalances.BALANCE_USER_GOVERNANCE
                               ? true
                               : false
@@ -389,12 +513,11 @@ const Governance = props => {
                 <p className={styles.staked_label}>$DG Staked</p>
 
                 <div className={styles.lower_value}>
-                  <p className={styles.DG_value}>
+                  <p className={cn(styles.DG_value, styles.no_margin)}>
                     {props.formatNumber(
                       state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD || 0,
-                      4
-                    )}{' '}
-                    $DG
+                      3
+                    )}
                   </p>
                 </div>
 

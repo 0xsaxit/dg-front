@@ -9,11 +9,11 @@ const ModalIceBreakDown = ({
     const [open, setOpen] = useState(true);
 
     const defaultImgs = [
-        "https://res.cloudinary.com/dnzambf4m/image/upload/v1637175172/playerStatsItemBg_mhds5h.png",
-        "https://res.cloudinary.com/dnzambf4m/image/upload/v1637175172/playerStatsItemBg_mhds5h.png",
-        "https://res.cloudinary.com/dnzambf4m/image/upload/v1637175172/playerStatsItemBg_mhds5h.png",
-        "https://res.cloudinary.com/dnzambf4m/image/upload/v1637175172/playerStatsItemBg_mhds5h.png",
-        "https://res.cloudinary.com/dnzambf4m/image/upload/v1637175172/playerStatsItemBg_mhds5h.png"
+        "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png",
+        "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png",
+        "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png",
+        "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png",
+        "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png"
     ];
 
     const gamePlayTemp = [
@@ -21,7 +21,7 @@ const ModalIceBreakDown = ({
             address: '0x723...2ab3',
             nfts: [
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592479/robe_5_pezqkh.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592479/robe_5_pezqkh.png",
                     rank: 5,
                     bonus: '45%',
                 }
@@ -37,17 +37,17 @@ const ModalIceBreakDown = ({
             address: '0x723...2ab3',
             nfts: [
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592477/hat_m_5_zulgdg.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592477/hat_m_5_zulgdg.png",
                     rank: 5,
                     bonus: '42%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592479/robe_5_pezqkh.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592479/robe_5_pezqkh.png",
                     rank: 5,
                     bonus: '45%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_5_nusll8.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_5_nusll8.png",
                     rank: 5,
                     bonus: '48%',
                 }
@@ -60,17 +60,17 @@ const ModalIceBreakDown = ({
             address: '0x723...2ab3',
             nfts: [
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592477/hat_m_5_zulgdg.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592477/hat_m_5_zulgdg.png",
                     rank: 5,
                     bonus: '42%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592479/robe_5_pezqkh.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592479/robe_5_pezqkh.png",
                     rank: 5,
                     bonus: '45%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_5_nusll8.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_5_nusll8.png",
                     rank: 5,
                     bonus: '48%',
                 }
@@ -83,17 +83,17 @@ const ModalIceBreakDown = ({
             address: '0x723...2ab3',
             nfts: [
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592476/hat_m_4_y9flz7.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592476/hat_m_4_y9flz7.png",
                     rank: 4,
                     bonus: '42%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/robe_4_dovw7i.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/robe_4_dovw7i.png",
                     rank: 4,
                     bonus: '45%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_3_l0bpxr.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_3_l0bpxr.png",
                     rank: 4,
                     bonus: '48%',
                 }
@@ -106,17 +106,17 @@ const ModalIceBreakDown = ({
             address: '0x724...2ab3',
             nfts: [
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1637172290/pipe_green_g7chzb.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172290/pipe_green_g7chzb.png",
                     rank: 2,
                     bonus: '42%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1637172291/shirt_green_m_kcakd1.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172291/shirt_green_m_kcakd1.png",
                     rank: 2,
                     bonus: '45%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1637172290/shoes_green_frnbtm.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172290/shoes_green_frnbtm.png",
                     rank: 2,
                     bonus: '48%',
                 }
@@ -129,17 +129,17 @@ const ModalIceBreakDown = ({
             address: '0x723...2ab3',
             nfts: [
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592477/hat_m_5_zulgdg.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592477/hat_m_5_zulgdg.png",
                     rank: 5,
                     bonus: '42%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592479/robe_5_pezqkh.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592479/robe_5_pezqkh.png",
                     rank: 5,
                     bonus: '45%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_5_nusll8.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_5_nusll8.png",
                     rank: 5,
                     bonus: '48%',
                 }
@@ -152,17 +152,17 @@ const ModalIceBreakDown = ({
             address: '0x723...2ab3',
             nfts: [
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592477/hat_m_5_zulgdg.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592477/hat_m_5_zulgdg.png",
                     rank: 5,
                     bonus: '42%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592479/robe_5_pezqkh.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592479/robe_5_pezqkh.png",
                     rank: 5,
                     bonus: '45%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_5_nusll8.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_5_nusll8.png",
                     rank: 5,
                     bonus: '48%',
                 }
@@ -175,17 +175,17 @@ const ModalIceBreakDown = ({
             address: '0x723...2ab3',
             nfts: [
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592476/hat_m_4_y9flz7.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592476/hat_m_4_y9flz7.png",
                     rank: 4,
                     bonus: '42%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/robe_4_dovw7i.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/robe_4_dovw7i.png",
                     rank: 4,
                     bonus: '45%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_3_l0bpxr.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_3_l0bpxr.png",
                     rank: 4,
                     bonus: '48%',
                 }
@@ -198,17 +198,17 @@ const ModalIceBreakDown = ({
             address: '0x724...2ab3',
             nfts: [
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1637172290/pipe_green_g7chzb.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172290/pipe_green_g7chzb.png",
                     rank: 2,
                     bonus: '42%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1637172291/shirt_green_m_kcakd1.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172291/shirt_green_m_kcakd1.png",
                     rank: 2,
                     bonus: '45%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1637172290/shoes_green_frnbtm.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172290/shoes_green_frnbtm.png",
                     rank: 2,
                     bonus: '48%',
                 }
@@ -221,17 +221,17 @@ const ModalIceBreakDown = ({
             address: '0x723...2ab3',
             nfts: [
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592477/hat_m_5_zulgdg.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592477/hat_m_5_zulgdg.png",
                     rank: 5,
                     bonus: '42%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592479/robe_5_pezqkh.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592479/robe_5_pezqkh.png",
                     rank: 5,
                     bonus: '45%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_5_nusll8.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_5_nusll8.png",
                     rank: 5,
                     bonus: '48%',
                 }
@@ -244,17 +244,17 @@ const ModalIceBreakDown = ({
             address: '0x723...2ab3',
             nfts: [
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592477/hat_m_5_zulgdg.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592477/hat_m_5_zulgdg.png",
                     rank: 5,
                     bonus: '42%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592479/robe_5_pezqkh.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592479/robe_5_pezqkh.png",
                     rank: 5,
                     bonus: '45%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_5_nusll8.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_5_nusll8.png",
                     rank: 5,
                     bonus: '48%',
                 }
@@ -267,17 +267,17 @@ const ModalIceBreakDown = ({
             address: '0x723...2ab3',
             nfts: [
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592476/hat_m_4_y9flz7.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592476/hat_m_4_y9flz7.png",
                     rank: 4,
                     bonus: '42%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/robe_4_dovw7i.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/robe_4_dovw7i.png",
                     rank: 4,
                     bonus: '45%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_3_l0bpxr.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_3_l0bpxr.png",
                     rank: 4,
                     bonus: '48%',
                 }
@@ -290,17 +290,17 @@ const ModalIceBreakDown = ({
             address: '0x724...2ab3',
             nfts: [
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1637172290/pipe_green_g7chzb.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172290/pipe_green_g7chzb.png",
                     rank: 2,
                     bonus: '42%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1637172291/shirt_green_m_kcakd1.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172291/shirt_green_m_kcakd1.png",
                     rank: 2,
                     bonus: '45%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1637172290/shoes_green_frnbtm.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172290/shoes_green_frnbtm.png",
                     rank: 2,
                     bonus: '48%',
                 }
@@ -313,17 +313,17 @@ const ModalIceBreakDown = ({
             address: '0x723...2ab3',
             nfts: [
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592477/hat_m_5_zulgdg.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592477/hat_m_5_zulgdg.png",
                     rank: 5,
                     bonus: '42%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592479/robe_5_pezqkh.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592479/robe_5_pezqkh.png",
                     rank: 5,
                     bonus: '45%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_5_nusll8.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_5_nusll8.png",
                     rank: 5,
                     bonus: '48%',
                 }
@@ -336,17 +336,17 @@ const ModalIceBreakDown = ({
             address: '0x723...2ab3',
             nfts: [
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592477/hat_m_5_zulgdg.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592477/hat_m_5_zulgdg.png",
                     rank: 5,
                     bonus: '42%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592479/robe_5_pezqkh.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592479/robe_5_pezqkh.png",
                     rank: 5,
                     bonus: '45%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_5_nusll8.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_5_nusll8.png",
                     rank: 5,
                     bonus: '48%',
                 }
@@ -359,17 +359,17 @@ const ModalIceBreakDown = ({
             address: '0x723...2ab3',
             nfts: [
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592476/hat_m_4_y9flz7.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592476/hat_m_4_y9flz7.png",
                     rank: 4,
                     bonus: '42%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/robe_4_dovw7i.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/robe_4_dovw7i.png",
                     rank: 4,
                     bonus: '45%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_3_l0bpxr.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_3_l0bpxr.png",
                     rank: 4,
                     bonus: '48%',
                 }
@@ -382,17 +382,17 @@ const ModalIceBreakDown = ({
             address: '0x724...2ab3',
             nfts: [
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1637172290/pipe_green_g7chzb.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172290/pipe_green_g7chzb.png",
                     rank: 2,
                     bonus: '42%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1637172291/shirt_green_m_kcakd1.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172291/shirt_green_m_kcakd1.png",
                     rank: 2,
                     bonus: '45%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1637172290/shoes_green_frnbtm.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172290/shoes_green_frnbtm.png",
                     rank: 2,
                     bonus: '48%',
                 }
@@ -405,17 +405,17 @@ const ModalIceBreakDown = ({
             address: '0x723...2ab3',
             nfts: [
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592477/hat_m_5_zulgdg.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592477/hat_m_5_zulgdg.png",
                     rank: 5,
                     bonus: '42%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592479/robe_5_pezqkh.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592479/robe_5_pezqkh.png",
                     rank: 5,
                     bonus: '45%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_5_nusll8.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_5_nusll8.png",
                     rank: 5,
                     bonus: '48%',
                 }
@@ -428,17 +428,17 @@ const ModalIceBreakDown = ({
             address: '0x723...2ab3',
             nfts: [
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592477/hat_m_5_zulgdg.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592477/hat_m_5_zulgdg.png",
                     rank: 5,
                     bonus: '42%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592479/robe_5_pezqkh.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592479/robe_5_pezqkh.png",
                     rank: 5,
                     bonus: '45%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_5_nusll8.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_5_nusll8.png",
                     rank: 5,
                     bonus: '48%',
                 }
@@ -451,17 +451,17 @@ const ModalIceBreakDown = ({
             address: '0x723...2ab3',
             nfts: [
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592476/hat_m_4_y9flz7.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592476/hat_m_4_y9flz7.png",
                     rank: 4,
                     bonus: '42%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/robe_4_dovw7i.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/robe_4_dovw7i.png",
                     rank: 4,
                     bonus: '45%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_3_l0bpxr.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_3_l0bpxr.png",
                     rank: 4,
                     bonus: '48%',
                 }
@@ -474,17 +474,17 @@ const ModalIceBreakDown = ({
             address: '0x724...2ab3',
             nfts: [
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1637172290/pipe_green_g7chzb.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172290/pipe_green_g7chzb.png",
                     rank: 2,
                     bonus: '42%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1637172291/shirt_green_m_kcakd1.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172291/shirt_green_m_kcakd1.png",
                     rank: 2,
                     bonus: '45%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1637172290/shoes_green_frnbtm.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172290/shoes_green_frnbtm.png",
                     rank: 2,
                     bonus: '48%',
                 }
@@ -497,17 +497,17 @@ const ModalIceBreakDown = ({
             address: '0x723...2ab3',
             nfts: [
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592477/hat_m_5_zulgdg.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592477/hat_m_5_zulgdg.png",
                     rank: 5,
                     bonus: '42%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592479/robe_5_pezqkh.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592479/robe_5_pezqkh.png",
                     rank: 5,
                     bonus: '45%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_5_nusll8.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_5_nusll8.png",
                     rank: 5,
                     bonus: '48%',
                 }
@@ -520,17 +520,17 @@ const ModalIceBreakDown = ({
             address: '0x723...2ab3',
             nfts: [
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592477/hat_m_5_zulgdg.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592477/hat_m_5_zulgdg.png",
                     rank: 5,
                     bonus: '42%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592479/robe_5_pezqkh.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592479/robe_5_pezqkh.png",
                     rank: 5,
                     bonus: '45%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_5_nusll8.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_5_nusll8.png",
                     rank: 5,
                     bonus: '48%',
                 }
@@ -543,17 +543,17 @@ const ModalIceBreakDown = ({
             address: '0x723...2ab3',
             nfts: [
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592476/hat_m_4_y9flz7.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592476/hat_m_4_y9flz7.png",
                     rank: 4,
                     bonus: '42%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/robe_4_dovw7i.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/robe_4_dovw7i.png",
                     rank: 4,
                     bonus: '45%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1636592480/slippers_3_l0bpxr.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_3_l0bpxr.png",
                     rank: 4,
                     bonus: '48%',
                 }
@@ -566,17 +566,17 @@ const ModalIceBreakDown = ({
             address: '0x724...2ab3',
             nfts: [
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1637172290/pipe_green_g7chzb.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172290/pipe_green_g7chzb.png",
                     rank: 2,
                     bonus: '42%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1637172291/shirt_green_m_kcakd1.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172291/shirt_green_m_kcakd1.png",
                     rank: 2,
                     bonus: '45%',
                 },
                 {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/v1637172290/shoes_green_frnbtm.png",
+                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172290/shoes_green_frnbtm.png",
                     rank: 2,
                     bonus: '48%',
                 }
@@ -648,7 +648,7 @@ const ModalIceBreakDown = ({
                                                             <div className={styles.rank}> {record.nfts[i].rank} </div>
                                                             <div className={styles.bottomInfo}>
                                                                 +{record.nfts[i].bonus}
-                                                                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
+                                                                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
                                                             </div>
                                                         </div>
                                                     )
@@ -658,7 +658,7 @@ const ModalIceBreakDown = ({
                                                             <img src={`${def}`} />
                                                             <div className={styles.bottomInfo} style={{ opacity: 0.6 }}>
                                                                 +0%
-                                                                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
+                                                                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
                                                             </div>
                                                         </div>
                                                     )
@@ -666,15 +666,15 @@ const ModalIceBreakDown = ({
                                             })}
                                         </div>
                                         <div className={styles.iceEarned} style={{ paddingLeft: '53px', textAlign: 'left' }}>
-                                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
+                                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
                                             {record.iceEarned} ICE
                                         </div>
                                         <div className={styles.xpEarned} style={{ paddingLeft: '60px', textAlign: 'left' }}>
-                                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_XP_ICN_f9w2se.svg" alt="xp" />
+                                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_XP_ICN_f9w2se.svg" alt="xp" />
                                             {record.xpEarned} XP
                                         </div>
                                         <div className={styles.tier} style={{ paddingLeft: '65px', textAlign: 'left' }}>
-                                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637175017/cup_w68eni.png" alt="xp" />
+                                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175017/cup_w68eni.png" alt="xp" />
                                             {record.tier}
                                         </div>
                                     </div>

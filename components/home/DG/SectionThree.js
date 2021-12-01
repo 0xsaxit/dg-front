@@ -176,7 +176,7 @@ const FunctionThree = () => {
         {!mobile && (
           <video
             className={styles.dg_video}
-            src="https://res.cloudinary.com/dnzambf4m/video/upload/c_crop,h_885,w_1920/v1626533688/macbook_animation_lkh0ut_1_wggkl1.webm"
+            src="https://res.cloudinary.com/dnzambf4m/video/upload/c_scale,q_auto:best,c_crop,h_885,w_1920/v1626533688/macbook_animation_lkh0ut_1_wggkl1.webm"
             type="video/mp4"
             frameBorder="0"
             autoPlay={true}
@@ -189,7 +189,7 @@ const FunctionThree = () => {
       <div className={styles.join}>
         <img 
           className={styles.join_img}
-          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629728655/party_popper_hzrf1f.png"
+          src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,q_auto:best/v1629728655/party_popper_hzrf1f.png"
         />
         <h2 className={styles.title}>
           {/* {t('Home.JOIN_OUR_COMMUNITY')} */}
@@ -204,11 +204,11 @@ const FunctionThree = () => {
             <span style={{ display: 'flex' }}>
               <img 
                 className={styles.telegram_img1}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629728316/Frame_psxdvb.png"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,q_auto:best/v1629728316/Frame_psxdvb.png"
               />
               <img 
                 className={styles.telegram_img2}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629728386/Telegram_r2qzfw.png" 
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,q_auto:best/v1629728386/Telegram_r2qzfw.png" 
               />
             </span>
           </Button>
@@ -219,7 +219,7 @@ const FunctionThree = () => {
           >
             <img 
               className={styles.discord_img}
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629728380/Group_wa8qgf.png" 
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,q_auto:best/v1629728380/Group_wa8qgf.png" 
             />
           </Button>
         </span>
