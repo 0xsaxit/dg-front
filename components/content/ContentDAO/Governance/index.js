@@ -392,9 +392,8 @@ const Governance = props => {
                   <p className={cn(styles.DG_value, styles.no_margin)}>
                     {props.formatNumber(
                       state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD || 0,
-                      4
-                    )}{' '}
-                    $DG
+                      3
+                    )}
                   </p>
                 </div>
 
