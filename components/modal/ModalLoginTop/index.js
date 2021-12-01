@@ -138,7 +138,11 @@ const ModalLogin = () => {
             className="metamask-button top"
           >
             <span>
-              Play Now
+              <img 
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png"
+                style={{ height: '24px', paddingRight: '8px', marginBottom: '-7px' }} 
+              />
+              Connect Metamask
             </span>
           </Button>
           <Button

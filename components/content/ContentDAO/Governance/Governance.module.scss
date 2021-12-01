@@ -20,6 +20,10 @@
       font-size: 41px;
       margin-right: 12px;
       margin-bottom: 0;
+
+      &.no_margin {
+        margin-right: 0;
+      }
     }
 
     img {

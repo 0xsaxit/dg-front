@@ -171,7 +171,7 @@ const ModalLogin = () => {
             >
               <span style={{ display: 'flex', justifyContent: 'center' }}>
                 <img
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png"
                   style={{ height: '36px', margin: '0px 24px 0px -48px' }}
                 />
                 Connect MetaMask

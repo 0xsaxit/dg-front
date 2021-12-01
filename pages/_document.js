@@ -21,18 +21,18 @@ export default class MyDocument extends Document {
             rel="icon"
             type="image/png"
             sizes="32x32"
-            href="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/favicon-32x32_uljekk.png"
+            href="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1621630083/favicon-32x32_uljekk.png"
           />
           <link
             rel="icon"
             type="image/png"
             sizes="16x16"
-            href="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/favicon-16x16_qjnn8u.png"
+            href="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1621630083/favicon-16x16_qjnn8u.png"
           />
           <link rel="manifest" href="/static/js/site.webmanifest" />
           <link
             rel="mask-icon"
-            href="https://res.cloudinary.com/dnzambf4m/image/upload/v1593959829/safari-pinned-tab_brhtah.svg"
+            href="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1593959829/safari-pinned-tab_brhtah.svg"
             color="#0086f4"
           />
           <meta name="msapplication-TileColor" content="#da532c" />
