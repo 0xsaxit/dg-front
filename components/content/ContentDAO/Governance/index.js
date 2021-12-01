@@ -389,7 +389,7 @@ const Governance = props => {
                 <p className={styles.staked_label}>$DG Staked</p>
 
                 <div className={styles.lower_value}>
-                  <p className={styles.DG_value}>
+                  <p className={cn(styles.DG_value, styles.no_margin)}>
                     {props.formatNumber(
                       state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD || 0,
                       4
