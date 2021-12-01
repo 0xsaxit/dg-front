@@ -76,11 +76,11 @@ const ModalMintActivation = props => {
           <div className="d-flex">
             <div className={styles.logo_left}>
               <img
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1625014714/ETH_kzfhxr.png"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1625014714/ETH_kzfhxr.png"
                 alt="logo"
               />
               <img
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629894323/Group_8_es81yz.png"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1629894323/Group_8_es81yz.png"
                 alt="logo"
               />
               <div className={styles.round_desc}>
@@ -90,7 +90,7 @@ const ModalMintActivation = props => {
             </div>
             <div className={styles.logo}>
               <img
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629894323/Group_8_es81yz.png"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1629894323/Group_8_es81yz.png"
                 alt="logo"
               />
               <div className={styles.round_desc}>0.5 DG</div>

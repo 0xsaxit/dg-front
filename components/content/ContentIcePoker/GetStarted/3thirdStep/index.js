@@ -15,14 +15,14 @@ const ThirdStep = () => {
                     <div className={styles.box_title}>
                         <h1>Create Decentraland Avatar</h1>
                     </div>
-                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634661247/Create_Avatar_ekyri5.png" alt="avatar" />
+                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1634661247/Create_Avatar_ekyri5.png" alt="avatar" />
                     <div className={styles.button_div}>
                         <Button
                             onClick={() => {
-                                window.open("https://play.decentral.games/dext", "_blank");
+                                window.open("https://api.decentral.games/ice/play?position=-110%2C129", "_blank");
                             }}
                         >
-                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620413783/MANA_jw7ylg.png" alt="mana" />
+                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620413783/MANA_jw7ylg.png" alt="mana" />
                             Enter Decentraland
                         </Button>
                     </div>
@@ -37,7 +37,7 @@ const ThirdStep = () => {
                             Navigate to your backpack at the<br /><abbr />top right and equip your ICE wearables
                         </li>
                     </div>
-                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634616873/Equip_qjdgyx.png" style={{ width: '150px' }} alt="marketplace" />
+                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1634616873/Equip_qjdgyx.png" style={{ width: '150px' }} alt="marketplace" />
                 </div>
             </div>
         </div>
