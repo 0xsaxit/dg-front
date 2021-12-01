@@ -394,6 +394,8 @@ const ModalInfo = () => {
           display: 'flex',
           justifyContent: 'space-between',
           marginTop: '24px',
+          paddingLeft: '12px',
+          paddingRight: '10px'
         }}
       >
         <a
