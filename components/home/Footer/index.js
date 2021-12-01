@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import cn from 'classnames';
 import { Button, Icon } from 'semantic-ui-react';
 import { useMediaQuery } from 'hooks';
 import Link from 'next/link';
+import { GlobalContext } from 'store';
 import styles from './Footer.module.scss';
 // import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
@@ -65,7 +66,7 @@ const Footer = () => {
                   Gameplay
                 </p>
               </Link>
-              {{DGBalances > 0 || DGStakingBalances > 0 && <Link href="/dg/liquidity">
+              {DGBalances > 0 || DGStakingBalances > 0 && <Link href="/dg/liquidity">
                 <p className={styles.footer_link}> 
                   {/* {t('Footer.LIQUDITY')}  */}
                   Liquidity
