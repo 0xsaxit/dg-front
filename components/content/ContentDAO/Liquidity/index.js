@@ -1,12 +1,12 @@
 import cn from 'classnames';
 import { useEffect, useContext, useState, React } from 'react';
 import { GlobalContext } from '../../../../store';
-import { Loader, Button, Input } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
+import Spinner from 'components/lottieAnimation/animations/spinner_updated';
 import Aux from '../../../_Aux';
 import styles from './Liquidity.module.scss';
 import Web3 from 'web3';
 import Transactions from '../../../../common/Transactions';
-import Global from '../../../Constants';
 import Fetch from '../../../../common/Fetch';
 
 const Liquidity = props => {
@@ -91,7 +91,7 @@ const Liquidity = props => {
       const percentageUniswap = Number(
         (state.stakingBalances.BALANCE_STAKED_UNISWAP /
           state.stakingBalances.BALANCE_CONTRACT_UNISWAP) *
-          100
+        100
       ).toFixed(2);
 
       setPercentageUniswap(percentageUniswap);
@@ -139,7 +139,7 @@ const Liquidity = props => {
               </p>
               <img
                 style={{ marginTop: '-4px' }}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1624411671/Spinning-Logo-DG_n9f4xd.gif"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1624411671/Spinning-Logo-DG_n9f4xd.gif"
               />
             </div>
             <p className={styles.price}>
@@ -160,21 +160,21 @@ const Liquidity = props => {
                   onClick={() => {
                     props.reward(stakingContractUniswap);
 
-                     //Show Toast Message3
-                     const msg = 'Claiming Liquidity DG!';
-                     dispatch({
-                       type: 'show_toastMessage',
-                       data: msg,
-                     });
+                    //Show Toast Message3
+                    const msg = 'Claiming Liquidity DG!';
+                    dispatch({
+                      type: 'show_toastMessage',
+                      data: msg,
+                    });
                   }}
                 >
                   Claim
                 </Button>
               ) : (
                 <Button
-                  disabled 
-                  className={styles.lower_button} 
-                  onClick={()=> {
+                  disabled
+                  className={styles.lower_button}
+                  onClick={() => {
                     //Show Toast Message3
                     const msg = 'Claiming Liquidity DG!';
                     dispatch({
@@ -189,17 +189,24 @@ const Liquidity = props => {
             </span>
           </div>
 
-          <div
-            className={styles.lower}
-            style={{ width: '391px', minWidth: '391px' }}
-          >
-            <p className={styles.lower_header}> Liquidity Provision</p>
+          <div className={styles.lower} style={{ width: '500px', minWidth: '500px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <p className={styles.lower_header}>Liquidity Provision</p>
+            <p className={styles.apy_text}>Your DG Staked</p>
+            <p className={styles.apy_percent}>
+              { }
+              {props.formatPrice(state.stakingBalances.BALANCE_STAKED_UNISWAP, 3)}
+              <br />
+              <abbr>${props.formatPrice(state.stakingBalances.BALANCE_STAKED_UNISWAP * state.DGPrices.dg, 2)}</abbr>
+            </p>
 
-            <p className={styles.apy_text}>Uniswap</p>
-            <p className={styles.apy_percent}>ETH-DG</p>
-
-            <div style={{ display: 'flex' }}>
-              <span className="gameplay-left-column">
+            <div style={{ display: 'flex', width: '80%' }}>
+              <span
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  width: '50%',
+                }}
+              >
                 <span
                   style={{
                     display: 'flex',
@@ -208,20 +215,13 @@ const Liquidity = props => {
                     paddingBottom: '17px',
                   }}
                 >
-                  <p className={styles.apy_text}>APY</p>
+                  <p className={styles.apy_text}>Uniswap Staking APY</p>
                   {APYUniswap ? (
                     <p className="earned-amount stat">{APYUniswap}%</p>
                   ) : (
-                    <Loader
-                      active
-                      inline
-                      size="small"
-                      style={{
-                        fontSize: '12px',
-                        marginTop: '5px',
-                        marginLeft: '-1px',
-                        marginBottom: '-3px',
-                      }}
+                    <Spinner
+                      width={33}
+                      height={33}
                     />
                   )}
                 </span>
@@ -241,105 +241,55 @@ const Liquidity = props => {
                     alignItems: 'center',
                   }}
                 >
-                  <p className={styles.apy_text}>% of pool</p>
-                  {percentageUniswap ? (
-                    <p className="earned-amount">{percentageUniswap}%</p>
-                  ) : (
-                    <Loader
-                      active
-                      inline
-                      size="small"
-                      style={{
-                        fontSize: '12px',
-                        marginTop: '5px',
-                        marginLeft: '-1px',
-                        marginBottom: '-3px',
-                      }}
-                    />
-                  )}
+                  <p className={styles.apy_text}>Your DG Yielded</p>
+                  <p className="earned-amount stat">0</p>
                 </span>
               </span>
             </div>
 
-            <Input
-              className="liquidity-input"
-              fluid
-              placeholder="Amount"
-              value={amountInput}
-              onChange={handleChange}
-            />
+            <div className={styles.content}>
+              <div className={styles.contract_div}>
+                <div className={styles.content}>
+                  <img className={styles.dg} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
+                  <input
+                    type="number"
+                    className={styles.dg_input}
+                    value={amountInput.toString()}
+                    onChange={handleChange}
+                    style={{
+                      minWidth: `${5 + (amountInput.toString().length + 1) * 12}px`,
+                      maxWidth: `${5 + (amountInput.toString().length + 1) * 12}px`
+                    }}
+                  />
+                </div>
 
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p
-                className={styles.stake_text}
-                style={{ textDecoration: 'underline' }}
-                onClick={() =>
-                  setAmountInput(state.stakingBalances.BALANCE_WALLET_UNISWAP)
-                }
-              >
-                {props.formatPrice(
-                  state.stakingBalances.BALANCE_WALLET_UNISWAP,
-                  3
-                )}{' '}
-                DG
-              </p>
-              <p
-                className={styles.stake_text}
-                style={{ textDecoration: 'underline' }}
-                onClick={() =>
-                  setAmountInput(state.stakingBalances.BALANCE_STAKED_UNISWAP)
-                }
-              >
-                {props.formatPrice(
-                  state.stakingBalances.BALANCE_STAKED_UNISWAP,
-                  3
-                )}{' '}
-                DG STAKED
-              </p>
-            </span>
-
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              {Number(amountInput) ? (
                 <Button
-                  className={styles.button_stake}
+                  className={styles.max_button}
                   onClick={() => {
-                    props.staking(
-                      uniswapContract,
-                      Global.ADDRESSES.DG_STAKING_UNISWAP_ADDRESS,
-                      stakingContractUniswap,
-                      amountInput
-                    );
-                    setAmountInput('');
+                    setAmountInput(props.formatPrice(state.stakingBalances.BALANCE_STAKED_UNISWAP, 3));
                   }}
                 >
-                  Stake
+                  MAX
                 </Button>
-              ) : (
-                <Button disabled className={styles.button_stake}>
-                  Stake
-                </Button>
-              )}
+              </div>
 
-              {percentagePool && Number(amountInput) ? (
+              <div className={styles.button_div}>
                 <Button
-                  className={styles.button_stake}
+                  className={styles.button_blue}
                   onClick={() => {
                     props.withdrawal(stakingContractUniswap, amountInput);
                     setAmountInput('');
                   }}
+                  disabled={amountInput <= 0 || parseFloat(amountInput.toString(), 10) > state.stakingBalances.BALANCE_STAKED_UNISWAP ? true : false}
                 >
-                  Unstake
+                  Unstake {amountInput > 0 ? amountInput : ''} DG
                 </Button>
-              ) : (
-                <Button disabled className={styles.button_stake}>
-                  Unstake
-                </Button>
-              )}
-            </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </Aux>
+    </Aux >
   );
 };
 
