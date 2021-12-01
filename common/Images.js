@@ -31,6 +31,8 @@ const Images = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620413783/ATARI_ttfcry.png',
   CHIP_CIRCLE:
     'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636210172/FREE_CHIP_uuvqcx.png',
+  ICE_CIRCLE:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1635286999/Group_80_exgcle.png',
   ICON_PLAY:
     'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1599762928/Group_qxqvxl.png',
   MATIC_TOP:
