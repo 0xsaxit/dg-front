@@ -56,11 +56,8 @@ const Governance = props => {
         const _DGTownHallContract = await Transactions.DGTownHallContract(web3);
         const balance = await _DGTownHallContract.methods.innerSupply().call();
         const ratio = await _DGTownHallContract.methods.insideAmount(1).call();
-        const xBalance = await _DGTownHallContract.methods
-          .balanceOf(state.userAddress)
-          .call();
 
-        setStakedBalance(xBalance / ratio);
+        setStakedBalance(state.stakingBalances.BALANCE_USER_GOVERNANCE / ratio);
 
         setAPY(
           BigNumber(3910714300)
@@ -392,10 +389,10 @@ const Governance = props => {
                 <p className={styles.staked_label}>$DG Staked</p>
 
                 <div className={styles.lower_value}>
-                  <p className={styles.DG_value}>
-                    {props.formatPrice(
-                      state.stakingBalances.BALANCE_USER_GOVERNANCE,
-                      2
+                  <p className={cn(styles.DG_value, styles.no_margin)}>
+                    {props.formatNumber(
+                      state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD || 0,
+                      4
                     )}{' '}
                     $DG
                   </p>
