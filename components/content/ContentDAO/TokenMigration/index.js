@@ -113,7 +113,7 @@ const TokenMigration = (props) => {
                     <div className={styles.footer_tip}>
                         <div className={styles.box_div}>
                             <div className={styles.box_title}>
-                                <h1>What About Ethereum's Hight Gas Fees?</h1>
+                                <h1>What About Ethereum's High Gas Fees?</h1>
                             </div>
                             <div className={styles.center_content}>
                                 <p>• To account for high ETH gas fees, the new DG gov rewards APR will start at <label>40% and higher</label>.</p>

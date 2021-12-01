@@ -185,12 +185,14 @@ const ForthStep = (props) => {
                         !stakeSubmitted ?
                             <div className={styles.box_div}>
                                 <div className={styles.box_title}>
-                                    <h1>New DG Gov Staking <abbr>({
-                                        props.formatNumber(
-                                            39107143 / state.stakingBalances.BALANCE_CONTRACT_TOWNHALL * 100,
-                                            2
-                                        )
-                                    }% APY)</abbr></h1>
+                                    <h1>
+                                        New DG Gov Staking <abbr>({
+                                            props.formatNumber(
+                                                39107143 / state.stakingBalances.BALANCE_CONTRACT_TOWNHALL * 100,
+                                                2
+                                            )
+                                        }% APR)</abbr>
+                                    </h1>
                                 </div>
 
                                 <div className={styles.contract_div}>

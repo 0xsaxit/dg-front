@@ -50,6 +50,7 @@ function DGBalances() {
 
   async function fetchData() {
     const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+    const mainnetWeb3 = new Web3(Global.CONSTANTS.MAINNET_URL); // pass Matic provider URL to Web3 constructor
     const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
     // this is for mining DG
@@ -65,7 +66,9 @@ function DGBalances() {
     setDGTokenContract(DGTokenContract);
 
     // set up dg token contract (same for both pools)
-    const DGLightTokenContract = await Transactions.DGLightTokenContract(web3);
+    const DGLightTokenContract = await Transactions.DGLightTokenContract(
+      mainnetWeb3
+    );
     setDGLightTokenContract(DGLightTokenContract);
 
     // matic contract to get DG balance on matic chain for modal

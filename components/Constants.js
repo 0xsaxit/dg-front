@@ -19,6 +19,7 @@ const CONSTANTS = {
   FACTOR: 1000000000000000000, // ETH-to-WEI multiplication factor
   PARENT_NETWORK_ID: 1, // 1: Mainnet, 3: Ropsten, 5: Goerli
   ACTIVE_PERIOD: 43200, // user account active period: 3600 === 1 hour // 43200
+  MAINNET_URL: 'https://mainnet.infura.io/v3/1a359efdd4d04d89b5c1b63de776d444',
   MATIC_NETWORK_ID: 137, // Mumbai: 80001, Mainnet: 137
   MATIC_URL: 'https://polygon-rpc.com/', // 'https://rpc-mainnet.matic.network',
   MATIC_EXPLORER: 'https://explorer-mainnet.maticvigil.com',

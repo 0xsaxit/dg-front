@@ -24,7 +24,7 @@ const FifthStep = (props) => {
     const [DGLightTokenContract, setDGLightTokenContract] = useState({});
     const [DGLightBridgeContract, setDGLightBridgeContract] = useState({});
     const [swapSubmitted, setSwapSubmitted] = useState(false);
-    const [swapped, setSwaped] = useState(false);
+    const [swapped, setSwaped] = useState(true);
     const [loading, setLoading] = useState(false);
     const [approving, setApproving] = useState(false);
     const networkInfo = {
@@ -518,7 +518,14 @@ const FifthStep = (props) => {
                         </div>
                         <div className={styles.box_div_small}>
                             <div className={styles.box_title}>
-                                <h1>Swap for xDG to Earn 40% APR</h1>
+                                <h1>
+                                    Swap for xDG to Earn {
+                                        props.formatNumber(
+                                            39107143 / state.stakingBalances.BALANCE_CONTRACT_TOWNHALL * 100,
+                                            2
+                                        )
+                                    }% APR
+                                </h1>
                             </div>
                             <div className={styles.center_ready_content}>
                                 <p>Holding xDG is Equivalent Staking in Gov V2</p>
