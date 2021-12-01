@@ -28,7 +28,7 @@ function Start() {
     <Aux>
       <div className={styles.start_container}>
         <div className={styles.image_container}>
-          <img className={styles.start_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627297928/Group_14_h354db.png" />
+          <img className={styles.start_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1627297928/Group_14_h354db.png" />
         </div>
 
         <div className={styles.text_container}>
@@ -43,9 +43,9 @@ function Start() {
 
         <div className={styles.steps_container}>
           <div className={styles.step}>
-            <img className={styles.img_step} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627298553/Rectangle_iptbe4.png" />
+            <img className={styles.img_step} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1627298553/Rectangle_iptbe4.png" />
             {metamaskEnabled ? (
-              <img className={styles.check} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627301200/Green_Check_iahexg.png" />
+              <img className={styles.check} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1627301200/Green_Check_iahexg.png" />
             ) : (
               null
             )}
@@ -66,13 +66,13 @@ function Start() {
             )}
           </div>
 
-          <img className={styles.img_dot} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627298554/Ellipse_1_vhdhe0.png" />
-          <img className={styles.img_dot} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627298554/Ellipse_1_vhdhe0.png" />
-          <img className={styles.img_dot} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627298554/Ellipse_1_vhdhe0.png" />
-          <img className={styles.img_dot_last} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627298554/Ellipse_1_vhdhe0.png" />
+          <img className={styles.img_dot} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1627298554/Ellipse_1_vhdhe0.png" />
+          <img className={styles.img_dot} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1627298554/Ellipse_1_vhdhe0.png" />
+          <img className={styles.img_dot} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1627298554/Ellipse_1_vhdhe0.png" />
+          <img className={styles.img_dot_last} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1627298554/Ellipse_1_vhdhe0.png" />
 
           <div className={styles.step}>
-            <img className={styles.img_step} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627298553/Rectangle_1_mbtx0j.png" />
+            <img className={styles.img_step} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1627298553/Rectangle_1_mbtx0j.png" />
 
             <div className={styles.optional_block}>
               <p className={styles.optional_text}> Optional </p>
@@ -98,13 +98,13 @@ function Start() {
             )}
           </div>
 
-          <img className={styles.img_dot} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627298554/Ellipse_1_vhdhe0.png" />
-          <img className={styles.img_dot} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627298554/Ellipse_1_vhdhe0.png" />
-          <img className={styles.img_dot} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627298554/Ellipse_1_vhdhe0.png" />
-          <img className={styles.img_dot_last} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627298554/Ellipse_1_vhdhe0.png" />
+          <img className={styles.img_dot} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1627298554/Ellipse_1_vhdhe0.png" />
+          <img className={styles.img_dot} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1627298554/Ellipse_1_vhdhe0.png" />
+          <img className={styles.img_dot} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1627298554/Ellipse_1_vhdhe0.png" />
+          <img className={styles.img_dot_last} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1627298554/Ellipse_1_vhdhe0.png" />
 
           <div className={styles.step}>
-            <img className={styles.img_step} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627298553/Rectangle_2_vaujek.png" />
+            <img className={styles.img_step} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1627298553/Rectangle_2_vaujek.png" />
             <h2 className={styles.header_step}>
               Play in the Metaverse
             </h2>

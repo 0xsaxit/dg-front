@@ -14,27 +14,27 @@ const LanguageModal = () => {
   const countryItems = [
     {
       imgUrl:
-        'https://res.cloudinary.com/dnzambf4m/image/upload/v1630503835/united_states_gs7sdr.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1630503835/united_states_gs7sdr.png',
       language: 'English',
     },
     {
       imgUrl:
-        'https://res.cloudinary.com/dnzambf4m/image/upload/v1630503836/Ellipse_1_yseyhx.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1630503836/Ellipse_1_yseyhx.png',
       language: 'Spanish',
     },
     {
       imgUrl:
-        'https://res.cloudinary.com/dnzambf4m/image/upload/v1630503835/Ellipse_1_1_cw2vcm.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1630503835/Ellipse_1_1_cw2vcm.png',
       language: 'Korean',
     },
     {
       imgUrl:
-        'https://res.cloudinary.com/dnzambf4m/image/upload/v1630503838/Ellipse_1_3_jysnoe.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1630503838/Ellipse_1_3_jysnoe.png',
       language: 'Russian',
     },
     {
       imgUrl:
-        'https://res.cloudinary.com/dnzambf4m/image/upload/v1630503835/Ellipse_1_2_baqvio.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1630503835/Ellipse_1_2_baqvio.png',
       language: 'Chinese',
     },
   ];

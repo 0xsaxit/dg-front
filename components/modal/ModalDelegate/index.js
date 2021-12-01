@@ -141,7 +141,7 @@ const ModalDelegate = props => {
           <div className={styles.card}>
             +{props.bonus}%
             <img
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
               className={styles.img_card}
             />
           </div>
@@ -164,7 +164,7 @@ const ModalDelegate = props => {
             <ul>
               <li>Let another player Play-to-Earn with your item</li>
               <li>Earn 30% of all ICE profits from their gameplay</li>
-              <li>Withdraw your delegation at any time.</li>
+              <li>NFT stays in your wallet & undelegate any time</li>
             </ul>
           </div>
         </div>
@@ -178,7 +178,7 @@ const ModalDelegate = props => {
                 <div className={styles.info}>You Earn</div>
                 30%
                 <img
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card1}
                 />
               </div>
@@ -189,7 +189,7 @@ const ModalDelegate = props => {
                 <div className={styles.info}>They Earn</div>
                 70%
                 <img
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card2}
                 />
               </div>
@@ -383,7 +383,12 @@ const ModalDelegate = props => {
                     </Button>
                   )}
 
-                  <Button className={styles.button_close}>Learn More</Button>
+                  <Button
+                    className={styles.button_close}
+                    onClick={() => {
+                      window.open("https://ice.decentral.games/ice-nft-wearables", "_blank");
+                    }}
+                  >Learn More</Button>
                 </div>
               </div>
 

@@ -16,11 +16,11 @@ const SecondStep = () => {
                     <div className={styles.box_title}>
                         <h1>Buy on Marketplace</h1>
                     </div>
-                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634610802/marketplace_lr9n7z.png" alt="marketplace" />
+                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1634610802/marketplace_lr9n7z.png" alt="marketplace" />
                     <div className={styles.button_div}>
                         <Link href="/ice/marketplace">
                             <Button>
-                                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634610493/clipboard_dlp3sh.png" alt="marketplace" />
+                                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1634610493/clipboard_dlp3sh.png" alt="marketplace" />
                                 Explore Marketplace
                             </Button>
                         </Link>
@@ -42,7 +42,7 @@ const SecondStep = () => {
                                 window.open("https://decentral.games/discord", "_blank");
                             }}
                         >
-                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634610493/discord_ny46dw.png" alt="discord" />
+                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1634610493/discord_ny46dw.png" alt="discord" />
                             Find Delegators (Discord)
                         </Button>
                     </div>

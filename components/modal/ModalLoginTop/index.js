@@ -54,7 +54,7 @@ const ModalLogin = () => {
   //   if (metamaskEnabled) {
   //     // open MetaMask for login then get the user's wallet address
   //     await window.ethereum.enable();
-  //     userAddress = window.ethereum.selectedAddress;
+  //     userAddress = window.ethereum?.selectedAddress;
 
   //     // track MetaMask connect event
   //     analytics.track('Connected MetaMask', {
@@ -131,7 +131,6 @@ const ModalLogin = () => {
       onOpen={() => setOpen(true)}
       open={open}
       close
-      /*
       trigger={
         <span>
           <Button
@@ -140,7 +139,7 @@ const ModalLogin = () => {
           >
             <span>
               <img 
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png"
                 style={{ height: '24px', paddingRight: '8px', marginBottom: '-7px' }} 
               />
               Connect Metamask
@@ -151,12 +150,11 @@ const ModalLogin = () => {
             className="metamask-button-mobile top"
           >
             <span>
-              Connect
+              Play Now
             </span>
           </Button>
         </span>
       }
-      */
     >
       <div style={{ margin: '-68px 0px 50px -40px' }}>
         <span className={styles.button_close} onClick={() => setOpen(false)}>

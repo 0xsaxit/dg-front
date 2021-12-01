@@ -1,9 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../../store';
+import BigNumber from 'bignumber.js';
 import Web3 from 'web3';
 import Link from 'next/link';
 import { Divider, Input } from 'semantic-ui-react';
 import { useMediaQuery } from 'hooks';
+import { GlobalContext } from '../../../store';
 import Overview from '../../content/ContentDAO/Overview';
 import Governance from '../../content/ContentDAO/Governance';
 import Liquidity from '../../content/ContentDAO/Liquidity';
@@ -34,7 +35,9 @@ const DAO = props => {
   const [web3, setWeb3] = useState({});
   const [currenReward, setCurrentReward] = useState(0);
   const [finishTime, setFinishTime] = useState(0);
+
   const [price, setPrice] = useState(0);
+
   const [amountInput, setAmountInput] = useState('10000000000000000000');
 
   const DGState = props.DGState;
@@ -74,14 +77,18 @@ const DAO = props => {
   }, [state.userStatus]);
 
   // fetch circulating supply
+  // useEffect(() => {
+  //   (async function () {
+  //     const json = await Fetch.DG_SUPPLY_GECKO();
+  //     if (json && json.market_data) {
+  //       setPrice(json.market_data.current_price.usd);
+  //     }
+  //   })();
+  // }, []);
+
   useEffect(() => {
-    (async function () {
-      const json = await Fetch.DG_SUPPLY_GECKO();
-      if (json && json.market_data) {
-        setPrice(json.market_data.current_price.usd);
-      }
-    })();
-  }, []);
+    setPrice(state.DGPrices.dg);
+  }, [state.DGPrices]);
 
   // get initial reward and timestamp values
   useEffect(() => {
@@ -112,6 +119,13 @@ const DAO = props => {
       .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
     return priceFormatted;
+  }
+
+  function formatNumber(value, decimals = 0) {
+    const valueStr = Number(BigNumber(value).toFixed(decimals)).toString();
+    const decimalPoint = valueStr.indexOf('.');
+    const decimalLength = decimalPoint < 0 ? 1 : valueStr.length - decimalPoint;
+    return BigNumber(valueStr).toFormat(Math.min(decimals, decimalLength - 1));
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -804,6 +818,7 @@ const DAO = props => {
                 <Governance
                   price={price}
                   formatPrice={formatPrice}
+                  formatNumber={formatNumber}
                   instances={instances}
                   stakingContractPool1={stakingContractPool1}
                   stakingContractPool2={stakingContractPool2}

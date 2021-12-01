@@ -47,7 +47,7 @@ RUN cmd="NODE_OPTIONS=\"--max-old-space-size=8192\" yarn run build:$APP_ENV"; \
 FROM base as runtime
 LABEL website="Decentral Games Website - $APP_ENV"
 
-# This just clears the Cache for the proceeding RUN commands. It can be anything, but is `TEST`
+# This just clears the Cache for the proceeding RUN commands, so the RUN values below update every time
 ARG TEST
 
 # Receive from previous build stage

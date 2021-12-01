@@ -56,7 +56,7 @@ const ModalLoginBinance = () => {
     if (metamaskEnabled) {
       // open MetaMask for login then get the user's wallet address
       await window.ethereum.enable();
-      userAddress = window.ethereum.selectedAddress;
+      userAddress = window.ethereum?.selectedAddress;
 
       // track MetaMask connect event
       analytics.track('Connected MetaMask', {
@@ -155,7 +155,7 @@ const ModalLoginBinance = () => {
             >
               <span style={{ display: 'flex', justifyContent: 'center' }}>
                 <img
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png"
                   style={{ height: '36px', margin: '0px 24px 0px -48px' }}
                 />
                 Connect MetaMask
