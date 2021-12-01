@@ -1,8 +1,8 @@
 @import "styles/base.scss";
 
 .info_modal {
-	width: 360px !important;
-	padding: 24px 30px 30px 30px;
+	width: 480px !important;
+	padding: 30px 30px 40px 30px;
 	margin-top: 24px !important;
 
 	.button_close {
@@ -14,17 +14,25 @@
 		border-radius: 100%;
 		padding: 8px 10px 8px 10px;
 	}
-	
+
 	.title {
 		font-weight: 800;
 		font-size: 24px;
 		letter-spacing: -0.5px;
+		text-align: center;
 	}
 
 	.dg_image {
 		width: 60px;
 		margin-top: 18px;
 		align-self: center;
+	}
+
+	.dg_image_gray {
+		width: 60px;
+		margin-top: 18px;
+		align-self: center;
+		filter: grayscale(1);
 	}
 
 	.subtitle_1 {
@@ -54,23 +62,23 @@
 	}
 
 	.buy_button {
-		background: #006EFF;
+		background: #006eff;
 		color: white;
 		font-size: 18px;
 		font-family: Larsseit-Bold;
 		height: 54px;
 		border-radius: 12px;
-		width: 142px;
+		width: 190px;
 	}
 
 	.learn_button {
-		background: #2B2B2B;
+		background: #2b2b2b;
 		color: white;
 		font-size: 18px;
 		font-family: Larsseit-Bold;
 		height: 54px;
 		border-radius: 12px;
-		width: 142px;
+		width: 190px;
 	}
 
 	.buy_button:focus,

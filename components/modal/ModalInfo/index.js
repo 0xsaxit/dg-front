@@ -128,13 +128,13 @@ const ModalInfo = () => {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            width: '280px',
+            width: '90%',
           }}
         >
           <h3 className={styles.title}>Your DG Breakdown</h3>
 
-          <section style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <section style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', width: '50%' }}>
               <img
                 className={styles.dg_image}
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631325895/dgNewLogo_hkvlps.png"
@@ -147,7 +147,7 @@ const ModalInfo = () => {
               {/* <p className={styles.subtitle_2}>${formatPrice(dgTotalUSD, 2)}</p> */}
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', width: '50%' }}>
               <img
                 className={styles.dg_image}
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637260602/grayLogo_ojx2hi.png"
@@ -184,15 +184,12 @@ const ModalInfo = () => {
 
         <span style={{ display: 'flex', flexDirection: 'column' }}>
           <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
-            {formatPrice(state.stakingBalances.BALANCE_USER_GOVERNANCE, 3)}
+            {formatPrice(xdgTotal, 3)}
           </h5>
 
           {/* <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
             $
-            {formatPrice(
-              state.stakingBalances.BALANCE_USER_GOVERNANCE * DGPrice,
-              2
-            )}
+            {formatPrice(xdgTotalUSD, 2)}
           </p> */}
         </span>
       </span>
@@ -393,6 +390,8 @@ const ModalInfo = () => {
           display: 'flex',
           justifyContent: 'space-between',
           marginTop: '24px',
+          paddingLeft: '12px',
+          paddingRight: '10px'
         }}
       >
         <a
