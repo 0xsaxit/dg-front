@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { GlobalContext } from './index';
 import Fetch from '../common/Fetch';
-import { assignToken } from "../components/button/ButtonStartConnect";
+import { assignToken } from '../components/button/ButtonStartConnect';
 
 function AppConfig() {
   // dispatch user's status value to the Context API store
@@ -29,12 +29,11 @@ function AppConfig() {
         });
       }
     }
-    
+
     fetchData();
   }, []);
 
   async function getAppConfig() {
-
     try {
       const appConfig = await Fetch.APP_CONFIG();
       console.log('APP_CONFIG (appConfig): ', appConfig);
