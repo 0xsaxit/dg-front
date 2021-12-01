@@ -3828,7 +3828,7 @@ div.ui.input.withdraw_input>input {
 
 .slick-slider .slick-arrow.slick-prev img {
   position: relative;
-  width: 12px;
+  width: 8px;
   left: -1px;
   transform: rotate(180deg) !important;
 }
@@ -3845,7 +3845,7 @@ div.ui.input.withdraw_input>input {
 
 .slick-slider .slick-arrow.slick-next img {
   position: relative;
-  width: 12px;
+  width: 8px;
   left: 2px;
 }
 
