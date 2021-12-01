@@ -52,8 +52,6 @@ const ModalInfo = () => {
   }, [state.DGBalances, state.stakingBalances]);
 
   useEffect(() => {
-    console.log('start...');
-
     const balanceMiningOld = state.DGBalances.BALANCE_MINING_DG_V2;
     const balanceMiningAdjustedOld = balanceMiningOld * 1000;
 
