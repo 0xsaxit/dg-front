@@ -20,6 +20,7 @@ const ModalInfo = () => {
   const [dgMining, setDGMining] = useState(0);
   const [dgMiningUSD, setDGMiningUSD] = useState(0);
   const [dgSummationOld, setDGSummationOld] = useState(0);
+  const [dgSummationOldPolygon, setDGSummationOldPolygon] = useState(0);
   const [dgSummationNew, setDGSummationNew] = useState(0);
   const [dgSummationAll, setDGSummationAll] = useState(0);
   const [DGPrice, setDGPrice] = useState(0);
@@ -94,10 +95,18 @@ const ModalInfo = () => {
   }, [state.DGBalances, state.stakingBalances]);
 
   useEffect(() => {
-    const dgSummationAll = dgSummationNew + dgSummationOld;
+    const balanceChildDG = state.DGBalances.BALANCE_CHILD_DG;
+    const dgSummationOldPolygon = balanceChildDG * 1000;
+
+    setDGSummationOldPolygon(dgSummationOldPolygon);
+  }, [state.DGBalances]);
+
+  useEffect(() => {
+    const dgSummationAll =
+      dgSummationNew + dgSummationOld + dgSummationOldPolygon;
 
     setDGSummationAll(formatPrice(dgSummationAll, 0));
-  }, [dgSummationNew, dgSummationOld]);
+  }, [dgSummationNew, dgSummationOld, dgSummationOldPolygon]);
 
   useEffect(() => {
     if (state.openModalInfo) {
@@ -325,11 +334,11 @@ const ModalInfo = () => {
 
         <span style={{ display: 'flex', flexDirection: 'column' }}>
           <h5 className={styles.row_title} style={{ textAlign: 'right' }}>
-            {formatPrice(state.DGBalances.BALANCE_CHILD_DG, 3)}
+            {formatPrice(dgSummationOldPolygon / 1000, 3)}
           </h5>
 
           {/* <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
-            ${formatPrice(state.DGBalances.BALANCE_CHILD_DG * DGPrice, 2)}
+            ${formatPrice((dgSummationOldPolygon / 1000) * DGPrice, 2)}
           </p> */}
         </span>
       </span>
