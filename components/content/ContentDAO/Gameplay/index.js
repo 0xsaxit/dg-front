@@ -134,7 +134,7 @@ const Gameplay = props => {
             </p>
             <img
               style={{ marginTop: '-4px' }}
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1624411671/Spinning-Logo-DG_n9f4xd.gif"
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1624411671/Spinning-Logo-DG_n9f4xd.gif"
             />
           </div>
           <p className={styles.price}>
@@ -162,7 +162,7 @@ const Gameplay = props => {
           <div className={styles.gameplay_container}>
             <img
               className={styles.gameplay_img}
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620413783/MANA_jw7ylg.png"
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620413783/MANA_jw7ylg.png"
             />
 
             <div className={styles.gameplay_right}>
@@ -181,7 +181,7 @@ const Gameplay = props => {
           <div className={styles.gameplay_container}>
             <img
               className={styles.gameplay_img}
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620413783/DAI_xbso2s.png"
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620413783/DAI_xbso2s.png"
             />
 
             <div className={styles.gameplay_right}>
@@ -200,7 +200,7 @@ const Gameplay = props => {
           <div className={styles.gameplay_container}>
             <img
               className={styles.gameplay_img}
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1625014714/ETH_kzfhxr.png"
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1625014714/ETH_kzfhxr.png"
             />
 
             <div className={styles.gameplay_right}>
@@ -219,7 +219,7 @@ const Gameplay = props => {
           <div className={styles.gameplay_container}>
             <img
               className={styles.gameplay_img}
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1635286999/Group_80_exgcle.png"
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635286999/Group_80_exgcle.png"
             />
 
             <div className={styles.gameplay_right}>

@@ -64,7 +64,7 @@ const Screen = ({ pages, category, handleClickButton, match, history }) => {
               <Link href="/">
                 <Menu.Item header style={{ marginLeft: '-15px' }}>
                   <Image
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1588362125/authorize_title_fx3yxd.webp"
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1588362125/authorize_title_fx3yxd.webp"
                     style={{ width: '42px', marginTop: '1.5em' }}
                   />
                 </Menu.Item>
@@ -119,7 +119,7 @@ const Screen = ({ pages, category, handleClickButton, match, history }) => {
                     <Grid.Row>
                       <Grid.Column computer={11} tablet={16} mobile={16}>
                         <Image
-                          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1588364844/tominoya_feature_lcfdm6.png"
+                          src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1588364844/tominoya_feature_lcfdm6.png"
                           className="featured-image"
                         />
                       </Grid.Column>

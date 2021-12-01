@@ -207,11 +207,11 @@ const AccountData = props => {
                 <div className={styles.tokenImgDiv}>
                   <img
                     className={styles.token_background}
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/image_24_geei7u.png"
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/image_24_geei7u.png"
                   />
                   <img
                     className={styles.token_ice_img}
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
                   />
                 </div>
                 <div className={styles.tokenBalance}>
@@ -230,11 +230,11 @@ const AccountData = props => {
                 <div className={styles.tokenImgDiv}>
                   <img
                     className={styles.token_xp_background}
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/image_24_geei7u.png"
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/image_24_geei7u.png"
                   />
                   <img
                     className={styles.token_xp_img}
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_XP_ICN_f9w2se.svg"
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_XP_ICN_f9w2se.svg"
                   />
                 </div>
                 <div className={styles.tokenBalance}>
@@ -253,7 +253,7 @@ const AccountData = props => {
                 <div className={styles.tokenImgDiv}>
                   <img
                     className={styles.token_DG_img}
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631325895/dgNewLogo_hkvlps.png"
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631325895/dgNewLogo_hkvlps.png"
                   />
                 </div>
                 <div className={styles.tokenBalance}>

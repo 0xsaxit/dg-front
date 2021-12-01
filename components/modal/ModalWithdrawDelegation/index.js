@@ -77,7 +77,7 @@ const ModalWithdrawDelegation = props => {
                 <div className={styles.info}>You Earn</div>
                 {!isDelegator ? '70%' : '30%'}
                 <img
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card}
                 />
               </div>
@@ -88,7 +88,7 @@ const ModalWithdrawDelegation = props => {
                 <div className={styles.info}>They Earn</div>
                 {!isDelegator ? '30%' : '70%'}
                 <img
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card}
                 />
               </div>
@@ -255,7 +255,7 @@ const ModalWithdrawDelegation = props => {
                     {/* {withdrawStatus == 0 ? (
                       <>
                         <img
-                          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
+                          src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png"
                           className={styles.icon}
                         />
                         {props.buttonName}
