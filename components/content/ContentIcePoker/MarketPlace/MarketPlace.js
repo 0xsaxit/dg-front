@@ -405,7 +405,7 @@ const MarketPlace = () => {
 
                         {state.userStatus >= 4 && state.userLoggedIn ? (
                           <p className={styles.nft_info}>
-                            {state.itemLimits[i][0]} of 100 left
+                            {itemLimits[0]} of 100 left
                           </p>
                         ) : (
                           <p className={styles.nft_info}>- of 100 left</p>
