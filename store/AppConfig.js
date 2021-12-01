@@ -10,16 +10,26 @@ function AppConfig() {
   // define local variables
 
   useEffect(() => {
-    // fetch user status
-    async function fetchData() {
-      const accessToken = localStorage.getItem('token');
+    // Call on initial load and after the user logs in
+    if (!state || state.userLoggedIn) {
+      // fetch user status
+      async function fetchData() {
+        const accessToken = localStorage.getItem('token');
 
-      // Get authToken if not already available
-      if (!accessToken) {
-        console.log('Getting access token...');
-        await assignToken();
+        // Get authToken if not already available
+        if (!accessToken) {
+          console.log('Getting access token...');
+          await assignToken();
+        }
+        const response = await getAppConfig();
+
+        if (response) {
+          dispatch({
+            type: 'app_config',
+            data: response,
+          });
+        }
       }
-      const response = await getAppConfig();
 
       console.log('app config...');
       console.log(response);
@@ -31,8 +41,7 @@ function AppConfig() {
         });
       }
     }
-    fetchData();
-  }, []);
+  }, [state.userLoggedIn]);
 
   async function getAppConfig() {
     try {
@@ -40,8 +49,8 @@ function AppConfig() {
       console.log('APP_CONFIG (appConfig): ', appConfig);
 
       return appConfig;
-    } catch (e) {
-      console.error(`Couldn't get appConfig`);
+    } catch (err) {
+      console.error(`Couldn't get appConfig`, err);
       return;
     }
   }

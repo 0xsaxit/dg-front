@@ -7,7 +7,7 @@ const Home = () => {
     return (
         <div className={styles.main_wrapper}>
             <video
-                src="https://res.cloudinary.com/dnzambf4m/video/upload/v1634761194/Web_Landing_2_1_gqgruf.webm"
+                src="https://res.cloudinary.com/dnzambf4m/video/upload/q_auto:best/v1634761194/Web_Landing_2_1_gqgruf.webm"
                 className={styles.home_video}
                 type="video/mp4"
                 frameBorder="0"
@@ -24,7 +24,7 @@ const Home = () => {
                     </Button>
                     <Button
                         className={styles.play_button}
-                        href="https://play.decentral.games/dext"
+                        href="https://api.decentral.games/ice/play?position=-110%2C129"
                         target="_blank"
                     >
                         Play

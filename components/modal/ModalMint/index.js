@@ -73,14 +73,14 @@ const ModalMint = props => {
         <div className={styles.mint_wrapper}>
           <div className={styles.mint_box}>
             <div className={styles.mint_box_purple}>
-              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629803803/Group_209_tsgkuy.png" />
+              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1629803803/Group_209_tsgkuy.png" />
             </div>
             <div className={styles.card_body}>
               <div className={styles.card}>Rank1</div>
               <div className={styles.card}>
                 +0%
                 <img
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629727455/snowflake_rplq6d.png"
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1629727455/snowflake_rplq6d.png"
                   className={styles.img_card}
                 />
               </div>

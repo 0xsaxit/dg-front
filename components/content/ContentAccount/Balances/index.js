@@ -158,13 +158,13 @@ const Balances = (props) => {
   const rampDAI = new RampInstantSDK({
     hostAppName: 'Buy DAI Directly',
     hostLogoUrl:
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_DAI_kbvlhx.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1618335593/COIN_-_DAI_kbvlhx.png',
     swapAsset: 'MATIC_DAI',
   });
   const rampETH = new RampInstantSDK({
     hostAppName: 'Buy ETH Directly',
     hostLogoUrl:
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335594/COIN_-_ETH_ji9yyj.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1618335594/COIN_-_ETH_ji9yyj.png',
     swapAsset: 'MATIC_ETH',
   });
 
@@ -501,7 +501,7 @@ const Balances = (props) => {
         <div className={styles.balance_column}>
           <span className={styles.float_left}>
             <span className={styles.img_left}>
-              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1635286999/Group_80_exgcle.png" />
+              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635286999/Group_80_exgcle.png" />
             </span>
             <span className={styles.balance_column_header}>
               <p className={styles.bold_text}>Ice</p>

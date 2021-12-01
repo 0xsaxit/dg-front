@@ -238,11 +238,11 @@ const ContentOfferings = props => {
       },
     };
     const previewImages = [
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_1_h5zizs.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_2_y8onmu.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_4_uribpq.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_3_xhaxho.png',
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_5_mmcqjy.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1633727889/Fit_1_h5zizs.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1633727889/Fit_2_y8onmu.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1633727889/Fit_4_uribpq.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1633727889/Fit_3_xhaxho.png',
+      'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1633727889/Fit_5_mmcqjy.png',
     ];
 
     return (
@@ -309,13 +309,13 @@ const ContentOfferings = props => {
                     <div className={styles.imgDiv}>
                       <img
                         className={styles.img}
-                        src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640051/p2e_enabled_wgqui5.svg"
+                        src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631640051/p2e_enabled_wgqui5.svg"
                       />
                       <Popup
                         trigger={
                           <img
                             className={styles.tooltip}
-                            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
+                            src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631640045/ICE_Info_bbiag6.svg"
                           />
                         }
                         position="top left"
@@ -325,7 +325,7 @@ const ContentOfferings = props => {
                         <Popup.Content className={styles.tooltipContent}>
                           <img
                             className={styles.popup_info}
-                            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
+                            src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631640045/ICE_Info_bbiag6.svg"
                           />
                           <p className={styles.popup_content}>
                             P2E Enabled (aka Play-to-Earn)

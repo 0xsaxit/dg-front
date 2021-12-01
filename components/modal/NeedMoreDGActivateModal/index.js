@@ -91,7 +91,7 @@ const NeedMoreDGActivateModal = props => {
 
           <div className={styles.logo}>
             <img
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629894323/Group_8_es81yz.png"
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1629894323/Group_8_es81yz.png"
               alt="logo"
             />
           </div>
