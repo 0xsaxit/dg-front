@@ -19,11 +19,9 @@ const ModalInfo = () => {
   const [xdgTotalUSD, setXDGTotalUSD] = useState(0);
   const [dgMining, setDGMining] = useState(0);
   const [dgMiningUSD, setDGMiningUSD] = useState(0);
-
   const [dgSummationOld, setDGSummationOld] = useState(0);
   const [dgSummationNew, setDGSummationNew] = useState(0);
   const [dgSummationAll, setDGSummationAll] = useState(0);
-
   const [DGPrice, setDGPrice] = useState(0);
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -65,9 +63,6 @@ const ModalInfo = () => {
       const balanceKeeperDG = state.DGBalances.BALANCE_KEEPER_DG;
       const balanceKeeperDGAdjusted = balanceKeeperDG * 1000;
 
-      // const balanceUserGov = state.stakingBalances.BALANCE_USER_GOVERNANCE;
-      // const balanceUserGovAdjusted = balanceUserGov * 1000;
-
       const balanceStakingUniswap = state.DGBalances.BALANCE_STAKING_UNISWAP;
       const balanceStakingUniswapAdjusted = balanceStakingUniswap * 1000;
 
@@ -83,20 +78,6 @@ const ModalInfo = () => {
 
       const balanceStakingGov = state.DGBalances.BALANCE_STAKING_GOVERNANCE;
       const balanceStakingGovAdjusted = balanceStakingGov * 1000;
-
-      // console.log('balance DG governance: ' + balanceUserGovOld);
-      // console.log('balance DG root: ' + balanceRootDG);
-      // console.log('balance DG staking: ' + balanceStakingGov);
-
-      // parseFloat(state.DGBalances.BALANCE_MINING_DG) +
-      // parseFloat(state.DGBalances.BALANCE_STAKING_BALANCER_1) +
-      // parseFloat(state.DGBalances.BALANCE_STAKING_BALANCER_2) +
-      // parseFloat(state.DGBalances.BALANCE_KEEPER_DG) +
-      // parseFloat(state.DGBalances.BALANCE_ROOT_DG) +
-      // parseFloat(state.DGBalances.BALANCE_CHILD_DG) +
-      // parseFloat(state.stakingBalances.BALANCE_USER_GOVERNANCE) +
-      // parseFloat(state.DGBalances.BALANCE_STAKING_UNISWAP) +
-      // parseFloat(state.DGBalances.BALANCE_STAKING_GOVERNANCE);
 
       const dgSummationOld =
         balanceMiningAdjustedOld +
@@ -362,8 +343,7 @@ const ModalInfo = () => {
   function breakdownButton() {
     return (
       <span>
-        {!state.DGBalances.BALANCE_ROOT_DG ||
-        !state.DGBalances.BALANCE_ROOT_DG_LIGHT ? (
+        {!dgSummationNew || !dgSummationOld ? (
           <Button className="account-button" style={{ marginTop: 0 }}>
             <p className="right-menu-text bnb" style={{ marginTop: '-5px' }}>
               <Spinner width={30} height={30} />
