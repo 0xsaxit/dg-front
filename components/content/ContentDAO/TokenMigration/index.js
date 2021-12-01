@@ -13,6 +13,9 @@ const TokenMigration = (props) => {
     const steps = ["Unstake Your $DG", "Withdraw Your Liquidity Provision $DG", "Swap Your Mainnet $DG", "Stake in New Governance", "Swap Your Polygon DG"];
 
     function formatNumber(value, decimals = 0) {
+        if (BigNumber(value).isNaN() || !BigNumber(value).isFinite()) {
+            return '0';
+        }
         const valueStr = Number(BigNumber(value).toFixed(decimals)).toString();
         const decimalPoint = valueStr.indexOf('.');
         const decimalLength = decimalPoint < 0 ? 1 : valueStr.length - decimalPoint;
