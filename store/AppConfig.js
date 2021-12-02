@@ -1,7 +1,7 @@
-import {useContext, useEffect} from 'react';
-import {GlobalContext} from './index';
+import { useContext, useEffect } from 'react';
+import { GlobalContext } from './index';
 import Fetch from '../common/Fetch';
-import {assignToken} from "../components/button/ButtonStartConnect";
+import { assignToken } from '../components/button/ButtonStartConnect';
 
 function AppConfig() {
   // dispatch user's status value to the Context API store
@@ -10,40 +10,37 @@ function AppConfig() {
   // define local variables
 
   useEffect(() => {
-    // Call on initial load and after the user logs in
-    if (!state || state.userLoggedIn) {
-      // fetch user status
-      async function fetchData() {
-        const accessToken = localStorage.getItem('token');
+    // fetch user status
+    async function fetchData() {
+      const accessToken = localStorage.getItem('token');
 
-        // Get authToken if not already available
-        if (!accessToken) {
-          console.log('Getting access token...');
-          await assignToken();
-        }
-        const response = await getAppConfig();
-
-        if (response) {
-          dispatch({
-            type: 'app_config',
-            data: response,
-          });
-        }
+      // Get authToken if not already available
+      if (!accessToken) {
+        console.log('Getting access token...');
+        await assignToken();
       }
 
-      fetchData();
+      const response = await getAppConfig();
+
+      if (response) {
+        dispatch({
+          type: 'app_config',
+          data: response,
+        });
+      }
     }
-  }, [state.userLoggedIn]);
+
+    fetchData();
+  }, []);
 
   async function getAppConfig() {
-
     try {
       const appConfig = await Fetch.APP_CONFIG();
       console.log('APP_CONFIG (appConfig): ', appConfig);
 
       return appConfig;
-    } catch (err) {
-      console.error(`Couldn't get appConfig`, err);
+    } catch (e) {
+      console.error(`Couldn't get appConfig`);
       return;
     }
   }

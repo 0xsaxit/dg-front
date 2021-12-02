@@ -191,7 +191,7 @@ arrayDomainData.push(domainDataDGPointerNew);
 arrayDomainData.push(domainDataTokenICE);
 arrayDomainData.push(domainDataTokenDG);
 arrayDomainData.push(domainDataAccessories);
-arrayDomainData.push(domainDataICERegistrant);
+arrayDomainData.push(domainDataICERegistrant); // 11
 arrayDomainData.push(domainDataAccessories2);
 arrayDomainData.push(domainDataAccessories3);
 arrayDomainData.push(domainDataAccessories4);

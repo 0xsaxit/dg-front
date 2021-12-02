@@ -773,25 +773,6 @@ const Overview = props => {
               Learn More
             </Button>
           </div>
-
-          <div className={cn(styles.lower)}>
-            <p className={styles.lower_header}>Liquidity Provision</p>
-            <img
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1628854697/image_14_jshx1l.svg"
-              className={styles.lower_img}
-            />
-            <p className={styles.lower_text}>
-              Provide liquidity to the ETH-$DG Uniswap pool for yield rewards.
-            </p>
-            <Button
-              className={styles.lower_button}
-              onClick={() => {
-                router.push('/dg/liquidity');
-              }}
-            >
-              Provide Liquidity
-            </Button>
-          </div>
         </div>
       </div>
 

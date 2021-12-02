@@ -12,7 +12,7 @@ function UserStatus() {
 
   useEffect(() => {
     if (window.ethereum) {
-      userAddress = window.ethereum.selectedAddress;
+      userAddress = window.ethereum?.selectedAddress;
 
       if (userAddress) {
         // set user status to 3 to denote fetching user status, and dispatch the user address

@@ -135,12 +135,7 @@ const ICEWearableCard = props => {
             {!props.isActivated ? (
               state.DGBalances.BALANCE_CHILD_DG <
               state.tokenAmounts.DG_MOVE_AMOUNT ? (
-                // <NeedMoreDGActivateModal />
-                <ActivateWearableModal
-                  tokenID={props.tokenID}
-                  itemID={props.itemID}
-                  address={props.address}
-                />
+                <NeedMoreDGActivateModal />
               ) : (
                 <ActivateWearableModal
                   tokenID={props.tokenID}

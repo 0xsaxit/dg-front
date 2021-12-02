@@ -16,6 +16,7 @@ const ModalWithdrawDelegation = props => {
   const [open, setOpen] = useState(false);
   const [success, setSuccess] = useState(false);
   const [withdrawStatus, setWithdrawStatus] =  useState(0);
+  const [errorMsg, setErrorMsg] = useState(null);
 
   const isDelegator = props.ownerAddress === state.userAddress;
 
@@ -165,6 +166,7 @@ const ModalWithdrawDelegation = props => {
     console.log('Token owner address: ' + props.ownerAddress);
     console.log('Delegate address: ' + props.delegateAddress);
     console.log('Collection address: ' + props.address);
+    setErrorMsg(null);
     setClicked(true);
 
     const json = await Fetch.UNDELEGATE_NFT(
@@ -177,14 +179,19 @@ const ModalWithdrawDelegation = props => {
     if (json.status) {
       console.log('NFT undelegation request successful');
       setClicked(false);
-      setWithdrawStatus(1);
+      setWithdrawStatus(0);
+
+      // success
+      completeWithdraw();
 
     } else {
       console.log('NFT undelegation request error: ' + json.reason);
 
       if (json.code === 2) {
-        setWithdrawStatus(2);
+        setErrorMsg('NFT undelegation request error');
+        // setWithdrawStatus(2);
       } else {
+        setErrorMsg('Delegation failed');
         console.log('Delegation failed. Code: ' + json.code);
       }
       setClicked(false);
@@ -232,14 +239,26 @@ const ModalWithdrawDelegation = props => {
                             : 'DELEGATEE CLICKED WITHDRAW'
                         );
                         undelegateNFT();
-                      } else if (withdrawStatus == 1) { // success case
-                        completeWithdraw();
-                      } else {
+
+                        // restore
+                        // completeWithdraw();
+                      } else if (withdrawStatus == 1) { // success case                        
+                        completeWithdraw();                        
+                      } else {                        
                         completeWithdraw();
                       }
                     }}
                   >
-                    {withdrawStatus == 0 ? (
+                      <>
+                        {/* <img
+                          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
+                          className={styles.icon}
+                        /> */}
+                        {/* {props.buttonName} */}
+                        Withdraw Delegation
+                      </>
+
+                    {/* {withdrawStatus == 0 ? (
                       <>
                         <img
                           src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png"
@@ -257,13 +276,16 @@ const ModalWithdrawDelegation = props => {
                           ' (In ' + getRemainingTime() + 'Hours)'}
                         </div>
                       </div>
-                    )}
+                    )} */}
                   </Button>
                 ) : (
                   <Button className={styles.button_close} disabled={true}>
                     Pending Transaction...
                   </Button>
-                )}
+                )}                
+              </div>
+              <div className={styles.error_msg}>
+                {errorMsg}
               </div>
             </div>
           </div>

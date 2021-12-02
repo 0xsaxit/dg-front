@@ -12,7 +12,9 @@ import ButtonConnect from '../../button/ButtonConnect/index.js';
 import LanguageModal from 'components/modal/LanguageModal';
 import styles from './MenuTop.module.scss';
 import MessageToast from 'components/home/MessageToast';
+import ButtonSwitchNetwork from '../../button/ButtonSwitchNetwork/index.js';
 import ReactGA from 'react-ga';
+import Global from 'components/Constants';
 
 // import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
@@ -327,7 +329,8 @@ const MenuTop = props => {
       <>
         {state.userStatus >= 4 && state.userLoggedIn && (
           <span className={styles.right_menu_items}>
-            {isSquished ? <ModalInfo /> : null}
+            {state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID && <ButtonSwitchNetwork />} 
+            {state.networkID === Global.CONSTANTS.PARENT_NETWORK_ID && isSquished ? <ModalInfo /> : null}
             <ModalPopup />
           </span>
         )}
