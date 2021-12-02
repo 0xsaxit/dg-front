@@ -7,7 +7,7 @@ import call from 'common/API';
 import Aux from '../_Aux';
 
 export const assignToken = async () => {
-  const userAddress = window.ethereum.selectedAddress;
+  const userAddress = window.ethereum?.selectedAddress;
   if (userAddress) {
     const timestamp = Date.now();
 
@@ -16,7 +16,7 @@ export const assignToken = async () => {
     );
     const signature = await window.web3.eth.personal.sign(
       msg,
-      window.ethereum.selectedAddress,
+      window.ethereum?.selectedAddress,
       null
     );
 
@@ -49,7 +49,7 @@ const ButtonStartConnect = () => {
   let listener = null;
 
   useEffect(() => {
-    if (window.ethereum && window.ethereum.selectedAddress) {
+    if (window.ethereum && window.ethereum?.selectedAddress) {
       window.ethereum.on('accountsChanged', () => {
         assignToken();
       });
@@ -111,7 +111,7 @@ const ButtonStartConnect = () => {
     if (metamaskEnabled) {
       // open MetaMask for login then get the user's wallet address
       await window.ethereum.enable();
-      userAddress = window.ethereum.selectedAddress;
+      userAddress = window.ethereum?.selectedAddress;
 
       // track MetaMask connect event
       analytics.track('Connected MetaMask', {

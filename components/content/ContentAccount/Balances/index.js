@@ -192,11 +192,13 @@ const Balances = (props) => {
             <>
               {state.userInfo.count === 2 ? (
                 <Button className={styles.topUp} disabled>
-                  Top Up Free Tokens
+                  Play Now
                 </Button>
               ) : (
-                <Button className={styles.topUp} onClick={() => topUp()}>
-                  Top Up Free Tokens
+                <Button className={styles.topUp} onClick={() => {
+                  window.open("https://play.decentraland.org/?position=-118%2C135&realm=dg", "_blank");
+                }}>
+                  Play Now
                 </Button>
               )}
             </>

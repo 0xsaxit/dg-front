@@ -405,53 +405,64 @@ function ICEAttributes() {
 
     try {
       const itemObject0 = await collectionArray[index][0].methods
-        .items(0)
+        .items(tokenIDArray[0])
         .call();
       const ITEM_LIMIT_0 =
         itemObject0[Object.keys(itemObject0)[1]] -
         itemObject0[Object.keys(itemObject0)[2]];
 
       const itemObject5 = await collectionArray[index][0].methods
-        .items(5)
+        .items(tokenIDArray[1])
         .call();
       const ITEM_LIMIT_5 =
         itemObject5[Object.keys(itemObject5)[1]] -
         itemObject5[Object.keys(itemObject5)[2]];
 
       const itemObject10 = await collectionArray[index][0].methods
-        .items(10)
+        .items(tokenIDArray[2])
         .call();
       const ITEM_LIMIT_10 =
         itemObject10[Object.keys(itemObject10)[1]] -
         itemObject10[Object.keys(itemObject10)[2]];
 
       const itemObject15 = await collectionArray[index][0].methods
-        .items(15)
+        .items(tokenIDArray[3])
         .call();
       const ITEM_LIMIT_15 =
         itemObject15[Object.keys(itemObject15)[1]] -
         itemObject15[Object.keys(itemObject15)[2]];
 
       const itemObject20 = await collectionArray[index][0].methods
-        .items(20)
+        .items(tokenIDArray[4])
         .call();
       const ITEM_LIMIT_20 =
         itemObject20[Object.keys(itemObject20)[1]] -
         itemObject20[Object.keys(itemObject20)[2]];
 
-      // itemsArray.push(
-      //   [parseInt(ITEM_LIMIT_0), 0],
-      //   [parseInt(ITEM_LIMIT_5), 5],
-      //   [parseInt(ITEM_LIMIT_10), 10],
-      //   [parseInt(ITEM_LIMIT_15), 15],
-      //   [parseInt(ITEM_LIMIT_20), 20]
-      // );
-
-      console.log('token ID index 0: ' + tokenIDArray[0]);
-      console.log('token ID index 1: ' + tokenIDArray[1]);
-      console.log('token ID index 2: ' + tokenIDArray[2]);
-      console.log('token ID index 3: ' + tokenIDArray[3]);
-      console.log('token ID index 4: ' + tokenIDArray[4]);
+      console.log(
+        'Token ID: ' + tokenIDArray[0] + ', quantity: ' + parseInt(ITEM_LIMIT_0)
+      );
+      console.log(
+        'Token ID: ' + tokenIDArray[1] + ', quantity: ' + parseInt(ITEM_LIMIT_5)
+      );
+      console.log(
+        'Token ID: ' +
+          tokenIDArray[2] +
+          ', quantity: ' +
+          parseInt(ITEM_LIMIT_10)
+      );
+      console.log(
+        'Token ID: ' +
+          tokenIDArray[3] +
+          ', quantity: ' +
+          parseInt(ITEM_LIMIT_15)
+      );
+      console.log(
+        'Token ID: ' +
+          tokenIDArray[4] +
+          ', quantity: ' +
+          parseInt(ITEM_LIMIT_20)
+      );
 
       itemsArray.push(
         [parseInt(ITEM_LIMIT_0), tokenIDArray[0]],

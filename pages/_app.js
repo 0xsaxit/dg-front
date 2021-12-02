@@ -25,7 +25,7 @@ import NFTSPOAPS from '../store/NFTSPOAPS';
 import EventsData from '../store/EventsData';
 import SubgraphQuery from '../store/SubgraphQuery';
 import ICEAttributes from '../store/ICEAttributes';
-import AppConfig from "../store/AppConfig";
+import AppConfig from '../store/AppConfig';
 
 // import Spinner from 'components/Spinner';
 // import { useRouter } from 'next/router';

@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Button, Input } from 'semantic-ui-react'
 import BigNumber from 'bignumber.js'
-import Spinner from 'components/lottieAnimation/animations/spinner';
+import Spinner from 'components/lottieAnimation/animations/spinner'
 import styles from './fifthStep.module.scss'
 import Web3 from 'web3';
-import Global from 'components/Constants';
+import Global from 'components/Constants'
 import { GlobalContext } from '../../../../../store'
+import Images from '../../../../../common/Images'
 import Transactions from '../../../../../common/Transactions'
 
 const FifthStep = (props) => {
@@ -23,7 +24,7 @@ const FifthStep = (props) => {
     const [DGLightTokenContract, setDGLightTokenContract] = useState({});
     const [DGLightBridgeContract, setDGLightBridgeContract] = useState({});
     const [swapSubmitted, setSwapSubmitted] = useState(false);
-    const [swapped, setSwaped] = useState(false);
+    const [swapped, setSwaped] = useState(true);
     const [loading, setLoading] = useState(false);
     const [approving, setApproving] = useState(false);
     const networkInfo = {
@@ -165,7 +166,7 @@ const FifthStep = (props) => {
                       address: direct ? networkInfo.dgLightAddress : networkInfo.dgAddress,
                       symbol: direct ? 'DG' : '$DG',
                       decimals: 18,
-                      image: 'https://assets.coingecko.com/coins/images/13267/small/Decentral_Games_Logo-1.png',
+                      image: 'https://res.cloudinary.com/dze4ze7xd/image/upload/c_scale,h_256/v1638231952/DG_LOGO_ch4uj6.png',
                     },
                 },
             });
@@ -306,7 +307,11 @@ const FifthStep = (props) => {
         <div className={styles.main_wrapper}>
             <div className={styles.title}>
                 <h1>Swap Your Polygon $DG</h1>
-                <p>Now that we’ve swapped and staked your Mainnet DG, let’s migrate any Polygon DG you may have.</p>
+                {
+                    !isPolygonNetwork ?
+                        <p>Now that we’ve swapped and staked your Mainnet DG, let’s migrate any Polygon DG you may have.</p>
+                        :   <p>Let's finish off by swapping any Polygon $DG you may have.</p>
+                }
             </div>
 
             <div className={styles.content}>
@@ -322,11 +327,11 @@ const FifthStep = (props) => {
                                     <div className={styles.contract_box}>
                                         <div className={styles.tag}>
                                             Old DG Contract
-                                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635530963/arrow_b8xsav.png" alt="" />
+                                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1635530963/arrow_b8xsav.png" alt="" />
                                         </div>
 
                                         <div className={styles.content}>
-                                            <img className={styles.dg} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
+                                            <img className={styles.dg} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
                                             <Input
                                                 className={styles.swap_input}
                                                 fluid
@@ -338,7 +343,7 @@ const FifthStep = (props) => {
 
                                         <div className={styles.description}>
                                             <h4 className={direct ? styles.active : null}>
-                                                {props.formatPrice(state.DGBalances.BALANCE_CHILD_DG || 0, 2)} DG (Old) {direct ? 'Detected!' : 'Total'}
+                                                {props.formatNumber(state.DGBalances.BALANCE_CHILD_DG || 0, 4)} DG (Old) {direct ? 'Detected!' : 'Total'}
                                             </h4>
                                             <p>On Polygon</p>
                                         </div>
@@ -348,17 +353,17 @@ const FifthStep = (props) => {
                                         style={{transform: !direct ? 'rotateY(180deg)' : ''}}
                                         // onClick={() => {setDirect(!direct)}}
                                     >
-                                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635534332/arrow2_n1fwsf.png" alt="" />
+                                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1635534332/arrow2_n1fwsf.png" alt="" />
                                     </div>
                                     <div className={styles.contract_box}>
                                         <div className={styles.tag}>
                                             New DG Contract
-                                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635530963/arrow_b8xsav.png" alt="" />
+                                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1635530963/arrow_b8xsav.png" alt="" />
                                         </div>
 
                                         <div className={styles.content}>
-                                            <img className={styles.new} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635540038/NEW_dqqtn6.png" alt="new" />
-                                            <img className={styles.dg} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
+                                            <img className={styles.new} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1635540038/NEW_dqqtn6.png" alt="new" />
+                                            <img className={styles.dg} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
                                             <Input
                                                 className={styles.swap_input}
                                                 fluid
@@ -370,7 +375,7 @@ const FifthStep = (props) => {
 
                                         <div className={styles.description}>
                                             <h4 className={!direct ? styles.active : null}>
-                                                {props.formatPrice(state.DGBalances.BALANCE_CHILD_DG_LIGHT || 0, 2)} New DG {!direct ? 'Detected!' : 'Total'}
+                                                {props.formatNumber(state.DGBalances.BALANCE_CHILD_DG_LIGHT || 0, 2)} New DG {!direct ? 'Detected!' : 'Total'}
                                             </h4>
                                             <p>On Polygon</p>
                                         </div>
@@ -390,7 +395,7 @@ const FifthStep = (props) => {
                                                 :
                                                 <img
                                                     className={styles.polygon}
-                                                    src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1634606779/polygon_rsgtjk.png"
+                                                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634606779/polygon_rsgtjk.png"
                                                     alt="Polygon"
                                                 />
                                             }
@@ -404,7 +409,7 @@ const FifthStep = (props) => {
                                             >
                                                 <Spinner />
                                                 View on Etherscan
-                                                <img className={styles.arrowIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636424323/TransBgArrow_ukntvi.png" alt="" />
+                                                <img className={styles.arrowIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636424323/TransBgArrow_ukntvi.png" alt="" />
                                             </Button>
                                             :
                                             <Button
@@ -439,8 +444,8 @@ const FifthStep = (props) => {
                                                     approving
                                                         ? 'Approving'
                                                         : direct
-                                                            ? `Swap ${BigNumber(amountDG).toFormat()} $DG for ${BigNumber(amountDGLight).toFormat()} DG`
-                                                            : `Swap ${BigNumber(amountDGLight).toFormat()} DG for ${BigNumber(amountDG).toFormat()} $DG`
+                                                            ? `Swap ${props.formatNumber(amountDG, 4)} $DG for ${props.formatNumber(amountDGLight, 2)} DG`
+                                                            : `Swap ${props.formatNumber(amountDGLight, 2)} DG for ${props.formatNumber(amountDG, 4)} $DG`
                                                 }
                                             </Button>
                                     }
@@ -450,7 +455,7 @@ const FifthStep = (props) => {
                             <div className={styles.box_div}>
                                 <img
                                     className={styles.close}
-                                    src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636431892/transClose_v26kgi.png"
+                                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636431892/transClose_v26kgi.png"
                                     alt="close"
                                     onClick={() => {
                                         setSwapSubmitted(false);
@@ -462,7 +467,7 @@ const FifthStep = (props) => {
                                 </div>
 
                                 <div className={styles.center_swap_submitted}>
-                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636423902/check-mark_fvx9a4.png" alt="Ready" />
+                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636423902/check-mark_fvx9a4.png" alt="Ready" />
                                 </div>
 
                                 <div className={styles.button_div} style={{ marginTop: '30px' }}>
@@ -470,7 +475,7 @@ const FifthStep = (props) => {
                                         className={styles.button}
                                         onClick={() => addToken()}
                                     >
-                                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png" alt="metamask" />
+                                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" alt="metamask" />
                                         Add { direct ? 'New' : 'Old' } DG to Metamask
                                     </Button>
                                 </div>
@@ -482,34 +487,64 @@ const FifthStep = (props) => {
                                         target="_blank"
                                     >
                                         View on Etherscan
-                                        <img className={styles.arrowIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636424323/TransBgArrow_ukntvi.png" alt="" />
+                                        <img className={styles.arrowIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636424323/TransBgArrow_ukntvi.png" alt="" />
                                     </Button>
                                 </div>
                             </div>
                     )
                     :
-                    <div className={styles.box_div_small}>
-                        <div className={styles.box_title}>
-                            <h1>You're Good to Go!</h1>
+                    <>
+                        <div className={styles.box_div_small}>
+                            <div className={styles.box_title}>
+                                <h1>You're Good to Go!</h1>
+                            </div>
+                            <div className={styles.center_ready_content}>
+                                <p>Your Polygon DG is Migrated!</p>
+                                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636423902/check-mark_fvx9a4.png" alt="Ready" />
+                            </div>
+                            <div className={styles.button_div}>
+                                <Button
+                                    className={styles.button}
+                                    onClick={() => {
+                                        dispatch({
+                                            type: 'set_openModalInfo',
+                                            data: true,
+                                        });
+                                    }}
+                                >
+                                    See My DG BreakDown
+                                </Button>
+                            </div>
                         </div>
-                        <div className={styles.center_ready_content}>
-                            <p>You’ve Swapped Your DG to the New Token!</p>
-                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636423902/check-mark_fvx9a4.png" alt="Ready" />
+                        <div className={styles.box_div_small}>
+                            <div className={styles.box_title}>
+                                <h1>
+                                    Swap for xDG to Earn {
+                                        props.formatNumber(
+                                            39107143 / state.stakingBalances.BALANCE_CONTRACT_TOWNHALL * 100,
+                                            2
+                                        )
+                                    }% APR
+                                </h1>
+                            </div>
+                            <div className={styles.center_ready_content}>
+                                <p>Holding xDG is Equivalent Staking in Gov V2</p>
+                                <img src="https://res.cloudinary.com/dze4ze7xd/image/upload/c_scale,h_48/v1638204611/swap_nc2aq6.png" alt="Ready" />
+                            </div>
+                            <div className={styles.button_div}>
+                                <Button
+                                    className={styles.button}
+                                    onClick={() => {
+                                        window.open("https://quickswap.exchange/#/swap?inputCurrency=0xef938b6da8576a896f6E0321ef80996F4890f9c4&outputCurrency=0xc6480Da81151B2277761024599E8Db2Ad4C388C8", "_blank");
+                                    }}
+                                >
+                                    <img src="https://res.cloudinary.com/dze4ze7xd/image/upload/v1638205186/Ellipse_15_q4vvs0.png" alt="metamask" />
+                                    Swap for xDG on Quickswap
+                                    <img className={styles.arrowIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636424323/TransBgArrow_ukntvi.png" alt="" />
+                                </Button>
+                            </div>
                         </div>
-                        <div className={styles.button_div}>
-                            <Button
-                                className={styles.button}
-                                onClick={() => {
-                                    dispatch({
-                                        type: 'set_openModalInfo',
-                                        data: true,
-                                    });
-                                }}
-                            >
-                                See My DG BreakDown
-                            </Button>
-                        </div>
-                    </div>
+                    </>
                 }
             </div>
         </div >

@@ -156,8 +156,8 @@ const SecondStep = (props) => {
                             </div>
                             <div className={styles.center_content}>
                                 <div>
-                                    {props.formatPrice(lpStakedAmount, 2)}
-                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
+                                    {props.formatNumber(lpStakedAmount, 4)}
+                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
                                 </div>
                             </div>
                             <div className={styles.button_div}>
@@ -169,7 +169,7 @@ const SecondStep = (props) => {
                                     >
                                         <Spinner />
                                         View on Etherscan
-                                        <img className={styles.arrowIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636424323/TransBgArrow_ukntvi.png" alt="" />
+                                        <img className={styles.arrowIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636424323/TransBgArrow_ukntvi.png" alt="" />
                                     </Button>
                                     :
                                     <Button
@@ -178,7 +178,7 @@ const SecondStep = (props) => {
                                             unstake();
                                         }}
                                     >
-                                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png" alt="metamask" />
+                                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" alt="metamask" />
                                         Unstake LP Tokens
                                     </Button>
                                 }
@@ -191,7 +191,7 @@ const SecondStep = (props) => {
                                 </div>
                                 <div className={styles.center_ready_content}>
                                     <p>No ETH-DG LP to Unstake</p>
-                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636423902/check-mark_fvx9a4.png" alt="Ready" />
+                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636423902/check-mark_fvx9a4.png" alt="Ready" />
                                 </div>
                                 <div className={styles.button_div}>
                                     <Button
@@ -202,7 +202,7 @@ const SecondStep = (props) => {
                                         disabled={true}
                                     >
                                         Next Step
-                                        <img className={styles.nextIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1634587739/next_zxguep.png" alt="" />
+                                        <img className={styles.nextIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634587739/next_zxguep.png" alt="" />
                                     </Button>
                                 </div>
                             </>
@@ -213,7 +213,7 @@ const SecondStep = (props) => {
                                 </div>
                                 <div className={styles.center_ready_content}>
                                     <p>No (Old) $DG Liquidity to Withdraw</p>
-                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636423902/check-mark_fvx9a4.png" alt="Ready" />
+                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636423902/check-mark_fvx9a4.png" alt="Ready" />
                                 </div>
                                 <div className={styles.button_div}>
                                     <Button
@@ -223,7 +223,7 @@ const SecondStep = (props) => {
                                         }}
                                     >
                                         Next Step
-                                        <img className={styles.nextIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1634587739/next_zxguep.png" alt="" />
+                                        <img className={styles.nextIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634587739/next_zxguep.png" alt="" />
                                     </Button>
                                 </div>
                             </>
@@ -237,8 +237,8 @@ const SecondStep = (props) => {
                         </div>
                         <div className={styles.center_content}>
                             <div>
-                                {props.formatPrice(uniDGAmount, 2)}
-                                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
+                                {props.formatNumber(uniDGAmount, 4)}
+                                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
                             </div>
                             <p>
                                 ${props.formatPrice((state.DGPrices.dg * uniDGAmount).toFixed(2), 2)}
@@ -251,9 +251,9 @@ const SecondStep = (props) => {
                                     window.open("https://app.uniswap.org/#/remove/v2/0xee06a81a695750e71a662b51066f2c74cf4478a0/ETH", "_blank");
                                 }}
                             >
-                                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636428353/uniswap_tkdx8e.png" alt="uniswap" />
+                                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636428353/uniswap_tkdx8e.png" alt="uniswap" />
                                 Withdraw Uniswap Liquidity
-                                <img className={styles.arrowIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636424323/TransBgArrow_ukntvi.png" alt="" />
+                                <img className={styles.arrowIcon} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636424323/TransBgArrow_ukntvi.png" alt="" />
                             </Button>
                         </div>
                     </div>

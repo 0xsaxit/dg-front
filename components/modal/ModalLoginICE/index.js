@@ -77,7 +77,7 @@ const ModalLoginICE = () => {
         });
       }
 
-      userAddress = window.ethereum.selectedAddress;
+      userAddress = window.ethereum?.selectedAddress;
 
       // track MetaMask connect event
       analytics.track('Connected MetaMask', {
