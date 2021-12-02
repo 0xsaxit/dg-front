@@ -24,7 +24,7 @@ const FifthStep = (props) => {
     const [DGLightTokenContract, setDGLightTokenContract] = useState({});
     const [DGLightBridgeContract, setDGLightBridgeContract] = useState({});
     const [swapSubmitted, setSwapSubmitted] = useState(false);
-    const [swapped, setSwaped] = useState(true);
+    const [swapped, setSwaped] = useState(false);
     const [loading, setLoading] = useState(false);
     const [approving, setApproving] = useState(false);
     const networkInfo = {
