@@ -16,7 +16,7 @@ const TokenMigration = (props) => {
         if (BigNumber(value).isNaN() || !BigNumber(value).isFinite()) {
             return '0';
         }
-        const valueStr = Number(BigNumber(value).toFixed(decimals)).toString();
+        const valueStr = Number(BigNumber(value).toFixed(decimals, BigNumber.ROUND_DOWN)).toString();
         const decimalPoint = valueStr.indexOf('.');
         const decimalLength = decimalPoint < 0 ? 1 : valueStr.length - decimalPoint;
         return BigNumber(valueStr).toFormat(Math.min(decimals, decimalLength - 1));

@@ -53,9 +53,13 @@ const FifthStep = (props) => {
     }
 
     function handleDGChange(e) {
-        const num = Number(e.target.value);
+        DGAmountChange(e.target.value);
+    }
+
+    function DGAmountChange(value) {
+        const num = Number(value);
         if (!Number.isNaN(num)) {
-            setAmountDG(e.target.value);
+            setAmountDG(value);
             const conversion = BigNumber(num).times(1000).toFixed();
             if (amountDGLight != conversion) {
                 setAmountDGLight(conversion);
@@ -64,9 +68,13 @@ const FifthStep = (props) => {
     }
 
     function handleDGLightChange(e) {
-        const num = Number(e.target.value);
+        DGLightAmountChange(e.target.value);
+    }
+
+    function DGLightAmountChange(value) {
+        const num = Number(value);
         if (!Number.isNaN(num)) {
-            setAmountDGLight(e.target.value);
+            setAmountDGLight(value);
             const conversion = BigNumber(num).div(1000).toFixed();
             if (amountDG != conversion) {
                 setAmountDG(conversion);
@@ -272,6 +280,10 @@ const FifthStep = (props) => {
         setDGTokenContract(DGTokenContract);
         setDGLightTokenContract(DGLightTokenContract);
         setDGLightBridgeContract(DGLightBridgeContract);
+
+        const amountInWei = await DGTokenContract.methods.balanceOf(state.userAddress).call();
+        const dgAmount = BigNumber(amountInWei).div(Global.CONSTANTS.FACTOR);
+        DGAmountChange(dgAmount.toFixed());
     }
 
     async function checkNetworkId(networkId) {
@@ -342,7 +354,10 @@ const FifthStep = (props) => {
                                         </div>
 
                                         <div className={styles.description}>
-                                            <h4 className={direct ? styles.active : null}>
+                                            <h4
+                                                className={direct ? styles.active : null}
+                                                onClick={() => {direct ? DGAmountChange(state.DGBalances.BALANCE_CHILD_DG) : null}}
+                                            >
                                                 {props.formatNumber(state.DGBalances.BALANCE_CHILD_DG || 0, 4)} DG (Old) {direct ? 'Detected!' : 'Total'}
                                             </h4>
                                             <p>On Polygon</p>
@@ -374,7 +389,10 @@ const FifthStep = (props) => {
                                         </div>
 
                                         <div className={styles.description}>
-                                            <h4 className={!direct ? styles.active : null}>
+                                            <h4
+                                                className={!direct ? styles.active : null}
+                                                onClick={() => {!direct ? DGLightAmountChange(state.DGBalances.BALANCE_CHILD_DG_LIGHT) : null}}
+                                            >
                                                 {props.formatNumber(state.DGBalances.BALANCE_CHILD_DG_LIGHT || 0, 2)} New DG {!direct ? 'Detected!' : 'Total'}
                                             </h4>
                                             <p>On Polygon</p>
@@ -521,7 +539,7 @@ const FifthStep = (props) => {
                                 <h1>
                                     Swap for xDG to Earn {
                                         props.formatNumber(
-                                            39107143 / state.stakingBalances.BALANCE_CONTRACT_TOWNHALL * 100,
+                                            78210000 / state.stakingBalances.BALANCE_CONTRACT_TOWNHALL * 100,
                                             2
                                         )
                                     }% APR
