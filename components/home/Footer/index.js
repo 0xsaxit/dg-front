@@ -1,12 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import cn from 'classnames';
 import { Button, Icon } from 'semantic-ui-react';
 import { useMediaQuery } from 'hooks';
 import Link from 'next/link';
+import { GlobalContext } from 'store';
 import styles from './Footer.module.scss';
 // import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
 const Footer = () => {
+  const [state, dispatch] = useContext(GlobalContext);
+  
   // define local variables
   let linkDocs = '';
   const mobile = useMediaQuery('(max-width: 768px)');
@@ -14,6 +17,9 @@ const Footer = () => {
     '(min-width: 768px) and (max-width: 1200px)'
   );
   // const { t, i18n } = useTranslation();
+  const DGBalances = state.DGBalances.BALANCE_STAKING_UNISWAP;
+  const DGStakingBalances = state.stakingBalances.BALANCE_STAKED_UNISWAP;
+
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -60,12 +66,12 @@ const Footer = () => {
                   Gameplay
                 </p>
               </Link>
-              <Link href="/dg/liquidity">
+              {DGBalances > 0 || DGStakingBalances > 0 && <Link href="/dg/liquidity">
                 <p className={styles.footer_link}> 
                   {/* {t('Footer.LIQUDITY')}  */}
                   Liquidity
                 </p>
-              </Link>
+              </Link>}
             </span>
 
             <span className={styles.grid_column}>

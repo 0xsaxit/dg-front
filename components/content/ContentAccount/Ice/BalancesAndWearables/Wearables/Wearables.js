@@ -15,7 +15,7 @@ const Wearables = ({ state }) => {
       item.meta_data.attributes.find(el => el.trait_type === 'Bonus').value > 0
   );
   const delegatedWearables = state.iceDelegatedItems.filter(
-    item => item.meta_data && item.meta_data.attributes.find(el => el.trait_type === 'Bonus').value > 0
+    item => item.meta_data && item.meta_data.attributes.find(el => el.trait_type ===  'Rank').value > 0
   );
 
   /////////////////////////////////////////////////////////////////////////////////////////

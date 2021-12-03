@@ -10,7 +10,7 @@ const call = (url, method, withToken = true, data = {}) => {
   if (
     withToken &&
     (currentTimestamp > expiredTimestamp ||
-      !(window.ethereum && window.ethereum.selectedAddress))
+      !(window.ethereum && window.ethereum?.selectedAddress))
   ) {
     return new Promise((resolve, reject) => {
       reject(`Couldn't get an access token`);
