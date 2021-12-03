@@ -31,7 +31,6 @@ const Governance = props => {
   const [loading, setLoading] = useState(false);
   const [stakeSubmitted, setStakeSubmitted] = useState(false);
   const [approving, setApproving] = useState(false);
-  const [ratio, setRatio] = useState(1);
   const router = useRouter();
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -62,19 +61,18 @@ const Governance = props => {
           Transactions.DGTownHallContract(web3),
         ]);
 
-        const [balance, _ratio] = await Promise.all([
-          _DGTownHallContract.methods.innerSupply().call(),
-          _DGTownHallContract.methods.insideAmount(1).call(),
-        ]);
-
+        const [balance, _stakedBalance] = [
+          await _DGTownHallContract.methods.innerSupply().call(),
+          await _DGTownHallContract.methods.DGAmount(state.userAddress).call(),
+        ];
         setStakeContractGovernance(stakeContractGovernance);
         setDGLightTokenContract(_DGLightTokenContract);
         setDGTokenContract(DGTokenContract);
-        setRatio(_ratio);
         setDGTownHallContract(_DGTownHallContract);
+        setStakedBalance(_stakedBalance);
 
         setAPY(
-          BigNumber(3910714300)
+          BigNumber(7821000000)
             .div(BigNumber(balance))
             .multipliedBy(Constants.CONSTANTS.FACTOR)
             .toString()
@@ -328,11 +326,12 @@ const Governance = props => {
                     <span className="d-flex justify-content-center w-50">
                       <span className="d-flex flex-column align-items-center pb-3">
                         <p className={styles.apy_text}>Your Staked DG Value</p>
-                        {state.stakingBalances.BALANCE_USER_GOVERNANCE ? (
+                        {stakedBalance ? (
                           <p className={styles.apy_percent}>
                             {props.formatPrice(
-                              state.stakingBalances.BALANCE_USER_GOVERNANCE /
-                                ratio
+                              new BigNumber(stakedBalance)
+                                .div(new BigNumber(10).pow(18))
+                                .toString()
                             )}
                           </p>
                         ) : (

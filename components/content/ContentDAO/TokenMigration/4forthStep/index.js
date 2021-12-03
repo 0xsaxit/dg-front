@@ -188,7 +188,7 @@ const ForthStep = (props) => {
                                     <h1>
                                         New DG Gov Staking <abbr>({
                                             props.formatNumber(
-                                                39107143 / state.stakingBalances.BALANCE_CONTRACT_TOWNHALL * 100,
+                                                78210000 / state.stakingBalances.BALANCE_CONTRACT_TOWNHALL * 100,
                                                 2
                                             )
                                         }% APR)</abbr>
