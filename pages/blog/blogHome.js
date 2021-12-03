@@ -77,7 +77,7 @@ function blog() {
       </div>
 
       <div className="featured-blog-container">
-        <Link href="/blog/[id]" as="blog/decentral-games-ice-poker-genesis-mint-and-beta-play-to-earn-launch">
+        <Link href="/blog/[id]" as="blog/dg-token-split-governance-v2-and-liquidity-pool-updates">
           <a>
             <span className="featured-blog-grid">
               <Image src={Images.FEATURED_IMAGE} className="featured-image" />
@@ -85,7 +85,7 @@ function blog() {
               <div className="post-info featured">
                 <div className="top">
                   <span className="blog-category">Announcements </span>
-                  <span className="blog-date">27 OCT 2021</span>
+                  <span className="blog-date">1 DEC 2021</span>
                 </div>
                 <div className="bottom">
                   <div className="blog-title">
@@ -97,7 +97,7 @@ function blog() {
                         marginTop: '10px'
                       }}
                     >
-                      Decentral Games ICE Poker Genesis Mint and Beta Play-to-Earn Launch
+                      DG Token Split, Governance V2, and Liquidity Pool Updates
                     </h4>
                     <p
                       style={{
@@ -106,7 +106,7 @@ function blog() {
                         paddingTop: '15px',
                       }}
                     >
-                      Put on an ICE Poker Wearable and hit the tables to earn ICE and have fun with your friends! Decentral Games’ play-to-earn ICE Poker lets anyone earn ICE by purchasing or receiving delegation to an ICE Poker Wearable NFT and completing daily poker challenges in the Metaverse
+                      After the DG community’s overwhelming support for a DG token redenomination and split (99.97% voted in favor), the new DG token is live! You can now migrate your old DG tokens 1:1000 to the new DG! This 1:1000 ratio establishes the new DG token with a 1B fully diluted supply cap, which will be reached within ~5 years
                     </p>
                   </div>
                 </div>
