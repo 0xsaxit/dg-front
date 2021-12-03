@@ -61,11 +61,15 @@ const Governance = props => {
           Transactions.DGTownHallContract(web3),
         ]);
 
-        const balance = await _DGTownHallContract.methods.innerSupply().call();
+        const [balance, _stakedBalance] = [
+          await _DGTownHallContract.methods.innerSupply().call(),
+          await _DGTownHallContract.methods.DGAmount(state.userAddress).call(),
+        ];
         setStakeContractGovernance(stakeContractGovernance);
         setDGLightTokenContract(_DGLightTokenContract);
         setDGTokenContract(DGTokenContract);
         setDGTownHallContract(_DGTownHallContract);
+        setStakedBalance(_stakedBalance);
 
         setAPY(
           BigNumber(7821000000)
@@ -322,10 +326,12 @@ const Governance = props => {
                     <span className="d-flex justify-content-center w-50">
                       <span className="d-flex flex-column align-items-center pb-3">
                         <p className={styles.apy_text}>Your Staked DG Value</p>
-                        {state.stakingBalances.BALANCE_USER_GOVERNANCE ? (
+                        {stakedBalance ? (
                           <p className={styles.apy_percent}>
                             {props.formatPrice(
-                              state.stakingBalances.BALANCE_USER_GOVERNANCE
+                              new BigNumber(stakedBalance)
+                                .div(new BigNumber(10).pow(18))
+                                .toString()
                             )}
                           </p>
                         ) : (
