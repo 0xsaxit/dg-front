@@ -31,7 +31,6 @@ const Governance = props => {
   const [loading, setLoading] = useState(false);
   const [stakeSubmitted, setStakeSubmitted] = useState(false);
   const [approving, setApproving] = useState(false);
-  const [ratio, setRatio] = useState(1);
   const router = useRouter();
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -62,15 +61,10 @@ const Governance = props => {
           Transactions.DGTownHallContract(web3),
         ]);
 
-        const [balance, _ratio] = await Promise.all([
-          _DGTownHallContract.methods.innerSupply().call(),
-          _DGTownHallContract.methods.insideAmount(1).call(),
-        ]);
-
+        const balance = await _DGTownHallContract.methods.innerSupply().call();
         setStakeContractGovernance(stakeContractGovernance);
         setDGLightTokenContract(_DGLightTokenContract);
         setDGTokenContract(DGTokenContract);
-        setRatio(_ratio);
         setDGTownHallContract(_DGTownHallContract);
 
         setAPY(
@@ -331,8 +325,7 @@ const Governance = props => {
                         {state.stakingBalances.BALANCE_USER_GOVERNANCE ? (
                           <p className={styles.apy_percent}>
                             {props.formatPrice(
-                              state.stakingBalances.BALANCE_USER_GOVERNANCE /
-                                ratio
+                              state.stakingBalances.BALANCE_USER_GOVERNANCE
                             )}
                           </p>
                         ) : (
