@@ -30,8 +30,6 @@ const Leaderboard = () => {
         }
     }, [state.gameRecords, time])
 
-    console.log("gameRecords ====>", state.gameRecords);
-    
     return (
         <div className={styles.main_wrapper}>
             {!state.userStatus ?
