@@ -408,7 +408,8 @@ const Governance = props => {
                               : state.stakingBalances.BALANCE_USER_GOVERNANCE,
                             3
                           )}
-                          &nbsp;DG Available to&nbsp;
+                          &nbsp;{stakeType === 'Stake' ? '' : 'x'}DG Available
+                          to&nbsp;
                           {stakeType}
                         </h4>
                         <p>On ETH Mainnet</p>
