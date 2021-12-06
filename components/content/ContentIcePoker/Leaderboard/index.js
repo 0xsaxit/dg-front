@@ -11,7 +11,7 @@ const Leaderboard = () => {
     // get leaderboard data from the Context API store
     const [state, dispatch] = useContext(GlobalContext);
     const [gameRecords, setGameRecords] = useState([]);
-
+    const [personalRecord, setPersonalRecord] = useState({});
     // define local variables
     const [time, setTime] = useState('Weekly');
 
@@ -19,15 +19,16 @@ const Leaderboard = () => {
         if (Object.keys(state.gameRecords).length !== 0) {
             if (time === 'Weekly') {
                 setGameRecords(state.gameRecords.weekly.poker.chips)
+                setPersonalRecord(state.gameRecords.weekly.poker.personalChipsData);
             } else if (time === 'Monthly') {
                 setGameRecords(state.gameRecords.monthly.poker.chips)
+                setPersonalRecord(state.gameRecords.monthly.poker.personalChipsData);
             } else {
                 setGameRecords(state.gameRecords.all.poker.chips)
+                setPersonalRecord(state.gameRecords.all.poker.personalChipsData);
             }
         }
     }, [state.gameRecords, time])
-
-    console.log(state);
 
     return (
         <div className={styles.main_wrapper}>
@@ -84,7 +85,7 @@ const Leaderboard = () => {
                             </abbr>
                         </div>
                         <div className={styles.winnings}>
-                            <abbr>--</abbr>
+                            <abbr>{personalRecord.myScore}</abbr>
                             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635212177/FREE_Coin_c08hyk.png" alt="ice" />
                         </div>
                     </div>
