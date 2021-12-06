@@ -33,7 +33,7 @@ const Fetch = {
   },
 
   GAME_RECORDS: () => {
-    return call(`${API_BASE_URL}/admin/getTotalRecords`, 'GET', false);
+    return call(`${API_BASE_URL}/admin/getTotalRecords`, 'GET');
   },
 
   // PLAYER_DATA: () => {
