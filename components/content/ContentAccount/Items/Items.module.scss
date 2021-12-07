@@ -1,9 +1,11 @@
 @import 'styles/base.scss';
 
 .items_container {
-  margin-top: -30px;
+  margin-top: 30px !important;
   margin: auto;
-  max-width: 930px;
+  max-width: 1010px;
+  padding-right: 20px;
+  padding-left: 10px;
 
   & > span {
     display: flex;
@@ -158,5 +160,25 @@
     font-size: 18px;
     text-align: center;
     color: rgba(255, 255, 255, 0.6) !important;
+  }
+}
+
+
+@include mq($until: medium) {
+  .items_container {
+    padding-left: 0px !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    padding-right: 0px;
+
+    .title {
+      font-size: 20px !important;
+    }
+
+    .all_button {
+      height: 30px;
+      padding: 6px 12px;
+      font-size: 12px;
+    }
   }
 }

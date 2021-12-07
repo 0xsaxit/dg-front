@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { GlobalContext } from 'store';
 import cn from 'classnames';
 import { Grid, Image } from 'semantic-ui-react';
 import Aux from 'components/_Aux';
+import IceWearables from '../Ice/BalancesAndWearables/Wearables'
 import styles from './Items.module.scss';
 
 function Items({ state }) {
-  // define local variables
 
   return (
     <Aux>
+      <IceWearables state={state} />
+
       <div className={styles.items_container}>
         <span>
           <h1 className={styles.title}>
-            NFTs
+            DG Mining NFTs
           </h1>
           <a href={`https://opensea.io/${state.userAddress}`}>
             <button className={cn('btn', styles.all_button)}>
@@ -67,13 +70,13 @@ function Items({ state }) {
         ) : (
           <div className={styles.error_container}>
             <p className={styles.error_state}>
-              No Wearable NFTs
+              No NFTs
             </p>
           </div>
         )}
       </div>
 
-      <div className={styles.items_container}>
+      <div className={styles.items_container} style={{ marginBottom: '30px' }}>
         <h1 className={styles.title} style={{ marginTop: '50px' }}>
           POAPs
         </h1>
