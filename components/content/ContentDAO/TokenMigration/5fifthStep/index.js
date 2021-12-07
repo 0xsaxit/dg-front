@@ -339,7 +339,13 @@ const FifthStep = (props) => {
                                     <div className={styles.contract_box}>
                                         <div className={styles.tag}>
                                             Old DG Contract
-                                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1635530963/arrow_b8xsav.png" alt="" />
+                                            <a 
+                                                className={styles.scan_link}
+                                                href="https://polygonscan.com/token/0x2a93172c8dccbfbc60a39d56183b7279a2f647b4" 
+                                                target="_blank"
+                                            >
+                                                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1635530963/arrow_b8xsav.png" alt="" />
+                                            </a>
                                         </div>
 
                                         <div className={styles.content}>
@@ -373,7 +379,13 @@ const FifthStep = (props) => {
                                     <div className={styles.contract_box}>
                                         <div className={styles.tag}>
                                             New DG Contract
-                                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1635530963/arrow_b8xsav.png" alt="" />
+                                            <a 
+                                                className={styles.scan_link}
+                                                href="https://polygonscan.com/token/0xef938b6da8576a896f6e0321ef80996f4890f9c4" 
+                                                target="_blank"
+                                            >
+                                                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1635530963/arrow_b8xsav.png" alt="" />
+                                            </a>
                                         </div>
 
                                         <div className={styles.content}>
