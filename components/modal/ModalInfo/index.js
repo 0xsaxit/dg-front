@@ -196,14 +196,16 @@ const ModalInfo = () => {
             {formatPrice(xdgTotal, 3)}
           </h5>
 
-          {/* <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
+          <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
             $
             {formatPrice(xdgTotalUSD, 2)}
-          </p> */}
+          </p>
         </span>
       </span>
     );
   }
+
+  console.log(xdgTotal,"==========xdg===========", xdgTotalUSD)
 
   function mainchainDG() {
     return (
@@ -225,9 +227,9 @@ const ModalInfo = () => {
             {formatPrice(state.DGBalances.BALANCE_ROOT_DG_LIGHT, 3)}
           </h5>
 
-          {/* <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
+          <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
             ${formatPrice(state.DGBalances.BALANCE_ROOT_DG_LIGHT * DGPrice, 2)}
-          </p> */}
+          </p>
         </span>
       </span>
     );
@@ -253,9 +255,9 @@ const ModalInfo = () => {
             {formatPrice(state.DGBalances.BALANCE_CHILD_DG_LIGHT, 3)}
           </h5>
 
-          {/* <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
+          <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
             ${formatPrice(state.DGBalances.BALANCE_CHILD_DG_LIGHT * DGPrice, 2)}
-          </p> */}
+          </p>
         </span>
       </span>
     );
@@ -281,9 +283,9 @@ const ModalInfo = () => {
             {formatPrice(dgMining, 3)}
           </h5>
 
-          {/* <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
+          <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
             ${formatPrice(dgMining * DGPrice, 2)}
-          </p> */}
+          </p>
         </span>
       </span>
     );
@@ -309,9 +311,9 @@ const ModalInfo = () => {
             {formatPrice(dgSummationOld / 1000, 3)}
           </h5>
 
-          {/* <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
+          <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
             ${formatPrice((dgSummationOld / 1000) * DGPrice, 2)}
-          </p> */}
+          </p>
         </span>
       </span>
     );
@@ -337,9 +339,9 @@ const ModalInfo = () => {
             {formatPrice(dgSummationOldPolygon / 1000, 3)}
           </h5>
 
-          {/* <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
+          <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
             ${formatPrice((dgSummationOldPolygon / 1000) * DGPrice, 2)}
-          </p> */}
+          </p>
         </span>
       </span>
     );
