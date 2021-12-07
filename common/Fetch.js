@@ -250,8 +250,6 @@ const Fetch = {
       'GET',
       false
     );
-    // console.log("price_json", price_json);
-    // return price_json['decentral-games-old']['usd'];
   },
 
 
