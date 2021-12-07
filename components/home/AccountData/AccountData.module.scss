@@ -72,7 +72,7 @@
 				display: flex;
 				justify-content: center;
 				gap: 4px;
-				
+
 				font-size: 10px;
 				color: "white";
 				opacity: 0.5;
@@ -141,7 +141,7 @@
 			margin-right: 12px !important;
 		}
 	}
-	
+
 	@include mq($until: small) {
 		.account_hover {
 			font-size: 14px !important;
@@ -150,4 +150,3 @@
 		}
 	}
 }
-
