@@ -244,6 +244,17 @@ const Fetch = {
     );
   },
 
+  OLD_DG_PRICE: () => {
+    return call(
+      `https://api.coingecko.com/api/v3/simple/price?ids=decentral-games-old&vs_currencies=usd`,
+      'GET',
+      false
+    );
+    // console.log("price_json", price_json);
+    // return price_json['decentral-games-old']['usd'];
+  },
+
+
   ATRI_PRICE: () => {
     return call(`https://api.coingecko.com/api/v3/coins/atari`, 'GET', false);
   },

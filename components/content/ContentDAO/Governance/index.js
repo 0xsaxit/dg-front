@@ -12,6 +12,7 @@ import Transactions from '../../../../common/Transactions';
 import Global from '../../../Constants';
 import PostPreview from 'components/blog/PostPreview';
 import Constants from '../../../Constants';
+import Fetch from '../../../../common/Fetch';
 
 const Governance = props => {
   // get the treasury's balances numbers from the Context API store
@@ -31,6 +32,7 @@ const Governance = props => {
   const [loading, setLoading] = useState(false);
   const [stakeSubmitted, setStakeSubmitted] = useState(false);
   const [approving, setApproving] = useState(false);
+  const [oldDGPrice, setOldDGPrice] = useState(0);
   const router = useRouter();
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -65,11 +67,15 @@ const Governance = props => {
           await _DGTownHallContract.methods.innerSupply().call(),
           await _DGTownHallContract.methods.DGAmount(state.userAddress).call(),
         ];
+
+        const price_json = await Fetch.OLD_DG_PRICE();
+
         setStakeContractGovernance(stakeContractGovernance);
         setDGLightTokenContract(_DGLightTokenContract);
         setDGTokenContract(DGTokenContract);
         setDGTownHallContract(_DGTownHallContract);
         setStakedBalance(_stakedBalance);
+        setOldDGPrice(price_json['decentral-games-old'].usd);
 
         setAPY(
           BigNumber(7821000000)
@@ -498,7 +504,7 @@ const Governance = props => {
                     $
                     {props.formatPrice(
                       (
-                        props.price *
+                        oldDGPrice *
                         state.DGBalances.BALANCE_STAKING_GOVERNANCE
                       ).toFixed(2),
                       2
