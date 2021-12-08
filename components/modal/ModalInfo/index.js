@@ -153,7 +153,7 @@ const ModalInfo = () => {
                 {formatPrice(dgTotal, 0)} DG
               </h4>
 
-              {/* <p className={styles.subtitle_2}>${formatPrice(dgTotalUSD, 2)}</p> */}
+              <p className={styles.subtitle_2}>${formatPrice(dgTotalUSD, 2)}</p>
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', width: '50%' }}>
@@ -166,9 +166,9 @@ const ModalInfo = () => {
                 {formatPrice(xdgTotal, 0)} xDG
               </h4>
 
-              {/* <p className={styles.subtitle_2}>
+              <p className={styles.subtitle_2}>
                 ${formatPrice(xdgTotalUSD, 2)}
-              </p> */}
+              </p>
             </div>
           </section>
         </span>
