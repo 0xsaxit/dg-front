@@ -1,20 +1,20 @@
-@import 'styles/base.scss';
+@import "styles/base.scss";
 
 .wearableSection {
-    max-width: 1010px;
-    margin: 0 auto;
-    padding-left: 10px;
-    padding-right: 10px;
+  max-width: 1010px;
+  margin: 0 auto;
+  padding-left: 10px;
+  padding-right: 10px;
 
-    @include mq($until: medium) {
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-    
-    @media screen and (max-width: 600px) {
-      padding-left: 0px;
-      padding-right: 0px;
-    }
+  @include mq($until: medium) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  @media screen and (max-width: 600px) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
 }
 
 .wearable {
@@ -149,7 +149,7 @@
 
   .open_sea {
     border-radius: 16px;
-    margin-top: 60px;
+    margin-top: 40px;
     height: 35px;
     color: white;
     padding: 6px 24px 6px 24px;
@@ -209,6 +209,13 @@
   display: grid;
   gap: 24px;
   grid-template-columns: repeat(auto-fill, minmax(288px, 1fr));
+}
+
+.no_ice_wearables {
+  font-family: Larsseit-Bold;
+  font-size: 18px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6) !important;
 }
 
 .grid_container {

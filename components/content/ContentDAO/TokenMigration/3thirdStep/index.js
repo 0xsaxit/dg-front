@@ -296,7 +296,12 @@ const ThirdStep = (props) => {
                                     <div className={styles.contract_box}>
                                         <div className={styles.tag}>
                                             Old DG Contract
-                                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635530963/arrow_b8xsav.png" alt="" />
+                                            <a 
+                                                className={styles.scan_link}
+                                                href="https://etherscan.io/token/0xee06a81a695750e71a662b51066f2c74cf4478a0" 
+                                                target="_blank">
+                                                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635530963/arrow_b8xsav.png" alt="" />
+                                            </a>
                                         </div>
 
                                         <div className={styles.content}>
@@ -330,7 +335,12 @@ const ThirdStep = (props) => {
                                     <div className={styles.contract_box}>
                                         <div className={styles.tag}>
                                             New DG Contract
-                                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635530963/arrow_b8xsav.png" alt="" />
+                                            <a 
+                                                className={styles.scan_link}
+                                                href="https://etherscan.io/token/0x4b520c812e8430659fc9f12f6d0c39026c83588d" 
+                                                target="_blank">
+                                                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635530963/arrow_b8xsav.png" alt="" />
+                                            </a>
                                         </div>
 
                                         <div className={styles.content}>

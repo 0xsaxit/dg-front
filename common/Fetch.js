@@ -33,7 +33,7 @@ const Fetch = {
   },
 
   GAME_RECORDS: () => {
-    return call(`${API_BASE_URL}/admin/getTotalRecords`, 'GET', false);
+    return call(`${API_BASE_URL}/admin/getTotalRecords`, 'GET');
   },
 
   // PLAYER_DATA: () => {
@@ -243,6 +243,15 @@ const Fetch = {
       false
     );
   },
+
+  OLD_DG_PRICE: () => {
+    return call(
+      `https://api.coingecko.com/api/v3/simple/price?ids=decentral-games-old&vs_currencies=usd`,
+      'GET',
+      false
+    );
+  },
+
 
   ATRI_PRICE: () => {
     return call(`https://api.coingecko.com/api/v3/coins/atari`, 'GET', false);

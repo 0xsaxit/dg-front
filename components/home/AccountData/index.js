@@ -193,7 +193,7 @@ const AccountData = props => {
                       <path
                         d="M1.54907 15.7588L10.9241 15.7588C11.7151 15.7588 12.3303 15.1143 12.3303 14.3525L12.3303 12.9463L13.7366 12.9463C14.5276 12.9463 15.1428 12.3018 15.1428 11.54L15.1428 2.16504C15.1428 1.37402 14.5276 0.758789 13.7366 0.758789L4.36157 0.758788C3.59985 0.758788 2.95532 1.37402 2.95532 2.16504L2.95532 3.57129L1.54907 3.57129C0.787355 3.57129 0.142823 4.18652 0.142823 4.97754L0.142822 14.3525C0.142822 15.1143 0.787354 15.7588 1.54907 15.7588ZM4.53735 2.16504L13.5608 2.16504C13.678 2.16504 13.7366 2.22363 13.7366 2.34082L13.7366 11.3643C13.7366 11.4521 13.678 11.54 13.5608 11.54L12.3303 11.54L12.3303 4.97754C12.3303 4.18652 11.7151 3.57129 10.9241 3.57129L4.36157 3.57129L4.36157 2.34082C4.36157 2.22363 4.44946 2.16504 4.53735 2.16504ZM1.72485 4.97754L10.7483 4.97754C10.8655 4.97754 10.9241 5.03613 10.9241 5.15332L10.9241 14.1768C10.9241 14.2646 10.8655 14.3525 10.7483 14.3525L1.72485 14.3525C1.63696 14.3525 1.54907 14.2646 1.54907 14.1768L1.54907 5.15332C1.54907 5.03613 1.63696 4.97754 1.72485 4.97754Z"
                         fill="white"
-                        // fillOpacity="0.5"
+                      // fillOpacity="0.5"
                       />
                     </svg>
                   </p>
@@ -245,7 +245,7 @@ const AccountData = props => {
                   </p>
                   <p className={styles.amount}>
                     {' '}
-                    {state.userInfo.totalXP >= 0 ? state.userInfo.totalXP.toLocaleString(): null}{' '}
+                    {state.userInfo.totalXP >= 0 ? state.userInfo.totalXP.toLocaleString() : null}{' '}
                   </p>
                 </div>
               </div>
@@ -305,7 +305,7 @@ const AccountData = props => {
                     styles.account_hover
                   )}
                 >
-                  ICE
+                  &nbsp;&nbsp;ICE&nbsp;&nbsp;
                 </span>
               ) : state.dgLoading ? (
                 <span
@@ -317,12 +317,12 @@ const AccountData = props => {
                     });
                   }}
                 >
-                  ICE
+                  &nbsp;&nbsp;ICE&nbsp;&nbsp;
                 </span>
               ) : (
                 <Link href="/account/ice">
                   <span className={cn('account-hover', styles.account_hover)}>
-                    ICE
+                    &nbsp;&nbsp;ICE&nbsp;&nbsp;
                   </span>
                 </Link>
               )}
@@ -335,7 +335,7 @@ const AccountData = props => {
                     styles.account_hover
                   )}
                 >
-                  NFTs
+                  Your Items
                 </span>
               ) : state.dgLoading ? (
                 <span
@@ -347,12 +347,12 @@ const AccountData = props => {
                     });
                   }}
                 >
-                  NFTs
+                  Your Items
                 </span>
               ) : (
                 <Link href="/account/items">
                   <span className={cn('account-hover', styles.account_hover)}>
-                    NFTs
+                    Your Items
                   </span>
                 </Link>
               )}

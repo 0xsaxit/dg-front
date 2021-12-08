@@ -43,9 +43,9 @@ const Balances = () => {
       icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631325895/dgNewLogo_hkvlps.png',
       name: 'Decentral Games',
       type: 'DG',
-      model: formatPrice(state.DGBalances.BALANCE_CHILD_DG, 3),
+      model: formatPrice(state.DGBalances.BALANCE_CHILD_DG_LIGHT, 3),
       price: formatPrice(
-        state.DGBalances.BALANCE_CHILD_DG * state.DGPrices.dg,
+        state.DGBalances.BALANCE_CHILD_DG_LIGHT * state.DGPrices.dg,
         2
       ),
     },
