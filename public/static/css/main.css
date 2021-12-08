@@ -1458,15 +1458,31 @@ i.settings.icon.submenu-icon, i.help.circle.icon.submenu-icon {
 .account-hover.active {
   color: black;
   cursor: default;
-  border-bottom: 3px solid #006eff;
   padding-bottom: 12px;
+}
+
+.account-hover.active::after {
+  content: "";
+  display: block;
+  width: 40px;
+  padding-top: 15px;
+  border-bottom: 3px solid #006eff;
+  margin-left: calc(50% - 20px);
 }
 
 .account-hover:hover {
   cursor: pointer;
-  border-bottom: 3px solid #006eff;
   padding-bottom: 12px !important;
   color: black;
+}
+
+.account-hover:hover::after {
+  content: "";
+  display: block;
+  width: 40px;
+  padding-top: 15px;
+  border-bottom: 3px solid #006eff;
+  margin-left: calc(50% - 20px);
 }
 
 .ui.divider.tab-divider {
@@ -3812,10 +3828,12 @@ div.ui.input.withdraw_input>input {
   z-index: 9;
   transition: 0.2s ease-in;
 }
+
 .slick-slider .slick-arrow:hover {
   background: #006eff;
   transition: 0.2s ease-in;
 }
+
 .slick-slider .slick-arrow.slick-disabled {
   display: none;
 }
