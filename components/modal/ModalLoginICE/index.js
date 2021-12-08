@@ -306,7 +306,7 @@ const ModalLoginICE = () => {
           open={open}
           close
           trigger={
-            <Button className={styles.wearable_button}>Mint New Wearable</Button>
+            <Button className={styles.wearable_button}>Mint New Wearable3</Button>
           }
         >
           <div

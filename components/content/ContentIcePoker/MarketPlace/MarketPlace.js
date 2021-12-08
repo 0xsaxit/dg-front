@@ -16,8 +16,55 @@ const MarketPlace = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [previewLevel, setPreviewLevel] = useState([0, 0, 0, 0]);
+  const [previewLevel, setPreviewLevel] = useState([0, 0, 0, 0, 0]);
   const wearables = [
+    {
+      title: 'Crypto Drip',
+      preview: [
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984404/CryptoDrip_Level_1_nbpz6x.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984401/CryptoDrip_Level_2_nigfx7.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984405/CryptoDrip_Level_3_nsemyd.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984404/CryptoDrip_Level_4_es8z5p.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984404/CryptoDrip_Level_5_d41jkl.png',
+      ],
+      details: {
+        Glasses: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984495/Glasses_Level_1_sn5dnw.png',
+          'Drip Shades',
+          'Crypto Drip',
+          'Accessory',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984495/Glasses_Level_1_sn5dnw.png',
+        ],
+        Hat: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984493/Hat_level_1_vxxht6.png',
+          'Drip Bucket',
+          'Crypto Drip',
+          'Head',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984493/Hat_level_1_vxxht6.png',
+        ],
+        Jacket: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984503/puffer_level_1_nimjkk.png',
+          'Drip Jacket',
+          'Crypto Drip',
+          'Torso',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984503/puffer_level_1_nimjkk.png',
+        ],
+        Pants: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984500/pants_level_1_f4xcuo.png',
+          'Drip Drawers',
+          'Crypto Drip',
+          'Legs',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984500/pants_level_1_f4xcuo.png',
+        ],
+        Shoes: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984504/Shoes_Level_1_jbsjgf.png',
+          'Drip Kicks',
+          'Crypto Drip',
+          'Feet',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984504/Shoes_Level_1_jbsjgf.png',
+        ],
+      }
+    },
     {
       title: 'Bomber',
       preview: [
@@ -305,14 +352,17 @@ const MarketPlace = () => {
         {wearables.map((wearable, index) => {
           let itemLimits;
           if (index === 0) {
-            itemLimits = state.itemLimits4;
+            itemLimits = state.itemLimits5;
           } else if (index === 1) {
-            itemLimits = state.itemLimits3;
+            itemLimits = state.itemLimits4;
           } else if (index === 2) {
-            itemLimits = state.itemLimits2;
+            itemLimits = state.itemLimits3;
           } else if (index === 3) {
+            itemLimits = state.itemLimits2;
+          } else if (index === 4) {
             itemLimits = state.itemLimits1;
           }
+          console.log("*************", wearable);
 
           return (
             <section key={index} className={styles.wearable_section}>
@@ -405,7 +455,7 @@ const MarketPlace = () => {
 
                         {state.userStatus >= 4 && state.userLoggedIn ? (
                           <p className={styles.nft_info}>
-                            {itemLimits[0]} of 100 left
+                            {itemLimits[i][0]} of 100 left
                           </p>
                         ) : (
                           <p className={styles.nft_info}>- of 100 left</p>
@@ -420,40 +470,48 @@ const MarketPlace = () => {
                     </div>
 
                     <div className={styles.button_container}>
-                      {itemLimits[i][0] ? (
-                        state.userStatus >= Global.MINT_STATUS &&
-                          state.userLoggedIn ? (
-                          <div className={styles.flex_50}>
-                            <ModalMintWearable
-                              index={i}
-                              numberLeft={itemLimits[i][0]}
-                              itemID={itemLimits[i][1]}
-                              address={itemLimits[5]}
-                              wearableImg={wearable.details[item][0]}
-                              wearableBodyType={wearable.details[item][3]}
-                              wearableBodyImg={wearable.details[item][4]}
-                              wearableName={wearable.details[item][1]}
-                            />
-                          </div>
-                        ) : (
-                          <div className={styles.flex_50}>
-                            <ModalLoginICE />
-                          </div>
-                        )
-                      ) : (
-                        <a
-                          className={styles.flex_50}
-                          href="https://market.decentraland.org/browse?assetType=nft&section=wearables&contracts=0xcb06f6aee0655252a3f6f2884680421d55d3c645"
-                          target="_blank"
-                          style={{
-                            width: '100%',
-                          }}
-                        >
-                          <Button className={styles.wearable_button}>
-                            Buy on Secondary
-                          </Button>
-                        </a>
-                      )}
+                      {index === 0 ?
+                        <Button className={styles.comingSoon} disabled>
+                          Coming Soon
+                        </Button>
+                        :
+                        <>
+                          {itemLimits[i][0] ? (
+                            state.userStatus >= Global.CONSTANTS.MINT_STATUS &&
+                              state.userLoggedIn ? (
+                              <div className={styles.flex_50}>
+                                <ModalMintWearable
+                                  index={i}
+                                  numberLeft={itemLimits[i][0]}
+                                  itemID={itemLimits[i][1]}
+                                  address={itemLimits[5]}
+                                  wearableImg={wearable.details[item][0]}
+                                  wearableBodyType={wearable.details[item][3]}
+                                  wearableBodyImg={wearable.details[item][4]}
+                                  wearableName={wearable.details[item][1]}
+                                />
+                              </div>
+                            ) : (
+                              <div className={styles.flex_50}>
+                                <ModalLoginICE />
+                              </div>
+                            )
+                          ) : (
+                            <a
+                              className={styles.flex_50}
+                              href="https://market.decentraland.org/browse?assetType=nft&section=wearables&contracts=0xcb06f6aee0655252a3f6f2884680421d55d3c645"
+                              target="_blank"
+                              style={{
+                                width: '100%',
+                              }}
+                            >
+                              <Button className={styles.wearable_button}>
+                                Buy on Secondary
+                              </Button>
+                            </a>
+                          )}
+                        </>
+                      }
                     </div>
                   </div>
                 ))}
