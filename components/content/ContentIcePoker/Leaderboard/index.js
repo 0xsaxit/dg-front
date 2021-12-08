@@ -68,14 +68,9 @@ const Leaderboard = () => {
                             All Time
                         </div>
                     </div>
-
                     <div className={styles.user_div}>
                         <div className={styles.rank}>
-                            {gameRecords.findIndex(record => record.address === state.userAddress) >= 0 ?
-                                gameRecords.findIndex(record => record.address === state.userAddress) + 1
-                                :
-                                <SadEmoji />
-                            }
+                            <abbr>{personalRecord.myRank}</abbr>
                         </div>
                         <div className={styles.user_info}>
                             <img src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`} alt="avatar" />
