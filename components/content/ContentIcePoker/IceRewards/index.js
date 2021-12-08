@@ -1,14 +1,15 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { GlobalContext } from '../../../../store'
-import { Table, Button } from 'semantic-ui-react'
+import React, { useState, useEffect, useContext } from 'react';
+import { GlobalContext } from '../../../../store';
+import { Table, Button } from 'semantic-ui-react';
 import { Bar } from 'react-chartjs-2';
-import cn from 'classnames'
+import cn from 'classnames';
 import { useMediaQuery } from 'hooks';
-import styles from './IceRewards.module.scss'
+import styles from './IceRewards.module.scss';
 import Fetch from '../../../../common/Fetch';
-import FoxAnimation from 'components/lottieAnimation/animations/fox'
+import FoxAnimation from 'components/lottieAnimation/animations/fox';
 import NoResult from 'components/lottieAnimation/animations/noResult';
-import ModalIceBreakdown from 'components/modal/ModalIceBreakDown'
+import ModalIceBreakdown from 'components/modal/ModalIceBreakDown';
+import Spinner from 'components/Spinner';
 
 const IceRewards = () => {
   // dispatch user's ICE amounts to the Context API store
@@ -61,7 +62,7 @@ const IceRewards = () => {
     let xAxis = [];
     const today = new Date();
     for (var i = 7; i >= 1; i--) {
-      var date = new Date(today)
+      var date = new Date(today);
       date.setDate(date.getDate() - i);
       console.log(date);
       xAxis.push(date.toDateString().slice(0, 1));
@@ -73,7 +74,15 @@ const IceRewards = () => {
       {
         label: 'Gameplay',
         data: [10, 50, 80, 60, 50, 90, 50],
-        backgroundColor: ['#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF'],
+        backgroundColor: [
+          '#B0E6FF',
+          '#B0E6FF',
+          '#B0E6FF',
+          '#B0E6FF',
+          '#B0E6FF',
+          '#B0E6FF',
+          '#B0E6FF',
+        ],
         barThickness: 20,
         borderWidth: 2,
         borderRadius: 10,
@@ -81,42 +90,50 @@ const IceRewards = () => {
       {
         label: 'Delegation',
         data: [100, 100, 100, 100, 100, 100, 100],
-        backgroundColor: ['#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5'],
+        backgroundColor: [
+          '#5EBFF5',
+          '#5EBFF5',
+          '#5EBFF5',
+          '#5EBFF5',
+          '#5EBFF5',
+          '#5EBFF5',
+          '#5EBFF5',
+        ],
         barThickness: 20,
         borderWidth: 2,
         borderRadius: 10,
-      }
-    ]
+      },
+    ];
     setStatsUSDY(datasets);
 
     // Set History
     setHistory([
       {
-        date: "11/25/21",
-        type: "Gameplay",
+        date: '11/25/21',
+        type: 'Gameplay',
         iceEarned: 3392,
         xpEarend: 60,
       },
       {
-        date: "11/25/21",
-        type: "Delegation",
+        date: '11/25/21',
+        type: 'Delegation',
         iceEarned: 2492,
         xpEarend: 40,
       },
       {
-        date: "11/24/21",
-        type: "Gameplay",
+        date: '11/24/21',
+        type: 'Gameplay',
         iceEarned: 339,
         xpEarend: 6,
       },
       {
-        date: "11/24/21",
-        type: "Delegation",
+        date: '11/24/21',
+        type: 'Delegation',
         iceEarned: 24,
         xpEarend: 6,
-      }
-    ])
-  }, [])
+      },
+    ]);
+  }, []);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -172,7 +189,7 @@ const IceRewards = () => {
           data: refresh,
         });
         msg = 'ICE claimed successfully!';
-
+        setTotalICE(0);
       } else {
         console.log('Claim ICE rewards request error: ' + json.reason);
         msg = 'ICE claimed failed!';
@@ -194,11 +211,11 @@ const IceRewards = () => {
 
   return (
     <>
-      {!state.userStatus ?
+      {!state.userStatus ? (
         <div className={styles.fullWidth}>
           <FoxAnimation />
         </div>
-        :
+      ) : (
         <div className={styles.main_wrapper}>
           <div className={styles.topDiv}>
             <div className={styles.claimICEDiv}>
@@ -217,20 +234,14 @@ const IceRewards = () => {
 
                 <div>
                   <div className={styles.lower_value}>
-                    <p className={styles.ICE_value}>
-                      {totalICE}
-                    </p>
+                    <p className={styles.ICE_value}>{totalICE}</p>
                     <img
                       style={{ marginTop: '-4px' }}
                       src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
                     />
                   </div>
                   <p className={styles.price}>
-                    $
-                    {formatPrice(
-                      totalICE * state.DGPrices.ice,
-                      2
-                    )}
+                    ${formatPrice(totalICE * state.DGPrices.ice, 2)}
                   </p>
                 </div>
 
@@ -246,7 +257,8 @@ const IceRewards = () => {
                     className={cn(styles.claim_ICE, styles.lower_button)}
                     disabled
                   >
-                    Claim {formatPrice(totalICE, 0)} ICE
+                    <Spinner width={33} height={33} />
+                    &nbsp; Claim {formatPrice(totalICE, 0)} ICE
                   </Button>
                 )}
               </div>
@@ -393,14 +405,14 @@ const IceRewards = () => {
             }*/}
           </div>
 
-          {showBreakDown !== -1 ?
+          {showBreakDown !== -1 ? (
             <ModalIceBreakdown
               history={iceRewardHistory[showBreakDown]}
               setShowingBreakDown={setShowingBreakDown}
             />
-            : null}
-        </div >
-      }
+          ) : null}
+        </div>
+      )}
     </>
   );
 };
