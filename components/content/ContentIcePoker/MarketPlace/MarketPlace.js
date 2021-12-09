@@ -470,48 +470,69 @@ const MarketPlace = () => {
                     </div>
 
                     <div className={styles.button_container}>
-                      {index === 0 ?
-                        <Button className={styles.comingSoon} disabled>
-                          Coming Soon
-                        </Button>
-                        :
-                        <>
-                          {itemLimits[i][0] ? (
-                            state.userStatus >= Global.CONSTANTS.MINT_STATUS &&
-                              state.userLoggedIn ? (
-                              <div className={styles.flex_50}>
-                                <ModalMintWearable
-                                  index={i}
-                                  numberLeft={itemLimits[i][0]}
-                                  itemID={itemLimits[i][1]}
-                                  address={itemLimits[5]}
-                                  wearableImg={wearable.details[item][0]}
-                                  wearableBodyType={wearable.details[item][3]}
-                                  wearableBodyImg={wearable.details[item][4]}
-                                  wearableName={wearable.details[item][1]}
-                                />
-                              </div>
-                            ) : (
+                      {(() => {
+                        // Minting Enabled State
+                        if ((state.appConfig?.isPublicWebsiteMintingEnabled
+                          || (state.appConfig?.isPrivateWebsiteMintingEnabled
+                            && state.userStatus > 20))
+                          && state.userLoggedIn
+                          && itemLimits[i][0] > 0
+                        ) {
+                          return (
+                            <div className={styles.flex_50}>
+                              <ModalMintWearable
+                                index={i}
+                                numberLeft={itemLimits[i][0]}
+                                itemID={itemLimits[i][1]}
+                                address={itemLimits[5]}
+                                wearableImg={detailsICEBomber[item][0]}
+                                wearableBodyType={detailsICEBomber[item][3]}
+                                wearableBodyImg={detailsICEBomber[item][4]}
+                                wearableName={detailsICEBomber[item][1]}
+                              />
+                            </div>
+                          );
+                          // Minting Disabled States
+                        } else {
+                          // Logged Out State
+                          if (!state.userLoggedIn) {
+                            return (
                               <div className={styles.flex_50}>
                                 <ModalLoginICE />
                               </div>
-                            )
-                          ) : (
-                            <a
-                              className={styles.flex_50}
-                              href="https://market.decentraland.org/browse?assetType=nft&section=wearables&contracts=0xcb06f6aee0655252a3f6f2884680421d55d3c645"
-                              target="_blank"
-                              style={{
-                                width: '100%',
-                              }}
-                            >
-                              <Button className={styles.wearable_button}>
-                                Buy on Secondary
-                              </Button>
-                            </a>
-                          )}
-                        </>
-                      }
+                            );
+                          }
+                          // Sold Out State
+                          else if (
+                            itemLimits[i][0] < 1 &&
+                            state.userStatus >= 4
+                          ) {
+                            return (
+                              <a
+                                className={styles.flex_50}
+                                href="https://market.decentraland.org/browse?assetType=nft&section=wearables&contracts=0xcb06f6aee0655252a3f6f2884680421d55d3c645"
+                                target="_blank"
+                                style={{
+                                  width: '100%',
+                                }}
+                              >
+                                <Button className={styles.wearable_button}>
+                                  Buy on Secondary
+                                </Button>
+                              </a>
+                            );
+                          } else {
+                            // Coming Soon State
+                            if (itemLimits[i][0] > 0) {
+                              return (
+                                <Button disabled className={styles.sold_button}>
+                                  Coming Soon!
+                                </Button>
+                              );
+                            }
+                          }
+                        }
+                      })()}
                     </div>
                   </div>
                 ))}
