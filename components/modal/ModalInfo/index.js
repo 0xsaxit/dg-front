@@ -406,7 +406,7 @@ const ModalInfo = () => {
         }}
       >
         <a
-          href={`https://app.uniswap.org/#/swap?outputCurrency=${Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DG}`}
+          href={`https://app.uniswap.org/#/swap?outputCurrency=${Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DG_LIGHT}`}
           target="_blank"
         >
           <button className={cn('btn', styles.buy_button)}>Buy DG</button>
