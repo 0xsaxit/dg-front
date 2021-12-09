@@ -9,6 +9,7 @@ import ABI_COLLECTION_V2 from '../components/ABI/ABICollectionV2';
 import ABI_COLLECTION_PH from '../components/ABI/ABICollectionPH';
 import ABI_COLLECTION_LINENS from '../components/ABI/ABICollectionLinens';
 import ABI_COLLECTION_BOMBER from '../components/ABI/ABICollectionBomber';
+import ABI_COLLECTION_CRYPTO_DRIP from '../components/ABI/ABICollectionCryptoDrip.json'
 import ABI_ICEToken from '../components/ABI/ABIICEToken';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
@@ -74,6 +75,10 @@ function ICEAttributes() {
           ABI_COLLECTION_BOMBER,
           Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS
         );
+        const collectionV2Contract5 = new maticWeb3.eth.Contract(
+          ABI_COLLECTION_CRYPTO_DRIP,
+          Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS
+        );
 
         const collectionArray = [];
         collectionArray.push([
@@ -95,6 +100,11 @@ function ICEAttributes() {
           collectionV2Contract4,
           Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS,
           [2, 12, 16, 20, 7],
+        ]);
+        collectionArray.push([
+          collectionV2Contract5,
+          Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS,
+          [0, 5, 10, 15, 20],
         ]);
         setCollectionArray(collectionArray);
 
@@ -287,6 +297,12 @@ function ICEAttributes() {
         dispatch({
           type: 'item_limits_4',
           data: itemLimits4,
+        });
+
+        const itemLimits5 = await getItemLimits(4);
+        dispatch({
+          type: 'item_limits_5',
+          data: itemLimits5,
         });
 
         // get the user's cool-down status
