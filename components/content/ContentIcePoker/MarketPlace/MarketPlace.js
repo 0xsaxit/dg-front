@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../../../../store';
 import ModalMintWearable from 'components/modal/ModalMintWearable';
 import ModalLoginICE from 'components/modal/ModalLoginICE';
+import Spinner from 'components/lottieAnimation/animations/spinner_updated';
 import { Button, Popup } from 'semantic-ui-react';
 import cn from 'classnames';
 import 'react-multi-carousel/lib/styles.css';
@@ -494,23 +495,12 @@ const MarketPlace = () => {
                           );
                           // Minting Disabled States
                         } else {
-                          // Logged Out State
-                          if (!state.userLoggedIn) {
-                            return (
-                              <div className={styles.flex_50}>
-                                <ModalLoginICE />
-                              </div>
-                            );
-                          }
-                          // Sold Out State
-                          else if (
-                            itemLimits[i][0] < 1 &&
-                            state.userStatus >= 4
-                          ) {
+                          if (itemLimits[i][0] >= 0 && itemLimits[i][0] < 1 && state.userStatus >= 4) {
+                            // Sold Out State
                             return (
                               <a
                                 className={styles.flex_50}
-                                href="https://market.decentraland.org/browse?assetType=nft&section=wearables&contracts=0xcb06f6aee0655252a3f6f2884680421d55d3c645"
+                                href="https://opensea.io/collection/decentral-games-ice"
                                 target="_blank"
                                 style={{
                                   width: '100%',
@@ -521,15 +511,27 @@ const MarketPlace = () => {
                                 </Button>
                               </a>
                             );
-                          } else {
+                          }
+                          else if (itemLimits[i][0] > 0) {
                             // Coming Soon State
-                            if (itemLimits[i][0] > 0) {
-                              return (
-                                <Button disabled className={styles.sold_button}>
-                                  Coming Soon!
-                                </Button>
-                              );
-                            }
+                            return (
+                              <Button disabled className={styles.sold_button}>
+                                Coming Soon!
+                              </Button>
+                            );
+                          } else if (state.userLoggedIn && itemLimits[i][0] < 0) {
+                            return (
+                              <Button disabled className={styles.sold_button}>
+                                <Spinner width={20} height={20} />
+                              </Button>
+                            )
+                          } else if (!state.userLoggedIn) {
+                            // Logged Out State
+                            return (
+                              <div className={styles.flex_50}>
+                                <ModalLoginICE />
+                              </div>
+                            );
                           }
                         }
                       })()}
