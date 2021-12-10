@@ -280,9 +280,6 @@ const ModalWearable = props => {
                       <span className={styles.not_enough}>Not Enough</span>
                     )}
                     <div className={styles.card}>
-                      {console.log("What is Props===/",props.rank)}
-                      {console.log(Math.min(props.rank + 1, 5))}
-                      {console.log(dgPrices)}
                       {dgPrices[Math.min(props.rank + 1, 5)]}
                       <img
                         src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1621630083/android-chrome-512x512_rmiw1y.png"
