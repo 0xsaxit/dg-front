@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../../../../store';
 import ModalMintWearable from 'components/modal/ModalMintWearable';
 import ModalLoginICE from 'components/modal/ModalLoginICE';
+import Spinner from 'components/lottieAnimation/animations/spinner_updated';
 import { Button, Popup } from 'semantic-ui-react';
 import cn from 'classnames';
 import 'react-multi-carousel/lib/styles.css';
@@ -494,8 +495,8 @@ const MarketPlace = () => {
                           );
                           // Minting Disabled States
                         } else {
-                          // Sold Out State
-                          if (itemLimits[i][0] < 1 && state.userStatus >= 4) {
+                          if (itemLimits[i][0] >= 0 && itemLimits[i][0] < 1 && state.userStatus >= 4) {
+                            // Sold Out State
                             return (
                               <a
                                 className={styles.flex_50}
@@ -518,6 +519,12 @@ const MarketPlace = () => {
                                 Coming Soon!
                               </Button>
                             );
+                          } else if (state.userLoggedIn && itemLimits[i][0] < 0) {
+                            return (
+                              <Button disabled className={styles.sold_button}>
+                                <Spinner width={20} height={20} />
+                              </Button>
+                            )
                           } else if (!state.userLoggedIn) {
                             // Logged Out State
                             return (
