@@ -166,7 +166,7 @@ const initialState = {
   },
   xpAmounts: 0,
   tokenAuths: {
-    DG_AUTHORIZATION: false,
+    DG_LIGHT_AUTHORIZATION: false,
     ICE_AUTHORIZATION: false,
     WETH_AUTHORIZATION: false,
   },

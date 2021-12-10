@@ -205,8 +205,6 @@ const ModalInfo = () => {
     );
   }
 
-  console.log(xdgTotal,"==========xdg===========", xdgTotalUSD)
-
   function mainchainDG() {
     return (
       <span
