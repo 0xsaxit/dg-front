@@ -207,8 +207,7 @@ const ModalWearable = props => {
                     icePrices[Math.min(props.rank + 1, 5)] *
                       state.DGPrices.ice +
                     dgPrices[Math.min(props.rank + 1, 5)] * state.DGPrices.dg
-                  ).toFixed(2)}
-                  )
+                  ).toFixed(2)})
                 </span>
                 <div className={styles.card_area}>
                   <div className={styles.card_area_body}>
@@ -276,28 +275,31 @@ const ModalWearable = props => {
                   </div>
 
                   <div className={styles.card_area_body}>
-                    {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(2) <
+                    {parseFloat(state.DGBalances.BALANCE_CHILD_DG_LIGHT).toFixed(2) <
                       dgPrices[Math.min(props.rank + 1, 5)] && (
                       <span className={styles.not_enough}>Not Enough</span>
                     )}
                     <div className={styles.card}>
+                      {console.log("What is Props===/",props.rank)}
+                      {console.log(Math.min(props.rank + 1, 5))}
+                      {console.log(dgPrices)}
                       {dgPrices[Math.min(props.rank + 1, 5)]}
                       <img
                         src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1621630083/android-chrome-512x512_rmiw1y.png"
                         className={styles.img_card2}
                       />
                     </div>
-                    {state.DGBalances.BALANCE_CHILD_DG <
+                    {state.DGBalances.BALANCE_CHILD_DG_LIGHT <
                     dgPrices[Math.min(props.rank + 1, 5)] ? (
                       <div className={styles.description}>
-                        {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(
+                        {parseFloat(state.DGBalances.BALANCE_CHILD_DG_LIGHT).toFixed(
                           2
                         )}{' '}
                         DG Available
                       </div>
                     ) : (
                       <div className={styles.greenCheck}>
-                        {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(
+                        {parseFloat(state.DGBalances.BALANCE_CHILD_DG_LIGHT).toFixed(
                           2
                         )}{' '}
                         DG Available
@@ -353,7 +355,7 @@ const ModalWearable = props => {
                       </div>
                     ) : (
                       <div className={styles.greenCheck}>
-                        {parseFloat(state.userInfo.balanceXP).toFixed(2)} XP Available
+                        {parseInt(state.userInfo.balanceXP)} XP Available
                         <svg
                           width="9"
                           height="8"
@@ -373,7 +375,7 @@ const ModalWearable = props => {
               </div>
               <div className={styles.button_area}>
                 {state.userInfo.balanceXP >= 50 &&
-                state.DGBalances.BALANCE_CHILD_DG >= 0.1 &&
+                state.DGBalances.BALANCE_CHILD_DG_LIGHT >= 100 &&
                 state.iceAmounts.ICE_AVAILABLE_AMOUNT >=
                   icePrices[Math.min(props.rank + 1, 5)] ? (
                   <Button

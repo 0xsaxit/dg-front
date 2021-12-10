@@ -5,7 +5,6 @@ import ABI_DG_POINTER_NEW from '../components/ABI/ABIDGPointerNew';
 import ABI_TOWN_HALL from '../components/ABI/ABIDGTownHall';
 import ABI_DG_STAKING from '../components/ABI/ABIDGStaking';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
-
 import ABI_XDG_TOKEN from '../components/ABI/ABIChildTokenXDG';
 
 import ABI_DG_LIGHT_TOKEN from '../components/ABI/ABIDGLightToken';

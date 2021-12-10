@@ -18,8 +18,6 @@ const NeedMoreUpgrade = ({
   const [open, setOpen] = useState(true);
   //const [upgradePending, setUpgradePending] = useState(false);
 
-  console.log(state.DGBalances.BALANCE_CHILD_DG, upgradeNeedDgAmount);
-
   return (
     <Modal
       className={styles.upgrade_modal}
@@ -136,11 +134,11 @@ const NeedMoreUpgrade = ({
             <div className={styles.dg_icon}>
               <DGLogo />
             </div>
-            {state.DGBalances.BALANCE_CHILD_DG < upgradeNeedDgAmount ? (
+            {state.DGBalances.BALANCE_CHILD_DG_LIGHT < upgradeNeedDgAmount ? (
               <span className={styles.dg_pill}>
                 Need{' '}
                 {upgradeNeedDgAmount -
-                  parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(2)}{' '}
+                  parseFloat(state.DGBalances.BALANCE_CHILD_DG_LIGHT).toFixed(2)}{' '}
                 more
               </span>
             ) : null}
@@ -156,7 +154,7 @@ const NeedMoreUpgrade = ({
               </Button>
 
               <p className={styles.availability_info}>
-                {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(2)} DG
+                {parseFloat(state.DGBalances.BALANCE_CHILD_DG_LIGHT).toFixed(2)} DG
                 Available
               </p>
             </div>

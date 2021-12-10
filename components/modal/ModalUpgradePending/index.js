@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../../store';
 import { Biconomy } from '@biconomy/mexa';
 import Web3 from 'web3';
-import ABI_DG_TOKEN from '../../../components/ABI/ABIDGToken';
+import ABI_DG_LIGHT_TOKEN from '../../../components/ABI/ABIChildTokenLightDG';
 import ABI_CHILD_TOKEN_ICE from '../../../components/ABI/ABIChildTokenICE';
 import ABI_COLLECTION_V2 from '../../../components/ABI/ABICollectionV2';
 import ABI_COLLECTION_PH from '../../../components/ABI/ABICollectionPH';
@@ -29,11 +29,11 @@ const ModalUpgradePending = props => {
   const [web3, setWeb3] = useState({});
   const [spenderAddress, setSpenderAddress] = useState('');
   const [authStatusICE, setAuthStatusICE] = useState(false);
-  const [authStatusDG, setAuthStatusDG] = useState(false);
+  const [authStatusDGLight, setAuthStatusDGLight] = useState(false);
   const [authStatusNFT, setAuthStatusNFT] = useState(false);
   const [authStatusUpgrade, setAuthStatusUpgrade] = useState(false);
   const [tokenContractICE, setTokenContractICE] = useState({});
-  const [tokenContractDG, setTokenContractDG] = useState({});
+  const [tokenContractDGLight, setTokenContractDGLight] = useState({});
   const [collectionContract, setCollectionContract] = useState({});
   // const [collectionAddress, setCollectionAddress] = useState('');
   const [collectionID, setCollectionID] = useState(0);
@@ -71,11 +71,11 @@ const ModalUpgradePending = props => {
       );
       setTokenContractICE(tokenContractICE);
 
-      const tokenContractDG = new getWeb3.eth.Contract(
-        ABI_DG_TOKEN,
-        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DG
+      const tokenContractDGLight = new getWeb3.eth.Contract(
+        ABI_DG_LIGHT_TOKEN,
+        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DG_LIGHT
       );
-      setTokenContractDG(tokenContractDG);
+      setTokenContractDGLight(tokenContractDGLight);
 
       let collectionContract = {};
       // let collectionAddress = '';
@@ -126,10 +126,10 @@ const ModalUpgradePending = props => {
   // get ICE and DG authorization status' based on tokenAuths state object
   useEffect(() => {
     const authStatusICE = state.tokenAuths.ICE_AUTHORIZATION;
-    const authStatusDG = state.tokenAuths.DG_AUTHORIZATION;
+    const authStatusDGLight = state.tokenAuths.DG_LIGHT_AUTHORIZATION;
 
     setAuthStatusICE(authStatusICE);
-    setAuthStatusDG(authStatusDG);
+    setAuthStatusDGLight(authStatusDGLight);
     setInstance(true);
   }, [state.tokenAuths]);
 
@@ -217,13 +217,13 @@ const ModalUpgradePending = props => {
         trackEvent: 'ICE AUTHORIZATION CLICKED',
       },
       {
-        step: 'DG',
-        authState: authStatusDG,
+        step: 'DGLight',
+        authState: authStatusDGLight,
         text: 'Authorize DG',
-        actionState: authStatusDG ? 'done' : 'initial',
+        actionState: authStatusDGLight ? 'done' : 'initial',
         handleClick: () => {
           console.log('DG clicked!');
-          metaTransactionToken('DG');
+          metaTransactionToken('DGLight');
         },
         trackEvent: 'DG AUTHORIZATION CLICKED',
       },
@@ -409,9 +409,9 @@ const ModalUpgradePending = props => {
     if (token === 'ICE') {
       tokenContract = tokenContractICE;
       MetaTxNumber = 8;
-    } else if (token === 'DG') {
-      tokenContract = tokenContractDG;
-      MetaTxNumber = 9;
+    } else if (token === 'DGLight') {
+      tokenContract = tokenContractDGLight;
+      MetaTxNumber = 15;
     }
 
     try {

@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../../store';
 import { Biconomy } from '@biconomy/mexa';
 import Web3 from 'web3';
-import ABI_DG_TOKEN from '../../../components/ABI/ABIDGToken';
+import ABI_DG_LIGHT_TOKEN from '../../../components/ABI/ABIChildTokenLightDG';
 import ABI_ICE_REGISTRANT from '../../../components/ABI/ABIICERegistrant.json';
 import MetaTx from '../../../common/MetaTx';
 // import MetamaskAction from './MetamaskAction';
@@ -21,10 +21,10 @@ const ActivateWearableModal = props => {
   const [web3, setWeb3] = useState({});
   const [spenderAddress, setSpenderAddress] = useState('');
   const [iceRegistrantContract, setIceRegistrantContract] = useState({});
-  const [tokenContractDG, setTokenContractDG] = useState({});
+  const [tokenContractDGLight, setTokenContractDGLight] = useState({});
   const [instances, setInstances] = useState(false);
   const [previousOwner, setPreviousOwner] = useState('');
-  const [authStatus, setAuthStatus] = useState(false);
+  const [authStatusDGLight, setAuthStatusDGLight] = useState(false);
   const [clicked, setClicked] = useState(false);
   const [biconomyReady, setBiconomyReady] = useState(false);
   const [openUpgradeSuccess, setOpenUpgradeSuccess] = useState(false);
@@ -52,11 +52,11 @@ const ActivateWearableModal = props => {
       const spenderAddress = Global.ADDRESSES.ICE_REGISTRANT_ADDRESS;
       setSpenderAddress(spenderAddress);
 
-      const tokenContractDG = new getWeb3.eth.Contract(
-        ABI_DG_TOKEN,
-        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DG
+      const tokenContractDGLight = new getWeb3.eth.Contract(
+        ABI_DG_LIGHT_TOKEN,
+        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DG_LIGHT
       );
-      setTokenContractDG(tokenContractDG);
+      setTokenContractDGLight(tokenContractDGLight);
 
       const iceRegistrantContract = new getWeb3.eth.Contract(
         ABI_ICE_REGISTRANT,
@@ -96,9 +96,11 @@ const ActivateWearableModal = props => {
   }, [instances]);
 
   useEffect(() => {
-    const authStatus = state.tokenAuths.DG_AUTHORIZATION;
+    const authStatusDGLight = state.tokenAuths.DG_LIGHT_AUTHORIZATION;
 
-    setAuthStatus(authStatus);
+    console.log("token  =====> ", state.tokenAuths.DG_LIGHT_AUTHORIZATION);
+
+    setAuthStatusDGLight(authStatusDGLight);
   }, [state.tokenAmounts]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -211,21 +213,21 @@ const ActivateWearableModal = props => {
     );
   }
 
-  // Biconomy API meta-transaction. User must authorize DG token contract to access their funds
-  async function metaTransactionDG() {
+  // Biconomy API meta-transaction. User must authorize DG Light token contract to access their funds
+  async function metaTransactionDGLight() {
     try {
       setClicked(true);
       console.log('DG authorize amount: ' + Global.CONSTANTS.MAX_AMOUNT);
 
       // get function signature and send Biconomy API meta-transaction
-      let functionSignature = tokenContractDG.methods
+      let functionSignature = tokenContractDGLight.methods
         .approve(spenderAddress, Global.CONSTANTS.MAX_AMOUNT)
         .encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(
-        9,
+        15,
         functionSignature,
-        tokenContractDG,
+        tokenContractDGLight,
         state.userAddress,
         web3
       );
@@ -243,7 +245,7 @@ const ActivateWearableModal = props => {
           data: refresh,
         });
         setClicked(false);
-        setAuthStatus(true);
+        setAuthStatusDGLight(true);
       }
     } catch (error) {
       setClicked(false);
@@ -354,11 +356,11 @@ const ActivateWearableModal = props => {
               disabled={clicked}
               className={styles.primary}
               onClick={() => {
-                console.log('DG authStatus (activation): ', authStatus);
+                console.log('DG Light authStatus (activation): ', authStatusDGLight);
 
                 if (biconomyReady) {
-                  if (!authStatus) {
-                    metaTransactionDG();
+                  if (!authStatusDGLight) {
+                    metaTransactionDGLight();
                   } else {
                     metaTransactionReICE();
                   }
@@ -366,7 +368,7 @@ const ActivateWearableModal = props => {
               }}
             >
               <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png" />
-              {authStatus
+              {authStatusDGLight
                 ? clicked
                   ? 'Confirming...'
                   : 'Confirm Activation'
