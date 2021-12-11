@@ -188,7 +188,7 @@ const ActivateWearableModal = props => {
           </div>
           <p>
             <span className={styles.greenCheck}>
-              {parseFloat(state.DGBalances.BALANCE_CHILD_DG).toFixed(3)} DG
+              {parseFloat(state.DGBalances.BALANCE_CHILD_DG_LIGHT).toFixed(3)} DG
               Available
               <svg
                 width="16"

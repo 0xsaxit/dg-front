@@ -117,14 +117,14 @@ const NeedMoreDGActivateModal = props => {
             <div className={styles.button}>
               <Button
                 className={styles.primary}
-                href="https://quickswap.exchange/#/swap?outputCurrency=0x2a93172c8dccbfbc60a39d56183b7279a2f647b4"
+                href="https://quickswap.exchange/#/swap?outputCurrency=0xef938b6da8576a896f6e0321ef80996f4890f9c4"
                 target="_blank"
                 onClick={() => {
                   setOpen(false);
                   setPending(true);
                 }}
               >
-                Buy $DG &nbsp;
+                Buy DG &nbsp;
                 <svg
                   width="12"
                   height="13"
