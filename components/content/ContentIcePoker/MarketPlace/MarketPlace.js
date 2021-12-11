@@ -8,9 +8,9 @@ import cn from 'classnames';
 import 'react-multi-carousel/lib/styles.css';
 import styles from './MarketPlace.module.scss';
 import Global from '../../../Constants';
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const MarketPlace = () => {
   // dispatch new user status to Context API store
@@ -64,7 +64,7 @@ const MarketPlace = () => {
           'Feet',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984504/Shoes_Level_1_jbsjgf.png',
         ],
-      }
+      },
     },
     {
       title: 'Bomber',
@@ -111,7 +111,7 @@ const MarketPlace = () => {
           'Feet',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091243/Bomber%20Fit/shoes_grey_gftpjo.png',
         ],
-      }
+      },
     },
     {
       title: 'Linen',
@@ -158,7 +158,7 @@ const MarketPlace = () => {
           'Feet',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091413/Linen%20Fit/shoes_grey_mkdkto.png',
         ],
-      }
+      },
     },
     {
       title: 'Party Host',
@@ -205,7 +205,7 @@ const MarketPlace = () => {
           'Accessory',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatAccessory_s1cjpg.svg',
         ],
-      }
+      },
     },
     {
       title: 'DG Suit',
@@ -252,9 +252,9 @@ const MarketPlace = () => {
           'Accessory',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatAccessory_s1cjpg.svg',
         ],
-      }
-    }
-  ]
+      },
+    },
+  ];
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -299,13 +299,13 @@ const MarketPlace = () => {
         }
 
         // Add event listener
-        window.addEventListener("resize", handleResize);
+        window.addEventListener('resize', handleResize);
 
         // Call handler right away so state gets updated with initial window size
         handleResize();
 
         // Remove event listener on cleanup
-        return () => window.removeEventListener("resize", handleResize);
+        return () => window.removeEventListener('resize', handleResize);
       }
     }, []); // Empty array ensures that effect is only run on mount
     return windowSize;
@@ -314,11 +314,11 @@ const MarketPlace = () => {
   function CarouselNextArrow(props) {
     const { className, onClick } = props;
     return (
-      <div
-        className={className}
-        onClick={onClick}
-      >
-        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1638236358/Right_Chevron_3x_cxt9x8.png" alt="nextArrow" />
+      <div className={className} onClick={onClick}>
+        <img
+          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1638236358/Right_Chevron_3x_cxt9x8.png"
+          alt="nextArrow"
+        />
       </div>
     );
   }
@@ -326,11 +326,11 @@ const MarketPlace = () => {
   function CarouselPrevArrow(props) {
     const { className, onClick } = props;
     return (
-      <div
-        className={className}
-        onClick={onClick}
-      >
-        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1638236358/Right_Chevron_3x_cxt9x8.png" alt="nextArrow" />
+      <div className={className} onClick={onClick}>
+        <img
+          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1638236358/Right_Chevron_3x_cxt9x8.png"
+          alt="nextArrow"
+        />
       </div>
     );
   }
@@ -338,14 +338,19 @@ const MarketPlace = () => {
   function getCarousel() {
     const size = useWindowSize();
     const settings = {
-      className: "slider variable-width",
+      className: 'slider variable-width',
       dots: false,
       infinite: false,
       swipeToSlide: true,
       variableWidth: true,
-      slidesToShow: size.width <= 499 ? 1 : size.width <= 1040 ? Math.floor((size.width - 120) / 300) : Math.min(Math.floor((size.width - 300) / 300), 6),
+      slidesToShow:
+        size.width <= 499
+          ? 1
+          : size.width <= 1040
+          ? Math.floor((size.width - 120) / 300)
+          : Math.min(Math.floor((size.width - 300) / 300), 6),
       nextArrow: <CarouselNextArrow />,
-      prevArrow: <CarouselPrevArrow />
+      prevArrow: <CarouselPrevArrow />,
     };
 
     return (
@@ -363,7 +368,7 @@ const MarketPlace = () => {
           } else if (index === 4) {
             itemLimits = state.itemLimits1;
           }
-          console.log("*************", wearable);
+          console.log('*************', wearable);
 
           return (
             <section key={index} className={styles.wearable_section}>
@@ -449,12 +454,14 @@ const MarketPlace = () => {
                     />
 
                     <div className={styles.nft_description}>
-                      <span style={{ display: 'flex', justifyContent: 'center' }}>
+                      <span
+                        style={{ display: 'flex', justifyContent: 'center' }}
+                      >
                         <p className={styles.nft_info}>
                           {wearable.details[item][3]}
                         </p>
 
-                        {state.userStatus >= 4 && state.userLoggedIn ? (
+                        {state.userStatus >= 4 ? (
                           <p className={styles.nft_info}>
                             {itemLimits[i][0]} of 100 left
                           </p>
@@ -471,79 +478,68 @@ const MarketPlace = () => {
                     </div>
 
                     <div className={styles.button_container}>
-                      {(() => {
-                        // Minting Enabled State
-                        if ((state.appConfig?.isPublicWebsiteMintingEnabled
-                          || (state.appConfig?.isPrivateWebsiteMintingEnabled
-                            && state.userStatus > 20))
-                          && state.userLoggedIn
-                          && itemLimits[i][0] > 0
-                        ) {
-                          return (
-                            <div className={styles.flex_50}>
-                              <ModalMintWearable
-                                index={i}
-                                numberLeft={itemLimits[i][0]}
-                                itemID={itemLimits[i][1]}
-                                address={itemLimits[5]}
-                                wearableImg={detailsICEBomber[item][0]}
-                                wearableBodyType={detailsICEBomber[item][3]}
-                                wearableBodyImg={detailsICEBomber[item][4]}
-                                wearableName={detailsICEBomber[item][1]}
-                              />
-                            </div>
-                          );
-                          // Minting Disabled States
-                        } else {
-                          if (itemLimits[i][0] >= 0 && itemLimits[i][0] < 1 && state.userStatus >= 4) {
-                            // Sold Out State
-                            return (
-                              <a
-                                className={styles.flex_50}
-                                href="https://opensea.io/collection/decentral-games-ice"
-                                target="_blank"
-                                style={{
-                                  width: '100%',
-                                }}
-                              >
-                                <Button className={styles.wearable_button}>
-                                  Buy on Secondary
-                                </Button>
-                              </a>
-                            );
-                          }
-                          else if (itemLimits[i][0] > 0) {
-                            // Coming Soon State
-                            return (
-                              <Button disabled className={styles.sold_button}>
-                                Coming Soon!
-                              </Button>
-                            );
-                          } else if (state.userLoggedIn && itemLimits[i][0] < 0) {
-                            return (
-                              <Button disabled className={styles.sold_button}>
-                                <Spinner width={20} height={20} />
-                              </Button>
-                            )
-                          } else if (!state.userLoggedIn) {
-                            // Logged Out State
-                            return (
-                              <div className={styles.flex_50}>
-                                <ModalLoginICE />
-                              </div>
-                            );
-                          }
-                        }
-                      })()}
+                      {state.userStatus >= Global.CONSTANTS.MINT_STATUS &&
+                      itemLimits[i][0] > 0 ? (
+                        // minting enabled
+
+                        <div className={styles.flex_50}>
+                          <ModalMintWearable
+                            index={i}
+                            numberLeft={itemLimits[i][0]}
+                            itemID={itemLimits[i][1]}
+                            address={itemLimits[5]}
+                            wearableImg={wearable.details[item][0]}
+                            wearableBodyType={wearable.details[item][3]}
+                            wearableBodyImg={wearable.details[item][4]}
+                            wearableName={wearable.details[item][1]}
+                          />
+                        </div>
+                      ) : // Minting Disabled States
+
+                      itemLimits[i][0] >= 0 && itemLimits[i][0] < 1 ? (
+                        // Sold Out State
+
+                        <a
+                          className={styles.flex_50}
+                          href="https://opensea.io/collection/decentral-games-ice"
+                          target="_blank"
+                          style={{
+                            width: '100%',
+                          }}
+                        >
+                          <Button className={styles.wearable_button}>
+                            Buy on Secondary
+                          </Button>
+                        </a>
+                      ) : state.userStatus < Global.CONSTANTS.MINT_STATUS &&
+                        itemLimits[i][0] > 0 ? (
+                        // Coming Soon State
+
+                        <Button disabled className={styles.sold_button}>
+                          Coming Soon!
+                        </Button>
+                      ) : state.userStatus >= 4 && itemLimits[i][0] < 0 ? (
+                        // items loading, display spinner
+
+                        <Button disabled className={styles.sold_button}>
+                          <Spinner width={20} height={20} />
+                        </Button>
+                      ) : state.userStatus < 4 ? (
+                        // Logged Out State
+
+                        <div className={styles.flex_50}>
+                          <ModalLoginICE />
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 ))}
               </Slider>
             </section>
-          )
+          );
         })}
       </section>
-    )
+    );
   }
 
   return (
@@ -580,9 +576,7 @@ const MarketPlace = () => {
           </p>
         </div>
 
-        <div className={styles.outter_games_container}>
-          {getCarousel()}
-        </div>
+        <div className={styles.outter_games_container}>{getCarousel()}</div>
       </span>
     </div>
   );
