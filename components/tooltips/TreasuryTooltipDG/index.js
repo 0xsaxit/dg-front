@@ -21,7 +21,10 @@ const TreasuryTooltipDG = props => {
   }
 
   useEffect(() => {
-    if (Object.keys(state.treasuryNumbers).length !== 0) {
+    if (
+      state.treasuryNumbers !== undefined &&
+      Object.keys(state.treasuryNumbers).length !== 0
+    ) {
       const usd = state.treasuryNumbers.totalBalanceUSD.graph;
 
       const dg = state.treasuryNumbers.totalDgUSD;
@@ -63,9 +66,7 @@ const TreasuryTooltipDG = props => {
               src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631640045/ICE_Info_bbiag6.svg"
             />
             <div>
-              <p style={{ marginBottom: '4px' }}>
-                DAO $DG: ${dgTreasury}
-              </p>
+              <p style={{ marginBottom: '4px' }}>DAO $DG: ${dgTreasury}</p>
               <p style={{ marginTop: '0px' }}>
                 Vested Gameplay $DG: ${formatPrice(unvestedDG, 0)}
               </p>
