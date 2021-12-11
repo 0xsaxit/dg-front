@@ -20,7 +20,10 @@ const TreasuryTooltipLP = props => {
   }
 
   useEffect(() => {
-    if (Object.keys(state.treasuryNumbers).length !== 0) {
+    if (
+      state.treasuryNumbers !== undefined &&
+      Object.keys(state.treasuryNumbers).length !== 0
+    ) {
       const usd = state.treasuryNumbers.totalBalanceUSD.graph;
 
       const mvi = state.treasuryNumbers.totalMviEthLPBalance;
@@ -39,7 +42,7 @@ const TreasuryTooltipLP = props => {
 
   return (
     <>
-       <Popup
+      <Popup
         trigger={
           <div className={styles.info_mark}>
             <svg
@@ -56,7 +59,7 @@ const TreasuryTooltipLP = props => {
             </svg>
           </div>
         }
-        position="right center"        
+        position="right center"
         hideOnScroll={true}
         className={styles.popup}
       >
@@ -67,17 +70,11 @@ const TreasuryTooltipLP = props => {
               src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631640045/ICE_Info_bbiag6.svg"
             />
             <div>
-              <p style={{ marginBottom: '4px' }}>
-                USDC-ICE LP: ${iceTreasury}           
-              </p>
-              <p style={{ marginBottom: '4px' }}>
-                MVI-ETH LP: ${mviTreasury}         
-              </p>
-              <p style={{ marginTop: '0px' }}>
-                $INDEX Tokens: ${uniTreasury}         
-              </p>
+              <p style={{ marginBottom: '4px' }}>USDC-ICE LP: ${iceTreasury}</p>
+              <p style={{ marginBottom: '4px' }}>MVI-ETH LP: ${mviTreasury}</p>
+              <p style={{ marginTop: '0px' }}>$INDEX Tokens: ${uniTreasury}</p>
             </div>
-          </div>          
+          </div>
         </Popup.Content>
       </Popup>
     </>
