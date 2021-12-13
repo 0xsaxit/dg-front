@@ -110,7 +110,9 @@ const ButtonStartConnect = () => {
   async function openMetaMask() {
     if (metamaskEnabled) {
       // open MetaMask for login then get the user's wallet address
+      console.log('-----------connecting--------');
       await window.ethereum.enable();
+      console.log('===========connected=============');
       userAddress = window.ethereum?.selectedAddress;
 
       // track MetaMask connect event

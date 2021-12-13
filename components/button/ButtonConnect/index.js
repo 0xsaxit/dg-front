@@ -55,7 +55,7 @@ const ButtonConnect = () => {
 
   useEffect(() => {
     if (window.ethereum && window.ethereum?.selectedAddress) {
-      window.addEventListener('load', function() {
+      window.addEventListener('load', function () {
         window.ethereum.on('accountsChanged', () => {
           if (window.ethereum?.selectedAddress) {
             dispatch({
@@ -129,7 +129,7 @@ const ButtonConnect = () => {
   async function openMetaMask() {
     if (metamaskEnabled) {
       // open MetaMask for login then get the user's wallet address
-
+      console.log('----------here---------');
       // the only way to be able to click on this button with a user status >= 4 is to have clicked in the "disconnect" button in ModalPopUp
       if (state.userStatus >= 4) {
         // will re-prompt to select an account, even if metamask is already enabled in the site

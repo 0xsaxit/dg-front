@@ -15,34 +15,10 @@
     align-items: center;
     justify-content: center;
 
-    .DG_value {
-      font-family: Larsseit-Bold;
-      font-size: 41px;
-      margin-right: 12px;
-      margin-bottom: 0;
-
-      &.no_margin {
-        margin-right: 0;
-      }
-    }
-
     img {
       width: 40px;
       height: 40px;
     }
-  }
-
-  .price {
-    font-family: Larsseit-Bold;
-    font-size: 20px;
-    text-align: center;
-    color: rgba(255, 255, 255, 0.5) !important;
-    margin-bottom: 16px;
-  }
-
-  .claim_DG {
-    margin-top: 0;
-    margin-bottom: 14px;
   }
 
   .lower_header {
@@ -51,36 +27,12 @@
     text-align: center;
   }
 
-  .lower_header_two {
-    font-family: Larsseit-Bold;
-    font-size: 20px;
-  }
-
-  .lower_img {
-    width: 175px;
-    align-self: center;
-    margin-top: 0px;
-    margin-bottom: 14px;
-  }
-
   .apy_text {
     font-family: Larsseit-Regular;
     font-size: 14px;
     text-align: center;
     color: rgba(255, 255, 255, 0.5) !important;
     margin-bottom: 0px;
-  }
-
-  .stake_text {
-    font-family: Larsseit-Regular;
-    font-size: 12px;
-    text-align: center;
-    color: rgba(255, 255, 255, 0.5) !important;
-    margin-bottom: 0px;
-
-    &:hover {
-      cursor: pointer;
-    }
   }
 
   .apy_percent {
@@ -95,37 +47,6 @@
       color: rgba(255, 255, 255, 0.5);
       position: relative;
       top: -40px;
-    }
-  }
-
-  .lower_text {
-    font-family: Larsseit-Regular;
-    text-align: center;
-    font-size: 14px;
-    line-height: 20px;
-  }
-
-  .lower_button {
-    margin-top: 20px;
-    width: 100%;
-    background: #006eff;
-    color: white;
-    border-radius: 10px;
-    height: 40px;
-    font-family: Larsseit-Bold;
-    font-size: 14px;
-  }
-
-  .lower_button {
-    background: rgb(31, 31, 31);
-    color: white;
-
-    &:hover,
-    &:focus,
-    &:active {
-      color: white;
-      background: rgb(31, 31, 31);
-      filter: brightness(0.9) !important;
     }
   }
 }
@@ -364,113 +285,6 @@
   }
 }
 
-.blue_container {
-  margin: 0px auto 40px auto;
-  padding: 36px 40px;
-  background: #1f1f1f;
-  border-radius: 20px;
-  width: 534px;
-  display: flex;
-  position: relative;
-
-  .close_button {
-    width: 34px;
-    height: 34px;
-    background: rgba(31, 31, 31, 1);
-    border-radius: 100%;
-    padding: 9px 10px 8px 10px;
-    line-height: 18px;
-    top: 16px;
-    right: 16px;
-    box-shadow: 0px 13.6px 27.2px rgba(0, 0, 0, 0.24);
-    position: absolute;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  .blue_text {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-
-    .blue_header {
-      font-family: Larsseit-Bold;
-      font-size: 24px;
-      line-height: 32px;
-      margin-bottom: 0px;
-    }
-
-    .blue_lower {
-      font-family: Larsseit-Regular;
-      font-size: 12px;
-      line-height: 20px;
-      margin-top: 8px;
-      margin-bottom: 16px;
-    }
-  }
-  .button {
-    font-family: Larsseit-Bold;
-    font-size: 16px;
-    color: white;
-    border-radius: 14px;
-    height: 48px;
-    width: fit-content;
-    transition: 0.2s ease-in !important;
-
-    &:active,
-    &:focus {
-      opacity: 1;
-      filter: none !important;
-      transition: 0.2s ease-in;
-      color: white;
-    }
-
-    &:hover {
-      opacity: 0.6;
-      filter: none !important;
-      transition: 0.2s ease-in;
-      color: white;
-    }
-  }
-
-  .grey {
-    background: rgba(36, 39, 49, 1);
-
-    &:active,
-    &:focus {
-      background: rgba(36, 39, 49, 1);
-    }
-
-    &:hover {
-      background: rgba(36, 39, 49, 1);
-    }
-  }
-
-  .blue {
-    background: #006eff;
-    margin-right: 12px;
-
-    &:active,
-    &:focus {
-      background: #006eff;
-    }
-
-    &:hover {
-      background: #006eff;
-    }
-  }
-
-  .blue_img {
-    width: 50%;
-    height: 140px;
-    object-fit: cover;
-    position: relative;
-    top: 20px;
-  }
-}
-
 .left_panel {
   border-right: 1px solid #2a2a2a;
   padding-bottom: 200px;
@@ -478,10 +292,6 @@
   @include mq($until: extra-large) {
     padding-bottom: 100px;
   }
-}
-
-.no_border {
-  border: none;
 }
 
 .welcome_text {
@@ -504,12 +314,4 @@
   @include mq($until: extra-large) {
     text-align: center;
   }
-}
-
-.staked_label {
-  font-family: Larsseit-Regular;
-  font-size: 14px;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.5) !important;
-  margin-bottom: 0;
 }
