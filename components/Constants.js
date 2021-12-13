@@ -37,6 +37,7 @@ const CONSTANTS = {
   POOLING_TIME_OUT: 8000, // API endpoint request pool interval (milliseconds)
   POOLING_LIMIT_COUNT: 6, // attempt to call API endpoint this number of times
   MINT_STATUS: 29, // minimum userStatus level for minting wearables (we can replace with appConfig variable when it's available)
+  APR_NUMBER: 26071500, // APR constant number
 };
 
 const IMG_URLS_UPGRADE = {
