@@ -11,6 +11,7 @@ let childTokenAddressATRI = '';
 let childTokenAddressWETH = '';
 let childTokenAddressICE = '';
 let childTokenAddressDG = '';
+let childTokenAddressDGLight = '';
 let accessoriesContract = '';
 let accessoriesContract2 = '';
 let accessoriesContract3 = '';
@@ -30,6 +31,7 @@ childTokenAddressATRI = Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ATRI;
 childTokenAddressWETH = Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH;
 childTokenAddressICE = Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ICE;
 childTokenAddressDG = Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DG;
+childTokenAddressDGLight = Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DG_LIGHT;
 accessoriesContract = Global.ADDRESSES.COLLECTION_V2_ADDRESS;
 accessoriesContract2 = Global.ADDRESSES.COLLECTION_PH_ADDRESS;
 accessoriesContract3 = Global.ADDRESSES.COLLECTION_LINENS_ADDRESS;
@@ -65,6 +67,7 @@ arrayDomainType.push(domainTypeTreasury);
 arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domainTypeTreasury);
+arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domainTypeToken);
@@ -145,6 +148,13 @@ const domainDataTokenDG = {
   salt: '0x' + Global.CONSTANTS.MATIC_NETWORK_ID.toString(16).padStart(64, '0'),
 };
 
+const domainDataTokenDGLight = {
+  name: 'Decentral Games (PoS)',
+  version: '1',
+  verifyingContract: childTokenAddressDGLight,
+  salt: '0x' + Global.CONSTANTS.MATIC_NETWORK_ID.toString(16).padStart(64, '0'),
+};
+
 const domainDataAccessories = {
   name: 'Decentraland Collection',
   version: '2',
@@ -189,12 +199,13 @@ arrayDomainData.push(domainDataTokenATRI);
 arrayDomainData.push(domainDataTokenWETH);
 arrayDomainData.push(domainDataDGPointerNew);
 arrayDomainData.push(domainDataTokenICE);
-arrayDomainData.push(domainDataTokenDG);
+arrayDomainData.push(domainDataTokenDG); // 9
 arrayDomainData.push(domainDataAccessories);
 arrayDomainData.push(domainDataICERegistrant); // 11
 arrayDomainData.push(domainDataAccessories2);
 arrayDomainData.push(domainDataAccessories3);
 arrayDomainData.push(domainDataAccessories4);
+arrayDomainData.push(domainDataTokenDGLight); // 15
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////

@@ -107,32 +107,39 @@ const initialState = {
     BALANCE_WALLET_UNISWAP: 0,
   },
   itemLimits1: [
-    [0, 0],
-    [0, 5],
-    [0, 10],
-    [0, 15],
-    [0, 20],
+    [-1, 0],
+    [-1, 5],
+    [-1, 10],
+    [-1, 15],
+    [-1, 20],
   ],
   itemLimits2: [
-    [0, 0],
-    [0, 5],
-    [0, 10],
-    [0, 15],
-    [0, 20],
+    [-1, 0],
+    [-1, 5],
+    [-1, 10],
+    [-1, 15],
+    [-1, 20],
   ],
   itemLimits3: [
-    [0, 0],
-    [0, 5],
-    [0, 10],
-    [0, 15],
-    [0, 20],
+    [-1, 0],
+    [-1, 5],
+    [-1, 10],
+    [-1, 15],
+    [-1, 20],
   ],
   itemLimits4: [
-    [0, 0],
-    [0, 5],
-    [0, 10],
-    [0, 15],
-    [0, 20],
+    [-1, 0],
+    [-1, 5],
+    [-1, 10],
+    [-1, 15],
+    [-1, 20],
+  ],
+  itemLimits5: [
+    [-1, 0],
+    [-1, 5],
+    [-1, 10],
+    [-1, 15],
+    [-1, 20],
   ],
   iceWearableItems: [],
   iceWearableItemsLoading: false,
@@ -159,7 +166,7 @@ const initialState = {
   },
   xpAmounts: 0,
   tokenAuths: {
-    DG_AUTHORIZATION: false,
+    DG_LIGHT_AUTHORIZATION: false,
     ICE_AUTHORIZATION: false,
     WETH_AUTHORIZATION: false,
   },
@@ -356,6 +363,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         itemLimits4: action.data,
+      };
+
+    case 'item_limits_5':
+      return {
+        ...state,
+        itemLimits5: action.data,
       };
 
     case 'ice_wearable_items':

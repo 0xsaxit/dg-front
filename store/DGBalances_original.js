@@ -61,7 +61,7 @@ function DGBalances() {
     const DGTokenContract = await Transactions.DGTokenContract(web3);
     setDGTokenContract(DGTokenContract);
 
-    // set up dg token contract (same for both pools)
+    // set up dglight token contract (same for both pools)
     const DGLightTokenContract = await Transactions.DGLightTokenContract(web3);
     setDGLightTokenContract(DGLightTokenContract);
 
@@ -70,7 +70,7 @@ function DGBalances() {
     setDGMaticContract(DGMaticContract);
 
     // matic contract to get DGLight balance on matic chain for modal
-    const DGLightMaticContract = await Transactions.DGLightTokenContract(
+    const DGLightMaticContract = await Transactions.DGTokenLightContract(
       maticWeb3
     );
     setDGLightMaticContract(DGLightMaticContract);
