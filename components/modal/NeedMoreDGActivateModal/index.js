@@ -96,7 +96,7 @@ const NeedMoreDGActivateModal = props => {
             />
           </div>
           <div className={styles.round_desc}>
-            Need {(0.5 - state.DGBalances.BALANCE_CHILD_DG_LIGHT).toFixed(2)} more
+            Need {(500 - state.DGBalances.BALANCE_CHILD_DG_LIGHT).toFixed(2)} more
           </div>
 
           <div className={styles.buttons}>

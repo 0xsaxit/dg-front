@@ -379,7 +379,19 @@ function History({ state }) {
                               }}
                             />
                           )}
-                          {amount > 0 ? `-${amount}` : amount} {row.coinName}
+                          {row.coinName === 'PLAY' ? (
+                            <>
+                              {amount > 0
+                                ? `-${amount.toFixed(2)}`
+                                : amount.toFixed(2)}{' '}
+                              {row.coinName}
+                            </>
+                          ) : (
+                            <>
+                              {amount > 0 ? `-${amount}` : amount}{' '}
+                              {row.coinName}
+                            </>
+                          )}
                         </Table.Cell>
                       )}
                       <Table.Cell style={{ maxWidth: '180px' }}>
@@ -461,7 +473,18 @@ function History({ state }) {
                             }}
                           />
                         )}
-                        {result > 0 ? `+${result}` : result} {row.coinName}
+                        {row.coinName === 'PLAY' ? (
+                          <>
+                            {result > 0
+                              ? `-${result.toFixed(2)}`
+                              : result.toFixed(2)}{' '}
+                            {row.coinName}
+                          </>
+                        ) : (
+                          <>
+                            {result > 0 ? `-${result}` : result} {row.coinName}
+                          </>
+                        )}
                       </Table.Cell>
                       {isWideScreen && (
                         <Table.Cell style={{ maxWidth: '240px' }}>
