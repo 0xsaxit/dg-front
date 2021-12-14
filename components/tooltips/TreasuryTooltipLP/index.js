@@ -10,6 +10,9 @@ const TreasuryTooltipLP = props => {
   const [uniTreasury, setUniTreasury] = useState(0);
   const [mviTreasury, setMviTreasury] = useState(0);
   const [iceTreasury, setIceTreasury] = useState(0);
+  const [dgMaticLp, setDgMaticLp] = useState(0);
+  const [dgxDgLp, setDgxDgLp] = useState(0);
+  const [dgETHLp, setDgEthLp] = useState(0);
 
   function formatPrice(balanceDG, units) {
     const priceFormatted = Number(balanceDG)
@@ -20,9 +23,10 @@ const TreasuryTooltipLP = props => {
   }
 
   useEffect(() => {
-    if (Object.keys(state.treasuryNumbers).length !== 0) {
-      const usd = state.treasuryNumbers.totalBalanceUSD.graph;
-
+    if (
+      state.treasuryNumbers !== undefined &&
+      Object.keys(state.treasuryNumbers).length !== 0
+    ) {
       const mvi = state.treasuryNumbers.totalMviEthLPBalance;
       setMviTreasury(formatPrice(mvi.graph.slice(-1)[0].secondary, 0));
 
@@ -32,6 +36,21 @@ const TreasuryTooltipLP = props => {
       const ice_lp = state.treasuryNumbers.totalIceUsdcLPBalance;
       setIceTreasury(formatPrice(ice_lp.graph.slice(-1)[0].secondary, 0));
 
+      const dg_matic_lp = state.treasuryNumbers.totalDGMaticLPBalance;
+      if (dg_matic_lp && dg_matic_lp.graph.length > 0) {
+        setDgMaticLp(formatPrice(dg_matic_lp.graph.slice(-1)[0].secondary, 0));
+      }
+
+      const dg_xDg_lp = state.treasuryNumbers.totalDGXDgLPBalance;
+      if (dg_xDg_lp && dg_xDg_lp.graph.length > 0) {
+        setDgxDgLp(formatPrice(dg_xDg_lp.graph.slice(-1)[0].secondary, 0));
+      }
+
+      const dg_eth_lp = state.treasuryNumbers.totalDgEthUniswapBalance;
+      if (dg_eth_lp && dg_eth_lp.graph.length > 0) {
+        setDgEthLp(formatPrice(dg_eth_lp.graph.slice(-1)[0].secondary, 0));
+      }
+
       console.log('!!!!');
       console.log(state.treasuryNumbers);
     }
@@ -39,7 +58,7 @@ const TreasuryTooltipLP = props => {
 
   return (
     <>
-       <Popup
+      <Popup
         trigger={
           <div className={styles.info_mark}>
             <svg
@@ -56,7 +75,7 @@ const TreasuryTooltipLP = props => {
             </svg>
           </div>
         }
-        position="right center"        
+        position="right center"
         hideOnScroll={true}
         className={styles.popup}
       >
@@ -67,17 +86,14 @@ const TreasuryTooltipLP = props => {
               src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631640045/ICE_Info_bbiag6.svg"
             />
             <div>
-              <p style={{ marginBottom: '4px' }}>
-                USDC-ICE LP: ${iceTreasury}           
-              </p>
-              <p style={{ marginBottom: '4px' }}>
-                MVI-ETH LP: ${mviTreasury}         
-              </p>
-              <p style={{ marginTop: '0px' }}>
-                $INDEX Tokens: ${uniTreasury}         
-              </p>
+              <p style={{ marginBottom: '4px' }}>USDC-ICE LP: ${iceTreasury}</p>
+              <p style={{ marginBottom: '4px' }}>MVI-ETH LP: ${mviTreasury}</p>
+              <p style={{ marginBottom: '4px' }}>$INDEX Tokens: ${uniTreasury}</p>
+              <p style={{ marginBottom: '4px' }}>DG-MATIC LP: ${dgMaticLp}</p>
+              <p style={{ marginBottom: '4px' }}>DG-xDG LP: ${dgxDgLp}</p>
+              <p style={{ marginTop: '0px' }}>DG-ETH LP: ${dgETHLp}</p>
             </div>
-          </div>          
+          </div>
         </Popup.Content>
       </Popup>
     </>

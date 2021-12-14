@@ -2,22 +2,70 @@ import React, { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../../../../store';
 import ModalMintWearable from 'components/modal/ModalMintWearable';
 import ModalLoginICE from 'components/modal/ModalLoginICE';
+import Spinner from 'components/lottieAnimation/animations/spinner_updated';
 import { Button, Popup } from 'semantic-ui-react';
 import cn from 'classnames';
 import 'react-multi-carousel/lib/styles.css';
 import styles from './MarketPlace.module.scss';
 import Global from '../../../Constants';
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const MarketPlace = () => {
   // dispatch new user status to Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [previewLevel, setPreviewLevel] = useState([0, 0, 0, 0]);
+  const [previewLevel, setPreviewLevel] = useState([0, 0, 0, 0, 0]);
   const wearables = [
+    {
+      title: 'Crypto Drip',
+      preview: [
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984404/CryptoDrip_Level_1_nbpz6x.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984401/CryptoDrip_Level_2_nigfx7.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984405/CryptoDrip_Level_3_nsemyd.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984404/CryptoDrip_Level_4_es8z5p.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984404/CryptoDrip_Level_5_d41jkl.png',
+      ],
+      details: {
+        Glasses: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984495/Glasses_Level_1_sn5dnw.png',
+          'Drip Shades',
+          'Crypto Drip',
+          'Accessory',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984495/Glasses_Level_1_sn5dnw.png',
+        ],
+        Hat: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984493/Hat_level_1_vxxht6.png',
+          'Drip Bucket',
+          'Crypto Drip',
+          'Head',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984493/Hat_level_1_vxxht6.png',
+        ],
+        Jacket: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984503/puffer_level_1_nimjkk.png',
+          'Drip Jacket',
+          'Crypto Drip',
+          'Torso',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984503/puffer_level_1_nimjkk.png',
+        ],
+        Pants: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984500/pants_level_1_f4xcuo.png',
+          'Drip Drawers',
+          'Crypto Drip',
+          'Legs',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984500/pants_level_1_f4xcuo.png',
+        ],
+        Shoes: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984504/Shoes_Level_1_jbsjgf.png',
+          'Drip Kicks',
+          'Crypto Drip',
+          'Feet',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984504/Shoes_Level_1_jbsjgf.png',
+        ],
+      },
+    },
     {
       title: 'Bomber',
       preview: [
@@ -63,7 +111,7 @@ const MarketPlace = () => {
           'Feet',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091243/Bomber%20Fit/shoes_grey_gftpjo.png',
         ],
-      }
+      },
     },
     {
       title: 'Linen',
@@ -110,7 +158,7 @@ const MarketPlace = () => {
           'Feet',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091413/Linen%20Fit/shoes_grey_mkdkto.png',
         ],
-      }
+      },
     },
     {
       title: 'Party Host',
@@ -157,7 +205,7 @@ const MarketPlace = () => {
           'Accessory',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatAccessory_s1cjpg.svg',
         ],
-      }
+      },
     },
     {
       title: 'DG Suit',
@@ -204,9 +252,9 @@ const MarketPlace = () => {
           'Accessory',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatAccessory_s1cjpg.svg',
         ],
-      }
-    }
-  ]
+      },
+    },
+  ];
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -251,13 +299,13 @@ const MarketPlace = () => {
         }
 
         // Add event listener
-        window.addEventListener("resize", handleResize);
+        window.addEventListener('resize', handleResize);
 
         // Call handler right away so state gets updated with initial window size
         handleResize();
 
         // Remove event listener on cleanup
-        return () => window.removeEventListener("resize", handleResize);
+        return () => window.removeEventListener('resize', handleResize);
       }
     }, []); // Empty array ensures that effect is only run on mount
     return windowSize;
@@ -266,11 +314,11 @@ const MarketPlace = () => {
   function CarouselNextArrow(props) {
     const { className, onClick } = props;
     return (
-      <div
-        className={className}
-        onClick={onClick}
-      >
-        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1638236358/Right_Chevron_3x_cxt9x8.png" alt="nextArrow" />
+      <div className={className} onClick={onClick}>
+        <img
+          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1638236358/Right_Chevron_3x_cxt9x8.png"
+          alt="nextArrow"
+        />
       </div>
     );
   }
@@ -278,11 +326,11 @@ const MarketPlace = () => {
   function CarouselPrevArrow(props) {
     const { className, onClick } = props;
     return (
-      <div
-        className={className}
-        onClick={onClick}
-      >
-        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1638236358/Right_Chevron_3x_cxt9x8.png" alt="nextArrow" />
+      <div className={className} onClick={onClick}>
+        <img
+          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1638236358/Right_Chevron_3x_cxt9x8.png"
+          alt="nextArrow"
+        />
       </div>
     );
   }
@@ -290,14 +338,19 @@ const MarketPlace = () => {
   function getCarousel() {
     const size = useWindowSize();
     const settings = {
-      className: "slider variable-width",
+      className: 'slider variable-width',
       dots: false,
       infinite: false,
       swipeToSlide: true,
       variableWidth: true,
-      slidesToShow: size.width <= 499 ? 1 : size.width <= 1040 ? Math.floor((size.width - 120) / 300) : Math.min(Math.floor((size.width - 300) / 300), 6),
+      slidesToShow:
+        size.width <= 499
+          ? 1
+          : size.width <= 1040
+          ? Math.floor((size.width - 120) / 300)
+          : Math.min(Math.floor((size.width - 300) / 300), 6),
       nextArrow: <CarouselNextArrow />,
-      prevArrow: <CarouselPrevArrow />
+      prevArrow: <CarouselPrevArrow />,
     };
 
     return (
@@ -305,14 +358,17 @@ const MarketPlace = () => {
         {wearables.map((wearable, index) => {
           let itemLimits;
           if (index === 0) {
-            itemLimits = state.itemLimits4;
+            itemLimits = state.itemLimits5;
           } else if (index === 1) {
-            itemLimits = state.itemLimits3;
+            itemLimits = state.itemLimits4;
           } else if (index === 2) {
-            itemLimits = state.itemLimits2;
+            itemLimits = state.itemLimits3;
           } else if (index === 3) {
+            itemLimits = state.itemLimits2;
+          } else if (index === 4) {
             itemLimits = state.itemLimits1;
           }
+          console.log('*************', wearable);
 
           return (
             <section key={index} className={styles.wearable_section}>
@@ -398,14 +454,16 @@ const MarketPlace = () => {
                     />
 
                     <div className={styles.nft_description}>
-                      <span style={{ display: 'flex', justifyContent: 'center' }}>
+                      <span
+                        style={{ display: 'flex', justifyContent: 'center' }}
+                      >
                         <p className={styles.nft_info}>
                           {wearable.details[item][3]}
                         </p>
 
-                        {state.userStatus >= 4 && state.userLoggedIn ? (
+                        {state.userStatus >= 4 ? (
                           <p className={styles.nft_info}>
-                            {itemLimits[0]} of 100 left
+                            {itemLimits[i][0]} of 100 left
                           </p>
                         ) : (
                           <p className={styles.nft_info}>- of 100 left</p>
@@ -420,30 +478,30 @@ const MarketPlace = () => {
                     </div>
 
                     <div className={styles.button_container}>
-                      {itemLimits[i][0] ? (
-                        state.userStatus >= Global.MINT_STATUS &&
-                          state.userLoggedIn ? (
-                          <div className={styles.flex_50}>
-                            <ModalMintWearable
-                              index={i}
-                              numberLeft={itemLimits[i][0]}
-                              itemID={itemLimits[i][1]}
-                              address={itemLimits[5]}
-                              wearableImg={wearable.details[item][0]}
-                              wearableBodyType={wearable.details[item][3]}
-                              wearableBodyImg={wearable.details[item][4]}
-                              wearableName={wearable.details[item][1]}
-                            />
-                          </div>
-                        ) : (
-                          <div className={styles.flex_50}>
-                            <ModalLoginICE />
-                          </div>
-                        )
-                      ) : (
+                      {state.userStatus >= Global.CONSTANTS.MINT_STATUS &&
+                      itemLimits[i][0] > 0 ? (
+                        // minting enabled
+
+                        <div className={styles.flex_50}>
+                          <ModalMintWearable
+                            index={i}
+                            numberLeft={itemLimits[i][0]}
+                            itemID={itemLimits[i][1]}
+                            address={itemLimits[5]}
+                            wearableImg={wearable.details[item][0]}
+                            wearableBodyType={wearable.details[item][3]}
+                            wearableBodyImg={wearable.details[item][4]}
+                            wearableName={wearable.details[item][1]}
+                          />
+                        </div>
+                      ) : // Minting Disabled States
+
+                      itemLimits[i][0] >= 0 && itemLimits[i][0] < 1 ? (
+                        // Sold Out State
+
                         <a
                           className={styles.flex_50}
-                          href="https://market.decentraland.org/browse?assetType=nft&section=wearables&contracts=0xcb06f6aee0655252a3f6f2884680421d55d3c645"
+                          href="https://opensea.io/collection/decentral-games-ice"
                           target="_blank"
                           style={{
                             width: '100%',
@@ -453,16 +511,35 @@ const MarketPlace = () => {
                             Buy on Secondary
                           </Button>
                         </a>
-                      )}
+                      ) : state.userStatus < Global.CONSTANTS.MINT_STATUS &&
+                        itemLimits[i][0] > 0 ? (
+                        // Coming Soon State
+
+                        <Button disabled className={styles.sold_button}>
+                          Coming Soon!
+                        </Button>
+                      ) : state.userStatus >= 4 && itemLimits[i][0] < 0 ? (
+                        // items loading, display spinner
+
+                        <Button disabled className={styles.sold_button}>
+                          <Spinner width={20} height={20} />
+                        </Button>
+                      ) : state.userStatus < 4 ? (
+                        // Logged Out State
+
+                        <div className={styles.flex_50}>
+                          <ModalLoginICE />
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 ))}
               </Slider>
             </section>
-          )
+          );
         })}
       </section>
-    )
+    );
   }
 
   return (
@@ -499,9 +576,7 @@ const MarketPlace = () => {
           </p>
         </div>
 
-        <div className={styles.outter_games_container}>
-          {getCarousel()}
-        </div>
+        <div className={styles.outter_games_container}>{getCarousel()}</div>
       </span>
     </div>
   );

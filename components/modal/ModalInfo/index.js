@@ -6,6 +6,7 @@ import { GlobalContext } from '../../../store';
 import styles from './ModalInfo.module.scss';
 import cn from 'classnames';
 import Global from '../../Constants';
+import Fetch from '../../../common/Fetch';
 
 const ModalInfo = () => {
   // get user's unclaimed DG balance from the Context API store
@@ -24,6 +25,7 @@ const ModalInfo = () => {
   const [dgSummationNew, setDGSummationNew] = useState(0);
   const [dgSummationAll, setDGSummationAll] = useState(0);
   const [DGPrice, setDGPrice] = useState(0);
+  const [OldDGPrice, setOldDGPrice] = useState(0);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -116,7 +118,14 @@ const ModalInfo = () => {
   }, [state.openModalInfo]);
 
   useEffect(() => {
-    setDGPrice(state.DGPrices.dg);
+    async function fetchData() {
+      setDGPrice(state.DGPrices.dg);
+
+      const price_json = await Fetch.OLD_DG_PRICE();
+      setOldDGPrice(price_json['decentral-games-old'].usd);
+    }
+
+    fetchData();
   }, [state.DGPrices]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -153,7 +162,7 @@ const ModalInfo = () => {
                 {formatPrice(dgTotal, 0)} DG
               </h4>
 
-              {/* <p className={styles.subtitle_2}>${formatPrice(dgTotalUSD, 2)}</p> */}
+              <p className={styles.subtitle_2}>${formatPrice(dgTotalUSD, 2)}</p>
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', width: '50%' }}>
@@ -166,9 +175,9 @@ const ModalInfo = () => {
                 {formatPrice(xdgTotal, 0)} xDG
               </h4>
 
-              {/* <p className={styles.subtitle_2}>
+              <p className={styles.subtitle_2}>
                 ${formatPrice(xdgTotalUSD, 2)}
-              </p> */}
+              </p>
             </div>
           </section>
         </span>
@@ -204,8 +213,6 @@ const ModalInfo = () => {
       </span>
     );
   }
-
-  console.log(xdgTotal,"==========xdg===========", xdgTotalUSD)
 
   function mainchainDG() {
     return (
@@ -312,7 +319,7 @@ const ModalInfo = () => {
           </h5>
 
           <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
-            ${formatPrice((dgSummationOld / 1000) * DGPrice, 2)}
+            ${formatPrice((dgSummationOld / 1000) * OldDGPrice, 2)}
           </p>
         </span>
       </span>
@@ -340,7 +347,7 @@ const ModalInfo = () => {
           </h5>
 
           <p className={styles.row_subtitle} style={{ textAlign: 'right' }}>
-            ${formatPrice((dgSummationOldPolygon / 1000) * DGPrice, 2)}
+            ${formatPrice((dgSummationOldPolygon / 1000) * OldDGPrice, 2)}
           </p>
         </span>
       </span>
@@ -406,7 +413,7 @@ const ModalInfo = () => {
         }}
       >
         <a
-          href={`https://app.uniswap.org/#/swap?outputCurrency=${Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DG}`}
+          href={`https://app.uniswap.org/#/swap?outputCurrency=${Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DG_LIGHT}`}
           target="_blank"
         >
           <button className={cn('btn', styles.buy_button)}>Buy DG</button>

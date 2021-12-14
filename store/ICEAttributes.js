@@ -3,12 +3,14 @@ import { GlobalContext } from './index';
 import Web3 from 'web3';
 import ABI_ICE_REGISTRANT from '../components/ABI/ABIICERegistrant.json';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
+import ABI_DG_LIGHT_TOKEN from '../components/ABI/ABIDGLightToken';
 import ABI_CHILD_TOKEN_WETH from '../components/ABI/ABIChildTokenWETH';
 import ABI_CHILD_TOKEN_ICE from '../components/ABI/ABIChildTokenICE';
 import ABI_COLLECTION_V2 from '../components/ABI/ABICollectionV2';
 import ABI_COLLECTION_PH from '../components/ABI/ABICollectionPH';
 import ABI_COLLECTION_LINENS from '../components/ABI/ABICollectionLinens';
 import ABI_COLLECTION_BOMBER from '../components/ABI/ABICollectionBomber';
+import ABI_COLLECTION_CRYPTO_DRIP from '../components/ABI/ABICollectionCryptoDrip.json';
 import ABI_ICEToken from '../components/ABI/ABIICEToken';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
@@ -21,7 +23,7 @@ function ICEAttributes() {
   // define local variables
   const [instances, setInstances] = useState(false);
   const [ICERegistrantContract, setICERegistrantContract] = useState({});
-  const [DGMaticContract, setDGMaticContract] = useState({});
+  const [DGMaticLightContract, setDGMaticLightContract] = useState({});
   const [WETHMaticContract, setWETHMaticContract] = useState({});
   const [ICEMaticContract, setICEMaticContract] = useState({});
   const [collectionArray, setCollectionArray] = useState([]);
@@ -40,11 +42,11 @@ function ICEAttributes() {
         );
         setICERegistrantContract(ICERegistrantContract);
 
-        const DGMaticContract = new maticWeb3.eth.Contract(
-          ABI_DG_TOKEN,
-          Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DG
+        const DGMaticLightContract = new maticWeb3.eth.Contract(
+          ABI_DG_LIGHT_TOKEN,
+          Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DG_LIGHT
         );
-        setDGMaticContract(DGMaticContract);
+        setDGMaticLightContract(DGMaticLightContract);
 
         const WETHMaticContract = new maticWeb3.eth.Contract(
           ABI_CHILD_TOKEN_WETH,
@@ -74,6 +76,10 @@ function ICEAttributes() {
           ABI_COLLECTION_BOMBER,
           Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS
         );
+        const collectionV2Contract5 = new maticWeb3.eth.Contract(
+          ABI_COLLECTION_CRYPTO_DRIP,
+          Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS
+        );
 
         const collectionArray = [];
         collectionArray.push([
@@ -95,6 +101,11 @@ function ICEAttributes() {
           collectionV2Contract4,
           Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS,
           [2, 12, 16, 20, 7],
+        ]);
+        collectionArray.push([
+          collectionV2Contract5,
+          Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS,
+          [0, 5, 10, 15, 20],
         ]);
         setCollectionArray(collectionArray);
 
@@ -289,6 +300,12 @@ function ICEAttributes() {
           data: itemLimits4,
         });
 
+        const itemLimits5 = await getItemLimits(4);
+        dispatch({
+          type: 'item_limits_5',
+          data: itemLimits5,
+        });
+
         // get the user's cool-down status
         console.log(' ==== <Before getCoolDownStatus> ====');
         const canPurchase = await getCoolDownStatus();
@@ -346,7 +363,8 @@ function ICEAttributes() {
         const tokenAuths = await getTokenAuthorizations();
 
         console.log(
-          'Get token authorization: DG: ' + tokenAuths.DG_AUTHORIZATION
+          'Get token authorization: DG_Light: ' +
+            tokenAuths.DG_LIGHT_AUTHORIZATION
         );
         console.log(
           'Get token authorization: ICE: ' + tokenAuths.ICE_AUTHORIZATION
@@ -508,6 +526,7 @@ function ICEAttributes() {
       const levelsData2 = await ICERegistrantContract.methods
         .levels('2')
         .call();
+
       const DG_COST_AMOUNT_2 = levelsData2[1] / Global.CONSTANTS.FACTOR;
       const ICE_COST_AMOUNT_2 = levelsData2[3] / Global.CONSTANTS.FACTOR;
 
@@ -586,8 +605,8 @@ function ICEAttributes() {
 
   async function getTokenAuthorizations() {
     try {
-      const DG_AUTHORIZATION = await Transactions.tokenAuthorization(
-        DGMaticContract,
+      const DG_LIGHT_AUTHORIZATION = await Transactions.tokenAuthorization(
+        DGMaticLightContract,
         state.userAddress,
         Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
       );
@@ -605,7 +624,7 @@ function ICEAttributes() {
       );
 
       return {
-        DG_AUTHORIZATION: DG_AUTHORIZATION,
+        DG_LIGHT_AUTHORIZATION: DG_LIGHT_AUTHORIZATION,
         ICE_AUTHORIZATION: ICE_AUTHORIZATION,
         WETH_AUTHORIZATION: WETH_AUTHORIZATION,
       };
