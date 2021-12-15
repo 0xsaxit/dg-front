@@ -21,17 +21,16 @@ const TreasuryTooltipDG = props => {
   }
 
   useEffect(() => {
-    if (Object.keys(state.treasuryNumbers).length !== 0) {
-      const usd = state.treasuryNumbers.totalBalanceUSD.graph;
-
+    if (
+      state.treasuryNumbers !== undefined &&
+      Object.keys(state.treasuryNumbers).length !== 0
+    ) {
       const dg = state.treasuryNumbers.totalDgUSD;
       setDgTreasury(formatPrice(dg.graph.slice(-1)[0].secondary, 0));
 
-      setTempLoad(state.treasuryNumbers.vestedDgBalance.graph[0].secondary);
-      setTempLoad2(tempLoad * state.DGPrices.dg);
-      setUnvestedDG(tempLoad2);
+      setUnvestedDG(state.treasuryNumbers.totalVestedDgUSD.graph.slice(-1)[0].secondary);
     }
-  }, [state.treasuryNumbers, tempLoad, tempLoad2]);
+  }, [state.treasuryNumbers, state.DGPrices]);
 
   return (
     <>
@@ -63,9 +62,7 @@ const TreasuryTooltipDG = props => {
               src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631640045/ICE_Info_bbiag6.svg"
             />
             <div>
-              <p style={{ marginBottom: '4px' }}>
-                DAO $DG: ${dgTreasury}
-              </p>
+              <p style={{ marginBottom: '4px' }}>DAO $DG: ${dgTreasury}</p>
               <p style={{ marginTop: '0px' }}>
                 Vested Gameplay $DG: ${formatPrice(unvestedDG, 0)}
               </p>

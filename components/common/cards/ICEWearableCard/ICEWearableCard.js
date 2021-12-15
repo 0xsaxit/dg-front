@@ -62,10 +62,11 @@ const ICEWearableCard = props => {
 
         delegationInfo.outgoingDelegations.forEach((item, i) => {
           if (item) {
+            const address = item.contractAddress;
             const delegateAddress = item.delegateAddress;
             const tokenId = item.tokenId;
 
-            if (tokenId === props.tokenID) {
+            if (tokenId === props.tokenID && address.toLowerCase() === props.address.toLowerCase()) {
               setDelegateAddress(delegateAddress);
             }
           }
@@ -133,7 +134,7 @@ const ICEWearableCard = props => {
 
           <div className={styles.button_area}>
             {!props.isActivated ? (
-              state.DGBalances.BALANCE_CHILD_DG <
+              state.DGBalances.BALANCE_CHILD_DG_LIGHT <
               state.tokenAmounts.DG_MOVE_AMOUNT ? (
                 <NeedMoreDGActivateModal />
               ) : (

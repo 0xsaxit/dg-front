@@ -34,7 +34,7 @@ const CONSTANTS = {
   DG_STAKED_AMOUNT: 1, // amount of DG user is required to have staked in order to mint wearable
   POOLING_TIME_OUT: 8000, // API endpoint request pool interval (milliseconds)
   POOLING_LIMIT_COUNT: 6, // attempt to call API endpoint this number of times
-  MINT_STATUS: 4, // minimum userStatus level for minting wearables (we can replace with appConfig variable when it's available)
+  MINT_STATUS: 29, // minimum userStatus level for minting wearables (we can replace with appConfig variable when it's available)
 };
 
 const IMG_URLS_UPGRADE = {
@@ -254,6 +254,7 @@ const ADDRESSES = (() => {
   const COLLECTION_PH_ADDRESS = '0x4cd15dcd96362cF85E19039C3C2D661e5e43145E';
   const COLLECTION_LINENS_ADDRESS = '0xd79cf5a41d8caec4688e01b4754ea2da6f51e856';
   const COLLECTION_BOMBER_ADDRESS = '0xd07a56f7198ae6e4e3d6738bd8c4b81d21bf0403';
+  const COLLECTION_CRYPTO_DRIP_ADDRESS = '0x897243a54b03b46a17b55d5609465e9719a6ffa0';
   const ICE_TOKEN_ADDRESS = '0xc6C855AD634dCDAd23e64DA71Ba85b8C51E5aD7c';
 
   console.log('OWNER_WALLET_ADDRESS: ' + OWNER_WALLET_ADDRESS);
@@ -270,6 +271,7 @@ const ADDRESSES = (() => {
   console.log('CHILD_TOKEN_ADDRESS_DAI: ' + CHILD_TOKEN_ADDRESS_DAI);
   console.log('CHILD_TOKEN_ADDRESS_MANA: ' + CHILD_TOKEN_ADDRESS_MANA);
   console.log('CHILD_TOKEN_ADDRESS_DG: ' + CHILD_TOKEN_ADDRESS_DG);
+  console.log('CHILD_TOKEN_ADDRESS_DG_LIGHT: ' + CHILD_TOKEN_ADDRESS_DG_LIGHT);
   console.log('CHILD_TOKEN_ADDRESS_USDT: ' + CHILD_TOKEN_ADDRESS_USDT);
   console.log('CHILD_TOKEN_ADDRESS_ATRI: ' + CHILD_TOKEN_ADDRESS_ATRI);
   console.log('CHILD_TOKEN_ADDRESS_WETH: ' + CHILD_TOKEN_ADDRESS_WETH);
@@ -344,6 +346,7 @@ const ADDRESSES = (() => {
     COLLECTION_PH_ADDRESS,
     COLLECTION_LINENS_ADDRESS,
     COLLECTION_BOMBER_ADDRESS,
+    COLLECTION_CRYPTO_DRIP_ADDRESS,
     ICE_TOKEN_ADDRESS
   };
 })();

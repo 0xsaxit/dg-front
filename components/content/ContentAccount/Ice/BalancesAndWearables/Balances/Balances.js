@@ -5,6 +5,7 @@ import { Button } from 'semantic-ui-react';
 import styles from './Balances.module.scss';
 import Fetch from '../../../../../../common/Fetch';
 import Aux from '../../../../../_Aux';
+import Spinner from 'components/Spinner';
 
 const Balances = () => {
   // dispatch user's ICE amounts to the Context API store
@@ -13,17 +14,13 @@ const Balances = () => {
   // define local variables
   const [clicked, setClicked] = useState(false);
   const [totalICE, setTotalICE] = useState(0);
-  console.log("state.userInfo: ", state.userInfo);
 
   const balenceItems = [
     {
       icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg',
       name: 'ICE',
       type: 'ICE',
-      model: formatPrice(
-        state.iceAmounts.ICE_AVAILABLE_AMOUNT,
-        0
-      ),
+      model: formatPrice(state.iceAmounts.ICE_AVAILABLE_AMOUNT, 0),
       price: formatPrice(
         state.iceAmounts.ICE_AVAILABLE_AMOUNT * state.DGPrices.ice,
         2
@@ -33,17 +30,14 @@ const Balances = () => {
       icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_XP_ICN_f9w2se.svg',
       name: 'Gameplay XP',
       type: 'XP',
-      model: formatPrice(
-        state.userInfo.balanceXP,
-        0
-      ),
+      model: formatPrice(state.userInfo.balanceXP, 0),
       price: '0.00',
     },
     {
       icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631325895/dgNewLogo_hkvlps.png',
       name: 'Decentral Games',
       type: 'DG',
-      model: formatPrice(state.DGBalances.BALANCE_CHILD_DG_LIGHT, 3),
+      model: formatPrice(state.DGBalances.BALANCE_CHILD_DG_LIGHT, 0),
       price: formatPrice(
         state.DGBalances.BALANCE_CHILD_DG_LIGHT * state.DGPrices.dg,
         2
@@ -184,15 +178,12 @@ const Balances = () => {
           />
         </div>
         <p className={styles.price}>
-          $
-          {formatPrice(
-            totalICE * state.DGPrices.ice,
-            2
-          )}
+          ${formatPrice(totalICE * state.DGPrices.ice, 2)}
         </p>
 
         <p className={styles.p_text}>
-          ICE Earnings vary based on your total equipped wearables, wearable ranks, and your placement in daily ICE Poker tournaments.
+          ICE Earnings vary based on your total equipped wearables, wearable
+          ranks, and your placement in daily ICE Poker tournaments.
         </p>
 
         {!clicked ? (
@@ -201,10 +192,10 @@ const Balances = () => {
           </Button>
         ) : (
           <Button className={styles.claim_button} disabled>
-            Claim {formatPrice(totalICE, 0)} ICE
+            <Spinner width={33} height={33} />
+            &nbsp; Claim {formatPrice(totalICE, 0)} ICE
           </Button>
         )}
-
       </div>
     );
   }
@@ -233,8 +224,9 @@ const Balances = () => {
 
         //Show Toast Message
         msg = 'ICE claimed successfully!';
+        setTotalICE(0);
       } else {
-        console.log('Claim ICE rewards request error: ' + json.reason);       
+        console.log('Claim ICE rewards request error: ' + json.reason);
         msg = 'ICE claimed failed!';
         setClicked(false);
       }
@@ -243,7 +235,6 @@ const Balances = () => {
         type: 'show_toastMessage',
         data: msg,
       });
-
     } catch (error) {
       console.log(error); // API request timeout error
       msg = 'API request timeout error';
