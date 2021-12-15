@@ -375,11 +375,13 @@ const MarketPlace = () => {
           }
 
           let maxMintCounts = 0;
-          Object.keys(state.appConfig.maxMintCounts).map(address => {
-            if (address === wearable.address.toLowerCase()) {
-              maxMintCounts = state.appConfig.maxMintCounts[address];
-            }
-          })
+          if (state.appConfig && state.appConfig.maxMintCounts) {
+            Object.keys(state.appConfig.maxMintCounts).map(address => {
+              if (address === wearable.address.toLowerCase()) {
+                maxMintCounts = state.appConfig.maxMintCounts[address];
+              }
+            })
+          }
 
           return (
             <section key={index} className={styles.wearable_section}>
