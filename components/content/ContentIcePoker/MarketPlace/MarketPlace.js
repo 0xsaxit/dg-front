@@ -347,8 +347,8 @@ const MarketPlace = () => {
         size.width <= 499
           ? 1
           : size.width <= 1040
-          ? Math.floor((size.width - 120) / 300)
-          : Math.min(Math.floor((size.width - 300) / 300), 6),
+            ? Math.floor((size.width - 120) / 300)
+            : Math.min(Math.floor((size.width - 300) / 300), 6),
       nextArrow: <CarouselNextArrow />,
       prevArrow: <CarouselPrevArrow />,
     };
@@ -463,10 +463,10 @@ const MarketPlace = () => {
 
                         {state.userStatus >= 4 ? (
                           <p className={styles.nft_info}>
-                            {itemLimits[i][0]} of 100 left
+                            {index === 0 ? 250 : itemLimits[i][0]} of {index === 0 ? 250 : 100} left
                           </p>
                         ) : (
-                          <p className={styles.nft_info}>- of 100 left</p>
+                          <p className={styles.nft_info}>- of {index === 0 ? 250 : 100} left</p>
                         )}
                       </span>
                       <p className={styles.nft_other_p}>
@@ -479,7 +479,7 @@ const MarketPlace = () => {
 
                     <div className={styles.button_container}>
                       {state.userStatus >= Global.CONSTANTS.MINT_STATUS &&
-                      itemLimits[i][0] > 0 ? (
+                        itemLimits[i][0] > 0 ? (
                         // minting enabled
 
                         <div className={styles.flex_50}>
@@ -496,41 +496,41 @@ const MarketPlace = () => {
                         </div>
                       ) : // Minting Disabled States
 
-                      itemLimits[i][0] >= 0 && itemLimits[i][0] < 1 ? (
-                        // Sold Out State
+                        itemLimits[i][0] >= 0 && itemLimits[i][0] < 1 ? (
+                          // Sold Out State
 
-                        <a
-                          className={styles.flex_50}
-                          href="https://opensea.io/collection/decentral-games-ice"
-                          target="_blank"
-                          style={{
-                            width: '100%',
-                          }}
-                        >
-                          <Button className={styles.wearable_button}>
-                            Buy on Secondary
+                          <a
+                            className={styles.flex_50}
+                            href="https://opensea.io/collection/decentral-games-ice"
+                            target="_blank"
+                            style={{
+                              width: '100%',
+                            }}
+                          >
+                            <Button className={styles.wearable_button}>
+                              Buy on Secondary
+                            </Button>
+                          </a>
+                        ) : state.userStatus < Global.CONSTANTS.MINT_STATUS &&
+                          itemLimits[i][0] > 0 ? (
+                          // Coming Soon State
+
+                          <Button disabled className={styles.sold_button}>
+                            Coming Soon!
                           </Button>
-                        </a>
-                      ) : state.userStatus < Global.CONSTANTS.MINT_STATUS &&
-                        itemLimits[i][0] > 0 ? (
-                        // Coming Soon State
+                        ) : state.userStatus >= 4 && itemLimits[i][0] < 0 ? (
+                          // items loading, display spinner
 
-                        <Button disabled className={styles.sold_button}>
-                          Coming Soon!
-                        </Button>
-                      ) : state.userStatus >= 4 && itemLimits[i][0] < 0 ? (
-                        // items loading, display spinner
+                          <Button disabled className={styles.sold_button}>
+                            <Spinner width={20} height={20} />
+                          </Button>
+                        ) : state.userStatus < 4 ? (
+                          // Logged Out State
 
-                        <Button disabled className={styles.sold_button}>
-                          <Spinner width={20} height={20} />
-                        </Button>
-                      ) : state.userStatus < 4 ? (
-                        // Logged Out State
-
-                        <div className={styles.flex_50}>
-                          <ModalLoginICE />
-                        </div>
-                      ) : null}
+                          <div className={styles.flex_50}>
+                            <ModalLoginICE />
+                          </div>
+                        ) : null}
                     </div>
                   </div>
                 ))}
