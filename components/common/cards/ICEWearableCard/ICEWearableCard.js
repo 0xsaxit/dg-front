@@ -126,9 +126,6 @@ const ICEWearableCard = props => {
     );
   }
 
-  console.log("state_balance ==>", state.DGBalances);
-  console.log("move_amount ====>", state.tokenAmounts.DG_MOVE_AMOUNT);
-
   return (
     <div className={styles.card_container}>
       <div className={styles.wearable_modal}>

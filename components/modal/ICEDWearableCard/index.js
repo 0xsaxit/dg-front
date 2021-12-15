@@ -15,8 +15,6 @@ import ActivateWearableModal from '../ActivateWearableModal';
 const ICEDWearableCard = props => {
   const [pending, setPending] = useState(false);
 
-  console.log("=======Props Balance=====>", props.balance);
-
   return (
     <>
       <div className={styles.wearable_modal}>

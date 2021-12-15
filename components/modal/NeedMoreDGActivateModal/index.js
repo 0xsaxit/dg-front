@@ -11,7 +11,6 @@ const NeedMoreDGActivateModal = props => {
   const [open, setOpen] = useState(false);
   const [pending, setPending] = useState(false);
 
-
   return (
     <>
       {!pending ? (
