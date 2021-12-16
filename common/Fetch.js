@@ -7,7 +7,8 @@ const { publicRuntimeConfig } = getConfig();
 const { APP_ENV } = publicRuntimeConfig;
 
 // APP_ENV must be set in the .env.{environment} files
-export const API_BASE_URL = ApiUrlsByAppEnv[APP_ENV] || 'https://api.decentral.games';
+export const API_BASE_URL =
+  ApiUrlsByAppEnv[APP_ENV] || 'https://api.decentral.games';
 
 console.log('APP_ENV (NODE_ENV): ', APP_ENV);
 console.log('API_BASE_URL: ', API_BASE_URL);
@@ -252,7 +253,6 @@ const Fetch = {
     );
   },
 
-
   ATRI_PRICE: () => {
     return call(`https://api.coingecko.com/api/v3/coins/atari`, 'GET', false);
   },
@@ -260,6 +260,14 @@ const Fetch = {
   DG_SUPPLY_GECKO: () => {
     return call(
       `https://api.coingecko.com/api/v3/coins/decentral-games`,
+      'GET',
+      false
+    );
+  },
+
+  DG_GOVERNANCE_SUPPLY_GECKO: () => {
+    return call(
+      `https://api.coingecko.com/api/v3/coins/decentral-games-governance`,
       'GET',
       false
     );

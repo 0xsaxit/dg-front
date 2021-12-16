@@ -2,13 +2,14 @@ import cn from 'classnames';
 import BigNumber from 'bignumber.js';
 import { useEffect, useContext, useState, React } from 'react';
 import Web3 from 'web3';
+import Link from 'next/link';
 import { Button } from 'semantic-ui-react';
 import Spinner from 'components/lottieAnimation/animations/spinner_updated';
 import { GlobalContext } from '../../../../store';
-import styles from './Governance.module.scss';
 import Transactions from '../../../../common/Transactions';
 import Global from '../../../Constants';
 import Constants from '../../../Constants';
+import styles from './Governance.module.scss';
 
 const Governance = props => {
   // get the treasury's balances numbers from the Context API store
@@ -20,20 +21,27 @@ const Governance = props => {
   const [DGLightTokenContract, setDGLightTokenContract] = useState({});
   const [DGTownHallContract, setDGTownHallContract] = useState({});
   const [apy, setAPY] = useState('');
-  const [stakedBalance, setStakedBalance] = useState(0);
   const [loading, setLoading] = useState(false);
   const [approving, setApproving] = useState(false);
+  const [ratio, setRatio] = useState(0);
+  const {
+    BALANCE_ROOT_DG_LIGHT: dgAmount,
+    BALANCE_CHILD_DG_LIGHT: maticDGAmount,
+    BALANCE_CHILD_TOKEN_XDG: maticXDGAmount,
+  } = state.DGBalances;
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  const { BALANCE_USER_GOVERNANCE: xDGAmount } = state.stakingBalances;
 
-  function handleAmountInputChange(e) {
+  const { xDG: xDGPrice } = state.DGPrices;
+
+  const { userAddress, userStatus, refreshBalances } = state;
+
+  const handleAmountInputChange = e => {
     setAmountInput(Number(e.target.value));
-  }
+  };
 
-  // fetch staking contract data
   useEffect(() => {
-    if (state.userStatus >= 4) {
+    if (userStatus >= 4) {
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
       async function fetchData() {
@@ -42,14 +50,13 @@ const Governance = props => {
           Transactions.DGTownHallContract(web3),
         ]);
 
-        const [balance, _stakedBalance] = [
+        const [balance, _ratio] = [
           await _DGTownHallContract.methods.innerSupply().call(),
-          await _DGTownHallContract.methods.DGAmount(state.userAddress).call(),
+          await _DGTownHallContract.methods.outsidAmount(1000000).call(),
         ];
 
         setDGLightTokenContract(_DGLightTokenContract);
         setDGTownHallContract(_DGTownHallContract);
-        setStakedBalance(_stakedBalance);
 
         setAPY(
           BigNumber(7821000000)
@@ -57,24 +64,25 @@ const Governance = props => {
             .multipliedBy(Constants.CONSTANTS.FACTOR)
             .toString()
         );
+        setRatio(_ratio / 1000000);
       }
 
       fetchData();
     }
-  }, [state.userStatus]);
+  }, [userStatus]);
 
-  async function staking() {
+  const staking = async () => {
     const { amountAdjusted, amountToString } = props.getAmounts(amountInput);
 
     try {
       const amountAllowance = await DGLightTokenContract.methods
-        .allowance(state.userAddress, DGTownHallContract._address)
+        .allowance(userAddress, DGTownHallContract._address)
         .call();
 
       if (Number(amountAllowance) < amountAdjusted) {
         await DGLightTokenContract.methods
           .approve(DGTownHallContract._address, Global.CONSTANTS.MAX_AMOUNT)
-          .send({ from: state.userAddress })
+          .send({ from: userAddress })
           .on('transactionHash', function (hash) {
             setApproving(true);
           })
@@ -90,7 +98,7 @@ const Governance = props => {
 
       await DGTownHallContract.methods
         .stepInside(amountToString)
-        .send({ from: state.userAddress })
+        .send({ from: userAddress })
         .on('transactionHash', function (hash) {
           setLoading(true);
         })
@@ -99,7 +107,7 @@ const Governance = props => {
         });
 
       // update global state staking balances
-      const refresh = !state.refreshBalances;
+      const refresh = !refreshBalances;
 
       dispatch({
         type: 'refresh_balances',
@@ -118,20 +126,20 @@ const Governance = props => {
         data: 'Failed to stake DG!',
       });
     }
-  }
+  };
 
-  async function unstaking() {
+  const unstaking = async () => {
     const { amountAdjusted, amountToString } = props.getAmounts(amountInput);
 
     try {
       const amountAllowance = await DGLightTokenContract.methods
-        .allowance(state.userAddress, DGTownHallContract._address)
+        .allowance(userAddress, DGTownHallContract._address)
         .call();
 
       if (Number(amountAllowance) < amountAdjusted) {
         await DGLightTokenContract.methods
           .approve(DGTownHallContract._address, Global.CONSTANTS.MAX_AMOUNT)
-          .send({ from: state.userAddress })
+          .send({ from: userAddress })
           .on('transactionHash', function (hash) {
             setApproving(true);
           })
@@ -148,7 +156,7 @@ const Governance = props => {
 
       await DGTownHallContract.methods
         .stepOutside(amountToString)
-        .send({ from: state.userAddress })
+        .send({ from: userAddress })
         .on('transactionHash', function (hash) {
           setLoading(true);
         })
@@ -157,7 +165,7 @@ const Governance = props => {
         });
 
       // update global state staking balances
-      const refresh = !state.refreshBalances;
+      const refresh = !refreshBalances;
 
       dispatch({
         type: 'refresh_balances',
@@ -176,193 +184,291 @@ const Governance = props => {
         data: 'Failed to unstake DG!',
       });
     }
-  }
+  };
 
   return (
-    <div>
-      <div className={styles.left_panel}>
-        <p className={styles.welcome_text}>Welcome to DG Governance</p>
-        <p className={styles.welcome_content}>
-          When you stake DG in governance, you receive xDG, a token which
-          represents your share in the governance. In return, you can make
-          proposals and vote on the future of the DAO, earn autocompounding APR,
-          and get access to ICE Wearable mints.
-        </p>
-        <div className={cn('d-flex', styles.stake_DG_container)}>
-          <div className={cn(styles.lower, styles.panel)}>
-            <div className={styles.type_div}>
-              <div
-                className={stakeType === 'Stake' ? styles.active : null}
-                onClick={() => {
-                  setStakeType('Stake');
-                }}
-              >
-                Stake
-              </div>
-              <div
-                className={stakeType === 'Unstake' ? styles.active : null}
-                onClick={() => {
-                  setStakeType('Unstake');
-                }}
-              >
-                Unstake
-              </div>
-            </div>
-
-            <p className={cn(styles.lower_header, 'mb-3')}>
-              New Governance Staking
-            </p>
-
-            <div className="d-flex w-100 mb-5">
-              <span className="d-flex justify-content-center w-50">
-                <span className="d-flex flex-column align-items-center pb-3">
-                  <p className={styles.apy_text}>Your Staked DG Value</p>
-                  {stakedBalance ? (
-                    <p className={styles.apy_percent}>
-                      {props.formatPrice(
-                        new BigNumber(stakedBalance)
-                          .div(new BigNumber(10).pow(18))
-                          .toString()
-                      )}
-                    </p>
-                  ) : (
-                    <Spinner width={33} height={33} />
-                  )}
-                </span>
-              </span>
-
-              <span className="d-flex justify-content-center w-50">
-                <span className="d-flex flex-column align-items-center pb-3">
-                  <p className={styles.apy_text}>Gov Staking APY</p>
-                  {apy ? (
-                    <p className={styles.apy_percent}>{apy}%</p>
-                  ) : (
-                    <Spinner width={33} height={33} />
-                  )}
-                </span>
-              </span>
-            </div>
-
-            <div className={styles.content}>
-              <div className={styles.contract_div}>
-                <div className={styles.content}>
-                  <img
-                    className={styles.dg}
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png"
-                    alt="DG"
-                  />
-                  <input
-                    type="number"
-                    className={styles.dg_input}
-                    value={amountInput.toString()}
-                    onChange={handleAmountInputChange}
-                    style={{
-                      minWidth: `${
-                        5 + (amountInput.toString().length + 1) * 12
-                      }px`,
-                      maxWidth: `${
-                        5 + (amountInput.toString().length + 1) * 12
-                      }px`,
-                    }}
-                  />
-                </div>
-
-                <Button
-                  className={styles.max_button}
-                  onClick={() => {
-                    setAmountInput(
-                      stakeType === 'Stake'
-                        ? state.DGBalances.BALANCE_ROOT_DG_LIGHT
-                        : state.stakingBalances.BALANCE_USER_GOVERNANCE
-                    );
-                  }}
-                >
-                  MAX
-                </Button>
-
-                <div className={styles.description}>
-                  <h4
-                    className={
-                      Number(amountInput) <=
-                      Number(
-                        stakeType === 'Stake'
-                          ? state.DGBalances.BALANCE_ROOT_DG_LIGHT
-                          : state.stakingBalances.BALANCE_USER_GOVERNANCE
-                      )
-                        ? styles.success
-                        : styles.error
-                    }
-                  >
+    <div className={styles.governanace_main_wrapper}>
+      <h1 className={styles.welcome_text}>Welcome to DG Governance</h1>
+      <p className={styles.welcome_content}>
+        When you stake DG in governance, you receive xDG, a token which
+        represents your share in the governance. In return, you can make
+        proposals and vote on the future of the DAO, earn autocompounding APR,
+        and get access to ICE Wearable mints.
+      </p>
+      <div className={styles.governance_stake_overview}>
+        <h1 className={cn(styles.staking_header, 'mb-3')}>
+          Governance Staking Overview
+        </h1>
+        <div className="row">
+          <div className="col-md-4">
+            <h6 className={cn('mb-1', styles.staking_subfooter)}>
+              Your Total xDG
+            </h6>
+            <div className="d-flex mb-1 align-items-center">
+              <div className={styles.item_value}>
+                {xDGAmount !== undefined && maticXDGAmount !== undefined ? (
+                  <>
                     {props.formatPrice(
-                      stakeType === 'Stake'
-                        ? state.DGBalances.BALANCE_ROOT_DG_LIGHT
-                        : state.stakingBalances.BALANCE_USER_GOVERNANCE,
-                      3
+                      parseFloat(xDGAmount) + parseFloat(maticXDGAmount)
                     )}
-                    &nbsp;{stakeType === 'Stake' ? '' : 'x'}DG Available
-                    to&nbsp;
-                    {stakeType}
-                  </h4>
-                  <p>On ETH Mainnet</p>
-                </div>
-              </div>
-
-              <div className={styles.button_div}>
-                {stakeType === 'Stake' ? (
-                  <Button
-                    className={styles.button_blue}
-                    onClick={() => {
-                      staking();
-                      setAmountInput('');
-                    }}
-                    disabled={
-                      approving ||
-                      loading ||
-                      Number(amountInput) <= 0 ||
-                      Number(amountInput) >
-                        Number(state.DGBalances.BALANCE_ROOT_DG_LIGHT)
-                        ? true
-                        : false
-                    }
-                  >
-                    {approving || loading ? (
-                      <Spinner width={33} height={33} />
-                    ) : null}
-                    &nbsp;
-                    {approving || loading
-                      ? ''
-                      : `${stakeType} ${amountInput > 0 ? amountInput : ''} DG`}
-                  </Button>
+                    <img
+                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637260602/grayLogo_ojx2hi.png"
+                      alt="xDG"
+                    />
+                  </>
                 ) : (
-                  <Button
-                    className={styles.button_blue}
-                    onClick={() => {
-                      unstaking();
-                      setAmountInput('');
-                    }}
-                    disabled={
-                      approving ||
-                      loading ||
-                      Number(amountInput) <= 0 ||
-                      Number(amountInput) >
-                        state.stakingBalances.BALANCE_USER_GOVERNANCE
-                        ? true
-                        : false
-                    }
-                  >
-                    {approving || loading ? (
-                      <Spinner width={33} height={33} />
-                    ) : null}
-                    &nbsp;
-                    {approving || loading
-                      ? ''
-                      : `${stakeType} ${amountInput > 0 ? amountInput : ''} DG`}
-                  </Button>
+                  <Spinner width={33} height={33} />
                 )}
               </div>
             </div>
+            <p className={styles.staking_subfooter}>
+              {xDGAmount !== undefined &&
+              maticXDGAmount !== undefined &&
+              xDGPrice ? (
+                `$${props.formatPrice(
+                  (parseFloat(xDGAmount) + parseFloat(maticXDGAmount)) *
+                    xDGPrice,
+                  2
+                )}`
+              ) : (
+                <Spinner width={20} height={20} />
+              )}
+            </p>
+          </div>
+          <div className="col-md-4">
+            <h6 className={cn('mb-1', styles.staking_subfooter)}>
+              Your Equivalent DG Value
+            </h6>
+            <div className="d-flex mb-1 align-items-center">
+              <div className={styles.item_value}>
+                {xDGAmount !== undefined &&
+                maticXDGAmount !== undefined &&
+                ratio ? (
+                  <>
+                    {props.formatPrice(
+                      (parseFloat(xDGAmount) + parseFloat(maticXDGAmount)) *
+                        ratio
+                    )}
+                    <img
+                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png"
+                      alt="DG"
+                    />
+                  </>
+                ) : (
+                  <Spinner width={33} height={33} />
+                )}
+              </div>
+            </div>
+            <p className={styles.staking_subfooter}>
+              {xDGAmount !== undefined &&
+              maticXDGAmount !== undefined &&
+              ratio &&
+              xDGPrice ? (
+                `$${props.formatPrice(
+                  (parseFloat(xDGAmount) + parseFloat(maticXDGAmount)) *
+                    ratio *
+                    xDGPrice,
+                  2
+                )}`
+              ) : (
+                <Spinner width={20} height={20} />
+              )}
+            </p>
+          </div>
+          <div className="col-md-4">
+            <h6 className={cn('mb-1', styles.staking_subfooter)}>
+              Staking APR
+            </h6>
+            <div className="mb-1">
+              <div className={styles.item_value}>
+                {apy ? `${apy}%` : <Spinner width={33} height={33} />}
+              </div>
+            </div>
+            <p className={styles.staking_subfooter}>
+              1 xDG = {props.formatPrice(ratio, 3)} DG
+            </p>
           </div>
         </div>
+      </div>
+      <div className={styles.staking_module}>
+        <div className={styles.staking_switch}>
+          <div
+            className={stakeType === 'Stake' ? styles.active : null}
+            onClick={() => {
+              setStakeType('Stake');
+            }}
+          >
+            Stake
+          </div>
+          <div
+            className={stakeType === 'Unstake' ? styles.active : null}
+            onClick={() => {
+              setStakeType('Unstake');
+            }}
+          >
+            Unstake
+          </div>
+        </div>
+        <div className={styles.divider}></div>
+
+        <div className={styles.staking_inner}>
+          <div className={styles.contract_div}>
+            <h5 className={cn(styles.staking_header, 'mb-1')}>
+              <i class="ethereum icon"></i>&nbsp;{stakeType} on ETH Mainnet
+            </h5>
+            <p className={cn('mb-3', styles.staking_subfooter)}>
+              {stakeType} your {stakeType === 'Stake' ? '' : 'x'}DG in
+              governance and receive {stakeType === 'Unstake' ? '' : 'x'}DG
+            </p>
+            <div className={styles.content}>
+              <img
+                className={styles.dg}
+                src={
+                  stakeType === 'Stake'
+                    ? 'https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png'
+                    : 'https://res.cloudinary.com/dnzambf4m/image/upload/v1637260602/grayLogo_ojx2hi.png'
+                }
+                alt="DG"
+              />
+              <input
+                type="number"
+                className={styles.dg_input}
+                value={amountInput.toString()}
+                onChange={handleAmountInputChange}
+                style={{
+                  minWidth: `${5 + (amountInput.toString().length + 1) * 12}px`,
+                  maxWidth: `${5 + (amountInput.toString().length + 1) * 12}px`,
+                }}
+              />
+
+              <Button
+                className={styles.max_button}
+                onClick={() => {
+                  setAmountInput(stakeType === 'Stake' ? dgAmount : xDGAmount);
+                }}
+              >
+                MAX
+              </Button>
+            </div>
+
+            <div className={styles.description}>
+              <h4
+                className={
+                  Number(amountInput) <=
+                  Number(stakeType === 'Stake' ? dgAmount : xDGAmount)
+                    ? styles.success
+                    : styles.error
+                }
+              >
+                {props.formatPrice(
+                  stakeType === 'Stake' ? dgAmount : xDGAmount,
+                  3
+                )}
+                &nbsp;{stakeType === 'Stake' ? '' : 'x'}DG Available to&nbsp;
+                {stakeType}
+              </h4>
+              <p>On ETH Mainnet</p>
+            </div>
+          </div>
+
+          <div className={styles.button_wrapper}>
+            <Button
+              className={styles.button_blue}
+              onClick={() => {
+                if (stakeType === 'Stake') {
+                  staking();
+                } else {
+                  unstaking();
+                }
+                setAmountInput('');
+              }}
+              disabled={
+                approving ||
+                loading ||
+                Number(amountInput) <= 0 ||
+                Number(amountInput) >
+                  (stakeType === 'Stake' ? Number(dgAmount) : xDGAmount)
+                  ? true
+                  : false
+              }
+            >
+              {approving || loading ? <Spinner width={33} height={33} /> : null}
+              &nbsp;
+              {approving || loading
+                ? ''
+                : `${stakeType} ${amountInput > 0 ? amountInput : ''} ${
+                    stakeType === 'Unstake' ? 'x' : ''
+                  }DG`}
+            </Button>
+            <span>
+              You Will Receive{' '}
+              {stakeType === 'Stake'
+                ? props.formatPrice(Number(amountInput) * ratio, 3)
+                : props.formatPrice(Number(amountInput) / ratio, 3)}{' '}
+              {stakeType === 'Stake' ? 'x' : ''}DG
+            </span>
+          </div>
+        </div>
+        <div className={styles.staking_inner}>
+          <div className={styles.contract_div}>
+            <h5 className={cn(styles.staking_header, 'mb-1')}>
+              <img
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634606779/polygon_rsgtjk.png"
+                alt="polygon"
+              />
+              &nbsp; {stakeType} on Polygon
+            </h5>
+            <p className={cn('mb-3', styles.staking_subfooter)}>
+              Swap {stakeType === 'Stake' ? '' : 'x'}DG for{' '}
+              {stakeType === 'Stake' ? 'x' : ''}DG directly on Quickswap
+            </p>
+            <img
+              className={styles.polygon_ellipse}
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1639565799/Ellipse_16_rmqkzi.jpg"
+              alt="Polygon"
+            />
+
+            <div className={styles.description}>
+              <h4 className={styles.gray}>
+                {props.formatPrice(
+                  stakeType === 'Stake' ? maticDGAmount : maticXDGAmount,
+                  3
+                )}
+                &nbsp;{stakeType === 'Stake' ? '' : 'x'}DG Available to&nbsp;
+                {stakeType}
+              </h4>
+              <p>On Polygon</p>
+            </div>
+          </div>
+
+          <div className={styles.button_wrapper}>
+            <Button
+              className={styles.button}
+              href={
+                stakeType === 'Stake'
+                  ? 'https://quickswap.exchange/#/swap?inputCurrency=0xef938b6da8576a896f6E0321ef80996F4890f9c4&outputCurrency=0xc6480Da81151B2277761024599E8Db2Ad4C388C8'
+                  : 'https://quickswap.exchange/#/swap?inputCurrency=0xc6480Da81151B2277761024599E8Db2Ad4C388C8&outputCurrency=0xef938b6da8576a896f6E0321ef80996F4890f9c4 '
+              }
+            >
+              Swap for {stakeType === 'Stake' ? 'x' : ''}DG on Quickswap&nbsp;
+              <img
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636424323/TransBgArrow_ukntvi.png"
+                alt=""
+              />
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.staking_footer}>
+        <h5 className={cn(styles.staking_header, 'mb-2')}>
+          What If I’m Still Staked in the Old Governance?
+        </h5>
+        <p className={cn('mb-1', styles.staking_subfooter)}>
+          DG has migrated to a new token. To claim your (Old) $DG from
+          governance, go to our{' '}
+          <Link href="/dg/migration">Token Migration</Link> page.
+        </p>
       </div>
     </div>
   );
