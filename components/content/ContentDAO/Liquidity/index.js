@@ -2,12 +2,10 @@ import cn from 'classnames';
 import { useEffect, useContext, useState, React } from 'react';
 import { GlobalContext } from '../../../../store';
 import { Button } from 'semantic-ui-react';
-import Spinner from 'components/lottieAnimation/animations/spinner_updated';
 import Aux from '../../../_Aux';
 import styles from './Liquidity.module.scss';
 import Web3 from 'web3';
 import Transactions from '../../../../common/Transactions';
-import Fetch from '../../../../common/Fetch';
 
 const Liquidity = props => {
   // get the treasury's balances numbers from the Context API store
@@ -15,12 +13,7 @@ const Liquidity = props => {
 
   // define local variables
   const [amountInput, setAmountInput] = useState('');
-  const [percentageUniswap, setPercentageUniswap] = useState(0);
-  const [percentagePool, setPercentagePool] = useState(0);
-  const [priceUSD, setPriceUSD] = useState(0);
   const [stakingContractUniswap, setStakingContractUniswap] = useState({});
-  const [uniswapContract, setUniswapContract] = useState({});
-  const [instances, setInstances] = useState(false);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -32,90 +25,11 @@ const Liquidity = props => {
         const stakingContractUniswap =
           await Transactions.stakingContractUniswap(web3);
         setStakingContractUniswap(stakingContractUniswap);
-
-        const uniswapContract = await Transactions.uniswapContract(web3);
-        setUniswapContract(uniswapContract);
-
-        setInstances(true); // contract instantiation complete
       }
 
       fetchData();
     }
   }, [state.userStatus]);
-
-  // get price USD of DG staked
-  useEffect(() => {
-    if (props.price && state.DGBalances.BALANCE_STAKING_UNISWAP) {
-      const priceUSD = Number(
-        props.price * state.DGBalances.BALANCE_STAKING_UNISWAP
-      );
-      const priceUSDFormatted = props.formatPrice(priceUSD, 2);
-
-      setPriceUSD(priceUSDFormatted);
-    }
-  }, [props.price, state.DGBalances.BALANCE_STAKING_UNISWAP]);
-
-  // set uniswap APY stat
-  useEffect(() => {
-    if (
-      props.price &&
-      state.DGBalances.BALANCE_UNISWAP_ETH &&
-      state.DGBalances.BALANCE_UNISWAP_DG
-    ) {
-      (async () => {
-        let json = await Fetch.ETH_PRICE();
-
-        const priceETH = json.market_data.current_price.usd;
-        const locked_ETH = state.DGBalances.BALANCE_UNISWAP_ETH * priceETH;
-        const locked_DG = state.DGBalances.BALANCE_UNISWAP_DG * props.price;
-        const uni_denom = locked_DG + locked_ETH;
-        const uni_num = 6518 * props.price;
-        const uni_APY_temp = (uni_num / uni_denom) * 100;
-      })();
-    }
-  }, [
-    props.price,
-    state.DGBalances.BALANCE_UNISWAP_ETH,
-    state.DGBalances.BALANCE_UNISWAP_DG,
-  ]);
-
-  useEffect(() => {
-    if (
-      state.stakingBalances.BALANCE_STAKED_UNISWAP &&
-      state.stakingBalances.BALANCE_CONTRACT_UNISWAP
-    ) {
-      const percentageUniswap = Number(
-        (state.stakingBalances.BALANCE_STAKED_UNISWAP /
-          state.stakingBalances.BALANCE_CONTRACT_UNISWAP) *
-        100
-      ).toFixed(2);
-
-      setPercentageUniswap(percentageUniswap);
-    }
-  }, [
-    state.stakingBalances.BALANCE_STAKED_UNISWAP,
-    state.stakingBalances.BALANCE_CONTRACT_UNISWAP,
-  ]);
-
-  // set users % of pool staked stat
-  useEffect(() => {
-    if (instances) {
-      (async () => {
-        const stakedTotal = await Transactions.getTotalSupply(
-          stakingContractUniswap
-        );
-
-        if (stakedTotal) {
-          const percentagePool =
-            state.stakingBalances.BALANCE_STAKED_UNISWAP / stakedTotal;
-
-          setPercentagePool(percentagePool);
-        } else {
-          setPercentagePool(0);
-        }
-      })();
-    }
-  }, [instances, state.stakingBalances.BALANCE_STAKED_UNISWAP]);
 
   function handleChange(e) {
     setAmountInput(e.target.value);

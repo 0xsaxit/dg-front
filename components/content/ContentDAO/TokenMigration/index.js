@@ -121,7 +121,7 @@ const TokenMigration = (props) => {
                             </div>
                         </div>
                     </div>
-                : null
+                    : null
             }
         </div>
     )
