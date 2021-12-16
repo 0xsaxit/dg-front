@@ -39,10 +39,6 @@ const Wearables = ({ state }) => {
       };
 
       const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
-
-      // console.log('delegation info (Wearables): ');
-      // console.log(delegationInfo);
-
       activeWearables.map(activeWearable => {
         if (
           delegationInfo.outgoingDelegations &&
@@ -155,12 +151,12 @@ const Wearables = ({ state }) => {
     <section className={styles.wearableSection}>
       <div className={styles.wearableHeader}>
         <div>
-          <h2>ICED Wearables</h2>
-          {!!state.iceWearableItems.length || !!state.iceDelegatedItems.length ?
+          <h2>ICE Wearables</h2>
+          {/* {!!state.iceWearableItems.length || !!state.iceDelegatedItems.length ?
             <p>{`(${activeWearables.length + delegatedWearables.length} of ${state.iceWearableItems.length + state.iceDelegatedItems.length
               } Active) ${maxICEBonus}% Max ICE Bonus`}</p>
             : null
-          }
+          } */}
         </div>
         <Button className={styles.open_sea} href="/ice/marketplace">
           Mint Wearable
@@ -178,9 +174,6 @@ const Wearables = ({ state }) => {
           </svg>
         </Button>
       </div>
-
-      {/* {console.log('item limits array index:')}
-      {console.log(state.iceWearableItems)} */}
 
       <section className={styles.grid_container}>
         {!!state.iceWearableItems.length || !!state.iceDelegatedItems.length ?

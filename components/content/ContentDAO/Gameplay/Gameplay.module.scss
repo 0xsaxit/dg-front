@@ -1,4 +1,4 @@
-@import 'styles/base.scss';
+@import "styles/base.scss";
 
 .lower {
   padding: 28px;
@@ -67,19 +67,19 @@
 
     &:active,
     &:focus {
-        opacity: 1;
-        background: rgb(31, 31, 31) !important;
-        color: white !important;
-        filter: none !important;
-        transition: 0.2s ease-in;
+      opacity: 1;
+      background: rgb(31, 31, 31) !important;
+      color: white !important;
+      filter: none !important;
+      transition: 0.2s ease-in;
     }
 
     &:hover {
-        opacity: 0.6;
-        background: rgb(31, 31, 31) !important;
-        color: white !important;
-        filter: none !important;
-        transition: 0.2s ease-in;
+      opacity: 0.6;
+      background: rgb(31, 31, 31) !important;
+      color: white !important;
+      filter: none !important;
+      transition: 0.2s ease-in;
     }
   }
 
@@ -141,7 +141,7 @@
     text-align: left;
   }
 
- .gameplay_container {
+  .gameplay_container {
     display: flex;
     margin-bottom: 20px;
     margin-top: 5px;
@@ -215,20 +215,19 @@
 
     &:active,
     &:focus {
-        opacity: 1;
-        background: #006eff;
-        color: white !important;
-        filter: none !important;
-        transition: 0.2s ease-in;
+      opacity: 1;
+      background: #006eff;
+      color: white !important;
+      filter: none !important;
+      transition: 0.2s ease-in;
     }
 
     &:hover {
-        opacity: 0.6;
-        background: #006eff;
-        color: white !important;
-        filter: none !important;
-        transition: 0.2s ease-in;
+      opacity: 0.6;
+      background: #006eff;
+      color: white !important;
+      filter: none !important;
+      transition: 0.2s ease-in;
     }
   }
 }
-

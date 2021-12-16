@@ -119,15 +119,10 @@ const ModalMint = props => {
               />
             </div>
 
-            {state.stakingBalances.BALANCE_USER_GOVERNANCE >=
-            Global.CONSTANTS.DG_STAKED_AMOUNT ||
-            (state.DGBalances.BALANCE_CHILD_TOKEN_XDG +
-            state.DGBalances.BALANCE_MAIN_TOKEN_XDG) >=
-            Global.CONSTANTS.XDG_STAKED_AMOUNT ? (
+            {1 === 2? (
               <div className={styles.green_check}>
 
-                {roundup(state.stakingBalances.BALANCE_USER_GOVERNANCE)} DG
-                Staked &nbsp;
+                You Have Enough Staked &nbsp;
 
                 <svg
                   width="9"
