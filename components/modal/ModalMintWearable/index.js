@@ -48,7 +48,7 @@ const ModalMint = props => {
         Price{' '}
         <span>
           ($
-          {(state.DGPrices.eth * state.tokenAmounts.WETH_COST_AMOUNT).toFixed(
+          {(state.DGPrices.eth * Global.CONSTANTS.WETH_MINT_AMOUNT).toFixed(
             2
           )}
           )
@@ -95,15 +95,24 @@ const ModalMint = props => {
           <p style={{ margin: '0px 8px 0px 8px' }}>+</p>
           <div className={styles.card_area_body}>
             {state.stakingBalances.BALANCE_USER_GOVERNANCE <
-            Global.CONSTANTS.DG_STAKED_AMOUNT ? (
+            Global.CONSTANTS.DG_STAKED_AMOUNT ||
+            (state.DGBalances.BALANCE_CHILD_TOKEN_XDG +
+            state.DGBalances.BALANCE_MAIN_TOKEN_XDG) <
+            Global.CONSTANTS.XDG_STAKED_AMOUNT ? (
               <span className={styles.dgStackedSpan}>
                 Not Enough Staked
                 <IceMintDGStackedTooltip />
               </span>
             ) : null}
 
-            <div className={styles.card} style={{ width: '150px' }}>
-              {Global.CONSTANTS.DG_STAKED_AMOUNT} DG Staked
+            <div className={styles.card} style={{ width: '256px' }}>
+              {Global.CONSTANTS.XDG_STAKED_AMOUNT} xDG
+              <img
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637260602/grayLogo_ojx2hi.png"
+                className={styles.img_card2}
+              />
+              <p className={styles.or}>or</p>
+              {Global.CONSTANTS.DG_STAKED_AMOUNT} (Old) DG
               <img
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631325895/dgNewLogo_hkvlps.png"
                 className={styles.img_card2}
@@ -111,10 +120,15 @@ const ModalMint = props => {
             </div>
 
             {state.stakingBalances.BALANCE_USER_GOVERNANCE >=
-            Global.CONSTANTS.DG_STAKED_AMOUNT ? (
+            Global.CONSTANTS.DG_STAKED_AMOUNT ||
+            (state.DGBalances.BALANCE_CHILD_TOKEN_XDG +
+            state.DGBalances.BALANCE_MAIN_TOKEN_XDG) >=
+            Global.CONSTANTS.XDG_STAKED_AMOUNT ? (
               <div className={styles.green_check}>
+
                 {roundup(state.stakingBalances.BALANCE_USER_GOVERNANCE)} DG
                 Staked &nbsp;
+
                 <svg
                   width="9"
                   height="8"
@@ -131,10 +145,7 @@ const ModalMint = props => {
             ) : (
               <div>
                 <div className={styles.description}>
-                  You must have at least {Global.CONSTANTS.DG_STAKED_AMOUNT} DG
-                </div>
-                <div className={styles.description}>
-                  staked in governance to mint
+                  You must have at least 1000 xDG or 1 (old) DG staked in governance to mint
                 </div>
               </div>
             )}

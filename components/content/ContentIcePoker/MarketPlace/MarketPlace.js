@@ -476,7 +476,7 @@ const MarketPlace = () => {
 
                         {state.userStatus >= 4 ? (
                           <p className={styles.nft_info}>
-                            {maxMintCounts - itemLimits[i][0]} of {maxMintCounts} left
+                            {itemLimits[i][0] >= 0 ? maxMintCounts - itemLimits[i][0] : '- '} of {maxMintCounts} left
                           </p>
                         ) : (
                           <p className={styles.nft_info}>- of {maxMintCounts} left</p>
@@ -507,35 +507,41 @@ const MarketPlace = () => {
                             wearableName={wearable.details[item][1]}
                           />
                         </div>
+                      ) : state.userStatus >= 4 && itemLimits[i][0] < 0 ? (
+                        // items loading, display spinner
+
+                        <Button disabled className={styles.sold_button}>
+                          <Spinner width={20} height={20} />
+                        </Button>
                       ) : // Minting Disabled States
-
                         (maxMintCounts - itemLimits[i][0]) >= 0 && (maxMintCounts - itemLimits[i][0]) < 1 ? (
-                          // Sold Out State
-
-                          <a
-                            className={styles.flex_50}
-                            href="https://opensea.io/collection/decentral-games-ice"
-                            target="_blank"
-                            style={{
-                              width: '100%',
-                            }}
-                          >
-                            <Button className={styles.wearable_button}>
-                              Buy on Secondary
+                          wearable.title === 'Crypto Drip' ? (
+                            // Sold Out State
+                            <Button disabled className={styles.sold_button}>
+                              Sold Out
                             </Button>
-                          </a>
+                          )
+                            : (
+                              // Buy on Secondary
+                              <a
+                                className={styles.flex_50}
+                                href="https://opensea.io/collection/decentral-games-ice"
+                                target="_blank"
+                                style={{
+                                  width: '100%',
+                                }}
+                              >
+                                <Button className={styles.wearable_button}>
+                                  Buy on Secondary
+                                </Button>
+                              </a>
+                            )
                         ) : state.userStatus < state.appConfig.minMintVerifyStep &&
                           (maxMintCounts - itemLimits[i][0]) > 0 ? (
                           // Coming Soon State
 
                           <Button disabled className={styles.sold_button}>
                             Coming Soon!
-                          </Button>
-                        ) : state.userStatus >= 4 && itemLimits[i][0] < 0 ? (
-                          // items loading, display spinner
-
-                          <Button disabled className={styles.sold_button}>
-                            <Spinner width={20} height={20} />
                           </Button>
                         ) : state.userStatus < 4 ? (
                           // Logged Out State

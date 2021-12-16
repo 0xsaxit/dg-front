@@ -26,6 +26,7 @@ function DGBalances() {
   const [DGMaticContract, setDGMaticContract] = useState({});
 
   const [XDGMaticContract, setXDGMaticContract] = useState({});
+  const [XDGMainContract, setXDGMainContract] = useState({}); 
 
   const [DGLightMaticContract, setDGLightMaticContract] = useState({});
   const [BPTContract1, setBPTContract1] = useState({});
@@ -76,8 +77,12 @@ function DGBalances() {
     setDGMaticContract(DGMaticContract);
 
     // matic contract to get xDG balance on matic chain for modal
-    const XDGMaticContract = await Transactions.XDGTokenContract(maticWeb3);
+    const XDGMaticContract = await Transactions.XDGTokenContractChild(maticWeb3);
     setXDGMaticContract(XDGMaticContract);
+
+    // // matic contract to get xDG balance on main chain for modal
+    // const XDGMainContract = await Transactions.XDGTokenContractMain(web3);
+    // setXDGMainContract(XDGMainContract);
 
     // matic contract to get DGLight balance on matic chain for modal
     const DGLightMaticContract = await Transactions.DGLightTokenContract(
@@ -318,8 +323,11 @@ function DGBalances() {
         3
       );
 
-      // console.log('foo foo foo...');
-      // console.log(BALANCE_CHILD_TOKEN_XDG);
+      const BALANCE_MAIN_TOKEN_XDG = await Transactions.balanceOfToken(
+        XDGMainContract,
+        state.userAddress,
+        3
+      );
 
       const BALANCE_ICE = await Transactions.balanceOfToken(
         iceContract,
@@ -391,6 +399,7 @@ function DGBalances() {
 
         BALANCE_CHILD_DG_LIGHT: BALANCE_CHILD_DG_LIGHT,
         BALANCE_CHILD_TOKEN_XDG: BALANCE_CHILD_TOKEN_XDG,
+        BALANCE_MAIN_TOKEN_XDG: BALANCE_MAIN_TOKEN_XDG,
         UNVESTED_DG_1: UNVESTED_DG_1,
         UNVESTED_DG_2: UNVESTED_DG_2,
         BALANCE_ICE: BALANCE_ICE,
@@ -524,6 +533,18 @@ function DGBalances() {
   }
 
   async function getICEBalanceLP() {
+    try {
+      const amount = await maticLPContract.methods.getReserves().call();
+
+      const ice = amount[1] / 1000000000000000000;
+
+      return ice;
+    } catch (error) {
+      console.log('No DG keeper balance found: ' + error);
+    }
+  }
+
+  async function getPolygonDG() {
     try {
       const amount = await maticLPContract.methods.getReserves().call();
 
