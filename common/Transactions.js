@@ -7,7 +7,6 @@ import ABI_DG_STAKING from '../components/ABI/ABIDGStaking';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
 import ABI_XDG_TOKEN from '../components/ABI/ABIChildTokenXDG';
 import ABI_XDG_TOKEN_MAIN from '../components/ABI/ABIChildTokenXDG';
-
 import ABI_DG_LIGHT_TOKEN from '../components/ABI/ABIDGLightToken';
 import ABI_DG_LIGHT_BRIDGE from '../components/ABI/ABIDGLightBridge';
 import ABI_DG_TOWN_HALL from '../components/ABI/ABIDGTownHall';
