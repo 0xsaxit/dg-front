@@ -132,7 +132,7 @@ function Referrals({ state }) {
                               return (
                                 Number(total) +
                                 Number(affiliate[coin]) *
-                                  Number(state.DGPrices[coin])
+                                Number(state.DGPrices[coin])
                               );
                             }, 0)
                             .toFixed(3)}

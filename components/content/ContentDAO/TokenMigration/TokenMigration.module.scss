@@ -296,7 +296,7 @@
       }
     }
   }
-  
+
   .footer_tip {
     display: flex;
     justify-content: center;
@@ -322,38 +322,38 @@
       }
 
       .box_title {
-          display: flex;
-          justify-content: center;
-          align-items: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-          h1 {
-              font-size: 19px;
-              line-height: 27px;
-              font-family: "Larsseit-Bold";
-              letter-spacing: 0.5px;
-              margin-top: 0px;
+        h1 {
+          font-size: 19px;
+          line-height: 27px;
+          font-family: "Larsseit-Bold";
+          letter-spacing: 0.5px;
+          margin-top: 0px;
 
-              @media screen and (max-width: 680px) {
-                font-size: 18px;
-              }
+          @media screen and (max-width: 680px) {
+            font-size: 18px;
           }
+        }
       }
 
       .center_content {
-          position: relative;
+        position: relative;
 
-          p {
-              margin-top: 2px;
-              margin-bottom: 2px;
-              text-align: center;
-              font-size: 15px;
-              font-family: "LARSSEIT-MEDIUM";
-              color: rgba(255, 255, 255, 0.5) !important;
-          }
+        p {
+          margin-top: 2px;
+          margin-bottom: 2px;
+          text-align: center;
+          font-size: 15px;
+          font-family: "LARSSEIT-MEDIUM";
+          color: rgba(255, 255, 255, 0.5) !important;
+        }
 
-          label {
-            color: rgba(80, 155, 255) !important;
-          }
+        label {
+          color: rgba(80, 155, 255) !important;
+        }
       }
     }
   }

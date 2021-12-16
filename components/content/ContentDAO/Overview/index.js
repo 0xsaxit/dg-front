@@ -4,18 +4,15 @@ import cn from 'classnames';
 import { Biconomy } from '@biconomy/mexa';
 import Web3 from 'web3';
 import axios from 'axios';
-import { Loader, Popup, Icon, Button, Table } from 'semantic-ui-react';
+import { Loader, Button, Table } from 'semantic-ui-react';
 import { Line } from 'react-chartjs-2';
 import { GlobalContext } from 'store';
 import MetaTx from 'common/MetaTx';
 import Global from 'components/Constants';
-import Transactions from 'common/Transactions';
 import styles from './Overview.module.scss';
 import TooltipOne from 'components/tooltips/TreasuryTooltipDG/index.js';
 import TooltipTwo from 'components/tooltips/TreasuryTooltipGameplay/index.js';
 import TooltipThree from 'components/tooltips/TreasuryTooltipLP/index.js';
-
-
 
 const Overview = props => {
   // get the treasury's balances numbers from the Context API store
@@ -23,7 +20,6 @@ const Overview = props => {
   const router = useRouter();
 
   // define local variables
-  const [dgBalance, setDgBalance] = useState(0);
   const [treasuryTotal, setTreasuryTotal] = useState(0);
   const [statsUSDX, setStatsUSDX] = useState([]);
   const [statsUSDY, setStatsUSDY] = useState([]);
@@ -42,7 +38,6 @@ const Overview = props => {
   const [lpPercent, setLpPercent] = useState(0);
   const [maticTreasury, setMaticTreasury] = useState(0);
   const [maticTreasuryPercent, setMaticTreasuryPercent] = useState(0);
-  const [maticTokens, setMaticTokens] = useState(0);
   const [wearableSales, setWearableSales] = useState(0);
   const [wearableSalesPercent, setWearableSalesPercent] = useState(0);
   const [unvestedDG, setUnvestedDG] = useState(0);
@@ -66,14 +61,6 @@ const Overview = props => {
   const [currentDate, setCurrentDate] = useState('');
   const [visible, setVisible] = useState(true);
 
-  function formatPrice(balanceDG, units) {
-    const priceFormatted = Number(balanceDG)
-      .toFixed(units)
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-    return priceFormatted;
-  }
-
   useEffect(() => {
     (async () => {
       const biconomy = new Biconomy(
@@ -83,7 +70,6 @@ const Overview = props => {
           debug: true,
         }
       );
-      const getWeb3 = new Web3(biconomy);
 
       const snapshotData = await axios.post(
         `https://hub.snapshot.org/graphql`,
@@ -180,8 +166,6 @@ const Overview = props => {
         const api_usd = Number(totalUSD.slice(-1)[0].secondary);
         setTreasuryTotal(props.formatPrice(api_usd, 0));
 
-        const wearable_sales = Number(state.DGBalances.BALANCE_WETH_WEARABLES * state.DGPrices.eth);
-
         setStatsUSDX(xAxis);
         setStatsUSDY(yAxis);
 
@@ -251,18 +235,10 @@ const Overview = props => {
           props.formatPrice(maticBal.graph.slice(-1)[0].secondary, 0)
         );
 
-        const maticTemp = state.treasuryNumbers.maticBalance.graph
-          .slice(-1)[0]
-          .secondary.toFixed(0);
-        setMaticTokens(maticTemp);
-
         const matic_temp = maticBal.changes.weekly.percent.toFixed(2);
         setMaticTreasuryPercent(Number(matic_temp));
-
-        const dgbal = state.treasuryNumbers.dgBalance.graph;
-        setDgBalance(props.formatPrice(dgbal.slice(-1)[0].secondary, 0));
       }
-    } catch(error) {
+    } catch (error) {
       console.log('Treasury Numbers Error: ' + error);
     }
   }, [state.treasuryNumbers, dgTreasury]);
@@ -307,41 +283,6 @@ const Overview = props => {
         ) : null}
       </span>
     );
-  }
-
-  async function metaTransaction() {
-    try {
-      console.log('Dispatching DG tokens to address: ' + state.userAddress);
-
-      // get function signature and send Biconomy API meta-transaction
-      let functionSignature = pointerContractNew.methods
-        .distributeTokensForPlayer(state.userAddress)
-        .encodeABI();
-
-      const txHash = await MetaTx.executeMetaTransaction(
-        7,
-        functionSignature,
-        pointerContractNew,
-        state.userAddress,
-        window.ethereum
-      );
-
-      if (txHash === false) {
-        console.log('Biconomy meta-transaction failed');
-      } else {
-        console.log('Biconomy meta-transaction hash: ' + txHash);
-
-        // update global state BPT balances
-        const refresh = !state.refreshBalances;
-
-        dispatch({
-          type: 'refresh_balances',
-          data: refresh,
-        });
-      }
-    } catch (error) {
-      console.log('Biconomy meta-transaction error: ' + error);
-    }
   }
 
   function getLoader() {
@@ -498,7 +439,7 @@ const Overview = props => {
                     ) : null}
                   </p>
                 </div>
-              </div>  
+              </div>
 
               <div className={styles.stat}>
                 <span style={{ display: 'flex', justifyContent: 'center' }}>
@@ -849,7 +790,7 @@ const Overview = props => {
                 ) : null}
               </p>
             </div>
-          </div>  
+          </div>
 
           <div className={styles.stat}>
             <span style={{ display: 'flex', justifyContent: 'center' }}>

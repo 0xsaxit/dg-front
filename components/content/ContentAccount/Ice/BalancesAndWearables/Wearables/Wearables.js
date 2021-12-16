@@ -39,10 +39,6 @@ const Wearables = ({ state }) => {
       };
 
       const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
-
-      // console.log('delegation info (Wearables): ');
-      // console.log(delegationInfo);
-
       activeWearables.map(activeWearable => {
         if (
           delegationInfo.outgoingDelegations &&
@@ -178,9 +174,6 @@ const Wearables = ({ state }) => {
           </svg>
         </Button>
       </div>
-
-      {/* {console.log('item limits array index:')}
-      {console.log(state.iceWearableItems)} */}
 
       <section className={styles.grid_container}>
         {!!state.iceWearableItems.length || !!state.iceDelegatedItems.length ?
