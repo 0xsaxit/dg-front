@@ -23,7 +23,7 @@
 
     // AMNESIA_COMMENT: amnesia_button class should be removed after we are done with amnesia
     &.amnesia_button {
-      background-color: #9E1869 !important;
+      background-color: #9e1869 !important;
     }
   }
 
@@ -32,7 +32,7 @@
     margin-right: 8px;
     margin-left: -8px;
   }
-  
+
   .get_metamask {
     color: white;
     font-family: Larsseit-Bold;
@@ -45,7 +45,7 @@
     align-items: center;
     display: flex;
     user-select: none;
-  
+
     &:hover {
       color: white;
       filter: brightness(0.9);
