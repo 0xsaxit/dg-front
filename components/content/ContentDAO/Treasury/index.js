@@ -322,7 +322,7 @@ const Treasury = props => {
 
         <div className={styles.stat}>
           <span style={{ display: 'flex', justifyContent: 'center' }}>
-            <p className={styles.stat_header}>$DG Wallet</p>
+            <p className={styles.stat_header}>DG Wallet</p>
             <TooltipOne />
           </span>
           <div className="d-flex justify-content-center">

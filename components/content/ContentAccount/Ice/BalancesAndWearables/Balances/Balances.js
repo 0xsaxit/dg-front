@@ -14,7 +14,6 @@ const Balances = () => {
   // define local variables
   const [clicked, setClicked] = useState(false);
   const [totalICE, setTotalICE] = useState(0);
-  console.log('state.userInfo: ', state.userInfo);
 
   const balenceItems = [
     {
