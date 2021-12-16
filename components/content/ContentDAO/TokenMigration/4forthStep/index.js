@@ -44,10 +44,10 @@ const ForthStep = (props) => {
                 params: {
                     type: 'ERC20',
                     options: {
-                      address: networkInfo.dgTownHallAddress,
-                      symbol: 'xDG',
-                      decimals: 18,
-                      image: Images.XDG_COIN_LOGO,
+                        address: networkInfo.dgTownHallAddress,
+                        symbol: 'xDG',
+                        decimals: 18,
+                        image: Images.XDG_COIN_LOGO,
                     },
                 },
             });
@@ -79,10 +79,10 @@ const ForthStep = (props) => {
                 await DGLightTokenContract.methods
                     .approve(DGTownHallContract._address, Global.CONSTANTS.MAX_AMOUNT)
                     .send({ from: state.userAddress })
-                    .on('transactionHash', function(hash) {
+                    .on('transactionHash', function (hash) {
                         setApproving(true);
                     })
-                    .on('confirmation', function(confirmation, receipt) {
+                    .on('confirmation', function (confirmation, receipt) {
                         console.log('approve() transaction completed');
                         setApproving(false);
                     });
@@ -93,16 +93,15 @@ const ForthStep = (props) => {
                 });
             }
 
-            console.log(amountToString, state.userAddress)
             await DGTownHallContract.methods
                 .stepInside(amountToString)
                 .send({ from: state.userAddress })
-                .on('transactionHash', function(hash) {
+                .on('transactionHash', function (hash) {
                     setHash(hash);
                     setStakeSubmitted(true);
                     setLoading(true);
                 })
-                .on('confirmation', function(confirmation, receipt) {
+                .on('confirmation', function (confirmation, receipt) {
                     setStaked(true);
                     setStakeSubmitted(false);
                     setLoading(false);
@@ -117,8 +116,8 @@ const ForthStep = (props) => {
                 data: refresh,
             });
             dispatch({
-              type: 'show_toastMessage',
-              data: 'DG staked successfully!',
+                type: 'show_toastMessage',
+                data: 'DG staked successfully!',
             });
         } catch (error) {
             console.log('StepInside transaction error: ' + error);
@@ -126,8 +125,8 @@ const ForthStep = (props) => {
             setApproving(false);
 
             dispatch({
-              type: 'show_toastMessage',
-              data: 'Failed to stake DG!',
+                type: 'show_toastMessage',
+                data: 'Failed to stake DG!',
             });
         }
     }
@@ -164,7 +163,7 @@ const ForthStep = (props) => {
     useEffect(() => {
         if (state.userStatus >= 4) {
             checkNetworkId(window.ethereum.networkVersion);
-            window.ethereum.on('networkChanged', function(networkId){
+            window.ethereum.on('networkChanged', function (networkId) {
                 checkNetworkId(networkId);
             });
 

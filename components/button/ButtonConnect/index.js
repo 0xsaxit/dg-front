@@ -55,7 +55,7 @@ const ButtonConnect = () => {
 
   useEffect(() => {
     if (window.ethereum && window.ethereum?.selectedAddress) {
-      window.addEventListener('load', function() {
+      window.addEventListener('load', function () {
         window.ethereum.on('accountsChanged', () => {
           if (window.ethereum?.selectedAddress) {
             dispatch({
@@ -174,9 +174,6 @@ const ButtonConnect = () => {
       // (/websiteLogin API call will return error with new wallet address)
       const response = await getUserStatus();
 
-      // console.log('!!!!');
-      // console.log(response);
-
       if (response) {
         updateStatus(response, false);
       } else {
@@ -188,9 +185,6 @@ const ButtonConnect = () => {
   async function updateStatus(value, post) {
     if (post) {
       console.log('Posting user status to db: ' + value);
-
-      // const responseIP = await Fetch.IP_ADDRESS();
-      // const jsonIP = await responseIP.;
 
       // update user status in database
       await Fetch.REGISTER(state.affiliateAddress);
@@ -234,9 +228,6 @@ const ButtonConnect = () => {
     console.log('Get user status: ButtonConnect');
 
     try {
-      // const responseIP = await Fetch.IP_ADDRESS();
-      // const jsonIP = await responseIP.;
-
       const jsonStatus = await Fetch.USER_STATUS(userAddress, '');
       await upateVerified(jsonStatus.status);
 
