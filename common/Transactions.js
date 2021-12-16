@@ -6,6 +6,7 @@ import ABI_TOWN_HALL from '../components/ABI/ABIDGTownHall';
 import ABI_DG_STAKING from '../components/ABI/ABIDGStaking';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
 import ABI_XDG_TOKEN from '../components/ABI/ABIChildTokenXDG';
+import ABI_XDG_TOKEN_MAIN from '../components/ABI/ABIChildTokenXDG';
 
 import ABI_DG_LIGHT_TOKEN from '../components/ABI/ABIDGLightToken';
 import ABI_DG_LIGHT_BRIDGE from '../components/ABI/ABIDGLightBridge';
@@ -82,6 +83,16 @@ async function XDGTokenContract(web3Default) {
   );
 
   return XDGToken;
+}
+
+// set xDG Mainnet contract instance
+async function XDGTokenContractChild(web3Default) {
+  const XDGTokenChild = new web3Default.eth.Contract(
+    ABI_XDG_TOKEN,
+    '0xc6480Da81151B2277761024599E8Db2Ad4C388C8'
+  );
+
+  return XDGTokenChild;
 }
 
 // set DGLight main contract instance
@@ -309,6 +320,7 @@ async function getTotalSupply(tokenContract) {
 }
 
 export default {
+  XDGTokenContractChild,
   treasuryContract,
   getActiveStatus,
   pointerContract,

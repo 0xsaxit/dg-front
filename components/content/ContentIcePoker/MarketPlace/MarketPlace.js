@@ -478,8 +478,10 @@ const MarketPlace = () => {
                     </div>
 
                     <div className={styles.button_container}>
-                      {state.userStatus >= Global.CONSTANTS.MINT_STATUS &&
-                      itemLimits[i][0] > 0 ? (
+                      {/*{state.userStatus >= Global.CONSTANTS.MINT_STATUS &&
+                      itemLimits[i][0] > 0*/}
+
+                      {1 === 1  ? (
                         // minting enabled
 
                         <div className={styles.flex_50}>
