@@ -364,7 +364,7 @@ function ICEAttributes() {
 
         console.log(
           'Get token authorization: DG_Light: ' +
-            tokenAuths.DG_LIGHT_AUTHORIZATION
+          tokenAuths.DG_LIGHT_AUTHORIZATION
         );
         console.log(
           'Get token authorization: ICE: ' + tokenAuths.ICE_AUTHORIZATION
@@ -425,37 +425,27 @@ function ICEAttributes() {
       const itemObject0 = await collectionArray[index][0].methods
         .items(tokenIDArray[0])
         .call();
-      const ITEM_LIMIT_0 =
-        itemObject0[Object.keys(itemObject0)[1]] -
-        itemObject0[Object.keys(itemObject0)[2]];
+      const ITEM_LIMIT_0 = itemObject0[Object.keys(itemObject0)[2]];
 
       const itemObject5 = await collectionArray[index][0].methods
         .items(tokenIDArray[1])
         .call();
-      const ITEM_LIMIT_5 =
-        itemObject5[Object.keys(itemObject5)[1]] -
-        itemObject5[Object.keys(itemObject5)[2]];
+      const ITEM_LIMIT_5 = itemObject5[Object.keys(itemObject5)[2]];
 
       const itemObject10 = await collectionArray[index][0].methods
         .items(tokenIDArray[2])
         .call();
-      const ITEM_LIMIT_10 =
-        itemObject10[Object.keys(itemObject10)[1]] -
-        itemObject10[Object.keys(itemObject10)[2]];
+      const ITEM_LIMIT_10 = itemObject10[Object.keys(itemObject10)[2]];
 
       const itemObject15 = await collectionArray[index][0].methods
         .items(tokenIDArray[3])
         .call();
-      const ITEM_LIMIT_15 =
-        itemObject15[Object.keys(itemObject15)[1]] -
-        itemObject15[Object.keys(itemObject15)[2]];
+      const ITEM_LIMIT_15 = itemObject15[Object.keys(itemObject15)[2]];
 
       const itemObject20 = await collectionArray[index][0].methods
         .items(tokenIDArray[4])
         .call();
-      const ITEM_LIMIT_20 =
-        itemObject20[Object.keys(itemObject20)[1]] -
-        itemObject20[Object.keys(itemObject20)[2]];
+      const ITEM_LIMIT_20 = itemObject20[Object.keys(itemObject20)[2]];
 
       console.log(
         'Token ID: ' + tokenIDArray[0] + ', quantity: ' + parseInt(ITEM_LIMIT_0)
@@ -465,21 +455,21 @@ function ICEAttributes() {
       );
       console.log(
         'Token ID: ' +
-          tokenIDArray[2] +
-          ', quantity: ' +
-          parseInt(ITEM_LIMIT_10)
+        tokenIDArray[2] +
+        ', quantity: ' +
+        parseInt(ITEM_LIMIT_10)
       );
       console.log(
         'Token ID: ' +
-          tokenIDArray[3] +
-          ', quantity: ' +
-          parseInt(ITEM_LIMIT_15)
+        tokenIDArray[3] +
+        ', quantity: ' +
+        parseInt(ITEM_LIMIT_15)
       );
       console.log(
         'Token ID: ' +
-          tokenIDArray[4] +
-          ', quantity: ' +
-          parseInt(ITEM_LIMIT_20)
+        tokenIDArray[4] +
+        ', quantity: ' +
+        parseInt(ITEM_LIMIT_20)
       );
 
       itemsArray.push(
