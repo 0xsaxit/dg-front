@@ -53,7 +53,7 @@ const SecondStep = (props) => {
                 uniswapContract.methods.getReserves().call(),
                 uniswapContract.methods.totalSupply().call()
             ]);
-            
+
             const dgAmount = BigNumber(reserves[1])
                 .times(lpAmount)
                 .div(totalSupply)
@@ -84,15 +84,14 @@ const SecondStep = (props) => {
         console.log('Call withdraw() function to unstake tokens');
 
         try {
-            console.log(amount, state.userAddress)
             await stakingContractUniswap.methods
                 .withdraw(amount)
                 .send({ from: state.userAddress })
-                .on('transactionHash', function(hash) {
+                .on('transactionHash', function (hash) {
                     setHash(hash);
                     setLoading(true);
                 })
-                .on('confirmation', function(confirmation, receipt) {
+                .on('confirmation', function (confirmation, receipt) {
                     setUnstaked(true);
                     setLoading(false);
                     console.log('withdraw() transaction completed: ' + hash);
@@ -106,29 +105,29 @@ const SecondStep = (props) => {
                 data: refresh,
             });
             dispatch({
-              type: 'show_toastMessage',
-              data: '$DG unstaked successfully!',
+                type: 'show_toastMessage',
+                data: '$DG unstaked successfully!',
             });
         } catch (error) {
             console.log('Withdraw transaction error: ' + error);
             setLoading(false);
             dispatch({
-              type: 'show_toastMessage',
-              data: 'Failed to unstake $DG!',
+                type: 'show_toastMessage',
+                data: 'Failed to unstake $DG!',
             });
         }
     }
 
     // fetch staking contract data
     useEffect(() => {
-        if (state.userStatus >= 4) {  
+        if (state.userStatus >= 4) {
             if (state.networkID != Global.CONSTANTS.PARENT_NETWORK_ID) {
                 dispatch({
                     type: 'show_toastMessage',
                     data: `Please switch your Network to Ethereum Mainnet`,
                 });
             }
- 
+
             createContracts();
         }
     }, [state.userStatus]);

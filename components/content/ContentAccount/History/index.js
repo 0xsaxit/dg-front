@@ -20,8 +20,6 @@ function History({ state }) {
 
   // define local variables
   const [openId, setOpenId] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
   const transactions = dataHistory == "false" ? [] : (
     dataHistory.filter(
       h =>
@@ -38,8 +36,6 @@ function History({ state }) {
       poker.tableData,
       'playerHandData.userPlayInfoID'
     );
-
-    console.log(dataPlay);
 
     return {
       ...poker,
@@ -76,9 +72,6 @@ function History({ state }) {
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     console.log('->State.transactions[0]: ', state.transactions[0]);
-    if (state.transactions[0].length && state.transactions[1]) {
-      setIsLoading(false);
-    }
   }, [state.transactions]);
 
   return (
