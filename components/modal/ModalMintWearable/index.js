@@ -113,6 +113,7 @@ const ModalMint = props => {
               />
             </div>
 
+            {state.stakingBalances.BALANCE_USER_GOVERNANCE >=
             Global.CONSTANTS.DG_STAKED_AMOUNT ||
             (state.DGBalances.BALANCE_CHILD_TOKEN_XDG +
             state.DGBalances.BALANCE_MAIN_TOKEN_XDG) >=
