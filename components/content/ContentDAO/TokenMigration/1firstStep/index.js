@@ -68,15 +68,14 @@ const FirstStep = (props) => {
         console.log('Call withdraw() function to unstake tokens');
 
         try {
-            console.log(amount, state.userAddress)
             await stakingContract.methods
                 .withdraw(amount)
                 .send({ from: state.userAddress })
-                .on('transactionHash', function(txHash) {
+                .on('transactionHash', function (txHash) {
                     setUnstakeHash(txHash);
                     setUnstakeLoading(true);
                 })
-                .on('confirmation', function(confirmation, receipt) {
+                .on('confirmation', function (confirmation, receipt) {
                     setUnstaked(true);
                     setUnstakeLoading(false);
                     console.log('withdraw() transaction completed: ' + unstakeHash);
@@ -90,15 +89,15 @@ const FirstStep = (props) => {
                 data: refresh,
             });
             dispatch({
-              type: 'show_toastMessage',
-              data: '$DG unstaked successfully!',
+                type: 'show_toastMessage',
+                data: '$DG unstaked successfully!',
             });
         } catch (error) {
             console.log('Withdraw transaction error: ' + error);
             setUnstakeLoading(false);
             dispatch({
-              type: 'show_toastMessage',
-              data: 'Failed to unstake $DG!',
+                type: 'show_toastMessage',
+                data: 'Failed to unstake $DG!',
             });
         }
     }
@@ -110,11 +109,11 @@ const FirstStep = (props) => {
             await stakingContract.methods
                 .getReward()
                 .send({ from: state.userAddress })
-                .on('transactionHash', function(txHash) {
+                .on('transactionHash', function (txHash) {
                     setClaimHash(txHash);
                     setClaimLoading(true);
                 })
-                .on('confirmation', function(confirmation, receipt) {
+                .on('confirmation', function (confirmation, receipt) {
                     setClaimed(true);
                     setClaimLoading(false);
                     console.log('getReward() transaction completed: ' + claimHash);
@@ -128,15 +127,15 @@ const FirstStep = (props) => {
                 data: refresh,
             });
             dispatch({
-              type: 'show_toastMessage',
-              data: 'Rewards $DG Claimed successfully!',
+                type: 'show_toastMessage',
+                data: 'Rewards $DG Claimed successfully!',
             });
         } catch (error) {
             console.log('GetReward transaction error: ' + error);
             setClaimLoading(false);
             dispatch({
-              type: 'show_toastMessage',
-              data: 'Failed to claim rewards $DG!',
+                type: 'show_toastMessage',
+                data: 'Failed to claim rewards $DG!',
             });
         }
     }
@@ -268,7 +267,7 @@ const FirstStep = (props) => {
                             }
                         </div>
                     </>
-                :
+                    :
                     <div className={styles.box_div}>
                         <div className={styles.box_title}>
                             <h1>You're Ready for Step 2</h1>

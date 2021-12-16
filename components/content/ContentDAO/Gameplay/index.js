@@ -8,8 +8,6 @@ import Aux from '../../../_Aux';
 import { Biconomy } from '@biconomy/mexa';
 import Web3 from 'web3';
 import styles from './Gameplay.module.scss';
-import axios from 'axios';
-import Fetch from '../../../../common/Fetch';
 import MetaTx from '../../../../common/MetaTx';
 
 const Gameplay = props => {
@@ -18,25 +16,8 @@ const Gameplay = props => {
 
   // define local variables
   const [pointerContractNew, setPointerContractNew] = useState({});
-
   const [price, setPrice] = useState(0);
-
   const [web3, setWeb3] = useState({});
-  // const [gameplayUSD, setGameplayUSD] = useState(0);
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // helper functions
-
-  // fetch circulating supply
-  // useEffect(() => {
-  //   (async function () {
-  //     const json = await Fetch.DG_SUPPLY_GECKO();
-  //     if(json && json.market_data) {
-  //       setPrice(json.market_data.current_price.usd);
-  //     }
-  //   })();
-  // }, []);
 
   useEffect(() => {
     setPrice(state.DGPrices.dg);
@@ -75,15 +56,6 @@ const Gameplay = props => {
         });
     }
   }, [state.userStatus]);
-
-  // useEffect(() => {
-  //   if (props.price && state.DGBalances.BALANCE_MINING_DG_V2) {
-  //     const gameplayUSD = props.price * state.DGBalances.BALANCE_MINING_DG_V2;
-  //     const gameplayUSDFormatted = props.formatPrice(gameplayUSD, 2);
-
-  //     setGameplayUSD(gameplayUSDFormatted);
-  //   }
-  // }, [props.price, state.DGBalances.BALANCE_MINING_DG_V2]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
