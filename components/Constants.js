@@ -199,6 +199,46 @@ const IMG_URLS_UPGRADE = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024032/ICE%20Bomber%20Thumbnails%20%28Square%29/shoes_pink_cnuzg6.jpg',
     'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024032/ICE%20Bomber%20Thumbnails%20%28Square%29/shoes_gold_ishar9.jpg',
   ],
+  'Drip Pants': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024013/ICE%20Bomber%20Thumbnails%20%28Square%29/pants_grey_m_kzmnh3.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024013/ICE%20Bomber%20Thumbnails%20%28Square%29/pants_grey_m_kzmnh3.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024013/ICE%20Bomber%20Thumbnails%20%28Square%29/pants_green_m_vtdddg.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024013/ICE%20Bomber%20Thumbnails%20%28Square%29/pants_purple_m_lqwt9b.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024013/ICE%20Bomber%20Thumbnails%20%28Square%29/pants_pink_m_z0beu4.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024013/ICE%20Bomber%20Thumbnails%20%28Square%29/pants_gold_m_waxavs.jpg',
+  ],
+  'Drip Bucket': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637023992/ICE%20Bomber%20Thumbnails%20%28Square%29/hat_grey_m_incioq.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637023992/ICE%20Bomber%20Thumbnails%20%28Square%29/hat_grey_m_incioq.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637023992/ICE%20Bomber%20Thumbnails%20%28Square%29/hat_green_m_uxmjhy.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637023992/ICE%20Bomber%20Thumbnails%20%28Square%29/hat_purple_m_tgxs8e.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637023992/ICE%20Bomber%20Thumbnails%20%28Square%29/hat_pink_m_ruzzlw.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637023992/ICE%20Bomber%20Thumbnails%20%28Square%29/hat_gold_m_nsmuaq.jpg',
+  ],
+  'Drip Jacket': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024053/ICE%20Bomber%20Thumbnails%20%28Square%29/upperbody_grey_m_jpnabv.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024053/ICE%20Bomber%20Thumbnails%20%28Square%29/upperbody_grey_m_jpnabv.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024053/ICE%20Bomber%20Thumbnails%20%28Square%29/upperbody_green_m_f8y4a2.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024053/ICE%20Bomber%20Thumbnails%20%28Square%29/upperbody_purple_m_cv7uxy.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024053/ICE%20Bomber%20Thumbnails%20%28Square%29/upperbody_pink_m_vzcfxl.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024053/ICE%20Bomber%20Thumbnails%20%28Square%29/upperbody_gold_m_oxqbqh.jpg',
+  ],
+  'Drip Drawers': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637023960/ICE%20Bomber%20Thumbnails%20%28Square%29/glasses_grey_np5pwz.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637023960/ICE%20Bomber%20Thumbnails%20%28Square%29/glasses_grey_np5pwz.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637023960/ICE%20Bomber%20Thumbnails%20%28Square%29/glasses_green_gzoe43.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637023960/ICE%20Bomber%20Thumbnails%20%28Square%29/glasses_purple_w7yl9g.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637023960/ICE%20Bomber%20Thumbnails%20%28Square%29/glasses_pink_qqjwa1.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637023960/ICE%20Bomber%20Thumbnails%20%28Square%29/glasses_gold_fogrzy.jpg',
+  ],
+  'Drip Kicks': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024032/ICE%20Bomber%20Thumbnails%20%28Square%29/shoes_grey_r1pu6s.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024032/ICE%20Bomber%20Thumbnails%20%28Square%29/shoes_grey_r1pu6s.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024032/ICE%20Bomber%20Thumbnails%20%28Square%29/shoes_green_gjqjnt.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024032/ICE%20Bomber%20Thumbnails%20%28Square%29/shoes_purple_bsqoyl.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024032/ICE%20Bomber%20Thumbnails%20%28Square%29/shoes_pink_cnuzg6.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024032/ICE%20Bomber%20Thumbnails%20%28Square%29/shoes_gold_ishar9.jpg',
+  ],
 };
 
 // wallet and contract addresses
