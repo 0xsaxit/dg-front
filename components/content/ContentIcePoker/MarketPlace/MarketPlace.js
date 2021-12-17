@@ -498,6 +498,7 @@ const MarketPlace = () => {
                         <div className={styles.flex_50}>
                           <ModalMintWearable
                             index={i}
+                            maxMintCounts={maxMintCounts}
                             numberLeft={itemLimits[i][0]}
                             itemID={itemLimits[i][1]}
                             address={itemLimits[5]}
