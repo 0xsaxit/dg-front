@@ -142,7 +142,6 @@ const ModalUpgradePending = props => {
       setLoading(false);
       setUpdateStatus({ name: 'WEARABLE', value: 'done' });
       setSuccessInUpgrade(false);
-      console.log(state.iceWearableItems.filter(item => item.tokenID === props.tokenID)[0])
 
       props.setUpgrade(3);
       setAuthStatusUpgrade(true);
@@ -172,7 +171,6 @@ const ModalUpgradePending = props => {
         type: 'ice_wearable_update_success',
         data: false,
       });
-      console.log(state.iceWearableItems.filter(item => item.tokenID === props.tokenID)[0])
       refresh();
       props.setUpgrade(3);
       setAuthStatusUpgrade(true);
@@ -546,7 +544,6 @@ const ModalUpgradePending = props => {
     try {
       const json = await Fetch.UPGRADE_TOKEN(props.tokenID, props.address);
       
-      console.log("SUCCESS OR FAILURE: ", json.status)
       if (json.status) {
         console.log('success in upgrading:', json);
         setSuccessInUpgrade(true);
