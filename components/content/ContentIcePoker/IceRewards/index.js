@@ -10,7 +10,7 @@ import FoxAnimation from 'components/lottieAnimation/animations/fox';
 import NoResult from 'components/lottieAnimation/animations/noResult';
 import ModalIceBreakdown from 'components/modal/ModalIceBreakDown';
 import Images from 'common/Images';
-import SpinnerAnimation from 'components/lottieAnimation/animations/Spinner';
+// import SpinnerAnimation from 'components/lottieAnimation/animations/Spinner';
 
 const IceRewards = () => {
   // dispatch user's ICE amounts to the Context API store
@@ -254,7 +254,10 @@ const IceRewards = () => {
                   {!clicked ? (
                     <>Claim {formatPrice(totalICE, 0)} ICE</>
                   ) : (
-                    <SpinnerAnimation />
+                    <img
+                      src={Images.LOADING_SPINNER}
+                      className={styles.claim_ICE_spinner}
+                    />
                   )}
                 </Button>
               </div>

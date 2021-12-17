@@ -5,8 +5,8 @@ import { Button } from 'semantic-ui-react';
 import styles from './Balances.module.scss';
 import Fetch from '../../../../../../common/Fetch';
 import Aux from '../../../../../_Aux';
-import Spinner from 'components/Spinner';
-import SpinnerAnimation from 'components/lottieAnimation/animations/Spinner';
+// import SpinnerAnimation from 'components/lottieAnimation/animations/Spinner';
+import Images from 'common/Images';
 
 const Balances = () => {
   // dispatch user's ICE amounts to the Context API store
@@ -193,7 +193,10 @@ const Balances = () => {
           </Button>
         ) : (
           <Button className={styles.claim_button} disabled>
-            <SpinnerAnimation />
+            <img
+              src={Images.LOADING_SPINNER}
+              className={styles.claim_ICE_spinner}
+            />
           </Button>
         )}
       </div>

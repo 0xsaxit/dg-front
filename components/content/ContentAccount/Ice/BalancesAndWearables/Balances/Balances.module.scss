@@ -406,6 +406,10 @@
         font-weight: 700;
         font-size: 14px;
       }
+      
+      .claim_ICE_spinner{
+        width:20px
+      }
     }
     // @include mq($until: large) {
     //   min-width: 830px;
