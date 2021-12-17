@@ -18,14 +18,14 @@ const ModalMint = props => {
   const [openETHAuth, setOpenETHAuth] = useState(false);
   const [xDG, setXDG] = useState(0);
 
-  useEffect(() => {    
+  useEffect(() => {
     const xdgTotal =
       parseFloat(state.stakingBalances.BALANCE_USER_GOVERNANCE) +
       parseFloat(state.DGBalances.BALANCE_CHILD_TOKEN_XDG);
 
     setXDG(xdgTotal);
-  }, 
-    [state.stakingBalances.BALANCE_USER_GOVERNANCE, 
+  },
+    [state.stakingBalances.BALANCE_USER_GOVERNANCE,
     state.DGBalances.BALANCE_CHILD_TOKEN_XDG]
   );
 
@@ -48,7 +48,7 @@ const ModalMint = props => {
               className={styles.img_card}
             />
           </div>
-          <div className={styles.card}>{101 - props.numberLeft} of 100</div>
+          <div className={styles.card}>{props.maxMintCounts - props.numberLeft} of {props.maxMintCounts}</div>
         </div>
       </div>
     );
@@ -125,34 +125,34 @@ const ModalMint = props => {
               />
             </div>
 
-            {state.DGBalances.DG_STAKED_AMOUNT >= 
+            {state.DGBalances.DG_STAKED_AMOUNT >=
               Global.CONSTANTS.DG_STAKED_AMOUNT ||
-              xDG >= 
-              Global.CONSTANTS.XDG_STAKED_AMOUNT ? (       
-                <div className={styles.green_check}>
+              xDG >=
+              Global.CONSTANTS.XDG_STAKED_AMOUNT ? (
+              <div className={styles.green_check}>
 
-                    You Have Enough Staked &nbsp;
+                You Have Enough Staked &nbsp;
 
-                    <svg
-                      width="9"
-                      height="8"
-                      viewBox="0 0 9 8"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M3.83203 7.73047C4.10547 7.73047 4.32031 7.625 4.46875 7.40625L8.10547 1.86328C8.21094 1.70312 8.25391 1.55078 8.25391 1.41016C8.25391 1.03125 7.96484 0.75 7.57422 0.75C7.30859 0.75 7.14062 0.847656 6.97656 1.10156L3.81641 6.08594L2.21484 4.12109C2.06641 3.94141 1.90234 3.86328 1.67578 3.86328C1.28125 3.86328 0.996094 4.14453 0.996094 4.52734C0.996094 4.69922 1.04688 4.84766 1.19531 5.01562L3.21094 7.4375C3.37891 7.63672 3.57422 7.73047 3.83203 7.73047Z"
-                        fill="#67DD6C"
-                      />
-                    </svg>
-                  </div>
-                ) : (
-                   <div>
-                    <div className={styles.description}>
-                      You must have at least 1000 xDG or 1 (old) DG staked in governance to mint
-                    </div>
-                  </div>
-                )}
+                <svg
+                  width="9"
+                  height="8"
+                  viewBox="0 0 9 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.83203 7.73047C4.10547 7.73047 4.32031 7.625 4.46875 7.40625L8.10547 1.86328C8.21094 1.70312 8.25391 1.55078 8.25391 1.41016C8.25391 1.03125 7.96484 0.75 7.57422 0.75C7.30859 0.75 7.14062 0.847656 6.97656 1.10156L3.81641 6.08594L2.21484 4.12109C2.06641 3.94141 1.90234 3.86328 1.67578 3.86328C1.28125 3.86328 0.996094 4.14453 0.996094 4.52734C0.996094 4.69922 1.04688 4.84766 1.19531 5.01562L3.21094 7.4375C3.37891 7.63672 3.57422 7.73047 3.83203 7.73047Z"
+                    fill="#67DD6C"
+                  />
+                </svg>
+              </div>
+            ) : (
+              <div>
+                <div className={styles.description}>
+                  You must have at least 1000 xDG or 1 (old) DG staked in governance to mint
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -207,26 +207,26 @@ const ModalMint = props => {
   function buttons() {
     return (
       <div className={styles.button_area}>
-        {state.userBalances[2][3] < 
+        {state.userBalances[2][3] <
           state.tokenAmounts.WETH_COST_AMOUNT &&
-          state.DGBalances.DG_STAKED_AMOUNT >= 
+          state.DGBalances.DG_STAKED_AMOUNT >=
           Global.CONSTANTS.DG_STAKED_AMOUNT &&
-          xDG >= 
+          xDG >=
           Global.CONSTANTS.XDG_STAKED_AMOUNT ? (
-            <Button className={styles.button_upgrade} disabled={true}>
-              Mint Wearable
-            </Button>
-          ) : (
-            <Button
-              className={styles.button_upgrade}
-              onClick={() => {
-                setOpen(false);
-                setOpenETHAuth(true);
-              }}
-            >
-              Mint Wearable
-            </Button>
-          )}
+          <Button className={styles.button_upgrade} disabled={true}>
+            Mint Wearable
+          </Button>
+        ) : (
+          <Button
+            className={styles.button_upgrade}
+            onClick={() => {
+              setOpen(false);
+              setOpenETHAuth(true);
+            }}
+          >
+            Mint Wearable
+          </Button>
+        )}
 
         <Button
           className={styles.button_close}
