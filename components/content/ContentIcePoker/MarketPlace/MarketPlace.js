@@ -383,6 +383,8 @@ const MarketPlace = () => {
             })
           }
 
+          console.log(wearable, state.userStatus, state.appConfig.minMintVerifyStep, maxMintCounts, itemLimits);
+
           return (
             <section key={index} className={styles.wearable_section}>
               <h3>{wearable.title}</h3>
@@ -491,7 +493,13 @@ const MarketPlace = () => {
                     </div>
 
                     <div className={styles.button_container}>
-                      {state.userStatus >= state.appConfig.minMintVerifyStep &&
+                      {state.userStatus >= 4 && itemLimits[i][0] < 0 ? (
+                        // items loading, display spinner
+
+                        <Button disabled className={styles.sold_button}>
+                          <Spinner width={20} height={20} />
+                        </Button>
+                      ) : state.userStatus >= state.appConfig.minMintVerifyStep &&
                         (maxMintCounts - itemLimits[i][0]) > 0 ? (
                         // minting enabled
 
@@ -508,12 +516,6 @@ const MarketPlace = () => {
                             wearableName={wearable.details[item][1]}
                           />
                         </div>
-                      ) : state.userStatus >= 4 && itemLimits[i][0] < 0 ? (
-                        // items loading, display spinner
-
-                        <Button disabled className={styles.sold_button}>
-                          <Spinner width={20} height={20} />
-                        </Button>
                       ) : // Minting Disabled States
                         (maxMintCounts - itemLimits[i][0]) >= 0 && (maxMintCounts - itemLimits[i][0]) < 1 ? (
                           wearable.title === 'Crypto Drip' ? (
