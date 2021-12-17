@@ -138,9 +138,11 @@ const ModalUpgradePending = props => {
   useEffect(() => {
     if (successInUpgrade) {
       console.log('WEARABLE upgrading successful');
+      refresh();
       setLoading(false);
       setUpdateStatus({ name: 'WEARABLE', value: 'done' });
       setSuccessInUpgrade(false);
+      console.log(state.iceWearableItems.filter(item => item.tokenID === props.tokenID)[0])
 
       props.setUpgrade(3);
       setAuthStatusUpgrade(true);
@@ -170,7 +172,8 @@ const ModalUpgradePending = props => {
         type: 'ice_wearable_update_success',
         data: false,
       });
-
+      console.log(state.iceWearableItems.filter(item => item.tokenID === props.tokenID)[0])
+      refresh();
       props.setUpgrade(3);
       setAuthStatusUpgrade(true);
       setOpen(false);
@@ -204,6 +207,29 @@ const ModalUpgradePending = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
+  
+  function refresh() {
+     // update global state token amounts
+     const refreshTokenAmounts = !state.refreshTokenAmounts;
+     dispatch({
+       type: 'refresh_token_amounts',
+       data: refreshTokenAmounts,
+     });
+
+     // update global state wearables data
+     const refreshWearable = !state.refreshWearable;
+     dispatch({
+       type: 'refresh_wearable_items',
+       data: refreshWearable,
+     });
+
+     // update global state balances
+     const refreshBalances = !state.refreshBalances;
+     dispatch({
+       type: 'refresh_balances',
+       data: refreshBalances,
+     });
+  }
 
   function init() {
     const status = [
@@ -519,7 +545,8 @@ const ModalUpgradePending = props => {
 
     try {
       const json = await Fetch.UPGRADE_TOKEN(props.tokenID, props.address);
-
+      
+      console.log("SUCCESS OR FAILURE: ", json.status)
       if (json.status) {
         console.log('success in upgrading:', json);
         setSuccessInUpgrade(true);
