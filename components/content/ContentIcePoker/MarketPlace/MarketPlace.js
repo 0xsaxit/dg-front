@@ -491,7 +491,8 @@ const MarketPlace = () => {
                     </div>
 
                     <div className={styles.button_container}>
-                      {1 === 1 ? (
+                      {state.userStatus >= state.appConfig.minMintVerifyStep &&
+                        (maxMintCounts - itemLimits[i][0]) > 0 ? (
                         // minting enabled
 
                         <div className={styles.flex_50}>
