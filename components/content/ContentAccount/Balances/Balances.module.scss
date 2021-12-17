@@ -1,7 +1,7 @@
 @import "styles/base.scss";
 
 .balances_container {
-  max-width: 900px;
+	max-width: 900px;
 	margin: auto;
 	margin-top: 0;
 
@@ -39,7 +39,7 @@
 
 			.img_left {
 				width: 32px;
-				height: 32px;	
+				height: 32px;
 				display: flex;
 				justify-content: center;
 			}
@@ -48,7 +48,7 @@
 				width: 32px;
 				height: 32px;
 				border-radius: 50%;
-				background: #006EFF;
+				background: #006eff;
 				color: white;
 				font-size: 8px;
 				display: flex;
@@ -72,7 +72,7 @@
 				}
 			}
 		}
-		
+
 		.balance_column_header {
 			display: flex;
 			flex-direction: column;
@@ -114,27 +114,26 @@
 
 		.deposit_button,
 		.topUp,
-		button
-		{
+		button {
 			border-radius: 16px;
 			height: 42px;
 			color: white;
 			padding: 8px 16px 8px 16px;
 			font-size: 18px;
 			font-weight: 700;
-			background: #1F1F1F;
+			background: #1f1f1f;
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			
+
 			&:hover {
-				background: #1F1F1F !important;
+				background: #1f1f1f !important;
 				filter: brightness(0.9) !important;
 				color: white;
 			}
-			
+
 			&:focus {
-				background: #1F1F1F !important;
+				background: #1f1f1f !important;
 				filter: brightness(0.9) !important;
 				color: white;
 			}
@@ -148,19 +147,19 @@
 			padding: 8px 16px 8px 16px;
 			font-size: 18px;
 			font-weight: 700;
-			background: #1F1F1F;
+			background: #1f1f1f;
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			
+
 			&:hover {
-				background: #1F1F1F !important;
+				background: #1f1f1f !important;
 				filter: brightness(0.9) !important;
 				color: white;
 			}
-			
+
 			&:focus {
-				background: #1F1F1F !important;
+				background: #1f1f1f !important;
 				filter: brightness(0.9) !important;
 				color: white;
 			}
@@ -220,7 +219,7 @@
 			height: 42px;
 			color: white;
 			background: transparent;
-			border: 2px solid #1F1F1F;
+			border: 2px solid #1f1f1f;
 			border-radius: 16px;
 			padding: 8px 16px 8px 16px;
 			font-size: 18px;
@@ -232,7 +231,7 @@
 
 			&:hover {
 				border: 2px solid white;
-				background: transparent;				
+				background: transparent;
 			}
 
 			svg {
@@ -243,7 +242,7 @@
 		}
 
 		img {
-			height: 32px;	
+			height: 32px;
 		}
 	}
 }

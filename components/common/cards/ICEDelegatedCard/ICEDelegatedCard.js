@@ -1,8 +1,6 @@
 import { useContext } from 'react';
 import { GlobalContext } from '../../../../store';
 import GetRank from '../../../../common/GetIceWearableRank';
-import IceP2EEnabledTooltip from 'components/tooltips/IceP2EEnabledTooltip';
-import IceNeedToActivateTooltip from 'components/tooltips/IceNeedToActivateTooltip';
 import IceWearableBonusTooltip from 'components/tooltips/IceWearableBonusTooltip';
 import ModalWithdrawDelegation from 'components/modal/ModalWithdrawDelegation';
 import styles from './ICEDelegatedCard.module.scss';
@@ -24,13 +22,13 @@ const ICEWearableCard = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
   function imageAndDescription() {
-    console.log(props.ownerAddress);
     return (
       <Aux>
         <div className={styles.wear_box_purple}>
           {props.isCheckedIn && <IceCheckedInTooltip />}
           <img src={image} />
         </div>
+
         <div className={styles.card_body}>
           <div className={styles.delegated}>
             Delegated To You

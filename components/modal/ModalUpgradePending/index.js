@@ -36,6 +36,7 @@ const ModalUpgradePending = props => {
   const [tokenContractDGLight, setTokenContractDGLight] = useState({});
   const [collectionContract, setCollectionContract] = useState({});
   // const [collectionAddress, setCollectionAddress] = useState('');
+  const [mexaStatus, setMexaStatus] = useState(false);
   const [collectionID, setCollectionID] = useState(0);
   const [progSteps, setProgSteps] = useState([]);
   const [activeItem, setActiveItem] = useState({});
@@ -116,6 +117,7 @@ const ModalUpgradePending = props => {
       biconomy
         .onEvent(biconomy.READY, () => {
           console.log('Mexa is Ready: Approve ICE, DG, NFT (wearables)');
+          setMexaStatus(true);
         })
         .onEvent(biconomy.ERROR, (error, message) => {
           console.error(error);
@@ -332,11 +334,11 @@ const ModalUpgradePending = props => {
             analytics.track(activeItem.trackEvent);
             activeItem.handleClick();
           }}
-          disabled={loading ? true : false}
+          disabled={(!loading && mexaStatus) ? false : true}
         >
           <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png" />
 
-          {loading ? <Loader /> : activeItem.text}
+          {(!loading && mexaStatus) ? activeItem.text : <Loader />}
         </Button>
       );
     }
