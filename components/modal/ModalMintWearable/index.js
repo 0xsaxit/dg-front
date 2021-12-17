@@ -209,7 +209,7 @@ const ModalMint = props => {
       <div className={styles.button_area}>
         {state.userBalances[2][3] <
           state.tokenAmounts.WETH_COST_AMOUNT ||
-          sstate.stakingBalances.BALANCE_USER_GOVERNANCE_OLD >= 
+          state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD >= 
           Global.CONSTANTS.DG_STAKED_AMOUNT ||
           xDG >= 
           Global.CONSTANTS.XDG_STAKED_AMOUNT ? (
