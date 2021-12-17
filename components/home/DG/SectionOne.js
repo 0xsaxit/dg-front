@@ -5,7 +5,6 @@ import { useMediaQuery } from 'hooks';
 import Aux from 'components/_Aux';
 import ModalChooseGamePlay from 'components/modal/ModalChooseGamePlay'
 import styles from './DG.module.scss';
-// import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
 function SectionOne(props) {
   const [showGamePlay, setShowingGamePlay] = useState(false);
@@ -73,10 +72,6 @@ function SectionOne(props) {
             </span>
           </div>
         </div>
-
-        {/*<p className={styles.chevron_down}>
-          <Icon name="chevron down" />
-        </p>*/}
       </div>
 
       {showGamePlay ?

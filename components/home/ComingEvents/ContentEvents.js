@@ -1,8 +1,8 @@
-import {React, useState } from 'react';
+import { React, useState } from 'react';
 import Countdown from 'react-countdown';
 import cn from 'classnames';
 import { useMediaQuery } from 'hooks';
-import { Button, Grid, Image } from 'semantic-ui-react';
+import { Button, Image } from 'semantic-ui-react';
 
 import styles from './ComingEvents.module.scss';
 
@@ -15,7 +15,6 @@ function getSentences(str) {
 const ContentEvents = ({ events, eventOngoing }) => {
 
   const [completed, setCompleted] = useState(false);
-  const isWideScreen = useMediaQuery('(min-width: 1200px)');
 
   return (
     <span className={styles.custom_events} >
@@ -27,14 +26,14 @@ const ContentEvents = ({ events, eventOngoing }) => {
             ) : (
               <span className="d-flex">
                 <span className={styles.title}>Next Event in:&nbsp;</span>
-                {completed? (
+                {completed ? (
                   <span>
                     Currently Active!
                   </span>
                 ) : (
                   <Countdown
                     className={styles.countdown}
-                    date={events[0].next_start_at}                    
+                    date={events[0].next_start_at}
                     onComplete={() => {
                       setCompleted(true);
                     }}
@@ -89,7 +88,7 @@ const ContentEvents = ({ events, eventOngoing }) => {
         </a>
       </div>
 
-      <div className={styles.account_other_tabs} style={{ paddingTop: '26px'}}>
+      <div className={styles.account_other_tabs} style={{ paddingTop: '26px' }}>
         <div className="ml-0">
           <span className={styles.all_events}>All Upcoming Events</span>
         </div>
