@@ -64,7 +64,6 @@ const IceRewards = () => {
     for (var i = 7; i >= 1; i--) {
       var date = new Date(today);
       date.setDate(date.getDate() - i);
-      console.log(date);
       xAxis.push(date.toDateString().slice(0, 1));
     }
     setStatsUSDX(xAxis);
