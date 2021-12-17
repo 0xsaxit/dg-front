@@ -1,8 +1,8 @@
 import { Popup } from 'semantic-ui-react';
 import cn from 'classnames';
-import styles from './IceDelegatedCheckedInTooltip.module.scss';
+import styles from './IceCheckedInTooltip.module.scss';
 
-const IceDelegatedCheckedInTooltip = () => {
+const IceCheckedInTooltip = () => {
   return (
     <div className={styles.fullDiv}>
       <div className={styles.imgDiv}>
@@ -40,4 +40,4 @@ const IceDelegatedCheckedInTooltip = () => {
   );
 };
 
-export default IceDelegatedCheckedInTooltip;
+export default IceCheckedInTooltip;
