@@ -63,7 +63,7 @@ const ModalMint = props => {
             ) : null}
 
             <div className={styles.card}>
-              {state.tokenAmounts.WETH_COST_AMOUNT} ETH
+              {state.tokenAmounts.WETH_MINT_AMOUNT} ETH
               <img src={Images.ETH_CIRCLE} className={styles.img_card2} />
             </div>
 
@@ -94,16 +94,10 @@ const ModalMint = props => {
           </div>
           <p style={{ margin: '0px 8px 0px 8px' }}>+</p>
           <div className={styles.card_area_body}>
-            {state.stakingBalances.BALANCE_USER_GOVERNANCE <
-            Global.CONSTANTS.DG_STAKED_AMOUNT ||
-            (state.DGBalances.BALANCE_CHILD_TOKEN_XDG +
-            state.DGBalances.BALANCE_MAIN_TOKEN_XDG) <
-            Global.CONSTANTS.XDG_STAKED_AMOUNT ? (
-              <span className={styles.dgStackedSpan}>
-                Not Enough Staked
-                <IceMintDGStackedTooltip />
-              </span>
-            ) : null}
+            <span className={styles.dgStackedSpan}>
+              Staking Requirement
+              <IceMintDGStackedTooltip />
+            </span>
 
             <div className={styles.card} style={{ width: '256px' }}>
               {Global.CONSTANTS.XDG_STAKED_AMOUNT} xDG
@@ -119,7 +113,10 @@ const ModalMint = props => {
               />
             </div>
 
-            {1 === 2? (
+            {Global.CONSTANTS.DG_STAKED_AMOUNT ||
+            (state.DGBalances.BALANCE_CHILD_TOKEN_XDG +
+            state.DGBalances.BALANCE_MAIN_TOKEN_XDG) >=
+            Global.CONSTANTS.XDG_STAKED_AMOUNT ? (
               <div className={styles.green_check}>
 
                 You Have Enough Staked &nbsp;
