@@ -63,7 +63,7 @@ const ModalMint = props => {
             ) : null}
 
             <div className={styles.card}>
-              {state.tokenAmounts.WETH_MINT_AMOUNT} ETH
+              {state.tokenAmounts.WETH_COST_AMOUNT} ETH
               <img src={Images.ETH_CIRCLE} className={styles.img_card2} />
             </div>
 
@@ -197,7 +197,10 @@ const ModalMint = props => {
       <div className={styles.button_area}>
         {state.userBalances[2][3] < state.tokenAmounts.WETH_COST_AMOUNT ||
           state.stakingBalances.BALANCE_USER_GOVERNANCE <
-            Global.CONSTANTS.DG_STAKED_AMOUNT ? (
+            Global.CONSTANTS.DG_STAKED_AMOUNT ||
+            (state.DGBalances.BALANCE_CHILD_TOKEN_XDG +
+            state.DGBalances.BALANCE_MAIN_TOKEN_XDG) <
+            Global.CONSTANTS.XDG_STAKED_AMOUNT ? (
             <Button className={styles.button_upgrade} disabled={true}>
               Mint Wearable
             </Button>
