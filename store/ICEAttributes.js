@@ -180,8 +180,6 @@ function ICEAttributes() {
               tokenIDs[i].tokenID
             );
 
-            console.log(json);
-
             if (Object.keys(json).length) {
               iceWearableItems.push({
                 index: tokenIDs[i].index,
@@ -419,11 +417,8 @@ function ICEAttributes() {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   async function getItemLimits(index) {
-    console.log("CollectionArray", collectionArray);
     const collectionAddress = collectionArray[index][1];
-    console.log("CollectionAddresss", collectionAddress)
     const tokenIDArray = collectionArray[index][2];
-    console.log("TokenIDArray", tokenIDArray)
     let itemsArray = [];
 
     try {
@@ -507,19 +502,16 @@ function ICEAttributes() {
   }
 
   async function getTokenAmounts() {
-    console.log("GetTokenAmounts");
     try {
       const wethConstAmount = await ICERegistrantContract.methods
         .mintingPrice()
         .call();
       const WETH_COST_AMOUNT = wethConstAmount / Global.CONSTANTS.FACTOR;
-      console.log("WETH_COST_AMOUNT", WETH_COST_AMOUNT);
 
       const levelsData1 = await ICERegistrantContract.methods
         .levels('1')
         .call();
       const DG_MOVE_AMOUNT = levelsData1[2] / Global.CONSTANTS.FACTOR;
-      console.log("DG_MOVE_AMOUNT", DG_MOVE_AMOUNT);
 
       const levelsData2 = await ICERegistrantContract.methods
         .levels('2')
@@ -554,7 +546,6 @@ function ICEAttributes() {
       ).toString();
 
       const { xpUpgradeCosts } = await Fetch.GET_REWARDS_CONFIG();
-      console.log("xpUpgradeCosts", xpUpgradeCosts);
 
       return {
         WETH_COST_AMOUNT: WETH_COST_AMOUNT,
