@@ -108,6 +108,12 @@ const ModalUpgradePending = props => {
           Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS
         );
         collectionID = 14;
+      } else if (props.address === Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS) {
+        collectionContract = new getWeb3.eth.Contract(
+          ABI_DG_LIGHT_TOKEN,
+          Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS
+        );
+        collectionID = 15;
       }
 
       setCollectionContract(collectionContract);
