@@ -8,6 +8,7 @@ import ABI_COLLECTION_V2 from '../../../components/ABI/ABICollectionV2';
 import ABI_COLLECTION_PH from '../../../components/ABI/ABICollectionPH';
 import ABI_COLLECTION_LINENS from '../../../components/ABI/ABICollectionLinens';
 import ABI_COLLECTION_BOMBER from '../../../components/ABI/ABICollectionBomber';
+import ABI_COLLECTION_CRYPTO_DRIP from '../../../components/ABI/ABICollectionCryptoDrip';
 import MetaTx from '../../../common/MetaTx';
 import Fetch from '../../../common/Fetch';
 import { Modal, Button } from 'semantic-ui-react';
@@ -110,10 +111,10 @@ const ModalUpgradePending = props => {
         collectionID = 14;
       } else if (props.address === Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS) {
         collectionContract = new getWeb3.eth.Contract(
-          ABI_DG_LIGHT_TOKEN,
+          ABI_COLLECTION_CRYPTO_DRIP,
           Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS
         );
-        collectionID = 15;
+        collectionID = 16;
       }
 
       setCollectionContract(collectionContract);
