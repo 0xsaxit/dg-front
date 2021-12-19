@@ -32,6 +32,7 @@
   .home-gif {
     display: none;
   }
+
   .ui.blue.button.metamask-button-mobile {
     display: none;
   }
@@ -41,21 +42,27 @@
   .menu-info-to-hide {
     display: none;
   }
+
   .menu-avatar-background {
     margin-left: -9px !important;
   }
+
   #add-funds-mobile-padding {
     padding-right: 15px !important;
   }
+
   .mobile-display-none-name {
     display: none;
   }
+
   #mobile-avatar-picture {
     margin-right: -6px;
   }
+
   .ui.blue.button.metamask-button {
     display: none;
   }
+
   .ui.blue.button.metamask-button-mobile {
     font-size: 18px;
     position: relative;
@@ -75,9 +82,11 @@
   .ui.blue.button.metamask-mobile-button {
     margin-right: 39px !important;
   }
+
   .right-menu-items {
     margin-right: -9px;
   }
+
   .mobile-center-span {
     display: none;
   }
@@ -99,23 +108,29 @@
   #mobile-display-none {
     display: none;
   }
+
   .menu-info-modal {
     width: 100vw;
     height: calc(100vh - 2em);
     top: 0;
   }
+
   .ui.button.modal-deposit-button {
     display: none;
   }
+
   .ui.button.more-dropdown-button {
     margin-right: 21px;
   }
+
   #menu-logo {
     margin-left: 15px;
   }
+
   #add-funds-mobile-padding {
     display: none;
   }
+
   /* #mobile-menu-icon,
   #mobile-menu-icon-home {
     position: absolute;
@@ -126,6 +141,7 @@
     width: 50vw;
     right: 21px;
   }
+
   .page-header-text {
     font-size: 24px;
     font-weight: 800;
@@ -139,21 +155,25 @@
     width: 100px;
     margin-left: 45px;
   }
+
   .page-header-text.dark {
     color: black;
     margin-top: -112px !important;
     margin-bottom: 60px;
   }
+
   .page-header-text.dark.detail {
     color: black;
     margin-top: -76px !important;
     margin-bottom: 45px;
     margin-left: 66px !important;
   }
+
   .user-numbers-container-3,
   .online-pics-mobile {
     display: none !important;
   }
+
   .mobile-message-bar {
     position: relative;
     z-index: 999 !important;
@@ -181,6 +201,7 @@ a#dropdown-menu-items.item.right-menu-text {
 }
 
 @media (max-width: 499px) {
+
   div#dropdown-menu-items.item.right-menu-text,
   a#dropdown-menu-items.item.right-menu-text {
     border: none;
@@ -196,7 +217,7 @@ a#dropdown-menu-items.item.right-menu-text {
   }
 }
 
-.ui.top.attached.menu > .item:first-child {
+.ui.top.attached.menu>.item:first-child {
   border: 0px solid white;
 }
 
@@ -212,6 +233,7 @@ a#dropdown-menu-items.item.right-menu-text {
 }
 
 @media (max-width: 768px) {
+
   .ui.dropdown .menu,
   .ui.menu .dropdown.item .menu {
     border-bottom: 1px solid rgb(21, 24, 28);
@@ -220,6 +242,7 @@ a#dropdown-menu-items.item.right-menu-text {
     max-width: calc(100vw - 1px);
     top: 30px;
   }
+
   a.get-metamask {
     display: none !important;
   }
@@ -229,7 +252,7 @@ a#dropdown-menu-items.item.right-menu-text {
 .ui.menu .dropdown.item:hover,
 .ui.menu .link.item:hover,
 .ui.menu a.item:hover,
-.ui.menu .ui.dropdown .menu > .item:hover {
+.ui.menu .ui.dropdown .menu>.item:hover {
   background: none !important;
 }
 
@@ -242,12 +265,14 @@ a#dropdown-menu-items.item.right-menu-text:hover {
   .menu-items-to-hide {
     display: none;
   }
+
   /* .mobile-height-fix {
     margin-top: -70px;
   } */
 }
 
 @media (max-width: 650px) {
+
   .sidebar-menu-text-2,
   .sidebar-menu-text-3 {
     display: none;
@@ -263,6 +288,7 @@ div.ui.top.attached.menu {
 }
 
 @media (min-width: 1141px) {
+
   #mobile-menu-icon,
   #mobile-menu-icon-home,
   div.ui.top.attached.menu {
@@ -307,23 +333,27 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
     justify-content: space-between;
     flex-direction: column;
   }
+
   .home-more-nav {
     margin-top: 0px !important;
   }
 }
 
 @media (min-width: 500px) {
+
   .mobile-menu-image,
   .mobile-menu-words,
   .mobile-footer,
   .demo-button-container {
     display: none !important;
   }
+
   a.ui.blue.button.play-button,
   .ui.blue.button.play-button,
   .ui.blue.button.demo-button {
     margin-right: 21px;
   }
+
   .ui.blue.button.demo-button {
     display: none;
   }
@@ -333,6 +363,7 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   .dashboard-span {
     flex-direction: column !important;
   }
+
   .home-dashboard-h1,
   .home-footer-h1,
   .dg-powered-h1 {
@@ -347,6 +378,7 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
 }
 
 @media (max-width: 499px) {
+
   .ui.blue.button.how-to-button,
   a.ui.blue.button-how-to-button,
   .ui.blue.button.earn-dg-button,
@@ -354,11 +386,13 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   .ui.blue.button.play-button.verify {
     display: none !important;
   }
+
   .dashboard-image-container,
   #mobile-casino-text,
   video#myVideo.home-dashboard-video {
     display: none !important;
   }
+
   .home-dashboard-content {
     position: relative;
     height: 100vh;
@@ -367,56 +401,70 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
     position: relative;
     z-index: -1 !important;
   }
+
   .binance-video-container video,
   .binance-video-container {
     display: none;
   }
+
   .home-dashboard-p {
     width: 100% !important;
   }
+
   div.ui.vertical.segment {
     top: 0px !important;
   }
+
   .home-section-4-header {
     padding-left: 21px;
     padding-right: 21px;
   }
+
   .ui.blue.button.our-blog-button {
     min-width: 48.5%;
     padding: 11px 0 0 0;
   }
+
   .ui.blue.button.learn-more-button {
     min-width: 48.5%;
     padding: 10px 0 0 0;
   }
+
   a.ui.blue.button.metamask-how-button,
   .ui.blue.button.casinos-button {
     max-width: 48.5%;
   }
+
   .home-button-span.dg {
     min-width: calc(100vw - 42px);
   }
+
   .home-gif {
     margin-top: 0px;
     width: 100%;
     position: relative;
     z-index: -2;
   }
+
   .home-dashboard-main-h1 {
     margin-top: -120px;
   }
+
   .mailchimp-input {
     width: 100%;
   }
+
   .home-button-span {
     display: flex;
     justify-content: space-between;
   }
+
   a.ui.blue.button.play-button,
   .ui.blue.button.play-button,
   a.ui.blue.button.how-to-button {
     width: 48.5% !important;
   }
+
   .home-dashboard-content,
   .home-section-2,
   .home-section-3,
@@ -433,6 +481,7 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
     display: flex;
     flex-direction: column;
   }
+
   .avatar-image-span {
     order: 2;
     display: flex;
@@ -440,6 +489,7 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
     justify-content: center;
     margin-left: 30px;
   }
+
   .learn-more-dg-span {
     margin-top: 90px !important;
     order: 1;
@@ -448,10 +498,12 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
     flex-direction: column;
     margin-top: 150px;
   }
+
   .home-footer-h1.avatars,
   .home-footer-p.avatars {
     text-align: center;
   }
+
   .home-button-span.avatars {
     display: flex;
     align-self: center;
@@ -459,16 +511,20 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
 }
 
 @media (max-width: 768px) {
+
   .home-footer-h1.avatars,
   .home-footer-p.avatars {
     text-align: left;
   }
+
   .home-button-span.avatars {
     align-self: start !important;
   }
+
   .home-footer-h1.ecosystem {
     text-align: left;
   }
+
   .home-button-span.ecosystem {
     align-self: start !important;
   }
@@ -482,12 +538,14 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
     margin-left: -21px;
     margin-right: -21px;
   }
+
   .home-button-span.avatars,
   .home-button-span.ecosystem {
     width: 100%;
     display: flex;
     justify-content: space-between;
   }
+
   .ui.blue.button.play-button.avatars,
   .ui.blue.button.play-button.ecosystem {
     min-width: 48.5%;
@@ -499,9 +557,11 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   .home-dashboard-content {
     margin-right: 0px !important;
   }
+
   .featured-casino-text {
     font-size: 12px !important;
   }
+
   .home-dashboard-p {
     font-size: 18px !important;
   }
@@ -528,13 +588,16 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
     padding-right: 30px;
     min-width: 100%;
   }
+
   .footer-container {
     display: flex;
     flex-direction: column !important;
   }
+
   .inner-footer-container-2 {
     justify-content: center;
   }
+
   .footer-menu-items {
     flex-wrap: wrap;
     justify-content: center;
@@ -545,6 +608,7 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   .home-dashboard-main-h1 {
     font-size: 48px;
   }
+
   .featured-casino-text {
     font-size: 12px;
   }
@@ -554,13 +618,16 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   .outter-footer-container {
     flex-direction: column;
   }
+
   .inner-footer-container.top {
     padding-bottom: 60px;
     margin-top: -30px;
   }
+
   .inner-footer-container {
     width: 100%;
   }
+
   .inner-footer-container.bottom {
     padding-top: 45px;
   }
@@ -599,6 +666,7 @@ span#mobile-time-select.account-select.dropdown {
     margin-bottom: 30px;
   }
 }
+
 .account-hover-time-tablet {
   font-size: 20px;
   font-family: Larsseit-Bold;
@@ -614,19 +682,21 @@ span#mobile-time-select.account-select.dropdown {
 }
 
 @media (max-width: 1101px) {
-  .ui.column.grid > [class*='sixteen wide'].column,
-  .ui.grid > .column.row > [class*='sixteen wide'].column,
-  .ui.grid > .row > [class*='sixteen wide'].column,
-  .ui.grid > [class*='sixteen wide'].column {
+
+  .ui.column.grid>[class*='sixteen wide'].column,
+  .ui.grid>.column.row>[class*='sixteen wide'].column,
+  .ui.grid>.row>[class*='sixteen wide'].column,
+  .ui.grid>[class*='sixteen wide'].column {
     width: 50% !important;
   }
 }
 
 @media (max-width: 768px) {
-  .ui.column.grid > [class*='sixteen wide'].column,
-  .ui.grid > .column.row > [class*='sixteen wide'].column,
-  .ui.grid > .row > [class*='sixteen wide'].column,
-  .ui.grid > [class*='sixteen wide'].column {
+
+  .ui.column.grid>[class*='sixteen wide'].column,
+  .ui.grid>.column.row>[class*='sixteen wide'].column,
+  .ui.grid>.row>[class*='sixteen wide'].column,
+  .ui.grid>[class*='sixteen wide'].column {
     width: 100% !important;
   }
 }
@@ -648,6 +718,7 @@ span#mobile-time-select.account-select.dropdown {
   .outter-games-container {
     width: calc(100% - 160px);
   }
+
   .outter-leaders-container {
     width: calc(100vw - 160px);
   }
@@ -691,12 +762,15 @@ span#mobile-time-select.account-select.dropdown {
   .ui.button.games-read-button {
     width: 50%;
   }
+
   .ui.blue.button.games-button {
     width: 50%;
   }
+
   .ui.blue.button#mobile-button-hide {
     display: none;
   }
+
   .scroll-down-icon {
     margin-top: -210px !important;
   }
@@ -713,6 +787,7 @@ span#mobile-time-select.account-select.dropdown {
 /* ----------------------------------------- */
 
 @media (max-width: 912px) {
+
   td.account-col-2,
   th.account-col-2 {
     display: none;
@@ -729,6 +804,7 @@ span#mobile-time-select.account-select.dropdown {
   .ui.button.etherscan-button-ptxid {
     display: none;
   }
+
   .ui.button.etherscan-button-mobile {
     background-color: rgba(255, 255, 255, 0);
     border: 1px solid #2085f4;
@@ -751,15 +827,19 @@ span#mobile-time-select.account-select.dropdown {
   #account-txs-tab {
     display: none !important;
   }
+
   .welcome-text-2 {
     display: none;
   }
+
   .account-name-2 {
     margin-bottom: 0px;
   }
+
   span.account-icon-hover {
     margin-top: 15px;
   }
+
   #account-mobile-tabs {
     padding-top: 0px;
   }
@@ -769,6 +849,7 @@ span#mobile-time-select.account-select.dropdown {
   #account-txs-tab-mobile {
     display: none;
   }
+
   #account-mobile-tabs {
     padding-top: 15px;
   }
@@ -794,12 +875,15 @@ span#mobile-time-select.account-select.dropdown {
   i.info.circle.icon.dai-mana-icon.one {
     margin-right: 15px;
   }
+
   i.info.circle.icon.dai-mana-icon.two {
     margin-right: 45px;
   }
+
   i.info.circle.icon.dai-mana-icon.four {
     margin-right: 40px;
   }
+
   i.info.circle.icon.dai-mana-icon.seven {
     margin-right: 34px;
   }
@@ -809,18 +893,23 @@ span#mobile-time-select.account-select.dropdown {
   i.info.circle.icon.dai-mana-icon.one {
     margin-right: 33px;
   }
+
   i.info.circle.icon.dai-mana-icon.two {
     margin-right: 4px;
   }
+
   i.info.circle.icon.dai-mana-icon.four {
     margin-right: 0px;
   }
+
   i.info.circle.icon.dai-mana-icon.five {
     margin-right: 24px;
   }
+
   i.info.circle.icon.dai-mana-icon.six {
     margin-right: 9px;
   }
+
   i.info.circle.icon.dai-mana-icon.seven {
     margin-right: 6px;
   }
@@ -836,10 +925,12 @@ span#mobile-time-select.account-select.dropdown {
 }
 
 @media (max-width: 1030px) {
+
   .DG-liquidity-container,
   .DG-top-container {
     flex-direction: column;
   }
+
   .DG-tablet-container-gov {
     margin-top: 30px;
     display: flex;
@@ -847,39 +938,48 @@ span#mobile-time-select.account-select.dropdown {
     flex-direction: row !important;
     width: 100%;
   }
+
   .mining-container-outter {
     margin-top: 30px;
     width: 100%;
   }
+
   .DG-column.unclaimed,
   .DG-column.treasury-all,
   .DG-column.treasury-stats {
     width: 100% !important;
   }
+
   .DG-column.treasury-stats {
     margin-top: 30px;
   }
+
   .DG-column.one-uniswap {
     margin-top: 55px;
     width: 100%;
   }
+
   .DG-column.one,
   .DG-column.two {
     max-width: 48.5% !important;
   }
+
   .outter-airdrop-container {
     display: flex;
     flex-direction: column;
   }
+
   #airdrop-unclaimed {
     margin-bottom: 45px;
   }
+
   .DG-column-treasury {
     width: 48.5% !important;
   }
 }
 
 @media (max-width: 851px) {
+
   .DG-tablet-container,
   .DG-tablet-container-gov {
     display: flex;
@@ -887,39 +987,49 @@ span#mobile-time-select.account-select.dropdown {
     flex-direction: column !important;
     width: 100%;
   }
+
   .mining-container-inner {
     flex-direction: column;
   }
+
   .DG-column.one,
   .DG-column-treasury.one {
     min-width: 100%;
     margin-bottom: 30px;
   }
+
   .DG-column.two,
   .DG-column-treasury.two,
   .DG-column-treasury.three {
     min-width: 100%;
   }
+
   .DG-column-treasury.three {
     margin-top: 30px;
   }
+
   .DG-liquidity-container.top {
     flex-direction: column;
   }
+
   .DG-column.three {
     max-width: 100% !important;
   }
+
   .DG-column.four {
     max-width: 100% !important;
     margin-top: 30px;
   }
+
   .DG-liquidity-container.gov {
     flex-direction: column;
   }
+
   .DG-column.stake,
   .DG-column.gov {
     max-width: 100% !important;
   }
+
   .DG-column.stake {
     margin-top: 30px;
   }
@@ -938,13 +1048,16 @@ span#mobile-time-select.account-select.dropdown {
 }
 
 @media (max-width: 600px) {
+
   .ui.button.account-connected-play-button-mobile.redeem,
   .ui.button.DG-stake-button {
     min-width: 48.5% !important;
   }
+
   .ui.button.DG-stake-button-two {
     min-width: 100% !important;
   }
+
   .ui.button.affiliate-copy-button,
   .ui.button.affiliate-copied-button {
     display: none;
@@ -956,19 +1069,24 @@ span#mobile-time-select.account-select.dropdown {
     font-size: 28px;
     padding-left: 15px;
   }
+
   #airdrop-number-1 {
     padding: 8px 0px 0px 20px;
   }
+
   #airdrop-number-2 {
     padding: 8px 0px 0px 20px;
   }
+
   .welcome-text {
     padding-left: 16px;
   }
+
   .farming-logo {
     width: 52px;
     height: 52px;
   }
+
   .farming-pool-span {
     margin-top: 6px;
   }
@@ -986,6 +1104,7 @@ span#mobile-time-select.account-select.dropdown {
     margin-left: calc((100vw - 60px) / 2);
     margin-top: calc((100vh - 180px) / 2);
   }
+
   .account-other-inner-container {
     width: calc(100% - 42px);
     margin-left: 21px;
