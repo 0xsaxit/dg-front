@@ -4,6 +4,7 @@ import { Provider } from '../store';
 
 import 'semantic-ui-css/semantic.min.css';
 import 'public/static/css/main.css';
+import 'public/static/css/main2.css';
 import 'public/static/css/agate.css';
 import 'public/static/css/blog.css';
 import 'public/static/css/spinner.css';
