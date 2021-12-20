@@ -87,6 +87,13 @@ const Fetch = {
   PLAYER_INFO: address => {
     return call(`${API_BASE_URL}/admin/getUser?address=${address}`, 'GET');
   },
+  UPDATE_FREE_PLAYER_BALANCE: (amount, address) => {
+    return call(`${API_BASE_URL}/admin/updateUserBalances?freePlayAmountChange=${amount}&user=${address}`, 'GET');
+  },
+
+  UPDATE_ICE_CHIP_BALANCE: (amount, address) => {
+    return call(`${API_BASE_URL}/admin/updateUserBalances?iceChipsAmountChange=${amount}&user=${address}`, 'GET');
+  },
 
   POKER_DATA: address => {
     return call(
