@@ -3,14 +3,13 @@ import BigNumber from 'bignumber.js';
 import { useRouter } from 'next/router';
 import { useEffect, useContext, useState, React } from 'react';
 import Web3 from 'web3';
-import { Button, Input } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 import Spinner from 'components/lottieAnimation/animations/spinner_updated';
 import Aux from '../../../_Aux';
 import { GlobalContext } from '../../../../store';
 import styles from './Governance.module.scss';
 import Transactions from '../../../../common/Transactions';
 import Global from '../../../Constants';
-import PostPreview from 'components/blog/PostPreview';
 import Constants from '../../../Constants';
 import Fetch from '../../../../common/Fetch';
 
@@ -34,12 +33,6 @@ const Governance = props => {
   const [approving, setApproving] = useState(false);
   const [oldDGPrice, setOldDGPrice] = useState(0);
   const router = useRouter();
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  function length(obj) {
-    return Object.keys(obj).length;
-  }
 
   function handleAmountInputChange(e) {
     setAmountInput(Number(e.target.value));
@@ -78,7 +71,7 @@ const Governance = props => {
         setOldDGPrice(price_json['decentral-games-old'].usd);
 
         setAPY(
-          BigNumber(7821000000)
+          BigNumber(5214300000)
             .div(BigNumber(balance))
             .multipliedBy(Constants.CONSTANTS.FACTOR)
             .toString()
@@ -127,7 +120,6 @@ const Governance = props => {
         });
       }
 
-      console.log(amountToString, state.userAddress);
       await DGTownHallContract.methods
         .stepInside(amountToString)
         .send({ from: state.userAddress })
@@ -204,7 +196,6 @@ const Governance = props => {
         });
       }
 
-      console.log(amountToString, state.userAddress);
       await DGTownHallContract.methods
         .stepOutside(amountToString)
         .send({ from: state.userAddress })
@@ -372,12 +363,10 @@ const Governance = props => {
                           value={amountInput.toString()}
                           onChange={handleAmountInputChange}
                           style={{
-                            minWidth: `${
-                              5 + (amountInput.toString().length + 1) * 12
-                            }px`,
-                            maxWidth: `${
-                              5 + (amountInput.toString().length + 1) * 12
-                            }px`,
+                            minWidth: `${5 + (amountInput.toString().length + 1) * 12
+                              }px`,
+                            maxWidth: `${5 + (amountInput.toString().length + 1) * 12
+                              }px`,
                           }}
                         />
                       </div>
@@ -399,11 +388,11 @@ const Governance = props => {
                         <h4
                           className={
                             Number(amountInput) <=
-                            Number(
-                              stakeType === 'Stake'
-                                ? state.DGBalances.BALANCE_ROOT_DG_LIGHT
-                                : state.stakingBalances.BALANCE_USER_GOVERNANCE
-                            )
+                              Number(
+                                stakeType === 'Stake'
+                                  ? state.DGBalances.BALANCE_ROOT_DG_LIGHT
+                                  : state.stakingBalances.BALANCE_USER_GOVERNANCE
+                              )
                               ? styles.success
                               : styles.error
                           }
@@ -432,9 +421,9 @@ const Governance = props => {
                           }}
                           disabled={
                             approving ||
-                            loading ||
-                            Number(amountInput) <= 0 ||
-                            Number(amountInput) >
+                              loading ||
+                              Number(amountInput) <= 0 ||
+                              Number(amountInput) >
                               Number(state.DGBalances.BALANCE_ROOT_DG_LIGHT)
                               ? true
                               : false
@@ -446,9 +435,8 @@ const Governance = props => {
                           &nbsp;
                           {approving || loading
                             ? ''
-                            : `${stakeType} ${
-                                amountInput > 0 ? amountInput : ''
-                              } DG`}
+                            : `${stakeType} ${amountInput > 0 ? amountInput : ''
+                            } DG`}
                         </Button>
                       ) : (
                         <Button
@@ -459,9 +447,9 @@ const Governance = props => {
                           }}
                           disabled={
                             approving ||
-                            loading ||
-                            Number(amountInput) <= 0 ||
-                            Number(amountInput) >
+                              loading ||
+                              Number(amountInput) <= 0 ||
+                              Number(amountInput) >
                               state.stakingBalances.BALANCE_USER_GOVERNANCE
                               ? true
                               : false
@@ -473,9 +461,8 @@ const Governance = props => {
                           &nbsp;
                           {approving || loading
                             ? ''
-                            : `${stakeType} ${
-                                amountInput > 0 ? amountInput : ''
-                              } DG`}
+                            : `${stakeType} ${amountInput > 0 ? amountInput : ''
+                            } DG`}
                         </Button>
                       )}
                     </div>
@@ -486,102 +473,102 @@ const Governance = props => {
           </div>
           {(!!Number(state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD) ||
             !!Number(state.DGBalances.BALANCE_STAKING_GOVERNANCE)) && (
-            <div className="col-xl-4 d-flex pt-xl-10 flex-column">
-              <div className="mx-auto">
-                <p className={styles.welcome_content}>(Old) $DG Staked</p>
-                <div className={cn(styles.lower, 'mx-auto')}>
-                  <p className={styles.lower_header}>Claim $DG Rewards</p>
-                  <div className={styles.lower_value}>
-                    <p className={styles.DG_value}>
+              <div className="col-xl-4 d-flex pt-xl-10 flex-column">
+                <div className="mx-auto">
+                  <p className={styles.welcome_content}>(Old) $DG Staked</p>
+                  <div className={cn(styles.lower, 'mx-auto')}>
+                    <p className={styles.lower_header}>Claim $DG Rewards</p>
+                    <div className={styles.lower_value}>
+                      <p className={styles.DG_value}>
+                        {props.formatPrice(
+                          state.DGBalances.BALANCE_STAKING_GOVERNANCE,
+                          3
+                        )}
+                      </p>
+                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1624411671/Spinning-Logo-DG_n9f4xd.gif" />
+                    </div>
+                    <p className={styles.price}>
+                      $
                       {props.formatPrice(
-                        state.DGBalances.BALANCE_STAKING_GOVERNANCE,
-                        3
+                        (
+                          oldDGPrice *
+                          state.DGBalances.BALANCE_STAKING_GOVERNANCE
+                        ).toFixed(2),
+                        2
                       )}
                     </p>
-                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1624411671/Spinning-Logo-DG_n9f4xd.gif" />
+
+                    <p className={styles.lower_text}>
+                      Stake $DG to govern the treasury, vote on proposals, and
+                      earn yields.
+                    </p>
+
+                    <span>
+                      {Number(state.DGBalances.BALANCE_STAKING_GOVERNANCE) ? (
+                        <Button
+                          className={styles.lower_button}
+                          onClick={() => {
+                            props.reward(stakeContractGovernance);
+
+                            //Show Toast Message2
+                            const msg = 'Claiming Governance DG!';
+                            dispatch({
+                              type: 'show_toastMessage',
+                              data: msg,
+                            });
+                          }}
+                        >
+                          Claim {state.DGBalances.BALANCE_STAKING_GOVERNANCE} $DG
+                        </Button>
+                      ) : (
+                        <Button disabled className={styles.lower_button}>
+                          Claim {state.DGBalances.BALANCE_STAKING_GOVERNANCE} $DG
+                        </Button>
+                      )}
+                    </span>
                   </div>
-                  <p className={styles.price}>
-                    $
-                    {props.formatPrice(
-                      (
-                        oldDGPrice *
-                        state.DGBalances.BALANCE_STAKING_GOVERNANCE
-                      ).toFixed(2),
-                      2
-                    )}
-                  </p>
 
-                  <p className={styles.lower_text}>
-                    Stake $DG to govern the treasury, vote on proposals, and
-                    earn yields.
-                  </p>
+                  <div className={cn(styles.lower, 'mx-auto mt-4')}>
+                    <p className={styles.lower_header}>(Old) $DG Staked</p>
+                    <video
+                      src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626798440/Wallet_1_k0dqit.webm"
+                      className={styles.lower_img}
+                      type="video/mp4"
+                      frameBorder="0"
+                      autoPlay={true}
+                      loop
+                      muted
+                    ></video>
+                    <p className={styles.staked_label}>$DG Staked</p>
 
-                  <span>
-                    {Number(state.DGBalances.BALANCE_STAKING_GOVERNANCE) ? (
+                    <div className={styles.lower_value}>
+                      <p className={cn(styles.DG_value, styles.no_margin)}>
+                        {props.formatNumber(
+                          state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD || 0,
+                          3
+                        )}
+                      </p>
+                    </div>
+
+                    <p className={styles.lower_text}>
+                      Migrate to the new DG for auto claiming and higher gov
+                      yields.
+                    </p>
+
+                    <span>
                       <Button
                         className={styles.lower_button}
                         onClick={() => {
-                          props.reward(stakeContractGovernance);
-
-                          //Show Toast Message2
-                          const msg = 'Claiming Governance DG!';
-                          dispatch({
-                            type: 'show_toastMessage',
-                            data: msg,
-                          });
+                          router.push('/dg/migration');
                         }}
                       >
-                        Claim {state.DGBalances.BALANCE_STAKING_GOVERNANCE} $DG
+                        Migrate to New DG
                       </Button>
-                    ) : (
-                      <Button disabled className={styles.lower_button}>
-                        Claim {state.DGBalances.BALANCE_STAKING_GOVERNANCE} $DG
-                      </Button>
-                    )}
-                  </span>
-                </div>
-
-                <div className={cn(styles.lower, 'mx-auto mt-4')}>
-                  <p className={styles.lower_header}>(Old) $DG Staked</p>
-                  <video
-                    src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626798440/Wallet_1_k0dqit.webm"
-                    className={styles.lower_img}
-                    type="video/mp4"
-                    frameBorder="0"
-                    autoPlay={true}
-                    loop
-                    muted
-                  ></video>
-                  <p className={styles.staked_label}>$DG Staked</p>
-
-                  <div className={styles.lower_value}>
-                    <p className={cn(styles.DG_value, styles.no_margin)}>
-                      {props.formatNumber(
-                        state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD || 0,
-                        3
-                      )}
-                    </p>
+                    </span>
                   </div>
-
-                  <p className={styles.lower_text}>
-                    Migrate to the new DG for auto claiming and higher gov
-                    yields.
-                  </p>
-
-                  <span>
-                    <Button
-                      className={styles.lower_button}
-                      onClick={() => {
-                        router.push('/dg/migration');
-                      }}
-                    >
-                      Migrate to New DG
-                    </Button>
-                  </span>
                 </div>
               </div>
-            </div>
-          )}
+            )}
         </div>
       </div>
     </Aux>

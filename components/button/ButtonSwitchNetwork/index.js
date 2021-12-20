@@ -7,7 +7,7 @@ const ButtonSwitchNetwork = () => {
     id: 1,
     name: 'Mainnet',
   };
-  
+
   async function switchToMainNet() {
     try {
       await window.ethereum.request({
