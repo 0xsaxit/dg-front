@@ -10,7 +10,6 @@ const ModalAffiliates = () => {
   // define local variables
   const [copied, setCopied] = useState(false);
   const [open, setOpen] = useState(false);
-
   const referralLink = Global.CONSTANTS.BASE_URL + '/' + state.userInfo.id;
 
   /////////////////////////////////////////////////////////////////////////////////////////

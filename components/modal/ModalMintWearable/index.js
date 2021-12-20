@@ -114,10 +114,10 @@ const ModalMint = props => {
             </div>
 
             {state.stakingBalances.BALANCE_USER_GOVERNANCE >=
-            Global.CONSTANTS.DG_STAKED_AMOUNT ||
-            (state.DGBalances.BALANCE_CHILD_TOKEN_XDG +
-            state.DGBalances.BALANCE_MAIN_TOKEN_XDG) >=
-            Global.CONSTANTS.XDG_STAKED_AMOUNT ? (
+              Global.CONSTANTS.DG_STAKED_AMOUNT ||
+              (state.DGBalances.BALANCE_CHILD_TOKEN_XDG +
+                state.DGBalances.BALANCE_MAIN_TOKEN_XDG) >=
+              Global.CONSTANTS.XDG_STAKED_AMOUNT ? (
               <div className={styles.green_check}>
 
                 You Have Enough Staked &nbsp;
@@ -146,19 +146,6 @@ const ModalMint = props => {
         </div>
       </div>
     );
-  }
-
-  function roundup(num) {
-    let decimalPlaces = 0;
-    if (num < 0.1) {
-      decimalPlaces = 2;
-      num = Math.floor(num + 'e' + decimalPlaces);
-    } else {
-      decimalPlaces = 1;
-      num = Math.round(num + 'e' + decimalPlaces);
-    }
-
-    return Number(num + 'e' + -decimalPlaces);
   }
 
   function description() {
@@ -198,21 +185,21 @@ const ModalMint = props => {
       <div className={styles.button_area}>
         {state.userBalances[2][3] < state.tokenAmounts.WETH_MINT_AMOUNT ||
           state.stakingBalances.BALANCE_USER_GOVERNANCE <
-            Global.CONSTANTS.DG_STAKED_AMOUNT ? (
-            <Button className={styles.button_upgrade} disabled={true}>
-              Mint Wearable
-            </Button>
-          ) : (
-            <Button
-              className={styles.button_upgrade}
-              onClick={() => {
-                setOpen(false);
-                setOpenETHAuth(true);
-              }}
-            >
-              Mint Wearable
-            </Button>
-          )}
+          Global.CONSTANTS.DG_STAKED_AMOUNT ? (
+          <Button className={styles.button_upgrade} disabled={true}>
+            Mint Wearable
+          </Button>
+        ) : (
+          <Button
+            className={styles.button_upgrade}
+            onClick={() => {
+              setOpen(false);
+              setOpenETHAuth(true);
+            }}
+          >
+            Mint Wearable
+          </Button>
+        )}
 
         <Button
           className={styles.button_close}

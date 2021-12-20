@@ -16,7 +16,6 @@ const NeedMoreUpgrade = ({
 
   // define local variables
   const [open, setOpen] = useState(true);
-  //const [upgradePending, setUpgradePending] = useState(false);
 
   return (
     <Modal
