@@ -324,7 +324,7 @@ function DGBalances() {
       );
 
       const BALANCE_MAIN_TOKEN_XDG = await Transactions.balanceOfToken(
-        XDGMainContract,
+        '0x4f81c790581b240a5c948afd173620ecc8c71c8d',
         state.userAddress,
         3
       );
