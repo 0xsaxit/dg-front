@@ -1,5 +1,4 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { useRouter } from 'next/router';
 import { Table } from 'semantic-ui-react';
 import { Line } from 'react-chartjs-2';
 import { GlobalContext } from 'store';
@@ -9,14 +8,11 @@ import TooltipTwo from 'components/tooltips/TreasuryTooltipGameplay/index.js';
 import TooltipThree from 'components/tooltips/TreasuryTooltipLP/index.js';
 import Spinner from 'components/lottieAnimation/animations/spinner_updated';
 
-
 const Treasury = props => {
   // get the treasury's balances numbers from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-  const router = useRouter();
 
   // define local variables
-  const [dgBalance, setDgBalance] = useState(0);
   const [treasuryTotal, setTreasuryTotal] = useState(0);
   const [statsUSDX, setStatsUSDX] = useState([]);
   const [statsUSDY, setStatsUSDY] = useState([]);
@@ -26,7 +22,6 @@ const Treasury = props => {
   const [gameplayAll, setGameplayAll] = useState(0);
   const [gameplayAllPercent, setGameplayAllPercent] = useState(0);
   const [dgTreasury, setDgTreasury] = useState(0);
-  const [dgPercent, setDgPercent] = useState(0);
   const [landTreasury, setLandTreasury] = useState(0);
   const [landTreasuryPercent, setLandTreasuryPercent] = useState(0);
   const [nftTreasury, setNftTreasury] = useState(0);
@@ -35,8 +30,6 @@ const Treasury = props => {
   const [lpPercent, setLpPercent] = useState(0);
   const [maticTreasury, setMaticTreasury] = useState(0);
   const [maticTreasuryPercent, setMaticTreasuryPercent] = useState(0);
-  const [maticTokens, setMaticTokens] = useState(0);
-  const [visible, setVisible] = useState(true);
   const [wearableSales, setWearableSales] = useState(0);
   const [wearableSalesPercent, setWearableSalesPercent] = useState(0);
   const [unvestedDG, setUnvestedDG] = useState(0);
@@ -70,8 +63,6 @@ const Treasury = props => {
         const totalUSD = state.treasuryNumbers.totalBalanceUSD.graph;
         const api_usd = Number(totalUSD.slice(-1)[0].secondary);
         setTreasuryTotal(props.formatPrice(api_usd, 0));
-
-        const wearable_sales = Number(state.DGBalances.BALANCE_WETH_WEARABLES * state.DGPrices.eth);
 
         setStatsUSDX(xAxis);
         setStatsUSDY(yAxis);
@@ -142,18 +133,10 @@ const Treasury = props => {
           props.formatPrice(maticBal.graph.slice(-1)[0].secondary, 0)
         );
 
-        const maticTemp = state?.treasuryNumbers?.maticBalance?.graph
-          .slice(-1)[0]
-          .secondary.toFixed(0);
-        setMaticTokens(maticTemp);
-
         const matic_temp = maticBal?.changes?.weekly?.percent.toFixed(2);
         setMaticTreasuryPercent(Number(matic_temp));
-
-        const dgbal = state.treasuryNumbers.dgBalance.graph;
-        setDgBalance(props.formatPrice(dgbal.slice(-1)[0].secondary, 0));
       }
-    } catch(error) {
+    } catch (error) {
       console.log('Treasury Numbers Error: ' + error);
     }
   }, [state.treasuryNumbers, dgTreasury]);
@@ -322,7 +305,7 @@ const Treasury = props => {
 
         <div className={styles.stat}>
           <span style={{ display: 'flex', justifyContent: 'center' }}>
-            <p className={styles.stat_header}>$DG Wallet</p>
+            <p className={styles.stat_header}>DG Wallet</p>
             <TooltipOne />
           </span>
           <div className="d-flex justify-content-center">

@@ -183,6 +183,7 @@ const Fetch = {
     });
   },
 
+  // address is the address of the user that used the wearable. i.e if the token is delegated, it is the delegatee's adress.
   WEARABLE_CHECKIN_STATUS: (address, tokenID) => {
     return call(
       `${API_BASE_URL}/ice/fetchWearableCheckinStatus`,
@@ -258,7 +259,6 @@ const Fetch = {
       false
     );
   },
-
 
   ATRI_PRICE: () => {
     return call(`https://api.coingecko.com/api/v3/coins/atari`, 'GET', false);

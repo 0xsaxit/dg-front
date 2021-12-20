@@ -30,7 +30,7 @@ function Test({ state }) {
       'playerHandData.userPlayInfoID'
     );
 
-    const userInfoPlayIDs = temp.filter(function(x) {
+    const userInfoPlayIDs = temp.filter(function (x) {
       return x !== undefined;
     });
 
@@ -56,8 +56,8 @@ function Test({ state }) {
     ...(dataPlay === 'false'
       ? []
       : dataPlay.filter(
-          p => get(p, 'gameType', 0) < 10 && get(p, 'gameType', 0) !== 9
-        )),
+        p => get(p, 'gameType', 0) < 10 && get(p, 'gameType', 0) !== 9
+      )),
     ...newPokerData,
   ].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
@@ -178,7 +178,7 @@ function Test({ state }) {
                           {amount}
                         </h2>
                         {row.type.includes('DAI') ||
-                        row.type.includes('USDT') ? (
+                          row.type.includes('USDT') ? (
                           <h3
                             className={styles.row_date}
                             style={{ textAlign: 'right' }}
@@ -212,7 +212,7 @@ function Test({ state }) {
                   </div>
                 </Grid.Column>
               );
-            })}            
+            })}
           </Grid>
         )}
       </div>

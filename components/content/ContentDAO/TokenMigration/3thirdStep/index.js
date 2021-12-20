@@ -108,10 +108,10 @@ const ThirdStep = (props) => {
                 await dgTokenContract.methods
                     .approve(dgLightTokenContract._address, Global.CONSTANTS.MAX_AMOUNT)
                     .send({ from: state.userAddress })
-                    .on('transactionHash', function(hash) {
+                    .on('transactionHash', function (hash) {
                         setApproving(true);
                     })
-                    .on('confirmation', function(confirmation, receipt) {
+                    .on('confirmation', function (confirmation, receipt) {
                         console.log('approve() transaction completed');
                         setApproving(false);
                     });
@@ -127,12 +127,12 @@ const ThirdStep = (props) => {
             await dgLightTokenContract.methods
                 .goLight(amountToString)
                 .send({ from: state.userAddress })
-                .on('transactionHash', function(hash) {
+                .on('transactionHash', function (hash) {
                     setHash(hash);
                     setSwapSubmitted(true);
                     setLoading(true);
                 })
-                .on('confirmation', function(confirmation, receipt) {
+                .on('confirmation', function (confirmation, receipt) {
                     setLoading(false);
                     console.log('goLight() transaction completed: ' + hash);
                 });
@@ -168,10 +168,10 @@ const ThirdStep = (props) => {
                 params: {
                     type: 'ERC20',
                     options: {
-                      address: direct ? networkInfo.dgLightAddress : networkInfo.dgAddress,
-                      symbol: direct ? 'DG' : '$DG',
-                      decimals: 18,
-                      image: 'https://res.cloudinary.com/dze4ze7xd/image/upload/c_scale,h_256/v1638231952/DG_LOGO_ch4uj6.png',
+                        address: direct ? networkInfo.dgLightAddress : networkInfo.dgAddress,
+                        symbol: direct ? 'DG' : '$DG',
+                        decimals: 18,
+                        image: 'https://res.cloudinary.com/dze4ze7xd/image/upload/c_scale,h_256/v1638231952/DG_LOGO_ch4uj6.png',
                     },
                 },
             });
@@ -195,12 +195,12 @@ const ThirdStep = (props) => {
             await dgLightTokenContract.methods
                 .goClassic(amountToString)
                 .send({ from: state.userAddress })
-                .on('transactionHash', function(hash) {
+                .on('transactionHash', function (hash) {
                     setHash(hash);
                     setSwapSubmitted(true);
                     setLoading(true);
                 })
-                .on('confirmation', function(confirmation, receipt) {
+                .on('confirmation', function (confirmation, receipt) {
                     setLoading(false);
                     console.log('goClassic() transaction completed: ' + hash);
                 });
@@ -268,10 +268,10 @@ const ThirdStep = (props) => {
     useEffect(() => {
         if (state.userStatus >= 4) {
             checkNetworkId(window.ethereum.networkVersion);
-            window.ethereum.on('networkChanged', function(networkId){
+            window.ethereum.on('networkChanged', function (networkId) {
                 checkNetworkId(networkId);
             });
-        
+
             fetchData();
         }
     }, [state.userStatus]);
@@ -296,9 +296,9 @@ const ThirdStep = (props) => {
                                     <div className={styles.contract_box}>
                                         <div className={styles.tag}>
                                             Old DG Contract
-                                            <a 
+                                            <a
                                                 className={styles.scan_link}
-                                                href="https://etherscan.io/token/0xee06a81a695750e71a662b51066f2c74cf4478a0" 
+                                                href="https://etherscan.io/token/0xee06a81a695750e71a662b51066f2c74cf4478a0"
                                                 target="_blank">
                                                 <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635530963/arrow_b8xsav.png" alt="" />
                                             </a>
@@ -318,7 +318,7 @@ const ThirdStep = (props) => {
                                         <div className={styles.description}>
                                             <h4
                                                 className={direct ? styles.active : null}
-                                                onClick={() => {direct ? DGAmountChange(state.DGBalances.BALANCE_ROOT_DG) : null}}
+                                                onClick={() => { direct ? DGAmountChange(state.DGBalances.BALANCE_ROOT_DG) : null }}
                                             >
                                                 {props.formatNumber(state.DGBalances.BALANCE_ROOT_DG || 0, 4)} DG (Old) {direct ? 'Detected!' : 'Total'}
                                             </h4>
@@ -327,17 +327,17 @@ const ThirdStep = (props) => {
                                     </div>
                                     <div
                                         className={styles.arrow}
-                                        style={{transform: !direct ? 'rotateY(180deg)' : ''}}
-                                        onClick={() => {setDirect(!direct)}}
+                                        style={{ transform: !direct ? 'rotateY(180deg)' : '' }}
+                                        onClick={() => { setDirect(!direct) }}
                                     >
                                         <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635534332/arrow2_n1fwsf.png" alt="" />
                                     </div>
                                     <div className={styles.contract_box}>
                                         <div className={styles.tag}>
                                             New DG Contract
-                                            <a 
+                                            <a
                                                 className={styles.scan_link}
-                                                href="https://etherscan.io/token/0x4b520c812e8430659fc9f12f6d0c39026c83588d" 
+                                                href="https://etherscan.io/token/0x4b520c812e8430659fc9f12f6d0c39026c83588d"
                                                 target="_blank">
                                                 <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635530963/arrow_b8xsav.png" alt="" />
                                             </a>
@@ -358,7 +358,7 @@ const ThirdStep = (props) => {
                                         <div className={styles.description}>
                                             <h4
                                                 className={!direct ? styles.active : null}
-                                                onClick={() => {!direct ? DGLightAmountChange(state.DGBalances.BALANCE_ROOT_DG_LIGHT) : null}}
+                                                onClick={() => { !direct ? DGLightAmountChange(state.DGBalances.BALANCE_ROOT_DG_LIGHT) : null }}
                                             >
                                                 {props.formatNumber(state.DGBalances.BALANCE_ROOT_DG_LIGHT || 0, 2)} New DG {!direct ? 'Detected!' : 'Total'}
                                             </h4>
@@ -402,21 +402,21 @@ const ThirdStep = (props) => {
                                                 disabled={Number(amountDG) <= 0 || approving}
                                                 onClick={() => {
                                                     direct
-                                                    ? goLight(
-                                                        DGLightTokenContract,
-                                                        DGTokenContract,
-                                                        amountDG
-                                                    ).then(() => {
-                                                        setAmountDG('0');
-                                                        setAmountDGLight('0');
-                                                    })
-                                                    : goClassic(
-                                                        DGLightTokenContract,
-                                                        amountDG
-                                                    ).then(() => {
-                                                        setAmountDG('0');
-                                                        setAmountDGLight('0');
-                                                    })
+                                                        ? goLight(
+                                                            DGLightTokenContract,
+                                                            DGTokenContract,
+                                                            amountDG
+                                                        ).then(() => {
+                                                            setAmountDG('0');
+                                                            setAmountDGLight('0');
+                                                        })
+                                                        : goClassic(
+                                                            DGLightTokenContract,
+                                                            amountDG
+                                                        ).then(() => {
+                                                            setAmountDG('0');
+                                                            setAmountDGLight('0');
+                                                        })
                                                 }}
                                             >
                                                 {
@@ -460,7 +460,7 @@ const ThirdStep = (props) => {
                                         onClick={() => addToken()}
                                     >
                                         <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png" alt="metamask" />
-                                        Add { direct ? 'New' : 'Old' } DG to Metamask
+                                        Add {direct ? 'New' : 'Old'} DG to Metamask
                                     </Button>
                                 </div>
 

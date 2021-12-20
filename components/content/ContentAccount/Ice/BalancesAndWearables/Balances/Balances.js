@@ -6,6 +6,7 @@ import styles from './Balances.module.scss';
 import Fetch from '../../../../../../common/Fetch';
 import Aux from '../../../../../_Aux';
 import Spinner from 'components/Spinner';
+import SpinnerAnimation from 'components/lottieAnimation/animations/spinner';
 
 const Balances = () => {
   // dispatch user's ICE amounts to the Context API store
@@ -14,7 +15,6 @@ const Balances = () => {
   // define local variables
   const [clicked, setClicked] = useState(false);
   const [totalICE, setTotalICE] = useState(0);
-  console.log('state.userInfo: ', state.userInfo);
 
   const balenceItems = [
     {
@@ -193,8 +193,7 @@ const Balances = () => {
           </Button>
         ) : (
           <Button className={styles.claim_button} disabled>
-            <Spinner width={33} height={33} />
-            &nbsp; Claim {formatPrice(totalICE, 0)} ICE
+            <SpinnerAnimation />
           </Button>
         )}
       </div>

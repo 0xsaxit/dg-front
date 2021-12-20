@@ -1,8 +1,5 @@
 import { Component, useState, useContext } from 'react';
 import { GlobalContext } from '../store';
-
-// import { render } from 'react-dom';
-
 import MailchimpSubscribe from 'react-mailchimp-subscribe';
 import { Button, Input, Icon } from 'semantic-ui-react';
 import Aux from './_Aux';
@@ -13,10 +10,6 @@ const CustomForm = ({ status, message, onValidated }) => {
 
   // define local variables
   const [email, setEmail] = useState('');
-
-  //   function handleNameChange(e) {
-  //     setName(e.target.value);
-  //   }
 
   function handleEmailChange(e) {
     setEmail(e.target.value);
@@ -42,15 +35,18 @@ const CustomForm = ({ status, message, onValidated }) => {
           Submit
         </Button>
       </span>
+
       {status === 'sending' && (
         <div className="mailchimp-other-inner-p">sending...</div>
       )}
+
       {status === 'error' && (
         <div
           className="mailchimp-other-inner-p"
           dangerouslySetInnerHTML={{ __html: message }}
         />
       )}
+
       <Aux>
         {status === 'success' && (
           <div

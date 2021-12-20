@@ -39,10 +39,6 @@ const Wearables = ({ state }) => {
       };
 
       const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
-
-      // console.log('delegation info (Wearables): ');
-      // console.log(delegationInfo);
-
       activeWearables.map(activeWearable => {
         if (
           delegationInfo.outgoingDelegations &&
@@ -156,11 +152,12 @@ const Wearables = ({ state }) => {
       <div className={styles.wearableHeader}>
         <div>
           <h2>ICED Wearables</h2>
-          {!!state.iceWearableItems.length || !!state.iceDelegatedItems.length ?
-            <p>{`(${activeWearables.length + delegatedWearables.length} of ${state.iceWearableItems.length + state.iceDelegatedItems.length
-              } Active) ${maxICEBonus}% Max ICE Bonus`}</p>
-            : null
-          }
+          {!!state.iceWearableItems.length ||
+          !!state.iceDelegatedItems.length ? (
+            <p>{`(${activeWearables.length + delegatedWearables.length} of ${
+              state.iceWearableItems.length + state.iceDelegatedItems.length
+            } Active) ${maxICEBonus}% Max ICE Bonus`}</p>
+          ) : null}
         </div>
         <Button className={styles.open_sea} href="/ice/marketplace">
           Mint Wearable
@@ -179,11 +176,8 @@ const Wearables = ({ state }) => {
         </Button>
       </div>
 
-      {/* {console.log('item limits array index:')}
-      {console.log(state.iceWearableItems)} */}
-
       <section className={styles.grid_container}>
-        {!!state.iceWearableItems.length || !!state.iceDelegatedItems.length ?
+        {!!state.iceWearableItems.length || !!state.iceDelegatedItems.length ? (
           <div className={styles.wearables_grid}>
             {state.iceWearableItems.map((item, index) => (
               <ICEWearableCard
@@ -193,6 +187,7 @@ const Wearables = ({ state }) => {
                 address={item.address}
                 itemID={item.itemID}
                 isActivated={item.isActivated}
+                isCheckedIn={item.isCheckedIn}
               />
             ))}
 
@@ -208,9 +203,9 @@ const Wearables = ({ state }) => {
               />
             ))}
           </div>
-          :
+        ) : (
           <div className={styles.no_ice_wearables}>No ICE Wearabels</div>
-        }
+        )}
       </section>
     </section>
   );

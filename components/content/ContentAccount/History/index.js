@@ -20,8 +20,6 @@ function History({ state }) {
 
   // define local variables
   const [openId, setOpenId] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
   const transactions = dataHistory == "false" ? [] : (
     dataHistory.filter(
       h =>
@@ -38,8 +36,6 @@ function History({ state }) {
       poker.tableData,
       'playerHandData.userPlayInfoID'
     );
-
-    console.log(dataPlay);
 
     return {
       ...poker,
@@ -76,9 +72,6 @@ function History({ state }) {
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     console.log('->State.transactions[0]: ', state.transactions[0]);
-    if (state.transactions[0].length && state.transactions[1]) {
-      setIsLoading(false);
-    }
   }, [state.transactions]);
 
   return (
@@ -379,7 +372,19 @@ function History({ state }) {
                               }}
                             />
                           )}
-                          {amount > 0 ? `-${amount}` : amount} {row.coinName}
+                          {row.coinName === 'PLAY' ? (
+                            <>
+                              {amount > 0
+                                ? `-${amount.toFixed(2)}`
+                                : amount.toFixed(2)}{' '}
+                              {row.coinName}
+                            </>
+                          ) : (
+                            <>
+                              {amount > 0 ? `-${amount}` : amount}{' '}
+                              {row.coinName}
+                            </>
+                          )}
                         </Table.Cell>
                       )}
                       <Table.Cell style={{ maxWidth: '180px' }}>
@@ -461,7 +466,18 @@ function History({ state }) {
                             }}
                           />
                         )}
-                        {result > 0 ? `+${result}` : result} {row.coinName}
+                        {row.coinName === 'PLAY' ? (
+                          <>
+                            {result > 0
+                              ? `-${result.toFixed(2)}`
+                              : result.toFixed(2)}{' '}
+                            {row.coinName}
+                          </>
+                        ) : (
+                          <>
+                            {result > 0 ? `-${result}` : result} {row.coinName}
+                          </>
+                        )}
                       </Table.Cell>
                       {isWideScreen && (
                         <Table.Cell style={{ maxWidth: '240px' }}>
