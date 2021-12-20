@@ -542,13 +542,11 @@ const MarketPlace = () => {
                         ) : state.userStatus < state.appConfig.minMintVerifyStep &&
                           (maxMintCounts - itemLimits[i][0]) > 0 ? (
                           // Coming Soon State
-
                           <Button disabled className={styles.sold_button}>
                             Coming Soon!
                           </Button>
                         ) : state.userStatus < 4 ? (
                           // Logged Out State
-
                           <div className={styles.flex_50}>
                             <ModalLoginICE />
                           </div>
