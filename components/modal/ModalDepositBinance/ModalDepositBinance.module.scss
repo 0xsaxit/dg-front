@@ -1,7 +1,7 @@
 @import "styles/base.scss";
 
 .deposit_modal_binance {
-	background: #F1CD50;
+	background: #f1cd50;
 	height: 64px;
 	width: 200px;
 	border-radius: 16px;
@@ -43,7 +43,7 @@
 	}
 
 	.continue_binance {
-		background: #F1CD50 !important;
+		background: #f1cd50 !important;
 		height: 64px;
 		border-radius: 16px;
 		font-weight: 700;
@@ -81,7 +81,7 @@
 
 	.outline_button:hover,
 	.outline_button:focus {
-		border: 2px solid rgba(255, 255, 255, 0.30);
+		border: 2px solid rgba(255, 255, 255, 0.3);
 		background: black;
 	}
 
@@ -130,7 +130,7 @@
 
 	.copy_binance {
 		width: 100% !important;
-		background: #F1CD50;
+		background: #f1cd50;
 		height: 68px;
 		width: 200px;
 		border-radius: 16px;
@@ -171,14 +171,12 @@
 	.outline_input {
 		margin-top: -14px !important;
 		font-size: 18px;
-	  background: black !important;
-	  height: 68px;
-	  border-radius: 24px;
-	  background: black;
-	  border: 2px solid rgba(255, 255, 255, 0.15) !important;
-	  width: 100%;
-	  padding: 7px 21px 1px 22px;
+		background: black !important;
+		height: 68px;
+		border-radius: 24px;
+		background: black;
+		border: 2px solid rgba(255, 255, 255, 0.15) !important;
+		width: 100%;
+		padding: 7px 21px 1px 22px;
 	}
 }
-
-
