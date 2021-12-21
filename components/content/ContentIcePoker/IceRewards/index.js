@@ -10,7 +10,7 @@ import FoxAnimation from 'components/lottieAnimation/animations/fox';
 import NoResult from 'components/lottieAnimation/animations/noResult';
 import ModalIceBreakdown from 'components/modal/ModalIceBreakDown';
 import Images from 'common/Images';
-// import SpinnerAnimation from 'components/lottieAnimation/animations/Spinner';
+import SpinnerAnimation from 'components/lottieAnimation/animations/spinner';
 
 const IceRewards = () => {
   // dispatch user's ICE amounts to the Context API store
@@ -65,7 +65,6 @@ const IceRewards = () => {
     for (var i = 7; i >= 1; i--) {
       var date = new Date(today);
       date.setDate(date.getDate() - i);
-      console.log(date);
       xAxis.push(date.toDateString().slice(0, 1));
     }
     setStatsUSDX(xAxis);

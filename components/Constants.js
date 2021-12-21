@@ -199,6 +199,46 @@ const IMG_URLS_UPGRADE = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024032/ICE%20Bomber%20Thumbnails%20%28Square%29/shoes_pink_cnuzg6.jpg',
     'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024032/ICE%20Bomber%20Thumbnails%20%28Square%29/shoes_gold_ishar9.jpg',
   ],
+  'Drip Shades': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781041/Crypto%20Drip/Individual%20Assets/Glasses_Level_1_illrek.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781041/Crypto%20Drip/Individual%20Assets/Glasses_Level_1_illrek.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781040/Crypto%20Drip/Individual%20Assets/Glasses_level_2_epfvlj.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781041/Crypto%20Drip/Individual%20Assets/Glasses_Level_3_ofjya7.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781040/Crypto%20Drip/Individual%20Assets/Glasses_level_4_vsuytz.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781040/Crypto%20Drip/Individual%20Assets/Glasses_Level_5_rmgi3d.png',
+  ],
+  'Drip Bucket': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781042/Crypto%20Drip/Individual%20Assets/Hat_level_1_tk8gex.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781042/Crypto%20Drip/Individual%20Assets/Hat_level_1_tk8gex.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781041/Crypto%20Drip/Individual%20Assets/Hat_Level_2_vjczks.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781042/Crypto%20Drip/Individual%20Assets/Hat_level_3_fykfxx.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781042/Crypto%20Drip/Individual%20Assets/Hat_Level_4_zvyzay.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781042/Crypto%20Drip/Individual%20Assets/Puffer_level_5_kedpfb.png',
+  ],
+  'Drip Jacket': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781042/Crypto%20Drip/Individual%20Assets/puffer_level_1_lzuqdb.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781042/Crypto%20Drip/Individual%20Assets/puffer_level_1_lzuqdb.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781042/Crypto%20Drip/Individual%20Assets/puffer_level_2_aixvap.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781043/Crypto%20Drip/Individual%20Assets/Puffer_Level_3_chfc1k.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781043/Crypto%20Drip/Individual%20Assets/Puffer_level_4_unpu5b.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781041/Crypto%20Drip/Individual%20Assets/jacket_level_5_gvoxbe.png',
+  ],
+  'Drip Drawers': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781044/Crypto%20Drip/Individual%20Assets/pants_level_1_hh6qax.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781044/Crypto%20Drip/Individual%20Assets/pants_level_1_hh6qax.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781043/Crypto%20Drip/Individual%20Assets/pants_level_2_zxrnrp.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781043/Crypto%20Drip/Individual%20Assets/pants_level_3_g3aehz.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781044/Crypto%20Drip/Individual%20Assets/pants_level_4_znfpfu.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781043/Crypto%20Drip/Individual%20Assets/pants_level_5_b8csos.png',
+  ],
+  'Drip Kicks': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781041/Crypto%20Drip/Individual%20Assets/Shoes_Level_1_cd2fil.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781041/Crypto%20Drip/Individual%20Assets/Shoes_Level_1_cd2fil.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781040/Crypto%20Drip/Individual%20Assets/Shoes_Level_2_zycqxy.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781041/Crypto%20Drip/Individual%20Assets/Shoes_Level_3_a45sip.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781040/Crypto%20Drip/Individual%20Assets/Shoes_level_4_db0xpw.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781040/Crypto%20Drip/Individual%20Assets/shoes_level_5_ieba6p.png',
+  ],
 };
 
 // wallet and contract addresses
