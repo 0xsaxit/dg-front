@@ -13,6 +13,9 @@ const ModalSuccessDelegation = props => {
   // update global state delegation information
   function setGlobalState() {
     const refresh = !state.refreshDelegateInfo;
+
+    // console.log('refresh status (delegate): ' + refresh);
+
     dispatch({
       type: 'refresh_delegate_info',
       data: refresh,

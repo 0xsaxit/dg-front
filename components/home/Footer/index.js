@@ -5,16 +5,18 @@ import { useMediaQuery } from 'hooks';
 import Link from 'next/link';
 import { GlobalContext } from 'store';
 import styles from './Footer.module.scss';
+// import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
 const Footer = () => {
   const [state, dispatch] = useContext(GlobalContext);
-
+  
   // define local variables
   let linkDocs = '';
   const mobile = useMediaQuery('(max-width: 768px)');
   const onlyTablet = useMediaQuery(
     '(min-width: 768px) and (max-width: 1200px)'
   );
+  // const { t, i18n } = useTranslation();
   const DGBalances = state.DGBalances.BALANCE_STAKING_UNISWAP;
   const DGStakingBalances = state.stakingBalances.BALANCE_STAKED_UNISWAP;
 
@@ -42,30 +44,30 @@ const Footer = () => {
             )}
           >
             <span className={styles.grid_column}>
-              <p className={styles.footer_header}>
+              <p className={styles.footer_header}> 
                 {/* {t('Footer.TOKEN')}  */}
                 Token
               </p>
               <Link href="/dg">
-                <p className={styles.footer_link}>
+                <p className={styles.footer_link}> 
                   {/* {t('Footer.TREASURY')}  */}
                   Treasury
                 </p>
               </Link>
               <Link href="/dg/governance">
-                <p className={styles.footer_link}>
+                <p className={styles.footer_link}> 
                   {/* {t('Footer.GOVERNANCE')}  */}
                   Governance
                 </p>
               </Link>
               <Link href="/dg/mining">
-                <p className={styles.footer_link}>
+                <p className={styles.footer_link}> 
                   {/* {t('Footer.GAMEPLAY')}  */}
                   Gameplay
                 </p>
               </Link>
               {DGBalances > 0 || DGStakingBalances > 0 && <Link href="/dg/liquidity">
-                <p className={styles.footer_link}>
+                <p className={styles.footer_link}> 
                   {/* {t('Footer.LIQUDITY')}  */}
                   Liquidity
                 </p>
@@ -73,23 +75,23 @@ const Footer = () => {
             </span>
 
             <span className={styles.grid_column}>
-              <p className={styles.footer_header}>
+              <p className={styles.footer_header}> 
                 {/* {t('Footer.PLAY')}  */}
                 Play
               </p>
               <Link href="/games">
-                <p className={styles.footer_link}>
+                <p className={styles.footer_link}> 
                   {/* {t('Footer.GAMES')}  */}
                   Games
                 </p>
               </Link>
               <Link href="/games/scenes">
-                <p className={styles.footer_link}>
-                  Scenes
+                <p className={styles.footer_link}> 
+                  Scenes 
                 </p>
               </Link>
               <Link href="/games/leaderboard">
-                <p className={styles.footer_link}>
+                <p className={styles.footer_link}> 
                   {/* {t('Footer.LEADERBOARD')}  */}
                   Leaderboard
                 </p>
@@ -97,18 +99,18 @@ const Footer = () => {
             </span>
 
             <span className={styles.grid_column}>
-              <p className={styles.footer_header}>
+              <p className={styles.footer_header}> 
                 {/* {t('Footer.SHOP')}  */}
                 Shop
               </p>
               <Link href="/games/nfts">
-                <p className={styles.footer_link}>
+                <p className={styles.footer_link}> 
                   {/* {t('Footer.NFTS')}  */}
                   NFTs
                 </p>
               </Link>
               <Link href="/games/shop">
-                <p className={styles.footer_link}>
+                <p className={styles.footer_link}> 
                   {/* {t('Footer.DCL_SHOPS')}  */}
                   DCL Shops
                 </p>
@@ -116,18 +118,18 @@ const Footer = () => {
             </span>
 
             <span className={styles.grid_column}>
-              <p className={styles.footer_header}>
+              <p className={styles.footer_header}> 
                 {/* {t('Footer.EVENTS')}  */}
                 Events
               </p>
               <Link href="/events">
-                <p className={styles.footer_link}>
+                <p className={styles.footer_link}> 
                   {/* {t('Footer.ALL_EVENTS')}  */}
                   All Events
                 </p>
               </Link>
               <a href="mailto:hello@decentral.games">
-                <p className={styles.footer_link}>
+                <p className={styles.footer_link}> 
                   {/* {t('Footer.PARTNER_SHIP')}  */}
                   Partnerships
                 </p>
@@ -135,18 +137,18 @@ const Footer = () => {
             </span>
 
             <span className={styles.grid_column}>
-              <p className={styles.footer_header}>
+              <p className={styles.footer_header}> 
                 {/* {t('Footer.NEWS')}  */}
                 News
               </p>
               <Link href="/blog">
-                <p className={styles.footer_link}>
+                <p className={styles.footer_link}> 
                   {/* {t('Footer.NEWS')}  */}
                   News
                 </p>
               </Link>
               <Link href="/blog">
-                <p className={styles.footer_link}>
+                <p className={styles.footer_link}> 
                   {/* {t('Footer.BLOG')}  */}
                   Blog
                 </p>
@@ -154,7 +156,7 @@ const Footer = () => {
             </span>
 
             <div className={styles.grid_newsletter}>
-              <p className={styles.footer_header}>
+              <p className={styles.footer_header}> 
                 {/* {t('Footer.JOIN_OUR_NEWS_LETTER')}  */}
                 Join Our Newsletter!
               </p>
@@ -205,7 +207,7 @@ const Footer = () => {
                   </a>
                   <a href="/discord" target="_blank">
                     <Icon className={styles.icon} name="discord" />
-                  </a>
+                  </a>                  
                   <a href="https://t.me/decentralgames" target="_blank">
                     <Icon className={styles.icon} name="telegram" />
                   </a>
@@ -238,7 +240,7 @@ const Footer = () => {
             >
               {/* {t('Footer.SIGNUP_FOR_SUBSTACK')} */}
               Sign Up For Substack
-
+              
               <svg
                 width="14"
                 height="14"
@@ -276,7 +278,7 @@ const Footer = () => {
                 </a>
                 <a href="/discord" target="_blank">
                   <Icon className={styles.icon} name="discord" />
-                </a>
+                </a>                  
                 <a href="https://t.me/decentralgames" target="_blank">
                   <Icon className={styles.icon} name="telegram" />
                 </a>

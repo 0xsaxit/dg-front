@@ -1,11 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { GlobalContext } from 'store';
 import Link from 'next/link';
 import Spinner from 'components/Spinner';
+import ContentMarketplace from 'components/content/ContentMarketplace';
 import Aux from 'components/_Aux';
+import styles from './Marketplace.module.scss';
 
 const Marketplace = props => {
+  // get wearable listings from the Context API store
+  const [state, dispatch] = useContext(GlobalContext);
+
   // define local variables
   const [isLoading, setIsLoading] = useState(true);
+
   const maketState = props.maketState;
 
   /////////////////////////////////////////////////////////////////////////////////////////

@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import Web3 from 'web3';
+import { useRouter } from 'next/router';
 import { GlobalContext } from '../../store';
 import Global from '../Constants';
 
@@ -9,10 +10,12 @@ const MessageBar = () => {
 
   // define local variables
   const [message, setMessage] = useState('');
+  // const [adminError, setAdminError] = useState(false);
   const [isMobile, setMobile] = useState(false);
 
   let isSafari = false;
   let web3 = {};
+  const router = useRouter();
 
   // using Safari browser
   useEffect(() => {
@@ -45,6 +48,17 @@ const MessageBar = () => {
     }
   }, []);
 
+  // notify admins to switch to Matic Network
+  // useEffect(() => {
+  //   if (router.pathname === '/admin') {
+  //     if (state.networkID !== Global.CONSTANTS.MATIC_NETWORK_ID) {
+  //       setAdminError(true);
+  //     } else {
+  //       setAdminError(false);
+  //     }
+  //   }
+  // }, [state.networkID]);
+
   useEffect(() => {
     if (isSafari) {
       setMessage('Please use Brave, Chrome or Firefox to play games');
@@ -56,6 +70,10 @@ const MessageBar = () => {
       setMessage('Please connect your wallet to play');
     } else if (!state.userStatus && isMobile) {
       setMessage('Please connect your wallet on desktop to play');
+      // } else if (adminError) {
+      //   setMessage(
+      //     'You must switch to Matic Network to deposit and withdraw funds'
+      //   );
     } else if (state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID) {
       if (!Global.pageSelfNetwork) {
         setMessage('Please switch your Network to Ethereum Mainnet');
@@ -68,6 +86,22 @@ const MessageBar = () => {
       setMessage(
         'To ensure the security of your funds, a reauthorization signature is required after 12 dormant hours'
       );
+      // } else if (!state.userInfo.tokenArray[0]) {
+      //   setMessage(
+      //     'You must authorize the DAI token contract on your account page to play games with DAI'
+      //   );
+      // } else if (!state.userInfo.tokenArray[1]) {
+      //   setMessage(
+      //     'You must authorize the MANA token contract on your account page to play games with MANA'
+      //   );
+      // } else if (!state.userInfo.tokenArray[2]) {
+      //   setMessage(
+      //     'You must authorize the USDT token contract on your account page to play games with USDT'
+      //   );
+      // } else if (!state.userInfo.tokenArray[3]) {
+      //   setMessage(
+      //     'You must authorize the ATRI token contract on your account page to play games with ATRI'
+      //   );
     } else {
       setMessage('');
     }
@@ -75,6 +109,7 @@ const MessageBar = () => {
     isSafari,
     state.networkID,
     state.userStatus,
+    // adminError,
     state.activeStatus,
     state.userInfo,
   ]);

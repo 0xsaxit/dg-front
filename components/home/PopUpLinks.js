@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Menu, Button, Icon } from 'semantic-ui-react';
+import { Menu, Button, Popup, Icon, Checkbox } from 'semantic-ui-react';
 import { UseDarkMode } from '../UseDarkMode';
 
 const PopUpLinks = (props) => {

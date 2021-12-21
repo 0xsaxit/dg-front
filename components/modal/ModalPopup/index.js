@@ -2,9 +2,13 @@ import { useEffect, useContext, useState } from 'react';
 import Link from 'next/link';
 import { Popup, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
+import Global from 'components/Constants';
 import { useRouter } from 'next/router';
+// import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
 const ModalPopup = () => {
+  //const { t, i18n } = useTranslation();
+  // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
   const router = useRouter();
 
@@ -12,6 +16,9 @@ const ModalPopup = () => {
   const [copied, setCopied] = useState(false);
   const [casinoBalance, setCasinoBalance] = useState(0);
   const [binance, setBinance] = useState(false);
+  const [meatamaskEnabled, setMetamaskEnabled] = useState(false);
+  const [isToastShow, setIsToastShow] = useState(false);
+
   const [visibleStatus, setVisibleStatus] = useState(false);
 
   useEffect(() => {
@@ -165,6 +172,7 @@ const ModalPopup = () => {
                 </svg>
               </span>
               <span>
+                {/* {t('navMenu.MYACCOUNT')} */}
                 My Account
               </span>
             </Button>
@@ -304,10 +312,10 @@ const ModalPopup = () => {
             </a>
             <Button
               className={binance ? 'buy-dg-button binance' : 'buy-dg-button'}
-              href="https://app.uniswap.org/#/swap?outputCurrency=0x4b520c812e8430659fc9f12f6d0c39026c83588d"
+              href="https://app.uniswap.org/#/swap?outputCurrency=0xee06a81a695750e71a662b51066f2c74cf4478a0"
               target="_blank"
             >
-              Buy DG
+              Buy $DG
             </Button>
           </span>
         </span>

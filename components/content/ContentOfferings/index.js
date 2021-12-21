@@ -2,6 +2,7 @@ import { Button } from 'semantic-ui-react';
 import { useState, useContext, useEffect } from 'react';
 import styles from './ContentOfferings.module.scss';
 import { GlobalContext } from '../../../store';
+import ModalMintActivation from 'components/modal/ModalMintActivation';
 import ModalMintWearable from 'components/modal/ModalMintWearable';
 import ModalLoginICE from 'components/modal/ModalLoginICE';
 import { Popup } from 'semantic-ui-react';

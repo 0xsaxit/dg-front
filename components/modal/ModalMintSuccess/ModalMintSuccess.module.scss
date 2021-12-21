@@ -1,4 +1,4 @@
-@import "styles/base.scss";
+@import 'styles/base.scss';
 
 .open_button {
   background: #006eff !important;
@@ -22,51 +22,51 @@
   transform: scale(0.8);
 
   .header_buttons {
-    left: 0px;
-    top: -56px;
-    height: 48px;
-    width: 100%;
-
-    cursor: pointer;
-    position: absolute;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .button_close {
-      width: 36px;
-      height: 36px;
-      background: black;
-      color: white;
-      cursor: pointer;
-      border-radius: 50%;
-      padding: 8px 10px 8px 10px !important;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transform: scale(1.11);
-    }
-
-    .button_help {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      font-family: Larsseit-Bold;
-      font-style: normal;
-      font-size: 18px;
-      line-height: 24px;
-      text-align: center;
-      color: white;
-      cursor: pointer;
-      width: 109px;
+      left: 0px;
+      top: -56px;
       height: 48px;
-      background: black;
-      border-radius: 24px;
-      padding: 8px 10px 8px 10px;
-    }
-  }
+      width: 100%;
 
+      cursor: pointer;
+      position: absolute;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      .button_close {
+        width: 36px;
+        height: 36px;
+        background: black;
+        color: white;
+        cursor: pointer;        
+        border-radius: 50%;
+        padding: 8px 10px 8px 10px !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: scale(1.11); 
+      }
+
+      .button_help {        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        font-family: Larsseit-Bold;
+        font-style: normal;
+        font-size: 18px;
+        line-height: 24px;
+        text-align: center;  
+        color: white;
+        cursor: pointer;
+        width: 109px;
+        height: 48px;
+        background: black;
+        border-radius: 24px;
+        padding: 8px 10px 8px 10px;
+      }
+  }
+  
   .success_container {
     margin-top: 5px;
 
@@ -91,8 +91,8 @@
         height: 41px;
         left: calc(50% - 50px);
         top: 95px;
-        background: #1a1a1a;
-        border: 1px solid #2a2a2a;
+        background: #1A1A1A;
+        border: 1px solid #2A2A2A;
         box-sizing: border-box;
         box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
         border-radius: 93px;
@@ -102,7 +102,7 @@
         font-size: 17.6218px;
         line-height: 24px;
         text-align: center;
-        color: #ffffff;
+        color: #FFFFFF;
 
         display: flex;
         justify-content: center;
@@ -114,7 +114,7 @@
         }
       }
       .image {
-        border-radius: 16px;
+        border-radius: 16px;        
         text-align: center;
 
         .logo {
@@ -138,7 +138,7 @@
           font-size: 12px;
           line-height: 16px;
           text-align: center;
-          color: #ffffff;
+          color: #FFFFFF;
           background: #000;
           box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.24);
           border-radius: 24px;
@@ -148,6 +148,7 @@
           .diamond {
             width: 20px !important;
           }
+
         }
       }
     }
@@ -159,24 +160,24 @@
       gap: 10px;
 
       .primary {
-        background: #006eff;
+        background: #006EFF;
         font-family: Larsseit-Bold;
-        font-style: normal;
+        font-style: normal;        
         font-size: 24px;
         line-height: 33px;
         text-align: center;
-        color: #ffffff;
-        background: #006eff;
+        color: #FFFFFF;
+        background: #006EFF;
         border-radius: 16px;
       }
       .none {
         background: #000;
         font-family: Larsseit-Bold;
-        font-style: normal;
+        font-style: normal;        
         font-size: 24px;
         line-height: 33px;
         text-align: center;
-        color: #ffffff;
+        color: #FFFFFF;
         background: #000;
         border-radius: 16px;
       }

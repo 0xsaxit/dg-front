@@ -9,6 +9,8 @@ const TreasuryTooltipDG = props => {
 
   const [dgTreasury, setDgTreasury] = useState(0);
   const [unvestedDG, setUnvestedDG] = useState(0);
+  const [tempLoad, setTempLoad] = useState(0);
+  const [tempLoad2, setTempLoad2] = useState(0);
 
   function formatPrice(balanceDG, units) {
     const priceFormatted = Number(balanceDG)
@@ -25,6 +27,7 @@ const TreasuryTooltipDG = props => {
     ) {
       const dg = state.treasuryNumbers.totalDgUSD;
       setDgTreasury(formatPrice(dg.graph.slice(-1)[0].secondary, 0));
+
       setUnvestedDG(state.treasuryNumbers.totalVestedDgUSD.graph.slice(-1)[0].secondary);
     }
   }, [state.treasuryNumbers, state.DGPrices]);
