@@ -12,7 +12,6 @@ import NeedMoreDGActivateModal from 'components/modal/NeedMoreDGActivateModal';
 import ModalWearable from 'components/modal/ModalWearable';
 import styles from './ICEWearableCard.module.scss';
 import Aux from '../../../_Aux';
-import IceCheckedInTooltip from 'components/tooltips/IceCheckedInTooltip';
 
 const ICEWearableCard = props => {
   // get user's wallet address from the Context API store
@@ -23,9 +22,7 @@ const ICEWearableCard = props => {
   const buttonDelegate = 'Delegate';
   const buttonUndelegate = 'Undelegate';
   const { name, description, image, attributes } = props.data;
-  const rank = GetRank(
-    parseInt(attributes.find(el => el.trait_type === 'Bonus').value)
-  );
+  const rank = GetRank(parseInt(attributes.find(el => el.trait_type === 'Bonus').value));
 
   useEffect(() => {
     if (state.userStatus >= 4) {
@@ -39,10 +36,7 @@ const ICEWearableCard = props => {
             const delegateAddress = item.delegateAddress;
             const tokenId = item.tokenId;
 
-            if (
-              tokenId === props.tokenID &&
-              address.toLowerCase() === props.address.toLowerCase()
-            ) {
+            if (tokenId === props.tokenID && address.toLowerCase() === props.address.toLowerCase()) {
               setDelegateAddress(delegateAddress);
             }
           }
@@ -60,8 +54,6 @@ const ICEWearableCard = props => {
         <div className={styles.wear_box_purple}>
           {!props.isActivated ? (
             <IceNeedToActivateTooltip />
-          ) : props.isCheckedIn ? (
-            <IceCheckedInTooltip />
           ) : (
             <IceP2EEnabledTooltip />
           )}
@@ -134,9 +126,7 @@ const ICEWearableCard = props => {
                     itemID={props.itemID}
                     imgSrc={image}
                     rank={rank.value}
-                    bonus={
-                      attributes.find(el => el.trait_type === 'Bonus').value
-                    }
+                    bonus={attributes.find(el => el.trait_type === 'Bonus').value}
                     description={description}
                     buttonName={buttonDelegate}
                   />
@@ -158,9 +148,7 @@ const ICEWearableCard = props => {
                     imgSrc={image}
                     rank={rank.value}
                     percentage={rank.percentage}
-                    bonus={
-                      attributes.find(el => el.trait_type === 'Bonus').value
-                    }
+                    bonus={attributes.find(el => el.trait_type === 'Bonus').value}
                     description={description}
                     name={name.split('(ICE')[0].trim()}
                   />

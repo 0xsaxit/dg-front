@@ -4,10 +4,13 @@ import cn from 'classnames';
 import { Popup, Button } from 'semantic-ui-react';
 import Flag from 'assets/svg/flag.svg';
 import styles from './LanguageModal.module.scss';
+// import { useTranslation, withTranslation, Trans } from 'react-i18next';
 import { GlobalContext } from '../../../store';
 
 const LanguageModal = () => {
   const [state, dispatch] = useContext(GlobalContext);
+  const [lang, setLang] = useState(3);
+
   const countryItems = [
     {
       imgUrl:
@@ -36,7 +39,13 @@ const LanguageModal = () => {
     },
   ];
 
-  const handleLanguage = index => {
+  // const { t, i18n } = useTranslation();
+  // const changeLanguage = (lng) => {
+  //   i18n.changeLanguage(lng);
+  // };
+
+  const handleLanguage = index => {    
+    console.log(index);
     const language = ['en', 'sp', 'ko', 'ru', 'ch'];
     changeLanguage(language[index]);
     dispatch({

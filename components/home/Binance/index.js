@@ -1,9 +1,12 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../../store';
-import { Button } from 'semantic-ui-react';
+import Link from 'next/link';
+import { Button, Divider, Image, Icon } from 'semantic-ui-react';
+import ModalVideo from '../../modal/ModalVideo';
 import Aux from '../../_Aux';
 import ModalLoginBinance from 'components/modal/ModalLoginBinance';
 import ModalDepositBinance from 'components/modal/ModalDepositBinance';
+
 
 const BinanceHome = () => {
   // get user's onboard status the Context API store
@@ -12,7 +15,10 @@ const BinanceHome = () => {
   // define local variables
   const [videoPlay, setVideoPlay] = useState(true);
   const [utm, setUtm] = useState('');
+
+  const realm = 'fenrir-amber';
   let buttonPlay = '';
+
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////

@@ -35,8 +35,11 @@ const DAO = props => {
   const [web3, setWeb3] = useState({});
   const [currenReward, setCurrentReward] = useState(0);
   const [finishTime, setFinishTime] = useState(0);
+
   const [price, setPrice] = useState(0);
+
   const [amountInput, setAmountInput] = useState('10000000000000000000');
+
   const DGState = props.DGState;
   const DGBalances = state.DGBalances.BALANCE_STAKING_UNISWAP;
   const DGStakingBalances = state.stakingBalances.BALANCE_STAKED_UNISWAP;
@@ -74,6 +77,16 @@ const DAO = props => {
       fetchData();
     }
   }, [state.userStatus]);
+
+  // fetch circulating supply
+  // useEffect(() => {
+  //   (async function () {
+  //     const json = await Fetch.DG_SUPPLY_GECKO();
+  //     if (json && json.market_data) {
+  //       setPrice(json.market_data.current_price.usd);
+  //     }
+  //   })();
+  // }, []);
 
   useEffect(() => {
     setPrice(state.DGPrices.dg);
@@ -401,7 +414,7 @@ const DAO = props => {
                   </div>
                 </Link>
 
-                {DGBalances > 0 || DGStakingBalances > 0 &&
+                {DGBalances > 0 || DGStakingBalances > 0 && 
                   <Link href="/dg/liquidity">
                     <div className={styles.menu_item}>
                       <svg
@@ -629,7 +642,7 @@ const DAO = props => {
                   </div>
                 </Link>
 
-                {DGBalances > 0 || DGStakingBalances > 0 &&
+                {DGBalances > 0 || DGStakingBalances > 0 && 
                   <Link href="/dg/liquidity">
                     <div
                       className={
