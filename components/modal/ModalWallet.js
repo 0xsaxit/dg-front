@@ -1,16 +1,11 @@
-import { useEffect, useState, useContext } from 'react';
-import { Modal, Button, Divider, Icon, Checkbox } from 'semantic-ui-react';
-import { GlobalContext } from '../../store';
+import { useEffect, useState } from 'react';
+import { Modal, Button, Divider, Icon } from 'semantic-ui-react';
 import ButtonVerify from '../button/ButtonVerify';
 import ButtonVerifyFortmatic from '../button/ButtonVerifyFortmatic';
 
 const ModalWallet = () => {
-  // get user's unclaimed DG balance from the Context API store
-  const [state, dispatch] = useContext(GlobalContext);
-
   // define local variables
   const [open, setOpen] = useState(false);
-  const [metamaskEnabled, setMetamaskEnabled] = useState(false);
   const [scrollState, setScrollState] = useState('top');
 
   let menuStyle = [];
@@ -56,11 +51,11 @@ const ModalWallet = () => {
       close
       trigger={
         <span className="right-menu-items">
-          <a 
+          <a
             href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
             target="_blank"
             className={menuStyle[0]}
-          > 
+          >
             Need help?
           </a>
           <Button

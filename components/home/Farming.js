@@ -14,7 +14,6 @@ import ButtonReward1 from '../button/ButtonReward1';
 import ButtonReward2 from '../button/ButtonReward2';
 import Transactions from '../../common/Transactions';
 import Global from '../Constants';
-import Fetch from '../../common/Fetch';
 
 const Farming = props => {
   // get user's state from the Context API store
@@ -27,9 +26,7 @@ const Farming = props => {
   const [web3, setWeb3] = useState({});
   const [currenReward, setCurrentReward] = useState(0);
   const [finishTime, setFinishTime] = useState(0);
-
   const [price, setPrice] = useState(0);
-
   const [amountInput, setAmountInput] = useState('10000000000000000000');
 
   const DGState = props.DGState;
@@ -61,16 +58,6 @@ const Farming = props => {
       fetchData();
     }
   }, [state.userStatus]);
-
-  // fetch circulating supply
-  // useEffect(() => {
-  //   (async function () {
-  //     const json = await Fetch.DG_SUPPLY_GECKO();
-  //     if(json && json.market_data) {
-  //       setPrice(json.market_data.current_price.usd);
-  //     }
-  //   })();
-  // }, []);
 
   useEffect(() => {
     setPrice(state.DGPrices.dg);

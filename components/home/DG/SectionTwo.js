@@ -3,12 +3,10 @@ import cn from 'classnames';
 import { useMediaQuery } from 'hooks';
 import Aux from 'components/_Aux';
 import styles from './DG.module.scss';
-// import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
 function SectionTwo() {
   const mobile = useMediaQuery('(max-width: 767px)');
   const tablet = useMediaQuery('(max-width: 992px)');
-  // const { t, i18n } = useTranslation();
 
   return (
     <Aux>

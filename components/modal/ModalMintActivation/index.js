@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import cn from 'classnames';
 import { Modal, Button } from 'semantic-ui-react';
 import ModalActivationSuccess from '../ModalActivationSuccess';
 import styles from './ModalMintActivation.module.scss';

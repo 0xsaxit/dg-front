@@ -1,4 +1,4 @@
-@import 'styles/base.scss';
+@import "styles/base.scss";
 
 .container {
   background: black;
@@ -7,7 +7,7 @@
     height: 100vh;
     max-height: 800px;
     min-height: 600px;
-    background-image: url('https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632927780/amnesia/Amnesia-Background_1_nzqzri.png');
+    background-image: url("https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632927780/amnesia/Amnesia-Background_1_nzqzri.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
     display: flex;
@@ -62,7 +62,7 @@
 
   .bottom_section {
     position: relative;
-    background-image: url('https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632927968/amnesia/amnesia_stars_background.png');
+    background-image: url("https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632927968/amnesia/amnesia_stars_background.png");
     background-size: 100% 100%;
     overflow: hidden;
     padding: 150px 54px 0px;
@@ -73,7 +73,7 @@
       left: 54px;
       height: 836px;
       width: 1114px;
-      background-image: url('https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632928095/amnesia/amnesia_clouds_1_nvigwg.png');
+      background-image: url("https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632928095/amnesia/amnesia_clouds_1_nvigwg.png");
     }
 
     .clouds_bottom {
@@ -83,7 +83,7 @@
       top: 600px;
       height: 1125px;
       width: 1500px;
-      background-image: url('https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632928095/amnesia/amnesia_clouds_2_umlwrv.png');
+      background-image: url("https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632928095/amnesia/amnesia_clouds_2_umlwrv.png");
     }
 
     .content_container {
@@ -104,7 +104,7 @@
           justify-content: flex-start;
           height: 800px;
         }
-        
+
         @include mq($from: 1040px, $until: large) {
           flex-direction: column;
           align-items: center;
@@ -114,7 +114,7 @@
 
         @media screen and (min-width: 1200px) {
           width: 1070px;
-        } 
+        }
 
         .artists_text {
           margin-top: 108px;
@@ -180,7 +180,7 @@
                 margin: -43px 110px 0 auto;
               }
             }
-            
+
             .benny {
               margin: auto 0 0 -43px;
               z-index: 2;
@@ -189,7 +189,7 @@
                 margin: -43px auto 0 110px;
               }
             }
-            
+
             .luciano {
               margin: 0 0 0 -43px;
               z-index: 1;
@@ -197,13 +197,12 @@
                 margin: -43px 110px 0 auto;
               }
             }
-            
+
             .paul {
               margin: auto 0 0 -43px;
               @include mq($until: 768px) {
                 margin: -43px auto 0 110px;
               }
-              
             }
           }
         }
@@ -237,8 +236,8 @@
             margin: 216px 0 30px;
 
             @include mq($until: medium) {
-            margin-top: 130px;
-          }
+              margin-top: 130px;
+            }
           }
         }
 

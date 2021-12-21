@@ -7,7 +7,8 @@ const { publicRuntimeConfig } = getConfig();
 const { APP_ENV } = publicRuntimeConfig;
 
 // APP_ENV must be set in the .env.{environment} files
-export const API_BASE_URL = ApiUrlsByAppEnv[APP_ENV] || 'https://api.decentral.games';
+export const API_BASE_URL =
+  ApiUrlsByAppEnv[APP_ENV] || 'https://api.decentral.games';
 
 console.log('APP_ENV (NODE_ENV): ', APP_ENV);
 console.log('API_BASE_URL: ', API_BASE_URL);
@@ -86,6 +87,13 @@ const Fetch = {
   // GET API calls (wallet address necessary)
   PLAYER_INFO: address => {
     return call(`${API_BASE_URL}/admin/getUser?address=${address}`, 'GET');
+  },
+  UPDATE_FREE_PLAYER_BALANCE: (amount, address) => {
+    return call(`${API_BASE_URL}/admin/updateUserBalances?freePlayAmountChange=${amount}&user=${address}`, 'GET');
+  },
+
+  UPDATE_ICE_CHIP_BALANCE: (amount, address) => {
+    return call(`${API_BASE_URL}/admin/updateUserBalances?iceChipsAmountChange=${amount}&user=${address}`, 'GET');
   },
 
   POKER_DATA: address => {
@@ -176,6 +184,7 @@ const Fetch = {
     });
   },
 
+  // address is the address of the user that used the wearable. i.e if the token is delegated, it is the delegatee's adress.
   WEARABLE_CHECKIN_STATUS: (address, tokenID) => {
     return call(
       `${API_BASE_URL}/ice/fetchWearableCheckinStatus`,
@@ -261,7 +270,6 @@ const Fetch = {
     );
   },
 
-
   ATRI_PRICE: () => {
     return call(`https://api.coingecko.com/api/v3/coins/atari`, 'GET', false);
   },
@@ -269,6 +277,14 @@ const Fetch = {
   DG_SUPPLY_GECKO: () => {
     return call(
       `https://api.coingecko.com/api/v3/coins/decentral-games`,
+      'GET',
+      false
+    );
+  },
+
+  DG_GOVERNANCE_SUPPLY_GECKO: () => {
+    return call(
+      `https://api.coingecko.com/api/v3/coins/decentral-games-governance`,
       'GET',
       false
     );
