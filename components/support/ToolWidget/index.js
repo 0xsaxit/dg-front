@@ -24,6 +24,9 @@ const ToolWidget = () => {
   const [iceChipsBalance, setIceChipsBalance] = useState(0);
   const [loading, setLoading] = useState(false);
 
+  const [addedPlayBalance, setAddedPlayBalance] = useState('');
+  const [addedIceChipsBalance, setAddedIceChipsBalance] = useState('');
+
   useEffect(() => {
     setIsLoading(false);
     // }
@@ -259,15 +262,18 @@ const ToolWidget = () => {
                       Free Play
                     </span>
                     <span className={styles.bottom_label}>
-                      Free
+                      {playBalance} Free
                     </span>
                   </div>
                   <input className={styles.edit} 
-                    tyle="number"
-                    value={playBalance.toString()} 
-                    onChange={(e)=> {
-                      console.log(e.target.value);
-                      setPlayBalance(e.target.value);
+                    placeholder="Add Amount"                   
+                    value={addedPlayBalance.toString()} 
+                    onChange={(e)=> {               
+
+                      const re = /^[0-9\b]+$/;
+                      if (e.target.value === '' || re.test(e.target.value)) {
+                        setAddedPlayBalance(e.target.value);
+                      }
                     }}
                   />
                 </div>
@@ -295,14 +301,18 @@ const ToolWidget = () => {
                       ICE Chips
                     </span>
                     <span className={styles.bottom_label}>
-                     Chips
+                    {iceChipsBalance} Chips
                     </span>
                   </div>
-                  <input className={styles.edit} 
-                    value={iceChipsBalance.toString()} 
+                  <input className={styles.edit}
+                    placeholder="Add Amount"
+                    value={addedIceChipsBalance.toString()} 
                     onChange={(e)=> {
-                      console.log(e.target.value);
-                      setIceChipsBalance(e.target.value);
+
+                      const re = /^[0-9\b]+$/;
+                      if (e.target.value === '' || re.test(e.target.value)) {
+                        setAddedIceChipsBalance(e.target.value);
+                      } 
                     }}
                   />
                 </div>
@@ -312,16 +322,25 @@ const ToolWidget = () => {
                 className={styles.update}
                 onClick={async ()=> {
                   setLoading(true);
-                  const res1 = await Fetch.UPDATE_FREE_PLAYER_BALANCE(playBalance, walletaddress);
-                  const res2 = await Fetch.UPDATE_ICE_CHIP_BALANCE(iceChipsBalance, walletaddress);
-                  await fetchBalance(walletaddress);
-                  setLoading(false);
+                  if(addedPlayBalance.length === 0 || addedIceChipsBalance.length === 0) {
+                    setLoading(false);
+                    const msg = 'The values should not empty!';
+                    dispatch({
+                      type: 'show_toastMessage',
+                      data: msg,
+                    });
+                  } else {
+                    const res1 = await Fetch.UPDATE_FREE_PLAYER_BALANCE(addedPlayBalance, walletaddress);
+                    const res2 = await Fetch.UPDATE_ICE_CHIP_BALANCE(addedIceChipsBalance, walletaddress);
+                    await fetchBalance(walletaddress);
+                    setLoading(false);
 
-                  const msg = 'Values updated successfully!';
-                  dispatch({
-                    type: 'show_toastMessage',
-                    data: msg,
-                  });
+                    const msg = 'Values updated successfully!';
+                    dispatch({
+                      type: 'show_toastMessage',
+                      data: msg,
+                    });
+                  }
                 }}
               >
                 Update
