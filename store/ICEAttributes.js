@@ -188,7 +188,7 @@ function ICEAttributes() {
                 meta_data: json,
                 isActivated: is_activated,
                 collection: tokenIDs[i].collection,
-                address: tokenIDs[i].address,
+                address: tokenIDs[i].address
               });
             }
           } catch (error) {

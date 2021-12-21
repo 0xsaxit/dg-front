@@ -8,6 +8,7 @@ import ABI_COLLECTION_V2 from '../../../components/ABI/ABICollectionV2';
 import ABI_COLLECTION_PH from '../../../components/ABI/ABICollectionPH';
 import ABI_COLLECTION_LINENS from '../../../components/ABI/ABICollectionLinens';
 import ABI_COLLECTION_BOMBER from '../../../components/ABI/ABICollectionBomber';
+import ABI_COLLECTION_CRYPTO_DRIP from '../../../components/ABI/ABICollectionCryptoDrip';
 import MetaTx from '../../../common/MetaTx';
 import Fetch from '../../../common/Fetch';
 import { Modal, Button } from 'semantic-ui-react';
@@ -35,7 +36,6 @@ const ModalUpgradePending = props => {
   const [tokenContractICE, setTokenContractICE] = useState({});
   const [tokenContractDGLight, setTokenContractDGLight] = useState({});
   const [collectionContract, setCollectionContract] = useState({});
-  // const [collectionAddress, setCollectionAddress] = useState('');
   const [mexaStatus, setMexaStatus] = useState(false);
   const [collectionID, setCollectionID] = useState(0);
   const [progSteps, setProgSteps] = useState([]);
@@ -79,7 +79,6 @@ const ModalUpgradePending = props => {
       setTokenContractDGLight(tokenContractDGLight);
 
       let collectionContract = {};
-      // let collectionAddress = '';
       let collectionID = 0;
 
       if (props.address === Global.ADDRESSES.COLLECTION_V2_ADDRESS) {
@@ -87,14 +86,12 @@ const ModalUpgradePending = props => {
           ABI_COLLECTION_V2,
           Global.ADDRESSES.COLLECTION_V2_ADDRESS
         );
-        // collectionAddress = Global.ADDRESSES.COLLECTION_V2_ADDRESS;
         collectionID = 10;
       } else if (props.address === Global.ADDRESSES.COLLECTION_PH_ADDRESS) {
         collectionContract = new getWeb3.eth.Contract(
           ABI_COLLECTION_PH,
           Global.ADDRESSES.COLLECTION_PH_ADDRESS
         );
-        // collectionAddress = Global.ADDRESSES.COLLECTION_PH_ADDRESS;
         collectionID = 12;
       } else if (props.address === Global.ADDRESSES.COLLECTION_LINENS_ADDRESS) {
         collectionContract = new getWeb3.eth.Contract(
@@ -108,10 +105,15 @@ const ModalUpgradePending = props => {
           Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS
         );
         collectionID = 14;
+      } else if (props.address === Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS) {
+        collectionContract = new getWeb3.eth.Contract(
+          ABI_COLLECTION_CRYPTO_DRIP,
+          Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS
+        );
+        collectionID = 16;
       }
 
       setCollectionContract(collectionContract);
-      // setCollectionAddress(collectionAddress);
       setCollectionID(collectionID);
 
       biconomy
@@ -283,15 +285,6 @@ const ModalUpgradePending = props => {
     setProgSteps(status);
   }
 
-  function updateAuthState(name, value) {
-    progSteps.map(item => {
-      if (item.step === name) {
-        item.authState = value;
-      }
-    });
-    setProgSteps(progSteps);
-  }
-
   function updateActionState(name, value) {
     const result = progSteps.map(item => {
       if (item.step === name) {
@@ -332,9 +325,6 @@ const ModalUpgradePending = props => {
                 actionState={item.actionState}
                 onClick={() => {
                   console.log('circle clicked', item);
-                  // if(!item.authState) {
-                  //   item.handleClick();
-                  // }
                 }}
               />
               {item.step !== 'WEARABLE' && (

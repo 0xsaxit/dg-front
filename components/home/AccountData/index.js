@@ -9,7 +9,6 @@ import styles from './AccountData.module.scss';
 import AccountTooltip from 'components/tooltips/AccountTooltip';
 import Fetch from '../../../common/Fetch';
 
-
 const AccountData = props => {
   // get user's transaction history from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -20,7 +19,6 @@ const AccountData = props => {
   const [dataPage, setDataPage] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [utm, setUtm] = useState('');
-  // const [DGMined, setDGMined] = useState(''); ********** this needs to be updated for new dgPointer function **********
   const [copied, setCopied] = useState(false);
   const [totalICE, setTotalICE] = useState(0);
 
@@ -35,20 +33,12 @@ const AccountData = props => {
     }
   }, [state.transactions]);
 
-  // useEffect(() => {
-  //   const one = Number(state.DGGameplayCollected);
-  //   const two = Number(state.DGBalances.BALANCE_MINING_DG_V2);
-  //   const temp = Number(one + two);
-  //   setDGMined(temp);
-  // }, [state.DGGameplayCollected, state.DGBalances.BALANCE_MINING_DG_V2]);
-
   useEffect(() => {
     (async () => {
       try {
         let json = await Fetch.ICE_AMOUNTS(state.userAddress);
 
         console.log('---> ICE_AMOUNTS FAILING <---');
-        console.log(json);
 
         const unclaimed = json.totalUnclaimedAmount;
         const claimed = json.totalClaimedAmount;

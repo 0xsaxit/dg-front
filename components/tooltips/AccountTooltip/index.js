@@ -4,7 +4,7 @@ import { Popup } from 'semantic-ui-react';
 const AccountTooltip = (props) => {
   return (
     <>
-       <Popup
+      <Popup
         trigger={
           <div className={styles.question_mark}>
             <svg
@@ -21,7 +21,7 @@ const AccountTooltip = (props) => {
             </svg>
           </div>
         }
-        position="right center"        
+        position="right center"
         hideOnScroll={true}
         className={styles.popup}
       >
@@ -32,9 +32,9 @@ const AccountTooltip = (props) => {
               src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631640045/ICE_Info_bbiag6.svg"
             />
             <p>
-              This is your total {props.data} through gameplay.            
+              This is your total {props.data} through gameplay.
             </p>
-          </div>          
+          </div>
         </Popup.Content>
       </Popup>
     </>

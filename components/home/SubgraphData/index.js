@@ -10,7 +10,6 @@ const SubgraphData = props => {
 
   // define local variables
   const [isLoading, setIsLoading] = useState(true);
-
   const dataType = props.dataType;
 
   /////////////////////////////////////////////////////////////////////////////////////////

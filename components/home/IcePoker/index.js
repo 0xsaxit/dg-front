@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
 import Link from 'next/link';
 import { useMediaQuery } from 'hooks';
-
 import Home from '../../content/ContentIcePoker/Home'
 import GetStarted from '../../content/ContentIcePoker/GetStarted'
 import MarketPlace from '../../content/ContentIcePoker/MarketPlace/MarketPlace'
 import Leaderboard from '../../content/ContentIcePoker/Leaderboard'
 import IceRewards from '../../content/ContentIcePoker/IceRewards'
 import MyAccount from '../../content/ContentIcePoker/MyAccount'
-
 import styles from './IcePoker.module.scss';
 
 const IcePoker = props => {
