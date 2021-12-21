@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useEffect, useContext, useState } from 'react';
 import { Modal, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
 import ModalETHAuth from 'components/modal/ModalEthAuth';
@@ -16,6 +16,18 @@ const ModalMint = props => {
   // define local variables
   const [open, setOpen] = useState(false);
   const [openETHAuth, setOpenETHAuth] = useState(false);
+  const [xDG, setXDG] = useState(0);
+
+  useEffect(() => {
+    const xdgTotal =
+      parseFloat(state.stakingBalances.BALANCE_USER_GOVERNANCE) +
+      parseFloat(state.DGBalances.BALANCE_CHILD_TOKEN_XDG);
+
+    setXDG(xdgTotal);
+  },
+    [state.stakingBalances.BALANCE_USER_GOVERNANCE,
+    state.DGBalances.BALANCE_CHILD_TOKEN_XDG]
+  );
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -36,7 +48,7 @@ const ModalMint = props => {
               className={styles.img_card}
             />
           </div>
-          <div className={styles.card}>{101 - props.numberLeft} of 100</div>
+          <div className={styles.card}>{props.maxMintCounts - props.numberLeft} of {props.maxMintCounts}</div>
         </div>
       </div>
     );
@@ -113,10 +125,9 @@ const ModalMint = props => {
               />
             </div>
 
-            {state.stakingBalances.BALANCE_USER_GOVERNANCE >=
+            {state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD >=
               Global.CONSTANTS.DG_STAKED_AMOUNT ||
-              (state.DGBalances.BALANCE_CHILD_TOKEN_XDG +
-                state.DGBalances.BALANCE_MAIN_TOKEN_XDG) >=
+              xDG >=
               Global.CONSTANTS.XDG_STAKED_AMOUNT ? (
               <div className={styles.green_check}>
 
@@ -146,6 +157,19 @@ const ModalMint = props => {
         </div>
       </div>
     );
+  }
+
+  function roundup(num) {
+    let decimalPlaces = 0;
+    if (num < 0.1) {
+      decimalPlaces = 2;
+      num = Math.floor(num + 'e' + decimalPlaces);
+    } else {
+      decimalPlaces = 1;
+      num = Math.round(num + 'e' + decimalPlaces);
+    }
+
+    return Number(num + 'e' + -decimalPlaces);
   }
 
   function description() {
@@ -183,9 +207,11 @@ const ModalMint = props => {
   function buttons() {
     return (
       <div className={styles.button_area}>
-        {state.userBalances[2][3] < state.tokenAmounts.WETH_MINT_AMOUNT ||
-          state.stakingBalances.BALANCE_USER_GOVERNANCE <
-          Global.CONSTANTS.DG_STAKED_AMOUNT ? (
+        {(state.userBalances[2][3] <
+          state.tokenAmounts.WETH_COST_AMOUNT) ||
+          (state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD <
+          Global.CONSTANTS.DG_STAKED_AMOUNT &&
+          xDG < Global.CONSTANTS.XDG_STAKED_AMOUNT) ? (
           <Button className={styles.button_upgrade} disabled={true}>
             Mint Wearable
           </Button>
