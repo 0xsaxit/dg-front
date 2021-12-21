@@ -122,10 +122,10 @@ const ModalUpgradeSuccess = props => {
       
 
       {(animationStage===1) ?
-        <UpgradeWearableBox height={540} onCompletion={()=>{setAnimationStage(2)}}/>
+        <UpgradeWearableBox height={540} onCompletion={()=>{ console.log('First Wearable Upgrade Animation Complete'); setAnimationStage(2)}}/>
         :
         <div className={cn(styles.fadeIn, styles.success_container)}>
-          <Confetti onCompletion={()=>{setAnimationStage(3)}}/>
+          <Confetti onCompletion={()=>{console.log('Second Wearable Upgrade Animation Complete'); setAnimationStage(3)}}/>
           <div className={styles.title}>Upgrade Successful!</div>
           
           <div className={styles.card}>
