@@ -9,7 +9,8 @@ import Fetch from '../../../../common/Fetch';
 import FoxAnimation from 'components/lottieAnimation/animations/fox';
 import NoResult from 'components/lottieAnimation/animations/noResult';
 import ModalIceBreakdown from 'components/modal/ModalIceBreakDown';
-import Spinner from 'components/Spinner';
+import Images from 'common/Images';
+import SpinnerAnimation from 'components/lottieAnimation/animations/spinner';
 
 const IceRewards = () => {
   // dispatch user's ICE amounts to the Context API store
@@ -64,7 +65,6 @@ const IceRewards = () => {
     for (var i = 7; i >= 1; i--) {
       var date = new Date(today);
       date.setDate(date.getDate() - i);
-      console.log(date);
       xAxis.push(date.toDateString().slice(0, 1));
     }
     setStatsUSDX(xAxis);
@@ -245,22 +245,17 @@ const IceRewards = () => {
                   </p>
                 </div>
 
-                {!clicked ? (
-                  <Button
-                    className={cn(styles.claim_ICE, styles.lower_button)}
-                    onClick={() => claimTokens()}
-                  >
-                    Claim {formatPrice(totalICE, 0)} ICE
-                  </Button>
-                ) : (
-                  <Button
-                    className={cn(styles.claim_ICE, styles.lower_button)}
-                    disabled
-                  >
-                    <Spinner width={33} height={33} />
-                    &nbsp; Claim {formatPrice(totalICE, 0)} ICE
-                  </Button>
-                )}
+                <Button
+                  className={cn(styles.claim_ICE, styles.lower_button)}
+                  onClick={() => claimTokens()}
+                  disabled={clicked}
+                >
+                  {!clicked ? (
+                    <>Claim {formatPrice(totalICE, 0)} ICE</>
+                  ) : (
+                    <SpinnerAnimation />
+                  )}
+                </Button>
               </div>
             </div>
 

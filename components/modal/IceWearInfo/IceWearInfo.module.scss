@@ -1,24 +1,24 @@
-@import 'styles/base.scss';
+@import "styles/base.scss";
 
 .info_modal {
   width: 270px !important;
   height: 459.55px !important;
   padding: 40px;
-  background: #1F1F1F;
- 
+  background: #1f1f1f;
+
   .body {
     color: white;
     display: flex;
 
     .title {
-      font-family: Larsseit;  
+      font-family: Larsseit;
       font-style: normal;
       font-weight: 800;
       font-size: 24px;
       line-height: 33px;
       text-align: center;
       letter-spacing: -0.7px;
-      color: #FFFFFF;
+      color: #ffffff;
     }
 
     .desc {
@@ -28,7 +28,7 @@
       font-size: 18px;
       line-height: 24px;
       text-align: center;
-      color: #FFFFFF;
+      color: #ffffff;
     }
   }
 }

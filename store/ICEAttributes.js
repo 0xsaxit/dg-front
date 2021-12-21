@@ -180,6 +180,11 @@ function ICEAttributes() {
               tokenIDs[i].tokenID
             );
 
+            const isCheckedIn = Fetch.WEARABLE_CHECKIN_STATUS({
+              address: state.userAddress,
+              tokenID: tokenIDs[i].tokenID,
+            });
+
             if (Object.keys(json).length) {
               iceWearableItems.push({
                 index: tokenIDs[i].index,
@@ -189,6 +194,7 @@ function ICEAttributes() {
                 isActivated: is_activated,
                 collection: tokenIDs[i].collection,
                 address: tokenIDs[i].address,
+                isCheckedin,
               });
             }
           } catch (error) {
@@ -239,7 +245,7 @@ function ICEAttributes() {
               );
 
               const isCheckedIn = await Fetch.WEARABLE_CHECKIN_STATUS(
-                ownerAddress,
+                state.userAddress,
                 tokenId
               );
 

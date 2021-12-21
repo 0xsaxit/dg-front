@@ -1,19 +1,12 @@
-import { useEffect, useContext, useState } from 'react';
-import cn from 'classnames';
-import Web3 from 'web3';
+import { useContext, useState } from 'react';
 import {
   Modal,
-  Icon,
   Button,
   Checkbox,
-  Input,
   Loader,
 } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
-import Global from 'components/Constants';
 import styles from './ModalAccept.module.scss';
-import Images from '../../../common/Images';
-import Fetch from '../../../common/Fetch';
 import ButtonApproveICE from 'components/button/ButtonApprove/ICE';
 
 const ICE = () => {
