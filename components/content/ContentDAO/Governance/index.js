@@ -403,8 +403,8 @@ const Governance = props => {
             <span>
               You Will Receive{' '}
               {stakeType === 'Stake'
-                ? props.formatPrice(Number(amountInput) * ratio, 3)
-                : props.formatPrice(Number(amountInput) / ratio, 3)}{' '}
+                ? props.formatPrice(Number(amountInput) / ratio, 3)
+                : props.formatPrice(Number(amountInput) * ratio, 3)}{' '}
               {stakeType === 'Stake' ? 'x' : ''}DG
             </span>
           </div>
