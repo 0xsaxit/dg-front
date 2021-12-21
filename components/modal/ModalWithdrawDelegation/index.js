@@ -19,6 +19,7 @@ const ModalWithdrawDelegation = props => {
   const [errorMsg, setErrorMsg] = useState(null);
 
   const isDelegator = props.ownerAddress === state.userAddress;
+  const checkInStatus = state.iceWearableInventoryItems.find((item) => item.tokenId === props.tokenID)?.checkInStatus;
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -249,34 +250,15 @@ const ModalWithdrawDelegation = props => {
                       }
                     }}
                   >
-                      <>
-                        {/* <img
-                          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
-                          className={styles.icon}
-                        /> */}
-                        {/* {props.buttonName} */}
-                        Withdraw Delegation
-                      </>
-
-                    {/* {withdrawStatus == 0 ? (
-                      <>
-                        <img
-                          src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png"
-                          className={styles.icon}
-                        />
-                        {props.buttonName}
-                        </>
-                    ) : (
-                      <div className={styles.withdraw_button}>
-                        <div className={styles.mainText}>
-                          Withdraw Delegation                          
-                        </div>
-                        <div className={styles.subText}>
-                          {withdrawStatus == 1? 'Withdraw Immediately': 'Schedule Withdraw: 12am UTC' + 
-                          ' (In ' + getRemainingTime() + 'Hours)'}
-                        </div>
-                      </div>
-                    )} */}
+                    <div className={styles.withdraw_button}>
+                      <p className={styles.main_text}>Withdraw Delegation</p>
+                      <p className={styles.sub_text}>
+                        {checkInStatus?
+                          'Withdraw Immediately':
+                          `Schedule Withdraw: 12am UTC (In ${getRemainingTime()} Hours)`
+                        }
+                      </p>
+                    </div>
                   </Button>
                 ) : (
                   <Button className={styles.button_close} disabled={true}>
