@@ -26,7 +26,7 @@ function DGBalances() {
   const [DGMaticContract, setDGMaticContract] = useState({});
 
   const [XDGMaticContract, setXDGMaticContract] = useState({});
-  const [XDGMainContract, setXDGMainContract] = useState({}); 
+  const [XDGMainContract, setXDGMainContract] = useState({});
 
   const [DGLightMaticContract, setDGLightMaticContract] = useState({});
   const [BPTContract1, setBPTContract1] = useState({});

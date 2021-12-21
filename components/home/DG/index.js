@@ -10,7 +10,6 @@ const DGHome = () => {
   // define local variables
   const [videoPlay, setVideoPlay] = useState(true);
   const [utm, setUtm] = useState('');
-
   let buttonPlay = '';
 
   /////////////////////////////////////////////////////////////////////////////////////////

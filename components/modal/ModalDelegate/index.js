@@ -30,14 +30,7 @@ const ModalDelegate = props => {
       // initialize Web3 providers and create token contract instance
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
-
       const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
-
-      // const collectionV2Contract = new maticWeb3.eth.Contract(
-      //   ABI_COLLECTION_V2,
-      //   Global.ADDRESSES.COLLECTION_V2_ADDRESS
-      // );
-      // setCollectionV2Contract(collectionV2Contract);
 
       const collectionV2Contract = new maticWeb3.eth.Contract(
         ABI_COLLECTION_V2,
@@ -321,12 +314,6 @@ const ModalDelegate = props => {
       console.log('NFT delegation request error. Code: ' + json.code);
 
       setErrorMsg('Delegation failed: ' + json.result);
-
-      // if (json.code === 2) {
-      //   setErrorMsg(json.reason); // this wearable has already been checked-in today
-      // } else {
-      //   setErrorMsg('Delegation failed. Code: ' + json.code);
-      // }
       setClicked(false);
     }
   }

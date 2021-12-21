@@ -4,7 +4,6 @@ import { Modal, Button } from 'semantic-ui-react';
 import Fetch from '../../../common/Fetch';
 import styles from './ModalWithdrawDelegation.module.scss';
 import ModalDelegateConfirm from '../ModalDelegateConfirm';
-import Global from '../../Constants';
 import Aux from '../../_Aux';
 
 const ModalWithdrawDelegation = props => {
@@ -15,15 +14,14 @@ const ModalWithdrawDelegation = props => {
   const [clicked, setClicked] = useState(false);
   const [open, setOpen] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [withdrawStatus, setWithdrawStatus] =  useState(0);
+  const [withdrawStatus, setWithdrawStatus] = useState(0);
   const [errorMsg, setErrorMsg] = useState(null);
-
   const isDelegator = props.ownerAddress === state.userAddress;
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
-  
+
   // get Remaining Time
   function getRemainingTime() {
     const today = new Date();
@@ -232,7 +230,7 @@ const ModalWithdrawDelegation = props => {
                   <Button
                     className={styles.button_close}
                     onClick={() => {
-                      if(withdrawStatus == 0) {
+                      if (withdrawStatus == 0) {
                         analytics.track(
                           isDelegator
                             ? 'DELEGATOR CLICKED WITHDRAW'
@@ -243,46 +241,21 @@ const ModalWithdrawDelegation = props => {
                         // restore
                         // completeWithdraw();
                       } else if (withdrawStatus == 1) { // success case                        
-                        completeWithdraw();                        
-                      } else {                        
+                        completeWithdraw();
+                      } else {
                         completeWithdraw();
                       }
                     }}
                   >
-                      <>
-                        {/* <img
-                          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
-                          className={styles.icon}
-                        /> */}
-                        {/* {props.buttonName} */}
-                        Withdraw Delegation
-                      </>
-
-                    {/* {withdrawStatus == 0 ? (
-                      <>
-                        <img
-                          src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png"
-                          className={styles.icon}
-                        />
-                        {props.buttonName}
-                        </>
-                    ) : (
-                      <div className={styles.withdraw_button}>
-                        <div className={styles.mainText}>
-                          Withdraw Delegation                          
-                        </div>
-                        <div className={styles.subText}>
-                          {withdrawStatus == 1? 'Withdraw Immediately': 'Schedule Withdraw: 12am UTC' + 
-                          ' (In ' + getRemainingTime() + 'Hours)'}
-                        </div>
-                      </div>
-                    )} */}
+                    <>
+                      Withdraw Delegation
+                    </>
                   </Button>
                 ) : (
                   <Button className={styles.button_close} disabled={true}>
                     Pending Transaction...
                   </Button>
-                )}                
+                )}
               </div>
               <div className={styles.error_msg}>
                 {errorMsg}
