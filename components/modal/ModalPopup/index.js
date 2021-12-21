@@ -2,13 +2,9 @@ import { useEffect, useContext, useState } from 'react';
 import Link from 'next/link';
 import { Popup, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
-import Global from 'components/Constants';
 import { useRouter } from 'next/router';
-// import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
 const ModalPopup = () => {
-  //const { t, i18n } = useTranslation();
-  // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
   const router = useRouter();
 
@@ -16,9 +12,6 @@ const ModalPopup = () => {
   const [copied, setCopied] = useState(false);
   const [casinoBalance, setCasinoBalance] = useState(0);
   const [binance, setBinance] = useState(false);
-  const [meatamaskEnabled, setMetamaskEnabled] = useState(false);
-  const [isToastShow, setIsToastShow] = useState(false);
-
   const [visibleStatus, setVisibleStatus] = useState(false);
 
   useEffect(() => {
@@ -90,7 +83,8 @@ const ModalPopup = () => {
     const atri = Number(state.DGPrices.atri * state.userBalances[2][2]);
     const dai = Number(state.userBalances[0][1]);
     const usdt = Number(state.userBalances[2][1] * 1000000000000);
-    const balance = mana + eth + atri + dai + usdt;
+    const ice = Number(state.iceAmounts.ICE_AVAILABLE_AMOUNT * state.DGPrices.ice, 2);
+    const balance = mana + eth + atri + dai + usdt + ice;
 
     setCasinoBalance(balance.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
   }, [
@@ -172,7 +166,6 @@ const ModalPopup = () => {
                 </svg>
               </span>
               <span>
-                {/* {t('navMenu.MYACCOUNT')} */}
                 My Account
               </span>
             </Button>
@@ -235,7 +228,7 @@ const ModalPopup = () => {
           <span style={{ display: 'flex', flexDirection: 'column' }}>
             <Link href="/account">
               <Button className="casino-balance-button">
-                <p className="casino-balance-text"> Casino Balance </p>
+                <p className="casino-balance-text"> Polygon Balance </p>
                 <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                   {binance ? (
                     <p className="casino-balance-text two">
@@ -312,10 +305,10 @@ const ModalPopup = () => {
             </a>
             <Button
               className={binance ? 'buy-dg-button binance' : 'buy-dg-button'}
-              href="https://app.uniswap.org/#/swap?outputCurrency=0xee06a81a695750e71a662b51066f2c74cf4478a0"
+              href="https://app.uniswap.org/#/swap?outputCurrency=0x4b520c812e8430659fc9f12f6d0c39026c83588d"
               target="_blank"
             >
-              Buy $DG
+              Buy DG
             </Button>
           </span>
         </span>

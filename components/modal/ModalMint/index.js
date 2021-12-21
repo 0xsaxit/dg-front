@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import cn from 'classnames';
 import { Modal, Button, Tab } from 'semantic-ui-react';
 import styles from './ModalMint.module.scss';
 import Images from 'common/Images';
@@ -9,7 +8,6 @@ const ModalMint = props => {
 
   // define local variables
   const [open, setOpen] = useState(false);
-  const [safari, setSafari] = useState(false);
   const currentEthPrice = props.ethPrice;
 
   const panes = [
@@ -34,13 +32,6 @@ const ModalMint = props => {
       render: () => <></>,
     },
   ];
-
-  // using Safari browser
-  useEffect(() => {
-    if (window.safari !== undefined) {
-      setSafari(true);
-    }
-  }, []);
 
   return (
     <>
