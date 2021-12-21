@@ -156,7 +156,7 @@ const Wearables = ({ state }) => {
           !!state.iceDelegatedItems.length ? (
             <p>{`(${activeWearables.length + delegatedWearables.length} of ${
               state.iceWearableItems.length + state.iceDelegatedItems.length
-            } Active) ${maxICEBonus}% Max ICE Bonus`}</p>
+            } Active)`}</p>
           ) : null}
         </div>
         <Button className={styles.open_sea} href="/ice/marketplace">
