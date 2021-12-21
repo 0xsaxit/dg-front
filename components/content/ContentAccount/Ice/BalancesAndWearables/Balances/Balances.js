@@ -193,10 +193,7 @@ const Balances = () => {
           </Button>
         ) : (
           <Button className={styles.claim_button} disabled>
-            <img
-              src={Images.LOADING_SPINNER}
-              className={styles.claim_ICE_spinner}
-            />
+            <SpinnerAnimation />
           </Button>
         )}
       </div>
