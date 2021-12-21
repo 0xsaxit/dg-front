@@ -59,7 +59,7 @@ const Governance = props => {
         setDGTownHallContract(_DGTownHallContract);
 
         setAPY(
-          BigNumber(7821000000)
+          BigNumber(5214300000)
             .div(BigNumber(balance))
             .multipliedBy(Constants.CONSTANTS.FACTOR)
             .toString()

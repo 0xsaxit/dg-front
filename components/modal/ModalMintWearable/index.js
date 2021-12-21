@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useEffect, useContext, useState } from 'react';
 import { Modal, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
 import ModalETHAuth from 'components/modal/ModalEthAuth';
@@ -16,6 +16,18 @@ const ModalMint = props => {
   // define local variables
   const [open, setOpen] = useState(false);
   const [openETHAuth, setOpenETHAuth] = useState(false);
+  const [xDG, setXDG] = useState(0);
+
+  useEffect(() => {
+    const xdgTotal =
+      parseFloat(state.stakingBalances.BALANCE_USER_GOVERNANCE) +
+      parseFloat(state.DGBalances.BALANCE_CHILD_TOKEN_XDG);
+
+    setXDG(xdgTotal);
+  },
+    [state.stakingBalances.BALANCE_USER_GOVERNANCE,
+    state.DGBalances.BALANCE_CHILD_TOKEN_XDG]
+  );
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -36,7 +48,7 @@ const ModalMint = props => {
               className={styles.img_card}
             />
           </div>
-          <div className={styles.card}>{101 - props.numberLeft} of 100</div>
+          <div className={styles.card}>{props.maxMintCounts - props.numberLeft} of {props.maxMintCounts}</div>
         </div>
       </div>
     );
@@ -48,7 +60,7 @@ const ModalMint = props => {
         Price{' '}
         <span>
           ($
-          {(state.DGPrices.eth * state.tokenAmounts.WETH_COST_AMOUNT).toFixed(
+          {(state.DGPrices.eth * Global.CONSTANTS.WETH_MINT_AMOUNT).toFixed(
             2
           )}
           )
@@ -94,27 +106,33 @@ const ModalMint = props => {
           </div>
           <p style={{ margin: '0px 8px 0px 8px' }}>+</p>
           <div className={styles.card_area_body}>
-            {state.stakingBalances.BALANCE_USER_GOVERNANCE <
-            Global.CONSTANTS.DG_STAKED_AMOUNT ? (
-              <span className={styles.dgStackedSpan}>
-                Not Enough Staked
-                <IceMintDGStackedTooltip />
-              </span>
-            ) : null}
+            <span className={styles.dgStackedSpan}>
+              Staking Requirement
+              <IceMintDGStackedTooltip />
+            </span>
 
-            <div className={styles.card} style={{ width: '150px' }}>
-              {Global.CONSTANTS.DG_STAKED_AMOUNT} DG Staked
+            <div className={styles.card} style={{ width: '256px' }}>
+              {Global.CONSTANTS.XDG_STAKED_AMOUNT} xDG
+              <img
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637260602/grayLogo_ojx2hi.png"
+                className={styles.img_card2}
+              />
+              <p className={styles.or}>or</p>
+              {Global.CONSTANTS.DG_STAKED_AMOUNT} (Old) DG
               <img
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631325895/dgNewLogo_hkvlps.png"
                 className={styles.img_card2}
               />
             </div>
 
-            {state.stakingBalances.BALANCE_USER_GOVERNANCE >=
-            Global.CONSTANTS.DG_STAKED_AMOUNT ? (
+            {state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD >=
+              Global.CONSTANTS.DG_STAKED_AMOUNT ||
+              xDG >=
+              Global.CONSTANTS.XDG_STAKED_AMOUNT ? (
               <div className={styles.green_check}>
-                {roundup(state.stakingBalances.BALANCE_USER_GOVERNANCE)} DG
-                Staked &nbsp;
+
+                You Have Enough Staked &nbsp;
+
                 <svg
                   width="9"
                   height="8"
@@ -131,10 +149,7 @@ const ModalMint = props => {
             ) : (
               <div>
                 <div className={styles.description}>
-                  You must have at least {Global.CONSTANTS.DG_STAKED_AMOUNT} DG
-                </div>
-                <div className={styles.description}>
-                  staked in governance to mint
+                  You must have at least 1000 xDG or 1 (old) DG staked in governance to mint
                 </div>
               </div>
             )}
@@ -192,23 +207,25 @@ const ModalMint = props => {
   function buttons() {
     return (
       <div className={styles.button_area}>
-        {state.userBalances[2][3] < state.tokenAmounts.WETH_COST_AMOUNT ||
-          state.stakingBalances.BALANCE_USER_GOVERNANCE <
-            Global.CONSTANTS.DG_STAKED_AMOUNT ? (
-            <Button className={styles.button_upgrade} disabled={true}>
-              Mint Wearable
-            </Button>
-          ) : (
-            <Button
-              className={styles.button_upgrade}
-              onClick={() => {
-                setOpen(false);
-                setOpenETHAuth(true);
-              }}
-            >
-              Mint Wearable
-            </Button>
-          )}
+        {(state.userBalances[2][3] <
+          state.tokenAmounts.WETH_COST_AMOUNT) ||
+          (state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD <
+          Global.CONSTANTS.DG_STAKED_AMOUNT &&
+          xDG < Global.CONSTANTS.XDG_STAKED_AMOUNT) ? (
+          <Button className={styles.button_upgrade} disabled={true}>
+            Mint Wearable
+          </Button>
+        ) : (
+          <Button
+            className={styles.button_upgrade}
+            onClick={() => {
+              setOpen(false);
+              setOpenETHAuth(true);
+            }}
+          >
+            Mint Wearable
+          </Button>
+        )}
 
         <Button
           className={styles.button_close}

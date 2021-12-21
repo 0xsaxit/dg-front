@@ -5,13 +5,10 @@ import MenuTop from './home/MenuTop/index.js';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '../public/static/css/theme';
 import { GlobalStyles } from '../public/static/css/global';
-import { useRouter } from 'next/router';
 
 const Layout = props => {
   // get theme (light or dark mode) from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-  const router = useRouter();
-  const [isLoading, setIsLoading] = useState(true);
   
   // define local variables
   // change second "lightTheme" to "darkTheme" when theme jump is fixed
@@ -25,12 +22,6 @@ const Layout = props => {
 
     logPageView();
   }, []);
-
-  useEffect(() => {
-    if (state.userStatus > 3) {
-      setIsLoading(false);
-    }
-  }, [state.userStatus]);
 
   return (
     <ThemeProvider theme={themeMode}>

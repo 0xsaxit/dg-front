@@ -12,6 +12,7 @@ import NeedMoreDGActivateModal from 'components/modal/NeedMoreDGActivateModal';
 import ModalWearable from 'components/modal/ModalWearable';
 import styles from './ICEWearableCard.module.scss';
 import Aux from '../../../_Aux';
+import IceCheckedInTooltip from 'components/tooltips/IceCheckedInTooltip';
 
 const ICEWearableCard = props => {
   // get user's wallet address from the Context API store
@@ -19,37 +20,12 @@ const ICEWearableCard = props => {
 
   // define local variables
   const [delegateAddress, setDelegateAddress] = useState('');
-
   const buttonDelegate = 'Delegate';
   const buttonUndelegate = 'Undelegate';
   const { name, description, image, attributes } = props.data;
-  const rank = GetRank(parseInt(attributes.find(el => el.trait_type === 'Bonus').value));
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // fetch user's incoming/outgoing delegate mapping data. Refreshes upon delegation/undelegation
-  // useEffect(() => {
-  //   if (state.iceDelegatedItems.length) {
-  //     (async function () {
-  //       setDelegateAddress('');
-  //       const delegationInfo = state.iceDelegatedItems;
-
-  //       console.log('delegation info (ICEWearableCard): ');
-  //       console.log(delegationInfo);
-
-  //       delegationInfo.outgoingDelegations.forEach((item, i) => {
-  //         if (item) {
-  //           const delegateAddress = item.delegateAddress;
-  //           const tokenId = item.tokenId;
-
-  //           if (tokenId === props.tokenID) {
-  //             setDelegateAddress(delegateAddress);
-  //           }
-  //         }
-  //       });
-  //     })();
-  //   }
-  // }, [state.refreshDelegateInfo]);
+  const rank = GetRank(
+    parseInt(attributes.find(el => el.trait_type === 'Bonus').value)
+  );
 
   useEffect(() => {
     if (state.userStatus >= 4) {
@@ -57,16 +33,16 @@ const ICEWearableCard = props => {
         setDelegateAddress('');
         const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
 
-        // console.log('delegation info (ICEWearableCard): ');
-        // console.log(delegationInfo);
-
         delegationInfo.outgoingDelegations.forEach((item, i) => {
           if (item) {
             const address = item.contractAddress;
             const delegateAddress = item.delegateAddress;
             const tokenId = item.tokenId;
 
-            if (tokenId === props.tokenID && address.toLowerCase() === props.address.toLowerCase()) {
+            if (
+              tokenId === props.tokenID &&
+              address.toLowerCase() === props.address.toLowerCase()
+            ) {
               setDelegateAddress(delegateAddress);
             }
           }
@@ -79,18 +55,19 @@ const ICEWearableCard = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
   function imageAndDescription() {
-    // console.log('*', delegateAddress);
-
     return (
       <Aux>
         <div className={styles.wear_box_purple}>
           {!props.isActivated ? (
             <IceNeedToActivateTooltip />
+          ) : props.isCheckedIn ? (
+            <IceCheckedInTooltip />
           ) : (
             <IceP2EEnabledTooltip />
           )}
           <img src={image} />
         </div>
+
         <div className={styles.card_body}>
           {delegateAddress ? (
             <div className={styles.delegated}>
@@ -116,8 +93,6 @@ const ICEWearableCard = props => {
           </div>
         </div>
 
-        {/* <div className={styles.card_meta}>{name.split('(ICE')[0].trim()}</div> */}
-
         <div className={styles.card_title}>
           <p>{name.split('(ICE')[0].trim()}</p>
           <p>{`(ICE Rank ${rank.value})`}</p>
@@ -134,8 +109,8 @@ const ICEWearableCard = props => {
 
           <div className={styles.button_area}>
             {!props.isActivated ? (
-              state.DGBalances.BALANCE_CHILD_DG <
-              state.tokenAmounts.DG_MOVE_AMOUNT ? (
+              state.DGBalances.BALANCE_CHILD_DG_LIGHT <
+                state.tokenAmounts.DG_MOVE_AMOUNT ? (
                 <NeedMoreDGActivateModal />
               ) : (
                 <ActivateWearableModal
@@ -159,7 +134,9 @@ const ICEWearableCard = props => {
                     itemID={props.itemID}
                     imgSrc={image}
                     rank={rank.value}
-                    bonus={attributes.find(el => el.trait_type === 'Bonus').value}
+                    bonus={
+                      attributes.find(el => el.trait_type === 'Bonus').value
+                    }
                     description={description}
                     buttonName={buttonDelegate}
                   />
@@ -181,7 +158,9 @@ const ICEWearableCard = props => {
                     imgSrc={image}
                     rank={rank.value}
                     percentage={rank.percentage}
-                    bonus={attributes.find(el => el.trait_type === 'Bonus').value}
+                    bonus={
+                      attributes.find(el => el.trait_type === 'Bonus').value
+                    }
                     description={description}
                     name={name.split('(ICE')[0].trim()}
                   />

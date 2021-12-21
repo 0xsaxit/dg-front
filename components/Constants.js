@@ -32,6 +32,7 @@ const CONSTANTS = {
   VERIFY_URL: 'staging.decentral.games',
   WETH_MINT_AMOUNT: 0.25, // amount of WETH required for minting
   DG_STAKED_AMOUNT: 1, // amount of DG user is required to have staked in order to mint wearable
+  XDG_STAKED_AMOUNT: 1000, // amount of DG user is required to have staked in order to mint wearable
   POOLING_TIME_OUT: 8000, // API endpoint request pool interval (milliseconds)
   POOLING_LIMIT_COUNT: 6, // attempt to call API endpoint this number of times
   MINT_STATUS: 29, // minimum userStatus level for minting wearables (we can replace with appConfig variable when it's available)
@@ -198,6 +199,46 @@ const IMG_URLS_UPGRADE = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024032/ICE%20Bomber%20Thumbnails%20%28Square%29/shoes_pink_cnuzg6.jpg',
     'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024032/ICE%20Bomber%20Thumbnails%20%28Square%29/shoes_gold_ishar9.jpg',
   ],
+  'Drip Shades': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781041/Crypto%20Drip/Individual%20Assets/Glasses_Level_1_illrek.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781041/Crypto%20Drip/Individual%20Assets/Glasses_Level_1_illrek.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781040/Crypto%20Drip/Individual%20Assets/Glasses_level_2_epfvlj.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781041/Crypto%20Drip/Individual%20Assets/Glasses_Level_3_ofjya7.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781040/Crypto%20Drip/Individual%20Assets/Glasses_level_4_vsuytz.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781040/Crypto%20Drip/Individual%20Assets/Glasses_Level_5_rmgi3d.png',
+  ],
+  'Drip Bucket': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781042/Crypto%20Drip/Individual%20Assets/Hat_level_1_tk8gex.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781042/Crypto%20Drip/Individual%20Assets/Hat_level_1_tk8gex.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781041/Crypto%20Drip/Individual%20Assets/Hat_Level_2_vjczks.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781042/Crypto%20Drip/Individual%20Assets/Hat_level_3_fykfxx.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781042/Crypto%20Drip/Individual%20Assets/Hat_Level_4_zvyzay.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781042/Crypto%20Drip/Individual%20Assets/Puffer_level_5_kedpfb.png',
+  ],
+  'Drip Jacket': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781042/Crypto%20Drip/Individual%20Assets/puffer_level_1_lzuqdb.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781042/Crypto%20Drip/Individual%20Assets/puffer_level_1_lzuqdb.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781042/Crypto%20Drip/Individual%20Assets/puffer_level_2_aixvap.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781043/Crypto%20Drip/Individual%20Assets/Puffer_Level_3_chfc1k.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781043/Crypto%20Drip/Individual%20Assets/Puffer_level_4_unpu5b.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781041/Crypto%20Drip/Individual%20Assets/jacket_level_5_gvoxbe.png',
+  ],
+  'Drip Drawers': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781044/Crypto%20Drip/Individual%20Assets/pants_level_1_hh6qax.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781044/Crypto%20Drip/Individual%20Assets/pants_level_1_hh6qax.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781043/Crypto%20Drip/Individual%20Assets/pants_level_2_zxrnrp.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781043/Crypto%20Drip/Individual%20Assets/pants_level_3_g3aehz.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781044/Crypto%20Drip/Individual%20Assets/pants_level_4_znfpfu.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781043/Crypto%20Drip/Individual%20Assets/pants_level_5_b8csos.png',
+  ],
+  'Drip Kicks': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781041/Crypto%20Drip/Individual%20Assets/Shoes_Level_1_cd2fil.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781041/Crypto%20Drip/Individual%20Assets/Shoes_Level_1_cd2fil.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781040/Crypto%20Drip/Individual%20Assets/Shoes_Level_2_zycqxy.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781041/Crypto%20Drip/Individual%20Assets/Shoes_Level_3_a45sip.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781040/Crypto%20Drip/Individual%20Assets/Shoes_level_4_db0xpw.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781040/Crypto%20Drip/Individual%20Assets/shoes_level_5_ieba6p.png',
+  ],
 };
 
 // wallet and contract addresses
@@ -214,7 +255,7 @@ const ADDRESSES = (() => {
   const ROOT_DG_LIGHT_BRIDGE_ADDRESS = '';
 
   const ROOT_DG_TOWN_HALL_ADDRESS = '0x4f81c790581b240a5c948afd173620ecc8c71c8d';
-  
+
   const CHILD_TOKEN_ADDRESS_DAI = '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063';
   const CHILD_TOKEN_ADDRESS_MANA = '0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4';
   const CHILD_TOKEN_ADDRESS_DG = '0x2a93172c8DCCbfBC60a39d56183B7279a2F647b4';
@@ -237,7 +278,7 @@ const ADDRESSES = (() => {
 
   const DG_STAKING_BALANCER_ADDRESS_1 = '0xA9380E21fF4Ed3218a7a518D16c464ff0DcBf143';
   const DG_STAKING_BALANCER_ADDRESS_2 = '0x444b3917f08a0c7a39267b1ec2f46713c5492db2';
-  
+
   const DG_STAKING_UNISWAP_ADDRESS = '0x55ceb773c494cf7ad4f2e3170936866bd7eff1c9';
 
   const DG_STAKING_GOVERNANCE_ADDRESS = '0xf1d113059517dbddd99ab9caffa76fc01f0557cd';
@@ -277,7 +318,7 @@ const ADDRESSES = (() => {
   console.log('CHILD_TOKEN_ADDRESS_WETH: ' + CHILD_TOKEN_ADDRESS_WETH);
   console.log('CHILD_TOKEN_ADDRESS_ICE: ' + CHILD_TOKEN_ADDRESS_ICE);
   console.log('CHILD_DG_LIGHT_BRIDGE_ADDRESS: ' + CHILD_DG_LIGHT_BRIDGE_ADDRESS);
-  
+
   console.log('CHILD_TOKEN_XDG_ADDRESS: ' + CHILD_TOKEN_XDG_ADDRESS);
 
   console.log('TREASURY_CONTRACT_ADDRESS: ' + TREASURY_CONTRACT_ADDRESS);

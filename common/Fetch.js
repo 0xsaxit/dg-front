@@ -88,6 +88,13 @@ const Fetch = {
   PLAYER_INFO: address => {
     return call(`${API_BASE_URL}/admin/getUser?address=${address}`, 'GET');
   },
+  UPDATE_FREE_PLAYER_BALANCE: (amount, address) => {
+    return call(`${API_BASE_URL}/admin/updateUserBalances?freePlayAmountChange=${amount}&user=${address}`, 'GET');
+  },
+
+  UPDATE_ICE_CHIP_BALANCE: (amount, address) => {
+    return call(`${API_BASE_URL}/admin/updateUserBalances?iceChipsAmountChange=${amount}&user=${address}`, 'GET');
+  },
 
   POKER_DATA: address => {
     return call(
@@ -177,6 +184,7 @@ const Fetch = {
     });
   },
 
+  // address is the address of the user that used the wearable. i.e if the token is delegated, it is the delegatee's adress.
   WEARABLE_CHECKIN_STATUS: (address, tokenID) => {
     return call(
       `${API_BASE_URL}/ice/fetchWearableCheckinStatus`,

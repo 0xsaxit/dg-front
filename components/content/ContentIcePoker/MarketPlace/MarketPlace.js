@@ -21,6 +21,7 @@ const MarketPlace = () => {
   const wearables = [
     {
       title: 'Crypto Drip',
+      address: Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984404/CryptoDrip_Level_1_nbpz6x.png',
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984401/CryptoDrip_Level_2_nigfx7.png',
@@ -68,6 +69,7 @@ const MarketPlace = () => {
     },
     {
       title: 'Bomber',
+      address: Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1637107740/Bomber%20Fit/Bomber_1_aqjlun.png',
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1637107740/Bomber%20Fit/Bomber_2_eg3o0c.png',
@@ -115,6 +117,7 @@ const MarketPlace = () => {
     },
     {
       title: 'Linen',
+      address: Global.ADDRESSES.COLLECTION_LINENS_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1637088369/Linens_1_hqogna.png',
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1637088370/Linens_2_s3wrak.png',
@@ -162,6 +165,7 @@ const MarketPlace = () => {
     },
     {
       title: 'Party Host',
+      address: Global.ADDRESSES.COLLECTION_PH_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1636054316/Level_1_Hugh_mwzapj.png',
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1636054315/Level_2_Hugh_t2g9tc.png',
@@ -209,6 +213,7 @@ const MarketPlace = () => {
     },
     {
       title: 'DG Suit',
+      address: Global.ADDRESSES.COLLECTION_V2_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_1_h5zizs.png',
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_2_y8onmu.png',
@@ -255,18 +260,6 @@ const MarketPlace = () => {
       },
     },
   ];
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // useEffect(() => {
-  //   if (state.itemLimits.COLLECTION_1[0][0] === 0) {
-  //     setItemLimitsArray1(state.itemLimits.COLLECTION_1);
-  //     setItemLimitsArray2(state.itemLimits.COLLECTION_2);
-  //   } else {
-  //     setItemLimitsArray2(state.itemLimits.COLLECTION_1);
-  //     setItemLimitsArray1(state.itemLimits.COLLECTION_2);
-  //   }
-  // }, [state.itemLimits]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -347,8 +340,8 @@ const MarketPlace = () => {
         size.width <= 499
           ? 1
           : size.width <= 1040
-          ? Math.floor((size.width - 120) / 300)
-          : Math.min(Math.floor((size.width - 300) / 300), 6),
+            ? Math.floor((size.width - 120) / 300)
+            : Math.min(Math.floor((size.width - 300) / 300), 6),
       nextArrow: <CarouselNextArrow />,
       prevArrow: <CarouselPrevArrow />,
     };
@@ -368,7 +361,17 @@ const MarketPlace = () => {
           } else if (index === 4) {
             itemLimits = state.itemLimits1;
           }
-          console.log('*************', wearable);
+
+          let maxMintCounts = 0;
+          if (state.appConfig && state.appConfig.maxMintCounts) {
+            Object.keys(state.appConfig.maxMintCounts).map(address => {
+              if (address === wearable.address.toLowerCase()) {
+                maxMintCounts = state.appConfig.maxMintCounts[address];
+              }
+            })
+          }
+
+          console.log(wearable, state.userStatus, state.appConfig.minMintVerifyStep, maxMintCounts, itemLimits);
 
           return (
             <section key={index} className={styles.wearable_section}>
@@ -463,10 +466,10 @@ const MarketPlace = () => {
 
                         {state.userStatus >= 4 ? (
                           <p className={styles.nft_info}>
-                            {itemLimits[i][0]} of 100 left
+                            {itemLimits[i][0] >= 0 ? maxMintCounts - itemLimits[i][0] : '- '} of {maxMintCounts} left
                           </p>
                         ) : (
-                          <p className={styles.nft_info}>- of 100 left</p>
+                          <p className={styles.nft_info}>- of {maxMintCounts} left</p>
                         )}
                       </span>
                       <p className={styles.nft_other_p}>
@@ -478,13 +481,20 @@ const MarketPlace = () => {
                     </div>
 
                     <div className={styles.button_container}>
-                      {state.userStatus >= Global.CONSTANTS.MINT_STATUS &&
-                      itemLimits[i][0] > 0 ? (
+                      {state.userStatus >= 4 && itemLimits[i][0] < 0 ? (
+                        // items loading, display spinner
+
+                        <Button disabled className={styles.sold_button}>
+                          <Spinner width={20} height={20} />
+                        </Button>
+                      ) : state.userStatus >= state.appConfig.minMintVerifyStep &&
+                        (maxMintCounts - itemLimits[i][0]) > 0 ? (
                         // minting enabled
 
                         <div className={styles.flex_50}>
                           <ModalMintWearable
                             index={i}
+                            maxMintCounts={maxMintCounts}
                             numberLeft={itemLimits[i][0]}
                             itemID={itemLimits[i][1]}
                             address={itemLimits[5]}
@@ -495,42 +505,40 @@ const MarketPlace = () => {
                           />
                         </div>
                       ) : // Minting Disabled States
-
-                      itemLimits[i][0] >= 0 && itemLimits[i][0] < 1 ? (
-                        // Sold Out State
-
-                        <a
-                          className={styles.flex_50}
-                          href="https://opensea.io/collection/decentral-games-ice"
-                          target="_blank"
-                          style={{
-                            width: '100%',
-                          }}
-                        >
-                          <Button className={styles.wearable_button}>
-                            Buy on Secondary
+                        (maxMintCounts - itemLimits[i][0]) >= 0 && (maxMintCounts - itemLimits[i][0]) < 1 ? (
+                          wearable.title === 'Crypto Drip' ? (
+                            // Sold Out State
+                            <Button disabled className={styles.sold_button}>
+                              Sold Out
+                            </Button>
+                          )
+                            : (
+                              // Buy on Secondary
+                              <a
+                                className={styles.flex_50}
+                                href="https://opensea.io/collection/decentral-games-ice"
+                                target="_blank"
+                                style={{
+                                  width: '100%',
+                                }}
+                              >
+                                <Button className={styles.wearable_button}>
+                                  Buy on Secondary
+                                </Button>
+                              </a>
+                            )
+                        ) : state.userStatus < state.appConfig.minMintVerifyStep &&
+                          (maxMintCounts - itemLimits[i][0]) > 0 ? (
+                          // Coming Soon State
+                          <Button disabled className={styles.sold_button}>
+                            Coming Soon!
                           </Button>
-                        </a>
-                      ) : state.userStatus < Global.CONSTANTS.MINT_STATUS &&
-                        itemLimits[i][0] > 0 ? (
-                        // Coming Soon State
-
-                        <Button disabled className={styles.sold_button}>
-                          Coming Soon!
-                        </Button>
-                      ) : state.userStatus >= 4 && itemLimits[i][0] < 0 ? (
-                        // items loading, display spinner
-
-                        <Button disabled className={styles.sold_button}>
-                          <Spinner width={20} height={20} />
-                        </Button>
-                      ) : state.userStatus < 4 ? (
-                        // Logged Out State
-
-                        <div className={styles.flex_50}>
-                          <ModalLoginICE />
-                        </div>
-                      ) : null}
+                        ) : state.userStatus < 4 ? (
+                          // Logged Out State
+                          <div className={styles.flex_50}>
+                            <ModalLoginICE />
+                          </div>
+                        ) : null}
                     </div>
                   </div>
                 ))}
