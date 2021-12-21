@@ -29,7 +29,6 @@ const ModalLoginICE = () => {
 
       (async () => {
         const networkID = await web3.eth.net.getId();
-
         dispatch({
           type: 'network_id',
           data: networkID,
@@ -94,7 +93,6 @@ const ModalLoginICE = () => {
       // if new wallet update user status to 4 both locally and in the database
       // (/websiteLogin API call will return error with new wallet address)
       const response = await getUserStatus();
-
       if (response) {
         updateStatus(response, false);
       } else {
@@ -106,9 +104,6 @@ const ModalLoginICE = () => {
   async function updateStatus(value, post) {
     if (post) {
       console.log('Posting user status to db: ' + value);
-
-      // const responseIP = await Fetch.IP_ADDRESS();
-      // const jsonIP = await responseIP.json();
 
       // update user status in database
       await Fetch.REGISTER(state.affiliateAddress);
@@ -139,9 +134,6 @@ const ModalLoginICE = () => {
     console.log('Get user status: ModalLoginICE');
 
     try {
-      // const responseIP = await Fetch.IP_ADDRESS();
-      // const jsonIP = await responseIP.json();
-
       const responseStatus = await Fetch.USER_STATUS(userAddress, '');
       const jsonStatus = await responseStatus.json();
 

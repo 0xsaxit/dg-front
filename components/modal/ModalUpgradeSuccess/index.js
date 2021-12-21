@@ -16,40 +16,32 @@ const ModalUpgradeSuccess = props => {
 
   useEffect(() => {
     const itemInfo = state.iceWearableItems.filter(item => item.tokenID === props.tokenID)[0];
-    // setImage(itemInfo.meta_data? itemInfo.meta_data.image : '');
-    setImage(props.imgURL? props.imgURL : '');
-    setDescription(itemInfo.meta_data? itemInfo.meta_data.description.split(' ').at(-1).replace('/', ' of '):'');
-    setRank(itemInfo.meta_data? GetRank(parseInt(itemInfo.meta_data.attributes.find(el => el.trait_type === 'Bonus').value)):0);
+    setImage(props.imgURL ? props.imgURL : '');
+    setDescription(itemInfo.meta_data ? itemInfo.meta_data.description.split(' ').at(-1).replace('/', ' of ') : '');
+    setRank(itemInfo.meta_data ? GetRank(parseInt(itemInfo.meta_data.attributes.find(el => el.trait_type === 'Bonus').value)) : 0);
   }, [state.iceWearableItems])
 
   function refresh() {
-     // update global state token amounts
-     const refreshTokenAmounts = !state.refreshTokenAmounts;
-     dispatch({
-       type: 'refresh_token_amounts',
-       data: refreshTokenAmounts,
-     });
+    // update global state token amounts
+    const refreshTokenAmounts = !state.refreshTokenAmounts;
+    dispatch({
+      type: 'refresh_token_amounts',
+      data: refreshTokenAmounts,
+    });
 
-     // update global state wearables data
-     const refreshWearable = !state.refreshWearable;
-     dispatch({
-       type: 'refresh_wearable_items',
-       data: refreshWearable,
-     });
+    // update global state wearables data
+    const refreshWearable = !state.refreshWearable;
+    dispatch({
+      type: 'refresh_wearable_items',
+      data: refreshWearable,
+    });
 
-     // update global state balances
-     const refreshBalances = !state.refreshBalances;
-     dispatch({
-       type: 'refresh_balances',
-       data: refreshBalances,
-     });
-
-    // update global state balances        
-    // const refreshBalances = !state.refreshBalances;
-    // dispatch({
-    //   type: 'refresh_balances',
-    //   data: refreshBalances,
-    // });
+    // update global state balances
+    const refreshBalances = !state.refreshBalances;
+    dispatch({
+      type: 'refresh_balances',
+      data: refreshBalances,
+    });
   }
 
   return (
@@ -67,9 +59,9 @@ const ModalUpgradeSuccess = props => {
     >
       <div
         className={styles.header_buttons}
-        
+
       >
-        <span 
+        <span
           className={styles.button_close}
           onClick={() => {
             setOpen(false);
@@ -155,7 +147,7 @@ const ModalUpgradeSuccess = props => {
         </div>
 
         <div className={styles.buttons}>
-          <Button 
+          <Button
             href="https://api.decentral.games/ice/play?position=-110%2C129"
             target="_blank"
             className={styles.primary}
