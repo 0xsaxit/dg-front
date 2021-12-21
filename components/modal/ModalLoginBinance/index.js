@@ -3,9 +3,7 @@ import cn from 'classnames';
 import Web3 from 'web3';
 import { Modal, Icon, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
-import Global from 'components/Constants';
 import styles from './ModalLoginBinance.module.scss';
-import Images from '../../../common/Images';
 import Fetch from '../../../common/Fetch';
 
 const ModalLoginBinance = () => {
@@ -33,7 +31,6 @@ const ModalLoginBinance = () => {
 
       (async () => {
         const networkID = await web3.eth.net.getId();
-
         dispatch({
           type: 'network_id',
           data: networkID,
@@ -86,9 +83,6 @@ const ModalLoginBinance = () => {
     if (post) {
       console.log('Posting user status to db: ' + value);
 
-      // const responseIP = await Fetch.IP_ADDRESS();
-      // const jsonIP = await responseIP.data;
-
       // update user status in database
       await Fetch.REGISTER(userAddress, '', state.affiliateAddress);
 
@@ -110,9 +104,6 @@ const ModalLoginBinance = () => {
     console.log('Get user status: ModalLoginBinance');
 
     try {
-      // const responseIP = await Fetch.IP_ADDRESS();
-      // const jsonIP = await responseIP.data;
-
       const jsonStatus = await Fetch.USER_STATUS(userAddress, '');
 
       if (!jsonStatus.status) return false;
@@ -175,11 +166,6 @@ const ModalLoginBinance = () => {
               . We will never have access to your private keys and we can not
               access your funds without your direct confirmation.{' '}
             </p>
-            {/*<p className={styles.subtitle_2}>
-                {' '}
-                For the other casinos,{' '}
-                <a className="modal-a" href="https://metamask.io"> click here </a>.
-              </p>*/}
           </div>
         </Modal>
       ) : safari ? (
