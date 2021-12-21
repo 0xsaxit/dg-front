@@ -71,4 +71,167 @@ $mq-breakpoints: (
     transition: 0.2s ease-in;
     border-radius: 36px;
   }
+  
+  .scrolling.dimmable.dimmed {
+    overflow: hidden !important;
+    margin-right: -15px !important;
+  }
+
+  img.react-parallax-bgimage {
+    object-fit: cover;
+  }
+
+  section#modalContent.sc-bqGGPW.jMpqDL, .iPexDg.iPexDg.iPexDg, .jMpqDL.jMpqDL.jMpqDL {
+    background-color: black !important;
+  }
+
+  h1, h2, h3, h4, h5, p, button, a {
+    -webkit-font-smoothing: antialiased !important;
+  }
+  
+  
+  h1 {
+    font-family: 'Larsseit-ExtraBold';
+    font-weight: 800 !important;
+    font-size: 60px;
+    margin-bottom: 0px;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-family: 'Larsseit-ExtraBold';
+    font-weight: 800 !important;
+    font-size: 32px;
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+
+  h3 {
+    font-family: 'Larsseit-ExtraBold';
+    font-weight: 800 !important;
+    font-size: 32px;
+    margin-bottom: 0px;
+    line-height: 1.4;
+  }
+
+  .nft-other-h3 {
+    font-family: 'Larsseit-Bold';
+    font-size: 24px;
+    margin-top: 0px;
+  }
+
+  .home-other-h3 {
+    font-family: 'Larsseit-Bold';
+    font-size: 30px;
+    padding: 2px 0px 3px 0px;
+    margin-top: 0px;
+    text-align: center;
+  }
+
+  h4 {
+    font-family: 'Larsseit-ExtraBold';
+    font-weight: 800 !important;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  h5 {
+    font-family: 'Larsseit-Regular';
+    font-weight: 600 !important;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 1.4;
+  }
+
+  p {
+    font-family: 'Larsseit-Regular';
+    font-size: 21px;
+    font-weight: normal;
+    line-height: 1.4;
+  }
+  
+  .modal-a:hover {
+    color: white;
+    filter: brightness(0.75);
+  }
+
+  .account-hover {
+    font-family: 'Larsseit-Medium';
+    font-size: 18px !important;
+    cursor: pointer;
+    margin-left: 32px !important;
+    margin-right: 32px !important;
+    padding: 0px 6px 0px 6px;
+    color: rgb(92, 95, 97);
+    margin-top: 18px;
+  }
+}
+
+
+  .ui{
+    .checkbox {
+      margin-top: 4px;
+      margin-right: 24px;
+    }
+
+    .checkbox .box:before, .checkbox label:before {
+      border: 2px solid white;
+      border-radius: 6px;
+      width: 24px;
+      height: 24px;
+      background: transparent;
+    }
+
+    .checkbox input:checked~.box:before, .checkbox input:checked~label:before, .checkbox .box:hover::before, .checkbox label:hover::before, .checkbox input:checked~.box:before, .checkbox input:checked~label:before {
+      background-color: transparent !important;
+      border: 2px solid white;
+    }
+
+    .checkbox input:checked~.box:after, .checkbox input:checked~label:after {
+      border-radius: 6px;
+      width: 24px;
+      height: 24px;
+      padding-top: 3px;
+      font-size: 14px;
+      background: #0d6efd;
+      color: white !important;
+    }
+    
+    .button {
+      font-family: 'Larsseit-Bold';
+      border-radius: 16px;
+      transition: 0.2s ease-in !important;
+    }
+
+    .divider:not(.vertical):not(.horizontal) {
+      border-bottom: 0px !important;
+    }
+
+    .segment {
+      border: none !important;
+    }
+
+    .column.grid>[class*='sixteen wide'].column, .grid>.column.row>[class*='sixteen wide'].column, .grid>.row>[class*='sixteen wide'].column, .grid>[class*='sixteen wide'].column {
+      border-radius: 4px;
+    }
+  }
+
+.grid-margin {
+  margin-left: 1em !important;
+}
+
+.account-other-inner-p {
+  min-height: calc(100vh - 250px);
+}
+
+.nft-other-p {
+  font-family: Larsseit-Regular;
+  font-size: 14px;
+  line-height: 20px;
+  margin-top: 10px;
 }

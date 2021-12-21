@@ -27,7 +27,7 @@
   border-radius: 36px;
 } */
 
-.scrolling.dimmable.dimmed {
+/* .scrolling.dimmable.dimmed {
   overflow: hidden !important;
   margin-right: -15px !important;
 }
@@ -70,7 +70,7 @@ section#modalContent.sc-bqGGPW.jMpqDL, .iPexDg.iPexDg.iPexDg, .jMpqDL.jMpqDL.jMp
 
 h1, h2, h3, h4, h5, p, button, a {
   -webkit-font-smoothing: antialiased !important;
-}
+} */
 
 @font-face {
   font-family: 'Larsseit-ExtraBold';
@@ -96,7 +96,7 @@ h1, h2, h3, h4, h5, p, button, a {
   font-family: 'Larsseit-Light';
   src: url('public/static/fonts/Larsseit/Larsseit4.ttf');
 }
-
+/* 
 h1 {
   font-family: 'Larsseit-ExtraBold';
   font-weight: 800 !important;
@@ -160,9 +160,9 @@ p {
   font-size: 21px;
   font-weight: normal;
   line-height: 1.4;
-}
+} */
 
-.modal-a:hover {
+/* .modal-a:hover {
   color: white;
   filter: brightness(0.75);
 }
@@ -176,9 +176,9 @@ p {
   padding: 0px 6px 0px 6px;
   color: rgb(92, 95, 97);
   margin-top: 18px;
-}
+} */
 
-.ui.button {
+/* .ui.button {
   font-family: 'Larsseit-Bold';
   border-radius: 16px;
   transition: 0.2s ease-in !important;
@@ -188,16 +188,16 @@ p {
   border-bottom: 0px !important;
 }
 
-.grid-margin {
-  margin-left: 1em !important;
-}
-
 .ui.segment {
   border: none !important;
 }
 
 .ui.column.grid>[class*='sixteen wide'].column, .ui.grid>.column.row>[class*='sixteen wide'].column, .ui.grid>.row>[class*='sixteen wide'].column, .ui.grid>[class*='sixteen wide'].column {
   border-radius: 4px;
+} */
+
+/* .grid-margin {
+  margin-left: 1em !important;
 }
 
 .account-other-inner-p {
@@ -209,7 +209,7 @@ p {
   font-size: 14px;
   line-height: 20px;
   margin-top: 10px;
-}
+} */
 
 
 
