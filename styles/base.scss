@@ -313,10 +313,30 @@ $mq-breakpoints: (
     color: white !important;
   }
   
-  .button {
+  &.button {
     font-family: 'Larsseit-Bold';
     border-radius: 16px;
     transition: 0.2s ease-in !important;
+    
+    &.account-button {
+      padding-right: 16px;
+      padding-left: 16px;
+      height: 48px;
+      background-color: #1f1f1f;
+      border-radius: 16px;
+      color: white;
+      margin-right: 16px;
+      font-size: 18px !important;
+      transition: 0.2s ease-in;
+      
+      &:hover {
+        opacity: 0.6;
+        background-color: #1f1f1f;
+        color: white !important;
+        filter: none !important;
+        transition: 0.2s ease-in;
+      }
+    }
   }
 
   .divider:not(.vertical):not(.horizontal) {
@@ -330,6 +350,7 @@ $mq-breakpoints: (
   .column.grid>[class*='sixteen wide'].column, .grid>.column.row>[class*='sixteen wide'].column, .grid>.row>[class*='sixteen wide'].column, .grid>[class*='sixteen wide'].column {
     border-radius: 4px;
   }
+
 }
 
 .no-result-div {
@@ -367,6 +388,23 @@ $mq-breakpoints: (
   margin-top: 20px;
   margin-left: 30px;
   margin-right: 30px;
+}
+
+
+.avatar-edit-circle {
+  background-color: #1f1f1f;
+  position: relative;
+  z-index: 3;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  float: right;
+  margin-top: -40px;
+  margin-right: 2px;
+  
+  &:hover {
+    filter: brightness(0.9);
+  }
 }
 
 .account-hover {
@@ -472,5 +510,75 @@ $mq-breakpoints: (
   .accountTooltip .tooltip_body {
     display: flex;
     align-items: center;
+  }
+}
+
+//------------------------------------ SLIDER OVERRIDE
+
+
+
+.slick-slider {
+
+  .slick-arrow {
+    background-color: #006eff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9;
+    transition: 0.2s ease-in;
+
+    &:hover {
+      background: #006eff;
+      transition: 0.2s ease-in;
+    }
+
+    &.slick-disabled {
+      display: none;
+    }
+
+    &.slick-next {
+      right: 45px;
+
+      img {
+        position: relative;
+        width: 8px;
+        left: 2px;
+      }
+
+      &::before {
+        content: "\e825" !important;
+        font-family: revicons;
+        display: none;
+      }
+    }
+
+
+    &.slick-prev {
+      left: 25px;
+      content: "\e824" !important;
+      font-family: revicons;
+
+      img {
+        position: relative;
+        width: 8px;
+        left: -1px;
+        transform: rotate(180deg) !important;
+      }
+
+      &::before {
+        content: "\e824" !important;
+        font-family: revicons;
+        display: none;
+      }
+    }  
+  }
+}
+
+@media (max-width: 31.1875em) {
+  .slick-slider .slick-arrow {
+    display: none;
   }
 }

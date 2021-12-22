@@ -241,9 +241,9 @@ p {
 
 /* ----------------------------------------- */
 
-.earned-amount#treasury-breakdown {
+/* .earned-amount#treasury-breakdown {
   padding: 14px 18px 0px 18px !important;
-}
+} */
 /* 
 table {
   border-spacing: 0px;
@@ -379,9 +379,6 @@ td:last-child {
   padding-bottom: 10px;
 } */
 
-.account-copy {
-  margin-bottom: 12px;
-}
 
 .account-other-tabs {
   margin-top: 30px !important;
@@ -420,7 +417,7 @@ td:last-child {
 
 /* ----------------------------------------- */
 
-.avatar-edit-circle {
+/* .avatar-edit-circle {
   background-color: #1f1f1f;
   position: relative;
   z-index: 3;
@@ -434,7 +431,7 @@ td:last-child {
 
 .avatar-edit-circle:hover {
   filter: brightness(0.9);
-}
+} */
 
 /* .account-hover.active {
   color: black;
@@ -472,11 +469,10 @@ td:last-child {
 
 /* ----------------------------------------- */
 
-.ui.button.account-button {
+/* .ui.button.account-button {
   padding-right: 16px;
   padding-left: 16px;
   height: 48px;
-  /* margin-top: 12px; */
   background-color: #1f1f1f;
   border-radius: 16px;
   color: white;
@@ -491,15 +487,15 @@ td:last-child {
   color: white !important;
   filter: none !important;
   transition: 0.2s ease-in;
-}
-
+} */
+/* 
 .right-menu-text.bnb {
   line-height: 0px;
   padding-top: 1px;
-}
+} */
 
 
-.slick-slider .slick-arrow {
+/* .slick-slider .slick-arrow {
   background-color: #006eff;
   width: 40px;
   height: 40px;
@@ -559,7 +555,7 @@ td:last-child {
   .slick-slider .slick-arrow {
     display: none;
   }
-}
+} */
 
 
 /* .account-address {
