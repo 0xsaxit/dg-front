@@ -20,6 +20,54 @@ const MarketPlace = () => {
   const [previewLevel, setPreviewLevel] = useState([0, 0, 0, 0, 0]);
   const wearables = [
     {
+      title: 'Founder Fathers',
+      address: Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS,
+      preview: [
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_1_fvhl6y.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_2_pqzdsy.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_4_zn5mqz.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_3_yloaxi.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_5_cnndmr.png',
+      ],
+      details: {
+        Feather: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116020/feather_level_1_rd61am.png',
+          'Father Feather',
+          'Founder Fathers',
+          'Accessory',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116020/feather_level_1_rd61am.png',
+        ],
+        Flow: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116025/hair_level_1_dampks.png',
+          'Father Flow',
+          'Founder Fathers',
+          'Head',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116025/hair_level_1_dampks.png',
+        ],
+        Frock: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116021/coat_level_1_ivacwe.png',
+          'Father Frock',
+          'Founder Fathers',
+          'Torso',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116021/coat_level_1_ivacwe.png',
+        ],
+        Breeches: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116030/pants_level_1_srgdhc.png',
+          'Father Breeches',
+          'Founder Fathers',
+          'Legs',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116030/pants_level_1_srgdhc.png',
+        ],
+        Shoes: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116026/mules_level_1_u7jgmh.png',
+          'Father Mules',
+          'Founder Fathers',
+          'Feet',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116026/mules_level_1_u7jgmh.png',
+        ],
+      },
+    },
+    {
       title: 'Crypto Drip',
       address: Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS,
       preview: [
@@ -351,16 +399,20 @@ const MarketPlace = () => {
         {wearables.map((wearable, index) => {
           let itemLimits;
           if (index === 0) {
-            itemLimits = state.itemLimits5;
+            itemLimits = state.itemLimits6;
           } else if (index === 1) {
-            itemLimits = state.itemLimits4;
+            itemLimits = state.itemLimits5;
           } else if (index === 2) {
-            itemLimits = state.itemLimits3;
+            itemLimits = state.itemLimits4;
           } else if (index === 3) {
-            itemLimits = state.itemLimits2;
+            itemLimits = state.itemLimits3;
           } else if (index === 4) {
+            itemLimits = state.itemLimits2;
+          } else if (index === 5) {
             itemLimits = state.itemLimits1;
           }
+
+          console.log(state.appConfig.maxMintCounts);
 
           let maxMintCounts = 0;
           if (state.appConfig && state.appConfig.maxMintCounts) {
@@ -506,7 +558,7 @@ const MarketPlace = () => {
                         </div>
                       ) : // Minting Disabled States
                         (maxMintCounts - itemLimits[i][0]) >= 0 && (maxMintCounts - itemLimits[i][0]) < 1 ? (
-                          wearable.title === 'Crypto Drip' ? (
+                          wearable.title === 'Founder Fathers' ? (
                             // Sold Out State
                             <Button disabled className={styles.sold_button}>
                               Sold Out
