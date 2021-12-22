@@ -66,8 +66,17 @@
     .right_menu_items {
       display: flex;
       margin-left: auto;
+      
+      p {
+        border: none;
+        box-shadow: none;
+        letter-spacing: 1.25px;
+        font-size: 18px;
+        font-family: Larsseit-Bold;
+        padding: 4px 6px 0px 6px;
+      }
     }
-
+    
     .menu_logo {
       width: 36px;
       height: 100%;
