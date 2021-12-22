@@ -423,6 +423,8 @@ const ModalEthAuth = props => {
       <ModalMintSuccess
         wearableImg={props.wearableImg}
         show={openMintSuccess}
+        maxMintCounts={props.maxMintCounts}
+        numberLeft={props.numberLeft}
         close={() => {
           setOpenMintSuccess(false);
         }}

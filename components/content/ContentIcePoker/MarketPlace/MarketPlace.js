@@ -506,7 +506,7 @@ const MarketPlace = () => {
                         </div>
                       ) : // Minting Disabled States
                         (maxMintCounts - itemLimits[i][0]) >= 0 && (maxMintCounts - itemLimits[i][0]) < 1 ? (
-                          wearable.title === 'Crypto Drip' ? (
+                          wearable.title === 'Founder Fathers' ? (
                             // Sold Out State
                             <Button disabled className={styles.sold_button}>
                               Sold Out
