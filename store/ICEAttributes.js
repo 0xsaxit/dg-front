@@ -11,6 +11,7 @@ import ABI_COLLECTION_PH from '../components/ABI/ABICollectionPH';
 import ABI_COLLECTION_LINENS from '../components/ABI/ABICollectionLinens';
 import ABI_COLLECTION_BOMBER from '../components/ABI/ABICollectionBomber';
 import ABI_COLLECTION_CRYPTO_DRIP from '../components/ABI/ABICollectionCryptoDrip.json';
+import ABI_COLLECTION_FOUNDER_FATHER from '../components/ABI/ABICollectionFounderFather.json';
 import ABI_ICEToken from '../components/ABI/ABIICEToken';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
@@ -80,6 +81,10 @@ function ICEAttributes() {
           ABI_COLLECTION_CRYPTO_DRIP,
           Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS
         );
+        const collectionV2Contract6 = new maticWeb3.eth.Contract(
+          ABI_COLLECTION_FOUNDER_FATHER,
+          Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS
+        );
 
         const collectionArray = [];
         collectionArray.push([
@@ -105,6 +110,11 @@ function ICEAttributes() {
         collectionArray.push([
           collectionV2Contract5,
           Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS,
+          [0, 5, 10, 15, 20],
+        ]);
+        collectionArray.push([
+          collectionV2Contract6,
+          Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS,
           [0, 5, 10, 15, 20],
         ]);
         setCollectionArray(collectionArray);
@@ -161,8 +171,6 @@ function ICEAttributes() {
           return tokenIDs;
         });
         await Promise.all(tokensById);
-
-        console.log('Fetching metadata =========================');
 
         let iceWearableItems = [];
         for (var i = 0; i < tokenIDs.length; i++) {
@@ -250,7 +258,7 @@ function ICEAttributes() {
                   itemID: json.id.split(':').slice(-1),
                   meta_data: json,
                   address: item.contractAddress,
-                  isCheckedIn,
+                  isCheckedIn
                 });
               }
             } catch (error) {
@@ -306,6 +314,12 @@ function ICEAttributes() {
           data: itemLimits5,
         });
 
+        const itemLimits6 = await getItemLimits(5);
+        dispatch({
+          type: 'item_limits_6',
+          data: itemLimits6,
+        });
+
         // get the user's cool-down status
         console.log(' ==== <Before getCoolDownStatus> ====');
         const canPurchase = await getCoolDownStatus();
@@ -340,8 +354,6 @@ function ICEAttributes() {
             iceAmounts.ICE_AVAILABLE_AMOUNT
           );
           iceAmounts.ICE_CLAIM_AMOUNT = parseInt(iceAmounts.ICE_CLAIM_AMOUNT);
-
-          console.log('==== <iceAmounts> ==== ', iceAmounts);
 
           dispatch({
             type: 'ice_amounts',

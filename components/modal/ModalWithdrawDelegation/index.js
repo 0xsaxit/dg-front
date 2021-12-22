@@ -17,6 +17,7 @@ const ModalWithdrawDelegation = props => {
   const [withdrawStatus, setWithdrawStatus] = useState(0);
   const [errorMsg, setErrorMsg] = useState(null);
   const isDelegator = props.ownerAddress === state.userAddress;
+  const checkInStatus = state.iceWearableInventoryItems.find((item) => item.tokenId === props.tokenID)?.checkInStatus;
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -247,9 +248,15 @@ const ModalWithdrawDelegation = props => {
                       }
                     }}
                   >
-                    <>
-                      Withdraw Delegation
-                    </>
+                    <div className={styles.withdraw_button}>
+                      <p className={styles.main_text}>Withdraw Delegation</p>
+                      <p className={styles.sub_text}>
+                        {checkInStatus?
+                          'Withdraw Immediately':
+                          `Schedule Withdraw: 12am UTC (In ${getRemainingTime()} Hours)`
+                        }
+                      </p>
+                    </div>
                   </Button>
                 ) : (
                   <Button className={styles.button_close} disabled={true}>

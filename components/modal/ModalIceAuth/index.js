@@ -3,8 +3,8 @@ import { GlobalContext } from '../../../store';
 import { Biconomy } from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Modal, Button } from 'semantic-ui-react';
-import styles from './ModalEthAuth.module.scss';
-import ABI_CHILD_TOKEN_WETH from '../../ABI/ABIChildTokenWETH';
+import styles from './ModalIceAuth.module.scss';
+import ABI_CHILD_TOKEN_ICE from '../../ABI/ABIChildTokenICE';
 import MetaTx from '../../../common/MetaTx';
 import Fetch from '../../../common/Fetch';
 import Aux from '../../_Aux';
@@ -13,7 +13,7 @@ import MetamaskAction, { ActionLine } from 'components/common/MetamaskAction';
 import ModalMintSuccess from '../ModalMintSuccess';
 import { Loader } from 'semantic-ui-react';
 
-const ModalEthAuth = props => {
+const ModalIceAuth = props => {
   // dispatch user's treasury contract active status to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -26,7 +26,7 @@ const ModalEthAuth = props => {
   const [open, setOpen] = useState(false);
   const [openMintSuccess, setOpenMintSuccess] = useState(false);
   const [minting, setMinting] = useState(false);
-  const [clickedAuthEth, setClickedAuthEth] = useState(false);
+  const [clickedAuthICE, setClickedAuthICE] = useState(false);
   const [clickedConfirm, setClickedConfirm] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorText, setErrorText] = useState(null);
@@ -85,15 +85,15 @@ const ModalEthAuth = props => {
       setSpenderAddress(spenderAddress);
 
       const tokenContract = new getWeb3.eth.Contract(
-        ABI_CHILD_TOKEN_WETH,
-        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH
+        ABI_CHILD_TOKEN_ICE,
+        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ICE
       );
 
       setTokenContract(tokenContract);
 
       biconomy
         .onEvent(biconomy.READY, () => {
-          console.log('Mexa is Ready: Approve ETH (wearables)');
+          console.log('Mexa is Ready: Approve ICE (wearables)');
           setBiconomyReady(true);
         })
         .onEvent(biconomy.ERROR, (error, message) => {
@@ -104,7 +104,7 @@ const ModalEthAuth = props => {
 
   // get WETH authorization status based on tokenAuths state object
   useEffect(() => {
-    const authStatus = state.tokenAuths.WETH_AUTHORIZATION;
+    const authStatus = state.tokenAuths.ICE_AUTHORIZATION;
     setAuthStatus(authStatus);
   }, [state.tokenAuths]);
 
@@ -116,7 +116,7 @@ const ModalEthAuth = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
-  function approveWETH() {
+  function approveICE() {
     return (
       <Aux>
         <div className={styles.header}>
@@ -133,15 +133,15 @@ const ModalEthAuth = props => {
             actionState={
               authStatus
                 ? 'done'
-                : !clickedAuthEth
+                : !clickedAuthICE
                   ? 'initial'
-                  : clickedAuthEth
+                  : clickedAuthICE
                     ? 'clicked'
                     : null
             }
             disabled={true}
-            primaryText="Authorize ETH"
-            secondaryText="Enables ETH Transaction"
+            primaryText="Authorize ICE"
+            secondaryText="Enables ICE Transaction"
           />
 
           <ActionLine previousAction={authStatus ? 'done' : 'initial'} />
@@ -260,7 +260,7 @@ const ModalEthAuth = props => {
   // Biconomy API meta-transaction. User must authorize WETH token contract to access their funds
   async function metaTransaction() {
     try {
-      console.log('WETH authorization amount: ' + Global.CONSTANTS.MAX_AMOUNT);
+      console.log('ICE authorization amount: ' + Global.CONSTANTS.MAX_AMOUNT);
       setClickedAuthEth(true);
       setLoading(true);
       setErrorText(null);
@@ -280,7 +280,7 @@ const ModalEthAuth = props => {
 
       if (txHash === false) {
         console.log('Biconomy meta-transaction failed');
-        setErrorText('ETH Authorization failed, please try again');
+        setErrorText('ICE Authorization failed, please try again');
         setClickedAuthEth(false);
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
@@ -296,8 +296,8 @@ const ModalEthAuth = props => {
         setLoading(false);
       }
     } catch (error) {
-      console.log('WETH authorization error: ' + error);
-      setErrorText('ETH Authorization failed, please try again');
+      console.log('ICE authorization error: ' + error);
+      setErrorText('ICE Authorization failed, please try again');
 
       setClickedAuthEth(false);
       setLoading(false);
@@ -386,7 +386,7 @@ const ModalEthAuth = props => {
           }}
         >
           <div className={styles.upgrade_container}>
-            {approveWETH()}
+            {approveICE()}
 
             {!minting ? (
               canPurchase ? (
@@ -406,7 +406,7 @@ const ModalEthAuth = props => {
                   ) : authStatus ? (
                     'Confirm Purchase'
                   ) : biconomyReady ? (
-                    'Authorize ETH'
+                    'Authorize ICE'
                   ) : (
                     'Biconomy Initializing'
                   )}
@@ -440,4 +440,4 @@ const ModalEthAuth = props => {
   );
 };
 
-export default ModalEthAuth;
+export default ModalIceAuth;

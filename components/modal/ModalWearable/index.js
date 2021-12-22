@@ -177,7 +177,7 @@ const ModalWearable = props => {
                     className={styles.img_card}
                   />
                 </div>
-                <div className={styles.card}>x of 100</div>
+                <div className={styles.card}>x of {props.description.split('/').at(-1)}</div>
               </div>
             </div>
 
