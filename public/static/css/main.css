@@ -372,12 +372,12 @@ td:last-child {
   margin-right: auto !important;
 }
 
-#tx-box-history-2 {
+/* #tx-box-history-2 {
   border: 0px;
   border-radius: 4px;
   margin-top: 30px;
   padding-bottom: 10px;
-}
+} */
 
 .account-copy {
   margin-bottom: 12px;
@@ -562,8 +562,8 @@ td:last-child {
 }
 
 
-.account-address {
-  font-size: 18px;
+/* .account-address {
+  font-size: 18px !important;
   opacity: 0.5;
   padding-left: 8px;
   margin-top: -4px !important;
@@ -588,13 +588,13 @@ i.clone.outline.icon, .account-address {
   cursor: pointer;
   color: white !important;
   transition: all linear 0.1s;
-}
+} */
 
-.no-result-div {
+/* .no-result-div {
   margin-top: 40px;
 }
 
 .no-result-div .title {
   font-size: 24px;
   text-align: center;
-}
+} */
