@@ -334,7 +334,7 @@ td:last-child {
 } */
 
 
-.foxAnimation-div {
+/* .foxAnimation-div {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -346,7 +346,7 @@ td:last-child {
   font-family: 'Larsseit-Bold';
   font-size: 20px;
   text-align: center;
-}
+} */
 
 
 /* ----------------------------------------- */
@@ -356,7 +356,7 @@ td:last-child {
 /* ----------------------------------------- */
 
 
-.tab-divider {
+/* .tab-divider {
   position: relative !important;
   z-index: 5 !important;
   margin-top: 21px !important;
@@ -370,7 +370,7 @@ td:last-child {
   max-width: 1400px;
   margin-left: auto !important;
   margin-right: auto !important;
-}
+} */
 
 /* #tx-box-history-2 {
   border: 0px;
@@ -380,35 +380,26 @@ td:last-child {
 } */
 
 
-.account-other-tabs {
+/* .account-other-tabs {
   margin-top: 30px !important;
   padding: 0px 0px 30px 0px;
   color: black;
   text-align: center;
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
   overflow: auto;
   scroll-behavior: smooth;
-  position: relative;
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
-}
-
-.account-other-tabs {
-  display: flex;
-  padding-top: 10px;
-  margin-top: 90px;
-  flex-direction: column;
-  justify-content: space-between;
   position: relative !important;
   z-index: 5 !important;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .account-other-tabs::-webkit-scrollbar {
   display: none;
-}
+} */
 
 
 /* ----------------------------------------- */
