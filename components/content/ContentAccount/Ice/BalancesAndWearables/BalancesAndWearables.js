@@ -9,7 +9,7 @@ const BalancesAndWearables = () => {
   return (
     <Aux>
       <Balances state={state} />
-      <Wearables state={state} />
+      <Wearables />
     </Aux>
   );
 };
