@@ -7,7 +7,6 @@ import 'public/static/css/fonts.css';
 import 'public/static/css/agate.css';
 import 'public/static/css/blog.css';
 import 'public/static/css/spinner.css';
-import 'public/static/css/mobile.css';
 import '../styles/bootstrap-overrides.scss';
 import Segment from '../components/Segment';
 import UserStatus from '../store/UserStatus';
