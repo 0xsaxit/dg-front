@@ -9,7 +9,6 @@ import Fetch from '../../../../common/Fetch';
 import FoxAnimation from 'components/lottieAnimation/animations/fox';
 import NoResult from 'components/lottieAnimation/animations/noResult';
 import ModalIceBreakdown from 'components/modal/ModalIceBreakDown';
-import Images from 'common/Images';
 import SpinnerAnimation from 'components/lottieAnimation/animations/spinner';
 
 const IceRewards = () => {

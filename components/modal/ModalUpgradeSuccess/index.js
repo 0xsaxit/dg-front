@@ -3,6 +3,9 @@ import { GlobalContext } from '../../../store';
 import GetRank from '../../../common/GetIceWearableRank'
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './ModalUpgradeSuccess.module.scss';
+import cn from 'classnames';
+import UpgradeWearableBox from "components/lottieAnimation/animations/upgradeWearableBox"
+import Confetti from "components/lottieAnimation/animations/confetti"
 
 const ModalUpgradeSuccess = props => {
   // fetch user's Polygon DG balance from the Context API store
@@ -13,8 +16,10 @@ const ModalUpgradeSuccess = props => {
   const [image, setImage] = useState("")
   const [description, setDescription] = useState("x of 100");
   const [rank, setRank] = useState({})
+  const [animationStage, setAnimationStage] = useState(1)
 
   useEffect(() => {
+    // refresh();
     const itemInfo = state.iceWearableItems.filter(item => item.tokenID === props.tokenID)[0];
     setImage(props.imgURL ? props.imgURL : '');
     setDescription(itemInfo.meta_data ? itemInfo.meta_data.description.split(' ').at(-1).replace('/', ' of ') : '');
@@ -50,7 +55,7 @@ const ModalUpgradeSuccess = props => {
        data: refreshBalances,
      });
   }
-
+    
   return (
     <Modal
       className={styles.success_modal}
@@ -65,8 +70,7 @@ const ModalUpgradeSuccess = props => {
       trigger={<Button className={styles.open_button}>Upgrade</Button>}
     >
       <div
-        className={styles.header_buttons}
-
+        className={styles.header_buttons}    
       >
         <span
           className={styles.button_close}
@@ -122,57 +126,64 @@ const ModalUpgradeSuccess = props => {
           Help
         </span>
       </div>
+      
 
-      <div className={styles.success_container}>
-        <div className={styles.title}>Upgrade Successful!</div>
-
-        <div className={styles.card}>
-          <div className={styles.toppercent}>
-            {rank.percentage}
-            <img
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631326183/ICE_Diamon_ICN_k27aap.png"
-              style={{ width: '20px', marginLeft: '3px' }}
-            />
-          </div>
-          <div className={styles.image}>
-            <img
-              src={image}
-              className={styles.logo}
-            />
-          </div>
-          <div className={styles.properties}>
-            <div className={styles.round}>Rank {rank.value}</div>
-            <div className={styles.round}>
+      {(animationStage===1) ?
+        <UpgradeWearableBox height={540} onCompletion={()=>{setAnimationStage(2)}}/>
+        :
+        <div className={cn(styles.fadeIn, styles.success_container)}>
+          <Confetti onCompletion={()=>{setAnimationStage(3)}}/>
+          <div className={styles.title}>Upgrade Successful!</div>
+          
+          <div className={styles.card}>
+            <div className={styles.toppercent}>
               {rank.percentage}
               <img
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631326183/ICE_Diamon_ICN_k27aap.png"
-                style={{ width: '14px', marginLeft: '2px' }}
+                style={{ width: '20px', marginLeft: '3px' }}
               />
             </div>
-            <div className={styles.round}>{description}</div>
+            <div className={styles.image}>
+              <img
+                src={image}
+                className={styles.logo}
+              />
+            </div>
+            <div className={styles.properties}>
+              <div className={styles.round}>Rank {rank.value}</div>
+              <div className={styles.round}>
+                {rank.percentage}
+                <img
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631326183/ICE_Diamon_ICN_k27aap.png"
+                  style={{ width: '14px', marginLeft: '2px' }}
+                />
+              </div>
+              <div className={styles.round}>{description}</div>
+            </div>
+          </div>
+
+          <div className={styles.buttons}>
+            <Button 
+              href="https://api.decentral.games/ice/play?position=-110%2C129"
+              target="_blank"
+              className={styles.primary}
+            >
+              Play Now
+            </Button>
+            <Button
+              className={styles.none}
+              onClick={() => {
+                setOpen(false);
+                props.setUpgrade(0);
+                refresh();
+              }}
+            >
+              Back to Account
+            </Button>
           </div>
         </div>
-
-        <div className={styles.buttons}>
-          <Button
-            href="https://api.decentral.games/ice/play?position=-110%2C129"
-            target="_blank"
-            className={styles.primary}
-          >
-            Play Now
-          </Button>
-          <Button
-            className={styles.none}
-            onClick={() => {
-              setOpen(false);
-              props.setUpgrade(0);
-              refresh();
-            }}
-          >
-            Back to Account
-          </Button>
-        </div>
-      </div>
+          
+      }
     </Modal>
   );
 };

@@ -292,13 +292,6 @@ const ActivateWearableModal = props => {
           data: refreshTokenAmounts,
         });
 
-        // update global state wearables data
-        const refreshWearable = !state.refreshWearable;
-        dispatch({
-          type: 'refresh_wearable_items',
-          data: refreshWearable,
-        });
-
         // update global state balances
         const refreshBalances = !state.refreshBalances;
         dispatch({
@@ -381,7 +374,7 @@ const ActivateWearableModal = props => {
           </div>
           {showErrorCase()}
         </Modal>
-      ) : (
+      ) :
         <ModalActivationSuccess
           show={openUpgradeSuccess}
           setOpenUpgradeSuccess={setOpenUpgradeSuccess}
@@ -390,7 +383,7 @@ const ActivateWearableModal = props => {
             setOpenUpgradeSuccess(false);
           }}
         />
-      )}
+      }
     </Aux>
   );
 };

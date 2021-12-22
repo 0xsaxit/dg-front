@@ -5,7 +5,6 @@ import { Button } from 'semantic-ui-react';
 import styles from './Balances.module.scss';
 import Fetch from '../../../../../../common/Fetch';
 import Aux from '../../../../../_Aux';
-import Spinner from 'components/Spinner';
 import SpinnerAnimation from 'components/lottieAnimation/animations/spinner';
 
 const Balances = () => {
