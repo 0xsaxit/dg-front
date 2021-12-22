@@ -26,7 +26,6 @@ const ModalEthAuth = props => {
   const [open, setOpen] = useState(false);
   const [openMintSuccess, setOpenMintSuccess] = useState(false);
   const [minting, setMinting] = useState(false);
-  // const [buttonMessage, setButtonMessage] = useState('Proceed to Mint');
   const [clickedAuthEth, setClickedAuthEth] = useState(false);
   const [clickedConfirm, setClickedConfirm] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -111,17 +110,6 @@ const ModalEthAuth = props => {
 
   useEffect(() => {
     const canPurchase = state.canPurchase;
-
-    // if (canPurchase) {
-    //   if (state.tokenAuths.WETH_AUTHORIZATION) {
-    //     setButtonMessage('Confirm Purchase');
-    //   } else {
-    //     setButtonMessage('Authorize ETH');
-    //   }
-    // } else {
-    //   setButtonMessage('Cooldown Period');
-    // }
-
     setCanPurchase(canPurchase);
   }, [state.canPurchase]);
 
@@ -146,10 +134,10 @@ const ModalEthAuth = props => {
               authStatus
                 ? 'done'
                 : !clickedAuthEth
-                ? 'initial'
-                : clickedAuthEth
-                ? 'clicked'
-                : null
+                  ? 'initial'
+                  : clickedAuthEth
+                    ? 'clicked'
+                    : null
             }
             disabled={true}
             primaryText="Authorize ETH"
@@ -189,7 +177,6 @@ const ModalEthAuth = props => {
       }
     } catch (error) {
       setErrorText('API Timeout');
-      // setButtonMessage('API Timeout');
       setLoading(false);
       setClickedConfirm(false);
 
@@ -202,7 +189,6 @@ const ModalEthAuth = props => {
     setErrorText(null);
     console.log('Minting NFT item ID: ' + props.itemID);
     setMinting(true);
-
     setLoading(true);
     setClickedConfirm(true);
 
@@ -234,6 +220,13 @@ const ModalEthAuth = props => {
           data: refresh2,
         });
 
+        // update global state wearable Inventory data
+        const refresh3 = !state.refreshWearableInventory;
+        dispatch({
+          type: 'refresh_wearable_inventory_items',
+          data: refresh3,
+        });
+
         console.log('NFT minting successful');
 
         setOpenMintSuccess(true);
@@ -245,14 +238,12 @@ const ModalEthAuth = props => {
         props.close();
       } else if (!json.status) {
         setErrorText('Token Minting Error');
-        // setButtonMessage('Token Minting Error');
         setLoading(false);
         setClickedConfirm(false);
 
         console.log('NFT minting error (a): ' + json.result);
       } else if (json.status === 'error') {
         setErrorText(json.result);
-        // setButtonMessage(json.result);
         setLoading(false);
         setClickedConfirm(false);
 
@@ -260,7 +251,6 @@ const ModalEthAuth = props => {
       }
     } else {
       setErrorText('Token Minting Error');
-      // setButtonMessage('Token Minting Error');
       setLoading(false);
       setClickedConfirm(false);
     }
@@ -440,6 +430,8 @@ const ModalEthAuth = props => {
       <ModalMintSuccess
         wearableImg={props.wearableImg}
         show={openMintSuccess}
+        maxMintCounts={props.maxMintCounts}
+        numberLeft={props.numberLeft}
         close={() => {
           setOpenMintSuccess(false);
         }}

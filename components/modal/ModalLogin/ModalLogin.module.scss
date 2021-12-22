@@ -1,6 +1,5 @@
 @import "styles/base.scss";
 
-
 .play_now_modal {
 	display: flex;
 	height: 64px;
@@ -11,7 +10,7 @@
 	color: white;
 	margin-top: -8px !important;
 	margin-left: 16px !important;
-	background: #006EFF !important;
+	background: #006eff !important;
 	color: white !important;
 	font-size: 20px !important;
 	font-family: Larsseit-Bold;
@@ -22,9 +21,9 @@
 		display: none;
 	}
 	.connect_metamask_modal {
-    -ms-transform: scale(0.7, 0.7); /* IE 9 */
-    -webkit-transform: scale(0.7, 0.7); /* Safari */
-    transform: scale(0.7, 0.7);
+		-ms-transform: scale(0.7, 0.7); /* IE 9 */
+		-webkit-transform: scale(0.7, 0.7); /* Safari */
+		transform: scale(0.7, 0.7);
 	}
 }
 
@@ -59,8 +58,8 @@
 		background: #006eff;
 		width: 100%;
 		line-height: 50px;
-	
-		&:hover {		
+
+		&:hover {
 			color: white;
 			background: #006eff;
 			filter: brightness(0.9) !important;

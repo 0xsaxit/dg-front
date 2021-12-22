@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react'
 import { GlobalContext } from '../../../../store';
 import { Table } from 'semantic-ui-react';
 import FoxAnimation from 'components/lottieAnimation/animations/fox'
-import SadEmoji from 'components/lottieAnimation/animations/sadEmoji';
 import StarAnimation from 'components/lottieAnimation/animations/star';
 import NoResult from 'components/lottieAnimation/animations/noResult';
 import styles from './Leaderboard.module.scss'

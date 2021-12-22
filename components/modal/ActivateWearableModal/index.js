@@ -5,7 +5,6 @@ import Web3 from 'web3';
 import ABI_DG_LIGHT_TOKEN from '../../../components/ABI/ABIChildTokenLightDG';
 import ABI_ICE_REGISTRANT from '../../../components/ABI/ABIICERegistrant.json';
 import MetaTx from '../../../common/MetaTx';
-// import MetamaskAction from './MetamaskAction';
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './ActivateWearableModal.module.scss';
 import ModalActivationSuccess from '../ModalActivationSuccess';
@@ -37,9 +36,7 @@ const ActivateWearableModal = props => {
     if (state.userStatus >= 4) {
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
-
       // const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
-
       const biconomy = new Biconomy(
         new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
         {
@@ -63,7 +60,6 @@ const ActivateWearableModal = props => {
         Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
       );
       setIceRegistrantContract(iceRegistrantContract);
-
       setInstances(true); // contract instantiation complete
 
       biconomy
@@ -99,7 +95,6 @@ const ActivateWearableModal = props => {
     const authStatusDGLight = state.tokenAuths.DG_LIGHT_AUTHORIZATION;
 
     console.log("token  =====> ", state.tokenAuths.DG_LIGHT_AUTHORIZATION);
-
     setAuthStatusDGLight(authStatusDGLight);
   }, [state.tokenAmounts]);
 
@@ -297,18 +292,18 @@ const ActivateWearableModal = props => {
           data: refreshTokenAmounts,
         });
 
-        // update global state wearables data
-        const refreshWearable = !state.refreshWearable;
-        dispatch({
-          type: 'refresh_wearable_items',
-          data: refreshWearable,
-        });
-
         // update global state balances
         const refreshBalances = !state.refreshBalances;
         dispatch({
           type: 'refresh_balances',
           data: refreshBalances,
+        });
+
+        // update global state wearable Inventory data
+        const refreshWearableInventory = !state.refreshWearableInventory;
+        dispatch({
+          type: 'refresh_wearable_inventory_items',
+          data: refreshWearableInventory,
         });
 
         // close this modal and open the success modal
@@ -373,13 +368,13 @@ const ActivateWearableModal = props => {
                   ? 'Confirming...'
                   : 'Confirm Activation'
                 : clicked
-                ? 'Authorizing ...'
-                : 'Authorize DG'}
+                  ? 'Authorizing ...'
+                  : 'Authorize DG'}
             </Button>
           </div>
           {showErrorCase()}
         </Modal>
-      ) : (
+      ) :
         <ModalActivationSuccess
           show={openUpgradeSuccess}
           setOpenUpgradeSuccess={setOpenUpgradeSuccess}
@@ -388,7 +383,7 @@ const ActivateWearableModal = props => {
             setOpenUpgradeSuccess(false);
           }}
         />
-      )}
+      }
     </Aux>
   );
 };

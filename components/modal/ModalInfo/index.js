@@ -33,14 +33,12 @@ const ModalInfo = () => {
     const dgTotal =
       parseFloat(state.DGBalances.BALANCE_ROOT_DG_LIGHT) +
       parseFloat(state.DGBalances.BALANCE_CHILD_DG_LIGHT);
-
     setDGTotal(dgTotal);
     setDGTotalUSD(dgTotal * DGPrice);
 
     const xdgTotal =
       parseFloat(state.stakingBalances.BALANCE_USER_GOVERNANCE) +
       parseFloat(state.DGBalances.BALANCE_CHILD_TOKEN_XDG);
-
     setXDGTotal(xdgTotal);
     setXDGTotalUSD(xdgTotal * DGPrice);
 
@@ -76,9 +74,6 @@ const ModalInfo = () => {
       const balanceRootDG = state.DGBalances.BALANCE_ROOT_DG;
       const balanceRootDGAdjusted = balanceRootDG * 1000;
 
-      // const balanceChildDG = state.DGBalances.BALANCE_CHILD_DG;
-      // const balanceChildDGAdjusted = balanceChildDG * 1000;
-
       const balanceStakingGov = state.DGBalances.BALANCE_STAKING_GOVERNANCE;
       const balanceStakingGovAdjusted = balanceStakingGov * 1000;
 
@@ -91,7 +86,6 @@ const ModalInfo = () => {
         balanceUserGovOldAdjusted +
         balanceRootDGAdjusted +
         balanceStakingGovAdjusted;
-
       setDGSummationOld(dgSummationOld);
     }
   }, [state.DGBalances, state.stakingBalances]);

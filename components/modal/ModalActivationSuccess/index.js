@@ -19,12 +19,32 @@ const ModalActivationSuccess = props => {
     setRank(GetRank(parseInt(itemInfo.meta_data.attributes.find(el => el.trait_type === 'Bonus').value)));
   }, [state.iceWearableItems])
 
+  useEffect(() => {
+    setOpen(props.show);
+  }, [props.show])
+
+  function close() {
+    setOpen(false);
+
+    // update global state wearables data
+    const refreshWearable = !state.refreshWearable;
+    dispatch({
+      type: 'refresh_wearable_items',
+      data: refreshWearable,
+    });
+
+    dispatch({
+      type: 'ice_wearable_items_loading',
+      data: true,
+    });
+  }
+
   return (
     <>
       <Modal
         className={styles.activation_success_modal}
         onClose={() => {
-          setOpen(false);
+          close();
         }}
         onOpen={() => setOpen(true)}
         open={open}
@@ -39,8 +59,7 @@ const ModalActivationSuccess = props => {
           <span
             className={styles.button_close}
             onClick={() => {
-              setOpen(false);
-              // props.setOpenUpgradeSuccess(false);
+              close();
             }}
           >
             <svg
@@ -121,10 +140,10 @@ const ModalActivationSuccess = props => {
 
           <div className={styles.buttons}>
             <Button className={styles.primary}>Play Now</Button>
-            <Button 
+            <Button
               className={styles.none}
               onClick={() => {
-                setOpen(false);
+                close();
               }}
             >
               Back to Account

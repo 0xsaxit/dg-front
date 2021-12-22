@@ -48,7 +48,7 @@ const ModalMint = props => {
               className={styles.img_card}
             />
           </div>
-          <div className={styles.card}>{props.maxMintCounts - props.numberLeft} of {props.maxMintCounts}</div>
+          <div className={styles.card}>{props.numberLeft} of {props.maxMintCounts}</div>
         </div>
       </div>
     );
@@ -125,7 +125,7 @@ const ModalMint = props => {
               />
             </div>
 
-            {state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD >= 
+            {state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD >=
               Global.CONSTANTS.DG_STAKED_AMOUNT ||
               xDG >=
               Global.CONSTANTS.XDG_STAKED_AMOUNT ? (
@@ -209,7 +209,7 @@ const ModalMint = props => {
       <div className={styles.button_area}>
         {(state.userBalances[2][3] <
           state.tokenAmounts.WETH_COST_AMOUNT) ||
-          (state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD < 
+          (state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD <
           Global.CONSTANTS.DG_STAKED_AMOUNT &&
           xDG < Global.CONSTANTS.XDG_STAKED_AMOUNT) ? (
           <Button className={styles.button_upgrade} disabled={true}>
@@ -249,6 +249,8 @@ const ModalMint = props => {
         address={props.address}
         wearableImg={props.wearableImg}
         show={openETHAuth}
+        maxMintCounts={props.maxMintCounts}
+        numberLeft={props.numberLeft}
         back={() => {
           setOpen(true);
           setOpenETHAuth(false);

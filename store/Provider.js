@@ -141,6 +141,16 @@ const initialState = {
     [-1, 15],
     [-1, 20],
   ],
+  itemLimits6: [
+    [-1, 0],
+    [-1, 5],
+    [-1, 10],
+    [-1, 15],
+    [-1, 20],
+  ],
+  iceWearableInventoryItems: [],
+  iceWearableInventoryItemsLoading: false,
+  iceWearableInventoryItemsSuccess: false,
   iceWearableItems: [],
   iceWearableItemsLoading: false,
   iceWearableUpdatedSuccess: false,
@@ -178,6 +188,7 @@ const initialState = {
   refreshTokenAuths: true,
   refreshNFTAuths: true,
   refreshWearable: true,
+  refreshWearableInventory: true,
   refreshDelegateInfo: true,
   refreshDelegation: true,
   updateInfo: true,
@@ -370,7 +381,28 @@ const reducer = (state, action) => {
         ...state,
         itemLimits5: action.data,
       };
+    case 'item_limits_6':
+      return {
+        ...state,
+        itemLimits6: action.data,
+      };
+    case 'ice_wearable_inventory_items':
+      return {
+        ...state,
+        iceWearableInventoryItems: action.data,
+      };
 
+    case 'ice_wearable_inventory_items_loading':
+      return {
+        ...state,
+        iceWearableInventoryItemsLoading: action.data,
+      };
+
+    case 'ice_wearable_inventory_items_success':
+      return {
+        ...state,
+        iceWearableInventoryItemsLoading: action.data,
+      }
     case 'ice_wearable_items':
       return {
         ...state,
@@ -513,6 +545,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         refreshWearable: action.data,
+      };
+    
+    case 'refresh_wearable_inventory_items':
+      return {
+        ...state,
+        refreshWearableInventory: action.data,
       };
 
     case 'refresh_delegate_info':
