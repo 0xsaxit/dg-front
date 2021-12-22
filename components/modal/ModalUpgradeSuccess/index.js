@@ -24,6 +24,7 @@ const ModalUpgradeSuccess = props => {
     setImage(props.imgURL ? props.imgURL : '');
     setDescription(itemInfo.meta_data ? itemInfo.meta_data.description.split(' ').at(-1).replace('/', ' of ') : '');
     setRank(itemInfo.meta_data ? GetRank(parseInt(itemInfo.meta_data.attributes.find(el => el.trait_type === 'Bonus').value)) : 0);
+    console.log("Upgraded Wearable Info ", itemInfo)
   }, [state.iceWearableItems])
 
   function refresh() {
@@ -60,6 +61,7 @@ const ModalUpgradeSuccess = props => {
     <Modal
       className={styles.success_modal}
       onClose={() => {
+        console.log('closing')
         setOpen(false);
         props.setUpgrade(0);
         refresh();
