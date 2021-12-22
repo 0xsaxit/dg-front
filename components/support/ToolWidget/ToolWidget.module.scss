@@ -92,7 +92,7 @@
 
   .body {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 
     .greybox {
       cursor: pointer;
@@ -107,7 +107,7 @@
       text-align: center;
       color: #FFFFFF;
       display: flex;
-      align-items: center;
+      align-items: center;      
       padding: 28px;
     }
     .input {
