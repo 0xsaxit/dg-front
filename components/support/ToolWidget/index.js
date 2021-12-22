@@ -161,7 +161,7 @@ const ToolWidget = () => {
 
           <div className={styles.body}>
             {drawGreyBox('Free Play & Chip Balances')}
-            {drawGreyBox('Delegation Removal & Info')}
+            {/* {drawGreyBox('Delegation Removal & Info')} */}
           </div>
         </>
 
