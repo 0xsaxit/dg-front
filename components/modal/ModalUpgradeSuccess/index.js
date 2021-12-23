@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../../store';
-import GetRank from '../../../common/GetIceWearableRank'
+import GetRank from '../../../common/GetIceWearableRank';
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './ModalUpgradeSuccess.module.scss';
 import cn from 'classnames';
-import UpgradeWearableBox from "components/lottieAnimation/animations/upgradeWearableBox"
-import Confetti from "components/lottieAnimation/animations/confetti"
+import UpgradeWearableBox from 'components/lottieAnimation/animations/upgradeWearableBox';
+import Confetti from 'components/lottieAnimation/animations/confetti';
+import ModalDelegate from '../ModalDelegate';
 
 const ModalUpgradeSuccess = props => {
   // fetch user's Polygon DG balance from the Context API store
@@ -13,19 +14,35 @@ const ModalUpgradeSuccess = props => {
 
   // define local variables
   const [open, setOpen] = useState(true);
-  const [image, setImage] = useState("")
-  const [description, setDescription] = useState("x of 100");
-  const [rank, setRank] = useState({})
-  const [animationStage, setAnimationStage] = useState(1)
+  const [image, setImage] = useState('');
+  const [description, setDescription] = useState('x of 100');
+  const [rank, setRank] = useState({});
+  const [animationStage, setAnimationStage] = useState(1);
 
   useEffect(() => {
     // refresh();
-    const itemInfo = state.iceWearableItems.filter(item => item.tokenID === props.tokenID)[0];
+    const itemInfo = state.iceWearableItems.filter(
+      item => item.tokenID === props.tokenID
+    )[0];
     setImage(props.imgURL ? props.imgURL : '');
-    setDescription(itemInfo.meta_data ? itemInfo.meta_data.description.split(' ').at(-1).replace('/', ' of ') : '');
-    setRank(itemInfo.meta_data ? GetRank(parseInt(itemInfo.meta_data.attributes.find(el => el.trait_type === 'Bonus').value)) : 0);
-    console.log("Upgraded Wearable Info ", itemInfo)
-  }, [state.iceWearableItems])
+    setDescription(
+      itemInfo.meta_data
+        ? itemInfo.meta_data.description.split(' ').at(-1).replace('/', ' of ')
+        : ''
+    );
+    setRank(
+      itemInfo.meta_data
+        ? GetRank(
+            parseInt(
+              itemInfo.meta_data.attributes.find(
+                el => el.trait_type === 'Bonus'
+              ).value
+            )
+          )
+        : 0
+    );
+    console.log('Upgraded Wearable Info ', itemInfo);
+  }, [state.iceWearableItems]);
 
   function refresh() {
     // update global state token amounts
@@ -42,26 +59,26 @@ const ModalUpgradeSuccess = props => {
       data: refreshWearable,
     });
 
-     // update global state wearable Inventory data
-     const refreshWearableInventory = !state.refreshWearableInventory;
-     dispatch({
-       type: 'refresh_wearable_inventory_items',
-       data: refreshWearableInventory,
-     });
+    // update global state wearable Inventory data
+    const refreshWearableInventory = !state.refreshWearableInventory;
+    dispatch({
+      type: 'refresh_wearable_inventory_items',
+      data: refreshWearableInventory,
+    });
 
-     // update global state balances
-     const refreshBalances = !state.refreshBalances;
-     dispatch({
-       type: 'refresh_balances',
-       data: refreshBalances,
-     });
+    // update global state balances
+    const refreshBalances = !state.refreshBalances;
+    dispatch({
+      type: 'refresh_balances',
+      data: refreshBalances,
+    });
   }
-    
+
   return (
     <Modal
       className={styles.success_modal}
       onClose={() => {
-        console.log('closing')
+        console.log('closing');
         setOpen(false);
         props.setUpgrade(0);
         refresh();
@@ -71,9 +88,7 @@ const ModalUpgradeSuccess = props => {
       close
       trigger={<Button className={styles.open_button}>Upgrade</Button>}
     >
-      <div
-        className={styles.header_buttons}    
-      >
+      <div className={styles.header_buttons}>
         <span
           className={styles.button_close}
           onClick={() => {
@@ -128,15 +143,25 @@ const ModalUpgradeSuccess = props => {
           Help
         </span>
       </div>
-      
 
-      {(animationStage===1) ?
-        <UpgradeWearableBox height={540} onCompletion={()=>{ console.log('First Wearable Upgrade Animation Complete'); setAnimationStage(2)}}/>
-        :
+      {animationStage === 1 ? (
+        <UpgradeWearableBox
+          height={540}
+          onCompletion={() => {
+            console.log('First Wearable Upgrade Animation Complete');
+            setAnimationStage(2);
+          }}
+        />
+      ) : (
         <div className={cn(styles.fadeIn, styles.success_container)}>
-          <Confetti onCompletion={()=>{console.log('Second Wearable Upgrade Animation Complete'); setAnimationStage(3)}}/>
+          <Confetti
+            onCompletion={() => {
+              console.log('Second Wearable Upgrade Animation Complete');
+              setAnimationStage(3);
+            }}
+          />
           <div className={styles.title}>Upgrade Successful!</div>
-          
+
           <div className={styles.card}>
             <div className={styles.toppercent}>
               {rank.percentage}
@@ -146,10 +171,7 @@ const ModalUpgradeSuccess = props => {
               />
             </div>
             <div className={styles.image}>
-              <img
-                src={image}
-                className={styles.logo}
-              />
+              <img src={image} className={styles.logo} />
             </div>
             <div className={styles.properties}>
               <div className={styles.round}>Rank {rank.value}</div>
@@ -165,13 +187,26 @@ const ModalUpgradeSuccess = props => {
           </div>
 
           <div className={styles.buttons}>
-            <Button 
-              href="https://api.decentral.games/ice/play?position=-110%2C129"
-              target="_blank"
-              className={styles.primary}
-            >
-              Play Now
-            </Button>
+            {props.delegateAddress ? (
+              <Button
+                className={styles.primary}
+                onClick={() => {
+                  props.setUpgrade(4);
+                  setOpen(false);
+                  refresh();
+                }}
+              >
+                Redelegate Wearable
+              </Button>
+            ) : (
+              <Button
+                href="https://api.decentral.games/ice/play?position=-110%2C129"
+                target="_blank"
+                className={styles.primary}
+              >
+                Play Now
+              </Button>
+            )}
             <Button
               className={styles.none}
               onClick={() => {
@@ -184,8 +219,7 @@ const ModalUpgradeSuccess = props => {
             </Button>
           </div>
         </div>
-          
-      }
+      )}
     </Modal>
   );
 };

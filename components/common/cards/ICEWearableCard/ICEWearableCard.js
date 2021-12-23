@@ -110,7 +110,7 @@ const ICEWearableCard = props => {
           <div className={styles.button_area}>
             {!props.isActivated ? (
               state.DGBalances.BALANCE_CHILD_DG_LIGHT <
-                state.tokenAmounts.DG_MOVE_AMOUNT ? (
+              state.tokenAmounts.DG_MOVE_AMOUNT ? (
                 <NeedMoreDGActivateModal />
               ) : (
                 <ActivateWearableModal
@@ -163,6 +163,7 @@ const ICEWearableCard = props => {
                     }
                     description={description}
                     name={name.split('(ICE')[0].trim()}
+                    delegateAddress={delegateAddress}
                   />
                 )}
               </span>

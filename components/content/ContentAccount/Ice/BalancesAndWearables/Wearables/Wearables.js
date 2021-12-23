@@ -5,6 +5,8 @@ import { Button } from 'semantic-ui-react';
 import styles from './Wearables.module.scss';
 import Fetch from 'common/Fetch';
 import { GlobalContext } from 'store';
+import ModalDelegate from 'components/modal/ModalDelegate';
+import ModalUpgradeSuccess from 'components/modal/ModalUpgradeSuccess';
 
 const Wearables = () => {
   // define local variables
@@ -17,16 +19,20 @@ const Wearables = () => {
       item.meta_data.attributes.find(el => el.trait_type === 'Bonus').value > 0
   );
   const delegatedWearables = state.iceDelegatedItems.filter(
-    item => item.meta_data && item.meta_data.attributes.find(el => el.trait_type === 'Rank').value > 0
+    item =>
+      item.meta_data &&
+      item.meta_data.attributes.find(el => el.trait_type === 'Rank').value > 0
   );
 
   // fetch Inventory Items
   useEffect(() => {
     (async () => {
-      let wearableInventoryItems = await Fetch.GET_WEARABLE_INVENTORY(state.userAddress);
+      let wearableInventoryItems = await Fetch.GET_WEARABLE_INVENTORY(
+        state.userAddress
+      );
       dispatch({
         type: 'ice_wearable_inventory_items',
-        data: wearableInventoryItems
+        data: wearableInventoryItems,
       });
     })();
   }, [state.refreshWearableInventory]);
@@ -84,12 +90,18 @@ const Wearables = () => {
                 if (activeWearable.meta_data.name.search(item) >= 0) {
                   if (
                     newDelegatedWearableBonuses.wearableBonuses[item] <
-                    parseInt(activeWearable.meta_data.attributes.find(el => el.trait_type === 'Bonus').value) *
-                    0.3
+                    parseInt(
+                      activeWearable.meta_data.attributes.find(
+                        el => el.trait_type === 'Bonus'
+                      ).value
+                    ) *
+                      0.3
                   ) {
                     newDelegatedWearableBonuses.wearableBonuses[item] =
                       parseInt(
-                        activeWearable.meta_data.attributes.find(el => el.trait_type === 'Bonus').value
+                        activeWearable.meta_data.attributes.find(
+                          el => el.trait_type === 'Bonus'
+                        ).value
                       ) * 0.3;
                   }
                 }
@@ -104,12 +116,19 @@ const Wearables = () => {
               if (activeWearable.meta_data.name.search(item) >= 0) {
                 if (
                   delegatedWearableBonuses[item] <
-                  parseInt(activeWearable.meta_data.attributes.find(el => el.trait_type === 'Bonus').value) *
-                  0.3
+                  parseInt(
+                    activeWearable.meta_data.attributes.find(
+                      el => el.trait_type === 'Bonus'
+                    ).value
+                  ) *
+                    0.3
                 ) {
                   delegatedWearableBonuses[item] =
-                    parseInt(activeWearable.meta_data.attributes.find(el => el.trait_type === 'Bonus').value) *
-                    0.3;
+                    parseInt(
+                      activeWearable.meta_data.attributes.find(
+                        el => el.trait_type === 'Bonus'
+                      ).value
+                    ) * 0.3;
                 }
               }
             });
@@ -119,10 +138,16 @@ const Wearables = () => {
             if (activeWearable.meta_data.name.search(item) >= 0) {
               if (
                 maxICEActiveWearableBonuses[item] <
-                parseInt(activeWearable.meta_data.attributes.find(el => el.trait_type === 'Bonus').value)
+                parseInt(
+                  activeWearable.meta_data.attributes.find(
+                    el => el.trait_type === 'Bonus'
+                  ).value
+                )
               ) {
                 maxICEActiveWearableBonuses[item] = parseInt(
-                  activeWearable.meta_data.attributes.find(el => el.trait_type === 'Bonus').value
+                  activeWearable.meta_data.attributes.find(
+                    el => el.trait_type === 'Bonus'
+                  ).value
                 );
               }
             }
@@ -134,8 +159,11 @@ const Wearables = () => {
         Object.keys(maxICEActiveWearableBonuses).map(item => {
           if (delegatedWearable.meta_data.name.search(item) >= 0) {
             const bonusValue =
-              parseInt(delegatedWearable.meta_data.attributes.find(el => el.trait_type === 'Bonus').value) *
-              0.7;
+              parseInt(
+                delegatedWearable.meta_data.attributes.find(
+                  el => el.trait_type === 'Bonus'
+                ).value
+              ) * 0.7;
             if (maxICEActiveWearableBonuses[item] < bonusValue) {
               maxICEActiveWearableBonuses[item] = bonusValue;
             }
@@ -205,15 +233,15 @@ const Wearables = () => {
             ))}
 
             {state.iceDelegatedItems.map((item, index) => (
-                <ICEDelegatedCard
-                  key={index}
-                  data={item.meta_data}
-                  ownerAddress={item.ownerAddress}
-                  tokenID={item.tokenID}
-                  address={item.address}
-                  itemID={item.itemID}
-                  isCheckedIn={item.isCheckedIn}
-                />
+              <ICEDelegatedCard
+                key={index}
+                data={item.meta_data}
+                ownerAddress={item.ownerAddress}
+                tokenID={item.tokenID}
+                address={item.address}
+                itemID={item.itemID}
+                isCheckedIn={item.isCheckedIn}
+              />
             ))}
           </div>
         ) : (

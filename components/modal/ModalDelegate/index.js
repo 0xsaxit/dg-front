@@ -9,8 +9,23 @@ import Aux from '../../_Aux';
 import ABI_COLLECTION_V2 from '../../../components/ABI/ABICollectionV2';
 import ABI_COLLECTION_PH from '../../../components/ABI/ABICollectionPH';
 import Web3 from 'web3';
+import cn from 'classnames';
 
-const ModalDelegate = props => {
+///////////////////////////////////////
+// to create a redelegation modal, just pass the redelegation prop
+//////////////////////////////////////
+const ModalDelegate = ({
+  tokenID,
+  address,
+  imgSrc,
+  rank,
+  bonus,
+  description,
+  buttonName,
+  redelegation,
+  redelegateAddress,
+  setUpgrade,
+}) => {
   // fetch user's wallet address from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -53,6 +68,14 @@ const ModalDelegate = props => {
       setCollectionArray(collectionArray);
     }
   }, [state.userStatus]);
+
+  // if this is a redelegation modal, set the "entered address" i.e the delegatee address as the previously delegated one
+  // also close the upgrade modal invoking the setUpgrade function
+  useEffect(() => {
+    if (redelegation) {
+      setEnteredAddress(redelegateAddress);
+    }
+  }, []);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -127,26 +150,26 @@ const ModalDelegate = props => {
     return (
       <div className={styles.wear_box}>
         <div className={styles.wear_box_purple}>
-          <img src={props.imgSrc} />
+          <img src={imgSrc} />
         </div>
         <div className={styles.card_body}>
-          <div className={styles.card}>Rank {props.rank}</div>
+          <div className={styles.card}>Rank {rank}</div>
           <div className={styles.card}>
-            +{props.bonus}%
+            +{bonus}%
             <img
               src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
               className={styles.img_card}
             />
           </div>
           <div className={styles.card}>
-            {props.description.split(' ').at(-1).replace('/', ' of ')}
+            {description?.split(' ').at(-1).replace('/', ' of ')}
           </div>
         </div>
       </div>
     );
   }
 
-  function description() {
+  function descriptionBody() {
     return (
       <Aux>
         <div className={styles.header}>Delegate Your Wearable</div>
@@ -293,16 +316,12 @@ const ModalDelegate = props => {
   }
 
   async function delegateNFT() {
-    console.log('Delegate token ID: ' + props.tokenID);
+    console.log('Delegate token ID: ' + tokenID);
     console.log('Delegate address: ' + enteredAddress);
-    console.log('Collection address: ' + props.address);
+    console.log('Collection address: ' + address);
     setClicked(true);
 
-    const json = await Fetch.DELEGATE_NFT(
-      enteredAddress,
-      props.tokenID,
-      props.address
-    );
+    const json = await Fetch.DELEGATE_NFT(enteredAddress, tokenID, address);
 
     if (json.status) {
       console.log('NFT delegation request: ' + json.result);
@@ -322,7 +341,10 @@ const ModalDelegate = props => {
     <Aux>
       {!success ? (
         <Modal
-          className={styles.delegate_modal}
+          className={cn(
+            styles.delegate_modal,
+            redelegation ? styles.redelegation : styles.new_delegation
+          )}
           onClose={() => setOpen(false)}
           onOpen={() => setOpen(true)}
           open={open}
@@ -330,12 +352,14 @@ const ModalDelegate = props => {
           trigger={
             <Button
               className={
-                props.rank === 5
+                redelegation
+                  ? styles.button_trigger_redelegation
+                  : rank === 5
                   ? styles.open_button_fullWidth
                   : styles.open_button
               }
             >
-              {props.buttonName}
+              {buttonName}
             </Button>
           }
         >
@@ -344,51 +368,117 @@ const ModalDelegate = props => {
             {modalButtons('help')}
           </div>
 
-          <div className={styles.delegate_container}>
-            {imageDetails()}
+          {redelegation ? (
+            <div className={styles.redelegation_body}>
+              <h2 className={styles.redelegate_title}>Redelegate Wearable</h2>
+              <p className={styles.redelegation_description}>
+                You previously delegated to{' '}
+                <a
+                  href={`https://polygonscan.com/address/${redelegateAddress}`}
+                  target="_blank"
+                >
+                  {`${redelegateAddress?.slice(
+                    0,
+                    4
+                  )}...${redelegateAddress?.substr(-4, 4)}`}
+                </a>
+                {'. '}
+                Would you like to redelegate your upgraded wearable?
+              </p>
 
-            <div className={styles.wear_box_right}>
-              <div className={styles.main}>
-                {description()}
-                {enterAddress()}
+              <div className={styles.card_area_body}>
+                <div className={styles.card}>
+                  <div className={styles.info}>You Earn</div>
+                  30%
+                  <img
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
+                    className={styles.img_card1}
+                  />
+                </div>
 
-                <div className={styles.button_area}>
-                  {!clicked ? (
-                    <Button
-                      className={styles.button_upgrade}
-                      onClick={() => {
-                        analytics.track('CLICKED DELEGATE');
-                        delegateNFT();
-                      }}
-                      disabled={errorMsg === '' ? false : true}
-                    >
-                      {props.buttonName}
-                    </Button>
-                  ) : (
-                    <Button className={styles.button_upgrade} disabled={true}>
-                      Pending Transaction...
-                    </Button>
-                  )}
-
-                  <Button
-                    className={styles.button_close}
-                    onClick={() => {
-                      window.open("https://ice.decentral.games/ice-nft-wearables", "_blank");
-                    }}
-                  >Learn More</Button>
+                <div className={styles.card}>
+                  <div className={styles.info}>They Earn</div>
+                  70%
+                  <img
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
+                    className={styles.img_card2}
+                  />
                 </div>
               </div>
 
-              {errorMsg !== '' && (
-                <div className={styles.delegateInfo}>{errorMsg}</div>
+              {!clicked ? (
+                <Button
+                  className={styles.button_redelegate}
+                  onClick={() => {
+                    // analytics.track('CLICKED DELEGATE');
+                    // delegateNFT();
+                    setSuccess(true);
+                  }}
+                  disabled={errorMsg === '' ? false : true}
+                >
+                  {buttonName}
+                </Button>
+              ) : (
+                <Button className={styles.button_redelegate} disabled={true}>
+                  Pending Transaction...
+                </Button>
               )}
             </div>
-          </div>
+          ) : (
+            <div className={styles.delegate_container}>
+              {imageDetails()}
+
+              <div className={styles.wear_box_right}>
+                <div className={styles.main}>
+                  {descriptionBody()}
+                  {enterAddress()}
+
+                  <div className={styles.button_area}>
+                    {!clicked ? (
+                      <Button
+                        className={styles.button_upgrade}
+                        onClick={() => {
+                          analytics.track('CLICKED DELEGATE');
+                          delegateNFT();
+                        }}
+                        disabled={errorMsg === '' ? false : true}
+                      >
+                        {buttonName}
+                      </Button>
+                    ) : (
+                      <Button className={styles.button_upgrade} disabled={true}>
+                        Pending Transaction...
+                      </Button>
+                    )}
+
+                    <Button
+                      className={styles.button_close}
+                      onClick={() => {
+                        window.open(
+                          'https://ice.decentral.games/ice-nft-wearables',
+                          '_blank'
+                        );
+                      }}
+                    >
+                      Learn More
+                    </Button>
+                  </div>
+                </div>
+
+                {errorMsg !== '' && (
+                  <div className={styles.delegateInfo}>{errorMsg}</div>
+                )}
+              </div>
+            </div>
+          )}
         </Modal>
       ) : (
         <ModalSuccessDelegation
-          buttonName={props.buttonName}
-          address={enteredAddress}
+          buttonName={buttonName}
+          address={`${redelegateAddress?.slice(
+            0,
+            4
+          )}...${redelegateAddress?.substr(-4, 4)}`}
         />
       )}
     </Aux>
