@@ -195,11 +195,11 @@ const Fetch = {
   },
 
   GET_WEARABLE_INVENTORY: (address) => {
+    console.log(`${API_BASE_URL}/ice/getWearableInventory?address=${address}`)
     return call(
-      `${API_BASE_URL}/ice/getWearableInventory`,
+      `${API_BASE_URL}/ice/getWearableInventory?address=${address}`,
       'GET',
-      true,
-      { address }
+      true
     );
   },
 
