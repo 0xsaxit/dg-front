@@ -17,13 +17,13 @@
 
 	.title {
 		font-weight: 800;
-		font-size: 24px;
+		font-size: 24px !important;
 		letter-spacing: -0.5px;
 		text-align: center;
 	}
 
 	.dg_image {
-		width: 60px;
+		width: 60px !important;
 		margin-top: 18px;
 		align-self: center;
 	}
@@ -37,28 +37,28 @@
 
 	.subtitle_1 {
 		align-self: center;
-		font-size: 24px;
-		font-family: Larsseit-Bold;
-		margin-top: 12px;
+		font-size: 24px !important;
+		font-family: Larsseit-Bold !important;
+		margin-top: 12px !important;
 	}
 
 	.subtitle_2 {
 		align-self: center;
-		font-size: 14px;
+		font-size: 14px !important;
 		font-family: Larsseit-Bold;
 		opacity: 0.75;
 	}
 
 	.row_title {
-		font-size: 18px;
-		font-family: Larsseit-Bold;
-		margin-top: 18px;
+		font-size: 18px !important;
+		font-family: Larsseit-Bold !important;
+		margin-top: 18px !important;
 	}
 
 	.row_subtitle {
-		font-size: 14px;
-		font-family: Larsseit-Bold;
-		opacity: 0.75;
+		font-size: 14px !important;
+		font-family: Larsseit-Bold !important;
+		opacity: 0.75 !important;
 	}
 
 	.buy_button {
