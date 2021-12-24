@@ -1,10 +1,10 @@
 import { useEffect, useContext, useState } from 'react';
 import { Modal, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
-import ModalETHAuth from 'components/modal/ModalEthAuth';
-import ModalICEAuth from 'components/modal/ModalIceAuth';
+import ModalEthAuth from 'components/modal/ModalEthAuth';
+import ModalIceAuth from 'components/modal/ModalIceAuth';
 import IceMintETHTooltip from 'components/tooltips/IceMintETHTooltip';
-import IceMintICETooltip from 'components/tooltips/IceMintICETooltip';
+import IceMintIceTooltip from 'components/tooltips/IceMintICETooltip';
 import IceMintDGStackedTooltip from 'components/tooltips/IceMintDGStackedTooltip';
 import styles from './ModalMintWearable.module.scss';
 import Images from 'common/Images';
@@ -247,7 +247,7 @@ const ModalMint = props => {
 
   function ethAuthModal() {
     return (
-      <ModalICEAuth
+      <ModalIceAuth
         itemID={props.itemID}
         address={props.address}
         wearableImg={props.wearableImg}
