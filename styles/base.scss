@@ -457,8 +457,6 @@ $mq-breakpoints: (
   }
 }
 
-.account-other-tabs
-
 .popup {
   border-radius: 8px !important;
   margin-left: 5px;
@@ -476,27 +474,24 @@ $mq-breakpoints: (
     background: #fff;
   }
   
-  .content {
-    padding-top: 5px;
-    padding-right: 5px;
-    
-    p {
-      font-size: 13px;
-      line-height: 18px;
-      letter-spacing: 0.5px;
-      margin-left: 30px;
-    }
-    
-    .info {
-      width: 17px !important;
-      position: absolute !important;
-    }
+  .content .info {
+    width: 17px !important;
+    position: absolute !important;
   }
   
-  .accountTooltip .tooltip_body {
-    display: flex;
-    align-items: center;
-  }
+  .accountTooltip {
+    .tooltip_body {
+      display: flex;
+      align-items: center;
+      p{
+        font-size: 13px;
+        line-height: 18px;
+        letter-spacing: 0.5px;
+        margin-left: 30px;
+        font-family: 'Larsseit-Medium';
+      }
+    }    
+  }  
 }
 
 .foxAnimation-div {
