@@ -17,7 +17,7 @@ const MarketPlace = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [previewLevel, setPreviewLevel] = useState([0, 0, 0, 0, 0]);
+  const [previewLevel, setPreviewLevel] = useState([0, 0, 0, 0, 0, 0]);
   const wearables = [
     {
       title: 'Founder Fathers',
@@ -412,8 +412,6 @@ const MarketPlace = () => {
             itemLimits = state.itemLimits1;
           }
 
-          console.log(state.appConfig.maxMintCounts);
-
           let maxMintCounts = 0;
           if (state.appConfig && state.appConfig.maxMintCounts) {
             Object.keys(state.appConfig.maxMintCounts).map(address => {
@@ -423,7 +421,7 @@ const MarketPlace = () => {
             })
           }
 
-          console.log(wearable, state.userStatus, state.appConfig.minMintVerifyStep, maxMintCounts, itemLimits);
+          const minMintVerifyStep = state.appConfig.minMintVerifyStep === undefined ? 0 : state.appConfig.minMintVerifyStep;
 
           return (
             <section key={index} className={styles.wearable_section}>
@@ -539,7 +537,7 @@ const MarketPlace = () => {
                         <Button disabled className={styles.sold_button}>
                           <Spinner width={20} height={20} />
                         </Button>
-                      ) : state.userStatus >= state.appConfig.minMintVerifyStep &&
+                      ) : state.userStatus >= minMintVerifyStep &&
                         (maxMintCounts - itemLimits[i][0]) > 0 ? (
                         // minting enabled
 
@@ -579,7 +577,7 @@ const MarketPlace = () => {
                                 </Button>
                               </a>
                             )
-                        ) : state.userStatus < state.appConfig.minMintVerifyStep &&
+                        ) : state.userStatus < minMintVerifyStep &&
                           (maxMintCounts - itemLimits[i][0]) > 0 ? (
                           // Coming Soon State
                           <Button disabled className={styles.sold_button}>
