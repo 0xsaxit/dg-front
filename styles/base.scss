@@ -52,6 +52,77 @@ $mq-breakpoints: (
 
 .body{  
   
+  h1, h2, h3, h4, h5, p, button, a {
+    -webkit-font-smoothing: antialiased !important;
+  }
+  
+  
+  h1 {
+    font-family: 'Larsseit-ExtraBold';
+    font-weight: 800 !important;
+    font-size: 60px;
+    margin-bottom: 0px;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-family: 'Larsseit-ExtraBold';
+    font-weight: 800 !important;
+    font-size: 32px;
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+
+  h3 {
+    font-family: 'Larsseit-ExtraBold';
+    font-weight: 800 !important;
+    font-size: 32px;
+    margin-bottom: 0px;
+    line-height: 1.4;
+  }
+
+  .nft-other-h3 {
+    font-family: 'Larsseit-Bold';
+    font-size: 24px;
+    margin-top: 0px;
+  }
+
+  .home-other-h3 {
+    font-family: 'Larsseit-Bold';
+    font-size: 30px;
+    padding: 2px 0px 3px 0px;
+    margin-top: 0px;
+    text-align: center;
+  }
+
+  h4 {
+    font-family: 'Larsseit-ExtraBold';
+    font-weight: 800 !important;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  h5 {
+    font-family: 'Larsseit-Regular';
+    font-weight: 600 !important;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 1.4;
+  }
+
+  p {
+    font-family: 'Larsseit-Regular';
+    font-size: 21px;
+    font-weight: normal;
+    line-height: 1.4;
+  }
+
+  
   .ui{
     
     &::-webkit-scrollbar-track {
@@ -89,77 +160,7 @@ $mq-breakpoints: (
     section#modalContent.sc-bqGGPW.jMpqDL, .iPexDg.iPexDg.iPexDg, .jMpqDL.jMpqDL.jMpqDL {
       background-color: black !important;
     }
-
-    h1, h2, h3, h4, h5, p, button, a {
-      -webkit-font-smoothing: antialiased !important;
-    }
-    
-    
-    h1 {
-      font-family: 'Larsseit-ExtraBold';
-      font-weight: 800 !important;
-      font-size: 60px;
-      margin-bottom: 0px;
-      line-height: 1.2;
-    }
-
-    h2 {
-      font-family: 'Larsseit-ExtraBold';
-      font-weight: 800 !important;
-      font-size: 32px;
-      margin-bottom: 16px;
-      line-height: 1.4;
-    }
-
-    h3 {
-      font-family: 'Larsseit-ExtraBold';
-      font-weight: 800 !important;
-      font-size: 32px;
-      margin-bottom: 0px;
-      line-height: 1.4;
-    }
-
-    .nft-other-h3 {
-      font-family: 'Larsseit-Bold';
-      font-size: 24px;
-      margin-top: 0px;
-    }
-
-    .home-other-h3 {
-      font-family: 'Larsseit-Bold';
-      font-size: 30px;
-      padding: 2px 0px 3px 0px;
-      margin-top: 0px;
-      text-align: center;
-    }
-
-    h4 {
-      font-family: 'Larsseit-ExtraBold';
-      font-weight: 800 !important;
-      margin-top: 0px;
-      margin-bottom: 0px;
-      font-size: 24px;
-      font-weight: 500;
-      line-height: 1.4;
-    }
-
-    h5 {
-      font-family: 'Larsseit-Regular';
-      font-weight: 600 !important;
-      margin-top: 0px;
-      margin-bottom: 0px;
-      font-size: 24px;
-      font-weight: normal;
-      line-height: 1.4;
-    }
-
-    p {
-      font-family: 'Larsseit-Regular';
-      font-size: 21px;
-      font-weight: normal;
-      line-height: 1.4;
-    }
-    
+  
     .modal-a:hover {
       color: white;
       filter: brightness(0.75);
