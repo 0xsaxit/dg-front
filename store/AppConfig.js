@@ -31,7 +31,7 @@ function AppConfig() {
     }
 
     fetchData();
-  }, []);
+  }, [state.userLoggedIn]);
 
   async function getAppConfig() {
     try {

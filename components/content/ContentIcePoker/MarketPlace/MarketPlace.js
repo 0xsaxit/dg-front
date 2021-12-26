@@ -421,8 +421,6 @@ const MarketPlace = () => {
             })
           }
 
-          const minMintVerifyStep = state.appConfig.minMintVerifyStep === undefined ? 0 : state.appConfig.minMintVerifyStep;
-
           return (
             <section key={index} className={styles.wearable_section}>
               <h3>{wearable.title}</h3>
@@ -531,64 +529,66 @@ const MarketPlace = () => {
                     </div>
 
                     <div className={styles.button_container}>
-                      {state.userStatus >= 4 && itemLimits[i][0] < 0 ? (
-                        // items loading, display spinner
+                      {state.userLoggedIn ?
+                        state.userStatus >= 4 && itemLimits[i][0] < 0 ? (
+                          // items loading, display spinner
 
-                        <Button disabled className={styles.sold_button}>
-                          <Spinner width={20} height={20} />
-                        </Button>
-                      ) : state.userStatus >= minMintVerifyStep &&
-                        (maxMintCounts - itemLimits[i][0]) > 0 ? (
-                        // minting enabled
-
-                        <div className={styles.flex_50}>
-                          <ModalMintWearable
-                            index={i}
-                            maxMintCounts={maxMintCounts}
-                            numberLeft={itemLimits[i][0]}
-                            itemID={itemLimits[i][1]}
-                            address={itemLimits[5]}
-                            wearableImg={wearable.details[item][0]}
-                            wearableBodyType={wearable.details[item][3]}
-                            wearableBodyImg={wearable.details[item][4]}
-                            wearableName={wearable.details[item][1]}
-                          />
-                        </div>
-                      ) : // Minting Disabled States
-                        (maxMintCounts - itemLimits[i][0]) >= 0 && (maxMintCounts - itemLimits[i][0]) < 1 ? (
-                          wearable.title === 'Founder Fathers' ? (
-                            // Sold Out State
-                            <Button disabled className={styles.sold_button}>
-                              Sold Out
-                            </Button>
-                          )
-                            : (
-                              // Buy on Secondary
-                              <a
-                                className={styles.flex_50}
-                                href="https://opensea.io/collection/decentral-games-ice"
-                                target="_blank"
-                                style={{
-                                  width: '100%',
-                                }}
-                              >
-                                <Button className={styles.wearable_button}>
-                                  Buy on Secondary
-                                </Button>
-                              </a>
-                            )
-                        ) : state.userStatus < minMintVerifyStep &&
-                          (maxMintCounts - itemLimits[i][0]) > 0 ? (
-                          // Coming Soon State
                           <Button disabled className={styles.sold_button}>
-                            Coming Soon!
+                            <Spinner width={20} height={20} />
                           </Button>
-                        ) : state.userStatus < 4 ? (
-                          // Logged Out State
+                        ) : state.userStatus >= state.appConfig.minMintVerifyStep &&
+                          (maxMintCounts - itemLimits[i][0]) > 0 ? (
+                          // minting enabled
+
                           <div className={styles.flex_50}>
-                            <ModalLoginICE />
+                            <ModalMintWearable
+                              index={i}
+                              maxMintCounts={maxMintCounts}
+                              numberLeft={itemLimits[i][0]}
+                              itemID={itemLimits[i][1]}
+                              address={itemLimits[5]}
+                              wearableImg={wearable.details[item][0]}
+                              wearableBodyType={wearable.details[item][3]}
+                              wearableBodyImg={wearable.details[item][4]}
+                              wearableName={wearable.details[item][1]}
+                            />
                           </div>
-                        ) : null}
+                        ) : // Minting Disabled States
+                          (maxMintCounts - itemLimits[i][0]) >= 0 && (maxMintCounts - itemLimits[i][0]) < 1 ? (
+                            wearable.title === 'Founder Fathers' ? (
+                              // Sold Out State
+                              <Button disabled className={styles.sold_button}>
+                                Sold Out
+                              </Button>
+                            )
+                              : (
+                                // Buy on Secondary
+                                <a
+                                  className={styles.flex_50}
+                                  href="https://opensea.io/collection/decentral-games-ice"
+                                  target="_blank"
+                                  style={{
+                                    width: '100%',
+                                  }}
+                                >
+                                  <Button className={styles.wearable_button}>
+                                    Buy on Secondary
+                                  </Button>
+                                </a>
+                              )
+                          ) : state.userStatus < state.appConfig.minMintVerifyStep &&
+                            (maxMintCounts - itemLimits[i][0]) > 0 ? (
+                            // Coming Soon State
+                            <Button disabled className={styles.sold_button}>
+                              Coming Soon!
+                            </Button>
+                          ) : null
+                        :
+                        // Logged Out State
+                        <div className={styles.flex_50}>
+                          <ModalLoginICE />
+                        </div>
+                      }
                     </div>
                   </div>
                 ))}
