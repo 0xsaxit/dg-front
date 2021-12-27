@@ -184,6 +184,14 @@ const Fetch = {
       { address, tokenID }
     );
   },
+  
+  GET_WEARABLE_INVENTORY: (address) => {
+    return call(
+      `${API_BASE_URL}/ice/getWearableInventory?address=${address}`,
+      'GET',
+      true
+    );
+  },
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
