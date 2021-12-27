@@ -13,6 +13,7 @@ import MetamaskAction, { ActionLine } from 'components/common/MetamaskAction';
 import ModalMintSuccess from '../ModalMintSuccess';
 import { Loader } from 'semantic-ui-react';
 
+
 const ModalIceAuth = props => {
   // dispatch user's treasury contract active status to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
