@@ -240,6 +240,41 @@ const IMG_URLS_UPGRADE = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781040/Crypto%20Drip/Individual%20Assets/Shoes_level_4_db0xpw.png',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781040/Crypto%20Drip/Individual%20Assets/shoes_level_5_ieba6p.png',
   ],
+  'Father Feather': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558329/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_feather_level_1_lphlwa.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558333/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_feather_level_2_npkos1.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558334/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_feather_level_3_yjbanr.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558334/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_feather_level_4_fpif0j.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558335/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_feather_level_5_gkexeb.png'
+  ],
+  'Father Flow': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558336/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_hat_m_1_k5jzl1.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558336/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_hat_m_2_mmev1j.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558337/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_hat_m_3_didqxt.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558337/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_hat_m_4_l3zbwr.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558338/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_hair_level_5_x4tjxg.png'
+  ],
+  'Father Frock': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558331/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_coat_level_1_zvdbb9.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558331/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_coat_level_2_ntwkav.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558333/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_coat_level_3_nd7aam.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558333/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_coat_level_4_jst8fk.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558332/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_coat_level_5_tekepy.png'
+  ],
+  'Father Breeches': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558339/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_pants_level_1_xzsvpt.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558341/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_pants_level_2_uxg3u6.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558341/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_pants_level_3_yrwxkh.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558342/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_pants_level_4_obr3ju.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558343/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_pants_level_5_sllsho.png'
+  ],
+  'Father Mules': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558337/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_mules_level_1_gvzswf.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558338/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_mules_level_2_tdetmm.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558340/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_mules_level_3_h6789e.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558341/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_mules_level_4_iuxyu4.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558341/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_mules_level_5_cxe5i7.png'
+  ]
 };
 
 // wallet and contract addresses
