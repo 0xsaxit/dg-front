@@ -73,7 +73,7 @@ const ModalMint = props => {
             {state.iceAmounts.ICE_AVAILABLE_AMOUNT < Global.CONSTANTS.ICE_MINT_AMOUNT ? (
               <span>
                 Not Enough
-                <IceMintICETooltip />
+                <IceMintIceTooltip />
               </span>
             ) : null}
 
@@ -84,7 +84,7 @@ const ModalMint = props => {
 
             {state.iceAmounts.ICE_AVAILABLE_AMOUNT >= Global.CONSTANTS.ICE_MINT_AMOUNT ? (
               <div className={styles.green_check}>
-                {Number(state.iceAmounts.ICE_AVAILABLE_AMOUNT).toFixed(3)} ICE Available
+                {Number(state.iceAmounts.ICE_AVAILABLE_AMOUNT).toFixed(0)} ICE Available
                 &nbsp;
                 <svg
                   width="9"
