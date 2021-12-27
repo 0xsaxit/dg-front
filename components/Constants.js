@@ -31,6 +31,7 @@ const CONSTANTS = {
   MAX_DELEGATION_COUNT: 5, // maximum number of delegated NFTs a user can have
   VERIFY_URL: 'staging.decentral.games',
   WETH_MINT_AMOUNT: 0.25, // amount of WETH required for minting
+  ICE_MINT_AMOUNT: 8000, // amount of ICE required for minting
   DG_STAKED_AMOUNT: 1, // amount of DG user is required to have staked in order to mint wearable
   XDG_STAKED_AMOUNT: 1000, // amount of DG user is required to have staked in order to mint wearable
   POOLING_TIME_OUT: 8000, // API endpoint request pool interval (milliseconds)
@@ -199,6 +200,81 @@ const IMG_URLS_UPGRADE = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024032/ICE%20Bomber%20Thumbnails%20%28Square%29/shoes_pink_cnuzg6.jpg',
     'https://res.cloudinary.com/dnzambf4m/image/upload/q_auto:good/v1637024032/ICE%20Bomber%20Thumbnails%20%28Square%29/shoes_gold_ishar9.jpg',
   ],
+  'Drip Shades': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781041/Crypto%20Drip/Individual%20Assets/Glasses_Level_1_illrek.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781041/Crypto%20Drip/Individual%20Assets/Glasses_Level_1_illrek.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781040/Crypto%20Drip/Individual%20Assets/Glasses_level_2_epfvlj.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781041/Crypto%20Drip/Individual%20Assets/Glasses_Level_3_ofjya7.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781040/Crypto%20Drip/Individual%20Assets/Glasses_level_4_vsuytz.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781040/Crypto%20Drip/Individual%20Assets/Glasses_Level_5_rmgi3d.png',
+  ],
+  'Drip Bucket': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781042/Crypto%20Drip/Individual%20Assets/Hat_level_1_tk8gex.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781042/Crypto%20Drip/Individual%20Assets/Hat_level_1_tk8gex.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781041/Crypto%20Drip/Individual%20Assets/Hat_Level_2_vjczks.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781042/Crypto%20Drip/Individual%20Assets/Hat_level_3_fykfxx.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781042/Crypto%20Drip/Individual%20Assets/Hat_Level_4_zvyzay.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781042/Crypto%20Drip/Individual%20Assets/Puffer_level_5_kedpfb.png',
+  ],
+  'Drip Jacket': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781042/Crypto%20Drip/Individual%20Assets/puffer_level_1_lzuqdb.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781042/Crypto%20Drip/Individual%20Assets/puffer_level_1_lzuqdb.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781042/Crypto%20Drip/Individual%20Assets/puffer_level_2_aixvap.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781043/Crypto%20Drip/Individual%20Assets/Puffer_Level_3_chfc1k.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781043/Crypto%20Drip/Individual%20Assets/Puffer_level_4_unpu5b.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781041/Crypto%20Drip/Individual%20Assets/jacket_level_5_gvoxbe.png',
+  ],
+  'Drip Drawers': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781044/Crypto%20Drip/Individual%20Assets/pants_level_1_hh6qax.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781044/Crypto%20Drip/Individual%20Assets/pants_level_1_hh6qax.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781043/Crypto%20Drip/Individual%20Assets/pants_level_2_zxrnrp.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781043/Crypto%20Drip/Individual%20Assets/pants_level_3_g3aehz.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781044/Crypto%20Drip/Individual%20Assets/pants_level_4_znfpfu.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781043/Crypto%20Drip/Individual%20Assets/pants_level_5_b8csos.png',
+  ],
+  'Drip Kicks': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781041/Crypto%20Drip/Individual%20Assets/Shoes_Level_1_cd2fil.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781041/Crypto%20Drip/Individual%20Assets/Shoes_Level_1_cd2fil.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781040/Crypto%20Drip/Individual%20Assets/Shoes_Level_2_zycqxy.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781041/Crypto%20Drip/Individual%20Assets/Shoes_Level_3_a45sip.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781040/Crypto%20Drip/Individual%20Assets/Shoes_level_4_db0xpw.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781040/Crypto%20Drip/Individual%20Assets/shoes_level_5_ieba6p.png',
+  ],
+  'Father Feather': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558329/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_feather_level_1_lphlwa.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558333/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_feather_level_2_npkos1.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558334/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_feather_level_3_yjbanr.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558334/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_feather_level_4_fpif0j.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558335/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_feather_level_5_gkexeb.png'
+  ],
+  'Father Flow': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558336/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_hat_m_1_k5jzl1.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558336/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_hat_m_2_mmev1j.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558337/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_hat_m_3_didqxt.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558337/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_hat_m_4_l3zbwr.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558338/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_hair_level_5_x4tjxg.png'
+  ],
+  'Father Frock': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558331/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_coat_level_1_zvdbb9.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558331/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_coat_level_2_ntwkav.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558333/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_coat_level_3_nd7aam.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558333/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_coat_level_4_jst8fk.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558332/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_coat_level_5_tekepy.png'
+  ],
+  'Father Breeches': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558339/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_pants_level_1_xzsvpt.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558341/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_pants_level_2_uxg3u6.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558341/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_pants_level_3_yrwxkh.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558342/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_pants_level_4_obr3ju.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558343/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_pants_level_5_sllsho.png'
+  ],
+  'Father Mules': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558337/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_mules_level_1_gvzswf.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558338/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_mules_level_2_tdetmm.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558340/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_mules_level_3_h6789e.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558341/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_mules_level_4_iuxyu4.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558341/ICE%20Founding%20Fathers%20%28Rounded%29/rounded_mules_level_5_cxe5i7.png'
+  ]
 };
 
 // wallet and contract addresses
@@ -256,6 +332,7 @@ const ADDRESSES = (() => {
   const COLLECTION_LINENS_ADDRESS = '0xd79cf5a41d8caec4688e01b4754ea2da6f51e856';
   const COLLECTION_BOMBER_ADDRESS = '0xd07a56f7198ae6e4e3d6738bd8c4b81d21bf0403';
   const COLLECTION_CRYPTO_DRIP_ADDRESS = '0x897243a54b03b46a17b55d5609465e9719a6ffa0';
+  const COLLECTION_FOUNDER_FATHERS_ADDRESS = '0x09eeac7dff0dc304e25cbb7bdbfae798488fc34f';
   const ICE_TOKEN_ADDRESS = '0xc6C855AD634dCDAd23e64DA71Ba85b8C51E5aD7c';
 
   console.log('OWNER_WALLET_ADDRESS: ' + OWNER_WALLET_ADDRESS);
@@ -348,6 +425,7 @@ const ADDRESSES = (() => {
     COLLECTION_LINENS_ADDRESS,
     COLLECTION_BOMBER_ADDRESS,
     COLLECTION_CRYPTO_DRIP_ADDRESS,
+    COLLECTION_FOUNDER_FATHERS_ADDRESS,
     ICE_TOKEN_ADDRESS
   };
 })();
