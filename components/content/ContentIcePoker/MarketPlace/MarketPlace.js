@@ -17,8 +17,56 @@ const MarketPlace = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [previewLevel, setPreviewLevel] = useState([0, 0, 0, 0, 0]);
+  const [previewLevel, setPreviewLevel] = useState([0, 0, 0, 0, 0, 0]);
   const wearables = [
+    {
+      title: 'Founder Fathers',
+      address: Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS,
+      preview: [
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_1_fvhl6y.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_2_pqzdsy.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_3_yloaxi.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_4_zn5mqz.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_5_cnndmr.png',
+      ],
+      details: {
+        Feather: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116020/feather_level_1_rd61am.png',
+          'Father Feather',
+          'Founder Fathers',
+          'Accessory',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116020/feather_level_1_rd61am.png',
+        ],
+        Flow: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116025/hair_level_1_dampks.png',
+          'Father Flow',
+          'Founder Fathers',
+          'Head',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116025/hair_level_1_dampks.png',
+        ],
+        Frock: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116021/coat_level_1_ivacwe.png',
+          'Father Frock',
+          'Founder Fathers',
+          'Torso',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116021/coat_level_1_ivacwe.png',
+        ],
+        Breeches: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116030/pants_level_1_srgdhc.png',
+          'Father Breeches',
+          'Founder Fathers',
+          'Legs',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116030/pants_level_1_srgdhc.png',
+        ],
+        Shoes: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116026/mules_level_1_u7jgmh.png',
+          'Father Mules',
+          'Founder Fathers',
+          'Feet',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116026/mules_level_1_u7jgmh.png',
+        ],
+      },
+    },
     {
       title: 'Crypto Drip',
       address: Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS,
@@ -263,18 +311,6 @@ const MarketPlace = () => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // useEffect(() => {
-  //   if (state.itemLimits.COLLECTION_1[0][0] === 0) {
-  //     setItemLimitsArray1(state.itemLimits.COLLECTION_1);
-  //     setItemLimitsArray2(state.itemLimits.COLLECTION_2);
-  //   } else {
-  //     setItemLimitsArray2(state.itemLimits.COLLECTION_1);
-  //     setItemLimitsArray1(state.itemLimits.COLLECTION_2);
-  //   }
-  // }, [state.itemLimits]);
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
   function updatePreviewLevel(previewIndex, activeId) {
     let levels = previewLevel;
@@ -363,14 +399,16 @@ const MarketPlace = () => {
         {wearables.map((wearable, index) => {
           let itemLimits;
           if (index === 0) {
-            itemLimits = state.itemLimits5;
+            itemLimits = state.itemLimits6;
           } else if (index === 1) {
-            itemLimits = state.itemLimits4;
+            itemLimits = state.itemLimits5;
           } else if (index === 2) {
-            itemLimits = state.itemLimits3;
+            itemLimits = state.itemLimits4;
           } else if (index === 3) {
-            itemLimits = state.itemLimits2;
+            itemLimits = state.itemLimits3;
           } else if (index === 4) {
+            itemLimits = state.itemLimits2;
+          } else if (index === 5) {
             itemLimits = state.itemLimits1;
           }
 
@@ -382,8 +420,6 @@ const MarketPlace = () => {
               }
             })
           }
-
-          console.log(wearable, state.userStatus, state.appConfig.minMintVerifyStep, maxMintCounts, itemLimits);
 
           return (
             <section key={index} className={styles.wearable_section}>
@@ -493,64 +529,66 @@ const MarketPlace = () => {
                     </div>
 
                     <div className={styles.button_container}>
-                      {state.userStatus >= 4 && itemLimits[i][0] < 0 ? (
-                        // items loading, display spinner
+                      {state.userLoggedIn ?
+                        state.userStatus >= 4 && itemLimits[i][0] < 0 ? (
+                          // items loading, display spinner
 
-                        <Button disabled className={styles.sold_button}>
-                          <Spinner width={20} height={20} />
-                        </Button>
-                      ) : state.userStatus >= state.appConfig.minMintVerifyStep &&
-                        (maxMintCounts - itemLimits[i][0]) > 0 ? (
-                        // minting enabled
-
-                        <div className={styles.flex_50}>
-                          <ModalMintWearable
-                            index={i}
-                            maxMintCounts={maxMintCounts}
-                            numberLeft={itemLimits[i][0]}
-                            itemID={itemLimits[i][1]}
-                            address={itemLimits[5]}
-                            wearableImg={wearable.details[item][0]}
-                            wearableBodyType={wearable.details[item][3]}
-                            wearableBodyImg={wearable.details[item][4]}
-                            wearableName={wearable.details[item][1]}
-                          />
-                        </div>
-                      ) : // Minting Disabled States
-                        (maxMintCounts - itemLimits[i][0]) >= 0 && (maxMintCounts - itemLimits[i][0]) < 1 ? (
-                          wearable.title === 'Crypto Drip' ? (
-                            // Sold Out State
-                            <Button disabled className={styles.sold_button}>
-                              Sold Out
-                            </Button>
-                          )
-                            : (
-                              // Buy on Secondary
-                              <a
-                                className={styles.flex_50}
-                                href="https://opensea.io/collection/decentral-games-ice"
-                                target="_blank"
-                                style={{
-                                  width: '100%',
-                                }}
-                              >
-                                <Button className={styles.wearable_button}>
-                                  Buy on Secondary
-                                </Button>
-                              </a>
-                            )
-                        ) : state.userStatus < state.appConfig.minMintVerifyStep &&
-                          (maxMintCounts - itemLimits[i][0]) > 0 ? (
-                          // Coming Soon State
                           <Button disabled className={styles.sold_button}>
-                            Coming Soon!
+                            <Spinner width={20} height={20} />
                           </Button>
-                        ) : state.userStatus < 4 ? (
-                          // Logged Out State
+                        ) : state.userStatus >= state.appConfig.minMintVerifyStep &&
+                          (maxMintCounts - itemLimits[i][0]) > 0 ? (
+                          // minting enabled
+
                           <div className={styles.flex_50}>
-                            <ModalLoginICE />
+                            <ModalMintWearable
+                              index={i}
+                              maxMintCounts={maxMintCounts}
+                              numberLeft={itemLimits[i][0]}
+                              itemID={itemLimits[i][1]}
+                              address={itemLimits[5]}
+                              wearableImg={wearable.details[item][0]}
+                              wearableBodyType={wearable.details[item][3]}
+                              wearableBodyImg={wearable.details[item][4]}
+                              wearableName={wearable.details[item][1]}
+                            />
                           </div>
-                        ) : null}
+                        ) : // Minting Disabled States
+                          (maxMintCounts - itemLimits[i][0]) >= 0 && (maxMintCounts - itemLimits[i][0]) < 1 ? (
+                            wearable.title === 'Founder Fathers' ? (
+                              // Sold Out State
+                              <Button disabled className={styles.sold_button}>
+                                Sold Out
+                              </Button>
+                            )
+                              : (
+                                // Buy on Secondary
+                                <a
+                                  className={styles.flex_50}
+                                  href="https://opensea.io/collection/decentral-games-ice"
+                                  target="_blank"
+                                  style={{
+                                    width: '100%',
+                                  }}
+                                >
+                                  <Button className={styles.wearable_button}>
+                                    Buy on Secondary
+                                  </Button>
+                                </a>
+                              )
+                          ) : state.userStatus < state.appConfig.minMintVerifyStep &&
+                            (maxMintCounts - itemLimits[i][0]) > 0 ? (
+                            // Coming Soon State
+                            <Button disabled className={styles.sold_button}>
+                              Coming Soon!
+                            </Button>
+                          ) : null
+                        :
+                        // Logged Out State
+                        <div className={styles.flex_50}>
+                          <ModalLoginICE />
+                        </div>
+                      }
                     </div>
                   </div>
                 ))}
