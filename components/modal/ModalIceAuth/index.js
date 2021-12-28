@@ -264,7 +264,7 @@ const ModalIceAuth = props => {
         .encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(
-        6,
+        8,
         functionSignature,
         tokenContract,
         state.userAddress,
