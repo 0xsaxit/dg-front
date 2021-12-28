@@ -185,10 +185,6 @@ const ModalUpgradePending = props => {
         type: 'ice_wearable_update_success',
         data: false,
       });
-<<<<<<< HEAD
-      console.log(state.iceWearableItems.filter(item => item.tokenID === props.tokenID)[0])
-=======
->>>>>>> staging
       refresh();
       props.setUpgrade(3);
       setAuthStatusUpgrade(true);
