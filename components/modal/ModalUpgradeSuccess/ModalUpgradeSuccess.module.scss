@@ -66,6 +66,19 @@
       padding: 8px 10px 8px 10px;
     }
   }
+  
+  .fadeIn {
+    animation: fadeInAnimation 2s linear;
+  }
+
+  @keyframes fadeInAnimation {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 
   .success_container {
     margin-top: 5px;

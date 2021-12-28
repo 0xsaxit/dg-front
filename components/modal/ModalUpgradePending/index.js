@@ -9,6 +9,7 @@ import ABI_COLLECTION_PH from '../../../components/ABI/ABICollectionPH';
 import ABI_COLLECTION_LINENS from '../../../components/ABI/ABICollectionLinens';
 import ABI_COLLECTION_BOMBER from '../../../components/ABI/ABICollectionBomber';
 import ABI_COLLECTION_CRYPTO_DRIP from '../../../components/ABI/ABICollectionCryptoDrip';
+import ABI_COLLECTION_FOUNDING_FATHERS from '../../../components/ABI/ABICollectionFounderFather';
 import MetaTx from '../../../common/MetaTx';
 import Fetch from '../../../common/Fetch';
 import { Modal, Button } from 'semantic-ui-react';
@@ -36,7 +37,6 @@ const ModalUpgradePending = props => {
   const [tokenContractICE, setTokenContractICE] = useState({});
   const [tokenContractDGLight, setTokenContractDGLight] = useState({});
   const [collectionContract, setCollectionContract] = useState({});
-  // const [collectionAddress, setCollectionAddress] = useState('');
   const [mexaStatus, setMexaStatus] = useState(false);
   const [collectionID, setCollectionID] = useState(0);
   const [progSteps, setProgSteps] = useState([]);
@@ -80,7 +80,6 @@ const ModalUpgradePending = props => {
       setTokenContractDGLight(tokenContractDGLight);
 
       let collectionContract = {};
-      // let collectionAddress = '';
       let collectionID = 0;
 
       if (props.address === Global.ADDRESSES.COLLECTION_V2_ADDRESS) {
@@ -88,14 +87,12 @@ const ModalUpgradePending = props => {
           ABI_COLLECTION_V2,
           Global.ADDRESSES.COLLECTION_V2_ADDRESS
         );
-        // collectionAddress = Global.ADDRESSES.COLLECTION_V2_ADDRESS;
         collectionID = 10;
       } else if (props.address === Global.ADDRESSES.COLLECTION_PH_ADDRESS) {
         collectionContract = new getWeb3.eth.Contract(
           ABI_COLLECTION_PH,
           Global.ADDRESSES.COLLECTION_PH_ADDRESS
         );
-        // collectionAddress = Global.ADDRESSES.COLLECTION_PH_ADDRESS;
         collectionID = 12;
       } else if (props.address === Global.ADDRESSES.COLLECTION_LINENS_ADDRESS) {
         collectionContract = new getWeb3.eth.Contract(
@@ -109,16 +106,25 @@ const ModalUpgradePending = props => {
           Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS
         );
         collectionID = 14;
-      } else if (props.address === Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS) {
+      } else if (
+        props.address === Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS
+      ) {
         collectionContract = new getWeb3.eth.Contract(
           ABI_COLLECTION_CRYPTO_DRIP,
           Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS
         );
         collectionID = 16;
+      } else if (
+        props.address === Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS
+      ) {
+        collectionContract = new getWeb3.eth.Contract(
+          ABI_COLLECTION_FOUNDING_FATHERS,
+          Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS
+        );
+        collectionID = 17;
       }
 
       setCollectionContract(collectionContract);
-      // setCollectionAddress(collectionAddress);
       setCollectionID(collectionID);
 
       biconomy
@@ -145,9 +151,11 @@ const ModalUpgradePending = props => {
   useEffect(() => {
     if (successInUpgrade) {
       console.log('WEARABLE upgrading successful');
+      refresh();
       setLoading(false);
       setUpdateStatus({ name: 'WEARABLE', value: 'done' });
       setSuccessInUpgrade(false);
+      console.log(state.iceWearableItems.filter(item => item.tokenID === props.tokenID)[0])
 
       props.setUpgrade(3);
       setAuthStatusUpgrade(true);
@@ -177,7 +185,7 @@ const ModalUpgradePending = props => {
         type: 'ice_wearable_update_success',
         data: false,
       });
-
+      refresh();
       props.setUpgrade(3);
       setAuthStatusUpgrade(true);
       setOpen(false);
@@ -211,6 +219,52 @@ const ModalUpgradePending = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
+  
+  function refresh() {
+     // update global state token amounts
+     const refreshTokenAmounts = !state.refreshTokenAmounts;
+     dispatch({
+       type: 'refresh_token_amounts',
+       data: refreshTokenAmounts,
+     });
+
+     // update global state wearables data
+     const refreshWearable = !state.refreshWearable;
+     dispatch({
+       type: 'refresh_wearable_items',
+       data: refreshWearable,
+     });
+
+     // update global state balances
+     const refreshBalances = !state.refreshBalances;
+     dispatch({
+       type: 'refresh_balances',
+       data: refreshBalances,
+     });
+  }
+
+  function refresh() {
+    // update global state token amounts
+    const refreshTokenAmounts = !state.refreshTokenAmounts;
+    dispatch({
+      type: 'refresh_token_amounts',
+      data: refreshTokenAmounts,
+    });
+
+    // update global state wearables data
+    const refreshWearable = !state.refreshWearable;
+    dispatch({
+      type: 'refresh_wearable_items',
+      data: refreshWearable,
+    });
+
+    // update global state balances
+    const refreshBalances = !state.refreshBalances;
+    dispatch({
+      type: 'refresh_balances',
+      data: refreshBalances,
+    });
+  }
 
   function init() {
     const status = [
@@ -266,15 +320,6 @@ const ModalUpgradePending = props => {
     setProgSteps(status);
   }
 
-  function updateAuthState(name, value) {
-    progSteps.map(item => {
-      if (item.step === name) {
-        item.authState = value;
-      }
-    });
-    setProgSteps(progSteps);
-  }
-
   function updateActionState(name, value) {
     const result = progSteps.map(item => {
       if (item.step === name) {
@@ -315,9 +360,6 @@ const ModalUpgradePending = props => {
                 actionState={item.actionState}
                 onClick={() => {
                   console.log('circle clicked', item);
-                  // if(!item.authState) {
-                  //   item.handleClick();
-                  // }
                 }}
               />
               {item.step !== 'WEARABLE' && (
@@ -341,11 +383,11 @@ const ModalUpgradePending = props => {
             analytics.track(activeItem.trackEvent);
             activeItem.handleClick();
           }}
-          disabled={(!loading && mexaStatus) ? false : true}
+          disabled={!loading && mexaStatus ? false : true}
         >
           <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png" />
 
-          {(!loading && mexaStatus) ? activeItem.text : <Loader />}
+          {!loading && mexaStatus ? activeItem.text : <Loader />}
         </Button>
       );
     }
@@ -526,7 +568,8 @@ const ModalUpgradePending = props => {
 
     try {
       const json = await Fetch.UPGRADE_TOKEN(props.tokenID, props.address);
-
+      
+      console.log("SUCCESS OR FAILURE: ", json.status)
       if (json.status) {
         console.log('success in upgrading:', json);
         setSuccessInUpgrade(true);

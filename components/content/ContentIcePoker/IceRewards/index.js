@@ -303,7 +303,6 @@ const IceRewards = () => {
                     }
                   }}
                 />
-
                 <div className={styles.bottomDiv}>
                   <div className={styles.legend}>
                     <div>
@@ -329,12 +328,10 @@ const IceRewards = () => {
               </div>
             </div>
           </div>
-
           <div className={styles.history}>
             <div className={styles.title}>
               <h1>ICE Reward History</h1>
             </div>
-
             <Table fixed unstackable style={{ marginBottom: '0px' }}>
               <Table.Header>
                 <Table.Row>
@@ -360,7 +357,6 @@ const IceRewards = () => {
                 </Table.Row>
               </Table.Header>
             </Table>
-
             {iceRewardHistory && iceRewardHistory.length > 0 ?
               <Table fixed unstackable>
                 <Table.Body>
@@ -371,7 +367,6 @@ const IceRewards = () => {
                         ? (style = 'rgba(255, 255, 255, 0.08)')
                         : (style = 'black');
                     }
-
                     return (
                       <Table.Row key={i} style={{ background: style }}>
                         {isTablet && (

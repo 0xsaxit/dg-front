@@ -11,6 +11,7 @@ import ABI_COLLECTION_PH from '../components/ABI/ABICollectionPH';
 import ABI_COLLECTION_LINENS from '../components/ABI/ABICollectionLinens';
 import ABI_COLLECTION_BOMBER from '../components/ABI/ABICollectionBomber';
 import ABI_COLLECTION_CRYPTO_DRIP from '../components/ABI/ABICollectionCryptoDrip.json';
+import ABI_COLLECTION_FOUNDER_FATHER from '../components/ABI/ABICollectionFounderFather.json';
 import ABI_ICEToken from '../components/ABI/ABIICEToken';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
@@ -80,6 +81,10 @@ function ICEAttributes() {
           ABI_COLLECTION_CRYPTO_DRIP,
           Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS
         );
+        const collectionV2Contract6 = new maticWeb3.eth.Contract(
+          ABI_COLLECTION_FOUNDER_FATHER,
+          Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS
+        );
 
         const collectionArray = [];
         collectionArray.push([
@@ -105,6 +110,11 @@ function ICEAttributes() {
         collectionArray.push([
           collectionV2Contract5,
           Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS,
+          [0, 5, 10, 15, 20],
+        ]);
+        collectionArray.push([
+          collectionV2Contract6,
+          Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS,
           [0, 5, 10, 15, 20],
         ]);
         setCollectionArray(collectionArray);
@@ -133,70 +143,20 @@ function ICEAttributes() {
           });
         }
 
-        const tokenIDs = [];
-        const tokensById = collectionArray.map(async (item, index) => {
-          try {
-            for (
-              let nIndex = 0;
-              nIndex < Global.CONSTANTS.MAX_ITEM_COUNT;
-              nIndex++
-            ) {
-              const tokenID = await collectionArray[index][0].methods
-                .tokenOfOwnerByIndex(state.userAddress, nIndex)
-                .call();
+        let iceWearableItems = await Fetch.GET_WEARABLE_INVENTORY(state.userAddress);
+        for (var i = 0; i < iceWearableItems.length; i++) {
+          const json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
+            iceWearableItems[i].contractAddress,
+            iceWearableItems[i].tokenId
+          );
 
-              if (parseInt(tokenID) > 0) {
-                tokenIDs.push({
-                  index: nIndex,
-                  tokenID: tokenID,
-                  collection: collectionArray[index][0],
-                  address: collectionArray[index][1],
-                });
-              }
-            }
-          } catch (error) {
-            console.log('Stack error: =>', error.message);
-          }
-
-          return tokenIDs;
-        });
-        await Promise.all(tokensById);
-
-        console.log('Fetching metadata =========================');
-
-        let iceWearableItems = [];
-        for (var i = 0; i < tokenIDs.length; i++) {
-          try {
-            const is_activated = await ICERegistrantContract.methods
-              .isIceEnabled(
-                state.userAddress,
-                tokenIDs[i].address,
-                tokenIDs[i].tokenID
-              )
-              .call();
-
-            const json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
-              tokenIDs[i].address,
-              tokenIDs[i].tokenID
-            );
-
-            if (Object.keys(json).length) {
-              iceWearableItems.push({
-                index: tokenIDs[i].index,
-                tokenID: tokenIDs[i].tokenID,
-                itemID: json.id.split(':').slice(-1),
-                meta_data: json,
-                isActivated: is_activated,
-                collection: tokenIDs[i].collection,
-                address: tokenIDs[i].address,
-              });
-            }
-          } catch (error) {
-            console.log('Fetch metadata error: ' + error);
+          if (Object.keys(json).length) {
+            iceWearableItems[i].meta_data = json;
+            iceWearableItems[i].index = i;
+            iceWearableItems[i].address = iceWearableItems[i].contractAddress;
+            iceWearableItems[i].tokenID = iceWearableItems[i].tokenId;
           }
         }
-
-        console.log('iceWearableItems: ', iceWearableItems);
 
         dispatch({
           type: 'ice_wearable_items',
@@ -304,6 +264,12 @@ function ICEAttributes() {
         dispatch({
           type: 'item_limits_5',
           data: itemLimits5,
+        });
+
+        const itemLimits6 = await getItemLimits(5);
+        dispatch({
+          type: 'item_limits_6',
+          data: itemLimits6,
         });
 
         // get the user's cool-down status
