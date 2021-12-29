@@ -21,17 +21,9 @@ const ModalUpgradeSuccess = props => {
   useEffect(() => {
     // refresh();
     const itemInfo = state.iceWearableItems.filter(item => item.tokenID === props.tokenID)[0];
-<<<<<<< HEAD
     setImage(props.imgURL ? props.imgURL : '');
     setDescription(itemInfo.meta_data ? itemInfo.meta_data.description.split(' ').at(-1).replace('/', ' of ') : '');
     setRank(itemInfo.meta_data ? GetRank(parseInt(itemInfo.meta_data.attributes.find(el => el.trait_type === 'Bonus').value)) : 0);
-    console.log("Upgraded Wearable Info ", itemInfo)
-=======
-    // setImage(itemInfo.meta_data? itemInfo.meta_data.image : '');
-    setImage(props.imgURL? props.imgURL : '');
-    setDescription(itemInfo.meta_data? itemInfo.meta_data.description.split(' ').at(-1).replace('/', ' of '):'');
-    setRank(itemInfo.meta_data? GetRank(parseInt(itemInfo.meta_data.attributes.find(el => el.trait_type === 'Bonus').value)):0);
->>>>>>> staging
   }, [state.iceWearableItems])
 
   function refresh() {
@@ -49,29 +41,12 @@ const ModalUpgradeSuccess = props => {
        data: refreshWearable,
      });
 
-<<<<<<< HEAD
      // update global state wearable Inventory data
      const refreshWearableInventory = !state.refreshWearableInventory;
      dispatch({
        type: 'refresh_wearable_inventory_items',
        data: refreshWearableInventory,
      });
-=======
-     // update global state balances
-     const refreshBalances = !state.refreshBalances;
-     dispatch({
-       type: 'refresh_balances',
-       data: refreshBalances,
-     });
-
-    // update global state balances        
-    // const refreshBalances = !state.refreshBalances;
-    // dispatch({
-    //   type: 'refresh_balances',
-    //   data: refreshBalances,
-    // });
-  }
->>>>>>> staging
 
      // update global state balances
      const refreshBalances = !state.refreshBalances;
@@ -96,12 +71,7 @@ const ModalUpgradeSuccess = props => {
       trigger={<Button className={styles.open_button}>Upgrade</Button>}
     >
       <div
-<<<<<<< HEAD
         className={styles.header_buttons}    
-=======
-        className={styles.header_buttons}
-        
->>>>>>> staging
       >
         <span 
           className={styles.button_close}
@@ -192,8 +162,6 @@ const ModalUpgradeSuccess = props => {
               <div className={styles.round}>{description}</div>
             </div>
           </div>
-
-<<<<<<< HEAD
           <div className={styles.buttons}>
             <Button 
               href="https://api.decentral.games/ice/play?position=-110%2C129"
@@ -213,28 +181,7 @@ const ModalUpgradeSuccess = props => {
               Back to Account
             </Button>
           </div>
-=======
-        <div className={styles.buttons}>
-          <Button 
-            href="https://api.decentral.games/ice/play?position=-110%2C129"
-            target="_blank"
-            className={styles.primary}
-          >
-            Play Now
-          </Button>
-          <Button
-            className={styles.none}
-            onClick={() => {
-              setOpen(false);
-              props.setUpgrade(0);
-              refresh();
-            }}
-          >
-            Back to Account
-          </Button>
->>>>>>> staging
         </div>
-          
       }
     </Modal>
   );

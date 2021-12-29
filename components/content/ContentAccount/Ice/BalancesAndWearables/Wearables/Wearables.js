@@ -164,22 +164,12 @@ const Wearables = () => {
     <section className={styles.wearableSection}>
       <div className={styles.wearableHeader}>
         <div>
-<<<<<<< HEAD
-          <h2>ICED Wearables</h2>
-          {!!state.iceWearableItems.length ||
-          !!state.iceDelegatedItems.length ? (
-            <p>{`(${activeWearables.length + delegatedWearables.length} of ${
-              state.iceWearableItems.length + state.iceDelegatedItems.length
-            } Active)`}</p>
-          ) : null}
-=======
           <h2>ICE Wearables</h2>
           {!!state.iceWearableItems.length || !!state.iceDelegatedItems.length ?
             <p>{`(${activeWearables.length + delegatedWearables.length} of ${state.iceWearableItems.length + state.iceDelegatedItems.length
               } Active)`}</p>
             : null
           }
->>>>>>> staging
         </div>
         <Button className={styles.open_sea} href="/ice/marketplace">
           Mint Wearable

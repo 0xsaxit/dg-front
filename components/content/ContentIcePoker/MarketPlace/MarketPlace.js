@@ -25,13 +25,8 @@ const MarketPlace = () => {
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_1_fvhl6y.png',
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_2_pqzdsy.png',
-<<<<<<< HEAD
-        'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_4_zn5mqz.png',
-        'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_3_yloaxi.png',
-=======
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_3_yloaxi.png',
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_4_zn5mqz.png',
->>>>>>> staging
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_5_cnndmr.png',
       ],
       details: {
@@ -539,56 +534,6 @@ const MarketPlace = () => {
                       {state.userLoggedIn ?
                         state.userStatus >= 4 && itemLimits[i][0] < 0 ? (
                           // items loading, display spinner
-
-<<<<<<< HEAD
-                        <Button disabled className={styles.sold_button}>
-                          <Spinner width={20} height={20} />
-                        </Button>
-                      ) : state.userStatus >= state.appConfig.minMintVerifyStep &&
-                        (maxMintCounts - itemLimits[i][0]) > 0 ? (
-                        // minting enabled
-
-                        <div className={styles.flex_50}>
-                          <ModalMintWearable
-                            index={i}
-                            maxMintCounts={maxMintCounts}
-                            numberLeft={itemLimits[i][0]}
-                            itemID={itemLimits[i][1]}
-                            address={itemLimits[5]}
-                            wearableImg={wearable.details[item][0]}
-                            wearableBodyType={wearable.details[item][3]}
-                            wearableBodyImg={wearable.details[item][4]}
-                            wearableName={wearable.details[item][1]}
-                          />
-                        </div>
-                      ) : // Minting Disabled States
-                        (maxMintCounts - itemLimits[i][0]) >= 0 && (maxMintCounts - itemLimits[i][0]) < 1 ? (
-                          wearable.title === 'Founder Fathers' ? (
-                            // Sold Out State
-                            <Button disabled className={styles.sold_button}>
-                              Sold Out
-                            </Button>
-                          )
-                            : (
-                              // Buy on Secondary
-                              <a
-                                className={styles.flex_50}
-                                href="https://opensea.io/collection/decentral-games-ice"
-                                target="_blank"
-                                style={{
-                                  width: '100%',
-                                }}
-                              >
-                                <Button className={styles.wearable_button}>
-                                  Buy on Secondary
-                                </Button>
-                              </a>
-                            )
-                        ) : state.userStatus < state.appConfig.minMintVerifyStep &&
-                          (maxMintCounts - itemLimits[i][0]) > 0 ? (
-                          // Coming Soon State
-=======
->>>>>>> staging
                           <Button disabled className={styles.sold_button}>
                             <Spinner width={20} height={20} />
                           </Button>

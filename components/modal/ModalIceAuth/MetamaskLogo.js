@@ -243,8 +243,4 @@ const MetamaskLogo = () => {
   );
 };
 
-<<<<<<< HEAD
 export default MetamaskLogo;
-=======
-export default MetamaskLogo;
->>>>>>> staging

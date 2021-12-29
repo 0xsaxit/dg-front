@@ -245,19 +245,14 @@ const ModalMint = props => {
     );
   }
 
+  //TODO: Refactor this so that it is not hardcoded
   function ethAuthModal() {
     return (
       <ModalIceAuth
         itemID={props.itemID}
         address={props.address}
         wearableImg={props.wearableImg}
-<<<<<<< HEAD
-        show={openETHAuth}
-        maxMintCounts={props.maxMintCounts}
-        numberLeft={props.numberLeft}
-=======
         show={openICEAuth}
->>>>>>> staging
         back={() => {
           setOpen(true);
           setOpenICEAuth(false);
