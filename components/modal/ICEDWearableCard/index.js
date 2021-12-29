@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import cn from 'classnames';
+import { Modal, Icon, Button, Header, Grid, Popup } from 'semantic-ui-react';
 import styles from './ICEDWearableCard.module.scss';
 import IceP2EEnabledTooltip from 'components/tooltips/IceP2EEnabledTooltip';
 import IceNeedToActivateTooltip from 'components/tooltips/IceNeedToActivateTooltip';
 import IceWearableBonusTooltip from 'components/tooltips/IceWearableBonusTooltip';
 import ModalDelegate from 'components/modal/ModalDelegate';
 import ModalWithdrawDelegation from 'components/modal/ModalWithdrawDelegation';
+import NeedMoreUpgrade from 'components/modal/NeedMoreUpgrade';
 import NeedMoreDGActivateModal from 'components/modal/NeedMoreDGActivateModal';
 import ModalWearable from 'components/modal/ModalWearable';
 import ActivateWearableModal from '../ActivateWearableModal';
 
 const ICEDWearableCard = props => {
+  const [pending, setPending] = useState(false);
+
   return (
     <>
       <div className={styles.wearable_modal}>

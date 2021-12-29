@@ -9,7 +9,11 @@ import Fetch from '../../../../common/Fetch';
 import FoxAnimation from 'components/lottieAnimation/animations/fox';
 import NoResult from 'components/lottieAnimation/animations/noResult';
 import ModalIceBreakdown from 'components/modal/ModalIceBreakDown';
+<<<<<<< HEAD
 import SpinnerAnimation from 'components/lottieAnimation/animations/spinner';
+=======
+import Spinner from 'components/Spinner';
+>>>>>>> staging
 
 const IceRewards = () => {
   // dispatch user's ICE amounts to the Context API store
@@ -64,6 +68,7 @@ const IceRewards = () => {
     for (var i = 7; i >= 1; i--) {
       var date = new Date(today);
       date.setDate(date.getDate() - i);
+      console.log(date);
       xAxis.push(date.toDateString().slice(0, 1));
     }
     setStatsUSDX(xAxis);
@@ -244,17 +249,22 @@ const IceRewards = () => {
                   </p>
                 </div>
 
-                <Button
-                  className={cn(styles.claim_ICE, styles.lower_button)}
-                  onClick={() => claimTokens()}
-                  disabled={clicked}
-                >
-                  {!clicked ? (
-                    <>Claim {formatPrice(totalICE, 0)} ICE</>
-                  ) : (
-                    <SpinnerAnimation />
-                  )}
-                </Button>
+                {!clicked ? (
+                  <Button
+                    className={cn(styles.claim_ICE, styles.lower_button)}
+                    onClick={() => claimTokens()}
+                  >
+                    Claim {formatPrice(totalICE, 0)} ICE
+                  </Button>
+                ) : (
+                  <Button
+                    className={cn(styles.claim_ICE, styles.lower_button)}
+                    disabled
+                  >
+                    <Spinner width={33} height={33} />
+                    &nbsp; Claim {formatPrice(totalICE, 0)} ICE
+                  </Button>
+                )}
               </div>
             </div>
 
@@ -297,7 +307,6 @@ const IceRewards = () => {
                     }
                   }}
                 />
-
                 <div className={styles.bottomDiv}>
                   <div className={styles.legend}>
                     <div>
@@ -323,12 +332,10 @@ const IceRewards = () => {
               </div>
             </div>
           </div>
-
           <div className={styles.history}>
             <div className={styles.title}>
               <h1>ICE Reward History</h1>
             </div>
-
             <Table fixed unstackable style={{ marginBottom: '0px' }}>
               <Table.Header>
                 <Table.Row>
@@ -354,7 +361,6 @@ const IceRewards = () => {
                 </Table.Row>
               </Table.Header>
             </Table>
-
             {iceRewardHistory && iceRewardHistory.length > 0 ?
               <Table fixed unstackable>
                 <Table.Body>
@@ -365,7 +371,6 @@ const IceRewards = () => {
                         ? (style = 'rgba(255, 255, 255, 0.08)')
                         : (style = 'black');
                     }
-
                     return (
                       <Table.Row key={i} style={{ background: style }}>
                         {isTablet && (

@@ -2,9 +2,13 @@ import { useEffect, useContext, useState } from 'react';
 import Link from 'next/link';
 import { Popup, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
+import Global from 'components/Constants';
 import { useRouter } from 'next/router';
+// import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
 const ModalPopup = () => {
+  //const { t, i18n } = useTranslation();
+  // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
   const router = useRouter();
 
@@ -12,6 +16,9 @@ const ModalPopup = () => {
   const [copied, setCopied] = useState(false);
   const [casinoBalance, setCasinoBalance] = useState(0);
   const [binance, setBinance] = useState(false);
+  const [meatamaskEnabled, setMetamaskEnabled] = useState(false);
+  const [isToastShow, setIsToastShow] = useState(false);
+
   const [visibleStatus, setVisibleStatus] = useState(false);
 
   useEffect(() => {
@@ -166,6 +173,7 @@ const ModalPopup = () => {
                 </svg>
               </span>
               <span>
+                {/* {t('navMenu.MYACCOUNT')} */}
                 My Account
               </span>
             </Button>

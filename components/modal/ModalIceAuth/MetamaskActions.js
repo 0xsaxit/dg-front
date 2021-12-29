@@ -73,4 +73,8 @@ const MetamaskAction = ({
   );
 };
 
+<<<<<<< HEAD
 export default MetamaskAction;
+=======
+export default MetamaskAction;
+>>>>>>> staging

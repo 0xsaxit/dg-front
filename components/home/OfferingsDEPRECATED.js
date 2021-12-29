@@ -87,7 +87,7 @@ const detailsCasinos = {
     'PARTNER CASINO',
     'https://play.decentraland.org/?position=-110%2C121&realm=dg-diamond',
     'https://docs.decentral.games/operators/',
-  ],
+  ],  
   Dext: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1627209301/Dext_Timelapse_1_oh5bnz.gif',
     'games-pic',
@@ -351,31 +351,31 @@ const Offerings = (props) => {
               {leaderboardLink(true)}
             </p>
           ) : (
-            <div>
-              <p className="account-other-p" style={{ width: '100%' }}>
-                <Link href="/games">
-                  <span className="account-hover">
-                    <b>Games</b>
-                  </span>
-                </Link>
-                <Link href="/games/casinos">
-                  <span className="account-hover">
-                    <b>Casinos</b>
-                  </span>
-                </Link>
-                <Link href="/games/nfts">
-                  <span className="account-hover">
-                    <b>NFTs</b>
-                  </span>
-                </Link>
-                <Link href="/games/shop">
-                  <span className="account-hover">
-                    <b>Shop</b>
-                  </span>
-                </Link>
+              <div>
+                <p className="account-other-p" style={{ width: '100%' }}>
+                  <Link href="/games">
+                    <span className="account-hover">
+                      <b>Games</b>
+                    </span>
+                  </Link>
+                  <Link href="/games/casinos">
+                    <span className="account-hover">
+                      <b>Casinos</b>
+                    </span>
+                  </Link>
+                  <Link href="/games/nfts">
+                    <span className="account-hover">
+                      <b>NFTs</b>
+                    </span>
+                  </Link>
+                  <Link href="/games/shop">
+                    <span className="account-hover">
+                      <b>Shop</b>
+                    </span>
+                  </Link>
 
-                {leaderboardLink(false)}
-              </p>
+                  {leaderboardLink(false)}
+                </p>
 
               {coinSelect()}
             </div>

@@ -4,9 +4,11 @@ import { Button } from 'semantic-ui-react';
 import { useMediaQuery } from 'hooks';
 import images from 'common/Images';
 import styles from './DG.module.scss';
+// import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
 const FunctionThree = () => {
   const mobile = useMediaQuery('(max-width: 576px)');
+  //const { t, i18n } = useTranslation();
 
   return (
     <>
@@ -185,7 +187,7 @@ const FunctionThree = () => {
       </div>
 
       <div className={styles.join}>
-        <img
+        <img 
           className={styles.join_img}
           src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,q_auto:best/v1629728655/party_popper_hzrf1f.png"
         />
@@ -200,13 +202,13 @@ const FunctionThree = () => {
             target="_blank"
           >
             <span style={{ display: 'flex' }}>
-              <img
+              <img 
                 className={styles.telegram_img1}
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,q_auto:best/v1629728316/Frame_psxdvb.png"
               />
-              <img
+              <img 
                 className={styles.telegram_img2}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,q_auto:best/v1629728386/Telegram_r2qzfw.png"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,q_auto:best/v1629728386/Telegram_r2qzfw.png" 
               />
             </span>
           </Button>
@@ -215,9 +217,9 @@ const FunctionThree = () => {
             href="/discord"
             target="_blank"
           >
-            <img
+            <img 
               className={styles.discord_img}
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,q_auto:best/v1629728380/Group_wa8qgf.png"
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,q_auto:best/v1629728380/Group_wa8qgf.png" 
             />
           </Button>
         </span>

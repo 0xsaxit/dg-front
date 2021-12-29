@@ -220,6 +220,7 @@ const ModalIceAuth = props => {
           data: refresh2,
         });
 
+<<<<<<< HEAD
         // update global state wearable Inventory data
         const refresh3 = !state.refreshWearableInventory;
         dispatch({
@@ -227,6 +228,8 @@ const ModalIceAuth = props => {
           data: refresh3,
         });
 
+=======
+>>>>>>> staging
         console.log('NFT minting successful');
 
         setOpenMintSuccess(true);
@@ -257,11 +260,19 @@ const ModalIceAuth = props => {
     setMinting(false);
   }
 
+<<<<<<< HEAD
   // Biconomy API meta-transaction. User must authorize WETH token contract to access their funds
   async function metaTransaction() {
     try {
       console.log('ICE authorization amount: ' + Global.CONSTANTS.MAX_AMOUNT);
       setClickedAuthEth(true);
+=======
+  // Biconomy API meta-transaction. User must authorize ICE token contract to access their funds
+  async function metaTransaction() {
+    try {
+      console.log('ICE authorization amount: ' + Global.CONSTANTS.MAX_AMOUNT);
+      setClickedAuthICE(true);
+>>>>>>> staging
       setLoading(true);
       setErrorText(null);
 
@@ -271,7 +282,11 @@ const ModalIceAuth = props => {
         .encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(
+<<<<<<< HEAD
         6,
+=======
+        8,
+>>>>>>> staging
         functionSignature,
         tokenContract,
         state.userAddress,
@@ -281,7 +296,11 @@ const ModalIceAuth = props => {
       if (txHash === false) {
         console.log('Biconomy meta-transaction failed');
         setErrorText('ICE Authorization failed, please try again');
+<<<<<<< HEAD
         setClickedAuthEth(false);
+=======
+        setClickedAuthICE(false);
+>>>>>>> staging
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
@@ -298,8 +317,12 @@ const ModalIceAuth = props => {
     } catch (error) {
       console.log('ICE authorization error: ' + error);
       setErrorText('ICE Authorization failed, please try again');
+<<<<<<< HEAD
 
       setClickedAuthEth(false);
+=======
+      setClickedAuthICE(false);
+>>>>>>> staging
       setLoading(false);
     }
   }

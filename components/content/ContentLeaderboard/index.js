@@ -48,6 +48,7 @@ const ContentLeaderboard = (props) => {
 
     useEffect(() => {
         if (Object.keys(props.gameRecords).length !== 0) {
+            console.log(props.gameRecords);
             if (props.gameRecords[time.toLowerCase()] && props.gameRecords[time.toLowerCase()][game.toLowerCase()] && props.gameRecords[time.toLowerCase()][game.toLowerCase()][coin.toLowerCase()]) {
                 setGameRecords(props.gameRecords[time.toLowerCase()][game.toLowerCase()][coin.toLowerCase()]);
             } else {

@@ -6,6 +6,7 @@ import styles from './MessageToast.module.scss';
 import cn from 'classnames';
 
 const MessageToast = (props) => {
+
   const [state, dispatch] = useContext(GlobalContext);
   const [message, setMessage] = useState('');
   const [mobile, setMobile] = useState(false);
@@ -15,55 +16,55 @@ const MessageToast = (props) => {
   let web3 = {};
   const [show, setShow] = useState(false);
 
-  const detectNetwork = () => {
-    window.addEventListener("resize", function (event) {
-      if (window.innerWidth < 499) {
-        setMobile(true);
-      }
-    });
-    window.addEventListener("load", function () {
-      if (window.ethereum) {
-        // use MetaMask's provider
-        web3 = new Web3(window.ethereum);
+  const detectNetwork = ()=> {
+    window.addEventListener("resize", function(event) {
+        if (window.innerWidth < 499) {
+            setMobile(true);
+        }
+    });      
+    window.addEventListener("load", function() {
+        if (window.ethereum) {
+          // use MetaMask's provider
+          web3 = new Web3(window.ethereum);
 
-        // get permission to access accounts
-        window.ethereum.enable();
+          // get permission to access accounts
+          window.ethereum.enable();
+      
+           // detect Network account change
+          window.ethereum.on('networkChanged', function(networkId){
+            if (parseInt(networkId) !== parseInt(Global.CONSTANTS.PARENT_NETWORK_ID)) {
+                console.log("1. networkId: ", networkId);
+                console.log("2. Global.CONSTANTS.PARENT_NETWORK_ID: ", Global.CONSTANTS.PARENT_NETWORK_ID);
 
-        // detect Network account change
-        window.ethereum.on('networkChanged', function (networkId) {
-          if (parseInt(networkId) !== parseInt(Global.CONSTANTS.PARENT_NETWORK_ID)) {
-            console.log("1. networkId: ", networkId);
-            console.log("2. Global.CONSTANTS.PARENT_NETWORK_ID: ", Global.CONSTANTS.PARENT_NETWORK_ID);
-
-            if (window.innerWidth < 499) {
-              setMobile(true);
+                if (window.innerWidth < 499) {
+                    setMobile(true);
+                }
             }
-          }
 
-          dispatch({
-            type: 'network_id',
-            data: parseInt(networkId, 10),
+            dispatch({
+                type: 'network_id',
+                data: parseInt(networkId, 10),
+            });
           });
-        });
-      } else {
-        console.warn(
-          "No web3 detected",
-        );
-      }
-    });
+        } else {
+          console.warn(
+            "No web3 detected",
+          );
+        }
+      });
   }
 
-  const makeTimeout = () => {
-    setShow(true);
-    let timer = setTimeout(() => {
-      setShow(false);
-    }, 5000);
-    return () => {
-      clearTimeout(timer);
-    };
+  const makeTimeout = () => {            
+      setShow(true);
+      let timer = setTimeout(() => {
+        setShow(false);
+      }, 5000);
+      return () => {
+        clearTimeout(timer);
+      };
   }
 
-  useEffect(() => {
+  useEffect(() => {        
     detectNetwork();
     if (window.safari !== undefined) {
       isSafari = true;
@@ -97,10 +98,10 @@ const MessageToast = (props) => {
         clearTimeout(timer);
       };
     }
-  }, [state.dgWarningMsg]);
+  }, [state.dgWarningMsg]); 
 
   useEffect(() => {
-    if (state.toastMessage !== '') {
+    if (state.toastMessage!=='') {
       setMessage(state.toastMessage);
       setShow(true);
 
@@ -164,19 +165,19 @@ const MessageToast = (props) => {
     return null;
   } else if (message !== '') {
     return (
-      <div className={styles.container}>
-        <div
-          className={
-            show ?
-              cn(styles.message_bar_toast, styles.show) :
-              cn(styles.message_bar_toast, styles.hide)
-          }
-        >
-          <div className={styles.content}>
-            {message}
-          </div>
+        <div className={styles.container}>
+            <div 
+                className={
+                    show ? 
+                    cn(styles.message_bar_toast, styles.show) : 
+                    cn(styles.message_bar_toast, styles.hide)
+                }
+            >
+                <div className={styles.content}>
+                    {message}
+                </div>
+            </div>
         </div>
-      </div>
     );
   } else {
     return null;

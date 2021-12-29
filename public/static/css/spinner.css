@@ -17,7 +17,7 @@
   z-index: 1999 !important;
 }
 
-.black {
+.black { 
   position: absolute;
   width: 100%;
   height: calc(100vh + 210px);

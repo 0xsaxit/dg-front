@@ -5,7 +5,7 @@ import IceWearableBonusTooltip from 'components/tooltips/IceWearableBonusTooltip
 import ModalWithdrawDelegation from 'components/modal/ModalWithdrawDelegation';
 import styles from './ICEDelegatedCard.module.scss';
 import Aux from '../../../_Aux';
-import IceCheckedInTooltip from 'components/tooltips/IceCheckedInTooltip';
+import IceDelegatedCheckedInTooltip from 'components/tooltips/IceDelegatedCheckedInTooltip/IceDelegatedCheckedInTooltip';
 
 const ICEWearableCard = props => {
   // get user's wallet address from the Context API store
@@ -14,9 +14,7 @@ const ICEWearableCard = props => {
   // define local variables
   const buttonUndelegate = 'Withdraw Delegation';
   const { name, description, image, attributes } = props.data;
-  const rank = GetRank(
-    parseInt(attributes.find(el => el.trait_type === 'Bonus').value)
-  );
+  const rank = GetRank(parseInt(attributes.find(el => el.trait_type === 'Bonus').value));
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -25,7 +23,7 @@ const ICEWearableCard = props => {
     return (
       <Aux>
         <div className={styles.wear_box_purple}>
-          {props.isCheckedIn && <IceCheckedInTooltip />}
+          {props.isCheckedIn && <IceDelegatedCheckedInTooltip />}
           <img src={image} />
         </div>
 
