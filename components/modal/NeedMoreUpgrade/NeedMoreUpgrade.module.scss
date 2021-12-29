@@ -1,4 +1,4 @@
-@import "styles/base.scss";
+@import 'styles/base.scss';
 
 .open_button {
   background-color: #006eff !important;
@@ -109,20 +109,18 @@
           margin-top: 3px;
           height: 78px;
         }
-
+        
         .dg_icon {
           max-width: 78px;
           max-height: 78px;
         }
-
+        
         .xp_icon {
           margin-top: 16px;
           height: 78px;
         }
 
-        .ice_pill,
-        .dg_pill,
-        .xp_pill {
+        .ice_pill, .dg_pill, .xp_pill {
           padding: 4px 10px;
           height: 23px;
           font-size: 11px;
@@ -140,7 +138,7 @@
         .dg_pill {
           margin-top: -8px;
         }
-
+        
         .xp_pill {
           margin-top: -23px;
         }
@@ -151,7 +149,7 @@
           align-items: center;
           align-self: flex-end;
           margin-top: auto;
-
+          
           button {
             width: 128px;
             height: 48px;

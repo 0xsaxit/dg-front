@@ -25,6 +25,8 @@ const TreasuryTooltipGameplay = props => {
       state.treasuryNumbers !== undefined &&
       Object.keys(state.treasuryNumbers).length !== 0
     ) {
+      const usd = state.treasuryNumbers.totalBalanceUSD.graph;
+
       const mana = state.treasuryNumbers.manaBalance.graph;
       setManaBalance(formatPrice(mana.slice(-1)[0].secondary, 0));
 

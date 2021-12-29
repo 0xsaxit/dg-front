@@ -149,7 +149,7 @@ function ICEAttributes() {
             iceWearableItems[i].contractAddress,
             iceWearableItems[i].tokenId
           );
-          
+
           if (Object.keys(json).length) {
             iceWearableItems[i].meta_data = json;
             iceWearableItems[i].index = i;

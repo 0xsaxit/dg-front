@@ -219,14 +219,7 @@ const ModalIceAuth = props => {
           type: 'refresh_wearable_items',
           data: refresh2,
         });
-
-        // update global state wearable Inventory data
-        const refresh3 = !state.refreshWearableInventory;
-        dispatch({
-          type: 'refresh_wearable_inventory_items',
-          data: refresh3,
-        });
-
+        
         console.log('NFT minting successful');
 
         setOpenMintSuccess(true);
@@ -257,11 +250,12 @@ const ModalIceAuth = props => {
     setMinting(false);
   }
 
-  // Biconomy API meta-transaction. User must authorize WETH token contract to access their funds
+
+  // Biconomy API meta-transaction. User must authorize ICE token contract to access their funds
   async function metaTransaction() {
     try {
       console.log('ICE authorization amount: ' + Global.CONSTANTS.MAX_AMOUNT);
-      setClickedAuthEth(true);
+      setClickedAuthICE(true);
       setLoading(true);
       setErrorText(null);
 
@@ -271,7 +265,7 @@ const ModalIceAuth = props => {
         .encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(
-        6,
+        8,
         functionSignature,
         tokenContract,
         state.userAddress,
@@ -281,7 +275,7 @@ const ModalIceAuth = props => {
       if (txHash === false) {
         console.log('Biconomy meta-transaction failed');
         setErrorText('ICE Authorization failed, please try again');
-        setClickedAuthEth(false);
+        setClickedAuthICE(false);
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
@@ -298,8 +292,7 @@ const ModalIceAuth = props => {
     } catch (error) {
       console.log('ICE authorization error: ' + error);
       setErrorText('ICE Authorization failed, please try again');
-
-      setClickedAuthEth(false);
+      setClickedAuthICE(false);
       setLoading(false);
     }
   }

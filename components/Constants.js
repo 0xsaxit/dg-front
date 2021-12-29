@@ -31,6 +31,7 @@ const CONSTANTS = {
   MAX_DELEGATION_COUNT: 5, // maximum number of delegated NFTs a user can have
   VERIFY_URL: 'staging.decentral.games',
   WETH_MINT_AMOUNT: 0.25, // amount of WETH required for minting
+  ICE_MINT_AMOUNT: 8000, // amount of ICE required for minting
   DG_STAKED_AMOUNT: 1, // amount of DG user is required to have staked in order to mint wearable
   XDG_STAKED_AMOUNT: 1000, // amount of DG user is required to have staked in order to mint wearable
   POOLING_TIME_OUT: 8000, // API endpoint request pool interval (milliseconds)
@@ -239,6 +240,46 @@ const IMG_URLS_UPGRADE = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781040/Crypto%20Drip/Individual%20Assets/Shoes_level_4_db0xpw.png',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781040/Crypto%20Drip/Individual%20Assets/shoes_level_5_ieba6p.png',
   ],
+  'Father Feather': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558289/ICE%20Founding%20Fathers%20%28Square%29/feather_level_1_rd61am_krstod.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558289/ICE%20Founding%20Fathers%20%28Square%29/feather_level_1_rd61am_krstod.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558298/ICE%20Founding%20Fathers%20%28Square%29/feather_level_2_e1wqvr_ssikux.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558298/ICE%20Founding%20Fathers%20%28Square%29/feather_level_3_dz34tu_ucztbr.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558295/ICE%20Founding%20Fathers%20%28Square%29/feather_level_4_ween0k_hobssi.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558293/ICE%20Founding%20Fathers%20%28Square%29/feather_level_5_zsqs3l_etcva6.png'
+  ],
+  'Father Flow': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558298/ICE%20Founding%20Fathers%20%28Square%29/hair_level_1_dampks_dopxd0.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558298/ICE%20Founding%20Fathers%20%28Square%29/hair_level_1_dampks_dopxd0.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558316/ICE%20Founding%20Fathers%20%28Square%29/hair_level_2_v44ugc_huhzdc.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558314/ICE%20Founding%20Fathers%20%28Square%29/hair_level_3_ykvgjg_d1pbul.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558318/ICE%20Founding%20Fathers%20%28Square%29/hair_level_4_ofhzpz_hwgccp.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558321/ICE%20Founding%20Fathers%20%28Square%29/hair_level_5_wfkmvf_nlohzo.png'
+  ],
+  'Father Frock': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558293/ICE%20Founding%20Fathers%20%28Square%29/coat_level_1_ivacwe_tlon3n.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558293/ICE%20Founding%20Fathers%20%28Square%29/coat_level_1_ivacwe_tlon3n.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558317/ICE%20Founding%20Fathers%20%28Square%29/coat_level_2_cj8dkw_cysq0f.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558315/ICE%20Founding%20Fathers%20%28Square%29/coat_level_3_uxzd4x_mate5v.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558317/ICE%20Founding%20Fathers%20%28Square%29/coat_level_4_borybu_htnbqv.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558294/ICE%20Founding%20Fathers%20%28Square%29/coat_level_5_ogr04n_zhvcpy.png'
+  ],
+  'Father Breeches': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558301/ICE%20Founding%20Fathers%20%28Square%29/pants_level_1_srgdhc_itqcyg.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558301/ICE%20Founding%20Fathers%20%28Square%29/pants_level_1_srgdhc_itqcyg.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558305/ICE%20Founding%20Fathers%20%28Square%29/pants_level_2_xfvww3_y00twe.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558306/ICE%20Founding%20Fathers%20%28Square%29/pants_level_3_phdrnf_trydjd.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558307/ICE%20Founding%20Fathers%20%28Square%29/pants_level_4_lnvwdh_rl7hux.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558311/ICE%20Founding%20Fathers%20%28Square%29/pants_level_5_r1hvt3_lpuhv1.png'
+  ],
+  'Father Mules': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558298/ICE%20Founding%20Fathers%20%28Square%29/mules_level_1_u7jgmh_axb6lm.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558298/ICE%20Founding%20Fathers%20%28Square%29/mules_level_1_u7jgmh_axb6lm.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558304/ICE%20Founding%20Fathers%20%28Square%29/mules_level_2_mpcfus_mhiyq5.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558301/ICE%20Founding%20Fathers%20%28Square%29/mules_level_3_ipr5rb_qpakmo.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558305/ICE%20Founding%20Fathers%20%28Square%29/mules_level_4_agokrm_cnuvxg.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558306/ICE%20Founding%20Fathers%20%28Square%29/mules_level_5_h2w7re_cuo0t6.png'
+  ]
 };
 
 // wallet and contract addresses

@@ -7,6 +7,7 @@ import { Button } from 'semantic-ui-react';
 import cn from 'classnames';
 import images from 'common/Images';
 
+
 // AMNESIA_COMMENT: this whole file should be deleted after we are done with amnesia
 const AmnesiaHome = () => {
   const [_, dispatch] = useContext(GlobalContext);
@@ -182,7 +183,7 @@ const AmnesiaHome = () => {
                     ' d-flex justify-content-center mb-5'
                   )}
                 >
-                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1633456714/image_xkbtnd.png" />
+                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1633456714/image_xkbtnd.png"/>
                 </div>
                 <div
                   className={cn(
@@ -198,7 +199,7 @@ const AmnesiaHome = () => {
                     ' d-flex justify-content-center mb-5'
                   )}
                 >
-                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1633456561/Apenft-white_txn7pl.png" />
+                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1633456561/Apenft-white_txn7pl.png"/>
                 </div>
                 <div
                   className={cn(

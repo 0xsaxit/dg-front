@@ -140,7 +140,7 @@ const ModalActivationSuccess = props => {
 
           <div className={styles.buttons}>
             <Button className={styles.primary}>Play Now</Button>
-            <Button
+            <Button 
               className={styles.none}
               onClick={() => {
                 close();

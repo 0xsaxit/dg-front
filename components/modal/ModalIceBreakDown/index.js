@@ -7,6 +7,7 @@ const ModalIceBreakDown = ({
     setShowingBreakDown
 }) => {
     const [open, setOpen] = useState(true);
+
     const defaultImgs = [
         "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png",
         "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png",
@@ -14,6 +15,7 @@ const ModalIceBreakDown = ({
         "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png",
         "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png"
     ];
+
     const gamePlayTemp = [
         {
             address: '0x723...2ab3',
@@ -29,6 +31,7 @@ const ModalIceBreakDown = ({
             tier: 'Top 20%',
         }
     ]
+
     const delegationTemp = [
         {
             address: '0x723...2ab3',
@@ -583,6 +586,7 @@ const ModalIceBreakDown = ({
             tier: 'Top 15%',
         }
     ]
+
     const records = history.type === 'Gameplay' ? gamePlayTemp : delegationTemp;
 
     return (
@@ -591,7 +595,7 @@ const ModalIceBreakDown = ({
                 className={styles.breakdown_modal}
                 onClose={() => {
                     setOpen(false),
-                        setShowingBreakDown(-1)
+                    setShowingBreakDown(-1)
                 }}
                 onOpen={() => setOpen(true)}
                 open={open}

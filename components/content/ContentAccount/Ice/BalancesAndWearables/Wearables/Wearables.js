@@ -164,13 +164,12 @@ const Wearables = () => {
     <section className={styles.wearableSection}>
       <div className={styles.wearableHeader}>
         <div>
-          <h2>ICED Wearables</h2>
-          {!!state.iceWearableItems.length ||
-          !!state.iceDelegatedItems.length ? (
-            <p>{`(${activeWearables.length + delegatedWearables.length} of ${
-              state.iceWearableItems.length + state.iceDelegatedItems.length
-            } Active)`}</p>
-          ) : null}
+          <h2>ICE Wearables</h2>
+          {!!state.iceWearableItems.length || !!state.iceDelegatedItems.length ?
+            <p>{`(${activeWearables.length + delegatedWearables.length} of ${state.iceWearableItems.length + state.iceDelegatedItems.length
+              } Active)`}</p>
+            : null
+          }
         </div>
         <Button className={styles.open_sea} href="/ice/marketplace">
           Mint Wearable
@@ -190,7 +189,7 @@ const Wearables = () => {
       </div>
 
       <section className={styles.grid_container}>
-        {!!state.iceWearableItems.length || !!state.iceDelegatedItems.length ? (
+        {!!state.iceWearableItems.length || !!state.iceDelegatedItems.length ?
           <div className={styles.wearables_grid}>
             {state.iceWearableItems.map((item, index) => (
               <ICEWearableCard
@@ -200,7 +199,6 @@ const Wearables = () => {
                 address={item.address}
                 itemID={item.itemID}
                 isActivated={item.isActivated}
-                isCheckedIn={item.isCheckedIn}
               />
             ))}
 
@@ -216,9 +214,9 @@ const Wearables = () => {
                 />
             ))}
           </div>
-        ) : (
+          :
           <div className={styles.no_ice_wearables}>No ICE Wearabels</div>
-        )}
+        }
       </section>
     </section>
   );

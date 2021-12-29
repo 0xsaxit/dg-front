@@ -24,23 +24,22 @@ const ModalUpgradeSuccess = props => {
     setImage(props.imgURL ? props.imgURL : '');
     setDescription(itemInfo.meta_data ? itemInfo.meta_data.description.split(' ').at(-1).replace('/', ' of ') : '');
     setRank(itemInfo.meta_data ? GetRank(parseInt(itemInfo.meta_data.attributes.find(el => el.trait_type === 'Bonus').value)) : 0);
-    console.log("Upgraded Wearable Info ", itemInfo)
   }, [state.iceWearableItems])
 
   function refresh() {
-    // update global state token amounts
-    const refreshTokenAmounts = !state.refreshTokenAmounts;
-    dispatch({
-      type: 'refresh_token_amounts',
-      data: refreshTokenAmounts,
-    });
+     // update global state token amounts
+     const refreshTokenAmounts = !state.refreshTokenAmounts;
+     dispatch({
+       type: 'refresh_token_amounts',
+       data: refreshTokenAmounts,
+     });
 
-    // update global state wearables data
-    const refreshWearable = !state.refreshWearable;
-    dispatch({
-      type: 'refresh_wearable_items',
-      data: refreshWearable,
-    });
+     // update global state wearables data
+     const refreshWearable = !state.refreshWearable;
+     dispatch({
+       type: 'refresh_wearable_items',
+       data: refreshWearable,
+     });
 
      // update global state wearable Inventory data
      const refreshWearableInventory = !state.refreshWearableInventory;
@@ -74,7 +73,7 @@ const ModalUpgradeSuccess = props => {
       <div
         className={styles.header_buttons}    
       >
-        <span
+        <span 
           className={styles.button_close}
           onClick={() => {
             setOpen(false);
@@ -163,7 +162,6 @@ const ModalUpgradeSuccess = props => {
               <div className={styles.round}>{description}</div>
             </div>
           </div>
-
           <div className={styles.buttons}>
             <Button 
               href="https://api.decentral.games/ice/play?position=-110%2C129"
@@ -184,7 +182,6 @@ const ModalUpgradeSuccess = props => {
             </Button>
           </div>
         </div>
-          
       }
     </Modal>
   );

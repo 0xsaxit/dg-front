@@ -6,25 +6,25 @@
 	font-family: Larsseit-Bold;
 	font-size: 12px !important;
 	border-radius: 8px !important;
-	background: #006eff !important;
+	background: #006EFF !important;
 	color: white !important;
 	line-height: 15px;
 	margin: 0 5px;
 }
 
 .play_now_modal {
-	background: #006eff !important;
-	width: 100%;
-	min-height: 34px;
-	border-radius: 8px !important;
-	font-family: Larsseit-Bold;
-	font-size: 12px !important;
-	display: flex;
-	justify-content: center;
-	align-self: center;
-	color: white !important;
-	line-height: 16px !important;
-	margin-left: 3px !important;
+  background: #006eff !important;
+  width: 100%;
+  min-height: 34px;
+  border-radius: 8px !important;
+  font-family: Larsseit-Bold;
+  font-size: 12px !important;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  color: white !important;
+  line-height: 16px !important;
+  margin-left: 3px !important;
 }
 
 @media (max-width: 499px) {
@@ -32,9 +32,9 @@
 		display: none;
 	}
 	.connect_metamask_modal {
-		-ms-transform: scale(0.7, 0.7); /* IE 9 */
-		-webkit-transform: scale(0.7, 0.7); /* Safari */
-		transform: scale(0.7, 0.7);
+    -ms-transform: scale(0.7, 0.7); /* IE 9 */
+    -webkit-transform: scale(0.7, 0.7); /* Safari */
+    transform: scale(0.7, 0.7);
 	}
 }
 
@@ -71,8 +71,8 @@
 		background: #006eff;
 		width: 100%;
 		line-height: 50px;
-
-		&:hover {
+	
+		&:hover {		
 			color: white;
 			background: #006eff;
 			filter: brightness(0.9) !important;
@@ -87,11 +87,11 @@
 		line-height: 33px;
 		text-align: center;
 		background: transparent;
-		color: #ffffff;
+		color: #FFFFFF;
 		border: none;
 		cursor: pointer;
 
-		&:hover {
+		&:hover{ 
 			filter: brightness(0.9) !important;
 		}
 	}
