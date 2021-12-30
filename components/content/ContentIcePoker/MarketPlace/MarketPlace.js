@@ -412,6 +412,8 @@ const MarketPlace = () => {
             itemLimits = state.itemLimits1;
           }
 
+          console.log(state.appConfig.maxMintCounts);
+
           let maxMintCounts = 0;
           if (state.appConfig && state.appConfig.maxMintCounts) {
             Object.keys(state.appConfig.maxMintCounts).map(address => {
@@ -532,7 +534,6 @@ const MarketPlace = () => {
                       {state.userLoggedIn ?
                         state.userStatus >= 4 && itemLimits[i][0] < 0 ? (
                           // items loading, display spinner
-
                           <Button disabled className={styles.sold_button}>
                             <Spinner width={20} height={20} />
                           </Button>

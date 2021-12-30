@@ -90,7 +90,8 @@ const ModalPopup = () => {
     const atri = Number(state.DGPrices.atri * state.userBalances[2][2]);
     const dai = Number(state.userBalances[0][1]);
     const usdt = Number(state.userBalances[2][1] * 1000000000000);
-    const balance = mana + eth + atri + dai + usdt;
+    const ice = Number(state.iceAmounts.ICE_AVAILABLE_AMOUNT * state.DGPrices.ice, 2);
+    const balance = mana + eth + atri + dai + usdt + ice;
 
     setCasinoBalance(balance.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
   }, [
@@ -235,7 +236,7 @@ const ModalPopup = () => {
           <span style={{ display: 'flex', flexDirection: 'column' }}>
             <Link href="/account">
               <Button className="casino-balance-button">
-                <p className="casino-balance-text"> Casino Balance </p>
+                <p className="casino-balance-text"> Polygon Balance </p>
                 <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                   {binance ? (
                     <p className="casino-balance-text two">

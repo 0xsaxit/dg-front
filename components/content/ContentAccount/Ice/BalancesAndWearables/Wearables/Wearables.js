@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import ICEWearableCard from 'components/common/cards/ICEWearableCard';
 import ICEDelegatedCard from 'components/common/cards/ICEDelegatedCard';
 import { Button } from 'semantic-ui-react';
 import styles from './Wearables.module.scss';
-import Fetch from '../../../../../../common/Fetch';
+import Fetch from 'common/Fetch';
+import { GlobalContext } from 'store';
 
-const Wearables = ({ state }) => {
+const Wearables = () => {
   // define local variables
+  const [state, dispatch] = useContext(GlobalContext);
   const [maxICEBonus, setMaxICEBonus] = useState(0);
   const activeWearables = state.iceWearableItems.filter(
     item =>
@@ -17,6 +19,17 @@ const Wearables = ({ state }) => {
   const delegatedWearables = state.iceDelegatedItems.filter(
     item => item.meta_data && item.meta_data.attributes.find(el => el.trait_type === 'Rank').value > 0
   );
+
+  // fetch Inventory Items
+  useEffect(() => {
+    (async () => {
+      let wearableInventoryItems = await Fetch.GET_WEARABLE_INVENTORY(state.userAddress);
+      dispatch({
+        type: 'ice_wearable_inventory_items',
+        data: wearableInventoryItems
+      });
+    })();
+  }, [state.refreshWearableInventory]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -190,15 +203,15 @@ const Wearables = ({ state }) => {
             ))}
 
             {state.iceDelegatedItems.map((item, index) => (
-              <ICEDelegatedCard
-                key={index}
-                data={item.meta_data}
-                ownerAddress={item.ownerAddress}
-                tokenID={item.tokenID}
-                address={item.address}
-                itemID={item.itemID}
-                isCheckedIn={item.isCheckedIn}
-              />
+                <ICEDelegatedCard
+                  key={index}
+                  data={item.meta_data}
+                  ownerAddress={item.ownerAddress}
+                  tokenID={item.tokenID}
+                  address={item.address}
+                  itemID={item.itemID}
+                  isCheckedIn={item.isCheckedIn}
+                />
             ))}
           </div>
           :

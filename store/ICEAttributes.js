@@ -210,7 +210,7 @@ function ICEAttributes() {
                   itemID: json.id.split(':').slice(-1),
                   meta_data: json,
                   address: item.contractAddress,
-                  isCheckedIn,
+                  isCheckedIn
                 });
               }
             } catch (error) {
@@ -306,8 +306,6 @@ function ICEAttributes() {
             iceAmounts.ICE_AVAILABLE_AMOUNT
           );
           iceAmounts.ICE_CLAIM_AMOUNT = parseInt(iceAmounts.ICE_CLAIM_AMOUNT);
-
-          console.log('==== <iceAmounts> ==== ', iceAmounts);
 
           dispatch({
             type: 'ice_amounts',

@@ -51,7 +51,7 @@ const ModalMint = props => {
               className={styles.img_card}
             />
           </div>
-          <div className={styles.card}>{props.maxMintCounts - props.numberLeft} of {props.maxMintCounts}</div>
+          <div className={styles.card}>{props.numberLeft} of {props.maxMintCounts}</div>
         </div>
       </div>
     );
@@ -245,6 +245,7 @@ const ModalMint = props => {
     );
   }
 
+  //TODO: Refactor this so that it is not hardcoded
   function ethAuthModal() {
     return (
       <ModalIceAuth
