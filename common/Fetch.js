@@ -7,8 +7,7 @@ const { publicRuntimeConfig } = getConfig();
 const { APP_ENV } = publicRuntimeConfig;
 
 // APP_ENV must be set in the .env.{environment} files
-export const API_BASE_URL =
-  ApiUrlsByAppEnv[APP_ENV] || 'https://api.decentral.games';
+export const API_BASE_URL = ApiUrlsByAppEnv[APP_ENV] || 'https://api.decentral.games';
 
 console.log('APP_ENV (NODE_ENV): ', APP_ENV);
 console.log('API_BASE_URL: ', API_BASE_URL);
@@ -185,8 +184,16 @@ const Fetch = {
       { address, tokenID }
     );
   },
+  
+  GET_WEARABLE_INVENTORY: (address) => {
+    return call(
+      `${API_BASE_URL}/ice/getWearableInventory?address=${address}`,
+      'GET',
+      true
+    );
+  },
 
-  GET_WEARABLE_INVENTORY: address => {
+  GET_WEARABLE_INVENTORY: (address) => {
     return call(
       `${API_BASE_URL}/ice/getWearableInventory?address=${address}`,
       'GET',
@@ -260,6 +267,7 @@ const Fetch = {
       false
     );
   },
+
 
   ATRI_PRICE: () => {
     return call(`https://api.coingecko.com/api/v3/coins/atari`, 'GET', false);

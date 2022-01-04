@@ -20,6 +20,17 @@ const Wearables = () => {
     item => item.meta_data && item.meta_data.attributes.find(el => el.trait_type === 'Rank').value > 0
   );
 
+  // fetch Inventory Items
+  useEffect(() => {
+    (async () => {
+      let wearableInventoryItems = await Fetch.GET_WEARABLE_INVENTORY(state.userAddress);
+      dispatch({
+        type: 'ice_wearable_inventory_items',
+        data: wearableInventoryItems
+      });
+    })();
+  }, [state.refreshWearableInventory]);
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // fetch user's incoming/outgoing delegate mapping data. Refreshes upon delegation/undelegation
