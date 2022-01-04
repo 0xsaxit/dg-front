@@ -386,6 +386,23 @@ const reducer = (state, action) => {
         ...state,
         itemLimits6: action.data,
       };
+    case 'ice_wearable_inventory_items':
+      return {
+        ...state,
+        iceWearableInventoryItems: action.data,
+      };
+
+    case 'ice_wearable_inventory_items_loading':
+      return {
+        ...state,
+        iceWearableInventoryItemsLoading: action.data,
+      };
+
+    case 'ice_wearable_inventory_items_success':
+      return {
+        ...state,
+        iceWearableInventoryItemsLoading: action.data,
+      }
     case 'ice_wearable_items':
       return {
         ...state,
@@ -529,6 +546,13 @@ const reducer = (state, action) => {
         ...state,
         refreshWearable: action.data,
       };
+    
+    case 'refresh_wearable_inventory_items':
+      return {
+        ...state,
+        refreshWearableInventory: action.data,
+      };
+
     case 'refresh_delegate_info':
       return {
         ...state,
