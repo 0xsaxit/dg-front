@@ -5,6 +5,7 @@ import GetRank from '../../../../common/GetIceWearableRank';
 import IceP2EEnabledTooltip from 'components/tooltips/IceP2EEnabledTooltip';
 import IceNeedToActivateTooltip from 'components/tooltips/IceNeedToActivateTooltip';
 import IceWearableBonusTooltip from 'components/tooltips/IceWearableBonusTooltip';
+import IceCheckedInTooltip from 'components/tooltips/IceCheckedInTooltip';
 import ModalDelegate from 'components/modal/ModalDelegate';
 import ModalWithdrawDelegation from 'components/modal/ModalWithdrawDelegation';
 import ActivateWearableModal from 'components/modal/ActivateWearableModal';
@@ -72,6 +73,8 @@ const ICEWearableCard = props => {
         <div className={styles.wear_box_purple}>
           {!props.isActivated ? (
             <IceNeedToActivateTooltip />
+          ) : props.checkInStatus ? (
+            <IceCheckedInTooltip />
           ) : (
             <IceP2EEnabledTooltip />
           )}

@@ -177,15 +177,6 @@ const Fetch = {
     });
   },
 
-  WEARABLE_CHECKIN_STATUS: (address, tokenID) => {
-    return call(
-      `${API_BASE_URL}/ice/fetchWearableCheckinStatus`,
-      'POST',
-      true,
-      { address, tokenID }
-    );
-  },
-
   GET_WEARABLE_INVENTORY: address => {
     return call(
       `${API_BASE_URL}/ice/getWearableInventory?address=${address}`,
