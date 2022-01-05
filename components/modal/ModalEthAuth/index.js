@@ -234,13 +234,6 @@ const ModalEthAuth = props => {
           data: refresh2,
         });
 
-        // update global state wearable Inventory data
-        const refresh3 = !state.refreshWearableInventory;
-        dispatch({
-          type: 'refresh_wearable_inventory_items',
-          data: refresh3,
-        });
-
         console.log('NFT minting successful');
 
         setOpenMintSuccess(true);
