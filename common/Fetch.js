@@ -279,14 +279,6 @@ const Fetch = {
   POAPS: address => {
     return call(`https://api.poap.xyz/actions/scan/${address}`, 'GET', false);
   },
-
-  DELEGATION_BREAKDOWN: (time, address) => {
-    if (address) {
-      return call(`${API_BASE_URL}/ice/getDelegationBreakdown/${time}?address=${address}`, 'GET');
-    }  else {
-      return call(`${API_BASE_URL}/ice/getDelegationBreakdown/${time}`, 'GET');
-    }
-  }
 };
 
 export default Fetch;
