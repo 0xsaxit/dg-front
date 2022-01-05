@@ -19,7 +19,7 @@ const ModalUndelegateQueued = props => {
     });
 
     setOpen(false);
-  }  
+  }
 
   return (
     <Modal
@@ -97,8 +97,15 @@ const ModalUndelegateQueued = props => {
           <div className={styles.header}>Withdrawal Scheduled!</div>
 
           <div className={styles.description}>
-            After 12pm UTC({props.remainingTime} hours), you will not longer be delegating to <a>{props.handleShortAddress(props.address)}</a>.
-            Any previous profits can be claimed from your <a>ICE rewards page.</a>
+            After 12pm UTC({props.remainingTime} hours), you will not longer be
+            delegating to{' '}
+            {props.address && (
+              <a>
+                {props.address.substr(0, 4) + '...' + props.address.substr(-4)}
+              </a>
+            )}
+            . Any previous profits can be claimed from your{' '}
+            <a>ICE rewards page.</a>
           </div>
 
           <div className={styles.button_area}>

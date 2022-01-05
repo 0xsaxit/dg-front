@@ -23,6 +23,8 @@ const ModalWithdrawDelegation = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
 
+  console.log('delegate Address =>', props.delegateAddress);
+
   useEffect(() => {
     let remain = getRemainingTime();
     setRemainingTime(remain);
@@ -65,12 +67,16 @@ const ModalWithdrawDelegation = props => {
         ) : (
           <div className={styles.description}>
             You’ve delegated this wearable to&nbsp;
-            <a
-              href={`https://polygonscan.com/address/${props.delegateAddress}`}
-              target="_blank"
-            >
-              {props.handleShortAddress(props.delegateAddress)}
-            </a>
+            {props.delegateAddress && (
+              <a
+                href={`https://polygonscan.com/address/${props.delegateAddress}`}
+                target="_blank"
+              >
+                {props.delegateAddress.substr(0, 4) +
+                  '...' +
+                  props.delegateAddress.substr(-4)}
+              </a>
+            )}
             .<br />
             Profits can be claimed from your{' '}
             <a href="/ice/claim">ICE rewards page</a>.
@@ -333,7 +339,6 @@ const ModalWithdrawDelegation = props => {
           buttonName={props.buttonName}
           address={props.delegateAddress}
           remainingTime={remainingTime}
-          handleShortAddress={props.handleShortAddress}
         />
       )}
     </Aux>

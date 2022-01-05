@@ -24,30 +24,38 @@ const ICEWearableCard = props => {
   const buttonDelegate = 'Delegate';
   const buttonUndelegate = 'Undelegate';
   const { name, description, image, attributes } = props.data;
-  const rank = GetRank(parseInt(attributes.find(el => el.trait_type === 'Bonus').value));
-
-  const handleShortAddress = (address) => {
-    return address.substr(0, 4) + '...' + address.substr(-4);
-  }
+  const rank = GetRank(
+    parseInt(attributes.find(el => el.trait_type === 'Bonus').value)
+  );
 
   useEffect(() => {
     if (state.userStatus >= 4) {
       (async function () {
         setDelegateAddress('');
-        const delegationInfo = await Fetch.GET_WEARABLE_INVENTORY(state.userAddress);
+        const delegationInfo = await Fetch.GET_WEARABLE_INVENTORY(
+          state.userAddress
+        );
         delegationInfo.forEach((item, index) => {
           if (item) {
             const address = item.contractAddress;
-            const delegateAddress = item.delegationStatus.delegatedTo;
+            const delegateAddress = item.delegationStatus.delegatedTo || '';
             const tokenId = item.tokenId;
             const checkInStatus = item.checkInStatus;
-            const isQueuedForUndelegationByDelegatee = item.delegationStatus.isQueuedForUndelegationByDelegatee;
-            const isQueuedForUndelegationByOwner = item.delegationStatus.isQueuedForUndelegationByOwner;
+            const isQueuedForUndelegationByDelegatee =
+              item.delegationStatus.isQueuedForUndelegationByDelegatee;
+            const isQueuedForUndelegationByOwner =
+              item.delegationStatus.isQueuedForUndelegationByOwner;
 
-            if (tokenId === props.tokenID && address.toLowerCase() === props.address.toLowerCase()) {
+            if (
+              tokenId === props.tokenID &&
+              address.toLowerCase() === props.address.toLowerCase()
+            ) {
               setDelegateAddress(delegateAddress);
               setCheckInstatus(checkInStatus);
-              setDelegationStatus(isQueuedForUndelegationByDelegatee || isQueuedForUndelegationByOwner);
+              setDelegationStatus(
+                isQueuedForUndelegationByDelegatee ||
+                  isQueuedForUndelegationByOwner
+              );
             }
           }
         });
@@ -112,7 +120,7 @@ const ICEWearableCard = props => {
           <div className={styles.button_area}>
             {!props.isActivated ? (
               state.DGBalances.BALANCE_CHILD_DG_LIGHT <
-                state.tokenAmounts.DG_MOVE_AMOUNT ? (
+              state.tokenAmounts.DG_MOVE_AMOUNT ? (
                 <NeedMoreDGActivateModal />
               ) : (
                 <ActivateWearableModal
@@ -136,7 +144,9 @@ const ICEWearableCard = props => {
                     itemID={props.itemID}
                     imgSrc={image}
                     rank={rank.value}
-                    bonus={attributes.find(el => el.trait_type === 'Bonus').value}
+                    bonus={
+                      attributes.find(el => el.trait_type === 'Bonus').value
+                    }
                     description={description}
                     buttonName={buttonDelegate}
                   />
@@ -144,7 +154,6 @@ const ICEWearableCard = props => {
                   <ModalWithdrawDelegation
                     checkInStatus={checkInStatus}
                     delegationStatus={delegationStatus}
-                    handleShortAddress={handleShortAddress}
                     tokenID={props.tokenID}
                     address={props.address}
                     ownerAddress={state.userAddress}
@@ -161,7 +170,9 @@ const ICEWearableCard = props => {
                     imgSrc={image}
                     rank={rank.value}
                     percentage={rank.percentage}
-                    bonus={attributes.find(el => el.trait_type === 'Bonus').value}
+                    bonus={
+                      attributes.find(el => el.trait_type === 'Bonus').value
+                    }
                     description={description}
                     name={name.split('(ICE')[0].trim()}
                   />
