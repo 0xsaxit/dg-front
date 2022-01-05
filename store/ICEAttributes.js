@@ -143,6 +143,12 @@ function ICEAttributes() {
           });
         }
 
+        // note: I only fetched this to use checkInStatus, this call might later be used for most data on this block
+        // also don't forget to delete this comment later
+        const wearableInventory = await Fetch.GET_WEARABLE_INVENTORY(
+          state.userAddress
+        );
+
         const tokenIDs = [];
         const tokensById = collectionArray.map(async (item, index) => {
           try {
@@ -188,6 +194,10 @@ function ICEAttributes() {
               tokenIDs[i].tokenID
             );
 
+            const { checkInStatus } = wearableInventory.find(
+              wearable => wearable.tokenId === tokenIDs[i].tokenID
+            );
+
             if (Object.keys(json).length) {
               iceWearableItems.push({
                 index: tokenIDs[i].index,
@@ -197,6 +207,7 @@ function ICEAttributes() {
                 isActivated: is_activated,
                 collection: tokenIDs[i].collection,
                 address: tokenIDs[i].address,
+                checkInStatus,
               });
             }
           } catch (error) {
@@ -275,6 +286,12 @@ function ICEAttributes() {
 
         const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
 
+        // note: I only fetched this to use checkInStatus, this call might later be used for most data on this block
+        // also don't forget to delete this comment later
+        const wearableInventory = await Fetch.GET_WEARABLE_INVENTORY(
+          state.userAddress
+        );
+
         if (
           delegationInfo !== undefined &&
           Object.keys(delegationInfo).length
@@ -289,9 +306,8 @@ function ICEAttributes() {
                 tokenId
               );
 
-              const isCheckedIn = await Fetch.WEARABLE_CHECKIN_STATUS(
-                ownerAddress,
-                tokenId
+              const { checkInStatus } = wearableInventory.find(
+                wearable => wearable.tokenId === item.tokenId
               );
 
               if (Object.keys(json).length) {
@@ -301,7 +317,7 @@ function ICEAttributes() {
                   itemID: json.id.split(':').slice(-1),
                   meta_data: json,
                   address: item.contractAddress,
-                  isCheckedIn,
+                  checkInStatus,
                 });
               }
             } catch (error) {
