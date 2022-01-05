@@ -19,25 +19,35 @@ const ICEWearableCard = props => {
 
   // define local variables
   const [delegateAddress, setDelegateAddress] = useState('');
+  const [delegationStatus, setDelegationStatus] = useState(false);
+  const [checkInStatus, setCheckInstatus] = useState(false);
   const buttonDelegate = 'Delegate';
   const buttonUndelegate = 'Undelegate';
   const { name, description, image, attributes } = props.data;
   const rank = GetRank(parseInt(attributes.find(el => el.trait_type === 'Bonus').value));
 
+  const handleShortAddress = (address) => {
+    return address.substr(0, 4) + '...' + address.substr(-4);
+  }
+
   useEffect(() => {
     if (state.userStatus >= 4) {
       (async function () {
         setDelegateAddress('');
-        const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
-
-        delegationInfo.outgoingDelegations.forEach((item, i) => {
+        const delegationInfo = await Fetch.GET_WEARABLE_INVENTORY(state.userAddress);
+        delegationInfo.forEach((item, index) => {
           if (item) {
             const address = item.contractAddress;
-            const delegateAddress = item.delegateAddress;
+            const delegateAddress = item.delegationStatus.delegatedTo;
             const tokenId = item.tokenId;
+            const checkInStatus = item.checkInStatus;
+            const isQueuedForUndelegationByDelegatee = item.delegationStatus.isQueuedForUndelegationByDelegatee;
+            const isQueuedForUndelegationByOwner = item.delegationStatus.isQueuedForUndelegationByOwner;
 
             if (tokenId === props.tokenID && address.toLowerCase() === props.address.toLowerCase()) {
               setDelegateAddress(delegateAddress);
+              setCheckInstatus(checkInStatus);
+              setDelegationStatus(isQueuedForUndelegationByDelegatee || isQueuedForUndelegationByOwner);
             }
           }
         });
@@ -132,6 +142,9 @@ const ICEWearableCard = props => {
                   />
                 ) : (
                   <ModalWithdrawDelegation
+                    checkInStatus={checkInStatus}
+                    delegationStatus={delegationStatus}
+                    handleShortAddress={handleShortAddress}
                     tokenID={props.tokenID}
                     address={props.address}
                     ownerAddress={state.userAddress}
