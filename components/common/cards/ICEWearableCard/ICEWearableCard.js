@@ -21,7 +21,7 @@ const ICEWearableCard = props => {
   // define local variables
   const [delegateAddress, setDelegateAddress] = useState('');
   const [delegationStatus, setDelegationStatus] = useState(false);
-  const [checkInStatus, setCheckInstatus] = useState(false);
+  const [checkInStatus, setCheckInStatus] = useState(false);
   const buttonDelegate = 'Delegate';
   const buttonUndelegate = 'Undelegate';
   const { name, description, image, attributes } = props.data;
@@ -53,7 +53,7 @@ const ICEWearableCard = props => {
               address.toLowerCase() === props.address.toLowerCase()
             ) {
               setDelegateAddress(delegateAddress);
-              setCheckInstatus(checkInStatus);
+              setCheckInStatus(checkInStatus);
               setDelegationStatus(
                 isQueuedForUndelegationByDelegatee ||
                   isQueuedForUndelegationByOwner
