@@ -529,6 +529,13 @@ const reducer = (state, action) => {
         ...state,
         refreshWearable: action.data,
       };
+
+    case 'refresh_wearable_inventory':
+      return {
+        ...state,
+        refreshWearableInventory: action.data,
+      };
+
     case 'refresh_delegate_info':
       return {
         ...state,

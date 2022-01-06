@@ -23,8 +23,6 @@ const ModalWithdrawDelegation = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
 
-  console.log('delegate Address =>', props.delegateAddress);
-
   useEffect(() => {
     let remain = getRemainingTime();
     setRemainingTime(remain);
@@ -195,11 +193,13 @@ const ModalWithdrawDelegation = props => {
         type: 'show_toastMessage',
         data: 'Scheduled Withdraw Cancelled',
       });
+
       const refresh = !state.refreshDelegateInfo;
       dispatch({
         type: 'refresh_delegate_info',
         data: refresh,
       });
+
       setOpen(false);
     } else {
       setErrorMsg('Withdraw Cancelling failed: ' + json.result);
@@ -227,6 +227,12 @@ const ModalWithdrawDelegation = props => {
       console.log('NFT undelegation request successful');
       setClicked(false);
       setWithdrawStatus(0);
+
+      const refreshDelegation = !state.refreshDelegation;
+      dispatch({
+        type: 'refresh_delegation',
+        data: refreshDelegation,
+      });
 
       // success
       completeWithdraw();
