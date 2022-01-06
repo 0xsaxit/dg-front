@@ -36,8 +36,9 @@ const ICEWearableCard = props => {
         const delegationInfo = await Fetch.GET_WEARABLE_INVENTORY(
           state.userAddress
         );
+
         delegationInfo.forEach((item, index) => {
-          if (item) {
+          if (item.contractAddress === props.address) {
             const address = item.contractAddress;
             const delegateAddress = item.delegationStatus.delegatedTo || '';
             const tokenId = item.tokenId;
