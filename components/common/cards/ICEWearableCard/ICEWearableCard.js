@@ -13,6 +13,7 @@ import NeedMoreDGActivateModal from 'components/modal/NeedMoreDGActivateModal';
 import ModalWearable from 'components/modal/ModalWearable';
 import styles from './ICEWearableCard.module.scss';
 import Aux from '../../../_Aux';
+import SpinnerAnimation from 'components/lottieAnimation/animations/spinner';
 
 const ICEWearableCard = props => {
   // get user's wallet address from the Context API store
@@ -21,6 +22,7 @@ const ICEWearableCard = props => {
   // define local variables
   const [delegateAddress, setDelegateAddress] = useState('');
   const [delegationStatus, setDelegationStatus] = useState(false);
+  const [undelegateLoading, setUndelegateLoading] = useState(true);
   const [checkInStatus, setCheckInstatus] = useState(false);
   const buttonDelegate = 'Delegate';
   const buttonUndelegate = 'Undelegate';
@@ -57,6 +59,7 @@ const ICEWearableCard = props => {
                 isQueuedForUndelegationByDelegatee ||
                   isQueuedForUndelegationByOwner
               );
+              setUndelegateLoading(false)
             }
           }
         });
@@ -151,7 +154,7 @@ const ICEWearableCard = props => {
                       attributes.find(el => el.trait_type === 'Bonus').value
                     }
                     description={description}
-                    buttonName={buttonDelegate}
+                    buttonName={undelegateLoading ? <SpinnerAnimation /> : buttonDelegate}
                   />
                 ) : (
                   <ModalWithdrawDelegation
@@ -162,7 +165,8 @@ const ICEWearableCard = props => {
                     ownerAddress={state.userAddress}
                     delegateAddress={delegateAddress}
                     rank={rank.value}
-                    buttonName={buttonUndelegate}
+                    onLoad={()=>{setUndelegateLoading(true)}}
+                    buttonName={undelegateLoading ? <SpinnerAnimation /> : buttonUndelegate}
                   />
                 )}
                 {rank.value < 5 && (

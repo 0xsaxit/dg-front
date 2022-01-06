@@ -24,6 +24,7 @@ const ModalWithdrawDelegation = props => {
   // helper functions
 
   console.log('delegate Address =>', props.delegateAddress);
+  
 
   useEffect(() => {
     let remain = getRemainingTime();
@@ -280,6 +281,7 @@ const ModalWithdrawDelegation = props => {
                   <Button
                     className={styles.button_close}
                     onClick={() => {
+                      props.onLoad();
                       if (props.delegationStatus === true) {
                         delegateNFT();
                       } else {
