@@ -73,7 +73,7 @@ const ICEWearableCard = props => {
         <div className={styles.wear_box_purple}>
           {!props.isActivated ? (
             <IceNeedToActivateTooltip />
-          ) : props.checkInStatus ? (
+          ) : checkInStatus ? (
             <IceCheckedInTooltip />
           ) : (
             <IceP2EEnabledTooltip />
