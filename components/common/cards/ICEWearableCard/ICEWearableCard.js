@@ -5,6 +5,7 @@ import GetRank from '../../../../common/GetIceWearableRank';
 import IceP2EEnabledTooltip from 'components/tooltips/IceP2EEnabledTooltip';
 import IceNeedToActivateTooltip from 'components/tooltips/IceNeedToActivateTooltip';
 import IceWearableBonusTooltip from 'components/tooltips/IceWearableBonusTooltip';
+import IceCheckedInTooltip from 'components/tooltips/IceCheckedInTooltip';
 import ModalDelegate from 'components/modal/ModalDelegate';
 import ModalWithdrawDelegation from 'components/modal/ModalWithdrawDelegation';
 import ActivateWearableModal from 'components/modal/ActivateWearableModal';
@@ -19,25 +20,43 @@ const ICEWearableCard = props => {
 
   // define local variables
   const [delegateAddress, setDelegateAddress] = useState('');
+  const [delegationStatus, setDelegationStatus] = useState(false);
+  const [checkInStatus, setCheckInstatus] = useState(false);
   const buttonDelegate = 'Delegate';
   const buttonUndelegate = 'Undelegate';
   const { name, description, image, attributes } = props.data;
-  const rank = GetRank(parseInt(attributes.find(el => el.trait_type === 'Bonus').value));
+  const rank = GetRank(
+    parseInt(attributes.find(el => el.trait_type === 'Bonus').value)
+  );
 
   useEffect(() => {
     if (state.userStatus >= 4) {
       (async function () {
         setDelegateAddress('');
-        const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
-
-        delegationInfo.outgoingDelegations.forEach((item, i) => {
+        const delegationInfo = await Fetch.GET_WEARABLE_INVENTORY(
+          state.userAddress
+        );
+        delegationInfo.forEach((item, index) => {
           if (item) {
             const address = item.contractAddress;
-            const delegateAddress = item.delegateAddress;
+            const delegateAddress = item.delegationStatus.delegatedTo || '';
             const tokenId = item.tokenId;
+            const checkInStatus = item.checkInStatus;
+            const isQueuedForUndelegationByDelegatee =
+              item.delegationStatus.isQueuedForUndelegationByDelegatee;
+            const isQueuedForUndelegationByOwner =
+              item.delegationStatus.isQueuedForUndelegationByOwner;
 
-            if (tokenId === props.tokenID && address.toLowerCase() === props.address.toLowerCase()) {
+            if (
+              tokenId === props.tokenID &&
+              address.toLowerCase() === props.address.toLowerCase()
+            ) {
               setDelegateAddress(delegateAddress);
+              setCheckInstatus(checkInStatus);
+              setDelegationStatus(
+                isQueuedForUndelegationByDelegatee ||
+                  isQueuedForUndelegationByOwner
+              );
             }
           }
         });
@@ -54,6 +73,8 @@ const ICEWearableCard = props => {
         <div className={styles.wear_box_purple}>
           {!props.isActivated ? (
             <IceNeedToActivateTooltip />
+          ) : props.checkInStatus ? (
+            <IceCheckedInTooltip />
           ) : (
             <IceP2EEnabledTooltip />
           )}
@@ -102,7 +123,7 @@ const ICEWearableCard = props => {
           <div className={styles.button_area}>
             {!props.isActivated ? (
               state.DGBalances.BALANCE_CHILD_DG_LIGHT <
-                state.tokenAmounts.DG_MOVE_AMOUNT ? (
+              state.tokenAmounts.DG_MOVE_AMOUNT ? (
                 <NeedMoreDGActivateModal />
               ) : (
                 <ActivateWearableModal
@@ -126,12 +147,16 @@ const ICEWearableCard = props => {
                     itemID={props.itemID}
                     imgSrc={image}
                     rank={rank.value}
-                    bonus={attributes.find(el => el.trait_type === 'Bonus').value}
+                    bonus={
+                      attributes.find(el => el.trait_type === 'Bonus').value
+                    }
                     description={description}
                     buttonName={buttonDelegate}
                   />
                 ) : (
                   <ModalWithdrawDelegation
+                    checkInStatus={checkInStatus}
+                    delegationStatus={delegationStatus}
                     tokenID={props.tokenID}
                     address={props.address}
                     ownerAddress={state.userAddress}
@@ -148,7 +173,9 @@ const ICEWearableCard = props => {
                     imgSrc={image}
                     rank={rank.value}
                     percentage={rank.percentage}
-                    bonus={attributes.find(el => el.trait_type === 'Bonus').value}
+                    bonus={
+                      attributes.find(el => el.trait_type === 'Bonus').value
+                    }
                     description={description}
                     name={name.split('(ICE')[0].trim()}
                   />
