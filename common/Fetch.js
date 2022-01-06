@@ -103,6 +103,14 @@ const Fetch = {
     );
   },
 
+  UPDATE_FREE_PLAYER_BALANCE: (amount, address) => {
+    return call(`${API_BASE_URL}/admin/updateUserBalances?freePlayAmountChange=${amount}&user=${address}`, 'GET');
+  },
+
+  UPDATE_ICE_CHIP_BALANCE: (amount, address) => {
+    return call(`${API_BASE_URL}/admin/updateUserBalances?iceChipsAmountChange=${amount}&user=${address}`, 'GET');
+  },
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // GET API calls (wallet address optional)
