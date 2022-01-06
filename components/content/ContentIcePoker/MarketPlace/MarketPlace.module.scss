@@ -108,6 +108,26 @@
             margin-bottom: 30px;
             margin-top: 165px;
             // background-color: red;
+
+            .check_eligibility {                        
+                // display: flex;
+                // flex-direction: row;
+                // justify-content: center;
+                margin-left: 8px;
+
+                align-items: center;
+                padding: 8px 16px;
+
+                background: #1F1F1F !important;
+                border-radius: 12px;
+
+                font-family: Larsseit-Bold;
+                font-style: normal;
+                font-size: 14px;
+                line-height: 20px;
+                text-align: center;
+                color: #FFFFFF;
+            }
             
             h3 {
                 font-size: 19px;

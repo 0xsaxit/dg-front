@@ -11,11 +11,14 @@ import Global from '../../../Constants';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import 'components/modal/CheckMintableModal'
+import CheckMintableModal from 'components/modal/CheckMintableModal';
 
 const MarketPlace = () => {
   // dispatch new user status to Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
+  const [openCheckEligibility, setOpenCheckEligibility] = useState(false);
   // define local variables
   const [previewLevel, setPreviewLevel] = useState([0, 0, 0, 0, 0, 0]);
   const wearables = [
@@ -412,7 +415,9 @@ const MarketPlace = () => {
             itemLimits = state.itemLimits1;
           }
 
-          console.log(state.appConfig.maxMintCounts);
+          // console.log("item List: =========================", index, itemLimits);    
+          // console.log("Max Mint Counts: ===================== ", state.appConfig.maxMintCounts);     
+          // console.log(state.appConfig.maxMintCounts);
 
           let maxMintCounts = 0;
           if (state.appConfig && state.appConfig.maxMintCounts) {
@@ -425,7 +430,23 @@ const MarketPlace = () => {
 
           return (
             <section key={index} className={styles.wearable_section}>
-              <h3>{wearable.title}</h3>
+              <h3>
+                {wearable.title}
+
+                {wearable.title === 'Founder Fathers' && (
+                  <CheckMintableModal />
+                )}
+
+                {/* <Button 
+                  className={styles.check_eligibility}
+                  onClick={()=>{
+                    setOpenCheckEligibility(true);
+                  }}
+                >
+                  Check Eligibility  {'>'}
+                </Button> */}
+              </h3>
+              
               <Slider {...settings}>
                 <div
                   className={styles.games_container}
@@ -636,6 +657,8 @@ const MarketPlace = () => {
         </div>
 
         <div className={styles.outter_games_container}>{getCarousel()}</div>
+        {/* {openCheckEligibility && <CheckMintableModal />} */}
+        
       </span>
     </div>
   );
