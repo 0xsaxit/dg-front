@@ -61,7 +61,7 @@ const ICEWearableCard = props => {
     return (
       <Aux>
         <div className={styles.wear_box_purple}>
-          {props.isCheckedIn && <IceCheckedInTooltip />}
+          {checkInStatus && <IceCheckedInTooltip />}
           <img src={image} />
         </div>
 
