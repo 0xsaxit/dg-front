@@ -43,7 +43,6 @@ const Wearables = () => {
       };
 
       const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
-      console.log('<==== hey hey hey delegationInfo ====>', delegationInfo);
 
       activeWearables.map(activeWearable => {
         if (
@@ -205,16 +204,6 @@ const Wearables = () => {
       </div>
 
       <section className={styles.grid_container}>
-        {console.log(
-          'iceWearableItems ==>',
-          state.iceWearableItems,
-          state.iceWearableItems.length
-        )}
-        {console.log(
-          'iceDelegatedItems ==>',
-          state.iceDelegatedItems,
-          state.iceDelegatedItems.length
-        )}
         {!!state.iceWearableItems.length || !!state.iceDelegatedItems.length ? (
           <div className={styles.wearables_grid}>
             {state.iceWearableItems.map((item, index) => {

@@ -38,8 +38,6 @@ const ICEWearableCard = props => {
         );
 
         delegationInfo.forEach((item, index) => {
-          console.log(item, '========================', props.address);
-
           if (item.contractAddress === props.address) {
             const address = item.contractAddress;
             const delegateAddress = item.delegationStatus.delegatedTo || '';
