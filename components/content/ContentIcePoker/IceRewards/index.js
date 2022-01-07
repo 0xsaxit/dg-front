@@ -67,7 +67,7 @@ const IceRewards = () => {
       setLoading(true);
 
       // Get Gameplay Reports from the API
-      let response = await Fetch.GAMEPLAY_REPORTS('0xadfaec016975fbad34127017598285e47edae1b4');
+      let response = await Fetch.GAMEPLAY_REPORTS();
       console.log(response);
 
       // Set xAxis
