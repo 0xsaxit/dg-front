@@ -67,12 +67,15 @@ const IceRewards = () => {
       setLoading(true);
 
       // Get Gameplay Reports from the API
-      let response = await Fetch.GAMEPLAY_REPORTS();
+      let response = await Fetch.GAMEPLAY_REPORTS('0xC65F7c7D76EE888Ddcc554e78C0beBAbA0A11cBd');
       console.log(response);
 
       // Set xAxis
       let xAxis = [];
-      const today = new Date();
+      let today = new Date();
+      today.setHours(0);
+      today.setMinutes(0);
+      today.setSeconds(0);
       const todayMoment = moment.utc(new Date(today));
       for (var i = 0; i < response.length; i++) {
         xAxis.push(moment.utc(response[i].day).format('M/D'));
@@ -103,7 +106,7 @@ const IceRewards = () => {
       for (i = response.length - 1; i >= 0; i--) {
         var gamePlayIceEarned = 0, gamePlayXpEarned = 0, delegationIceEarned = 0, delegationXpEarned = 0;
         const day = moment.utc(new Date(response[i].day));
-        const xAxisIndex = day.diff(todayMoment, 'days') + 6;
+        const xAxisIndex = day.diff(todayMoment, 'days') + 7;
 
         // get GamePlay
         if (response[i].gameplay && Object.keys(response[i].gameplay).length !== 0) {
