@@ -21,7 +21,7 @@ const ICEWearableCard = props => {
   // define local variables
   const [delegateAddress, setDelegateAddress] = useState('');
   const [delegationStatus, setDelegationStatus] = useState(false);
-  const [checkInStatus, setCheckInstatus] = useState(false);
+  const [checkInStatus, setCheckInStatus] = useState(false);
   const buttonDelegate = 'Delegate';
   const buttonUndelegate = 'Undelegate';
   const { name, description, image, attributes } = props.data;
@@ -36,8 +36,9 @@ const ICEWearableCard = props => {
         const delegationInfo = await Fetch.GET_WEARABLE_INVENTORY(
           state.userAddress
         );
+
         delegationInfo.forEach((item, index) => {
-          if (item) {
+          if (item.contractAddress === props.address) {
             const address = item.contractAddress;
             const delegateAddress = item.delegationStatus.delegatedTo || '';
             const tokenId = item.tokenId;
@@ -52,7 +53,7 @@ const ICEWearableCard = props => {
               address.toLowerCase() === props.address.toLowerCase()
             ) {
               setDelegateAddress(delegateAddress);
-              setCheckInstatus(checkInStatus);
+              setCheckInStatus(checkInStatus);
               setDelegationStatus(
                 isQueuedForUndelegationByDelegatee ||
                   isQueuedForUndelegationByOwner
@@ -73,7 +74,7 @@ const ICEWearableCard = props => {
         <div className={styles.wear_box_purple}>
           {!props.isActivated ? (
             <IceNeedToActivateTooltip />
-          ) : props.checkInStatus ? (
+          ) : checkInStatus ? (
             <IceCheckedInTooltip />
           ) : (
             <IceP2EEnabledTooltip />

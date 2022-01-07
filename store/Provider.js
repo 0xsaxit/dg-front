@@ -81,6 +81,7 @@ const initialState = {
     usdt: 0,
     dg: 0,
     ice: 0,
+    xDG: 0,
   },
   DGBreakdown: {
     eth: 0,
@@ -529,6 +530,13 @@ const reducer = (state, action) => {
         ...state,
         refreshWearable: action.data,
       };
+
+    case 'refresh_wearable_inventory':
+      return {
+        ...state,
+        refreshWearableInventory: action.data,
+      };
+
     case 'refresh_delegate_info':
       return {
         ...state,
