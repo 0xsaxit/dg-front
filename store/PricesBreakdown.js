@@ -27,6 +27,9 @@ function PricesBreakdown() {
           const dgJson = await Fetch.DG_SUPPLY_GECKO();
           const priceDG = dgJson.market_data.current_price.usd;
 
+          const xDGJson = await Fetch.DG_GOVERNANCE_SUPPLY_GECKO();
+          const priceXDG = xDGJson.market_data.current_price.usd;
+
           dispatch({
             type: 'dg_prices',
             data: {
@@ -35,6 +38,7 @@ function PricesBreakdown() {
               eth: priceETH,
               dai: 1,
               usdt: 1,
+              xDG: priceXDG,
               dg: priceDG,
               ice: priceICE,
             },
