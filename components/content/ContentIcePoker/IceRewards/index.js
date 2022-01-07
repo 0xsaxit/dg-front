@@ -102,7 +102,7 @@ const IceRewards = () => {
       ];
 
       var i, j, totalIceEarned = 0, totalXpEarned = 0, history = [];
-      for (i = 0; i < response.length; i++) {
+      for (i = response.length - 1; i >= 0; i--) {
         var gamePlayIceEarned = 0, gamePlayXpEarned = 0, delegationIceEarned = 0, delegationXpEarned = 0;
         const day = moment(new Date(response[i].day));
         const xAxisIndex = day.diff(todayMoment, 'days') + 6;
@@ -125,21 +125,26 @@ const IceRewards = () => {
         datasets[1].data[xAxisIndex] = delegationIceEarned;
 
         // add Gameplay history
-        history.push({
-          date: moment(response[i].day).format('MM/DD/YY'),
-          type: 'Gameplay',
-          iceEarned: gamePlayIceEarned,
-          xpEarned: gamePlayXpEarned,
-          records: Object.keys(response[i].gameplay).length !== 0 ? [].concat(response[i].gameplay) : []
-        })
+        if (gamePlayIceEarned !== 0 || gamePlayXpEarned !== 0 || Object.keys(response[i].gameplay).length !== 0) {
+          history.push({
+            date: moment(response[i].day).format('MM/DD/YY'),
+            type: 'Gameplay',
+            iceEarned: gamePlayIceEarned,
+            xpEarned: gamePlayXpEarned,
+            records: Object.keys(response[i].gameplay).length !== 0 ? [].concat(response[i].gameplay) : []
+          })
+        }
+
         // add Delegation history
-        history.push({
-          date: moment(response[i].day).format('MM/DD/YY'),
-          type: 'Delegation',
-          iceEarned: delegationIceEarned,
-          xpEarned: delegationXpEarned,
-          records: response[i].delegation
-        })
+        if (delegationIceEarned !== 0 || delegationXpEarned !== 0 || response[i].delegation.length > 0) {
+          history.push({
+            date: moment(response[i].day).format('MM/DD/YY'),
+            type: 'Delegation',
+            iceEarned: delegationIceEarned,
+            xpEarned: delegationXpEarned,
+            records: response[i].delegation
+          })
+        }
       }
 
       setIceEarned(totalIceEarned);
