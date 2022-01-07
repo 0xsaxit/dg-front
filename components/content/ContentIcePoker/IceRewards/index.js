@@ -67,17 +67,15 @@ const IceRewards = () => {
       setLoading(true);
 
       // Get Gameplay Reports from the API
-      let response = await Fetch.GAMEPLAY_REPORTS('0xadfaec016975fbad34127017598285e47edae1b4');
+      let response = await Fetch.GAMEPLAY_REPORTS();
       console.log(response);
 
       // Set xAxis
       let xAxis = [];
       const today = new Date();
-      const todayMoment = moment(new Date(today));
-      for (var i = 7; i >= 1; i--) {
-        var date = new Date(today);
-        date.setDate(date.getDate() - i);
-        xAxis.push(date.toDateString().slice(0, 1));
+      const todayMoment = moment.utc(new Date(today));
+      for (var i = 0; i < response.length; i++) {
+        xAxis.push(moment.utc(response[i].day).format('M/D'));
       }
       setStatsUSDX(xAxis);
 
@@ -104,7 +102,7 @@ const IceRewards = () => {
       var i, j, totalIceEarned = 0, totalXpEarned = 0, history = [];
       for (i = response.length - 1; i >= 0; i--) {
         var gamePlayIceEarned = 0, gamePlayXpEarned = 0, delegationIceEarned = 0, delegationXpEarned = 0;
-        const day = moment(new Date(response[i].day));
+        const day = moment.utc(new Date(response[i].day));
         const xAxisIndex = day.diff(todayMoment, 'days') + 6;
 
         // get GamePlay
@@ -127,7 +125,7 @@ const IceRewards = () => {
         // add Gameplay history
         if (gamePlayIceEarned !== 0 || gamePlayXpEarned !== 0 || Object.keys(response[i].gameplay).length !== 0) {
           history.push({
-            date: moment(response[i].day).format('MM/DD/YY'),
+            date: moment.utc(response[i].day).format('MM/DD/YY'),
             type: 'Gameplay',
             iceEarned: gamePlayIceEarned,
             xpEarned: gamePlayXpEarned,
@@ -138,7 +136,7 @@ const IceRewards = () => {
         // add Delegation history
         if (delegationIceEarned !== 0 || delegationXpEarned !== 0 || response[i].delegation.length > 0) {
           history.push({
-            date: moment(response[i].day).format('MM/DD/YY'),
+            date: moment.utc(response[i].day).format('MM/DD/YY'),
             type: 'Delegation',
             iceEarned: delegationIceEarned,
             xpEarned: delegationXpEarned,
@@ -281,7 +279,7 @@ const IceRewards = () => {
 
             <div className={styles.iceEarnedDiv}>
               <div className={styles.title}>
-                <h1>ICE Earned (past 7 Days)</h1>
+                <h1>ICE Earned (past 7 Days - UTC)</h1>
               </div>
               <div className={styles.graph}>
                 {loading ?

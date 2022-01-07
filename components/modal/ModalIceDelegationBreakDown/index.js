@@ -61,7 +61,7 @@ const ModalIceDelegationBreakDown = ({
                                 return (
                                     <div key={index} className={styles.row}>
                                         <div className={styles.address}>
-                                            {moment(breakdown.gameplayDay).format('MM/DD/YY')}
+                                            {moment.utc(breakdown.gameplayDay).format('MM/DD/YY')}
                                         </div>
                                         <div className={styles.nfts} style={{ marginTop: '10px' }}>
                                             {defaultImgs.map((def, i) => {
