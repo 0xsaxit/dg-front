@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 import { Modal } from 'semantic-ui-react';
-import styles from './ModalIceBreakDown.module.scss';
+import styles from './ModalIceDelegationBreakDown.module.scss';
 
-const ModalIceBreakDown = ({
-    history,
+const ModalIceDelegationBreakDown = ({
+    delegationBreakdown,
     setShowingBreakDown
 }) => {
     const defaultImgs = [
@@ -43,34 +44,34 @@ const ModalIceBreakDown = ({
 
                 <div className={styles.body}>
                     <div className={styles.title}>
-                        <h2>{history.type} Breakdown</h2>
-                        <p>{history.date}</p>
+                        <h2>{delegationBreakdown[0].address.substr(0, 5)}...{delegationBreakdown[0].address.substr(delegationBreakdown[0].address.length - 4, delegationBreakdown[0].address.length)}</h2>
+                        <p>Delegatee Daily History</p>
                     </div>
 
                     <div className={styles.history}>
                         <div className={styles.header}>
-                            <div className={styles.address}>Address</div>
-                            <div className={styles.nfts}>NFTS Worn</div>
+                            <div className={styles.address}>Date</div>
+                            <div className={styles.nfts}>NFTS Delegated</div>
                             <div className={styles.iceEarned}>ICE Earned</div>
                             <div className={styles.xpEarned}>XP Earned</div>
                             <div className={styles.tier}>Leaderboard Tier</div>
                         </div>
                         <div className={styles.content}>
-                            {history.records.map((record, index) => {
+                            {delegationBreakdown.map((breakdown, index) => {
                                 return (
                                     <div key={index} className={styles.row}>
                                         <div className={styles.address}>
-                                            {record.address.substr(0, 5)}...{record.address.substr(record.address.length - 4, record.address.length)}
+                                            {moment(breakdown.gameplayDay).format('MM/DD/YY')}
                                         </div>
                                         <div className={styles.nfts} style={{ marginTop: '10px' }}>
                                             {defaultImgs.map((def, i) => {
-                                                if (record.wearableSnapshot && record.wearableSnapshot.wearableData.length > 0 && record.wearableSnapshot.wearableData.length > i) {
+                                                if (breakdown.wearableSnapshot && breakdown.wearableSnapshot.wearableData.length > 0 && breakdown.wearableSnapshot.wearableData.length > i) {
                                                     return (
                                                         <div key={i} className={styles.nft}>
-                                                            <img src={`${record.wearableSnapshot.wearableData[i].image}`} />
-                                                            <div className={styles.rank}> {record.wearableSnapshot.wearableData[i].rank} </div>
+                                                            <img src={`${breakdown.wearableSnapshot.wearableData[i].image}`} />
+                                                            <div className={styles.rank}> {breakdown.wearableSnapshot.wearableData[i].rank} </div>
                                                             <div className={styles.bottomInfo}>
-                                                                +{record.wearableSnapshot.wearableData[i].bonus}%
+                                                                +{breakdown.wearableSnapshot.wearableData[i].bonus}%
                                                                 <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
                                                             </div>
                                                         </div>
@@ -90,18 +91,18 @@ const ModalIceBreakDown = ({
                                         </div>
                                         <div className={styles.iceEarned} style={{ paddingLeft: '53px', textAlign: 'left' }}>
                                             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
-                                            {record.type === 'Gameplay' ? record.iceEarnedPlayer : record.iceEarnedDelegator} ICE
+                                            {breakdown.iceEarnedDelegator} ICE
                                         </div>
                                         <div className={styles.xpEarned} style={{ paddingLeft: '60px', textAlign: 'left' }}>
                                             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_XP_ICN_f9w2se.svg" alt="xp" />
-                                            {record.xpEarned} XP
+                                            {breakdown.xpEarned} XP
                                         </div>
                                         <div className={styles.tier} style={{ paddingLeft: '65px', textAlign: 'left' }}>
                                             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175017/cup_w68eni.png" alt="xp" />
-                                            {record.leaderboardPercentile + 5 <= 50 ?
-                                                `Top ${record.leaderboardPercentile + 5}%`
+                                            {breakdown.leaderboardPercentile + 5 <= 50 ?
+                                                `Top ${breakdown.leaderboardPercentile + 5}%`
                                                 :
-                                                `Bottom ${100 - record.leaderboardPercentile}%`}
+                                                `Bottom ${100 - breakdown.leaderboardPercentile}%`}
                                         </div>
                                     </div>
                                 )
@@ -114,4 +115,4 @@ const ModalIceBreakDown = ({
     )
 }
 
-export default ModalIceBreakDown;
+export default ModalIceDelegationBreakDown;
