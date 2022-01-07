@@ -52,6 +52,14 @@ const Fetch = {
     );
   },
 
+  DG_GOVERNANCE_SUPPLY_GECKO: () => {
+    return call(
+      `https://api.coingecko.com/api/v3/coins/decentral-games-governance`,
+      'GET',
+      false
+    );
+  },
+
   UPGRADE_TOKEN: (tokenID, collectionAddr) => {
     return call(
       `${API_BASE_URL}/ice/upgradeToken/${tokenID}/${collectionAddr}`,
@@ -104,11 +112,17 @@ const Fetch = {
   },
 
   UPDATE_FREE_PLAYER_BALANCE: (amount, address) => {
-    return call(`${API_BASE_URL}/admin/updateUserBalances?freePlayAmountChange=${amount}&user=${address}`, 'GET');
+    return call(
+      `${API_BASE_URL}/admin/updateUserBalances?freePlayAmountChange=${amount}&user=${address}`,
+      'GET'
+    );
   },
 
   UPDATE_ICE_CHIP_BALANCE: (amount, address) => {
-    return call(`${API_BASE_URL}/admin/updateUserBalances?iceChipsAmountChange=${amount}&user=${address}`, 'GET');
+    return call(
+      `${API_BASE_URL}/admin/updateUserBalances?iceChipsAmountChange=${amount}&user=${address}`,
+      'GET'
+    );
   },
 
   /////////////////////////////////////////////////////////////////////////////////////////
