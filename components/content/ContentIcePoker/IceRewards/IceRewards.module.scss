@@ -13,7 +13,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    margin-left: 40px;
+    margin-left: 50px;
     margin-top: 80px;
     margin-bottom: 100px;
     width: 100%;
@@ -301,6 +301,9 @@
                 td {
                     position: relative;
                     text-align: center;
+                    font-size: 17px;
+                    font-family: "Larsseit-Medium";
+                    color: rgba(255, 255, 255, 0.6) !important;
                 }
 
                 .iceEarned {
@@ -310,7 +313,7 @@
                     }
                     img {
                         position: absolute;
-                        top: 27px;
+                        top: 26px;
                         left: calc(60% + 2px);
                         width: 18px;
                     }
@@ -323,7 +326,7 @@
                     }
                     img {
                         position: absolute;
-                        top: 29px;
+                        top: 27px;
                         left: 55%;
                         width: 22px;
                         margin-left: 3px;
@@ -336,6 +339,9 @@
                     font-family: "Larsseit-Light";
                     letter-spacing: 0.5px;
                     border: 2px solid rgba(255, 255, 255, 0.08);
+                    &:disabled {
+                        padding: 11px 21px !important;
+                    }
                 }
             }
         }
@@ -481,7 +487,7 @@
 
             table {
                 margin-bottom: 100px;
-    
+
                 tr {
                     th {
                         font-size: 12px !important;
@@ -489,19 +495,19 @@
                         padding-right: 3px;
                         padding-bottom: 10px;
                     }
-    
+
                     td {
                         font-size: 12px !important;
                         padding: 3px 5px;
                         height: 50px;
                     }
-    
+
                     .iceEarned {
                         img {
                             top: 18px;
                         }
                     }
-    
+
                     .xpEarned {
                         img {
                             position: absolute;

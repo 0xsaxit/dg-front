@@ -296,6 +296,22 @@ const Fetch = {
   POAPS: address => {
     return call(`https://api.poap.xyz/actions/scan/${address}`, 'GET', false);
   },
+
+  DELEGATION_BREAKDOWN: (time, address) => {
+    if (address) {
+      return call(`https://api.decentral.games/ice/getDelegationBreakdown/${time}?address=${address}`, 'GET');
+    } else {
+      return call(`https://api.decentral.games/ice/getDelegationBreakdown/${time}`, 'GET');
+    }
+  },
+
+  GAMEPLAY_REPORTS: (address) => {
+    if (address) {
+      return call(`https://api.testing.decentral.games/ice/getGameplayReports/?address=${address}`, 'GET');
+    } else {
+      return call(`https://api.testing.decentral.games/ice/getGameplayReports`, 'GET');
+    }
+  }
 };
 
 export default Fetch;
