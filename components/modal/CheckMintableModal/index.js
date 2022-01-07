@@ -11,6 +11,7 @@ import ABI_CHILD_TOKEN_WETH from '../../ABI/ABIChildTokenWETH';
 import MetaTx from '../../../common/MetaTx';
 import { Loader } from 'semantic-ui-react';
 import { parse } from '@ethersproject/transactions';
+import CheckMintTooltip from 'components/tooltips/CheckMintTooltip';
 
 const CheckMintableModal = props => {
   // fetch user's Polygon DG balance from the Context API store
@@ -203,12 +204,7 @@ const CheckMintableModal = props => {
               <div className={styles.dg_round_edit}>
                   {parseFloat(state.userBalances[2][3]) < Global.CONSTANTS.WETH_MINT_AMOUNT && (<div className={styles.tooltip}>
                       Not Enough
-                      <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path 
-                              d="M4.22485 8.17529C6.35254 8.17529 8.10303 6.4248 8.10303 4.29712C8.10303 2.16577 6.35254 0.415284 4.22119 0.415284C2.08984 0.415284 0.343018 2.16577 0.343018 4.29712C0.343018 6.4248 2.09351 8.17529 4.22485 8.17529ZM4.22119 3.12158C3.90625 3.12158 3.64258 2.85791 3.64258 2.54297C3.64258 2.21704 3.90625 1.96069 4.22119 1.96069C4.53613 1.96069 4.79614 2.21704 4.79614 2.54297C4.79614 2.85791 4.53613 3.12158 4.22119 3.12158ZM3.52539 6.35889C3.32031 6.35889 3.15918 6.21606 3.15918 6C3.15918 5.80591 3.32031 5.64844 3.52539 5.64844H3.94653V4.34473H3.59863C3.38989 4.34473 3.23242 4.19824 3.23242 3.9895C3.23242 3.79175 3.38989 3.63794 3.59863 3.63794H4.34936C4.61304 3.63794 4.74853 3.81738 4.74853 4.0957V5.64844H5.08179C5.28686 5.64844 5.448 5.80591 5.448 6C5.448 6.21606 5.28686 6.35889 5.08179 6.35889H3.52539Z" 
-                              fill="white"
-                          />
-                      </svg>
+                      <CheckMintTooltip staking={false} />
                   </div>)}
                   {Global.CONSTANTS.WETH_MINT_AMOUNT} ETH
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -226,13 +222,16 @@ const CheckMintableModal = props => {
               {parseFloat(state.userBalances[2][3]) < Global.CONSTANTS.WETH_MINT_AMOUNT? (
                 <>
                   <span className={styles.dg_insufficient}>
-                  {Number(state.userBalances[2][3]).toFixed(3)} ETH Available 
+                  {Number(state.userBalances[2][3]).toFixed(3)} ETH Available &nbsp;
                   </span><br/>
                   (On Polyon)
                 </>) : (
                   <>
                     <span className={styles.dg_available}>
-                    {Number(state.userBalances[2][3]).toFixed(3)} ETH Available 
+                    {Number(state.userBalances[2][3]).toFixed(3)} ETH Available&nbsp;
+                    <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4.33606 9.70984C4.71204 9.70984 5.00745 9.56482 5.21155 9.26404L10.212 1.64246C10.3571 1.42224 10.4161 1.21277 10.4161 1.01941C10.4161 0.498413 10.0187 0.111694 9.48157 0.111694C9.11633 0.111694 8.88538 0.245972 8.65979 0.595093L4.31458 7.44861L2.11243 4.74695C1.90833 4.49988 1.68274 4.39246 1.37122 4.39246C0.828735 4.39246 0.436646 4.77917 0.436646 5.30554C0.436646 5.54187 0.50647 5.74597 0.710571 5.97693L3.48206 9.30701C3.71301 9.58093 3.98157 9.70984 4.33606 9.70984Z" fill="#67DD6C"/>
+                    </svg>
                     </span><br/>
                     (On Polyon)
                   </>
@@ -256,12 +255,7 @@ const CheckMintableModal = props => {
               <div className={styles.dg_round_edit}>
                   <div className={styles.tooltip}>
                       Staking Requirement
-                      <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path 
-                              d="M4.22485 8.17529C6.35254 8.17529 8.10303 6.4248 8.10303 4.29712C8.10303 2.16577 6.35254 0.415284 4.22119 0.415284C2.08984 0.415284 0.343018 2.16577 0.343018 4.29712C0.343018 6.4248 2.09351 8.17529 4.22485 8.17529ZM4.22119 3.12158C3.90625 3.12158 3.64258 2.85791 3.64258 2.54297C3.64258 2.21704 3.90625 1.96069 4.22119 1.96069C4.53613 1.96069 4.79614 2.21704 4.79614 2.54297C4.79614 2.85791 4.53613 3.12158 4.22119 3.12158ZM3.52539 6.35889C3.32031 6.35889 3.15918 6.21606 3.15918 6C3.15918 5.80591 3.32031 5.64844 3.52539 5.64844H3.94653V4.34473H3.59863C3.38989 4.34473 3.23242 4.19824 3.23242 3.9895C3.23242 3.79175 3.38989 3.63794 3.59863 3.63794H4.34936C4.61304 3.63794 4.74853 3.81738 4.74853 4.0957V5.64844H5.08179C5.28686 5.64844 5.448 5.80591 5.448 6C5.448 6.21606 5.28686 6.35889 5.08179 6.35889H3.52539Z" 
-                              fill="white"
-                          />
-                      </svg>
+                      <CheckMintTooltip staking={true} />
                   </div>
 
                   1,000 xDG
@@ -290,7 +284,11 @@ const CheckMintableModal = props => {
               { state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD >=Global.CONSTANTS.DG_STAKED_AMOUNT ||
                 xDG >=Global.CONSTANTS.XDG_STAKED_AMOUNT ?
                 (<span className={styles.dg_available}>
-                  You Have Enough Staked</span>) : (
+                  You Have Enough Staked&nbsp;
+                    <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4.33606 9.70984C4.71204 9.70984 5.00745 9.56482 5.21155 9.26404L10.212 1.64246C10.3571 1.42224 10.4161 1.21277 10.4161 1.01941C10.4161 0.498413 10.0187 0.111694 9.48157 0.111694C9.11633 0.111694 8.88538 0.245972 8.65979 0.595093L4.31458 7.44861L2.11243 4.74695C1.90833 4.49988 1.68274 4.39246 1.37122 4.39246C0.828735 4.39246 0.436646 4.77917 0.436646 5.30554C0.436646 5.54187 0.50647 5.74597 0.710571 5.97693L3.48206 9.30701C3.71301 9.58093 3.98157 9.70984 4.33606 9.70984Z" fill="#67DD6C"/>
+                    </svg>
+                  </span>) : (
                   <>
                     <span className={styles.dg_insufficient}>
                       You must be holding 1000+ xDG or have 1 + (old) DG
@@ -357,6 +355,12 @@ const CheckMintableModal = props => {
           });
           setAuthStatus(true);
           setLoading(false);
+
+          // show toast
+          dispatch({
+            type: 'show_toastMessage',
+            data: 'Authorize successful!',
+          });
         }
       } catch (error) {
         console.log('WETH authorization error: ' + error);
@@ -383,7 +387,15 @@ const CheckMintableModal = props => {
             <Button 
             className={styles.check_eligibility}
             >
-                Check Eligibility {'>'}
+                Check Eligibility
+                <span style={{paddingLeft: '6px'}}>
+                  <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path 
+                      d="M6.29492 4.97461C6.29004 4.71582 6.20215 4.51074 5.99219 4.30566L2.31543 0.711914C2.15918 0.560547 1.97852 0.482422 1.75391 0.482422C1.30469 0.482422 0.933594 0.848633 0.933594 1.29297C0.933594 1.51758 1.02637 1.72266 1.19727 1.89355L4.38086 4.96973L1.19727 8.05566C1.02637 8.22168 0.933594 8.42676 0.933594 8.65625C0.933594 9.10059 1.30469 9.4668 1.75391 9.4668C1.97363 9.4668 2.15918 9.39355 2.31543 9.2373L5.99219 5.64355C6.20215 5.43848 6.29492 5.22852 6.29492 4.97461Z" 
+                      fill="white"
+                    />
+                  </svg>
+                </span>
             </Button>
           }
         >

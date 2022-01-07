@@ -415,10 +415,6 @@ const MarketPlace = () => {
             itemLimits = state.itemLimits1;
           }
 
-          // console.log("item List: =========================", index, itemLimits);    
-          // console.log("Max Mint Counts: ===================== ", state.appConfig.maxMintCounts);     
-          // console.log(state.appConfig.maxMintCounts);
-
           let maxMintCounts = 0;
           if (state.appConfig && state.appConfig.maxMintCounts) {
             Object.keys(state.appConfig.maxMintCounts).map(address => {
@@ -436,15 +432,6 @@ const MarketPlace = () => {
                 {wearable.title === 'Founder Fathers' && (
                   <CheckMintableModal />
                 )}
-
-                {/* <Button 
-                  className={styles.check_eligibility}
-                  onClick={()=>{
-                    setOpenCheckEligibility(true);
-                  }}
-                >
-                  Check Eligibility  {'>'}
-                </Button> */}
               </h3>
               
               <Slider {...settings}>
