@@ -35,6 +35,8 @@ const ModalWearable = props => {
     props.name.replace('Diamond Hands ', '')
   );
 
+  console.log('Loading wearableName:', wearableName);
+
   const bonus = [
     '0%', // Rank 0
     '+1 - 7%', // Rank 1
@@ -70,6 +72,9 @@ const ModalWearable = props => {
     XP_COST_AMOUNT_4, // Rank 4
     XP_COST_AMOUNT_5, // Rank 5
   ];
+
+  // Returns the current ice wearable ranking + 1
+  const nextIceWearableRank = parseInt(Math.min(props.rank + 1, 5));
 
   return (
     <>
@@ -162,7 +167,7 @@ const ModalWearable = props => {
               <div className={styles.wear_box_pink}>
                 <img
                   src={
-                    Global.IMG_URLS_UPGRADE[wearableName][parseInt(Math.min(props.rank + 1, 5))]
+                    Global.IMG_URLS_UPGRADE?.[wearableName]?.[nextIceWearableRank]
                   }
                 />
               </div>
@@ -434,7 +439,7 @@ const ModalWearable = props => {
         <ModalUpgradeSuccess 
           tokenID={props.tokenID} 
           setUpgrade={setUpgrade}
-          imgURL = {Global.IMG_URLS_UPGRADE[wearableName][parseInt(Math.min(props.rank + 1, 5))]} 
+          imgURL = {Global.IMG_URLS_UPGRADE?.[wearableName]?.[nextIceWearableRank]}
         />
       )}
     </>
