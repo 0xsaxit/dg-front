@@ -67,16 +67,13 @@ const IceRewards = () => {
       setLoading(true);
 
       // Get Gameplay Reports from the API
-      let response = await Fetch.GAMEPLAY_REPORTS();
+      let response = await Fetch.GAMEPLAY_REPORTS('0xC65F7c7D76EE888Ddcc554e78C0beBAbA0A11cBd');
       console.log(response);
 
       // Set xAxis
       let xAxis = [];
-      let today = new Date();
-      today.setHours(0);
-      today.setMinutes(0);
-      today.setSeconds(0);
-      const todayMoment = moment.utc(new Date(today));
+      let today = new Date().toUTCString();
+      const todayMoment = moment.utc(new Date(today).toUTCString());
       for (var i = 0; i < response.length; i++) {
         xAxis.push(moment.utc(response[i].day).format('M/D'));
       }
@@ -111,7 +108,9 @@ const IceRewards = () => {
         // get GamePlay
         if (response[i].gameplay && Object.keys(response[i].gameplay).length !== 0) {
           gamePlayIceEarned += response[i].gameplay.iceEarnedPlayer;
-          gamePlayXpEarned = response[i].gameplay.xpEarned;
+          if (!response[i].gameplay.wearableSnapshot.delegatorAddress) {
+            gamePlayXpEarned = response[i].gameplay.xpEarned;
+          }
         }
         // get Delegation
         for (j = 0; j < response[i].delegation.length; j++) {
@@ -126,7 +125,7 @@ const IceRewards = () => {
         datasets[1].data[xAxisIndex] = delegationIceEarned;
 
         // add Gameplay history
-        if (gamePlayIceEarned !== 0 || gamePlayXpEarned !== 0 || Object.keys(response[i].gameplay).length !== 0) {
+        if (gamePlayIceEarned !== 0 || gamePlayXpEarned !== 0) {
           history.push({
             date: moment.utc(response[i].day).format('MM/DD/YY'),
             type: 'Gameplay',
@@ -137,7 +136,7 @@ const IceRewards = () => {
         }
 
         // add Delegation history
-        if (delegationIceEarned !== 0 || delegationXpEarned !== 0 || response[i].delegation.length > 0) {
+        if (delegationIceEarned !== 0 || delegationXpEarned !== 0) {
           history.push({
             date: moment.utc(response[i].day).format('MM/DD/YY'),
             type: 'Delegation',

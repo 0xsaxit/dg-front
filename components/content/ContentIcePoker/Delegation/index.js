@@ -125,7 +125,7 @@ const Delegation = () => {
                                                     <Table.Cell style={{ width: '50px' }} >
                                                         {i + 1}
                                                     </Table.Cell>
-                                                    <Table.Cell className={styles.user_info} style={{ width: '200px' }} >
+                                                    <Table.Cell className={styles.user_info} style={{ width: '200px', justifyContent: 'left' }} >
                                                         <img src={row.imageURL} alt="avatar" />
                                                         {row.address.substr(0, 5)}...{row.address.substr(row.address.length - 4, row.address.length)}
                                                     </Table.Cell>
@@ -181,14 +181,13 @@ const Delegation = () => {
                                                     <Table.Cell style={{ width: '250px' }} >
                                                         <div className={styles.nfts} style={{ marginTop: '10px' }}>
                                                             {defaultImgs.map((def, i) => {
-                                                                const breakDownLength = row.breakdown.length;
-                                                                if (row.breakdown.length > 0 && row.breakdown[breakDownLength - 1].wearableSnapshot.wearableData.length > i) {
+                                                                if (row.currentDelegations && row.currentDelegations.length > i) {
                                                                     return (
                                                                         <div key={i} className={styles.nft}>
-                                                                            <img src={`${row.breakdown[breakDownLength - 1].wearableSnapshot.wearableData[i].image}`} />
-                                                                            <div className={styles.rank}> {row.breakdown[breakDownLength - 1].wearableSnapshot.wearableData[i].rank} </div>
+                                                                            <img src={`${row.currentDelegations[i].image}`} />
+                                                                            <div className={styles.rank}> {row.currentDelegations[i].rank} </div>
                                                                             <div className={styles.bottomInfo}>
-                                                                                +{row.breakdown[breakDownLength - 1].wearableSnapshot.wearableData[i].bonus}%
+                                                                                +{row.currentDelegations[i].bonus}%
                                                                                 <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
                                                                             </div>
                                                                         </div>

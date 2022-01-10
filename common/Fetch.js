@@ -307,9 +307,9 @@ const Fetch = {
 
   GAMEPLAY_REPORTS: (address) => {
     if (address) {
-      return call(`https://api.testing.decentral.games/ice/getGameplayReports/?address=${address}`, 'GET');
+      return call(`https://api.decentral.games/ice/getGameplayReports/?address=${address}`, 'GET');
     } else {
-      return call(`https://api.testing.decentral.games/ice/getGameplayReports`, 'GET');
+      return call(`https://api.decentral.games/ice/getGameplayReports`, 'GET');
     }
   }
 };
