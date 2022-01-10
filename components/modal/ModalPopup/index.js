@@ -69,8 +69,6 @@ const ModalPopup = () => {
       type: 'set_userLoggedIn',
       data: false,
     });
-
-    localStorage.removeItem('loggedIn');
   };
 
   /////////////////////////////////////////////////////////////////////////////////////////
