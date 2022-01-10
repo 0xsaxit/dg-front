@@ -107,7 +107,7 @@ const IcePoker = props => {
                                             fill="none"
                                             xmlns="http://www.w3.org/2000/svg"
                                         >
-                                            <g clip-path="url(#clip0_6:997)">
+                                            <g clipPath="url(#clip0_6:997)">
                                                 <path
                                                     d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z"
                                                     stroke={iceState === 'marketplace' ? 'white' : '#808080'}
@@ -149,8 +149,8 @@ const IcePoker = props => {
                                             xmlns="http://www.w3.org/2000/svg"
                                         >
                                             <path
-                                                fill-rule="evenodd"
-                                                clip-rule="evenodd"
+                                                fillRule="evenodd"
+                                                clipRule="evenodd"
                                                 d="M14.75 6H9.75V20H14.75V6ZM9.75 4C8.64543 4 7.75 4.89543 7.75 6V11.1454C7.51839 11.0516 7.26522 11 7 11H3C1.89543 11 1 11.8954 1 13V20C1 21.1046 1.89543 22 3 22H7C7.5326 22 8.01658 21.7918 8.375 21.4524C8.73342 21.7918 9.21739 22 9.75 22H14.75C15.1672 22 15.5545 21.8723 15.875 21.6538C16.1955 21.8723 16.5828 22 17 22H22C23.1046 22 24 21.1046 24 20V9C24 7.89543 23.1046 7 22 7H17C16.9153 7 16.8319 7.00526 16.75 7.01547V6C16.75 4.89543 15.8546 4 14.75 4H9.75ZM7 13H3V20H7V13ZM17 9H22V20H17V9Z"
                                                 fill={iceState === 'leaderboard' ? 'white' : '#808080'} />
                                         </svg>
@@ -200,21 +200,21 @@ const IcePoker = props => {
                                             <path
                                                 d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z"
                                                 stroke={iceState === 'delegation' ? 'white' : '#808080'}
-                                                stroke-width="2"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round" />
+                                                strokeWidth="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round" />
                                             <path
                                                 d="M3 9H21"
                                                 stroke={iceState === 'delegation' ? 'white' : '#808080'}
-                                                stroke-width="2"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round" />
+                                                strokeWidth="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round" />
                                             <path
                                                 d="M9 21V9"
                                                 stroke={iceState === 'delegation' ? 'white' : '#808080'}
-                                                stroke-width="2"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round" />
+                                                strokeWidth="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round" />
                                         </svg>
                                     </div>
                                 </Link>
@@ -346,7 +346,7 @@ const IcePoker = props => {
                                             fill="none"
                                             xmlns="http://www.w3.org/2000/svg"
                                         >
-                                            <g clip-path="url(#clip0_6:997)">
+                                            <g clipPath="url(#clip0_6:997)">
                                                 <path
                                                     d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z"
                                                     stroke={iceState === 'marketplace' ? 'white' : '#808080'}
@@ -393,8 +393,8 @@ const IcePoker = props => {
                                             xmlns="http://www.w3.org/2000/svg"
                                         >
                                             <path
-                                                fill-rule="evenodd"
-                                                clip-rule="evenodd"
+                                                fillRule="evenodd"
+                                                clipRule="evenodd"
                                                 d="M14.75 6H9.75V20H14.75V6ZM9.75 4C8.64543 4 7.75 4.89543 7.75 6V11.1454C7.51839 11.0516 7.26522 11 7 11H3C1.89543 11 1 11.8954 1 13V20C1 21.1046 1.89543 22 3 22H7C7.5326 22 8.01658 21.7918 8.375 21.4524C8.73342 21.7918 9.21739 22 9.75 22H14.75C15.1672 22 15.5545 21.8723 15.875 21.6538C16.1955 21.8723 16.5828 22 17 22H22C23.1046 22 24 21.1046 24 20V9C24 7.89543 23.1046 7 22 7H17C16.9153 7 16.8319 7.00526 16.75 7.01547V6C16.75 4.89543 15.8546 4 14.75 4H9.75ZM7 13H3V20H7V13ZM17 9H22V20H17V9Z"
                                                 fill={iceState === 'leaderboard' ? 'white' : '#808080'} />
                                         </svg>
@@ -454,21 +454,21 @@ const IcePoker = props => {
                                             <path
                                                 d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z"
                                                 stroke={iceState === 'delegation' ? 'white' : '#808080'}
-                                                stroke-width="2"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round" />
+                                                strokeWidth="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round" />
                                             <path
                                                 d="M3 9H21"
                                                 stroke={iceState === 'delegation' ? 'white' : '#808080'}
-                                                stroke-width="2"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round" />
+                                                strokeWidth="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round" />
                                             <path
                                                 d="M9 21V9"
                                                 stroke={iceState === 'delegation' ? 'white' : '#808080'}
-                                                stroke-width="2"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round" />
+                                                strokeWidth="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round" />
                                         </svg>
 
                                         <div className={styles.menu_title}>Delegation Stats</div>
