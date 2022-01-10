@@ -17,9 +17,7 @@ const ICEWearableCard = props => {
   const { name, description, image, attributes } = props.data;
   const [checkInStatus, setCheckInStatus] = useState(false);
   const [delegationStatus, setDelegationStatus] = useState(false);
-  const rank = GetRank(
-    parseInt(attributes.find(el => el.trait_type === 'Bonus').value)
-  );
+  const { rank } = props;
 
   useEffect(() => {
     if (state.userStatus >= 4) {

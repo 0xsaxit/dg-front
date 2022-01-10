@@ -24,10 +24,8 @@ const ICEWearableCard = props => {
   const [checkInStatus, setCheckInStatus] = useState(false);
   const buttonDelegate = 'Delegate';
   const buttonUndelegate = 'Undelegate';
-  const { name, description, image, attributes } = props.data;
-  const rank = GetRank(
-    parseInt(attributes.find(el => el.trait_type === 'Bonus').value)
-  );
+  const { name, description, rank, image } = props;
+  const bonus = "+" + props.bonus + "%";
 
   useEffect(() => {
     if (state.userStatus >= 4) {
@@ -100,8 +98,8 @@ const ICEWearableCard = props => {
               </svg>
             </div>
           ) : null}
-          <div className={styles.card}>{`Rank ${rank.value}`}</div>
-          <IceWearableBonusTooltip bonus={rank.percentage} />
+          <div className={styles.card}>{`Rank ${rank}`}</div>
+          <IceWearableBonusTooltip bonus={bonus} />
           <div className={styles.card}>
             {description.split(' ').at(-1).replace('/', ' of ')}
           </div>
@@ -109,7 +107,7 @@ const ICEWearableCard = props => {
 
         <div className={styles.card_title}>
           <p>{name.split('(ICE')[0].trim()}</p>
-          <p>{`(ICE Rank ${rank.value})`}</p>
+          <p>{`(ICE Rank ${rank})`}</p>
         </div>
       </Aux>
     );
@@ -136,7 +134,7 @@ const ICEWearableCard = props => {
             ) : (
               <span
                 className={
-                  rank.value != 5
+                  rank != 5
                     ? 'w-100 d-flex justify-content-between'
                     : 'w-100 d-flex justify-content-center'
                 }
@@ -147,10 +145,8 @@ const ICEWearableCard = props => {
                     address={props.address}
                     itemID={props.itemID}
                     imgSrc={image}
-                    rank={rank.value}
-                    bonus={
-                      attributes.find(el => el.trait_type === 'Bonus').value
-                    }
+                    rank={rank}
+                    bonus={bonus}
                     description={description}
                     buttonName={buttonDelegate}
                   />
@@ -162,21 +158,18 @@ const ICEWearableCard = props => {
                     address={props.address}
                     ownerAddress={state.userAddress}
                     delegateAddress={delegateAddress}
-                    rank={rank.value}
+                    rank={rank}
                     buttonName={buttonUndelegate}
                   />
                 )}
-                {rank.value < 5 && (
+                {rank < 5 && (
                   <ModalWearable
                     tokenID={props.tokenID}
                     address={props.address}
                     itemID={props.itemID}
                     imgSrc={image}
-                    rank={rank.value}
-                    percentage={rank.percentage}
-                    bonus={
-                      attributes.find(el => el.trait_type === 'Bonus').value
-                    }
+                    rank={rank}
+                    bonus={bonus}
                     description={description}
                     name={name.split('(ICE')[0].trim()}
                   />

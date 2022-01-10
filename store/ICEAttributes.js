@@ -153,31 +153,28 @@ function ICEAttributes() {
           });
         }
         
-        let iceWearableItem2s = await Fetch.GET_WEARABLE_INVENTORY(state.userAddress);
-        for (var i = 0; i < iceWearableItem2s.length; i++) {
+        let iceWearableItems = await Fetch.GET_WEARABLE_INVENTORY(state.userAddress);
+        for (var i = 0; i < iceWearableItems.length; i++) {
               
           const json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
-            iceWearableItem2s[i].contractAddress,
-            iceWearableItem2s[i].tokenId
+            iceWearableItems[i].contractAddress,
+            iceWearableItems[i].tokenId
           );
 
           if (Object.keys(json).length) {
-            iceWearableItem2s[i].meta_data = json;
-            iceWearableItem2s[i].index = i;
-            iceWearableItem2s[i].address = iceWearableItem2s[i].contractAddress;
-            iceWearableItem2s[i].tokenID = iceWearableItem2s[i].tokenId;
-            iceWearableItem2s[i].itemID = iceWearableItem2s[i].itemId;
+            iceWearableItems[i].meta_data = json;
+            iceWearableItems[i].index = i;
+            iceWearableItems[i].address = iceWearableItems[i].contractAddress;
+            iceWearableItems[i].tokenID = iceWearableItems[i].tokenId;
+            iceWearableItems[i].itemID = iceWearableItems[i].itemId;
           }
         }
 
-        
-
-
-        console.log('iceWearableItems2: ', iceWearableItem2s);
+        console.log('iceWearableItems2: ', iceWearableItems);
 
         dispatch({
           type: 'ice_wearable_items',
-          data: iceWearableItem2s,
+          data: iceWearableItems,
         });
         dispatch({
           type: 'ice_wearable_items_loading',
@@ -189,48 +186,6 @@ function ICEAttributes() {
     }
   }, [instances, state.refreshWearable]);
 
-  // ******************** we can update the above code for this new API endpoint later ********************
-  // anytime user mints/updates/activates an NFT this code will execute
-  // useEffect(() => {
-  //   if (instances) {
-  //     async function fetchData() {
-  //       if (!state.iceWearableItems || state.iceWearableItems.length === 0) {
-  //         dispatch({
-  //           type: 'ice_wearable_items_loading',
-  //           data: true,
-  //         });
-  //       }
-
-  //       let iceWearableItems = await Fetch.GET_WEARABLE_INVENTORY(
-  //         state.userAddress
-  //       );
-  //       for (var i = 0; i < iceWearableItems.length; i++) {
-  //         const json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
-  //           iceWearableItems[i].contractAddress,
-  //           iceWearableItems[i].tokenId
-  //         );
-
-  //         if (Object.keys(json).length) {
-  //           iceWearableItems[i].meta_data = json;
-  //           iceWearableItems[i].index = i;
-  //           iceWearableItems[i].address = iceWearableItems[i].contractAddress;
-  //           iceWearableItems[i].tokenID = iceWearableItems[i].tokenId;
-  //         }
-  //       }
-
-  //       dispatch({
-  //         type: 'ice_wearable_items',
-  //         data: iceWearableItems,
-  //       });
-  //       dispatch({
-  //         type: 'ice_wearable_items_loading',
-  //         data: false,
-  //       });
-  //     }
-
-  //     fetchData();
-  //   }
-  // }, [instances, state.refreshWearable]);
 
   // anytime user undelegates an NFT this code will execute
   useEffect(() => {

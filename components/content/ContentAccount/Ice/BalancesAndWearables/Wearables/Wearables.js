@@ -12,9 +12,8 @@ const Wearables = () => {
   const [maxICEBonus, setMaxICEBonus] = useState(0);
   const activeWearables = state.iceWearableItems.filter(
     item =>
-      item.meta_data &&
       item.isActivated &&
-      item.meta_data.attributes.find(el => el.trait_type === 'Bonus').value > 0
+      item.bonus > 0
   );
   const delegatedWearables = state.iceDelegatedItems.filter(
     item =>
@@ -210,11 +209,15 @@ const Wearables = () => {
               return (
                 <ICEWearableCard
                   key={index}
-                  data={item.meta_data}
                   tokenID={item.tokenID}
                   address={item.address}
                   itemID={item.itemID}
                   isActivated={item.isActivated}
+                  name={item.name}
+                  description={item.description}
+                  rank={item.rank}
+                  image={item.image}
+                  bonus={item.bonus}
                 />
               );
             })}
@@ -227,6 +230,7 @@ const Wearables = () => {
                 tokenID={item.tokenID}
                 address={item.address}
                 itemID={item.itemID}
+                rank={item.rank}
                 isCheckedIn={item.isCheckedIn}
               />
             ))}
