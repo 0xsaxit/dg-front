@@ -8,10 +8,12 @@ import Aux from '../../_Aux';
 import { Biconomy } from '@biconomy/mexa';
 import Web3 from 'web3';
 import ABI_CHILD_TOKEN_WETH from '../../ABI/ABIChildTokenWETH';
+import ABI_ICE_REGISTRANT from '../../../components/ABI/ABIICERegistrant.json';
 import MetaTx from '../../../common/MetaTx';
 import { Loader } from 'semantic-ui-react';
 import { parse } from '@ethersproject/transactions';
 import CheckMintTooltip from 'components/tooltips/CheckMintTooltip';
+import BigNumber from 'bignumber.js';
 
 const CheckMintableModal = props => {
   // fetch user's Polygon DG balance from the Context API store
@@ -29,6 +31,9 @@ const CheckMintableModal = props => {
   const [loading, setLoading] = useState(false);
   const [biconomyReady, setBiconomyReady] = useState(false);
   const [xDG, setXDG] = useState(0);
+  const [iceRegistrantContract, setIceRegistrantContract] = useState({});
+  const [instances, setInstances] = useState(false);
+  const [mintingPrice, setMintingPrice] = useState(0);
 
   // initialize Web3 providers and create token contract instance
   useEffect(() => {
@@ -52,9 +57,15 @@ const CheckMintableModal = props => {
         ABI_CHILD_TOKEN_WETH,
         Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH
       );
-
       setTokenContract(tokenContract);
-      console.log("tokenContract 1 is calling ... ", tokenContract);
+
+      const iceRegistrantContract = new getWeb3.eth.Contract(
+        ABI_ICE_REGISTRANT,
+        Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
+      );
+      setIceRegistrantContract(iceRegistrantContract);
+
+      setInstances(true); // contract instantiation complete      
 
       biconomy
         .onEvent(biconomy.READY, () => {
@@ -66,6 +77,26 @@ const CheckMintableModal = props => {
         });
     }
   }, [state.userStatus]);
+
+  useEffect(() => {
+    if (instances) {
+      (async function () {
+        
+        // update token hash from iceRegistrant contract
+        const minting_price = await iceRegistrantContract.methods
+          .mintingPrice()
+          .call()
+        
+        const amountAdjusted = new BigNumber(minting_price)
+        .div(new BigNumber(10).pow(Global.CONSTANTS.TOKEN_DECIMALS))
+        .toFixed(2);
+
+        // console.log("minting price =========================  ", amountAdjusted);
+
+        setMintingPrice(amountAdjusted);
+      })();
+    }
+  }, [instances]);
 
   // get WETH authorization status based on tokenAuths state object
   useEffect(() => {
@@ -155,7 +186,7 @@ const CheckMintableModal = props => {
   }
 
   function checkBalance() {
-    if(parseFloat(state.userBalances[2][3]) >=Global.CONSTANTS.WETH_MINT_AMOUNT && (
+    if(parseFloat(state.userBalances[2][3]) >=mintingPrice && (
       state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD >=Global.CONSTANTS.DG_STAKED_AMOUNT ||
       xDG >=Global.CONSTANTS.XDG_STAKED_AMOUNT)) {
         return true;
@@ -202,11 +233,11 @@ const CheckMintableModal = props => {
             {/* left block */}
             <div className={styles.dg_section}>
               <div className={styles.dg_round_edit}>
-                  {parseFloat(state.userBalances[2][3]) < Global.CONSTANTS.WETH_MINT_AMOUNT && (<div className={styles.tooltip}>
+                  {parseFloat(state.userBalances[2][3]) < mintingPrice && (<div className={styles.tooltip}>
                       Not Enough
                       <CheckMintTooltip staking={false} />
                   </div>)}
-                  {Global.CONSTANTS.WETH_MINT_AMOUNT} ETH
+                  {mintingPrice} ETH
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <circle cx="11.8125" cy="12" r="11.6875" fill="#EFEFEF"/>
                       <path d="M11.811 4.31958L7.1377 12.2557L11.811 10.082V4.31958Z" fill="#8A92B2"/>
@@ -219,7 +250,7 @@ const CheckMintableModal = props => {
               </div>
 
               <div className={styles.dg_desc}>
-              {parseFloat(state.userBalances[2][3]) < Global.CONSTANTS.WETH_MINT_AMOUNT? (
+              {parseFloat(state.userBalances[2][3]) < mintingPrice? (
                 <>
                   <span className={styles.dg_insufficient}>
                   {Number(state.userBalances[2][3]).toFixed(3)} ETH Available &nbsp;
