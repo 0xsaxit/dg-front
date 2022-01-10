@@ -143,20 +143,68 @@ function ICEAttributes() {
           });
         }
 
-        let iceWearableItems = await Fetch.GET_WEARABLE_INVENTORY(state.userAddress);
-        for (var i = 0; i < iceWearableItems.length; i++) {
-          const json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
-            iceWearableItems[i].contractAddress,
-            iceWearableItems[i].tokenId
-          );
+        const tokenIDs = [];
+        const tokensById = collectionArray.map(async (item, index) => {
+          try {
+            for (
+              let nIndex = 0;
+              nIndex < Global.CONSTANTS.MAX_ITEM_COUNT;
+              nIndex++
+            ) {
+              const tokenID = await collectionArray[index][0].methods
+                .tokenOfOwnerByIndex(state.userAddress, nIndex)
+                .call();
 
-          if (Object.keys(json).length) {
-            iceWearableItems[i].meta_data = json;
-            iceWearableItems[i].index = i;
-            iceWearableItems[i].address = iceWearableItems[i].contractAddress;
-            iceWearableItems[i].tokenID = iceWearableItems[i].tokenId;
+              if (parseInt(tokenID) > 0) {
+                tokenIDs.push({
+                  index: nIndex,
+                  tokenID: tokenID,
+                  collection: collectionArray[index][0],
+                  address: collectionArray[index][1],
+                });
+              }
+            }
+          } catch (error) {
+            console.log('Stack error: =>', error.message);
+          }
+
+          return tokenIDs;
+        });
+        await Promise.all(tokensById);
+
+        let iceWearableItems = [];
+        for (var i = 0; i < tokenIDs.length; i++) {
+          try {
+            const is_activated = await ICERegistrantContract.methods
+              .isIceEnabled(
+                state.userAddress,
+                tokenIDs[i].address,
+                tokenIDs[i].tokenID
+              )
+              .call();
+
+            const json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
+              tokenIDs[i].address,
+              tokenIDs[i].tokenID
+            );
+
+            if (Object.keys(json).length) {
+              iceWearableItems.push({
+                index: tokenIDs[i].index,
+                tokenID: tokenIDs[i].tokenID,
+                itemID: json.id.split(':').slice(-1),
+                meta_data: json,
+                isActivated: is_activated,
+                collection: tokenIDs[i].collection,
+                address: tokenIDs[i].address,
+              });
+            }
+          } catch (error) {
+            console.log('Fetch metadata error: ' + error);
           }
         }
+
+        console.log('iceWearableItems: ', iceWearableItems);
 
         dispatch({
           type: 'ice_wearable_items',
@@ -171,6 +219,49 @@ function ICEAttributes() {
       fetchData();
     }
   }, [instances, state.refreshWearable]);
+
+  // ******************** we can update the above code for this new API endpoint later ********************
+  // anytime user mints/updates/activates an NFT this code will execute
+  // useEffect(() => {
+  //   if (instances) {
+  //     async function fetchData() {
+  //       if (!state.iceWearableItems || state.iceWearableItems.length === 0) {
+  //         dispatch({
+  //           type: 'ice_wearable_items_loading',
+  //           data: true,
+  //         });
+  //       }
+
+  //       let iceWearableItems = await Fetch.GET_WEARABLE_INVENTORY(
+  //         state.userAddress
+  //       );
+  //       for (var i = 0; i < iceWearableItems.length; i++) {
+  //         const json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
+  //           iceWearableItems[i].contractAddress,
+  //           iceWearableItems[i].tokenId
+  //         );
+
+  //         if (Object.keys(json).length) {
+  //           iceWearableItems[i].meta_data = json;
+  //           iceWearableItems[i].index = i;
+  //           iceWearableItems[i].address = iceWearableItems[i].contractAddress;
+  //           iceWearableItems[i].tokenID = iceWearableItems[i].tokenId;
+  //         }
+  //       }
+
+  //       dispatch({
+  //         type: 'ice_wearable_items',
+  //         data: iceWearableItems,
+  //       });
+  //       dispatch({
+  //         type: 'ice_wearable_items_loading',
+  //         data: false,
+  //       });
+  //     }
+
+  //     fetchData();
+  //   }
+  // }, [instances, state.refreshWearable]);
 
   // anytime user undelegates an NFT this code will execute
   useEffect(() => {
@@ -307,8 +398,6 @@ function ICEAttributes() {
           );
           iceAmounts.ICE_CLAIM_AMOUNT = parseInt(iceAmounts.ICE_CLAIM_AMOUNT);
 
-          console.log('==== <iceAmounts> ==== ', iceAmounts);
-
           dispatch({
             type: 'ice_amounts',
             data: iceAmounts,
@@ -330,7 +419,7 @@ function ICEAttributes() {
 
         console.log(
           'Get token authorization: DG_Light: ' +
-          tokenAuths.DG_LIGHT_AUTHORIZATION
+            tokenAuths.DG_LIGHT_AUTHORIZATION
         );
         console.log(
           'Get token authorization: ICE: ' + tokenAuths.ICE_AUTHORIZATION
@@ -421,21 +510,21 @@ function ICEAttributes() {
       );
       console.log(
         'Token ID: ' +
-        tokenIDArray[2] +
-        ', quantity: ' +
-        parseInt(ITEM_LIMIT_10)
+          tokenIDArray[2] +
+          ', quantity: ' +
+          parseInt(ITEM_LIMIT_10)
       );
       console.log(
         'Token ID: ' +
-        tokenIDArray[3] +
-        ', quantity: ' +
-        parseInt(ITEM_LIMIT_15)
+          tokenIDArray[3] +
+          ', quantity: ' +
+          parseInt(ITEM_LIMIT_15)
       );
       console.log(
         'Token ID: ' +
-        tokenIDArray[4] +
-        ', quantity: ' +
-        parseInt(ITEM_LIMIT_20)
+          tokenIDArray[4] +
+          ', quantity: ' +
+          parseInt(ITEM_LIMIT_20)
       );
 
       itemsArray.push(
