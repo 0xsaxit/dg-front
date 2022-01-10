@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import moment from 'moment';
 import { GlobalContext } from '../../../../store';
 import { Table, Button } from 'semantic-ui-react';
 import { Bar } from 'react-chartjs-2';
@@ -7,9 +8,10 @@ import { useMediaQuery } from 'hooks';
 import styles from './IceRewards.module.scss';
 import Fetch from '../../../../common/Fetch';
 import FoxAnimation from 'components/lottieAnimation/animations/fox';
-import NoResult from 'components/lottieAnimation/animations/noResult';
+import EmptyResultAnimation from 'components/lottieAnimation/animations/emptyResult';
 import ModalIceBreakdown from 'components/modal/ModalIceBreakDown';
-import Spinner from 'components/Spinner';
+import SpinnerAnimation from 'components/lottieAnimation/animations/spinner';
+import HourglassAnimation from 'components/lottieAnimation/animations/hourglass'
 
 const IceRewards = () => {
   // dispatch user's ICE amounts to the Context API store
@@ -20,10 +22,13 @@ const IceRewards = () => {
 
   // define local variables
   const [clicked, setClicked] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [payoutTime, setPayoutTime] = useState('--');
   const [totalICE, setTotalICE] = useState(0);
   const [statsUSDX, setStatsUSDX] = useState([]);
   const [statsUSDY, setStatsUSDY] = useState([]);
+  const [iceEarned, setIceEarned] = useState(0);
+  const [xpEarned, setXpEarned] = useState(0);
   const [iceRewardHistory, setHistory] = useState([]);
   const [showBreakDown, setShowingBreakDown] = useState(-1);
 
@@ -57,83 +62,98 @@ const IceRewards = () => {
     return () => clearInterval(id);
   });
 
-  useEffect(() => {
-    // Set xAxis
-    let xAxis = [];
-    const today = new Date();
-    for (var i = 7; i >= 1; i--) {
-      var date = new Date(today);
-      date.setDate(date.getDate() - i);
-      console.log(date);
-      xAxis.push(date.toDateString().slice(0, 1));
+  useEffect(async () => {
+    if (state.userStatus) {
+      setLoading(true);
+
+      // Get Gameplay Reports from the API
+      let response = await Fetch.GAMEPLAY_REPORTS();
+      console.log(response);
+
+      // Set xAxis
+      let xAxis = [];
+      let today = new Date().toUTCString();
+      const todayMoment = moment.utc(new Date(today).toUTCString());
+      for (var i = 0; i < response.length; i++) {
+        xAxis.push(moment.utc(response[i].day).format('M/D'));
+      }
+      setStatsUSDX(xAxis);
+
+      // Set yAxis
+      let datasets = [
+        {
+          label: 'Gameplay',
+          data: [0, 0, 0, 0, 0, 0, 0],
+          backgroundColor: ['#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF'],
+          barThickness: 20,
+          borderWidth: 2,
+          borderRadius: 10,
+        },
+        {
+          label: 'Delegation',
+          data: [0, 0, 0, 0, 0, 0, 0],
+          backgroundColor: ['#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5'],
+          barThickness: 20,
+          borderWidth: 2,
+          borderRadius: 10,
+        },
+      ];
+
+      var i, j, totalIceEarned = 0, totalXpEarned = 0, history = [];
+      for (i = response.length - 1; i >= 0; i--) {
+        var gamePlayIceEarned = 0, gamePlayXpEarned = 0, delegationIceEarned = 0, delegationXpEarned = 0;
+        const day = moment.utc(new Date(response[i].day));
+        const xAxisIndex = day.diff(todayMoment, 'days') + 7;
+
+        // get GamePlay
+        if (response[i].gameplay && Object.keys(response[i].gameplay).length !== 0) {
+          gamePlayIceEarned += response[i].gameplay.iceEarnedPlayer;
+          if (!response[i].gameplay.wearableSnapshot.delegatorAddress) {
+            gamePlayXpEarned = response[i].gameplay.xpEarned;
+          }
+        }
+        // get Delegation
+        for (j = 0; j < response[i].delegation.length; j++) {
+          delegationIceEarned += response[i].delegation[j].iceEarnedDelegator;
+          delegationXpEarned += response[i].delegation[j].xpEarned;
+        }
+        totalIceEarned += gamePlayIceEarned + delegationIceEarned;
+        totalXpEarned += gamePlayXpEarned + delegationXpEarned;
+
+        // set yAxis data
+        datasets[0].data[xAxisIndex] = gamePlayIceEarned;
+        datasets[1].data[xAxisIndex] = delegationIceEarned;
+
+        // add Gameplay history
+        if (gamePlayIceEarned !== 0 || gamePlayXpEarned !== 0) {
+          history.push({
+            date: moment.utc(response[i].day).format('MM/DD/YY'),
+            type: 'Gameplay',
+            iceEarned: gamePlayIceEarned,
+            xpEarned: gamePlayXpEarned,
+            records: Object.keys(response[i].gameplay).length !== 0 ? [].concat(response[i].gameplay) : []
+          })
+        }
+
+        // add Delegation history
+        if (delegationIceEarned !== 0 || delegationXpEarned !== 0) {
+          history.push({
+            date: moment.utc(response[i].day).format('MM/DD/YY'),
+            type: 'Delegation',
+            iceEarned: delegationIceEarned,
+            xpEarned: delegationXpEarned,
+            records: response[i].delegation
+          })
+        }
+      }
+
+      setIceEarned(totalIceEarned);
+      setXpEarned(totalXpEarned);
+      setStatsUSDY(datasets);
+      setHistory(history);
+      setLoading(false);
     }
-    setStatsUSDX(xAxis);
-
-    // Set yAxis
-    let datasets = [
-      {
-        label: 'Gameplay',
-        data: [10, 50, 80, 60, 50, 90, 50],
-        backgroundColor: [
-          '#B0E6FF',
-          '#B0E6FF',
-          '#B0E6FF',
-          '#B0E6FF',
-          '#B0E6FF',
-          '#B0E6FF',
-          '#B0E6FF',
-        ],
-        barThickness: 20,
-        borderWidth: 2,
-        borderRadius: 10,
-      },
-      {
-        label: 'Delegation',
-        data: [100, 100, 100, 100, 100, 100, 100],
-        backgroundColor: [
-          '#5EBFF5',
-          '#5EBFF5',
-          '#5EBFF5',
-          '#5EBFF5',
-          '#5EBFF5',
-          '#5EBFF5',
-          '#5EBFF5',
-        ],
-        barThickness: 20,
-        borderWidth: 2,
-        borderRadius: 10,
-      },
-    ];
-    setStatsUSDY(datasets);
-
-    // Set History
-    setHistory([
-      {
-        date: '11/25/21',
-        type: 'Gameplay',
-        iceEarned: 3392,
-        xpEarend: 60,
-      },
-      {
-        date: '11/25/21',
-        type: 'Delegation',
-        iceEarned: 2492,
-        xpEarend: 40,
-      },
-      {
-        date: '11/24/21',
-        type: 'Gameplay',
-        iceEarned: 339,
-        xpEarend: 6,
-      },
-      {
-        date: '11/24/21',
-        type: 'Delegation',
-        iceEarned: 24,
-        xpEarend: 6,
-      },
-    ]);
-  }, []);
+  }, [state.userStatus]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -245,86 +265,89 @@ const IceRewards = () => {
                   </p>
                 </div>
 
-                {!clicked ? (
-                  <Button
-                    className={cn(styles.claim_ICE, styles.lower_button)}
-                    onClick={() => claimTokens()}
-                  >
-                    Claim {formatPrice(totalICE, 0)} ICE
-                  </Button>
-                ) : (
-                  <Button
-                    className={cn(styles.claim_ICE, styles.lower_button)}
-                    disabled
-                  >
-                    <Spinner width={33} height={33} />
-                    &nbsp; Claim {formatPrice(totalICE, 0)} ICE
-                  </Button>
-                )}
+                <Button
+                  className={cn(styles.claim_ICE, styles.lower_button)}
+                  onClick={() => claimTokens()}
+                  disabled={clicked}
+                >
+                  {!clicked ? (
+                    <>Claim {formatPrice(totalICE, 0)} ICE</>
+                  ) : (
+                    <SpinnerAnimation />
+                  )}
+                </Button>
               </div>
             </div>
 
-            {/*<div className={styles.iceEarnedDiv}>
+            <div className={styles.iceEarnedDiv}>
               <div className={styles.title}>
-                <h1>ICE Earned (past 7 Days)</h1>
+                <h1>ICE Earned (past 7 Days - UTC)</h1>
               </div>
               <div className={styles.graph}>
-                <Bar
-                  height={180}
-                  data={{
-                    labels: statsUSDX,
-                    datasets: statsUSDY,
-                  }}
-                  options={{
-                    maintainAspectRatio: false,
-                    cornerRadius: 10,
-                    title: { display: false },
-                    legend: { display: false },
-                    scales: {
-                      xAxes: [
-                        {
-                          stacked: true,
-                        }
-                      ],
-                      yAxes: [
-                        {
-                          stacked: true,
-                          ticks: {
-                            autoSkip: true,
-                            autoSkipPadding: 25,
-                            maxRotation: 0,
-                            minRotation: 0,
-                          },
+                {loading ?
+                  <div style={{ marginTop: '50px' }}>
+                    <HourglassAnimation />
+                  </div>
+                  :
+                  <>
+                    <Bar
+                      height={180}
+                      data={{
+                        labels: statsUSDX,
+                        datasets: statsUSDY,
+                      }}
+                      options={{
+                        maintainAspectRatio: false,
+                        cornerRadius: 10,
+                        title: { display: false },
+                        legend: { display: false },
+                        scales: {
+                          xAxes: [
+                            {
+                              stacked: true,
+                            }
+                          ],
+                          yAxes: [
+                            {
+                              stacked: true,
+                              ticks: {
+                                autoSkip: true,
+                                autoSkipPadding: 25,
+                                maxRotation: 0,
+                                minRotation: 0,
+                              },
+                            },
+                          ],
                         },
-                      ],
-                    },
-                    elements: {
-                      point: { radius: 10 },
-                    }
-                  }}
-                />
-                <div className={styles.bottomDiv}>
-                  <div className={styles.legend}>
-                    <div>
-                      <section className={styles.delegationBG} />
-                      Delegation
+                        elements: {
+                          point: { radius: 10 },
+                        }
+                      }}
+                    />
+                    <div className={styles.bottomDiv}>
+                      <div className={styles.legend}>
+                        <div>
+                          <section className={styles.delegationBG} />
+                          Delegation
+                        </div>
+                        <div>
+                          <section className={styles.gamePlayBG} />
+                          Gameplay
+                        </div>
+                      </div>
+                      <div className={styles.info}>
+                        <div className={styles.ice}>
+                          <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
+                          {iceEarned} ICE
+                        </div>
+                        <div className={styles.xp}>
+                          <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_XP_ICN_f9w2se.svg" alt="xp" />
+                          {xpEarned} XP
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <section className={styles.gamePlayBG} />
-                      Gameplay
-                    </div>
-                  </div>
-                  <div className={styles.info}>
-                    <div className={styles.ice}>
-                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
-                      2091 ICE
-                    </div>
-                    <div className={styles.xp}>
-                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_XP_ICN_f9w2se.svg" alt="xp" />
-                      3 XP
-                    </div>
-                  </div>
-                </div>
+                  </>
+                }
               </div>
             </div>
           </div>
@@ -332,72 +355,90 @@ const IceRewards = () => {
             <div className={styles.title}>
               <h1>ICE Reward History</h1>
             </div>
-            <Table fixed unstackable style={{ marginBottom: '0px' }}>
-              <Table.Header>
-                <Table.Row>
-                  {isTablet && (
-                    <Table.HeaderCell style={{ width: '15%' }}>
-                      Date
-                    </Table.HeaderCell>
-                  )}
-                  <Table.HeaderCell style={{ width: '18%' }}>
-                    Type
-                  </Table.HeaderCell>
-                  <Table.HeaderCell style={{ width: '18%' }}>
-                    ICE Earned
-                  </Table.HeaderCell>
-                  <Table.HeaderCell style={{ width: '18%' }}>
-                    XP Earned
-                  </Table.HeaderCell>
-                  {isTablet && (
-                    <Table.HeaderCell style={{ width: '30%' }}>
-                      Breakdown
-                    </Table.HeaderCell>
-                  )}
-                </Table.Row>
-              </Table.Header>
-            </Table>
-            {iceRewardHistory && iceRewardHistory.length > 0 ?
-              <Table fixed unstackable>
-                <Table.Body>
-                  {iceRewardHistory.map((row, i) => {
-                    let style = '';
-                    {
-                      i % 2 === 0
-                        ? (style = 'rgba(255, 255, 255, 0.08)')
-                        : (style = 'black');
-                    }
-                    return (
-                      <Table.Row key={i} style={{ background: style }}>
+            {loading ?
+              <Table fixed unstackable style={{ marginBottom: '0px' }}>
+                <Table.Header>
+                  <Table.Row>
+                    <HourglassAnimation />
+                  </Table.Row>
+                </Table.Header>
+              </Table>
+              : iceRewardHistory && iceRewardHistory.length > 0 ?
+                <>
+                  <Table fixed unstackable style={{ marginBottom: '0px' }}>
+                    <Table.Header>
+                      <Table.Row>
                         {isTablet && (
-                          <Table.Cell style={{ width: '15%' }}>
-                            {row.date}
-                          </Table.Cell>
+                          <Table.HeaderCell style={{ width: '15%' }}>
+                            Date
+                          </Table.HeaderCell>
                         )}
-                        <Table.Cell style={{ width: '18%' }}>
-                          {row.type}
-                        </Table.Cell>
-                        <Table.Cell className={styles.iceEarned} style={{ width: '18%' }}>
-                          <div className={styles.earnedDiv}>{row.iceEarned.toLocaleString()}</div>
-                          <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
-                        </Table.Cell>
-                        <Table.Cell className={styles.xpEarned} style={{ width: '18%' }}>
-                          <div className={styles.earnedDiv}>{row.xpEarend.toLocaleString()}</div>
-                          <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_XP_ICN_f9w2se.svg" alt="xp" />
-                        </Table.Cell>
+                        <Table.HeaderCell style={{ width: '18%' }}>
+                          Type
+                        </Table.HeaderCell>
+                        <Table.HeaderCell style={{ width: '18%' }}>
+                          ICE Earned
+                        </Table.HeaderCell>
+                        <Table.HeaderCell style={{ width: '18%' }}>
+                          XP Earned
+                        </Table.HeaderCell>
                         {isTablet && (
-                          <Table.Cell style={{ width: '30%', textAlign: 'right' }}>
-                            <Button className={styles.breakdown} onClick={() => setShowingBreakDown(i)}>See Complete Breakdown</Button>
-                          </Table.Cell>
+                          <Table.HeaderCell style={{ width: '30%' }}>
+                            Breakdown
+                          </Table.HeaderCell>
                         )}
                       </Table.Row>
-                    );
-                  })}
-                </Table.Body>
-              </Table>
-              :
-              <NoResult />
-            }*/}
+                    </Table.Header>
+                  </Table>
+                  <Table fixed unstackable>
+                    <Table.Body>
+                      {iceRewardHistory.map((row, i) => {
+                        let style = '';
+                        {
+                          i % 2 === 0
+                            ? (style = 'rgba(255, 255, 255, 0.08)')
+                            : (style = 'black');
+                        }
+                        return (
+                          <Table.Row key={i} style={{ background: style }}>
+                            {isTablet && (
+                              <Table.Cell style={{ width: '15%' }}>
+                                {row.date}
+                              </Table.Cell>
+                            )}
+                            <Table.Cell style={{ width: '18%' }}>
+                              {row.type}
+                            </Table.Cell>
+                            <Table.Cell className={styles.iceEarned} style={{ width: '18%' }}>
+                              <div className={styles.earnedDiv}>{row.iceEarned.toLocaleString()}</div>
+                              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
+                            </Table.Cell>
+                            <Table.Cell className={styles.xpEarned} style={{ width: '18%' }}>
+                              <div className={styles.earnedDiv}>{row.xpEarned.toLocaleString()}</div>
+                              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_XP_ICN_f9w2se.svg" alt="xp" />
+                            </Table.Cell>
+                            {isTablet && (
+                              <Table.Cell style={{ width: '30%', textAlign: 'right' }}>
+                                <Button
+                                  className={styles.breakdown}
+                                  onClick={() => setShowingBreakDown(i)}
+                                  disabled={row.records && row.records.length > 0 ? false : true}
+                                >
+                                  See Complete Breakdown
+                                </Button>
+                              </Table.Cell>
+                            )}
+                          </Table.Row>
+                        );
+                      })}
+                    </Table.Body>
+                  </Table>
+                </>
+                :
+                <div style={{ marginTop: '50px' }}>
+                  <EmptyResultAnimation />
+                </div>
+            }
           </div>
 
           {showBreakDown !== -1 ? (
