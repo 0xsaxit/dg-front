@@ -94,7 +94,7 @@ const ModalIceBreakDown = ({
                                         </div>
                                         <div className={styles.xpEarned} style={{ paddingLeft: '60px', textAlign: 'left' }}>
                                             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_XP_ICN_f9w2se.svg" alt="xp" />
-                                            {history.xpEarned} XP
+                                            {history.type === 'Gameplay' ? history.xpEarned : record.xpEarned} XP
                                         </div>
                                         <div className={styles.tier} style={{ paddingLeft: '65px', textAlign: 'left' }}>
                                             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175017/cup_w68eni.png" alt="xp" />
