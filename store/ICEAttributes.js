@@ -152,84 +152,32 @@ function ICEAttributes() {
             data: true,
           });
         }
+        
+        let iceWearableItem2s = await Fetch.GET_WEARABLE_INVENTORY(state.userAddress);
+        for (var i = 0; i < iceWearableItem2s.length; i++) {
+              
+          const json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
+            iceWearableItem2s[i].contractAddress,
+            iceWearableItem2s[i].tokenId
+          );
 
-        // note: I only fetched this to use checkInStatus, this call might later be used for most data on this block
-        // also don't forget to delete this comment later
-        const wearableInventory = await Fetch.GET_WEARABLE_INVENTORY(
-          state.userAddress
-        );
-
-        const tokenIDs = [];
-        const tokensById = collectionArray.map(async (item, index) => {
-          try {
-            for (
-              let nIndex = 0;
-              nIndex < Global.CONSTANTS.MAX_ITEM_COUNT;
-              nIndex++
-            ) {
-              const tokenID = await collectionArray[index][0].methods
-                .tokenOfOwnerByIndex(state.userAddress, nIndex)
-                .call();
-
-              if (parseInt(tokenID) > 0) {
-                tokenIDs.push({
-                  index: nIndex,
-                  tokenID: tokenID,
-                  collection: collectionArray[index][0],
-                  address: collectionArray[index][1],
-                });
-              }
-            }
-          } catch (error) {
-            console.log('Stack error: =>', error.message);
-          }
-
-          return tokenIDs;
-        });
-        await Promise.all(tokensById);
-
-        let iceWearableItems = [];
-        for (var i = 0; i < tokenIDs.length; i++) {
-          try {
-            const is_activated = await ICERegistrantContract.methods
-              .isIceEnabled(
-                state.userAddress,
-                tokenIDs[i].address,
-                tokenIDs[i].tokenID
-              )
-              .call();
-
-            const json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
-              tokenIDs[i].address,
-              tokenIDs[i].tokenID
-            );
-
-            const { checkInStatus } = wearableInventory.find(
-              wearable => wearable.tokenId === tokenIDs[i].tokenID
-            );
-
-            if (Object.keys(json).length) {
-              iceWearableItems.push({
-                index: tokenIDs[i].index,
-                tokenID: tokenIDs[i].tokenID,
-                itemID: json.id.split(':').slice(-1),
-                meta_data: json,
-                isActivated: is_activated,
-                collection: tokenIDs[i].collection,
-                address: tokenIDs[i].address,
-                checkInStatus,
-              });
-            }
-          } catch (error) {
-            console.log('Fetch metadata error: ' + error);
+          if (Object.keys(json).length) {
+            iceWearableItem2s[i].meta_data = json;
+            iceWearableItem2s[i].index = i;
+            iceWearableItem2s[i].address = iceWearableItem2s[i].contractAddress;
+            iceWearableItem2s[i].tokenID = iceWearableItem2s[i].tokenId;
+            iceWearableItem2s[i].itemID = iceWearableItem2s[i].itemId;
           }
         }
 
-        console.log('iceWearableItems: ', iceWearableItems);
+        
+
+
+        console.log('iceWearableItems2: ', iceWearableItem2s);
 
         dispatch({
           type: 'ice_wearable_items',
-          data: iceWearableItems,
+          data: iceWearableItem2s,
         });
         dispatch({
           type: 'ice_wearable_items_loading',
