@@ -156,7 +156,7 @@ const ModalWearable = props => {
                 }}
               >
                 <div className={styles.wear_box_mark}>
-                  {bonus[Math.min(props.rank + 1, 5)]}
+                  {bonus[nextIceWearableRank]}
                   <img
                     src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1630857308/diamond_1_1_r6etkk.png"
                     className={styles.img_card}
@@ -174,10 +174,10 @@ const ModalWearable = props => {
 
               <div className={styles.card_body}>
                 <div className={styles.card}>
-                  Rank {Math.min(props.rank + 1, 5)}
+                  Rank {nextIceWearableRank}
                 </div>
                 <div className={styles.card}>
-                  {bonus[Math.min(props.rank + 1, 5)]}
+                  {bonus[nextIceWearableRank]}
                   <img
                     src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1630857308/diamond_1_1_r6etkk.png"
                     className={styles.img_card}
@@ -196,7 +196,7 @@ const ModalWearable = props => {
                   <ul>
                     <li>
                       Update your ICE Bonus to between{' '}
-                      {bonus[Math.min(props.rank + 1, 5)]}
+                      {bonus[nextIceWearableRank]}
                     </li>
                     <li>Increase the resale value and rarity of your NFT</li>
                   </ul>
@@ -209,21 +209,21 @@ const ModalWearable = props => {
                   {' '}
                   ($
                   {(
-                    icePrices[Math.min(props.rank + 1, 5)] *
+                    icePrices[nextIceWearableRank] *
                       state.DGPrices.ice +
-                    dgPrices[Math.min(props.rank + 1, 5)] * state.DGPrices.dg
+                    dgPrices[nextIceWearableRank] * state.DGPrices.dg
                   ).toFixed(2)})
                 </span>
                 <div className={styles.card_area}>
                   <div className={styles.card_area_body}>
                     {state.iceAmounts.ICE_AVAILABLE_AMOUNT <
-                      icePrices[Math.min(props.rank + 1, 5)] && (
+                      icePrices[nextIceWearableRank] && (
                       <span className={styles.not_enough}>Not Enough</span>
                     )}
                     <div className={styles.card}>
                       {`${
                         parseFloat(
-                          icePrices[Math.min(props.rank + 1, 5)]
+                          icePrices[nextIceWearableRank]
                         ).toFixed() / 1000
                       }K ICE`}
                       <img
@@ -233,7 +233,7 @@ const ModalWearable = props => {
                     </div>
 
                     {state.iceAmounts.ICE_AVAILABLE_AMOUNT <
-                    icePrices[Math.min(props.rank + 1, 5)] ? (
+                    icePrices[nextIceWearableRank] ? (
                       <div className={styles.description}>
                         {parseFloat(
                           state.iceAmounts.ICE_AVAILABLE_AMOUNT
@@ -281,18 +281,18 @@ const ModalWearable = props => {
 
                   <div className={styles.card_area_body}>
                     {parseFloat(state.DGBalances.BALANCE_CHILD_DG_LIGHT).toFixed(2) <
-                      dgPrices[Math.min(props.rank + 1, 5)] && (
+                      dgPrices[nextIceWearableRank] && (
                       <span className={styles.not_enough}>Not Enough</span>
                     )}
                     <div className={styles.card}>
-                      {dgPrices[Math.min(props.rank + 1, 5)]}
+                      {dgPrices[nextIceWearableRank]}
                       <img
                         src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1621630083/android-chrome-512x512_rmiw1y.png"
                         className={styles.img_card2}
                       />
                     </div>
                     {state.DGBalances.BALANCE_CHILD_DG_LIGHT <
-                    dgPrices[Math.min(props.rank + 1, 5)] ? (
+                    dgPrices[nextIceWearableRank] ? (
                       <div className={styles.description}>
                         {parseFloat(state.DGBalances.BALANCE_CHILD_DG_LIGHT).toFixed(
                           2
@@ -340,18 +340,18 @@ const ModalWearable = props => {
 
                   <div className={styles.card_area_body}>
                     {state.userInfo.balanceXP <
-                      xpPrices[Math.min(props.rank + 1, 5)] && (
+                      xpPrices[nextIceWearableRank] && (
                       <span className={styles.not_enough}>Not Enough</span>
                     )}
                     <div className={styles.card}>
-                      {xpPrices[Math.min(props.rank + 1, 5)]}
+                      {xpPrices[nextIceWearableRank]}
                       <img
                         src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1629727455/XP_zbnvuf.png"
                         className={styles.img_card3}
                       />
                     </div>
                     {state.userInfo.balanceXP <
-                    xpPrices[Math.min(props.rank + 1, 5)] ? (
+                    xpPrices[nextIceWearableRank] ? (
                       <div className={styles.description}>
                         {state.userInfo.balanceXP} XP Available
                       </div>
@@ -379,7 +379,7 @@ const ModalWearable = props => {
                 {state.userInfo.balanceXP >= 50 &&
                 state.DGBalances.BALANCE_CHILD_DG_LIGHT >= 100 &&
                 state.iceAmounts.ICE_AVAILABLE_AMOUNT >=
-                  icePrices[Math.min(props.rank + 1, 5)] ? (
+                  icePrices[nextIceWearableRank] ? (
                   <Button
                     className={styles.button_upgrade}
                     onClick={() => {
@@ -418,7 +418,7 @@ const ModalWearable = props => {
       )}
       {upgrade == 1 && (
         <NeedMoreUpgrade
-          upgradeNeedIceAmount={icePrices[Math.min(props.rank + 1, 5)]}
+          upgradeNeedIceAmount={icePrices[nextIceWearableRank]}
           upgradeNeedDgAmount={0.1}
           upgradeNeedXpAmount={50}
           setUpgrade={setUpgrade}
