@@ -180,7 +180,7 @@ const Wearables = () => {
           <h2>ICE Wearables</h2>
           {!!state.iceWearableItems.length ||
           !!state.iceDelegatedItems.length ? (
-            <p>{`(${activeWearables.length + delegatedWearables.length} of ${
+            <p>{`(${activeWearables.length + delegatedWearables.length} of ${ //NEED TO FIX THIS FIGURE
               state.iceWearableItems.length + state.iceDelegatedItems.length
             } Active)`}</p>
           ) : null}
@@ -207,6 +207,7 @@ const Wearables = () => {
           <div className={styles.wearables_grid}>
             {state.iceWearableItems.map((item, index) => {
               return (
+                (item.tokenOwner === state.userAddress) ?
                 <ICEWearableCard
                   key={index}
                   tokenID={item.tokenID}
@@ -219,24 +220,29 @@ const Wearables = () => {
                   image={item.image}
                   bonus={item.bonus}
                 />
+                :
+                null
               );
             })}
 
             {state.iceDelegatedItems.map((item, index) => (
               <ICEDelegatedCard
                 key={index}
-                data={item.meta_data}
                 ownerAddress={item.ownerAddress}
                 tokenID={item.tokenID}
                 address={item.address}
                 itemID={item.itemID}
-                rank={item.rank}
                 isCheckedIn={item.isCheckedIn}
+                name={item.name}
+                description={item.description}
+                rank={item.rank}
+                image={item.image}
+                bonus={item.bonus}
               />
             ))}
           </div>
         ) : (
-          <div className={styles.no_ice_wearables}>No ICE Wearabels</div>
+          <div className={styles.no_ice_wearables}>No ICE Wearables</div>
         )}
       </section>
     </section>

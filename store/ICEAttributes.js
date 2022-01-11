@@ -198,9 +198,6 @@ function ICEAttributes() {
         let iceDelegatedItems = [];
 
         const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
-
-        // note: I only fetched this to use checkInStatus, this call might later be used for most data on this block
-        // also don't forget to delete this comment later
         const wearableInventory = await Fetch.GET_WEARABLE_INVENTORY(
           state.userAddress
         );
@@ -209,30 +206,17 @@ function ICEAttributes() {
           delegationInfo !== undefined &&
           Object.keys(delegationInfo).length
         ) {
-          delegationInfo.incomingDelegations.forEach(async (item, i) => {
-            const ownerAddress = item.tokenOwner;
-            const tokenId = item.tokenId;
-
+          delegationInfo.incomingDelegations.forEach((item, i) => {
             try {
-              const json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
-                item.contractAddress,
-                tokenId
-              );
-
-              const { checkInStatus } = wearableInventory.find(
+              const matching_wearable = wearableInventory.find(
                 wearable => wearable.tokenId === item.tokenId
-              );
-
-              if (Object.keys(json).length) {
-                iceDelegatedItems.push({
-                  ownerAddress: ownerAddress,
-                  tokenID: tokenId,
-                  itemID: json.id.split(':').slice(-1),
-                  meta_data: json,
-                  address: item.contractAddress,
-                  checkInStatus,
-                });
-              }
+              )
+              
+              matching_wearable.address = matching_wearable.contractAddress
+              matching_wearable.tokenID = matching_wearable.tokenId
+              matching_wearable.ownerAddress = matching_wearable.tokenOwner
+              
+              iceDelegatedItems.push(matching_wearable);
             } catch (error) {
               console.log('Fetch delegation info error: ' + error);
             }
