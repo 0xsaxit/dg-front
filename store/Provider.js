@@ -148,6 +148,13 @@ const initialState = {
     [-1, 15],
     [-1, 20],
   ],
+  itemLimits7: [
+    [-1, 0],
+    [-1, 5],
+    [-1, 10],
+    [-1, 15],
+    [-1, 20],
+  ],
   iceWearableItems: [],
   iceWearableItemsLoading: false,
   iceWearableUpdatedSuccess: false,
@@ -382,6 +389,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         itemLimits6: action.data,
+      };
+
+    case 'item_limits_7':
+      return {
+        ...state,
+        itemLimits7: action.data,
       };
 
     case 'ice_wearable_items':
