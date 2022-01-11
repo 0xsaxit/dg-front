@@ -1,4 +1,4 @@
-rankimport React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './ModalActivationSuccess.module.scss';
 import { GlobalContext } from '../../../store';
