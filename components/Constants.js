@@ -37,7 +37,8 @@ const CONSTANTS = {
   POOLING_TIME_OUT: 8000, // API endpoint request pool interval (milliseconds)
   POOLING_LIMIT_COUNT: 6, // attempt to call API endpoint this number of times
   MINT_STATUS: 29, // minimum userStatus level for minting wearables (we can replace with appConfig variable when it's available)
-  APR_NUMBER: 26071500, // APR constant number
+  APR_NUMBER: 26071500, // APR constant number,
+  TOKEN_DECIMALS: 18, // the decimals of register contract
 };
 
 const IMG_URLS_UPGRADE = {
@@ -280,6 +281,46 @@ const IMG_URLS_UPGRADE = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558301/ICE%20Founding%20Fathers%20%28Square%29/mules_level_3_ipr5rb_qpakmo.png',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558305/ICE%20Founding%20Fathers%20%28Square%29/mules_level_4_agokrm_cnuvxg.png',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558306/ICE%20Founding%20Fathers%20%28Square%29/mules_level_5_h2w7re_cuo0t6.png'
+  ],
+  'Joker Bauble': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569827/staff1_ld2xnm.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569827/staff1_ld2xnm.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569827/staff2_baigvx.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569827/staff3_e4nhcb.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569827/staff4_pua32b.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569827/staff5_cxy9pt.jpg',
+  ],
+  "Cap'N'Bells": [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/hat1_qpw84y.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/hat1_qpw84y.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569825/hat2_tk9wh5.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/hat3_dd7e8u.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569825/hat4_zxvoiq.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569825/hat5_qwa5u7.jpg'
+  ],
+  'Joker Ruffle': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569827/upperbody_f_1_tnvzse.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569827/upperbody_f_1_tnvzse.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569828/upperbody_f_2_grmna3.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569828/upperbody_f_3_cetveb.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569828/upperbody_f_4_g71ikm.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569828/upperbody_f_5_vqu2ps.jpg'
+  ],
+  'Joker Skirt': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569825/lowerbody_f1_zyq8dj.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569825/lowerbody_f1_zyq8dj.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569825/lowerbody_f2_bbpge6.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569825/lowerbody_f3_of1pzi.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569826/lowerbody_f4_inxwju.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569826/lowerbody_f5_tq1qhx.jpg'
+  ],
+  'Winklepickers': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/feet1_jb7qey.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/feet1_jb7qey.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/feet2_rw32ke.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/feet3_hprrd3.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/feet4_urdt1x.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/feet5_fzihvy.jpg'
   ]
 };
 
@@ -339,6 +380,7 @@ const ADDRESSES = (() => {
   const COLLECTION_BOMBER_ADDRESS = '0xd07a56f7198ae6e4e3d6738bd8c4b81d21bf0403';
   const COLLECTION_CRYPTO_DRIP_ADDRESS = '0x897243a54b03b46a17b55d5609465e9719a6ffa0';
   const COLLECTION_FOUNDER_FATHERS_ADDRESS = '0x09eeac7dff0dc304e25cbb7bdbfae798488fc34f';
+  const COLLECTION_JOKER_ADDRESS = '0x451612c0e742e27f2cfb3888ad2813eec8dd1ba3';
   const ICE_TOKEN_ADDRESS = '0xc6C855AD634dCDAd23e64DA71Ba85b8C51E5aD7c';
 
   console.log('OWNER_WALLET_ADDRESS: ' + OWNER_WALLET_ADDRESS);
@@ -432,6 +474,7 @@ const ADDRESSES = (() => {
     COLLECTION_BOMBER_ADDRESS,
     COLLECTION_CRYPTO_DRIP_ADDRESS,
     COLLECTION_FOUNDER_FATHERS_ADDRESS,
+    COLLECTION_JOKER_ADDRESS,
     ICE_TOKEN_ADDRESS
   };
 })();
