@@ -11,6 +11,7 @@ import Global from '../../../Constants';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import CheckMintableModal from 'components/modal/CheckMintableModal';
 
 const MarketPlace = () => {
   // dispatch new user status to Context API store
@@ -473,7 +474,14 @@ const MarketPlace = () => {
 
           return (
             <section key={index} className={styles.wearable_section}>
-              <h3>{wearable.title}</h3>
+              <h3>
+                {wearable.title}
+              </h3>
+
+              {wearable.title === 'ICE Joker' && (
+                <CheckMintableModal />
+              )}
+
               <Slider {...settings}>
                 <div
                   className={styles.games_container}
