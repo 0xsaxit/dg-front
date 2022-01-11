@@ -255,7 +255,7 @@ const CheckMintableModal = props => {
                   <span className={styles.dg_insufficient}>
                   {Number(state.userBalances[2][3]).toFixed(3)} ETH Available &nbsp;
                   </span><br/>
-                  (On Polyon)
+                  (On Polygon)
                 </>) : (
                   <>
                     <span className={styles.dg_available}>
@@ -264,7 +264,7 @@ const CheckMintableModal = props => {
                       <path d="M4.33606 9.70984C4.71204 9.70984 5.00745 9.56482 5.21155 9.26404L10.212 1.64246C10.3571 1.42224 10.4161 1.21277 10.4161 1.01941C10.4161 0.498413 10.0187 0.111694 9.48157 0.111694C9.11633 0.111694 8.88538 0.245972 8.65979 0.595093L4.31458 7.44861L2.11243 4.74695C1.90833 4.49988 1.68274 4.39246 1.37122 4.39246C0.828735 4.39246 0.436646 4.77917 0.436646 5.30554C0.436646 5.54187 0.50647 5.74597 0.710571 5.97693L3.48206 9.30701C3.71301 9.58093 3.98157 9.70984 4.33606 9.70984Z" fill="#67DD6C"/>
                     </svg>
                     </span><br/>
-                    (On Polyon)
+                    (On Polygon)
                   </>
                 )}
               </div>
