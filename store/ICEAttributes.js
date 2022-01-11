@@ -12,6 +12,7 @@ import ABI_COLLECTION_LINENS from '../components/ABI/ABICollectionLinens';
 import ABI_COLLECTION_BOMBER from '../components/ABI/ABICollectionBomber';
 import ABI_COLLECTION_CRYPTO_DRIP from '../components/ABI/ABICollectionCryptoDrip.json';
 import ABI_COLLECTION_FOUNDER_FATHER from '../components/ABI/ABICollectionFounderFather.json';
+import ABI_COLLECTION_JOKER from '../components/ABI/ABICollectionJoker.json';
 import ABI_ICEToken from '../components/ABI/ABIICEToken';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
@@ -85,6 +86,10 @@ function ICEAttributes() {
           ABI_COLLECTION_FOUNDER_FATHER,
           Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS
         );
+        const collectionV2Contract7 = new maticWeb3.eth.Contract(
+          ABI_COLLECTION_JOKER,
+          Global.ADDRESSES.COLLECTION_JOKER_ADDRESS
+        );
 
         const collectionArray = [];
         collectionArray.push([
@@ -115,6 +120,11 @@ function ICEAttributes() {
         collectionArray.push([
           collectionV2Contract6,
           Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS,
+          [0, 5, 10, 15, 20],
+        ]);
+        collectionArray.push([
+          collectionV2Contract7,
+          Global.ADDRESSES.COLLECTION_JOKER_ADDRESS,
           [0, 5, 10, 15, 20],
         ]);
         setCollectionArray(collectionArray);
@@ -363,6 +373,12 @@ function ICEAttributes() {
           data: itemLimits6,
         });
 
+        const itemLimits7 = await getItemLimits(6);
+        dispatch({
+          type: 'item_limits_7',
+          data: itemLimits7,
+        });
+
         // get the user's cool-down status
         console.log(' ==== <Before getCoolDownStatus> ====');
         const canPurchase = await getCoolDownStatus();
@@ -419,7 +435,7 @@ function ICEAttributes() {
 
         console.log(
           'Get token authorization: DG_Light: ' +
-            tokenAuths.DG_LIGHT_AUTHORIZATION
+          tokenAuths.DG_LIGHT_AUTHORIZATION
         );
         console.log(
           'Get token authorization: ICE: ' + tokenAuths.ICE_AUTHORIZATION
@@ -510,21 +526,21 @@ function ICEAttributes() {
       );
       console.log(
         'Token ID: ' +
-          tokenIDArray[2] +
-          ', quantity: ' +
-          parseInt(ITEM_LIMIT_10)
+        tokenIDArray[2] +
+        ', quantity: ' +
+        parseInt(ITEM_LIMIT_10)
       );
       console.log(
         'Token ID: ' +
-          tokenIDArray[3] +
-          ', quantity: ' +
-          parseInt(ITEM_LIMIT_15)
+        tokenIDArray[3] +
+        ', quantity: ' +
+        parseInt(ITEM_LIMIT_15)
       );
       console.log(
         'Token ID: ' +
-          tokenIDArray[4] +
-          ', quantity: ' +
-          parseInt(ITEM_LIMIT_20)
+        tokenIDArray[4] +
+        ', quantity: ' +
+        parseInt(ITEM_LIMIT_20)
       );
 
       itemsArray.push(
