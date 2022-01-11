@@ -16,6 +16,7 @@ import Aux from '../../../_Aux';
 
 const ICEWearableCard = props => {
   // get user's wallet address from the Context API store
+  // hi just testing to see if George can approve
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
