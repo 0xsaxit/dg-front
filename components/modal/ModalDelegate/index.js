@@ -139,7 +139,7 @@ const ModalDelegate = props => {
         <div className={styles.card_body}>
           <div className={styles.card}>Rank {props.rank}</div>
           <div className={styles.card}>
-            +{props.bonus}%
+            {props.bonus}
             <img
               src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
               className={styles.img_card}

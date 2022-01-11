@@ -16,9 +16,7 @@ const Wearables = () => {
       item.bonus > 0
   );
   const delegatedWearables = state.iceDelegatedItems.filter(
-    item =>
-      item.meta_data &&
-      item.meta_data.attributes.find(el => el.trait_type === 'Rank').value > 0
+    item => item.rank > 0
   );
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -72,22 +70,13 @@ const Wearables = () => {
 
             Object.keys(newDelegatedWearableBonuses.wearableBonuses).map(
               item => {
-                if (activeWearable.meta_data.name.search(item) >= 0) {
+                if (activeWearable.name.search(item) >= 0) {
                   if (
                     newDelegatedWearableBonuses.wearableBonuses[item] <
-                    parseInt(
-                      activeWearable.meta_data.attributes.find(
-                        el => el.trait_type === 'Bonus'
-                      ).value
-                    ) *
-                      0.3
+                    parseInt(activeWearable.bonus) * 0.3
                   ) {
                     newDelegatedWearableBonuses.wearableBonuses[item] =
-                      parseInt(
-                        activeWearable.meta_data.attributes.find(
-                          el => el.trait_type === 'Bonus'
-                        ).value
-                      ) * 0.3;
+                      parseInt(activeWearable.bonus) * 0.3;
                   }
                 }
               }
@@ -98,42 +87,25 @@ const Wearables = () => {
               maxICEDelegatedWearableBonuses[indexOfDelegated].wearableBonuses;
 
             Object.keys(delegatedWearableBonuses).map(item => {
-              if (activeWearable.meta_data.name.search(item) >= 0) {
+              if (activeWearable.name.search(item) >= 0) {
                 if (
                   delegatedWearableBonuses[item] <
-                  parseInt(
-                    activeWearable.meta_data.attributes.find(
-                      el => el.trait_type === 'Bonus'
-                    ).value
-                  ) *
-                    0.3
+                  parseInt(activeWearable.bonus) * 0.3
                 ) {
                   delegatedWearableBonuses[item] =
-                    parseInt(
-                      activeWearable.meta_data.attributes.find(
-                        el => el.trait_type === 'Bonus'
-                      ).value
-                    ) * 0.3;
+                    parseInt(activeWearable.bonus) * 0.3;
                 }
               }
             });
           }
         } else {
           Object.keys(maxICEActiveWearableBonuses).map(item => {
-            if (activeWearable.meta_data.name.search(item) >= 0) {
+            if (activeWearable.name.search(item) >= 0) {
               if (
                 maxICEActiveWearableBonuses[item] <
-                parseInt(
-                  activeWearable.meta_data.attributes.find(
-                    el => el.trait_type === 'Bonus'
-                  ).value
-                )
+                parseInt(activeWearable.bonus)
               ) {
-                maxICEActiveWearableBonuses[item] = parseInt(
-                  activeWearable.meta_data.attributes.find(
-                    el => el.trait_type === 'Bonus'
-                  ).value
-                );
+                maxICEActiveWearableBonuses[item] = parseInt(activeWearable.bonus);
               }
             }
           });
@@ -142,13 +114,9 @@ const Wearables = () => {
 
       delegatedWearables.map(delegatedWearable => {
         Object.keys(maxICEActiveWearableBonuses).map(item => {
-          if (delegatedWearable.meta_data.name.search(item) >= 0) {
+          if (delegatedWearable.name.search(item) >= 0) {
             const bonusValue =
-              parseInt(
-                delegatedWearable.meta_data.attributes.find(
-                  el => el.trait_type === 'Bonus'
-                ).value
-              ) * 0.7;
+              parseInt(activeWearable.bonus) * 0.7;
             if (maxICEActiveWearableBonuses[item] < bonusValue) {
               maxICEActiveWearableBonuses[item] = bonusValue;
             }
