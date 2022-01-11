@@ -160,6 +160,10 @@ function ICEAttributes() {
             iceWearableItems[i].contractAddress,
             iceWearableItems[i].tokenId
           );
+          
+          const collectionContract = collectionArray.find(
+            collection => collection[1].toLowerCase() === iceWearableItems[i].contractAddress.toLowerCase()
+          )
 
           if (Object.keys(json).length) {
             iceWearableItems[i].meta_data = json;
@@ -167,6 +171,7 @@ function ICEAttributes() {
             iceWearableItems[i].address = iceWearableItems[i].contractAddress;
             iceWearableItems[i].tokenID = iceWearableItems[i].tokenId;
             iceWearableItems[i].itemID = iceWearableItems[i].itemId;
+            iceWearableItems[i].collection = collectionContract[0];
           }
         }
 
