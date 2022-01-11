@@ -476,11 +476,11 @@ const MarketPlace = () => {
             <section key={index} className={styles.wearable_section}>
               <h3>
                 {wearable.title}
-              </h3>
 
-              {wearable.title === 'ICE Joker' && (
+                {wearable.title === 'ICE Joker' && (
                 <CheckMintableModal />
               )}
+              </h3>
 
               <Slider {...settings}>
                 <div
