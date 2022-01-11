@@ -60,31 +60,31 @@ const ModalMint = props => {
   function priceAndStaked() {
     return (
       <div className={styles.price_area}>
-        Price{' '}
+        {/*Price{' '}
         <span>
           ($
           {(state.DGPrices.ice * Global.CONSTANTS.ICE_MINT_AMOUNT).toFixed(
             2
           )}
           )
-        </span>
+        </span>*/}
         <div className={styles.card_area}>
           <div className={styles.card_area_body}>
-            {state.iceAmounts.ICE_AVAILABLE_AMOUNT < Global.CONSTANTS.ICE_MINT_AMOUNT ? (
+            {state.userBalances[2][3] < Global.CONSTANTS.WETH_MINT_AMOUNT ? (
               <span>
                 Not Enough
-                <IceMintIceTooltip />
+                <IceMintETHTooltip />
               </span>
             ) : null}
 
             <div className={styles.card}>
-              {state.tokenAmounts.WETH_COST_AMOUNT} ICE
-              <img src={Images.ICE_CIRCLE} className={styles.img_card2} />
+              {state.tokenAmounts.WETH_COST_AMOUNT} ETH
+              <img src={Images.ETH_CIRCLE} className={styles.img_card2} />
             </div>
 
-            {state.iceAmounts.ICE_AVAILABLE_AMOUNT >= Global.CONSTANTS.ICE_MINT_AMOUNT ? (
+            {state.userBalances[2][3] >= Global.CONSTANTS.WETH_MINT_AMOUNT ? (
               <div className={styles.green_check}>
-                {Number(state.iceAmounts.ICE_AVAILABLE_AMOUNT).toFixed(0)} ICE Available
+                {Number(state.userBalances[2][3]).toFixed(3)} ETH Available
                 &nbsp;
                 <svg
                   width="9"
@@ -101,7 +101,7 @@ const ModalMint = props => {
               </div>
             ) : (
               <div className={styles.description}>
-                {Number(state.iceAmounts.ICE_AVAILABLE_AMOUNT).toFixed(3)} ICE Available
+                {Number(state.userBalances[2][3]).toFixed(3)} ETH Available
               </div>
             )}
 
@@ -162,6 +162,7 @@ const ModalMint = props => {
     );
   }
 
+
   function roundup(num) {
     let decimalPlaces = 0;
     if (num < 0.1) {
@@ -208,56 +209,58 @@ const ModalMint = props => {
   }
 
   function buttons() {
-    return (
-      <div className={styles.button_area}>
-        {(state.iceAmounts.ICE_AVAILABLE_AMOUNT <
-          state.tokenAmounts.WETH_COST_AMOUNT) ||
-          (state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD < 
-          Global.CONSTANTS.DG_STAKED_AMOUNT &&
-          xDG < Global.CONSTANTS.XDG_STAKED_AMOUNT) ? (
-          <Button className={styles.button_upgrade} disabled={true}>
-            Mint Wearable
-          </Button>
-        ) : (
-          <Button
-            className={styles.button_upgrade}
-            onClick={() => {
-              setOpen(false);
-              setOpenICEAuth(true);
-            }}
-          >
-            Mint Wearable
-          </Button>
-        )}
+   return (
+     <div className={styles.button_area}>
+       {(state.userBalances[2][3] <
+         state.tokenAmounts.WETH_COST_AMOUNT) ||
+         (state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD < 
+         Global.CONSTANTS.DG_STAKED_AMOUNT &&
+         xDG < Global.CONSTANTS.XDG_STAKED_AMOUNT) ? (
+         <Button className={styles.button_upgrade} disabled={true}>
+           Mint Wearable
+         </Button>
+       ) : (
+         <Button
+           className={styles.button_upgrade}
+           onClick={() => {
+             setOpen(false);
+             setOpenETHAuth(true);
+           }}
+         >
+           Mint Wearable
+         </Button>
+       )}
 
-        <Button
-          className={styles.button_close}
-          onClick={() => {
-            window.open(
-              'https://ice.decentral.games/ice-nft-wearables',
-              '_blank'
-            );
-          }}
-        >
-          Learn More
-        </Button>
-      </div>
-    );
-  }
+       <Button
+         className={styles.button_close}
+         onClick={() => {
+           window.open(
+             'https://ice.decentral.games/ice-nft-wearables',
+             '_blank'
+           );
+         }}
+       >
+         Learn More
+       </Button>
+     </div>
+   );
+ }
 
   function ethAuthModal() {
     return (
-      <ModalIceAuth
+      <ModalEthAuth
         itemID={props.itemID}
         address={props.address}
         wearableImg={props.wearableImg}
-        show={openICEAuth}
+        show={openETHAuth}
+        maxMintCounts={props.maxMintCounts}
+        numberLeft={props.numberLeft}
         back={() => {
           setOpen(true);
-          setOpenICEAuth(false);
+          setOpenETHAuth(false);
         }}
         close={() => {
-          setOpenICEAuth(false);
+          setOpenETHAuth(false);
         }}
       />
     );
