@@ -155,24 +155,16 @@ function ICEAttributes() {
         
         let iceWearableItems = await Fetch.GET_WEARABLE_INVENTORY(state.userAddress);
         for (var i = 0; i < iceWearableItems.length; i++) {
-              
-          const json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
-            iceWearableItems[i].contractAddress,
-            iceWearableItems[i].tokenId
-          );
-          
+
           const collectionContract = collectionArray.find(
             collection => collection[1].toLowerCase() === iceWearableItems[i].contractAddress.toLowerCase()
           )
-
-          if (Object.keys(json).length) {
-            iceWearableItems[i].meta_data = json;
-            iceWearableItems[i].index = i;
-            iceWearableItems[i].address = iceWearableItems[i].contractAddress;
-            iceWearableItems[i].tokenID = iceWearableItems[i].tokenId;
-            iceWearableItems[i].itemID = iceWearableItems[i].itemId;
-            iceWearableItems[i].collection = collectionContract[0];
-          }
+          
+          iceWearableItems[i].index = i;
+          iceWearableItems[i].address = iceWearableItems[i].contractAddress;
+          iceWearableItems[i].tokenID = iceWearableItems[i].tokenId;
+          iceWearableItems[i].itemID = iceWearableItems[i].itemId;
+          iceWearableItems[i].collection = collectionContract[0];
         }
 
         console.log('iceWearableItems2: ', iceWearableItems);
