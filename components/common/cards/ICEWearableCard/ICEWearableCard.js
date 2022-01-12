@@ -156,7 +156,7 @@ const ICEWearableCard = props => {
                     delegationStatus={delegationStatus}
                     tokenID={props.tokenID}
                     address={props.address}
-                    ownerAddress={state.userAddress}
+                    tokenOwner={state.userAddress}
                     delegateAddress={delegateAddress}
                     rank={rank}
                     buttonName={buttonUndelegate}

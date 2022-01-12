@@ -196,7 +196,7 @@ const Wearables = () => {
             {state.iceDelegatedItems.map((item, index) => (
               <ICEDelegatedCard
                 key={index}
-                ownerAddress={item.ownerAddress}
+                tokenOwner={item.tokenOwner}
                 tokenID={item.tokenID}
                 address={item.address}
                 itemID={item.itemID}

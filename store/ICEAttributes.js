@@ -211,7 +211,7 @@ function ICEAttributes() {
               
               matching_wearable.address = matching_wearable.contractAddress
               matching_wearable.tokenID = matching_wearable.tokenId
-              matching_wearable.ownerAddress = matching_wearable.tokenOwner
+              // matching_wearable.tokenOwner = matching_wearable.tokenOwner
               
               iceDelegatedItems.push(matching_wearable);
             } catch (error) {

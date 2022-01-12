@@ -18,7 +18,7 @@ const ModalWithdrawDelegation = props => {
   const [withdrawStatus, setWithdrawStatus] = useState(0);
   const [errorMsg, setErrorMsg] = useState(null);
   const [remainingTime, setRemainingTime] = useState(0);
-  const isDelegator = props.ownerAddress === state.userAddress;
+  const isDelegator = props.tokenOwner === state.userAddress;
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
@@ -210,14 +210,14 @@ const ModalWithdrawDelegation = props => {
 
   async function undelegateNFT() {
     console.log('Undelegate token ID: ' + props.tokenID);
-    console.log('Token owner address: ' + props.ownerAddress);
+    console.log('Token owner address: ' + props.tokenOwner);
     console.log('Delegate address: ' + props.delegateAddress);
     console.log('Collection address: ' + props.address);
     setErrorMsg(null);
     setClicked(true);
 
     const json = await Fetch.UNDELEGATE_NFT(
-      props.ownerAddress,
+      props.tokenOwner,
       props.delegateAddress,
       props.tokenID,
       props.address
