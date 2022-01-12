@@ -180,7 +180,7 @@ const Wearables = () => {
                   key={index}
                   tokenID={item.tokenID}
                   address={item.address}
-                  itemID={item.itemID}
+                  itemId={item.itemId}
                   isActivated={item.isActivated}
                   name={item.name}
                   description={item.description}
@@ -199,7 +199,7 @@ const Wearables = () => {
                 tokenOwner={item.tokenOwner}
                 tokenID={item.tokenID}
                 address={item.address}
-                itemID={item.itemID}
+                itemId={item.itemId}
                 isCheckedIn={item.isCheckedIn}
                 name={item.name}
                 description={item.description}

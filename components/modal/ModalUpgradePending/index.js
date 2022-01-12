@@ -50,7 +50,7 @@ const ModalUpgradePending = props => {
   useEffect(() => {
     if (state.userStatus >= 4) {
       console.log('Wearables token ID: ' + props.tokenID);
-      console.log('Wearables item ID: ' + props.itemID);
+      console.log('Wearables item ID: ' + props.itemId);
 
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);

@@ -127,7 +127,7 @@ const ICEWearableCard = props => {
               ) : (
                 <ActivateWearableModal
                   tokenID={props.tokenID}
-                  itemID={props.itemID}
+                  itemId={props.itemId}
                   address={props.address}
                 />
               )
@@ -143,7 +143,7 @@ const ICEWearableCard = props => {
                   <ModalDelegate
                     tokenID={props.tokenID}
                     address={props.address}
-                    itemID={props.itemID}
+                    itemId={props.itemId}
                     imgSrc={image}
                     rank={rank}
                     bonus={bonus}
@@ -166,7 +166,7 @@ const ICEWearableCard = props => {
                   <ModalWearable
                     tokenID={props.tokenID}
                     address={props.address}
-                    itemID={props.itemID}
+                    itemId={props.itemId}
                     imgSrc={image}
                     rank={rank}
                     bonus={bonus}

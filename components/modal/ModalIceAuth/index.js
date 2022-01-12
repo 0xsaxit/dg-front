@@ -169,7 +169,7 @@ const ModalIceAuth = props => {
 
   async function fetchMintToken() {
     try {
-      const json = await Fetch.MINT_TOKEN(props.itemID, props.address);
+      const json = await Fetch.MINT_TOKEN(props.itemId, props.address);
       console.log('pooling json: ', json);
 
       if (json.status) {
@@ -187,12 +187,12 @@ const ModalIceAuth = props => {
   // send-off the API request to mint the user's Level 1 wearable
   async function mintToken() {
     setErrorText(null);
-    console.log('Minting NFT item ID: ' + props.itemID);
+    console.log('Minting NFT item ID: ' + props.itemId);
     setMinting(true);
     setLoading(true);
     setClickedConfirm(true);
 
-    console.log('props.itemID', props.itemID);
+    console.log('props.itemId', props.itemId);
     console.log('props.address', props.address);
 
     const intervalid = setInterval(() => {

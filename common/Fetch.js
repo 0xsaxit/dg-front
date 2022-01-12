@@ -46,9 +46,9 @@ const Fetch = {
     return call(`${API_BASE_URL}/admin/getUsersList`, 'GET');
   },
 
-  MINT_TOKEN: (itemID, collectionAddr) => {
+  MINT_TOKEN: (itemId, collectionAddr) => {
     return call(
-      `${API_BASE_URL}/ice/mintToken/${itemID}/${collectionAddr}`,
+      `${API_BASE_URL}/ice/mintToken/${itemId}/${collectionAddr}`,
       'GET'
     );
   },

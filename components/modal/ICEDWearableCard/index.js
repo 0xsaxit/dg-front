@@ -57,7 +57,7 @@ const ICEDWearableCard = props => {
 
                 <ModalWearable
                   tokenID={props.tokenID}
-                  itemID={props.itemID}
+                  itemId={props.itemId}
                   address={props.address}
                 />
               </span>

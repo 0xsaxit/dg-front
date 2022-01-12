@@ -163,7 +163,7 @@ function ICEAttributes() {
           iceWearableItems[i].index = i;
           iceWearableItems[i].address = iceWearableItems[i].contractAddress;
           iceWearableItems[i].tokenID = iceWearableItems[i].tokenId;
-          iceWearableItems[i].itemID = iceWearableItems[i].itemId;
+          // iceWearableItems[i].itemID = iceWearableItems[i].itemId;
           iceWearableItems[i].collection = collectionContract[0];
         }
 

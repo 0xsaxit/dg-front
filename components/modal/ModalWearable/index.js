@@ -426,7 +426,7 @@ const ModalWearable = props => {
           setUpgrade={setUpgrade}
           tokenID={props.tokenID}
           address={props.address}
-          itemID={props.itemID}
+          itemId={props.itemId}
         />
       )}
 

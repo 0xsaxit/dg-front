@@ -604,7 +604,7 @@ const MarketPlace = () => {
                               index={i}
                               maxMintCounts={maxMintCounts}
                               numberLeft={itemLimits[i][0]}
-                              itemID={itemLimits[i][1]}
+                              itemId={itemLimits[i][1]}
                               address={itemLimits[5]}
                               wearableImg={wearable.details[item][0]}
                               wearableBodyType={wearable.details[item][3]}
