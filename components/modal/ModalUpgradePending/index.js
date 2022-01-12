@@ -82,32 +82,32 @@ const ModalUpgradePending = props => {
       let collectionContract = {};
       let collectionID = 0;
 
-      if (props.address === Global.ADDRESSES.COLLECTION_V2_ADDRESS) {
+      if (props.contractAddress === Global.ADDRESSES.COLLECTION_V2_ADDRESS) {
         collectionContract = new getWeb3.eth.Contract(
           ABI_COLLECTION_V2,
           Global.ADDRESSES.COLLECTION_V2_ADDRESS
         );
         collectionID = 10;
-      } else if (props.address === Global.ADDRESSES.COLLECTION_PH_ADDRESS) {
+      } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_PH_ADDRESS) {
         collectionContract = new getWeb3.eth.Contract(
           ABI_COLLECTION_PH,
           Global.ADDRESSES.COLLECTION_PH_ADDRESS
         );
         collectionID = 12;
-      } else if (props.address === Global.ADDRESSES.COLLECTION_LINENS_ADDRESS) {
+      } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_LINENS_ADDRESS) {
         collectionContract = new getWeb3.eth.Contract(
           ABI_COLLECTION_LINENS,
           Global.ADDRESSES.COLLECTION_LINENS_ADDRESS
         );
         collectionID = 13;
-      } else if (props.address === Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS) {
+      } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS) {
         collectionContract = new getWeb3.eth.Contract(
           ABI_COLLECTION_BOMBER,
           Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS
         );
         collectionID = 14;
       } else if (
-        props.address === Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS
+        props.contractAddress === Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS
       ) {
         collectionContract = new getWeb3.eth.Contract(
           ABI_COLLECTION_CRYPTO_DRIP,
@@ -115,7 +115,7 @@ const ModalUpgradePending = props => {
         );
         collectionID = 16;
       } else if (
-        props.address === Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS
+        props.contractAddress === Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS
       ) {
         collectionContract = new getWeb3.eth.Contract(
           ABI_COLLECTION_FOUNDING_FATHERS,
@@ -488,7 +488,7 @@ const ModalUpgradePending = props => {
     const token = 'NFT';
     console.log('Meta-transaction NFT: ' + props.tokenId);
     console.log('Spender address: ' + spenderAddress);
-    console.log('Collection address: ' + props.address);
+    console.log('Collection address: ' + props.contractAddress);
     setLoading(true);
     setUpdateStatus({ name: token, value: 'clicked' });
 
@@ -536,14 +536,14 @@ const ModalUpgradePending = props => {
   // send the API request to upgrade the user's wearable
   async function upgradeToken() {
     console.log('Upgrading NFT token ID: ' + props.tokenId);
-    console.log('Collection address: ' + props.address);
+    console.log('Collection address: ' + props.contractAddress);
 
     const token = 'WEARABLE';
     setLoading(true);
     setUpdateStatus({ name: token, value: 'clicked' });
 
     try {
-      const json = await Fetch.UPGRADE_TOKEN(props.tokenId, props.address);
+      const json = await Fetch.UPGRADE_TOKEN(props.tokenId, props.contractAddress);
 
       if (json.status) {
         console.log('success in upgrading:', json);

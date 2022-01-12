@@ -179,7 +179,7 @@ const Wearables = () => {
                 <ICEWearableCard
                   key={index}
                   tokenId={item.tokenId}
-                  address={item.address}
+                  contractAddress={item.contractAddress}
                   itemId={item.itemId}
                   isActivated={item.isActivated}
                   name={item.name}
@@ -198,7 +198,7 @@ const Wearables = () => {
                 key={index}
                 tokenOwner={item.tokenOwner}
                 tokenId={item.tokenId}
-                address={item.address}
+                contractAddress={item.contractAddress}
                 itemId={item.itemId}
                 isCheckedIn={item.isCheckedIn}
                 name={item.name}

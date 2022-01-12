@@ -302,13 +302,13 @@ const ModalDelegate = props => {
   async function delegateNFT() {
     console.log('Delegate token ID: ' + props.tokenId);
     console.log('Delegate address: ' + enteredAddress);
-    console.log('Collection address: ' + props.address);
+    console.log('Collection address: ' + props.contractAddress);
     setClicked(true);
 
     const json = await Fetch.DELEGATE_NFT(
       enteredAddress,
       props.tokenId,
-      props.address
+      props.contractAddress
     );
 
     if (json.status) {

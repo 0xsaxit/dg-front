@@ -66,7 +66,7 @@ const ActivateWearableModal = props => {
 
       setInstances(true); // contract instantiation complete
 
-      biconomy
+      biconomy.contractAddress
         .onEvent(biconomy.READY, () => {
           console.log('Mexa is Ready: Re-ICE (wearables)');
           setBiconomyReady(true);
@@ -82,7 +82,7 @@ const ActivateWearableModal = props => {
       (async function () {
         // update token hash from iceRegistrant contract
         const tokenHash = await iceRegistrantContract.methods
-          .getHash(props.address, props.tokenId)
+          .getHash(props.contractAddress, props.tokenId)
           .call();
 
         // get previous owner based on token hash
@@ -264,14 +264,14 @@ const ActivateWearableModal = props => {
   async function metaTransactionReICE() {
     console.log('Meta-transaction NFT Activation');
     console.log('Previous owner: ' + previousOwner);
-    console.log('Collection address: ' + props.address);
+    console.log('Collection address: ' + props.contractAddress);
     console.log('Token ID: ' + props.tokenId);
 
     try {
       setClicked(true);
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = iceRegistrantContract.methods
-        .reIceNFT(previousOwner, props.address, props.tokenId)
+        .reIceNFT(previousOwner, props.contractAddress, props.tokenId)
         .encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(

@@ -411,7 +411,7 @@ const ModalWearable = props => {
           </div>
         </Modal>
       )}
-      {upgrade == 3 && (
+      {upgrade == 1 && (
         <NeedMoreUpgrade
           upgradeNeedIceAmount={icePrices[Math.min(props.rank + 1, 5)]}
           upgradeNeedDgAmount={0.1}
@@ -425,12 +425,12 @@ const ModalWearable = props => {
         <ModalUpgradePending
           setUpgrade={setUpgrade}
           tokenId={props.tokenId}
-          address={props.address}
+          contractAddress={props.contractAddress}
           itemId={props.itemId}
         />
       )}
 
-      {upgrade == 1 && (
+      {upgrade == 3 && (
         <ModalUpgradeSuccess 
           tokenId={props.tokenId} 
           setUpgrade={setUpgrade}

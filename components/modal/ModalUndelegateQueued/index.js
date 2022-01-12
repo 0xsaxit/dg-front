@@ -99,9 +99,9 @@ const ModalUndelegateQueued = props => {
           <div className={styles.description}>
             After 12pm UTC({props.remainingTime} hours), you will not longer be
             delegating to{' '}
-            {props.address && (
+            {props.contractAddress && (
               <a>
-                {props.address.substr(0, 4) + '...' + props.address.substr(-4)}
+                {props.contractAddress.substr(0, 4) + '...' + props.contractAddress.substr(-4)}
               </a>
             )}
             . Any previous profits can be claimed from your{' '}

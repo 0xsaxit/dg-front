@@ -27,7 +27,7 @@ const ICEWearableCard = props => {
         );
 
         delegationInfo.forEach((item, index) => {
-          if (item.contractAddress === props.address) {
+          if (item.contractAddress === props.contractAddress) {
             const address = item.contractAddress;
             const tokenId = item.tokenId;
             const checkInStatus = item.checkInStatus;
@@ -38,7 +38,7 @@ const ICEWearableCard = props => {
 
             if (
               tokenId === props.tokenId &&
-              address.toLowerCase() === props.address.toLowerCase()
+              address.toLowerCase() === props.contractAddress.toLowerCase()
             ) {
               setCheckInStatus(checkInStatus);
               setDelegationStatus(
@@ -103,7 +103,7 @@ const ICEWearableCard = props => {
           <div className={styles.button_area}>
             <ModalWithdrawDelegation
               tokenId={props.tokenId}
-              address={props.address}
+              contractAddress={props.contractAddress}
               tokenOwner={props.tokenOwner}
               delegateAddress={state.userAddress}
               delegationStatus={delegationStatus}

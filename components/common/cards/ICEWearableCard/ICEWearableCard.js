@@ -36,7 +36,7 @@ const ICEWearableCard = props => {
         );
 
         delegationInfo.forEach((item, index) => {
-          if (item.contractAddress === props.address) {
+          if (item.contractAddress === props.contractAddress) {
             const address = item.contractAddress;
             const delegateAddress = item.delegationStatus.delegatedTo || '';
             const tokenId = item.tokenId;
@@ -48,7 +48,7 @@ const ICEWearableCard = props => {
 
             if (
               tokenId === props.tokenId &&
-              address.toLowerCase() === props.address.toLowerCase()
+              address.toLowerCase() === props.contractAddress.toLowerCase()
             ) {
               setDelegateAddress(delegateAddress);
               setCheckInStatus(checkInStatus);
@@ -128,7 +128,7 @@ const ICEWearableCard = props => {
                 <ActivateWearableModal
                   tokenId={props.tokenId}
                   itemId={props.itemId}
-                  address={props.address}
+                  contractAddress={props.contractAddress}
                 />
               )
             ) : (
@@ -142,7 +142,7 @@ const ICEWearableCard = props => {
                 {delegateAddress === '' ? (
                   <ModalDelegate
                     tokenId={props.tokenId}
-                    address={props.address}
+                    contractAddress={props.contractAddress}
                     itemId={props.itemId}
                     imgSrc={image}
                     rank={rank}
@@ -155,7 +155,7 @@ const ICEWearableCard = props => {
                     checkInStatus={checkInStatus}
                     delegationStatus={delegationStatus}
                     tokenId={props.tokenId}
-                    address={props.address}
+                    contractAddress={props.contractAddress}
                     tokenOwner={state.userAddress}
                     delegateAddress={delegateAddress}
                     rank={rank}
@@ -165,7 +165,7 @@ const ICEWearableCard = props => {
                 {rank < 5 && (
                   <ModalWearable
                     tokenId={props.tokenId}
-                    address={props.address}
+                    contractAddress={props.contractAddress}
                     itemId={props.itemId}
                     imgSrc={image}
                     rank={rank}

@@ -161,9 +161,6 @@ function ICEAttributes() {
           )
           
           iceWearableItems[i].index = i;
-          iceWearableItems[i].address = iceWearableItems[i].contractAddress;
-          // iceWearableItems[i].tokenId = iceWearableItems[i].tokenId;
-          // iceWearableItems[i].itemID = iceWearableItems[i].itemId;
           iceWearableItems[i].collection = collectionContract[0];
         }
 
@@ -208,11 +205,7 @@ function ICEAttributes() {
               const matching_wearable = wearableInventory.find(
                 wearable => wearable.tokenId === item.tokenId
               )
-              
-              matching_wearable.address = matching_wearable.contractAddress
-              // matching_wearable.tokenId = matching_wearable.tokenId
-              // matching_wearable.tokenOwner = matching_wearable.tokenOwner
-              
+
               iceDelegatedItems.push(matching_wearable);
             } catch (error) {
               console.log('Fetch delegation info error: ' + error);
@@ -370,7 +363,7 @@ function ICEAttributes() {
             authArray.push({
               tokenId: item.tokenId,
               authStatus: NFTAuthorization,
-              address: item.address,
+              contractAddress: item.contractAddress,
             });
           } catch (error) {
             console.log('Get NFT approved error: ' + error);

@@ -250,7 +250,7 @@ const ModalMint = props => {
     return (
       <ModalIceAuth
         itemId={props.itemId}
-        address={props.address}
+        contractAddress={props.contractAddress}
         wearableImg={props.wearableImg}
         show={openICEAuth}
         back={() => {

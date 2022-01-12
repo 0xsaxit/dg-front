@@ -183,7 +183,7 @@ const ModalWithdrawDelegation = props => {
     const json = await Fetch.DELEGATE_NFT(
       props.delegateAddress,
       props.tokenId,
-      props.address
+      props.contractAddress
     );
 
     if (json.status) {
@@ -212,7 +212,7 @@ const ModalWithdrawDelegation = props => {
     console.log('Undelegate token ID: ' + props.tokenId);
     console.log('Token owner address: ' + props.tokenOwner);
     console.log('Delegate address: ' + props.delegateAddress);
-    console.log('Collection address: ' + props.address);
+    console.log('Collection address: ' + props.contractAddress);
     setErrorMsg(null);
     setClicked(true);
 
@@ -220,7 +220,7 @@ const ModalWithdrawDelegation = props => {
       props.tokenOwner,
       props.delegateAddress,
       props.tokenId,
-      props.address
+      props.contractAddress
     );
 
     if (json.status) {
@@ -337,13 +337,13 @@ const ModalWithdrawDelegation = props => {
       {success && !props.checkInStatus && (
         <ModalDelegateConfirm
           buttonName={props.buttonName}
-          address={props.delegateAddress}
+          contractAddress={props.delegateAddress}
         />
       )}
       {success && props.checkInStatus && !props.delegationStatus && (
         <ModalUndelegateQueued
           buttonName={props.buttonName}
-          address={props.delegateAddress}
+          contractAddress={props.delegateAddress}
           remainingTime={remainingTime}
         />
       )}
