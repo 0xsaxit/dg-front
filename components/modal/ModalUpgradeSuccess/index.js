@@ -20,7 +20,7 @@ const ModalUpgradeSuccess = props => {
   const [animationStage, setAnimationStage] = useState(1)
 
   useEffect(() => {
-    const itemInfo = state.iceWearableItems.filter(item => item.tokenID === props.tokenID)[0];
+    const itemInfo = state.iceWearableItems.filter(item => item.tokenId === props.tokenId)[0];
     setImage(props.imgURL ? props.imgURL : '');
     setDescription(itemInfo.description.split(' ').at(-1).replace('/', ' of '));
     setRank(itemInfo.rank);

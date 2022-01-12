@@ -424,7 +424,7 @@ const ModalWearable = props => {
       {upgrade == 2 && (
         <ModalUpgradePending
           setUpgrade={setUpgrade}
-          tokenID={props.tokenID}
+          tokenId={props.tokenId}
           address={props.address}
           itemId={props.itemId}
         />
@@ -432,7 +432,7 @@ const ModalWearable = props => {
 
       {upgrade == 1 && (
         <ModalUpgradeSuccess 
-          tokenID={props.tokenID} 
+          tokenId={props.tokenId} 
           setUpgrade={setUpgrade}
           imgURL = {Global.IMG_URLS_UPGRADE[wearableName][parseInt(Math.min(props.rank + 1, 5))]} 
         />

@@ -37,7 +37,7 @@ const ICEWearableCard = props => {
               item.delegationStatus.isQueuedForUndelegationByOwner;
 
             if (
-              tokenId === props.tokenID &&
+              tokenId === props.tokenId &&
               address.toLowerCase() === props.address.toLowerCase()
             ) {
               setCheckInStatus(checkInStatus);
@@ -102,7 +102,7 @@ const ICEWearableCard = props => {
 
           <div className={styles.button_area}>
             <ModalWithdrawDelegation
-              tokenID={props.tokenID}
+              tokenId={props.tokenId}
               address={props.address}
               tokenOwner={props.tokenOwner}
               delegateAddress={state.userAddress}

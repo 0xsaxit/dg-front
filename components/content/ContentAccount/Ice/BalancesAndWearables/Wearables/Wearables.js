@@ -45,15 +45,15 @@ const Wearables = () => {
         if (
           delegationInfo.outgoingDelegations &&
           delegationInfo.outgoingDelegations.findIndex(
-            e => e.tokenId === activeWearable.tokenID
+            e => e.tokenId === activeWearable.tokenId
           ) >= 0
         ) {
           var indexOfDelegated = maxICEDelegatedWearableBonuses.findIndex(
-            e => e.tokenID === activeWearable.tokenID
+            e => e.tokenId === activeWearable.tokenId
           );
           if (indexOfDelegated < 0) {
             const newDelegatedWearableBonuses = {
-              tokenID: activeWearable.tokenID,
+              tokenId: activeWearable.tokenId,
               wearableBonuses: {
                 Trousers: 0,
                 Blazer: 0,
@@ -178,7 +178,7 @@ const Wearables = () => {
                 (item.tokenOwner === state.userAddress) ?
                 <ICEWearableCard
                   key={index}
-                  tokenID={item.tokenID}
+                  tokenId={item.tokenId}
                   address={item.address}
                   itemId={item.itemId}
                   isActivated={item.isActivated}
@@ -197,7 +197,7 @@ const Wearables = () => {
               <ICEDelegatedCard
                 key={index}
                 tokenOwner={item.tokenOwner}
-                tokenID={item.tokenID}
+                tokenId={item.tokenId}
                 address={item.address}
                 itemId={item.itemId}
                 isCheckedIn={item.isCheckedIn}

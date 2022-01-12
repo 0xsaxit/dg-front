@@ -47,7 +47,7 @@ const ICEWearableCard = props => {
               item.delegationStatus.isQueuedForUndelegationByOwner;
 
             if (
-              tokenId === props.tokenID &&
+              tokenId === props.tokenId &&
               address.toLowerCase() === props.address.toLowerCase()
             ) {
               setDelegateAddress(delegateAddress);
@@ -126,7 +126,7 @@ const ICEWearableCard = props => {
                 <NeedMoreDGActivateModal />
               ) : (
                 <ActivateWearableModal
-                  tokenID={props.tokenID}
+                  tokenId={props.tokenId}
                   itemId={props.itemId}
                   address={props.address}
                 />
@@ -141,7 +141,7 @@ const ICEWearableCard = props => {
               >
                 {delegateAddress === '' ? (
                   <ModalDelegate
-                    tokenID={props.tokenID}
+                    tokenId={props.tokenId}
                     address={props.address}
                     itemId={props.itemId}
                     imgSrc={image}
@@ -154,7 +154,7 @@ const ICEWearableCard = props => {
                   <ModalWithdrawDelegation
                     checkInStatus={checkInStatus}
                     delegationStatus={delegationStatus}
-                    tokenID={props.tokenID}
+                    tokenId={props.tokenId}
                     address={props.address}
                     tokenOwner={state.userAddress}
                     delegateAddress={delegateAddress}
@@ -164,7 +164,7 @@ const ICEWearableCard = props => {
                 )}
                 {rank < 5 && (
                   <ModalWearable
-                    tokenID={props.tokenID}
+                    tokenId={props.tokenId}
                     address={props.address}
                     itemId={props.itemId}
                     imgSrc={image}

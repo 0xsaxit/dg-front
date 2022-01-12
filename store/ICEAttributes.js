@@ -162,7 +162,7 @@ function ICEAttributes() {
           
           iceWearableItems[i].index = i;
           iceWearableItems[i].address = iceWearableItems[i].contractAddress;
-          iceWearableItems[i].tokenID = iceWearableItems[i].tokenId;
+          // iceWearableItems[i].tokenId = iceWearableItems[i].tokenId;
           // iceWearableItems[i].itemID = iceWearableItems[i].itemId;
           iceWearableItems[i].collection = collectionContract[0];
         }
@@ -210,7 +210,7 @@ function ICEAttributes() {
               )
               
               matching_wearable.address = matching_wearable.contractAddress
-              matching_wearable.tokenID = matching_wearable.tokenId
+              // matching_wearable.tokenId = matching_wearable.tokenId
               // matching_wearable.tokenOwner = matching_wearable.tokenOwner
               
               iceDelegatedItems.push(matching_wearable);
@@ -364,11 +364,11 @@ function ICEAttributes() {
           try {
             const NFTAuthorization = await Transactions.NFTApproved(
               item.collection,
-              item.tokenID
+              item.tokenId
             );
 
             authArray.push({
-              tokenID: item.tokenID,
+              tokenId: item.tokenId,
               authStatus: NFTAuthorization,
               address: item.address,
             });
@@ -389,66 +389,66 @@ function ICEAttributes() {
   /////////////////////////////////////////////////////////////////////////////////////////
   async function getItemLimits(index) {
     const collectionAddress = collectionArray[index][1];
-    const tokenIDArray = collectionArray[index][2];
+    const tokenIdArray = collectionArray[index][2];
     let itemsArray = [];
 
     try {
       const itemObject0 = await collectionArray[index][0].methods
-        .items(tokenIDArray[0])
+        .items(tokenIdArray[0])
         .call();
       const ITEM_LIMIT_0 = itemObject0[Object.keys(itemObject0)[2]];
 
       const itemObject5 = await collectionArray[index][0].methods
-        .items(tokenIDArray[1])
+        .items(tokenIdArray[1])
         .call();
       const ITEM_LIMIT_5 = itemObject5[Object.keys(itemObject5)[2]];
 
       const itemObject10 = await collectionArray[index][0].methods
-        .items(tokenIDArray[2])
+        .items(tokenIdArray[2])
         .call();
       const ITEM_LIMIT_10 = itemObject10[Object.keys(itemObject10)[2]];
 
       const itemObject15 = await collectionArray[index][0].methods
-        .items(tokenIDArray[3])
+        .items(tokenIdArray[3])
         .call();
       const ITEM_LIMIT_15 = itemObject15[Object.keys(itemObject15)[2]];
 
       const itemObject20 = await collectionArray[index][0].methods
-        .items(tokenIDArray[4])
+        .items(tokenIdArray[4])
         .call();
       const ITEM_LIMIT_20 = itemObject20[Object.keys(itemObject20)[2]];
 
       console.log(
-        'Token ID: ' + tokenIDArray[0] + ', quantity: ' + parseInt(ITEM_LIMIT_0)
+        'Token ID: ' + tokenIdArray[0] + ', quantity: ' + parseInt(ITEM_LIMIT_0)
       );
       console.log(
-        'Token ID: ' + tokenIDArray[1] + ', quantity: ' + parseInt(ITEM_LIMIT_5)
+        'Token ID: ' + tokenIdArray[1] + ', quantity: ' + parseInt(ITEM_LIMIT_5)
       );
       console.log(
         'Token ID: ' +
-          tokenIDArray[2] +
+          tokenIdArray[2] +
           ', quantity: ' +
           parseInt(ITEM_LIMIT_10)
       );
       console.log(
         'Token ID: ' +
-          tokenIDArray[3] +
+          tokenIdArray[3] +
           ', quantity: ' +
           parseInt(ITEM_LIMIT_15)
       );
       console.log(
         'Token ID: ' +
-          tokenIDArray[4] +
+          tokenIdArray[4] +
           ', quantity: ' +
           parseInt(ITEM_LIMIT_20)
       );
 
       itemsArray.push(
-        [parseInt(ITEM_LIMIT_0), tokenIDArray[0]],
-        [parseInt(ITEM_LIMIT_5), tokenIDArray[1]],
-        [parseInt(ITEM_LIMIT_10), tokenIDArray[2]],
-        [parseInt(ITEM_LIMIT_15), tokenIDArray[3]],
-        [parseInt(ITEM_LIMIT_20), tokenIDArray[4]],
+        [parseInt(ITEM_LIMIT_0), tokenIdArray[0]],
+        [parseInt(ITEM_LIMIT_5), tokenIdArray[1]],
+        [parseInt(ITEM_LIMIT_10), tokenIdArray[2]],
+        [parseInt(ITEM_LIMIT_15), tokenIdArray[3]],
+        [parseInt(ITEM_LIMIT_20), tokenIdArray[4]],
         collectionAddress
       );
 

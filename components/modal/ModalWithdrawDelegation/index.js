@@ -182,7 +182,7 @@ const ModalWithdrawDelegation = props => {
 
     const json = await Fetch.DELEGATE_NFT(
       props.delegateAddress,
-      props.tokenID,
+      props.tokenId,
       props.address
     );
 
@@ -209,7 +209,7 @@ const ModalWithdrawDelegation = props => {
   }
 
   async function undelegateNFT() {
-    console.log('Undelegate token ID: ' + props.tokenID);
+    console.log('Undelegate token ID: ' + props.tokenId);
     console.log('Token owner address: ' + props.tokenOwner);
     console.log('Delegate address: ' + props.delegateAddress);
     console.log('Collection address: ' + props.address);
@@ -219,7 +219,7 @@ const ModalWithdrawDelegation = props => {
     const json = await Fetch.UNDELEGATE_NFT(
       props.tokenOwner,
       props.delegateAddress,
-      props.tokenID,
+      props.tokenId,
       props.address
     );
 

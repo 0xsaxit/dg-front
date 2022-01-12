@@ -65,7 +65,7 @@ const ModalDelegate = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
 
   async function hasDataByAddress(address) {
-    const tokenID = 0;
+    const tokenId = 0;
 
     const tokenById = collectionArray.map(async (item, index) => {
       try {
@@ -74,11 +74,11 @@ const ModalDelegate = props => {
           nIndex < Global.CONSTANTS.MAX_DELEGATION_COUNT;
           nIndex++
         ) {
-          const tokenID = await collectionArray[index][0].methods
+          const tokenId = await collectionArray[index][0].methods
             .tokenOfOwnerByIndex(address, nIndex)
             .call();
 
-          if (parseInt(tokenID) > 0) {
+          if (parseInt(tokenId) > 0) {
             return true;
           }
         }
@@ -86,7 +86,7 @@ const ModalDelegate = props => {
         console.log('Index out-of-bounds: ', error.message);
       }
 
-      return tokenID;
+      return tokenId;
     });
     await Promise.all(tokenById);
 
@@ -300,14 +300,14 @@ const ModalDelegate = props => {
   }
 
   async function delegateNFT() {
-    console.log('Delegate token ID: ' + props.tokenID);
+    console.log('Delegate token ID: ' + props.tokenId);
     console.log('Delegate address: ' + enteredAddress);
     console.log('Collection address: ' + props.address);
     setClicked(true);
 
     const json = await Fetch.DELEGATE_NFT(
       enteredAddress,
-      props.tokenID,
+      props.tokenId,
       props.address
     );
 

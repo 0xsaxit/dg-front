@@ -49,7 +49,7 @@ const ModalUpgradePending = props => {
   // initialize Web3 providers and create token contract instance
   useEffect(() => {
     if (state.userStatus >= 4) {
-      console.log('Wearables token ID: ' + props.tokenID);
+      console.log('Wearables token ID: ' + props.tokenId);
       console.log('Wearables item ID: ' + props.itemId);
 
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
@@ -163,11 +163,11 @@ const ModalUpgradePending = props => {
     }
   }, [successInUpgrade]);
 
-  // get NFT authorization state based on props.tokenID
+  // get NFT authorization state based on props.tokenId
   useEffect(() => {
     if (state.nftAuthorizations.length) {
       const result = state.nftAuthorizations.find(
-        item => item.tokenID === props.tokenID
+        item => item.tokenId === props.tokenId
       );
       console.log('NFT auth status: ' + result.authStatus);
 
@@ -486,7 +486,7 @@ const ModalUpgradePending = props => {
 
   async function metaTransactionNFT() {
     const token = 'NFT';
-    console.log('Meta-transaction NFT: ' + props.tokenID);
+    console.log('Meta-transaction NFT: ' + props.tokenId);
     console.log('Spender address: ' + spenderAddress);
     console.log('Collection address: ' + props.address);
     setLoading(true);
@@ -495,7 +495,7 @@ const ModalUpgradePending = props => {
     try {
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = collectionContract.methods
-        .approve(Global.ADDRESSES.ICE_REGISTRANT_ADDRESS, props.tokenID)
+        .approve(Global.ADDRESSES.ICE_REGISTRANT_ADDRESS, props.tokenId)
         .encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(
@@ -535,7 +535,7 @@ const ModalUpgradePending = props => {
 
   // send the API request to upgrade the user's wearable
   async function upgradeToken() {
-    console.log('Upgrading NFT token ID: ' + props.tokenID);
+    console.log('Upgrading NFT token ID: ' + props.tokenId);
     console.log('Collection address: ' + props.address);
 
     const token = 'WEARABLE';
@@ -543,7 +543,7 @@ const ModalUpgradePending = props => {
     setUpdateStatus({ name: token, value: 'clicked' });
 
     try {
-      const json = await Fetch.UPGRADE_TOKEN(props.tokenID, props.address);
+      const json = await Fetch.UPGRADE_TOKEN(props.tokenId, props.address);
 
       if (json.status) {
         console.log('success in upgrading:', json);
