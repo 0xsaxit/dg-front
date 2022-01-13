@@ -185,7 +185,7 @@ function SectionTwo() {
         </div>
       </div>
 
-      <div className={cn(styles.section_two_second, 'container-fluid')} style={{ maxWidth: '1440px' }}>
+      <div className={cn(styles.section_two_second, 'container-fluid')}>
         <div className={cn('row', styles.image_span)}>
           <div
             className={
@@ -226,7 +226,7 @@ function SectionTwo() {
             <h1 className={styles.section_h1}>
               {/* {t('Home.EARNAPY')} */}
               Or lend out your NFTs for passive income.
-              {mobile ? null : 'All while your assets stay in your wallet.'}
+              {mobile ? null : ' All while your assets stay in your wallet.'}
             </h1>
             <p className={styles.section_p}>
               {/* {t('Home.STAKE_DG_GOVERNANCE')} */}
