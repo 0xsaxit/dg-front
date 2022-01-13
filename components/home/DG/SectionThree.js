@@ -12,20 +12,17 @@ const FunctionThree = () => {
 
   return (
     <>
-      <div className={styles.get_started}>
+      {/* <div className={styles.get_started}>
         <p className={styles.sub_title}>
-          {/* {t('Home.HOW_TO_START_DG')} */}
           How to start with $DG"
         </p>
         <h2 className={styles.title}>
-          {/* {t('Home.GET_STARTED')} */}
           Get Started
         </h2>
         <Button
           className={styles.start_here}
           href="/start"
         >
-          {/* {t('Home.START_HERE')} */}
           Start Here
         </Button>
         {!mobile && (
@@ -39,7 +36,7 @@ const FunctionThree = () => {
             muted
           ></video>
         )}
-      </div>
+      </div> */}
 
       <div className={styles.join}>
         <img 

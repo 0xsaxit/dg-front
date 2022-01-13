@@ -15,6 +15,7 @@ import Transactions from '../store/Transactions';
 import TreasuryNumbers from '../store/TreasuryNumbers';
 import GameRecords from '../store/GameRecords';
 import ActiveStatus from '../store/ActiveStatus';
+import CryptoWidget from '../store/CryptoWidget';
 import UserInfo from '../store/UserInfo';
 import AdminBalances from '../store/AdminBalances';
 import UsersList from '../store/UsersList';
@@ -27,12 +28,12 @@ import ICEAttributes from '../store/ICEAttributes';
 import AppConfig from '../store/AppConfig';
 
 // import Spinner from 'components/Spinner';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 // import { useEffect, useContext, useState } from 'react';
 // import { GlobalContext } from '../store';
 
 function Application({ Component, pageProps, store }) {
-  // const router = useRouter();
+  const router = useRouter();
   // const [pageLoading, setPageLoading] = useState(true);
 
   // useEffect(() => {
@@ -77,6 +78,7 @@ function Application({ Component, pageProps, store }) {
       )} */}
 
       <AppConfig />
+      <CryptoWidget pathName={router.pathname} />
       <UserStatus />
       <UserBalances />
       <Transactions />
