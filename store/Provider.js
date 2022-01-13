@@ -81,6 +81,7 @@ const initialState = {
     usdt: 0,
     dg: 0,
     ice: 0,
+    xDG: 0,
   },
   DGBreakdown: {
     eth: 0,
@@ -142,6 +143,13 @@ const initialState = {
     [-1, 20],
   ],
   itemLimits6: [
+    [-1, 0],
+    [-1, 5],
+    [-1, 10],
+    [-1, 15],
+    [-1, 20],
+  ],
+  itemLimits7: [
     [-1, 0],
     [-1, 5],
     [-1, 10],
@@ -386,6 +394,11 @@ const reducer = (state, action) => {
         ...state,
         itemLimits6: action.data,
       };
+    case 'item_limits_7':
+      return {
+        ...state,
+        itemLimits7: action.data,
+      };
     case 'ice_wearable_items':
       return {
         ...state,
@@ -529,6 +542,13 @@ const reducer = (state, action) => {
         ...state,
         refreshWearable: action.data,
       };
+
+    case 'refresh_wearable_inventory':
+      return {
+        ...state,
+        refreshWearableInventory: action.data,
+      };
+
     case 'refresh_delegate_info':
       return {
         ...state,

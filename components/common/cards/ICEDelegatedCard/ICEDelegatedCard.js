@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { GlobalContext } from '../../../../store';
 import GetRank from '../../../../common/GetIceWearableRank';
 import IceWearableBonusTooltip from 'components/tooltips/IceWearableBonusTooltip';
@@ -6,6 +6,7 @@ import ModalWithdrawDelegation from 'components/modal/ModalWithdrawDelegation';
 import styles from './ICEDelegatedCard.module.scss';
 import Aux from '../../../_Aux';
 import IceCheckedInTooltip from 'components/tooltips/IceCheckedInTooltip';
+import Fetch from '../../../../common/Fetch';
 
 const ICEWearableCard = props => {
   // get user's wallet address from the Context API store
@@ -13,10 +14,43 @@ const ICEWearableCard = props => {
 
   // define local variables
   const buttonUndelegate = 'Withdraw Delegation';
-  const { name, description, image, attributes } = props.data;
-  const rank = GetRank(
-    parseInt(attributes.find(el => el.trait_type === 'Bonus').value)
-  );
+  const [checkInStatus, setCheckInStatus] = useState(false);
+  const [delegationStatus, setDelegationStatus] = useState(false);
+  const { rank, name, description, image} = props;
+  const bonus = "+" + props.bonus + "%";
+
+  useEffect(() => {
+    if (state.userStatus >= 4) {
+      (async function () {
+        const delegationInfo = await Fetch.GET_WEARABLE_INVENTORY(
+          state.userAddress
+        );
+
+        delegationInfo.forEach((item, index) => {
+          if (item.contractAddress === props.contractAddress) {
+            const address = item.contractAddress;
+            const tokenId = item.tokenId;
+            const checkInStatus = item.checkInStatus;
+            const isQueuedForUndelegationByDelegatee =
+              item.delegationStatus.isQueuedForUndelegationByDelegatee;
+            const isQueuedForUndelegationByOwner =
+              item.delegationStatus.isQueuedForUndelegationByOwner;
+
+            if (
+              tokenId === props.tokenId &&
+              address.toLowerCase() === props.contractAddress.toLowerCase()
+            ) {
+              setCheckInStatus(checkInStatus);
+              setDelegationStatus(
+                isQueuedForUndelegationByDelegatee ||
+                  isQueuedForUndelegationByOwner
+              );
+            }
+          }
+        });
+      })();
+    }
+  }, [state.refreshDelegateInfo]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -25,7 +59,7 @@ const ICEWearableCard = props => {
     return (
       <Aux>
         <div className={styles.wear_box_purple}>
-          {props.isCheckedIn && <IceCheckedInTooltip />}
+          {checkInStatus && <IceCheckedInTooltip />}
           <img src={image} />
         </div>
 
@@ -45,8 +79,8 @@ const ICEWearableCard = props => {
               />
             </svg>
           </div>
-          <div className={styles.card}>{`Rank ${rank.value}`}</div>
-          <IceWearableBonusTooltip bonus={rank.percentage} />
+          <div className={styles.card}>{`Rank ${rank}`}</div>
+          <IceWearableBonusTooltip bonus={bonus} />
           <div className={styles.card}>
             {description.split(' ').at(-1).replace('/', ' of ')}
           </div>
@@ -54,7 +88,7 @@ const ICEWearableCard = props => {
 
         <div className={styles.card_title}>
           <p>{name.split('(ICE')[0].trim()}</p>
-          <p>{`(ICE Rank ${rank.value})`}</p>
+          <p>{`(ICE Rank ${rank})`}</p>
         </div>
       </Aux>
     );
@@ -68,11 +102,13 @@ const ICEWearableCard = props => {
 
           <div className={styles.button_area}>
             <ModalWithdrawDelegation
-              tokenID={props.tokenID}
-              address={props.address}
-              ownerAddress={props.ownerAddress}
+              tokenId={props.tokenId}
+              contractAddress={props.contractAddress}
+              tokenOwner={props.tokenOwner}
               delegateAddress={state.userAddress}
+              delegationStatus={delegationStatus}
               buttonName={buttonUndelegate}
+              checkInStatus={checkInStatus}
             />
           </div>
         </div>

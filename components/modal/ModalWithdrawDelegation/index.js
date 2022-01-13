@@ -18,7 +18,7 @@ const ModalWithdrawDelegation = props => {
   const [withdrawStatus, setWithdrawStatus] = useState(0);
   const [errorMsg, setErrorMsg] = useState(null);
   const [remainingTime, setRemainingTime] = useState(0);
-  const isDelegator = props.ownerAddress === state.userAddress;
+  const isDelegator = props.tokenOwner === state.userAddress;
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
@@ -185,8 +185,8 @@ const ModalWithdrawDelegation = props => {
 
     const json = await Fetch.DELEGATE_NFT(
       props.delegateAddress,
-      props.tokenID,
-      props.address
+      props.tokenId,
+      props.contractAddress
     );
 
     if (json.status) {
@@ -196,11 +196,13 @@ const ModalWithdrawDelegation = props => {
         type: 'show_toastMessage',
         data: 'Scheduled Withdraw Cancelled',
       });
-      const refresh = !state.refreshDelegateInfo;
-      dispatch({
-        type: 'refresh_delegate_info',
-        data: refresh,
-      });
+
+      // const refreshDelegation = !state.refreshDelegation;
+      // dispatch({
+      //   type: 'refresh_delegation',
+      //   data: refreshDelegation,
+      // });
+
       setOpen(false);
     } else {
       setErrorMsg('Withdraw Cancelling failed: ' + json.result);
@@ -210,24 +212,30 @@ const ModalWithdrawDelegation = props => {
   }
 
   async function undelegateNFT() {
-    console.log('Undelegate token ID: ' + props.tokenID);
-    console.log('Token owner address: ' + props.ownerAddress);
+    console.log('Undelegate token ID: ' + props.tokenId);
+    console.log('Token owner address: ' + props.tokenOwner);
     console.log('Delegate address: ' + props.delegateAddress);
-    console.log('Collection address: ' + props.address);
+    console.log('Collection address: ' + props.contractAddress);
     setErrorMsg(null);
     setClicked(true);
 
     const json = await Fetch.UNDELEGATE_NFT(
-      props.ownerAddress,
+      props.tokenOwner,
       props.delegateAddress,
-      props.tokenID,
-      props.address
+      props.tokenId,
+      props.contractAddress
     );
 
     if (json.status) {
       console.log('NFT undelegation request successful');
       setClicked(false);
       setWithdrawStatus(0);
+
+      const refreshDelegation = !state.refreshDelegation;
+      dispatch({
+        type: 'refresh_delegation',
+        data: refreshDelegation,
+      });
 
       // success
       completeWithdraw();
@@ -258,6 +266,7 @@ const ModalWithdrawDelegation = props => {
           close
           trigger={
             <Button
+              disabled={props.disabled}
               className={
                 props.buttonName === 'Withdraw Delegation' || props.rank === 5
                   ? styles.open_button_fullWidth
@@ -281,7 +290,6 @@ const ModalWithdrawDelegation = props => {
                   <Button
                     className={styles.button_close}
                     onClick={() => {
-                      props.onLoad();
                       if (props.delegationStatus === true) {
                         delegateNFT();
                       } else {
@@ -333,13 +341,13 @@ const ModalWithdrawDelegation = props => {
       {success && !props.checkInStatus && (
         <ModalDelegateConfirm
           buttonName={props.buttonName}
-          address={props.delegateAddress}
+          contractAddress={props.delegateAddress}
         />
       )}
       {success && props.checkInStatus && !props.delegationStatus && (
         <ModalUndelegateQueued
           buttonName={props.buttonName}
-          address={props.delegateAddress}
+          contractAddress={props.delegateAddress}
           remainingTime={remainingTime}
         />
       )}

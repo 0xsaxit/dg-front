@@ -12,16 +12,7 @@ const ModalDelegateConfirm = props => {
 
   // update global state delegation information
   function setGlobalState() {
-
     // update global state delegated items
-    /*
-    const refresh = !state.refreshDelegation;
-    dispatch({
-      type: 'refresh_delegation',
-      data: refresh,
-    });
-    */
-
     const refresh = !state.refreshDelegateInfo;
     dispatch({
       type: 'refresh_delegate_info',
@@ -107,7 +98,7 @@ const ModalDelegateConfirm = props => {
           <div className={styles.header}>Withdrawal Successful!</div>
 
           <div className={styles.description}>
-            You’re no longer delegating to <a>{props.address}</a> Any previous
+            You’re no longer delegating to <a>{props.contractAddress}</a> Any previous
             profits can be claimed from your <a>ICE rewards page.</a>
           </div>
 
