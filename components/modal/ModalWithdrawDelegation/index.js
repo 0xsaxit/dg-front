@@ -5,6 +5,7 @@ import Fetch from '../../../common/Fetch';
 import styles from './ModalWithdrawDelegation.module.scss';
 import ModalUndelegateQueued from '../ModalUndelegateQueued';
 import ModalDelegateConfirm from '../ModalDelegateConfirm';
+import Spinner from 'components/lottieAnimation/animations/spinner';
 import Aux from '../../_Aux';
 
 const ModalWithdrawDelegation = props => {
@@ -325,7 +326,7 @@ const ModalWithdrawDelegation = props => {
                   </Button>
                 ) : (
                   <Button className={styles.button_close} disabled={true}>
-                    Pending Transaction...
+                    <Spinner />
                   </Button>
                 )}
               </div>
