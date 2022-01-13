@@ -30,13 +30,10 @@ function SectionOne(props) {
             <h1>
               {' '}
               {/* { t('Home.PLAY') } */}
-              Play-to-earn gaming in the metaverse
+              Play-to-earn gaming {mobile ? <br /> : null} in the metaverse
             </h1>
             <p className={cn(styles.content, mobile ? 'px-6 mx-auto' : 'px-0')}>
-              {mobile
-                ? ''
-                : 'Free to play, play to earn gaming in the metaverse. Play ICE Poker, trade NFTs, vote in the DAO, and earn real value from your favorite games' //t('Home.YOUAREHOUSE')
-              }
+              We build games that give players economic freedom. Play to earn and scale your own metaverse business. ICE Poker beta is live now.
             </p>
             <span className={styles.button_group}>
               <Button
@@ -45,11 +42,7 @@ function SectionOne(props) {
                 href="https://docs.decentral.games/"
                 target="_blank"
               >
-                {mobile ?
-                  'Info' //t('Home.INFO') 
-                  :
-                  'Learn More' //t('Home.LEARNMORE')
-                }
+                Get Started
               </Button>
               <Button
                 color="blue"
@@ -58,11 +51,7 @@ function SectionOne(props) {
                 // href="https://play.decentraland.org/?position=-118%2C135&realm=dg"
                 target="_blank"
               >
-                {mobile ?
-                  'Play' //t('Home.PLAY') 
-                  :
-                  'Play Now' //t('Home.PLAYNOW')
-                }
+                Play Now
               </Button>
             </span>
           </div>

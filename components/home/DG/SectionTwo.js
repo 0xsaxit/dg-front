@@ -79,18 +79,18 @@ function SectionTwo() {
           </p>
           <span className={styles.tout_span}>
             <Button className={styles.grey_button} href="/ice/start">
-              {mobile ? 'Start' : 'Get Started'}
+              Get Started
             </Button>
             <Button
               className={styles.blue_button}
               href="https://api.decentral.games/ice/play?position=-110%2C129"
               target="_blank"
             >
-              {mobile ? 'Play' : 'Play Now'}
+              Play Now
             </Button>
           </span>
 
-          <a href="https://ice.decentral.games" target="_blank">
+          {/* <a href="https://ice.decentral.games" target="_blank">
             <p className={styles.wp_text}>
               Read Whitepaper
               <svg
@@ -107,7 +107,7 @@ function SectionTwo() {
                 />
               </svg>
             </p>
-          </a>
+          </a> */}
         </div>
 
         <div
@@ -138,23 +138,19 @@ function SectionTwo() {
             <span className={styles.button_span}>
               <Button
                 className={styles.grey_button}
-                href="https://ice.decentral.games/"
+                href="https://ice.decentral.games/ice-nft-wearables"
                 target="_blank"
               >
-                {
-                  mobile
-                    ? 'Info' //t('Home.INFO')
-                    : 'Learn More' //t('Home.LEARNMORE')
-                }
+                Learn More
               </Button>
               <Button
                 className={styles.blue_button}
-                href="/games"
+                href="https://discord.com/invite/cvbSNzY"
                 target="_blank"
               >
                 {
                   mobile
-                    ? 'Find a Lender' // t('Home.GAMES')
+                    ? 'Find a Lender (Delegator)' // t('Home.GAMES')
                     : 'Find a Lender' // t('Home.SEEGAMES')
                 }
               </Button>
@@ -230,7 +226,7 @@ function SectionTwo() {
             <h1 className={styles.section_h1}>
               {/* {t('Home.EARNAPY')} */}
               Or lend out your NFTs for passive income.
-              All while your assets stay in your wallet.
+              {mobile ? null : 'All while your assets stay in your wallet.'}
             </h1>
             <p className={styles.section_p}>
               {/* {t('Home.STAKE_DG_GOVERNANCE')} */}
@@ -240,25 +236,17 @@ function SectionTwo() {
             <span className={styles.button_span}>
               <Button
                 className={styles.grey_button}
-                href="https://docs.decentral.games/"
+                href="https://ice.decentral.games/ice-nft-wearables"
                 target="_blank"
               >
-                {
-                  mobile
-                    ? 'Info' //t('Home.INFO')
-                    : 'Learn More' //t('Home.LEARNMORE')
-                }
+                Learn More
               </Button>
               <Button
                 className={styles.blue_button}
-                href="https://docs.decentral.games/getting-started/earn-dg-gov-rewards"
+                href="https://decentral.games/ice/marketplace"
                 target="_blank"
               >
-                {
-                  mobile
-                    ? 'See Wearables' //t('Home.EARN')
-                    : 'See Available Wearables' //t('Home.EARNAPY')
-                }
+                Browser Wearables
               </Button>
             </span>
           </div>
@@ -291,23 +279,8 @@ function SectionTwo() {
             </p>
 
             <span className={styles.button_span}>
-              <Button
-                className={styles.grey_button}
-                href="https://docs.decentral.games/"
-                target="_blank"
-              >
-                {
-                  mobile
-                    ? 'Info' // t('Home.INFO')
-                    : 'Learn More ' // t('Home.LEARNMORE')
-                }
-              </Button>
               <Button className={styles.blue_button} href="/dg/">
-                {
-                  tablet
-                    ? 'Explore' // t('Home.EXPLORER')
-                    : 'Explore Treasury' // t('Home.EXPLORER_THREASURY')
-                }
+                Explore Treasury
               </Button>
             </span>
           </div>
