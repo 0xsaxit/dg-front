@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react';
 import cn from 'classnames';
-import { Button, Icon } from 'semantic-ui-react';
+import { Button, Icon, Grid } from 'semantic-ui-react';
 import { useMediaQuery } from 'hooks';
 import Link from 'next/link';
 import { GlobalContext } from 'store';
@@ -9,7 +9,7 @@ import styles from './Footer.module.scss';
 
 const Footer = () => {
   const [state, dispatch] = useContext(GlobalContext);
-  
+
   // define local variables
   let linkDocs = '';
   const mobile = useMediaQuery('(max-width: 768px)');
@@ -19,7 +19,6 @@ const Footer = () => {
   // const { t, i18n } = useTranslation();
   const DGBalances = state.DGBalances.BALANCE_STAKING_UNISWAP;
   const DGStakingBalances = state.stakingBalances.BALANCE_STAKED_UNISWAP;
-
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -37,6 +36,10 @@ const Footer = () => {
     <>
       <div className={styles.footer_container}>
         <div className={cn(styles.grid_container, 'd-flex flex-column')}>
+          {!onlyTablet && !mobile && (
+            <div style={{ marginTop: '100px' }} />
+          )}
+
           <div
             className={cn(
               'd-flex flex-md-row flex-column w-100',
@@ -44,54 +47,54 @@ const Footer = () => {
             )}
           >
             <span className={styles.grid_column}>
-              <p className={styles.footer_header}> 
+              <p className={styles.footer_header}>
                 {/* {t('Footer.TOKEN')}  */}
                 Token
               </p>
               <Link href="/dg">
-                <p className={styles.footer_link}> 
+                <p className={styles.footer_link}>
                   {/* {t('Footer.TREASURY')}  */}
                   Treasury
                 </p>
               </Link>
               <Link href="/dg/governance">
-                <p className={styles.footer_link}> 
+                <p className={styles.footer_link}>
                   {/* {t('Footer.GOVERNANCE')}  */}
                   Governance
                 </p>
               </Link>
-              <Link href="/dg/mining">
-                <p className={styles.footer_link}> 
+              <Link href="https://snapshot.org/#/decentralgames.eth">
+                <p className={styles.footer_link}>
                   {/* {t('Footer.GAMEPLAY')}  */}
-                  Gameplay
+                  Proposals
                 </p>
               </Link>
-              {DGBalances > 0 || DGStakingBalances > 0 && <Link href="/dg/liquidity">
-                <p className={styles.footer_link}> 
+              <Link href="/dg/migration">
+                <p className={styles.footer_link}>
                   {/* {t('Footer.LIQUDITY')}  */}
-                  Liquidity
+                  Migration
                 </p>
-              </Link>}
+              </Link>
             </span>
 
             <span className={styles.grid_column}>
-              <p className={styles.footer_header}> 
+              <p className={styles.footer_header}>
                 {/* {t('Footer.PLAY')}  */}
                 Play
               </p>
               <Link href="/games">
-                <p className={styles.footer_link}> 
+                <p className={styles.footer_link}>
                   {/* {t('Footer.GAMES')}  */}
                   Games
                 </p>
               </Link>
               <Link href="/games/scenes">
-                <p className={styles.footer_link}> 
-                  Scenes 
+                <p className={styles.footer_link}>
+                  Casinos
                 </p>
               </Link>
               <Link href="/games/leaderboard">
-                <p className={styles.footer_link}> 
+                <p className={styles.footer_link}>
                   {/* {t('Footer.LEADERBOARD')}  */}
                   Leaderboard
                 </p>
@@ -99,18 +102,18 @@ const Footer = () => {
             </span>
 
             <span className={styles.grid_column}>
-              <p className={styles.footer_header}> 
+              <p className={styles.footer_header}>
                 {/* {t('Footer.SHOP')}  */}
                 Shop
               </p>
               <Link href="/games/nfts">
-                <p className={styles.footer_link}> 
+                <p className={styles.footer_link}>
                   {/* {t('Footer.NFTS')}  */}
                   NFTs
                 </p>
               </Link>
               <Link href="/games/shop">
-                <p className={styles.footer_link}> 
+                <p className={styles.footer_link}>
                   {/* {t('Footer.DCL_SHOPS')}  */}
                   DCL Shops
                 </p>
@@ -118,45 +121,39 @@ const Footer = () => {
             </span>
 
             <span className={styles.grid_column}>
-              <p className={styles.footer_header}> 
-                {/* {t('Footer.EVENTS')}  */}
-                Events
-              </p>
-              <Link href="/events">
-                <p className={styles.footer_link}> 
-                  {/* {t('Footer.ALL_EVENTS')}  */}
-                  All Events
-                </p>
-              </Link>
-              <a href="mailto:hello@decentral.games">
-                <p className={styles.footer_link}> 
-                  {/* {t('Footer.PARTNER_SHIP')}  */}
-                  Partnerships
-                </p>
-              </a>
-            </span>
-
-            <span className={styles.grid_column}>
-              <p className={styles.footer_header}> 
+              <p className={styles.footer_header}>
                 {/* {t('Footer.NEWS')}  */}
                 News
               </p>
               <Link href="/blog">
-                <p className={styles.footer_link}> 
+                <p className={styles.footer_link}>
                   {/* {t('Footer.NEWS')}  */}
                   News
                 </p>
               </Link>
               <Link href="/blog">
-                <p className={styles.footer_link}> 
+                <p className={styles.footer_link}>
                   {/* {t('Footer.BLOG')}  */}
                   Blog
                 </p>
               </Link>
             </span>
 
+            <span className={styles.grid_column}>
+              <p className={styles.footer_header}>
+                {/* {t('Footer.EVENTS')}  */}
+                Events
+              </p>
+              <Link href="/events">
+                <p className={styles.footer_link}>
+                  {/* {t('Footer.ALL_EVENTS')}  */}
+                  All Events
+                </p>
+              </Link>
+            </span>
+
             <div className={styles.grid_newsletter}>
-              <p className={styles.footer_header}> 
+              <p className={styles.footer_header}>
                 {/* {t('Footer.JOIN_OUR_NEWS_LETTER')}  */}
                 Join Our Newsletter!
               </p>
@@ -197,8 +194,7 @@ const Footer = () => {
           {!onlyTablet && !mobile && (
             <div className={styles.cookie_container}>
               <span className={styles.copyright}>
-                {/* {t('Footer.COPYRIGHT_2021')} */}
-                Copyright © 2021 Web4 LTD. All rights reserved
+                Copyright © 2022 Web4 LTD. All rights reserved
               </span>
               <div className="d-flex justify-content-between">
                 <p className={styles.description}>
@@ -207,7 +203,7 @@ const Footer = () => {
                   </a>
                   <a href="/discord" target="_blank">
                     <Icon className={styles.icon} name="discord" />
-                  </a>                  
+                  </a>
                   <a href="https://t.me/decentralgames" target="_blank">
                     <Icon className={styles.icon} name="telegram" />
                   </a>
@@ -240,7 +236,6 @@ const Footer = () => {
             >
               {/* {t('Footer.SIGNUP_FOR_SUBSTACK')} */}
               Sign Up For Substack
-              
               <svg
                 width="14"
                 height="14"
@@ -260,16 +255,14 @@ const Footer = () => {
         {mobile && (
           <div className={styles.cookie_container_tablet}>
             <span className={styles.copyright}>
-              {/* {t('Footer.COPYRIGHT_2021')} */}
-              Copyright © 2021 Web4 LTD. All rights reserved
+              Copyright © 2022 Web4 LTD. All rights reserved
             </span>
           </div>
         )}
         {onlyTablet && (
           <div className={styles.cookie_container}>
             <span className={styles.copyright}>
-              {/* {t('Footer.COPYRIGHT_2021')} */}
-              Copyright © 2021 Web4 LTD. All rights reserved
+              Copyright © 2022 Web4 LTD. All rights reserved
             </span>
             <div className="d-flex justify-content-between">
               <p className={styles.description}>
@@ -278,7 +271,7 @@ const Footer = () => {
                 </a>
                 <a href="/discord" target="_blank">
                   <Icon className={styles.icon} name="discord" />
-                </a>                  
+                </a>
                 <a href="https://t.me/decentralgames" target="_blank">
                   <Icon className={styles.icon} name="telegram" />
                 </a>

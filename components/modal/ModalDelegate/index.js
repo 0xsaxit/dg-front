@@ -8,6 +8,7 @@ import Global from '../../Constants';
 import Aux from '../../_Aux';
 import ABI_COLLECTION_V2 from '../../../components/ABI/ABICollectionV2';
 import ABI_COLLECTION_PH from '../../../components/ABI/ABICollectionPH';
+import Spinner from 'components/lottieAnimation/animations/spinner';
 import Web3 from 'web3';
 
 const ModalDelegate = props => {
@@ -379,16 +380,21 @@ const ModalDelegate = props => {
                     </Button>
                   ) : (
                     <Button className={styles.button_upgrade} disabled={true}>
-                      Pending Transaction...
+                      <Spinner />
                     </Button>
                   )}
 
                   <Button
                     className={styles.button_close}
                     onClick={() => {
-                      window.open("https://ice.decentral.games/ice-nft-wearables", "_blank");
+                      window.open(
+                        'https://ice.decentral.games/ice-nft-wearables',
+                        '_blank'
+                      );
                     }}
-                  >Learn More</Button>
+                  >
+                    Learn More
+                  </Button>
                 </div>
               </div>
 

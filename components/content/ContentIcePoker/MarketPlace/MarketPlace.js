@@ -621,7 +621,7 @@ const MarketPlace = () => {
                               </Button>
                             )
                               : (
-                                // Buy on Secondary
+                                // Buy on Secondary (Previous Mint)
                                 <a
                                   className={styles.flex_50}
                                   href="https://opensea.io/collection/decentral-games-ice"
