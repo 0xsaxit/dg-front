@@ -317,6 +317,10 @@ const Fetch = {
     } else {
       return call(`https://api.decentral.games/ice/getGameplayReports`, 'GET');
     }
+  },
+
+  GET_FRONTPAGE_STATS: () =>  {
+    return call(`${API_BASE_URL}/admin/getFrontPageStats`, 'GET');
   }
 };
 

@@ -113,6 +113,7 @@ function SectionTwo() {
         <div
           className={cn(
             'row flex-md-row flex-column-reverse',
+            styles.section_two_one,
             styles.image_span,
             styles.text_group
           )}
@@ -270,12 +271,11 @@ function SectionTwo() {
             style={{ position: 'relative', zIndex: '3' }}
           >
             <h1 className={styles.section_h1}>
-              Stake Dg. Vote in the DAO {/* {t('Home.VOTE_IN_THE_DAO')}  */}
+              Stake DG. Vote in the DAO {/* {t('Home.VOTE_IN_THE_DAO')}  */}
             </h1>
             <p className={styles.section_p}>
               {/* {t('Home.WITH_THE_DG_DAO')} */}
-              With the $DG DAO, you own the casino. Control the profits, vote
-              for new games, and decide on feature proposals.
+              Govern the DG Treasury and vote on proposals for new games and features.
             </p>
 
             <span className={styles.button_span}>
