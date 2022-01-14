@@ -5,13 +5,21 @@ import { Grid, Image } from 'semantic-ui-react';
 import Aux from 'components/_Aux';
 import IceWearables from '../Ice/BalancesAndWearables/Wearables'
 import styles from './Items.module.scss';
+import Images from 'common/Images';
+
 
 function Items({ state }) {
 
   return (
     <Aux>
-      <IceWearables state={state} />
-
+      {!state.iceWearableItemsLoading && !state.iceDelegatedItemsLoading ? (
+        <IceWearables state={state} />
+      ) : (
+        <div className={styles.spinner_wrapper}>
+          <img src={Images.LOADING_SPINNER} />
+        </div>
+      )}
+      
       <div className={styles.items_container}>
         <span>
           <h1 className={styles.title}>

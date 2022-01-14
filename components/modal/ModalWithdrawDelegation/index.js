@@ -197,11 +197,11 @@ const ModalWithdrawDelegation = props => {
         data: 'Scheduled Withdraw Cancelled',
       });
 
-      // const refreshDelegation = !state.refreshDelegation;
-      // dispatch({
-      //   type: 'refresh_delegation',
-      //   data: refreshDelegation,
-      // });
+      const refreshDelegation = !state.refreshDelegation;
+      dispatch({
+        type: 'refresh_delegation',
+        data: refreshDelegation,
+      });
 
       setOpen(false);
     } else {

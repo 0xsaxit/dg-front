@@ -22,12 +22,14 @@ const ICEWearableCard = props => {
   // define local variables
   const [delegateAddress, setDelegateAddress] = useState('');
   const [delegationStatus, setDelegationStatus] = useState(false);
-  const [undelegateLoading, setUndelegateLoading] = useState(true);
+  const [undelegateLoading, setUndelegateLoading] = useState(1);
   const [checkInStatus, setCheckInStatus] = useState(false);
   const buttonDelegate = 'Delegate';
   const buttonUndelegate = 'Undelegate';
   const { name, description, rank, image } = props;
   const bonus = "+" + props.bonus + "%";
+  
+  // alert(undelegateLoading)
 
   useEffect(() => {
     if (state.userStatus >= 4) {
@@ -58,7 +60,8 @@ const ICEWearableCard = props => {
                 isQueuedForUndelegationByDelegatee ||
                   isQueuedForUndelegationByOwner
               );
-              setUndelegateLoading(false)
+              setUndelegateLoading(0)
+              // alert(undelegateLoading)
             }
           }
         });
@@ -152,7 +155,7 @@ const ICEWearableCard = props => {
                     bonus={bonus}
                     description={description}
                     disabled={undelegateLoading}
-                    buttonName={state.iceWearableItemsLoading || state.iceDelegatedItemsLoading ? <SpinnerAnimation /> : buttonDelegate}
+                    buttonName={(undelegateLoading == 1) ? <SpinnerAnimation /> : buttonDelegate}
                   />
                 ) : (
                   <ModalWithdrawDelegation
@@ -163,9 +166,8 @@ const ICEWearableCard = props => {
                     tokenOwner={state.userAddress}
                     delegateAddress={delegateAddress}
                     rank={rank.value}
-                    onLoad={()=>{setUndelegateLoading(true)}}
                     disabled={undelegateLoading}
-                    buttonName={state.iceWearableItemsLoading || state.iceDelegatedItemsLoading ? <SpinnerAnimation /> : buttonUndelegate}
+                    buttonName={(undelegateLoading == 1) ? <SpinnerAnimation /> : buttonUndelegate}
                   />
                 )}
                 {rank < 5 && (
