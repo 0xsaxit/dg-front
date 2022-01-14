@@ -14,43 +14,11 @@ const ICEWearableCard = props => {
 
   // define local variables
   const buttonUndelegate = 'Withdraw Delegation';
-  const [checkInStatus, setCheckInStatus] = useState(false);
-  const [delegationStatus, setDelegationStatus] = useState(false);
-  const { rank, name, description, image} = props;
-  const bonus = "+" + props.bonus + "%";
-
-  useEffect(() => {
-    if (state.userStatus >= 4) {
-      (async function () {
-        const delegationInfo = await Fetch.GET_WEARABLE_INVENTORY(
-          state.userAddress
-        );
-
-        delegationInfo.forEach((item, index) => {
-          if (item.contractAddress === props.contractAddress) {
-            const address = item.contractAddress;
-            const tokenId = item.tokenId;
-            const checkInStatus = item.checkInStatus;
-            const isQueuedForUndelegationByDelegatee =
-              item.delegationStatus.isQueuedForUndelegationByDelegatee;
-            const isQueuedForUndelegationByOwner =
-              item.delegationStatus.isQueuedForUndelegationByOwner;
-
-            if (
-              tokenId === props.tokenId &&
-              address.toLowerCase() === props.contractAddress.toLowerCase()
-            ) {
-              setCheckInStatus(checkInStatus);
-              setDelegationStatus(
-                isQueuedForUndelegationByDelegatee ||
-                  isQueuedForUndelegationByOwner
-              );
-            }
-          }
-        });
-      })();
-    }
-  }, [state.refreshDelegateInfo]);
+  const { name, description, rank, image, tokenId, checkInStatus, contractAddress, itemId, tokenOwner } = props.item;
+  const bonus = "+" + props.item.bonus + "%";
+  const delegateAddress = props.item.delegationStatus.delegatedTo || '';
+  const delegationStatus = props.item.delegationStatus.isQueuedForUndelegationByDelegatee ||
+                            props.item.delegationStatus.isQueuedForUndelegationByOwner;
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -102,9 +70,9 @@ const ICEWearableCard = props => {
 
           <div className={styles.button_area}>
             <ModalWithdrawDelegation
-              tokenId={props.tokenId}
-              contractAddress={props.contractAddress}
-              tokenOwner={props.tokenOwner}
+              tokenId={tokenId}
+              contractAddress={contractAddress}
+              tokenOwner={tokenOwner}
               delegateAddress={state.userAddress}
               delegationStatus={delegationStatus}
               buttonName={buttonUndelegate}
