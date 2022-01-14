@@ -337,13 +337,13 @@ const ModalWithdrawDelegation = props => {
       {success && !props.checkInStatus && (
         <ModalDelegateConfirm
           buttonName={props.buttonName}
-          contractAddress={props.delegateAddress}
+          delegateAddress={props.delegateAddress}
         />
       )}
       {success && props.checkInStatus && !props.delegationStatus && (
         <ModalUndelegateQueued
           buttonName={props.buttonName}
-          contractAddress={props.delegateAddress}
+          delegateAddress={props.delegateAddress}
           remainingTime={remainingTime}
         />
       )}

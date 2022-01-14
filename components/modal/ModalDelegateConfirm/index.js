@@ -98,7 +98,7 @@ const ModalDelegateConfirm = props => {
           <div className={styles.header}>Withdrawal Successful!</div>
 
           <div className={styles.description}>
-            You’re no longer delegating to <a>{props.contractAddress}</a> Any previous
+            You’re no longer delegating to <a>{props.delegateAddress}</a> Any previous
             profits can be claimed from your <a>ICE rewards page.</a>
           </div>
 
