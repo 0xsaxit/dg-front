@@ -13,12 +13,9 @@ function Items({ state }) {
   return (
     <Aux>
       {!state.iceWearableItemsLoading && !state.iceDelegatedItemsLoading ? (
+        <>
         <IceWearables state={state} />
-      ) : (
-        <div className={styles.spinner_wrapper}>
-          <img src={Images.LOADING_SPINNER} />
-        </div>
-      )}
+      
       
       <div className={styles.items_container}>
         <span>
@@ -104,6 +101,12 @@ function Items({ state }) {
           </div>
         )}
       </div>
+      </>
+    ) : (
+      <div className={styles.spinner_wrapper}>
+        <img src={Images.LOADING_SPINNER} />
+      </div>
+    )}
     </Aux>
   );
 }
