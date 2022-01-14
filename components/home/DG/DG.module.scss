@@ -70,7 +70,7 @@
 
   .tout_image {
     display: flex;
-    width: 500px;
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
@@ -427,6 +427,12 @@
     }
   }
 
+  .section_two_one {
+    .image {
+      width: 90%;
+    }
+  }
+
   .section_two_second {
     max-width: 1250px;
     padding: 0px 0px 0px 0px;
@@ -568,16 +574,22 @@
     padding: 0 60px;
     margin-top: 30px;
 
+    @media screen and (max-width: 1440px) {
+      max-width: 1240px;
+      padding: 0 100px;
+      margin: 30px auto 0px auto;
+    }
+
+    @include mq($from: medium, $until: extra-large) {
+      padding: 0 60px;
+      margin-left: 0px;
+      margin-top: -30px;
+    }
+
     @include mq($until: medium) {
       padding: 0 30px;
       margin-left: 0px;
       width: 600px;
-    }
-
-    @include mq($from: medium, $until: extra-large) {
-      padding: 0 0px;
-      margin-left: 30px;
-      margin-top: -30px;
     }
 
     @include mq($until: small) {
@@ -595,16 +607,22 @@
 
     .row {
       position: absolute;
-      top: calc(50% - 60px);
+      top: calc(50% - 80px);
       transform: translateY(-50%);
       width: 100%;
 
+      @media screen and (max-width: 1440px) {
+        top: calc(50% - 80px);
+      }
+
       @include mq($until: extra-large) {
+        top: calc(50% - 60px);
         width: calc(100% - 60px);
         padding-top: 120px;
       }
 
       @include mq($until: medium) {
+        top: calc(50% - 60px);
         width: calc(100% - 60px);
         padding-top: 0px;
       }
@@ -619,6 +637,10 @@
       color: white;
       text-shadow: 1px 1px 5px black;
       max-width: 650px;
+      
+      @media screen and (max-width: 1440px) {
+        font-size: 44px;
+      }
 
       @include mq($until: large) {
         max-width: 550px;
@@ -646,6 +668,11 @@
       max-width: 645px;
       margin-bottom: 8px;
       margin-top: 6px;
+      
+      @media screen and (max-width: 1440px) {
+        font-size: 20px;
+        max-width: 620px;
+      }
 
       @include mq($until: large) {
         font-size: 18px;
@@ -661,6 +688,7 @@
         margin-top: 15px;
         padding-left: 0px !important;
         padding-right: 0px !important;
+        text-align: center;
       }
     }
 
@@ -690,6 +718,21 @@
         font-size: 20px;
         margin-left: 16px;
       }
+      
+      @media screen and (max-width: 1440px) {
+        .earn_dg_button {
+          height: 56px;
+          width: 180px;
+          font-size: 18px;
+          line-height: 28px;
+        }
+        .play_button {
+          height: 56px;
+          width: 180px;
+          font-size: 18px;
+          line-height: 0px;
+        }
+      }
 
       @include mq($until: small) {
         justify-content: center;
@@ -698,7 +741,7 @@
 
         .earn_dg_button {
           height: 50px;
-          width: 180px;
+          width: 200px;
           font-size: 18px;
           line-height: 20px;
         }
@@ -757,9 +800,13 @@
         }
       }
 
+      @media screen and (max-width: 1440px) {
+        width: calc(100% - 180px);
+      }
+
       @include mq($from: medium, $until: extra-large) {
         bottom: 30px;
-        width: calc(100%);
+        width: calc(100% - 100px);
 
         .section {
           h1 {
