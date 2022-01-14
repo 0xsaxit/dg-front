@@ -509,7 +509,14 @@ function ICEAttributes() {
         ICE_AMOUNT / Global.CONSTANTS.FACTOR
       ).toString();
 
-      const { xpUpgradeCosts } = await Fetch.GET_REWARDS_CONFIG();
+      const { delegatorSplits, xpUpgradeCosts } = await Fetch.GET_REWARDS_CONFIG();
+      delegatorSplits.map(delegatorSplit => {
+        delegatorSplit = Number(delegatorSplit)
+      })
+      dispatch({
+        type: 'delegator_splits',
+        data: delegatorSplits,
+      })
 
       return {
         WETH_COST_AMOUNT: WETH_COST_AMOUNT,
