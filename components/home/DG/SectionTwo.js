@@ -271,7 +271,7 @@ function SectionTwo() {
             style={{ position: 'relative', zIndex: '3' }}
           >
             <h1 className={styles.section_h1}>
-              Stake DG. Vote in the DAO {/* {t('Home.VOTE_IN_THE_DAO')}  */}
+              Stake DG. Vote in the DAO. {/* {t('Home.VOTE_IN_THE_DAO')}  */}
             </h1>
             <p className={styles.section_p}>
               {/* {t('Home.WITH_THE_DG_DAO')} */}
