@@ -193,6 +193,7 @@ const ModalWearable = props => {
                       Update your ICE Bonus to between{' '}
                       {bonus[Math.min(props.rank + 1, 5)]}
                     </li>
+                    <li>Update your owner delegation split to {state.delegatorSplits[props.rank] * 100}/{(1 - state.delegatorSplits[props.rank]) * 100}</li>
                     <li>Increase the resale value and rarity of your NFT</li>
                   </ul>
                 </div>

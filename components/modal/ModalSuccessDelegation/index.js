@@ -114,7 +114,7 @@ const ModalSuccessDelegation = props => {
               <div className={styles.card_area_body}>
                 <div className={styles.card}>
                   <div className={styles.info}>You Earn</div>
-                  30%
+                  {state.delegatorSplits[props.rank - 1] * 100}%
                   <img
                     src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
                     className={styles.img_card1}
@@ -125,7 +125,7 @@ const ModalSuccessDelegation = props => {
               <div className={styles.card_area_body}>
                 <div className={styles.card}>
                   <div className={styles.info}>They Earn</div>
-                  70%
+                  {(1 - state.delegatorSplits[props.rank - 1]) * 100}%
                   <img
                     src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
                     className={styles.img_card2}

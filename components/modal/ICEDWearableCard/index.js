@@ -72,7 +72,7 @@ const ICEDWearableCard = props => {
                 <NeedMoreDGActivateModal balance={props.balance} />
               )
             ) : (
-              <ModalWithdrawDelegation />
+              <ModalWithdrawDelegation rank={props.rank} />
             )}
           </div>
         </div>
