@@ -175,22 +175,9 @@ const Wearables = () => {
           <div className={styles.wearables_grid}>
             {state.iceWearableItems.map((item, index) => {
               return (
-                (item.tokenOwner === state.userAddress) ?
-                <ICEWearableCard
-                  key={index}
-                  tokenId={item.tokenId}
-                  contractAddress={item.contractAddress}
-                  itemId={item.itemId}
-                  isActivated={item.isActivated}
-                  name={item.name}
-                  description={item.description}
-                  rank={item.rank}
-                  image={item.image}
-                  bonus={item.bonus}
-                  item={item}
-                />
-                :
-                null
+                (item.tokenOwner === state.userAddress) 
+                ? <ICEWearableCard item={item} />
+                : null
               );
             })}
 

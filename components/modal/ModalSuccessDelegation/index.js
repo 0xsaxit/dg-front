@@ -17,7 +17,12 @@ const ModalSuccessDelegation = props => {
       type: 'refresh_delegation',
       data: refreshDelegation,
     });
-    alert('hello')
+    
+    const refreshWearable = !state.refreshWearable;
+    dispatch({
+      type: 'refresh_wearable_items',
+      data: refreshWearable,
+    });
 
     setOpen(false);
   }
