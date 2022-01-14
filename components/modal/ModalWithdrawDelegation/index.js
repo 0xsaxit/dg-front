@@ -87,7 +87,7 @@ const ModalWithdrawDelegation = props => {
             <div className={styles.card_area_body}>
               <div className={styles.card}>
                 <div className={styles.info}>You Earn</div>
-                {!isDelegator ? `${(1 - state.delegatorSplits[props.rank - 1]) * 100}%` : `${state.delegatorSplits[props.rank - 1] * 100}%`}
+                {!isDelegator ? `${Math.round((1 - state.delegatorSplits[props.rank - 1]) * 100)}%` : `${Math.round(state.delegatorSplits[props.rank - 1] * 100)}%`}
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card}
@@ -98,7 +98,7 @@ const ModalWithdrawDelegation = props => {
             <div className={styles.card_area_body}>
               <div className={styles.card}>
                 <div className={styles.info}>They Earn</div>
-                {!isDelegator ? `${state.delegatorSplits[props.rank - 1] * 100}%` : `${(1 - state.delegatorSplits[props.rank - 1]) * 100}%`}
+                {!isDelegator ? `${Math.round(state.delegatorSplits[props.rank - 1] * 100)}%` : `${Math.round((1 - state.delegatorSplits[props.rank - 1]) * 100)}%`}
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card}

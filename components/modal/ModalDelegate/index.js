@@ -164,7 +164,7 @@ const ModalDelegate = props => {
           <div className={styles.benefit_list}>
             <ul>
               <li>Let another player Play-to-Earn with your item</li>
-              <li>Earn {state.delegatorSplits[props.rank - 1] * 100}% of all ICE profits from their gameplay</li>
+              <li>Earn {Math.round(state.delegatorSplits[props.rank - 1] * 100)}% of all ICE profits from their gameplay</li>
               <li>NFT stays in your wallet & undelegate any time</li>
             </ul>
           </div>
@@ -177,7 +177,7 @@ const ModalDelegate = props => {
             <div className={styles.card_area_body}>
               <div className={styles.card}>
                 <div className={styles.info}>You Earn</div>
-                {state.delegatorSplits[props.rank - 1] * 100}%
+                {Math.round(state.delegatorSplits[props.rank - 1] * 100)}%
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card1}
@@ -188,7 +188,7 @@ const ModalDelegate = props => {
             <div className={styles.card_area_body}>
               <div className={styles.card}>
                 <div className={styles.info}>They Earn</div>
-                {(1 - state.delegatorSplits[props.rank - 1]) * 100 }%
+                {Math.round((1 - state.delegatorSplits[props.rank - 1]) * 100)}%
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card2}
