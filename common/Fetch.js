@@ -46,9 +46,9 @@ const Fetch = {
     return call(`${API_BASE_URL}/admin/getUsersList`, 'GET');
   },
 
-  MINT_TOKEN: (itemID, collectionAddr) => {
+  MINT_TOKEN: (itemId, collectionAddr) => {
     return call(
-      `${API_BASE_URL}/ice/mintToken/${itemID}/${collectionAddr}`,
+      `${API_BASE_URL}/ice/mintToken/${itemId}/${collectionAddr}`,
       'GET'
     );
   },
@@ -61,16 +61,16 @@ const Fetch = {
     );
   },
 
-  UPGRADE_TOKEN: (tokenID, collectionAddr) => {
+  UPGRADE_TOKEN: (tokenId, collectionAddr) => {
     return call(
-      `${API_BASE_URL}/ice/upgradeToken/${tokenID}/${collectionAddr}`,
+      `${API_BASE_URL}/ice/upgradeToken/${tokenId}/${collectionAddr}`,
       'GET'
     );
   },
 
-  GET_METADATA_FROM_TOKEN_URI: (contractAddr, tokenID) => {
+  GET_METADATA_FROM_TOKEN_URI: (contractAddr, tokenId) => {
     return call(
-      `${API_BASE_URL}/ice/getMetadata/${contractAddr}/${tokenID}`,
+      `${API_BASE_URL}/ice/getMetadata/${contractAddr}/${tokenId}`,
       'GET'
     );
   },
@@ -146,19 +146,19 @@ const Fetch = {
     });
   },
 
-  DELEGATE_NFT: (delegateAddress, tokenID, contractAddress) => {
+  DELEGATE_NFT: (delegateAddress, tokenId, contractAddress) => {
     return call(`${API_BASE_URL}/ice/delegateToken`, 'POST', true, {
       delegateAddress,
-      tokenID,
+      tokenId,
       contractAddress,
     });
   },
 
-  UNDELEGATE_NFT: (tokenOwner, delegateAddress, tokenID, contractAddress) => {
+  UNDELEGATE_NFT: (tokenOwner, delegateAddress, tokenId, contractAddress) => {
     return call(`${API_BASE_URL}/ice/undelegateToken`, 'POST', true, {
       tokenOwner,
       delegateAddress,
-      tokenID,
+      tokenId,
       contractAddress,
     });
   },

@@ -249,8 +249,8 @@ const ModalMint = props => {
   function ethAuthModal() {
     return (
       <ModalIceAuth
-        itemID={props.itemID}
-        address={props.address}
+        itemId={props.itemId}
+        contractAddress={props.contractAddress}
         wearableImg={props.wearableImg}
         show={openICEAuth}
         back={() => {

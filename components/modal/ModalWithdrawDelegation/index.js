@@ -19,7 +19,7 @@ const ModalWithdrawDelegation = props => {
   const [withdrawStatus, setWithdrawStatus] = useState(0);
   const [errorMsg, setErrorMsg] = useState(null);
   const [remainingTime, setRemainingTime] = useState(0);
-  const isDelegator = props.ownerAddress === state.userAddress;
+  const isDelegator = props.tokenOwner === state.userAddress;
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
@@ -183,8 +183,8 @@ const ModalWithdrawDelegation = props => {
 
     const json = await Fetch.DELEGATE_NFT(
       props.delegateAddress,
-      props.tokenID,
-      props.address
+      props.tokenId,
+      props.contractAddress
     );
 
     if (json.status) {
@@ -210,18 +210,18 @@ const ModalWithdrawDelegation = props => {
   }
 
   async function undelegateNFT() {
-    console.log('Undelegate token ID: ' + props.tokenID);
-    console.log('Token owner address: ' + props.ownerAddress);
+    console.log('Undelegate token ID: ' + props.tokenId);
+    console.log('Token owner address: ' + props.tokenOwner);
     console.log('Delegate address: ' + props.delegateAddress);
-    console.log('Collection address: ' + props.address);
+    console.log('Collection address: ' + props.contractAddress);
     setErrorMsg(null);
     setClicked(true);
 
     const json = await Fetch.UNDELEGATE_NFT(
-      props.ownerAddress,
+      props.tokenOwner,
       props.delegateAddress,
-      props.tokenID,
-      props.address
+      props.tokenId,
+      props.contractAddress
     );
 
     if (json.status) {
@@ -338,13 +338,13 @@ const ModalWithdrawDelegation = props => {
       {success && !props.checkInStatus && (
         <ModalDelegateConfirm
           buttonName={props.buttonName}
-          address={props.delegateAddress}
+          delegateAddress={props.delegateAddress}
         />
       )}
       {success && props.checkInStatus && !props.delegationStatus && (
         <ModalUndelegateQueued
           buttonName={props.buttonName}
-          address={props.delegateAddress}
+          delegateAddress={props.delegateAddress}
           remainingTime={remainingTime}
         />
       )}
