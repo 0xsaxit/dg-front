@@ -187,6 +187,7 @@ const Wearables = () => {
                   rank={item.rank}
                   image={item.image}
                   bonus={item.bonus}
+                  item={item}
                 />
                 :
                 null

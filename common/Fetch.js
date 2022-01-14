@@ -146,19 +146,19 @@ const Fetch = {
     });
   },
 
-  DELEGATE_NFT: (delegateAddress, tokenId, contractAddress) => {
+  DELEGATE_NFT: (delegateAddress, tokenID, contractAddress) => {
     return call(`${API_BASE_URL}/ice/delegateToken`, 'POST', true, {
       delegateAddress,
-      tokenId,
+      tokenID,
       contractAddress,
     });
   },
 
-  UNDELEGATE_NFT: (tokenOwner, delegateAddress, tokenId, contractAddress) => {
+  UNDELEGATE_NFT: (tokenOwner, delegateAddress, tokenID, contractAddress) => {
     return call(`${API_BASE_URL}/ice/undelegateToken`, 'POST', true, {
       tokenOwner,
       delegateAddress,
-      tokenId,
+      tokenID,
       contractAddress,
     });
   },

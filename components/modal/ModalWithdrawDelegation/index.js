@@ -17,8 +17,9 @@ const ModalWithdrawDelegation = props => {
   const [success, setSuccess] = useState(false);
   const [withdrawStatus, setWithdrawStatus] = useState(0);
   const [errorMsg, setErrorMsg] = useState(null);
-  const [remainingTime, setRemainingTime] = useState(0);
+  // const [remainingTime, setRemainingTime] = useState(0);
   const isDelegator = props.tokenOwner === state.userAddress;
+  const remainingTime = getRemainingTime()
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
@@ -26,10 +27,10 @@ const ModalWithdrawDelegation = props => {
   console.log('delegate Address =>', props.delegateAddress);
   
 
-  useEffect(() => {
-    let remain = getRemainingTime();
-    setRemainingTime(remain);
-  });
+  // useEffect(() => {
+  //   let remain = getRemainingTime();
+  //   setRemainingTime(remain);
+  // });
 
   // get Remaining Time
   function getRemainingTime() {
@@ -202,6 +203,17 @@ const ModalWithdrawDelegation = props => {
         type: 'refresh_delegation',
         data: refreshDelegation,
       });
+      
+      const refreshWearable = !state.refreshWearable;
+      dispatch({
+        type: 'refresh_wearable_items',
+        data: refreshWearable,
+      });
+
+      dispatch({
+        type: 'ice_wearable_items_loading',
+        data: true,
+      });
 
       setOpen(false);
     } else {
@@ -235,6 +247,17 @@ const ModalWithdrawDelegation = props => {
       dispatch({
         type: 'refresh_delegation',
         data: refreshDelegation,
+      });
+      
+      const refreshWearable = !state.refreshWearable;
+      dispatch({
+        type: 'refresh_wearable_items',
+        data: refreshWearable,
+      });
+
+      dispatch({
+        type: 'ice_wearable_items_loading',
+        data: true,
       });
 
       // success

@@ -12,10 +12,21 @@ const ModalUndelegateQueued = props => {
 
   // update global state delegation information
   function setGlobalState() {
-    const refresh = !state.refreshDelegateInfo;
+    const refreshDelegation = !state.refreshDelegation;
     dispatch({
-      type: 'refresh_delegate_info',
-      data: refresh,
+      type: 'refresh_delegation',
+      data: refreshDelegation,
+    });
+    
+    const refreshWearable = !state.refreshWearable;
+    dispatch({
+      type: 'refresh_wearable_items',
+      data: refreshWearable,
+    });
+
+    dispatch({
+      type: 'ice_wearable_items_loading',
+      data: true,
     });
 
     setOpen(false);
