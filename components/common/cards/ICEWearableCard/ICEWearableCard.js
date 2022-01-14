@@ -24,10 +24,8 @@ const ICEWearableCard = props => {
   const [checkInStatus, setCheckInStatus] = useState(false);
   const buttonDelegate = 'Delegate';
   const buttonUndelegate = 'Undelegate';
-  const { name, description, image, attributes } = props.data;
-  const rank = GetRank(
-    parseInt(attributes.find(el => el.trait_type === 'Bonus').value)
-  );
+  const { name, description, rank, image } = props;
+  const bonus = "+" + props.bonus + "%";
 
   useEffect(() => {
     if (state.userStatus >= 4) {
@@ -38,7 +36,7 @@ const ICEWearableCard = props => {
         );
 
         delegationInfo.forEach((item, index) => {
-          if (item.contractAddress === props.address) {
+          if (item.contractAddress === props.contractAddress) {
             const address = item.contractAddress;
             const delegateAddress = item.delegationStatus.delegatedTo || '';
             const tokenId = item.tokenId;
@@ -49,8 +47,8 @@ const ICEWearableCard = props => {
               item.delegationStatus.isQueuedForUndelegationByOwner;
 
             if (
-              tokenId === props.tokenID &&
-              address.toLowerCase() === props.address.toLowerCase()
+              tokenId === props.tokenId &&
+              address.toLowerCase() === props.contractAddress.toLowerCase()
             ) {
               setDelegateAddress(delegateAddress);
               setCheckInStatus(checkInStatus);
@@ -100,8 +98,8 @@ const ICEWearableCard = props => {
               </svg>
             </div>
           ) : null}
-          <div className={styles.card}>{`Rank ${rank.value}`}</div>
-          <IceWearableBonusTooltip bonus={rank.percentage} />
+          <div className={styles.card}>{`Rank ${rank}`}</div>
+          <IceWearableBonusTooltip bonus={bonus} />
           <div className={styles.card}>
             {description.split(' ').at(-1).replace('/', ' of ')}
           </div>
@@ -109,7 +107,7 @@ const ICEWearableCard = props => {
 
         <div className={styles.card_title}>
           <p>{name.split('(ICE')[0].trim()}</p>
-          <p>{`(ICE Rank ${rank.value})`}</p>
+          <p>{`(ICE Rank ${rank})`}</p>
         </div>
       </Aux>
     );
@@ -128,29 +126,27 @@ const ICEWearableCard = props => {
                 <NeedMoreDGActivateModal />
               ) : (
                 <ActivateWearableModal
-                  tokenID={props.tokenID}
-                  itemID={props.itemID}
-                  address={props.address}
+                  tokenId={props.tokenId}
+                  itemId={props.itemId}
+                  contractAddress={props.contractAddress}
                 />
               )
             ) : (
               <span
                 className={
-                  rank.value != 5
+                  rank != 5
                     ? 'w-100 d-flex justify-content-between'
                     : 'w-100 d-flex justify-content-center'
                 }
               >
                 {delegateAddress === '' ? (
                   <ModalDelegate
-                    tokenID={props.tokenID}
-                    address={props.address}
-                    itemID={props.itemID}
+                    tokenId={props.tokenId}
+                    contractAddress={props.contractAddress}
+                    itemId={props.itemId}
                     imgSrc={image}
-                    rank={rank.value}
-                    bonus={
-                      attributes.find(el => el.trait_type === 'Bonus').value
-                    }
+                    rank={rank}
+                    bonus={bonus}
                     description={description}
                     buttonName={buttonDelegate}
                   />
@@ -158,25 +154,22 @@ const ICEWearableCard = props => {
                   <ModalWithdrawDelegation
                     checkInStatus={checkInStatus}
                     delegationStatus={delegationStatus}
-                    tokenID={props.tokenID}
-                    address={props.address}
-                    ownerAddress={state.userAddress}
+                    tokenId={props.tokenId}
+                    contractAddress={props.contractAddress}
+                    tokenOwner={state.userAddress}
                     delegateAddress={delegateAddress}
-                    rank={rank.value}
+                    rank={rank}
                     buttonName={buttonUndelegate}
                   />
                 )}
-                {rank.value < 5 && (
+                {rank < 5 && (
                   <ModalWearable
-                    tokenID={props.tokenID}
-                    address={props.address}
-                    itemID={props.itemID}
+                    tokenId={props.tokenId}
+                    contractAddress={props.contractAddress}
+                    itemId={props.itemId}
                     imgSrc={image}
-                    rank={rank.value}
-                    percentage={rank.percentage}
-                    bonus={
-                      attributes.find(el => el.trait_type === 'Bonus').value
-                    }
+                    rank={rank}
+                    bonus={bonus}
                     description={description}
                     name={name.split('(ICE')[0].trim()}
                   />

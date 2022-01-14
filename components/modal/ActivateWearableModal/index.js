@@ -82,7 +82,7 @@ const ActivateWearableModal = props => {
       (async function () {
         // update token hash from iceRegistrant contract
         const tokenHash = await iceRegistrantContract.methods
-          .getHash(props.address, props.tokenID)
+          .getHash(props.contractAddress, props.tokenId)
           .call();
 
         // get previous owner based on token hash
@@ -264,14 +264,14 @@ const ActivateWearableModal = props => {
   async function metaTransactionReICE() {
     console.log('Meta-transaction NFT Activation');
     console.log('Previous owner: ' + previousOwner);
-    console.log('Collection address: ' + props.address);
-    console.log('Token ID: ' + props.tokenID);
+    console.log('Collection address: ' + props.contractAddress);
+    console.log('Token ID: ' + props.tokenId);
 
     try {
       setClicked(true);
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = iceRegistrantContract.methods
-        .reIceNFT(previousOwner, props.address, props.tokenID)
+        .reIceNFT(previousOwner, props.contractAddress, props.tokenId)
         .encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(
@@ -376,7 +376,7 @@ const ActivateWearableModal = props => {
         <ModalActivationSuccess
           show={openUpgradeSuccess}
           setOpenUpgradeSuccess={setOpenUpgradeSuccess}
-          tokenID={props.tokenID}
+          tokenId={props.tokenId}
           close={() => {
             setOpenUpgradeSuccess(false);
           }}

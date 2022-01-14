@@ -8,6 +8,7 @@ import Global from '../../Constants';
 import Aux from '../../_Aux';
 import ABI_COLLECTION_V2 from '../../../components/ABI/ABICollectionV2';
 import ABI_COLLECTION_PH from '../../../components/ABI/ABICollectionPH';
+import Spinner from 'components/lottieAnimation/animations/spinner';
 import Web3 from 'web3';
 
 const ModalDelegate = props => {
@@ -65,7 +66,7 @@ const ModalDelegate = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
 
   async function hasDataByAddress(address) {
-    const tokenID = 0;
+    const tokenId = 0;
 
     const tokenById = collectionArray.map(async (item, index) => {
       try {
@@ -74,11 +75,11 @@ const ModalDelegate = props => {
           nIndex < Global.CONSTANTS.MAX_DELEGATION_COUNT;
           nIndex++
         ) {
-          const tokenID = await collectionArray[index][0].methods
+          const tokenId = await collectionArray[index][0].methods
             .tokenOfOwnerByIndex(address, nIndex)
             .call();
 
-          if (parseInt(tokenID) > 0) {
+          if (parseInt(tokenId) > 0) {
             return true;
           }
         }
@@ -86,7 +87,7 @@ const ModalDelegate = props => {
         console.log('Index out-of-bounds: ', error.message);
       }
 
-      return tokenID;
+      return tokenId;
     });
     await Promise.all(tokenById);
 
@@ -139,7 +140,7 @@ const ModalDelegate = props => {
         <div className={styles.card_body}>
           <div className={styles.card}>Rank {props.rank}</div>
           <div className={styles.card}>
-            +{props.bonus}%
+            {props.bonus}
             <img
               src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
               className={styles.img_card}
@@ -163,7 +164,7 @@ const ModalDelegate = props => {
           <div className={styles.benefit_list}>
             <ul>
               <li>Let another player Play-to-Earn with your item</li>
-              <li>Earn 30% of all ICE profits from their gameplay</li>
+              <li>Earn {state.delegatorSplits[props.rank - 1] * 100}% of all ICE profits from their gameplay</li>
               <li>NFT stays in your wallet & undelegate any time</li>
             </ul>
           </div>
@@ -176,7 +177,7 @@ const ModalDelegate = props => {
             <div className={styles.card_area_body}>
               <div className={styles.card}>
                 <div className={styles.info}>You Earn</div>
-                30%
+                {state.delegatorSplits[props.rank - 1] * 100}%
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card1}
@@ -187,7 +188,7 @@ const ModalDelegate = props => {
             <div className={styles.card_area_body}>
               <div className={styles.card}>
                 <div className={styles.info}>They Earn</div>
-                70%
+                {(1 - state.delegatorSplits[props.rank - 1]) * 100 }%
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card2}
@@ -300,15 +301,15 @@ const ModalDelegate = props => {
   }
 
   async function delegateNFT() {
-    console.log('Delegate token ID: ' + props.tokenID);
+    console.log('Delegate token ID: ' + props.tokenId);
     console.log('Delegate address: ' + enteredAddress);
-    console.log('Collection address: ' + props.address);
+    console.log('Collection address: ' + props.contractAddress);
     setClicked(true);
 
     const json = await Fetch.DELEGATE_NFT(
       enteredAddress,
-      props.tokenID,
-      props.address
+      props.tokenId,
+      props.contractAddress
     );
 
     if (json.status) {
@@ -379,16 +380,21 @@ const ModalDelegate = props => {
                     </Button>
                   ) : (
                     <Button className={styles.button_upgrade} disabled={true}>
-                      Pending Transaction...
+                      <Spinner />
                     </Button>
                   )}
 
                   <Button
                     className={styles.button_close}
                     onClick={() => {
-                      window.open("https://ice.decentral.games/ice-nft-wearables", "_blank");
+                      window.open(
+                        'https://ice.decentral.games/ice-nft-wearables',
+                        '_blank'
+                      );
                     }}
-                  >Learn More</Button>
+                  >
+                    Learn More
+                  </Button>
                 </div>
               </div>
 
@@ -402,6 +408,7 @@ const ModalDelegate = props => {
         <ModalSuccessDelegation
           buttonName={props.buttonName}
           address={enteredAddress}
+          rank={props.rank}
         />
       )}
     </Aux>

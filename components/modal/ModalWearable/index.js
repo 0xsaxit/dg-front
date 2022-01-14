@@ -108,7 +108,7 @@ const ModalWearable = props => {
                 }}
               >
                 <div className={styles.wear_box_mark}>
-                  +{props.bonus}%
+                  {props.bonus}
                   <img
                     src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1630857308/diamond_1_1_r6etkk.png"
                     className={styles.img_card}
@@ -121,7 +121,7 @@ const ModalWearable = props => {
               <div className={styles.card_body}>
                 <div className={styles.card}>Rank {props.rank}</div>
                 <div className={styles.card}>
-                  +{props.bonus}%
+                  {props.bonus}
                   <img
                     src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1630857308/diamond_1_1_r6etkk.png"
                     className={styles.img_card}
@@ -193,6 +193,7 @@ const ModalWearable = props => {
                       Update your ICE Bonus to between{' '}
                       {bonus[Math.min(props.rank + 1, 5)]}
                     </li>
+                    <li>Update your owner delegation split to {state.delegatorSplits[props.rank] * 100}/{(1 - state.delegatorSplits[props.rank]) * 100}</li>
                     <li>Increase the resale value and rarity of your NFT</li>
                   </ul>
                 </div>
@@ -424,15 +425,15 @@ const ModalWearable = props => {
       {upgrade == 2 && (
         <ModalUpgradePending
           setUpgrade={setUpgrade}
-          tokenID={props.tokenID}
-          address={props.address}
-          itemID={props.itemID}
+          tokenId={props.tokenId}
+          contractAddress={props.contractAddress}
+          itemId={props.itemId}
         />
       )}
 
       {upgrade == 3 && (
         <ModalUpgradeSuccess 
-          tokenID={props.tokenID} 
+          tokenId={props.tokenId} 
           setUpgrade={setUpgrade}
           imgURL = {Global.IMG_URLS_UPGRADE[wearableName][parseInt(Math.min(props.rank + 1, 5))]} 
         />
