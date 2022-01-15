@@ -148,9 +148,7 @@ const Wearables = () => {
           <h2>ICE Wearables</h2>
           {!!state.iceWearableItems.length ||
           !!state.iceDelegatedItems.length ? (
-            <p>{`(${activeWearables.length + delegatedWearables.length} of ${ //NEED TO FIX THIS FIGURE
-              state.iceWearableItems.length + state.iceDelegatedItems.length
-            } Active)`}</p>
+            <p>{`(${activeWearables.length} of ${state.iceWearableItems.length} Active)`}</p>
           ) : null}
         </div>
         <Button className={styles.open_sea} href="/ice/marketplace">
