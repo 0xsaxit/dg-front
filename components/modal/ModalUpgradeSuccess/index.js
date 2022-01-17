@@ -41,6 +41,11 @@ const ModalUpgradeSuccess = props => {
        type: 'refresh_wearable_items',
        data: refreshWearable,
      });
+     
+     dispatch({
+       type: 'ice_wearable_items_loading',
+       data: true,
+     });
 
      // update global state balances
      const refreshBalances = !state.refreshBalances;

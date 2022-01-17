@@ -164,7 +164,7 @@ function ICEAttributes() {
           iceWearableItems[i].collection = collectionContract[0];
         }
 
-        console.log('iceWearableItems2: ', iceWearableItems);
+        console.log('iceWearableItems: ', iceWearableItems);
 
         dispatch({
           type: 'ice_wearable_items',

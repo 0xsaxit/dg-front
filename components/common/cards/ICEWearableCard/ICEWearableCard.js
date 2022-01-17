@@ -13,55 +13,20 @@ import NeedMoreDGActivateModal from 'components/modal/NeedMoreDGActivateModal';
 import ModalWearable from 'components/modal/ModalWearable';
 import styles from './ICEWearableCard.module.scss';
 import Aux from '../../../_Aux';
+import SpinnerAnimation from 'components/lottieAnimation/animations/spinner';
 
 const ICEWearableCard = props => {
   // get user's wallet address from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
-  // define local variables
-  const [delegateAddress, setDelegateAddress] = useState('');
-  const [delegationStatus, setDelegationStatus] = useState(false);
-  const [checkInStatus, setCheckInStatus] = useState(false);
+  const [undelegateLoading, setUndelegateLoading] = useState(0);
   const buttonDelegate = 'Delegate';
   const buttonUndelegate = 'Undelegate';
-  const { name, description, rank, image } = props;
-  const bonus = "+" + props.bonus + "%";
-
-  useEffect(() => {
-    if (state.userStatus >= 4) {
-      (async function () {
-        setDelegateAddress('');
-        const delegationInfo = await Fetch.GET_WEARABLE_INVENTORY(
-          state.userAddress
-        );
-
-        delegationInfo.forEach((item, index) => {
-          if (item.contractAddress === props.contractAddress) {
-            const address = item.contractAddress;
-            const delegateAddress = item.delegationStatus.delegatedTo || '';
-            const tokenId = item.tokenId;
-            const checkInStatus = item.checkInStatus;
-            const isQueuedForUndelegationByDelegatee =
-              item.delegationStatus.isQueuedForUndelegationByDelegatee;
-            const isQueuedForUndelegationByOwner =
-              item.delegationStatus.isQueuedForUndelegationByOwner;
-
-            if (
-              tokenId === props.tokenId &&
-              address.toLowerCase() === props.contractAddress.toLowerCase()
-            ) {
-              setDelegateAddress(delegateAddress);
-              setCheckInStatus(checkInStatus);
-              setDelegationStatus(
-                isQueuedForUndelegationByDelegatee ||
-                  isQueuedForUndelegationByOwner
-              );
-            }
-          }
-        });
-      })();
-    }
-  }, [state.refreshDelegateInfo]);
+  const { name, description, rank, image, tokenId, checkInStatus, contractAddress, isActivated, itemId } = props.item;
+  const bonus = "+" + props.item.bonus + "%";
+  const delegateAddress = props.item.delegationStatus.delegatedTo || '';
+  const delegationStatus = props.item.delegationStatus.isQueuedForUndelegationByDelegatee ||
+                            props.item.delegationStatus.isQueuedForUndelegationByOwner;
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -70,7 +35,7 @@ const ICEWearableCard = props => {
     return (
       <Aux>
         <div className={styles.wear_box_purple}>
-          {!props.isActivated ? (
+          {!isActivated ? (
             <IceNeedToActivateTooltip />
           ) : checkInStatus ? (
             <IceCheckedInTooltip />
@@ -120,15 +85,15 @@ const ICEWearableCard = props => {
           {imageAndDescription()}
 
           <div className={styles.button_area}>
-            {!props.isActivated ? (
+            {!isActivated ? (
               state.DGBalances.BALANCE_CHILD_DG_LIGHT <
               state.tokenAmounts.DG_MOVE_AMOUNT ? (
                 <NeedMoreDGActivateModal />
               ) : (
                 <ActivateWearableModal
-                  tokenId={props.tokenId}
-                  itemId={props.itemId}
-                  contractAddress={props.contractAddress}
+                  tokenId={tokenId}
+                  itemId={itemId}
+                  contractAddress={contractAddress}
                 />
               )
             ) : (
@@ -141,32 +106,34 @@ const ICEWearableCard = props => {
               >
                 {delegateAddress === '' ? (
                   <ModalDelegate
-                    tokenId={props.tokenId}
-                    contractAddress={props.contractAddress}
-                    itemId={props.itemId}
+                    tokenId={tokenId}
+                    contractAddress={contractAddress}
+                    itemId={itemId}
                     imgSrc={image}
                     rank={rank}
                     bonus={bonus}
                     description={description}
-                    buttonName={buttonDelegate}
+                    disabled={undelegateLoading}
+                    buttonName={(undelegateLoading == 1) ? <SpinnerAnimation /> : buttonDelegate}
                   />
                 ) : (
                   <ModalWithdrawDelegation
                     checkInStatus={checkInStatus}
                     delegationStatus={delegationStatus}
-                    tokenId={props.tokenId}
-                    contractAddress={props.contractAddress}
+                    tokenId={tokenId}
+                    contractAddress={contractAddress}
                     tokenOwner={state.userAddress}
                     delegateAddress={delegateAddress}
-                    rank={rank}
-                    buttonName={buttonUndelegate}
+                    rank={rank.value}
+                    disabled={undelegateLoading}
+                    buttonName={(undelegateLoading == 1) ? <SpinnerAnimation /> : buttonUndelegate}
                   />
                 )}
                 {rank < 5 && (
                   <ModalWearable
-                    tokenId={props.tokenId}
-                    contractAddress={props.contractAddress}
-                    itemId={props.itemId}
+                    tokenId={tokenId}
+                    contractAddress={contractAddress}
+                    itemId={itemId}
                     imgSrc={image}
                     rank={rank}
                     bonus={bonus}

@@ -18,16 +18,20 @@ const ModalWithdrawDelegation = props => {
   const [success, setSuccess] = useState(false);
   const [withdrawStatus, setWithdrawStatus] = useState(0);
   const [errorMsg, setErrorMsg] = useState(null);
-  const [remainingTime, setRemainingTime] = useState(0);
+  // const [remainingTime, setRemainingTime] = useState(0);
   const isDelegator = props.tokenOwner === state.userAddress;
+  const remainingTime = getRemainingTime()
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
 
-  useEffect(() => {
-    let remain = getRemainingTime();
-    setRemainingTime(remain);
-  });
+  console.log('delegate Address =>', props.delegateAddress);
+  
+
+  // useEffect(() => {
+  //   let remain = getRemainingTime();
+  //   setRemainingTime(remain);
+  // });
 
   // get Remaining Time
   function getRemainingTime() {
@@ -195,10 +199,21 @@ const ModalWithdrawDelegation = props => {
         data: 'Scheduled Withdraw Cancelled',
       });
 
-      const refresh = !state.refreshDelegateInfo;
+      const refreshDelegation = !state.refreshDelegation;
       dispatch({
-        type: 'refresh_delegate_info',
-        data: refresh,
+        type: 'refresh_delegation',
+        data: refreshDelegation,
+      });
+      
+      const refreshWearable = !state.refreshWearable;
+      dispatch({
+        type: 'refresh_wearable_items',
+        data: refreshWearable,
+      });
+
+      dispatch({
+        type: 'ice_wearable_items_loading',
+        data: true,
       });
 
       setOpen(false);
@@ -234,6 +249,17 @@ const ModalWithdrawDelegation = props => {
         type: 'refresh_delegation',
         data: refreshDelegation,
       });
+      
+      const refreshWearable = !state.refreshWearable;
+      dispatch({
+        type: 'refresh_wearable_items',
+        data: refreshWearable,
+      });
+
+      dispatch({
+        type: 'ice_wearable_items_loading',
+        data: true,
+      });
 
       // success
       completeWithdraw();
@@ -264,6 +290,7 @@ const ModalWithdrawDelegation = props => {
           close
           trigger={
             <Button
+              disabled={props.disabled}
               className={
                 props.buttonName === 'Withdraw Delegation' || props.rank === 5
                   ? styles.open_button_fullWidth
