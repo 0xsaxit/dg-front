@@ -454,7 +454,7 @@ const MarketPlace = () => {
     const buyOnSecondaryButton = ()  => {
       return(
       <Button className={styles.wearable_button}>
-            Buy on Secondary                      
+        Buy on Secondary                      
       </Button>)};
 
     const soldOutButton = () => {
@@ -632,26 +632,18 @@ const MarketPlace = () => {
                           </div>
                         ) : // Minting Disabled States
                           maxMintCounts !== 0 && (maxMintCounts - itemLimits[i][0]) >= 0 && (maxMintCounts - itemLimits[i][0]) < 1 ? (
-                            wearable.title === 'ICE Joker' ? (
-                              // Sold Out State
-                              <Button disabled className={styles.sold_button}>
-                                Sold Out
-                              </Button>
-                            )
-                              : (
-                                // Buy on Secondary (Previous Mint)
-                                <a
-                                  className={styles.flex_50}
-                                  href="https://opensea.io/collection/decentral-games-ice"
-                                  target="_blank"
-                                  style={{
-                                    width: '100%',
-                                  }}
-                                >
-                                  {checkSoldOutStatus(itemLimits.slice(0,-1), maxMintCounts) ? soldOutButton() : buyOnSecondaryButton() }
+                            // Buy on Secondary (Previous Mint)
+                            <a
+                              className={styles.flex_50}
+                              href="https://opensea.io/collection/decentral-games-ice"
+                              target="_blank"
+                              style={{
+                                width: '100%',
+                              }}
+                            >
+                              {checkSoldOutStatus(itemLimits.slice(0,-1), maxMintCounts) ? soldOutButton() : buyOnSecondaryButton() }
 
-                                </a>
-                              )
+                            </a>
                           ) : state.userStatus < state.appConfig.minMintVerifyStep &&
                             ((maxMintCounts - itemLimits[i][0]) > 0 || (maxMintCounts === 0 && itemLimits[i][0] === 0)) ? (
                             // Coming Soon State
