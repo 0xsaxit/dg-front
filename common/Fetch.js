@@ -320,7 +320,7 @@ const Fetch = {
   },
 
   GET_FRONTPAGE_STATS: () =>  {
-    return call(`${API_BASE_URL}/admin/getFrontPageStats`, 'GET');
+    return call(`${API_BASE_URL}/admin/getFrontPageStats`, 'GET', false);
   }
 };
 
