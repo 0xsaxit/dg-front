@@ -445,6 +445,24 @@ const MarketPlace = () => {
       prevArrow: <CarouselPrevArrow />,
     };
 
+    const checkSoldOutStatus = (itemList, maxMint) =>{
+      return itemList.some((item)=>
+        (item[0] - maxMint) != 0
+      )
+    }
+
+    const buyOnSecondaryButton = ()  => {
+      return(
+      <Button className={styles.wearable_button}>
+            Buy on Secondary                      
+      </Button>)};
+
+    const soldOutButton = () => {
+      return(
+      <Button disabled className={styles.sold_button}>
+        Sold Out
+      </Button>)};
+
     return (
       <section>
         {wearables.map((wearable, index) => {
@@ -621,7 +639,7 @@ const MarketPlace = () => {
                               </Button>
                             )
                               : (
-                                // Buy on Secondary
+                                // Buy on Secondary (Previous Mint)
                                 <a
                                   className={styles.flex_50}
                                   href="https://opensea.io/collection/decentral-games-ice"
@@ -630,9 +648,8 @@ const MarketPlace = () => {
                                     width: '100%',
                                   }}
                                 >
-                                  <Button className={styles.wearable_button}>
-                                    Buy on Secondary
-                                  </Button>
+                                  {checkSoldOutStatus(itemLimits.slice(0,-1), maxMintCounts) ? soldOutButton() : buyOnSecondaryButton() }
+
                                 </a>
                               )
                           ) : state.userStatus < state.appConfig.minMintVerifyStep &&

@@ -66,7 +66,7 @@ const ActivateWearableModal = props => {
 
       setInstances(true); // contract instantiation complete
 
-      biconomy.contractAddress
+      biconomy
         .onEvent(biconomy.READY, () => {
           console.log('Mexa is Ready: Re-ICE (wearables)');
           setBiconomyReady(true);
