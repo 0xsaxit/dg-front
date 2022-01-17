@@ -37,7 +37,19 @@ const Governance = props => {
   const { userAddress, userStatus, refreshBalances } = state;
 
   const handleAmountInputChange = e => {
-    setAmountInput(Number(e.target.value));
+
+    let enteredValue = Number(e.target.value);
+
+    if(e.key !== "Backspace") {
+      if(e.target.value.includes('.')) {
+        if(e.target.value.split('.')[1].length >=3) {
+          enteredValue = Number(e.target.value).toFixed(3);
+        }
+      }
+    }
+    
+    setAmountInput(enteredValue);
+
   };
 
   useEffect(() => {
@@ -344,7 +356,7 @@ const Governance = props => {
               <Button
                 className={styles.max_button}
                 onClick={() => {
-                  setAmountInput(stakeType === 'Stake' ? dgAmount : xDGAmount);
+                  setAmountInput(stakeType === 'Stake' ? Number(dgAmount).toFixed(3) : Number(xDGAmount).toFixed(3));
                 }}
               >
                 MAX
