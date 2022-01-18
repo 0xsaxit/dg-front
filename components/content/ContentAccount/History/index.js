@@ -694,7 +694,7 @@ function History({ state }) {
                                 target="_blank"
                                 className="etherscan-button-mobile"
                               >
-                                p tx
+                                P Tx
                                 <svg
                                   style={{ marginLeft: '4px' }}
                                   width="13"
