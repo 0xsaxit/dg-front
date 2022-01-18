@@ -363,12 +363,16 @@ const Governance = props => {
               <Button
                 className={styles.max_button}
                 onClick={() => {
+<<<<<<< HEAD
   
                   if(stakeType === 'Stake') {
                     setAmountInput(roundDownDecimals(dgAmount));
                   } else {
                     setAmountInput(roundDownDecimals(xDGAmount));
                   }
+=======
+                  setAmountInput(stakeType === 'Stake' ? dgAmount : xDGAmount);
+>>>>>>> e29e56bb0a8bd199ef9950e01f462fa1799c4b65
                 }}
               >
                 MAX
