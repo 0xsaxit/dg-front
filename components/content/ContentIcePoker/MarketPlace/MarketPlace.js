@@ -497,9 +497,9 @@ const MarketPlace = () => {
               <h3>
                 {wearable.title}
 
-                {wearable.title === 'ICE Joker' && (
+                {/*{wearable.title === 'ICE Joker' && (
                   <CheckMintableModal />
-                )}
+                )}*/}
               </h3>
               
               <Slider {...settings}>
