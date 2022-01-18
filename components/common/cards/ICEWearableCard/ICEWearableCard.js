@@ -113,8 +113,7 @@ const ICEWearableCard = props => {
                     rank={rank}
                     bonus={bonus}
                     description={description}
-                    disabled={undelegateLoading}
-                    buttonName={(undelegateLoading == 1) ? <SpinnerAnimation /> : buttonDelegate}
+                    buttonName={buttonDelegate}
                   />
                 ) : (
                   <ModalWithdrawDelegation
@@ -125,8 +124,7 @@ const ICEWearableCard = props => {
                     tokenOwner={state.userAddress}
                     delegateAddress={delegateAddress}
                     rank={rank}
-                    disabled={undelegateLoading}
-                    buttonName={(undelegateLoading == 1) ? <SpinnerAnimation /> : buttonUndelegate}
+                    buttonName={buttonUndelegate}
                   />
                 )}
                 {rank < 5 && (

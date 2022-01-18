@@ -54,13 +54,13 @@ const Wearables = () => {
             {state.iceWearableItems.map((item, index) => {
               return (
                 (item.tokenOwner === state.userAddress) 
-                ? <ICEWearableCard item={item} />
+                ? <ICEWearableCard item={item} key={index} />
                 : null
               );
             })}
 
             {state.iceDelegatedItems.map((item, index) => (
-              <ICEDelegatedCard item={item} />
+              <ICEDelegatedCard item={item} key={index} />
             ))}
           </div>
         ) : (
