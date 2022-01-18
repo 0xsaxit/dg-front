@@ -36,6 +36,13 @@ const Governance = props => {
 
   const { userAddress, userStatus, refreshBalances } = state;
 
+  function roundDownDecimals(value) {
+    // console.log("value: ", value);
+    const roundedDown = parseInt(value * 1000) / 1000;
+    // console.log(roundedDown)
+    return roundedDown;
+  }
+
   const handleAmountInputChange = e => {
 
     let enteredValue = Number(e.target.value);
@@ -43,7 +50,7 @@ const Governance = props => {
     if(e.key !== "Backspace") {
       if(e.target.value.includes('.')) {
         if(e.target.value.split('.')[1].length >=3) {
-          enteredValue = Number(e.target.value).toFixed(3);
+          enteredValue = roundDownDecimals(e.target.value)
         }
       }
     }
@@ -356,7 +363,12 @@ const Governance = props => {
               <Button
                 className={styles.max_button}
                 onClick={() => {
-                  setAmountInput(stakeType === 'Stake' ? Number(dgAmount).toFixed(3) : Number(xDGAmount).toFixed(3));
+  
+                  if(stakeType === 'Stake') {
+                    setAmountInput(roundDownDecimals(dgAmount));
+                  } else {
+                    setAmountInput(roundDownDecimals(xDGAmount));
+                  }
                 }}
               >
                 MAX
@@ -372,7 +384,7 @@ const Governance = props => {
                     : styles.error
                 }
               >
-                {props.formatPrice(
+                {roundDownDecimals(
                   stakeType === 'Stake' ? dgAmount : xDGAmount,
                   3
                 )}
