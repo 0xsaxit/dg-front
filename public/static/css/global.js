@@ -7,6 +7,9 @@ export const GlobalStyles = createGlobalStyle`
   .read-next-div {
     background: ${({ theme }) => theme.body};
   }
+  .spinner-animation-div {
+    margin-top: -2px;
+  }
   .avatar-picture.main {
     border: ${({ theme }) => theme.globalDividers};
     border-radius: 100%;
