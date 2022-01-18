@@ -123,7 +123,7 @@ const ModalUpgradePending = props => {
           Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS
         );
         collectionID = 17;
-      } else if (props.address === Global.ADDRESSES.COLLECTION_JOKER_ADDRESS) {
+      } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_JOKER_ADDRESS) {
         collectionContract = new getWeb3.eth.Contract(
           ABI_COLLECTION_JOKER,
           Global.ADDRESSES.COLLECTION_JOKER_ADDRESS
@@ -239,6 +239,11 @@ const ModalUpgradePending = props => {
     dispatch({
       type: 'refresh_wearable_items',
       data: refreshWearable,
+    });
+    
+    dispatch({
+      type: 'ice_wearable_items_loading',
+      data: true,
     });
 
     // update global state balances
