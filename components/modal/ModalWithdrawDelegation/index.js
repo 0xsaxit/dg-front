@@ -290,7 +290,6 @@ const ModalWithdrawDelegation = props => {
           close
           trigger={
             <Button
-              disabled={props.disabled}
               className={
                 props.buttonName === 'Withdraw Delegation' || props.rank === 5
                   ? styles.open_button_fullWidth
