@@ -241,10 +241,10 @@ const ModalUpgradePending = props => {
       data: refreshWearable,
     });
     
-    dispatch({
-      type: 'ice_wearable_items_loading',
-      data: true,
-    });
+    // dispatch({
+    //   type: 'ice_wearable_items_loading',
+    //   data: true,
+    // });
 
     // update global state balances
     const refreshBalances = !state.refreshBalances;

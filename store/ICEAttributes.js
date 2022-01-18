@@ -154,8 +154,9 @@ function ICEAttributes() {
         }
         
         let iceWearableItems = await Fetch.GET_WEARABLE_INVENTORY(state.userAddress);
+        
+        iceWearableItems.sort((a, b) => {return a.tokenId - b.tokenId})
         for (var i = 0; i < iceWearableItems.length; i++) {
-
           const collectionContract = collectionArray.find(
             collection => collection[1].toLowerCase() === iceWearableItems[i].contractAddress.toLowerCase()
           )
