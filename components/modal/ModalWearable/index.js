@@ -434,7 +434,7 @@ const ModalWearable = props => {
         <ModalUpgradeSuccess
           tokenId={props.tokenId}
           setUpgrade={setUpgrade}
-          imgURL={Global.IMG_URLS_UPGRADE[wearableName][parseInt(Math.min(props.rank + 1, 5))]}
+          imgURL={Global.IMG_URLS_UPGRADE[wearableName][parseInt(props.rank)]}
         />
       )}
     </>
