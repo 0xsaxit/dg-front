@@ -299,6 +299,14 @@ const Fetch = {
     );
   },
 
+  DG_GOVERNANCE_SUPPLY_GECKO: () => {
+    return call(
+      `https://api.coingecko.com/api/v3/coins/decentral-games-governance`,
+      'GET',
+      false
+    );
+  },
+
   POAPS: address => {
     return call(`https://api.poap.xyz/actions/scan/${address}`, 'GET', false);
   },
@@ -321,6 +329,7 @@ const Fetch = {
 
   GET_FRONTPAGE_STATS: () =>  {
     return call(`${API_BASE_URL}/admin/getFrontPageStats`, 'GET', false);
+
   }
 };
 

@@ -339,6 +339,9 @@
                     font-family: "Larsseit-Light";
                     letter-spacing: 0.5px;
                     border: 2px solid rgba(255, 255, 255, 0.08);
+                    &:disabled {
+                        padding: 11px 21px !important;
+                    }
                 }
             }
         }
@@ -502,15 +505,16 @@
                     .iceEarned {
                         img {
                             top: 18px;
+                            width: 14px;
                         }
                     }
 
                     .xpEarned {
                         img {
                             position: absolute;
-                            top: 20px;
+                            top: 19px;
                             left: 55%;
-                            width: 18px;
+                            width: 16px;
                             margin-left: 3px;
                         }
                     }
