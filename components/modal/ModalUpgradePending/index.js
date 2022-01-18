@@ -123,11 +123,7 @@ const ModalUpgradePending = props => {
           Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS
         );
         collectionID = 17;
-<<<<<<< HEAD
       } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_JOKER_ADDRESS) {
-=======
-      } else if (props.address === Global.ADDRESSES.COLLECTION_JOKER_ADDRESS) {
->>>>>>> dev
         collectionContract = new getWeb3.eth.Contract(
           ABI_COLLECTION_JOKER,
           Global.ADDRESSES.COLLECTION_JOKER_ADDRESS
