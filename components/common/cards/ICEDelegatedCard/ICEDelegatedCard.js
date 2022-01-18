@@ -71,6 +71,7 @@ const ICEWearableCard = props => {
           <div className={styles.button_area}>
             <ModalWithdrawDelegation
               tokenId={tokenId}
+              rank={rank}
               contractAddress={contractAddress}
               tokenOwner={tokenOwner}
               delegateAddress={state.userAddress}

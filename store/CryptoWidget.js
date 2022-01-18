@@ -20,13 +20,13 @@ function CryptoWidget(props) {
 
     return (
         <>
-            <section style={{ position: 'relative', display: `${!onlyTablet && !mobile && props.pathName === '/' ? 'block' : 'none'}`, maxWidth: '1400px', margin: 'auto', marginTop: '-600px', padding: '100px 72px 0px 72px', zIndex: '10' }}>
+            <section style={{ position: 'relative', display: `${!onlyTablet && !mobile && props.pathName === '/' ? 'block' : 'none'}`, maxWidth: '1400px', margin: 'auto', marginTop: '-600px', padding: '100px 56px 0px 72px', zIndex: '10' }}>
                 <div
                     id="crypto-widget-CoinMarquee"
                     data-transparent="true"
                     data-design="classic"
-                    data-coins="decentral-games,decentral-games-ice"
-                    style={{ marginTop: '-50px', marginLeft: '-20px' }}
+                    data-coins="ethereum,decentral-games,decentral-games-ice,decentral-games-governance-xdg"
+                    style={{ marginTop: '-48px', marginLeft: '-17px' }}
                 />
             </section>
         </>

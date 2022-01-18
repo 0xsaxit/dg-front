@@ -124,7 +124,7 @@ const ICEWearableCard = props => {
                     contractAddress={contractAddress}
                     tokenOwner={state.userAddress}
                     delegateAddress={delegateAddress}
-                    rank={rank.value}
+                    rank={rank}
                     disabled={undelegateLoading}
                     buttonName={(undelegateLoading == 1) ? <SpinnerAnimation /> : buttonUndelegate}
                   />
