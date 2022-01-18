@@ -405,7 +405,6 @@ const reducer = (state, action) => {
         ...state,
         iceWearableItems: action.data,
       };
-
     case 'ice_wearable_items_loading':
       return {
         ...state,
