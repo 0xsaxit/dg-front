@@ -25,7 +25,7 @@ const Delegation = () => {
             setLoading(true);
 
             // Get Delegation Breakdown from the API
-            let response = await Fetch.DELEGATION_BREAKDOWN(time === 'Weekly' ? 'week' : time === 'Monthly' ? 'month' : 'all', '0xC65F7c7D76EE888Ddcc554e78C0beBAbA0A11cBd');
+            let response = await Fetch.DELEGATION_BREAKDOWN(time === 'Weekly' ? 'week' : time === 'Monthly' ? 'month' : 'all');
             console.log(response);
 
             if (response && response.length > 0) {

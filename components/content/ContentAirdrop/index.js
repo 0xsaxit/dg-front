@@ -1,10 +1,11 @@
 import { useEffect, useContext, useState } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from '../../../store';
 import Web3 from 'web3';
 import { Button, Divider, Loader } from 'semantic-ui-react';
-import Aux from '../_Aux';
-import Images from '../../common/Images';
-import Transactions from '../../common/Transactions';
+import Aux from '../../_Aux';
+import Images from '../../../common/Images';
+import Transactions from '../../../common/Transactions';
+import styles from './ContentAirdrop.module.scss';
 
 const ContentAirdrop = (props) => {
   // get user's status from the Context API store
@@ -68,102 +69,52 @@ const ContentAirdrop = (props) => {
 
   return (
     <Aux>
-      <div className="DG-liquidity-container" style={{ marginTop: '60px' }}>
-        <div className="DG-column unclaimed">
-          <p className="earned-amount">Unclaimed</p>
+      <span style={{ display: 'flex', justifyContent: 'center' }}>
+        <div className={styles.airdrop_container}>
+          <p className={styles.airdrop_title}>Unclaimed Airdropped $DG</p>
 
-          <Divider className="divider-dg-top" />
-
-          <span style={{ display: 'flex' }}>
-            <img
-              src={Images.DG_COIN_LOGO}
-              className="farming-logo-small"
-              alt="Decentral Games Coin Logo"
-            />
-            <span className="farming-pool-span">
-              <p className="welcome-text-top">$DG Balance</p>
-              {state.DGBalances.BALANCE_KEEPER_DG ? (
-                <p className="earned-amount">
-                  {props.formatPrice(state.DGBalances.BALANCE_KEEPER_DG, 3)}
-                </p>
-              ) : (
-                <Loader
-                  active
-                  inline
-                  size="medium"
-                  style={{
-                    fontSize: '12px',
-                    marginTop: '12px',
-                    marginLeft: '15px',
-                  }}
-                />
-              )}
-            </span>
-          </span>
-
-          <Divider className="divider-dg-top" />
-
-          <span
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              paddingTop: '12px',
-              paddingBottom: '12px',
-            }}
-          >
-            <p className="earned-text">Value USD</p>
-            {tokenUSD ? (
-              <p className="earned-amount">${tokenUSD}</p>
+          <span className={styles.earned_span}>
+            {state.DGBalances.BALANCE_KEEPER_DG ? (
+              <p className={styles.earned_amount}>
+                {props.formatPrice(state.DGBalances.BALANCE_KEEPER_DG, 3)}
+              </p>
             ) : (
               <Loader
                 active
                 inline
-                size="small"
+                size="medium"
                 style={{
                   fontSize: '12px',
-                  marginTop: '1px',
-                  marginBottom: '2px',
+                  marginTop: '12px',
+                  marginLeft: '15px',
                 }}
               />
             )}
+            <img
+              src={Images.DG_COIN_LOGO}
+              className={styles.dg_logo}
+              alt="Decentral Games Coin Logo"
+            />
           </span>
 
-          <Divider className="divider-dg-top" />
-
-          <p style={{ fontSize: '18px' }}>
-            $DG is rewarded to players, liquidity providers, and governors of
-            the decentral.games ecosystem.
-            <a
-              href="https://decentral-games-1.gitbook.io/dg/allocation"
-              target="_blank"
-              style={{ color: '#2085f4' }}
-            >
-              {' '}
-              Learn more
-            </a>
-            .
-          </p>
-
           {Number(state.DGBalances.BALANCE_KEEPER_DG) ? (
-            <span className="DG-button-span">
+            <span>
               <Button
-                className="DG-claim-button"
-                id="balances-padding-correct"
+                className={styles.airdrop_button} 
                 onClick={() => scrapeMyTokens()}
               >
-                CLAIM $DG
+                Claim {props.formatPrice(state.DGBalances.BALANCE_KEEPER_DG, 3)} $DG
               </Button>
             </span>
           ) : (
-            <span className="DG-button-span">
-              <Button disabled className="DG-claim-button">
-                CLAIM $DG
+            <span style={{ display: 'flex', justifyContent: 'center' }}>
+              <Button className={styles.airdrop_button} disabled>
+                Claim {props.formatPrice(state.DGBalances.BALANCE_KEEPER_DG, 3)} $DG
               </Button>
             </span>
           )}
         </div>
-      </div>
+      </span>
     </Aux>
   );
 };
