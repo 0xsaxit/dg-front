@@ -152,77 +152,17 @@ function ICEAttributes() {
             data: true,
           });
         }
-
-        // note: I only fetched this to use checkInStatus, this call might later be used for most data on this block
-        // also don't forget to delete this comment later
-        const wearableInventory = await Fetch.GET_WEARABLE_INVENTORY(
-          state.userAddress
-        );
-
-        const tokenIDs = [];
-        const tokensById = collectionArray.map(async (item, index) => {
-          try {
-            for (
-              let nIndex = 0;
-              nIndex < Global.CONSTANTS.MAX_ITEM_COUNT;
-              nIndex++
-            ) {
-              const tokenID = await collectionArray[index][0].methods
-                .tokenOfOwnerByIndex(state.userAddress, nIndex)
-                .call();
-
-              if (parseInt(tokenID) > 0) {
-                tokenIDs.push({
-                  index: nIndex,
-                  tokenID: tokenID,
-                  collection: collectionArray[index][0],
-                  address: collectionArray[index][1],
-                });
-              }
-            }
-          } catch (error) {
-            console.log('Stack error: =>', error.message);
-          }
-
-          return tokenIDs;
-        });
-        await Promise.all(tokensById);
-
-        let iceWearableItems = [];
-        for (var i = 0; i < tokenIDs.length; i++) {
-          try {
-            const is_activated = await ICERegistrantContract.methods
-              .isIceEnabled(
-                state.userAddress,
-                tokenIDs[i].address,
-                tokenIDs[i].tokenID
-              )
-              .call();
-
-            const json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
-              tokenIDs[i].address,
-              tokenIDs[i].tokenID
-            );
-
-            const { checkInStatus } = wearableInventory.find(
-              wearable => wearable.tokenId === tokenIDs[i].tokenID
-            );
-
-            if (Object.keys(json).length) {
-              iceWearableItems.push({
-                index: tokenIDs[i].index,
-                tokenID: tokenIDs[i].tokenID,
-                itemID: json.id.split(':').slice(-1),
-                meta_data: json,
-                isActivated: is_activated,
-                collection: tokenIDs[i].collection,
-                address: tokenIDs[i].address,
-                checkInStatus,
-              });
-            }
-          } catch (error) {
-            console.log('Fetch metadata error: ' + error);
-          }
+        
+        let iceWearableItems = await Fetch.GET_WEARABLE_INVENTORY(state.userAddress);
+        iceWearableItems.sort((a, b) => {return a.tokenId - b.tokenId})
+        
+        for (var i = 0; i < iceWearableItems.length; i++) {
+          
+          const collectionContract = collectionArray.find(
+            collection => collection[1].toLowerCase() === iceWearableItems[i].contractAddress.toLowerCase()
+          )
+          iceWearableItems[i].index = i;
+          iceWearableItems[i].collection = collectionContract[0];
         }
 
         console.log('iceWearableItems: ', iceWearableItems);
@@ -241,48 +181,6 @@ function ICEAttributes() {
     }
   }, [instances, state.refreshWearable]);
 
-  // ******************** we can update the above code for this new API endpoint later ********************
-  // anytime user mints/updates/activates an NFT this code will execute
-  // useEffect(() => {
-  //   if (instances) {
-  //     async function fetchData() {
-  //       if (!state.iceWearableItems || state.iceWearableItems.length === 0) {
-  //         dispatch({
-  //           type: 'ice_wearable_items_loading',
-  //           data: true,
-  //         });
-  //       }
-
-  //       let iceWearableItems = await Fetch.GET_WEARABLE_INVENTORY(
-  //         state.userAddress
-  //       );
-  //       for (var i = 0; i < iceWearableItems.length; i++) {
-  //         const json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
-  //           iceWearableItems[i].contractAddress,
-  //           iceWearableItems[i].tokenId
-  //         );
-
-  //         if (Object.keys(json).length) {
-  //           iceWearableItems[i].meta_data = json;
-  //           iceWearableItems[i].index = i;
-  //           iceWearableItems[i].address = iceWearableItems[i].contractAddress;
-  //           iceWearableItems[i].tokenID = iceWearableItems[i].tokenId;
-  //         }
-  //       }
-
-  //       dispatch({
-  //         type: 'ice_wearable_items',
-  //         data: iceWearableItems,
-  //       });
-  //       dispatch({
-  //         type: 'ice_wearable_items_loading',
-  //         data: false,
-  //       });
-  //     }
-
-  //     fetchData();
-  //   }
-  // }, [instances, state.refreshWearable]);
 
   // anytime user undelegates an NFT this code will execute
   useEffect(() => {
@@ -295,9 +193,6 @@ function ICEAttributes() {
         let iceDelegatedItems = [];
 
         const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
-
-        // note: I only fetched this to use checkInStatus, this call might later be used for most data on this block
-        // also don't forget to delete this comment later
         const wearableInventory = await Fetch.GET_WEARABLE_INVENTORY(
           state.userAddress
         );
@@ -306,30 +201,13 @@ function ICEAttributes() {
           delegationInfo !== undefined &&
           Object.keys(delegationInfo).length
         ) {
-          delegationInfo.incomingDelegations.forEach(async (item, i) => {
-            const ownerAddress = item.tokenOwner;
-            const tokenId = item.tokenId;
-
+          delegationInfo.incomingDelegations.forEach((item, i) => {
             try {
-              const json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
-                item.contractAddress,
-                tokenId
-              );
-
-              const { checkInStatus } = wearableInventory.find(
+              const matching_wearable = wearableInventory.find(
                 wearable => wearable.tokenId === item.tokenId
-              );
+              )
 
-              if (Object.keys(json).length) {
-                iceDelegatedItems.push({
-                  ownerAddress: ownerAddress,
-                  tokenID: tokenId,
-                  itemID: json.id.split(':').slice(-1),
-                  meta_data: json,
-                  address: item.contractAddress,
-                  checkInStatus,
-                });
-              }
+              iceDelegatedItems.push(matching_wearable);
             } catch (error) {
               console.log('Fetch delegation info error: ' + error);
             }
@@ -480,13 +358,13 @@ function ICEAttributes() {
           try {
             const NFTAuthorization = await Transactions.NFTApproved(
               item.collection,
-              item.tokenID
+              item.tokenId
             );
 
             authArray.push({
-              tokenID: item.tokenID,
+              tokenId: item.tokenId,
               authStatus: NFTAuthorization,
-              address: item.address,
+              contractAddress: item.contractAddress,
             });
           } catch (error) {
             console.log('Get NFT approved error: ' + error);
@@ -505,66 +383,66 @@ function ICEAttributes() {
   /////////////////////////////////////////////////////////////////////////////////////////
   async function getItemLimits(index) {
     const collectionAddress = collectionArray[index][1];
-    const tokenIDArray = collectionArray[index][2];
+    const tokenIdArray = collectionArray[index][2];
     let itemsArray = [];
 
     try {
       const itemObject0 = await collectionArray[index][0].methods
-        .items(tokenIDArray[0])
+        .items(tokenIdArray[0])
         .call();
       const ITEM_LIMIT_0 = itemObject0[Object.keys(itemObject0)[2]];
 
       const itemObject5 = await collectionArray[index][0].methods
-        .items(tokenIDArray[1])
+        .items(tokenIdArray[1])
         .call();
       const ITEM_LIMIT_5 = itemObject5[Object.keys(itemObject5)[2]];
 
       const itemObject10 = await collectionArray[index][0].methods
-        .items(tokenIDArray[2])
+        .items(tokenIdArray[2])
         .call();
       const ITEM_LIMIT_10 = itemObject10[Object.keys(itemObject10)[2]];
 
       const itemObject15 = await collectionArray[index][0].methods
-        .items(tokenIDArray[3])
+        .items(tokenIdArray[3])
         .call();
       const ITEM_LIMIT_15 = itemObject15[Object.keys(itemObject15)[2]];
 
       const itemObject20 = await collectionArray[index][0].methods
-        .items(tokenIDArray[4])
+        .items(tokenIdArray[4])
         .call();
       const ITEM_LIMIT_20 = itemObject20[Object.keys(itemObject20)[2]];
 
       console.log(
-        'Token ID: ' + tokenIDArray[0] + ', quantity: ' + parseInt(ITEM_LIMIT_0)
+        'Token ID: ' + tokenIdArray[0] + ', quantity: ' + parseInt(ITEM_LIMIT_0)
       );
       console.log(
-        'Token ID: ' + tokenIDArray[1] + ', quantity: ' + parseInt(ITEM_LIMIT_5)
+        'Token ID: ' + tokenIdArray[1] + ', quantity: ' + parseInt(ITEM_LIMIT_5)
       );
       console.log(
         'Token ID: ' +
-          tokenIDArray[2] +
+          tokenIdArray[2] +
           ', quantity: ' +
           parseInt(ITEM_LIMIT_10)
       );
       console.log(
         'Token ID: ' +
-          tokenIDArray[3] +
+          tokenIdArray[3] +
           ', quantity: ' +
           parseInt(ITEM_LIMIT_15)
       );
       console.log(
         'Token ID: ' +
-          tokenIDArray[4] +
+          tokenIdArray[4] +
           ', quantity: ' +
           parseInt(ITEM_LIMIT_20)
       );
 
       itemsArray.push(
-        [parseInt(ITEM_LIMIT_0), tokenIDArray[0]],
-        [parseInt(ITEM_LIMIT_5), tokenIDArray[1]],
-        [parseInt(ITEM_LIMIT_10), tokenIDArray[2]],
-        [parseInt(ITEM_LIMIT_15), tokenIDArray[3]],
-        [parseInt(ITEM_LIMIT_20), tokenIDArray[4]],
+        [parseInt(ITEM_LIMIT_0), tokenIdArray[0]],
+        [parseInt(ITEM_LIMIT_5), tokenIdArray[1]],
+        [parseInt(ITEM_LIMIT_10), tokenIdArray[2]],
+        [parseInt(ITEM_LIMIT_15), tokenIdArray[3]],
+        [parseInt(ITEM_LIMIT_20), tokenIdArray[4]],
         collectionAddress
       );
 
@@ -632,7 +510,14 @@ function ICEAttributes() {
         ICE_AMOUNT / Global.CONSTANTS.FACTOR
       ).toString();
 
-      const { xpUpgradeCosts } = await Fetch.GET_REWARDS_CONFIG();
+      const { delegatorSplits, xpUpgradeCosts } = await Fetch.GET_REWARDS_CONFIG();
+      delegatorSplits.map(delegatorSplit => {
+        delegatorSplit = Number(delegatorSplit)
+      })
+      dispatch({
+        type: 'delegator_splits',
+        data: delegatorSplits,
+      })
 
       return {
         WETH_COST_AMOUNT: WETH_COST_AMOUNT,

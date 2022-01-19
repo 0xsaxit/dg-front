@@ -224,6 +224,7 @@ const initialState = {
   // xpAmount: 0,
   userVerified: true,
   isAmnesiaPage: false,
+  delegatorSplits: [],
 };
 
 const reducer = (state, action) => {
@@ -404,7 +405,6 @@ const reducer = (state, action) => {
         ...state,
         iceWearableItems: action.data,
       };
-
     case 'ice_wearable_items_loading':
       return {
         ...state,
@@ -470,6 +470,12 @@ const reducer = (state, action) => {
     //     ...state,
     //     collectionMappings: action.data,
     //   };
+
+    case 'delegator_splits':
+      return {
+        ...state,
+        delegatorSplits: action.data
+      };
 
     case 'dg_prices':
       return {

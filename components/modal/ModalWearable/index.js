@@ -35,6 +35,8 @@ const ModalWearable = props => {
     props.name.replace('Diamond Hands ', '')
   );
 
+  console.log('Loading wearableName:', wearableName);
+
   const bonus = [
     '0%', // Rank 0
     '+1 - 7%', // Rank 1
@@ -70,6 +72,9 @@ const ModalWearable = props => {
     XP_COST_AMOUNT_4, // Rank 4
     XP_COST_AMOUNT_5, // Rank 5
   ];
+
+  // Returns the current ice wearable ranking + 1
+  const nextIceWearableRank = parseInt(Math.min(props.rank + 1, 5));
 
   return (
     <>
@@ -108,7 +113,7 @@ const ModalWearable = props => {
                 }}
               >
                 <div className={styles.wear_box_mark}>
-                  +{props.bonus}%
+                  {props.bonus}
                   <img
                     src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1630857308/diamond_1_1_r6etkk.png"
                     className={styles.img_card}
@@ -121,7 +126,7 @@ const ModalWearable = props => {
               <div className={styles.card_body}>
                 <div className={styles.card}>Rank {props.rank}</div>
                 <div className={styles.card}>
-                  +{props.bonus}%
+                  {props.bonus}
                   <img
                     src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1630857308/diamond_1_1_r6etkk.png"
                     className={styles.img_card}
@@ -151,7 +156,7 @@ const ModalWearable = props => {
                 }}
               >
                 <div className={styles.wear_box_mark}>
-                  {bonus[Math.min(props.rank + 1, 5)]}
+                  {bonus[nextIceWearableRank]}
                   <img
                     src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1630857308/diamond_1_1_r6etkk.png"
                     className={styles.img_card}
@@ -162,17 +167,17 @@ const ModalWearable = props => {
               <div className={styles.wear_box_pink}>
                 <img
                   src={
-                    Global.IMG_URLS_UPGRADE[wearableName][parseInt(Math.min(props.rank + 1, 5))]
+                    Global.IMG_URLS_UPGRADE?.[wearableName]?.[nextIceWearableRank]
                   }
                 />
               </div>
 
               <div className={styles.card_body}>
                 <div className={styles.card}>
-                  Rank {Math.min(props.rank + 1, 5)}
+                  Rank {nextIceWearableRank}
                 </div>
                 <div className={styles.card}>
-                  {bonus[Math.min(props.rank + 1, 5)]}
+                  {bonus[nextIceWearableRank]}
                   <img
                     src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1630857308/diamond_1_1_r6etkk.png"
                     className={styles.img_card}
@@ -191,8 +196,9 @@ const ModalWearable = props => {
                   <ul>
                     <li>
                       Update your ICE Bonus to between{' '}
-                      {bonus[Math.min(props.rank + 1, 5)]}
+                      {bonus[nextIceWearableRank]}
                     </li>
+                    <li>Update your owner delegation split to {Math.round(state.delegatorSplits[props.rank] * 100)}/{Math.round((1 - state.delegatorSplits[props.rank]) * 100)}</li>
                     <li>Increase the resale value and rarity of your NFT</li>
                   </ul>
                 </div>
@@ -204,21 +210,21 @@ const ModalWearable = props => {
                   {' '}
                   ($
                   {(
-                    icePrices[Math.min(props.rank + 1, 5)] *
+                    icePrices[nextIceWearableRank] *
                       state.DGPrices.ice +
-                    dgPrices[Math.min(props.rank + 1, 5)] * state.DGPrices.dg
+                    dgPrices[nextIceWearableRank] * state.DGPrices.dg
                   ).toFixed(2)})
                 </span>
                 <div className={styles.card_area}>
                   <div className={styles.card_area_body}>
                     {state.iceAmounts.ICE_AVAILABLE_AMOUNT <
-                      icePrices[Math.min(props.rank + 1, 5)] && (
+                      icePrices[nextIceWearableRank] && (
                       <span className={styles.not_enough}>Not Enough</span>
                     )}
                     <div className={styles.card}>
                       {`${
                         parseFloat(
-                          icePrices[Math.min(props.rank + 1, 5)]
+                          icePrices[nextIceWearableRank]
                         ).toFixed() / 1000
                       }K ICE`}
                       <img
@@ -228,7 +234,7 @@ const ModalWearable = props => {
                     </div>
 
                     {state.iceAmounts.ICE_AVAILABLE_AMOUNT <
-                    icePrices[Math.min(props.rank + 1, 5)] ? (
+                    icePrices[nextIceWearableRank] ? (
                       <div className={styles.description}>
                         {parseFloat(
                           state.iceAmounts.ICE_AVAILABLE_AMOUNT
@@ -276,18 +282,18 @@ const ModalWearable = props => {
 
                   <div className={styles.card_area_body}>
                     {parseFloat(state.DGBalances.BALANCE_CHILD_DG_LIGHT).toFixed(2) <
-                      dgPrices[Math.min(props.rank + 1, 5)] && (
+                      dgPrices[nextIceWearableRank] && (
                       <span className={styles.not_enough}>Not Enough</span>
                     )}
                     <div className={styles.card}>
-                      {dgPrices[Math.min(props.rank + 1, 5)]}
+                      {dgPrices[nextIceWearableRank]}
                       <img
                         src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1621630083/android-chrome-512x512_rmiw1y.png"
                         className={styles.img_card2}
                       />
                     </div>
                     {state.DGBalances.BALANCE_CHILD_DG_LIGHT <
-                    dgPrices[Math.min(props.rank + 1, 5)] ? (
+                    dgPrices[nextIceWearableRank] ? (
                       <div className={styles.description}>
                         {parseFloat(state.DGBalances.BALANCE_CHILD_DG_LIGHT).toFixed(
                           2
@@ -335,18 +341,18 @@ const ModalWearable = props => {
 
                   <div className={styles.card_area_body}>
                     {state.userInfo.balanceXP <
-                      xpPrices[Math.min(props.rank + 1, 5)] && (
+                      xpPrices[nextIceWearableRank] && (
                       <span className={styles.not_enough}>Not Enough</span>
                     )}
                     <div className={styles.card}>
-                      {xpPrices[Math.min(props.rank + 1, 5)]}
+                      {xpPrices[nextIceWearableRank]}
                       <img
                         src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1629727455/XP_zbnvuf.png"
                         className={styles.img_card3}
                       />
                     </div>
                     {state.userInfo.balanceXP <
-                    xpPrices[Math.min(props.rank + 1, 5)] ? (
+                    xpPrices[nextIceWearableRank] ? (
                       <div className={styles.description}>
                         {state.userInfo.balanceXP} XP Available
                       </div>
@@ -374,7 +380,7 @@ const ModalWearable = props => {
                 {state.userInfo.balanceXP >= 50 &&
                 state.DGBalances.BALANCE_CHILD_DG_LIGHT >= 100 &&
                 state.iceAmounts.ICE_AVAILABLE_AMOUNT >=
-                  icePrices[Math.min(props.rank + 1, 5)] ? (
+                  icePrices[nextIceWearableRank] ? (
                   <Button
                     className={styles.button_upgrade}
                     onClick={() => {
@@ -413,7 +419,7 @@ const ModalWearable = props => {
       )}
       {upgrade == 1 && (
         <NeedMoreUpgrade
-          upgradeNeedIceAmount={icePrices[Math.min(props.rank + 1, 5)]}
+          upgradeNeedIceAmount={icePrices[nextIceWearableRank]}
           upgradeNeedDgAmount={0.1}
           upgradeNeedXpAmount={50}
           setUpgrade={setUpgrade}
@@ -424,17 +430,17 @@ const ModalWearable = props => {
       {upgrade == 2 && (
         <ModalUpgradePending
           setUpgrade={setUpgrade}
-          tokenID={props.tokenID}
-          address={props.address}
-          itemID={props.itemID}
+          tokenId={props.tokenId}
+          contractAddress={props.contractAddress}
+          itemId={props.itemId}
         />
       )}
 
       {upgrade == 3 && (
-        <ModalUpgradeSuccess 
-          tokenID={props.tokenID} 
+        <ModalUpgradeSuccess
+          tokenId={props.tokenId}
           setUpgrade={setUpgrade}
-          imgURL = {Global.IMG_URLS_UPGRADE[wearableName][parseInt(Math.min(props.rank + 1, 5))]} 
+          imgURL = {Global.IMG_URLS_UPGRADE?.[wearableName]?.[nextIceWearableRank]}
         />
       )}
     </>

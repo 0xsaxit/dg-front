@@ -5,6 +5,7 @@ import Fetch from '../../../common/Fetch';
 import styles from './ModalWithdrawDelegation.module.scss';
 import ModalUndelegateQueued from '../ModalUndelegateQueued';
 import ModalDelegateConfirm from '../ModalDelegateConfirm';
+import Spinner from 'components/lottieAnimation/animations/spinner';
 import Aux from '../../_Aux';
 
 const ModalWithdrawDelegation = props => {
@@ -17,16 +18,20 @@ const ModalWithdrawDelegation = props => {
   const [success, setSuccess] = useState(false);
   const [withdrawStatus, setWithdrawStatus] = useState(0);
   const [errorMsg, setErrorMsg] = useState(null);
-  const [remainingTime, setRemainingTime] = useState(0);
-  const isDelegator = props.ownerAddress === state.userAddress;
+  // const [remainingTime, setRemainingTime] = useState(0);
+  const isDelegator = props.tokenOwner === state.userAddress;
+  const remainingTime = getRemainingTime()
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
 
-  useEffect(() => {
-    let remain = getRemainingTime();
-    setRemainingTime(remain);
-  });
+  console.log('delegate Address =>', props.delegateAddress);
+  
+
+  // useEffect(() => {
+  //   let remain = getRemainingTime();
+  //   setRemainingTime(remain);
+  // });
 
   // get Remaining Time
   function getRemainingTime() {
@@ -63,30 +68,30 @@ const ModalWithdrawDelegation = props => {
             <a href="/ice/claim">ICE rewards page</a>.
           </div>
         ) : (
-          <div className={styles.description}>
-            You’ve delegated this wearable to&nbsp;
+            <div className={styles.description}>
+              You’ve delegated this wearable to&nbsp;
             {props.delegateAddress && (
-              <a
-                href={`https://polygonscan.com/address/${props.delegateAddress}`}
-                target="_blank"
-              >
-                {props.delegateAddress.substr(0, 4) +
-                  '...' +
-                  props.delegateAddress.substr(-4)}
-              </a>
-            )}
-            .<br />
-            Profits can be claimed from your{' '}
-            <a href="/ice/claim">ICE rewards page</a>.
+                <a
+                  href={`https://polygonscan.com/address/${props.delegateAddress}`}
+                  target="_blank"
+                >
+                  {props.delegateAddress.substr(0, 4) +
+                    '...' +
+                    props.delegateAddress.substr(-4)}
+                </a>
+              )}
+              .<br />
+              Profits can be claimed from your{' '}
+              <a href="/ice/claim">ICE rewards page</a>.
           </div>
-        )}
+          )}
 
         <div className={styles.price_area}>
           <div className={styles.card_area}>
             <div className={styles.card_area_body}>
               <div className={styles.card}>
                 <div className={styles.info}>You Earn</div>
-                {!isDelegator ? '70%' : '30%'}
+                {!isDelegator ? `${Math.round((1 - state.delegatorSplits[props.rank - 1]) * 100)}%` : `${Math.round(state.delegatorSplits[props.rank - 1] * 100)}%`}
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card}
@@ -97,7 +102,7 @@ const ModalWithdrawDelegation = props => {
             <div className={styles.card_area_body}>
               <div className={styles.card}>
                 <div className={styles.info}>They Earn</div>
-                {!isDelegator ? '30%' : '70%'}
+                {!isDelegator ? `${Math.round(state.delegatorSplits[props.rank - 1] * 100)}%` : `${Math.round((1 - state.delegatorSplits[props.rank - 1]) * 100)}%`}
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card}
@@ -182,8 +187,8 @@ const ModalWithdrawDelegation = props => {
 
     const json = await Fetch.DELEGATE_NFT(
       props.delegateAddress,
-      props.tokenID,
-      props.address
+      props.tokenId,
+      props.contractAddress
     );
 
     if (json.status) {
@@ -194,10 +199,21 @@ const ModalWithdrawDelegation = props => {
         data: 'Scheduled Withdraw Cancelled',
       });
 
-      const refresh = !state.refreshDelegateInfo;
+      const refreshDelegation = !state.refreshDelegation;
       dispatch({
-        type: 'refresh_delegate_info',
-        data: refresh,
+        type: 'refresh_delegation',
+        data: refreshDelegation,
+      });
+      
+      const refreshWearable = !state.refreshWearable;
+      dispatch({
+        type: 'refresh_wearable_items',
+        data: refreshWearable,
+      });
+
+      dispatch({
+        type: 'ice_wearable_items_loading',
+        data: true,
       });
 
       setOpen(false);
@@ -209,18 +225,18 @@ const ModalWithdrawDelegation = props => {
   }
 
   async function undelegateNFT() {
-    console.log('Undelegate token ID: ' + props.tokenID);
-    console.log('Token owner address: ' + props.ownerAddress);
+    console.log('Undelegate token ID: ' + props.tokenId);
+    console.log('Token owner address: ' + props.tokenOwner);
     console.log('Delegate address: ' + props.delegateAddress);
-    console.log('Collection address: ' + props.address);
+    console.log('Collection address: ' + props.contractAddress);
     setErrorMsg(null);
     setClicked(true);
 
     const json = await Fetch.UNDELEGATE_NFT(
-      props.ownerAddress,
+      props.tokenOwner,
       props.delegateAddress,
-      props.tokenID,
-      props.address
+      props.tokenId,
+      props.contractAddress
     );
 
     if (json.status) {
@@ -232,6 +248,17 @@ const ModalWithdrawDelegation = props => {
       dispatch({
         type: 'refresh_delegation',
         data: refreshDelegation,
+      });
+      
+      const refreshWearable = !state.refreshWearable;
+      dispatch({
+        type: 'refresh_wearable_items',
+        data: refreshWearable,
+      });
+
+      dispatch({
+        type: 'ice_wearable_items_loading',
+        data: true,
       });
 
       // success
@@ -318,16 +345,16 @@ const ModalWithdrawDelegation = props => {
                         {props.delegationStatus
                           ? `Scheduled to Withdraw: 12am UTC (In ${getRemainingTime()} Hours)`
                           : props.checkInStatus
-                          ? `Schedule Withdraw: 12am UTC (In ${getRemainingTime()} Hours)`
-                          : 'Withdraw Immediately'}
+                            ? `Schedule Withdraw: 12am UTC (In ${getRemainingTime()} Hours)`
+                            : 'Withdraw Immediately'}
                       </p>
                     </div>
                   </Button>
                 ) : (
-                  <Button className={styles.button_close} disabled={true}>
-                    Pending Transaction...
-                  </Button>
-                )}
+                    <Button className={styles.button_close} disabled={true}>
+                      <Spinner />
+                    </Button>
+                  )}
               </div>
               <div className={styles.error_msg}>{errorMsg}</div>
             </div>
@@ -337,13 +364,13 @@ const ModalWithdrawDelegation = props => {
       {success && !props.checkInStatus && (
         <ModalDelegateConfirm
           buttonName={props.buttonName}
-          address={props.delegateAddress}
+          delegateAddress={props.delegateAddress}
         />
       )}
       {success && props.checkInStatus && !props.delegationStatus && (
         <ModalUndelegateQueued
           buttonName={props.buttonName}
-          address={props.delegateAddress}
+          delegateAddress={props.delegateAddress}
           remainingTime={remainingTime}
         />
       )}

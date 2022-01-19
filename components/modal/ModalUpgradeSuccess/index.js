@@ -16,13 +16,15 @@ const ModalUpgradeSuccess = props => {
   const [image, setImage] = useState("")
   const [description, setDescription] = useState("x of 100");
   const [rank, setRank] = useState({})
+  const [bonus, setBonus] = useState({})
   const [animationStage, setAnimationStage] = useState(1)
 
   useEffect(() => {
-    const itemInfo = state.iceWearableItems.filter(item => item.tokenID === props.tokenID)[0];
+    const itemInfo = state.iceWearableItems.filter(item => item.tokenId === props.tokenId)[0];
     setImage(props.imgURL ? props.imgURL : '');
-    setDescription(itemInfo.meta_data ? itemInfo.meta_data.description.split(' ').at(-1).replace('/', ' of ') : '');
-    setRank(itemInfo.meta_data ? GetRank(parseInt(itemInfo.meta_data.attributes.find(el => el.trait_type === 'Bonus').value)) : 0);
+    setDescription(itemInfo.description.split(' ').at(-1).replace('/', ' of '));
+    setRank(itemInfo.rank);
+    setBonus("+" + itemInfo.bonus + "%");
   }, [state.iceWearableItems])
 
   function refresh() {
@@ -38,6 +40,11 @@ const ModalUpgradeSuccess = props => {
      dispatch({
        type: 'refresh_wearable_items',
        data: refreshWearable,
+     });
+     
+     dispatch({
+       type: 'ice_wearable_items_loading',
+       data: true,
      });
 
      // update global state balances
@@ -130,7 +137,7 @@ const ModalUpgradeSuccess = props => {
           
           <div className={styles.card}>
             <div className={styles.toppercent}>
-              {rank.percentage}
+              {bonus}
               <img
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631326183/ICE_Diamon_ICN_k27aap.png"
                 style={{ width: '20px', marginLeft: '3px' }}
@@ -143,9 +150,9 @@ const ModalUpgradeSuccess = props => {
               />
             </div>
             <div className={styles.properties}>
-              <div className={styles.round}>Rank {rank.value}</div>
+              <div className={styles.round}>Rank {rank}</div>
               <div className={styles.round}>
-                {rank.percentage}
+                {bonus}
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631326183/ICE_Diamon_ICN_k27aap.png"
                   style={{ width: '14px', marginLeft: '2px' }}
