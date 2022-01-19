@@ -11,20 +11,43 @@ const ModalActivationSuccess = props => {
   const [image, setImage] = useState("")
   const [description, setDescription] = useState("x of 100");
   const [rank, setRank] = useState({})
+  const [bonus, setBonus] = useState({})
+
 
   useEffect(() => {
-    const itemInfo = state.iceWearableItems.filter(item => item.tokenID === props.tokenID)[0];
-    setImage(itemInfo.meta_data.image);
-    setDescription(itemInfo.meta_data.description.split(' ').at(-1).replace('/', ' of '));
-    setRank(GetRank(parseInt(itemInfo.meta_data.attributes.find(el => el.trait_type === 'Bonus').value)));
+    const itemInfo = state.iceWearableItems.filter(item => item.tokenId === props.tokenId)[0];
+    setImage(itemInfo.image);
+    setDescription(itemInfo.description.split(' ').at(-1).replace('/', ' of '));
+    setRank(itemInfo.rank);
+    setBonus("+" + itemInfo.bonus + "%");
   }, [state.iceWearableItems])
+
+  useEffect(() => {
+    setOpen(props.show);
+  }, [props.show])
+
+  function close() {
+    setOpen(false);
+
+    // update global state wearables data
+    const refreshWearable = !state.refreshWearable;
+    dispatch({
+      type: 'refresh_wearable_items',
+      data: refreshWearable,
+    });
+
+    dispatch({
+      type: 'ice_wearable_items_loading',
+      data: true,
+    });
+  }
 
   return (
     <>
       <Modal
         className={styles.activation_success_modal}
         onClose={() => {
-          setOpen(false);
+          close();
         }}
         onOpen={() => setOpen(true)}
         open={open}
@@ -39,8 +62,7 @@ const ModalActivationSuccess = props => {
           <span
             className={styles.button_close}
             onClick={() => {
-              setOpen(false);
-              // props.setOpenUpgradeSuccess(false);
+              close();
             }}
           >
             <svg
@@ -95,7 +117,7 @@ const ModalActivationSuccess = props => {
 
           <div className={styles.card}>
             <div className={styles.toppercent}>
-              {rank.percentage}
+              {bonus}
               <img
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
                 style={{ width: '20px' }}
@@ -105,9 +127,9 @@ const ModalActivationSuccess = props => {
               <img src={image} className={styles.logo} />
             </div>
             <div className={styles.properties}>
-              <div className={styles.round}>Rank {rank.value}</div>
+              <div className={styles.round}>Rank {rank}</div>
               <div className={styles.round}>
-                {rank.percentage}
+                {bonus}
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1630486742/image_2_pm0jck.png"
                   style={{ width: '20px' }}
@@ -124,7 +146,7 @@ const ModalActivationSuccess = props => {
             <Button 
               className={styles.none}
               onClick={() => {
-                setOpen(false);
+                close();
               }}
             >
               Back to Account

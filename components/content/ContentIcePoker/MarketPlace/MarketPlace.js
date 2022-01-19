@@ -11,12 +11,14 @@ import Global from '../../../Constants';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import 'components/modal/CheckMintableModal'
 import CheckMintableModal from 'components/modal/CheckMintableModal';
 
 const MarketPlace = () => {
   // dispatch new user status to Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
+  const [openCheckEligibility, setOpenCheckEligibility] = useState(false);
   // define local variables
   const [previewLevel, setPreviewLevel] = useState([0, 0, 0, 0, 0, 0, 0]);
   const wearables = [
@@ -443,6 +445,24 @@ const MarketPlace = () => {
       prevArrow: <CarouselPrevArrow />,
     };
 
+    const checkSoldOutStatus = (itemList, maxMint) =>{
+      return itemList.some((item)=>
+        (item[0] - maxMint) != 0
+      )
+    }
+
+    const buyOnSecondaryButton = ()  => {
+      return(
+      <Button className={styles.wearable_button}>
+        Buy on Secondary                      
+      </Button>)};
+
+    const soldOutButton = () => {
+      return(
+      <Button disabled className={styles.sold_button}>
+        Sold Out
+      </Button>)};
+
     return (
       <section>
         {wearables.map((wearable, index) => {
@@ -477,11 +497,11 @@ const MarketPlace = () => {
               <h3>
                 {wearable.title}
 
-                {wearable.title === 'ICE Joker' && (
-                <CheckMintableModal />
-              )}
+                {/*{wearable.title === 'ICE Joker' && (
+                  <CheckMintableModal />
+                )}*/}
               </h3>
-
+              
               <Slider {...settings}>
                 <div
                   className={styles.games_container}
@@ -601,8 +621,8 @@ const MarketPlace = () => {
                               index={i}
                               maxMintCounts={maxMintCounts}
                               numberLeft={itemLimits[i][0]}
-                              itemID={itemLimits[i][1]}
-                              address={itemLimits[5]}
+                              itemId={itemLimits[i][1]}
+                              contractAddress={itemLimits[5]}
                               wearableImg={wearable.details[item][0]}
                               wearableBodyType={wearable.details[item][3]}
                               wearableBodyImg={wearable.details[item][4]}
@@ -611,27 +631,18 @@ const MarketPlace = () => {
                           </div>
                         ) : // Minting Disabled States
                           maxMintCounts !== 0 && (maxMintCounts - itemLimits[i][0]) >= 0 && (maxMintCounts - itemLimits[i][0]) < 1 ? (
-                            wearable.title === 'ICE Joker' ? (
-                              // Sold Out State
-                              <Button disabled className={styles.sold_button}>
-                                Sold Out
-                              </Button>
-                            )
-                              : (
-                                // Buy on Secondary
-                                <a
-                                  className={styles.flex_50}
-                                  href="https://opensea.io/collection/decentral-games-ice"
-                                  target="_blank"
-                                  style={{
-                                    width: '100%',
-                                  }}
-                                >
-                                  <Button className={styles.wearable_button}>
-                                    Buy on Secondary
-                                  </Button>
-                                </a>
-                              )
+                            // Buy on Secondary (Previous Mint)
+                            <a
+                              className={styles.flex_50}
+                              href="https://opensea.io/collection/decentral-games-ice"
+                              target="_blank"
+                              style={{
+                                width: '100%',
+                              }}
+                            >
+                              {checkSoldOutStatus(itemLimits.slice(0,-1), maxMintCounts) ? soldOutButton() : buyOnSecondaryButton() }
+
+                            </a>
                           ) : state.userStatus < state.appConfig.minMintVerifyStep &&
                             ((maxMintCounts - itemLimits[i][0]) > 0 || (maxMintCounts === 0 && itemLimits[i][0] === 0)) ? (
                             // Coming Soon State
@@ -691,6 +702,8 @@ const MarketPlace = () => {
         </div>
 
         <div className={styles.outter_games_container}>{getCarousel()}</div>
+        {/* {openCheckEligibility && <CheckMintableModal />} */}
+        
       </span>
     </div>
   );

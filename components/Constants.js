@@ -27,7 +27,7 @@ const CONSTANTS = {
   DESCRIPTION: 'Free to play, play to earn gaming in the metaverse. Play ICE Poker, trade NFTs, vote in the DAO, and earn real value from your favorite games.',
   DISCORD_URL: 'https://discord.gg/cvbSNzY',
   SOCIAL_HANDLE: 'decentralgames',
-  MAX_ITEM_COUNT: 70, // maximum number of tokenOfOwner indexes to query on the accessories contract
+  MAX_ITEM_COUNT: 70, // maximum number of tokenOfOwner indexes to query on the accessories contract ********** was 10 **********
   MAX_DELEGATION_COUNT: 5, // maximum number of delegated NFTs a user can have
   VERIFY_URL: 'staging.decentral.games',
   WETH_MINT_AMOUNT: 0.25, // amount of WETH required for minting
@@ -38,7 +38,7 @@ const CONSTANTS = {
   POOLING_LIMIT_COUNT: 6, // attempt to call API endpoint this number of times
   MINT_STATUS: 29, // minimum userStatus level for minting wearables (we can replace with appConfig variable when it's available)
   APR_NUMBER: 26071500, // APR constant number,
-  TOKEN_DECIMALS: 18, // the decimals of register contract
+  TOKEN_DECIMALS: 18, // the decimals of register contract,
 };
 
 const IMG_URLS_UPGRADE = {
@@ -374,8 +374,8 @@ const ADDRESSES = (() => {
   const UNISWAP_ADDRESS_WETH = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2';
   const TOMINOYA_CONTRACT_ADDRESS = '0xF4618abb5E8031454238696A0F013DcD1476dc33';
   const DECENTRAL_GAMES_EVENTS = '0x154620ddfdcd6ab15dd9c1682386debad1eef536';
-  const COLLECTION_V2_ADDRESS = '0xCb06f6aeE0655252a3f6f2884680421D55d3C645';
-  const COLLECTION_PH_ADDRESS = '0x4cd15dcd96362cF85E19039C3C2D661e5e43145E';
+  const COLLECTION_V2_ADDRESS = '0xcb06f6aee0655252a3f6f2884680421d55d3c645';
+  const COLLECTION_PH_ADDRESS = '0x4cd15dcd96362cf85e19039c3c2d661e5e43145e';
   const COLLECTION_LINENS_ADDRESS = '0xd79cf5a41d8caec4688e01b4754ea2da6f51e856';
   const COLLECTION_BOMBER_ADDRESS = '0xd07a56f7198ae6e4e3d6738bd8c4b81d21bf0403';
   const COLLECTION_CRYPTO_DRIP_ADDRESS = '0x897243a54b03b46a17b55d5609465e9719a6ffa0';

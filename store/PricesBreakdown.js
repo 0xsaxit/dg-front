@@ -41,6 +41,7 @@ function PricesBreakdown() {
               xDG: priceXDG,
               dg: priceDG,
               ice: priceICE,
+              xDG: priceXDG,
             },
           });
         } catch (error) {

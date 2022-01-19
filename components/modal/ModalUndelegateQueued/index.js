@@ -1,83 +1,53 @@
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { GlobalContext } from '../../../store';
-import GetRank from '../../../common/GetIceWearableRank'
 import { Modal, Button } from 'semantic-ui-react';
-import styles from './ModalUpgradeSuccess.module.scss';
-import cn from 'classnames';
-import UpgradeWearableBox from "components/lottieAnimation/animations/upgradeWearableBox"
-import Confetti from "components/lottieAnimation/animations/confetti"
+import styles from './ModalUndelegateQueued.module.scss';
 
-const ModalUpgradeSuccess = props => {
-  // fetch user's Polygon DG balance from the Context API store
+const ModalUndelegateQueued = props => {
+  // fetch refresh delegation status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
   const [open, setOpen] = useState(true);
-  const [image, setImage] = useState("")
-  const [description, setDescription] = useState("x of 100");
-  const [rank, setRank] = useState({})
-  const [bonus, setBonus] = useState({})
-  const [animationStage, setAnimationStage] = useState(1)
 
-  useEffect(() => {
-    const itemInfo = state.iceWearableItems.filter(item => item.tokenId === props.tokenId)[0];
-    setImage(props.imgURL ? props.imgURL : '');
-    setDescription(itemInfo.description.split(' ').at(-1).replace('/', ' of '));
-    setRank(itemInfo.rank);
-    setBonus("+" + itemInfo.bonus + "%");
-  }, [state.iceWearableItems])
-
-  function refresh() {
-     // update global state token amounts
-     const refreshTokenAmounts = !state.refreshTokenAmounts;
-     dispatch({
-       type: 'refresh_token_amounts',
-       data: refreshTokenAmounts,
-     });
-
-     // update global state wearables data
-     const refreshWearable = !state.refreshWearable;
-     dispatch({
-       type: 'refresh_wearable_items',
-       data: refreshWearable,
-     });
-     
-     dispatch({
-       type: 'ice_wearable_items_loading',
-       data: true,
-     });
-
-     // update global state balances
-     const refreshBalances = !state.refreshBalances;
-     dispatch({
-       type: 'refresh_balances',
-       data: refreshBalances,
-     });
-  }
+  // update global state delegation information
+  function setGlobalState() {
+    const refreshDelegation = !state.refreshDelegation;
+    dispatch({
+      type: 'refresh_delegation',
+      data: refreshDelegation,
+    });
     
+    const refreshWearable = !state.refreshWearable;
+    dispatch({
+      type: 'refresh_wearable_items',
+      data: refreshWearable,
+    });
+
+    dispatch({
+      type: 'ice_wearable_items_loading',
+      data: true,
+    });
+
+    setOpen(false);
+  }
+
   return (
     <Modal
       className={styles.success_modal}
-      onClose={() => {
-        console.log('closing')
-        setOpen(false);
-        props.setUpgrade(0);
-        refresh();
-      }}
+      onClose={() => setGlobalState()}
       onOpen={() => setOpen(true)}
       open={open}
       close
-      trigger={<Button className={styles.open_button}>Upgrade</Button>}
+      trigger={
+        <Button className={styles.open_button}>{props.buttonName}</Button>
+      }
     >
-      <div
-        className={styles.header_buttons}    
-      >
-        <span 
+      <div className={styles.top_buttons}>
+        <span
           className={styles.button_close}
           onClick={() => {
-            setOpen(false);
-            props.setUpgrade(0);
-            refresh();
+            setGlobalState();
           }}
         >
           <svg
@@ -126,64 +96,43 @@ const ModalUpgradeSuccess = props => {
           Help
         </span>
       </div>
-      
+      <div
+        style={{
+          color: 'white',
+          display: 'flex',
+          justifyContent: 'center',
+          textAlign: 'center',
+        }}
+      >
+        <div className={styles.wear_box_body}>
+          <div className={styles.header}>Withdrawal Scheduled!</div>
 
-      {(animationStage===1) ?
-        <UpgradeWearableBox height={540} onCompletion={()=>{setAnimationStage(2)}}/>
-        :
-        <div className={cn(styles.fadeIn, styles.success_container)}>
-          <Confetti onCompletion={()=>{setAnimationStage(3)}}/>
-          <div className={styles.title}>Upgrade Successful!</div>
-          
-          <div className={styles.card}>
-            <div className={styles.toppercent}>
-              {bonus}
-              <img
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631326183/ICE_Diamon_ICN_k27aap.png"
-                style={{ width: '20px', marginLeft: '3px' }}
-              />
-            </div>
-            <div className={styles.image}>
-              <img
-                src={image}
-                className={styles.logo}
-              />
-            </div>
-            <div className={styles.properties}>
-              <div className={styles.round}>Rank {rank}</div>
-              <div className={styles.round}>
-                {bonus}
-                <img
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631326183/ICE_Diamon_ICN_k27aap.png"
-                  style={{ width: '14px', marginLeft: '2px' }}
-                />
-              </div>
-              <div className={styles.round}>{description}</div>
-            </div>
+          <div className={styles.description}>
+            After 12pm UTC({props.remainingTime} hours), you will not longer be
+            delegating to{' '}
+            {props.delegateAddress && (
+              <a>
+                {props.delegateAddress.substr(0, 4) + '...' + props.delegateAddress.substr(-4)}
+              </a>
+            )}
+            . Any previous profits can be claimed from your{' '}
+            <a>ICE rewards page.</a>
           </div>
-          <div className={styles.buttons}>
-            <Button 
-              href="https://api.decentral.games/ice/play?position=-110%2C129"
-              target="_blank"
-              className={styles.primary}
-            >
-              Play Now
-            </Button>
+
+          <div className={styles.button_area}>
             <Button
-              className={styles.none}
+              className={styles.button_close}
               onClick={() => {
-                setOpen(false);
-                props.setUpgrade(0);
-                refresh();
+                setGlobalState();
               }}
             >
               Back to Account
             </Button>
           </div>
         </div>
-      }
+      </div>
     </Modal>
   );
 };
 
-export default ModalUpgradeSuccess;
+export default ModalUndelegateQueued;

@@ -1,5 +1,16 @@
 @import "styles/base.scss";
 
+.spinner_wrapper {
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+
+  img {
+    width: 55px;
+    height: 55px;
+  }
+}
+
 .items_container {
   margin-top: 30px !important;
   margin: auto;

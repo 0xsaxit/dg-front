@@ -131,8 +131,6 @@ const ModalLoginICE = () => {
       type: 'set_userLoggedIn',
       data: true,
     });
-
-    localStorage.setItem('loggedIn', true);
   }
 
   async function getUserStatus() {
