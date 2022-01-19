@@ -12,7 +12,7 @@ class UpdatedSpinnerAnimation extends Component {
                 preserveAspectRatio: 'xMidYMid slice'
             }
         };
-        console.log(this.props.height);
+        // console.log(this.props.height);
 
         return (
             <div className="spinner-animation-div" style={{ marginRight: '0px' }}>
