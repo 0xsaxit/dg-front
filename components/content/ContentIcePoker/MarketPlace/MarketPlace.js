@@ -12,7 +12,6 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'components/modal/CheckMintableModal'
-import CheckMintableModal from 'components/modal/CheckMintableModal';
 
 const MarketPlace = () => {
   // dispatch new user status to Context API store
@@ -452,13 +451,13 @@ const MarketPlace = () => {
     }
 
     const buyOnSecondaryButton = ()  => {
-      return(
+      return (
       <Button className={styles.wearable_button}>
-        Buy on Secondary                      
+        Buy on Secondary
       </Button>)};
 
     const soldOutButton = () => {
-      return(
+      return (
       <Button disabled className={styles.sold_button}>
         Sold Out
       </Button>)};
@@ -607,55 +606,66 @@ const MarketPlace = () => {
                     </div>
 
                     <div className={styles.button_container}>
-                      {state.userLoggedIn ?
-                        state.userStatus >= 4 && itemLimits[i][0] < 0 ? (
-                          // items loading, display spinner
-                          <Button disabled className={styles.sold_button}>
-                            <Spinner width={20} height={20} />
-                          </Button>
-                        ) : state.userStatus >= state.appConfig.minMintVerifyStep &&
-                          (maxMintCounts - itemLimits[i][0]) > 0 ? (
-                          // minting enabled
-                          <div className={styles.flex_50}>
-                            <ModalMintWearable
-                              index={i}
-                              maxMintCounts={maxMintCounts}
-                              numberLeft={itemLimits[i][0]}
-                              itemId={itemLimits[i][1]}
-                              contractAddress={itemLimits[5]}
-                              wearableImg={wearable.details[item][0]}
-                              wearableBodyType={wearable.details[item][3]}
-                              wearableBodyImg={wearable.details[item][4]}
-                              wearableName={wearable.details[item][1]}
-                            />
-                          </div>
-                        ) : // Minting Disabled States
-                          maxMintCounts !== 0 && (maxMintCounts - itemLimits[i][0]) >= 0 && (maxMintCounts - itemLimits[i][0]) < 1 ? (
-                            // Buy on Secondary (Previous Mint)
-                            <a
-                              className={styles.flex_50}
+                      {(() => {
+                        // Logged In States
+                        if (state.userLoggedIn) {
+                          console.log('state.userLoggedIn', state.userLoggedIn);
+                          if (state.userStatus >= 4 && itemLimits[i][0] < 0) {
+                            // Items still loading, display spinner
+                            return (
+                                <Button disabled className={styles.sold_button}>
+                              <Spinner width={20} height={20}/>
+                            </Button>)
+
+                            // Items loaded, Minting enabled
+                          } else if (state.userStatus >= state.appConfig.minMintVerifyStep && (maxMintCounts - itemLimits[i][0]) > 0) {
+                            return (
+                                <div className={styles.flex_50}>
+                              <ModalMintWearable
+                                  index={i}
+                                  maxMintCounts={maxMintCounts}
+                                  numberLeft={itemLimits[i][0]}
+                                  itemId={itemLimits[i][1]}
+                                  contractAddress={itemLimits[5]}
+                                  wearableImg={wearable.details[item][0]}
+                                  wearableBodyType={wearable.details[item][3]}
+                                  wearableBodyImg={wearable.details[item][4]}
+                                  wearableName={wearable.details[item][1]}
+                              />
+                            </div>)
+                            // Minting Disabled States
+                          } else if (maxMintCounts !== 0 && (maxMintCounts - itemLimits[i][0]) >= 0 && (maxMintCounts - itemLimits[i][0]) < 1) {
+                            return (
+                              <a className={styles.flex_50}
                               href="https://opensea.io/collection/decentral-games-ice"
                               target="_blank"
                               style={{
                                 width: '100%',
-                              }}
-                            >
-                              {checkSoldOutStatus(itemLimits.slice(0,-1), maxMintCounts) ? soldOutButton() : buyOnSecondaryButton() }
-
-                            </a>
-                          ) : state.userStatus < state.appConfig.minMintVerifyStep &&
-                            ((maxMintCounts - itemLimits[i][0]) > 0 || (maxMintCounts === 0 && itemLimits[i][0] === 0)) ? (
+                              }}>
+                              {
+                                // Show "Buy on Secondary" if all items in series are sold out, otherwise show "Sold Out" button
+                                checkSoldOutStatus(itemLimits.slice(0, -1), maxMintCounts) ?
+                                    soldOutButton() :
+                                    buyOnSecondaryButton()}
+                            </a>)
+                          } else if (state.userStatus < state.appConfig.minMintVerifyStep &&
+                              ((maxMintCounts - itemLimits[i][0]) > 0 || (maxMintCounts === 0 && itemLimits[i][0] === 0))) {
                             // Coming Soon State
-                            <Button disabled className={styles.sold_button}>
+                            return (
+                                <Button disabled className={styles.sold_button}>
                               Coming Soon!
-                            </Button>
-                          ) : null
-                        :
-                        // Logged Out State
-                        <div className={styles.flex_50}>
-                          <ModalLoginICE />
-                        </div>
-                      }
+                            </Button>)
+                          } else {
+                            return (<p>Failed to load mint button.</p>)
+                          }
+                        } else {
+                          // Logged Out State
+                          return (
+                              <div className={styles.flex_50}>
+                            <ModalLoginICE/>
+                          </div>)
+                        }
+                      })()}
                     </div>
                   </div>
                 ))}
