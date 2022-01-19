@@ -5,6 +5,8 @@ import { Button } from 'semantic-ui-react';
 import styles from './Wearables.module.scss';
 import Fetch from 'common/Fetch';
 import { GlobalContext } from 'store';
+import ModalDelegate from 'components/modal/ModalDelegate';
+import ModalUpgradeSuccess from 'components/modal/ModalUpgradeSuccess';
 
 const Wearables = () => {
   // define local variables
