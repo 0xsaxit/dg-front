@@ -210,7 +210,7 @@ const ModalWithdrawDelegation = props => {
         type: 'refresh_wearable_items',
         data: refreshWearable,
       });
-
+      
       dispatch({
         type: 'ice_wearable_items_loading',
         data: true,
@@ -243,23 +243,6 @@ const ModalWithdrawDelegation = props => {
       console.log('NFT undelegation request successful');
       setClicked(false);
       setWithdrawStatus(0);
-
-      const refreshDelegation = !state.refreshDelegation;
-      dispatch({
-        type: 'refresh_delegation',
-        data: refreshDelegation,
-      });
-      
-      const refreshWearable = !state.refreshWearable;
-      dispatch({
-        type: 'refresh_wearable_items',
-        data: refreshWearable,
-      });
-
-      dispatch({
-        type: 'ice_wearable_items_loading',
-        data: true,
-      });
 
       // success
       completeWithdraw();
