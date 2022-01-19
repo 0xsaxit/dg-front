@@ -1,5 +1,6 @@
 import call from 'common/API';
 import getConfig from 'next/config';
+import { MenuMenu } from 'semantic-ui-react';
 import { ApiUrlsByAppEnv } from './environments';
 
 // This imports NODE_ENV from next.config.js
@@ -45,23 +46,31 @@ const Fetch = {
     return call(`${API_BASE_URL}/admin/getUsersList`, 'GET');
   },
 
-  MINT_TOKEN: (itemID, collectionAddr) => {
+  MINT_TOKEN: (itemId, collectionAddr) => {
     return call(
-      `${API_BASE_URL}/ice/mintToken/${itemID}/${collectionAddr}`,
+      `${API_BASE_URL}/ice/mintToken/${itemId}/${collectionAddr}`,
       'GET'
     );
   },
 
-  UPGRADE_TOKEN: (tokenID, collectionAddr) => {
+  DG_GOVERNANCE_SUPPLY_GECKO: () => {
     return call(
-      `${API_BASE_URL}/ice/upgradeToken/${tokenID}/${collectionAddr}`,
+      `https://api.coingecko.com/api/v3/coins/decentral-games-governance`,
+      'GET',
+      false
+    );
+  },
+
+  UPGRADE_TOKEN: (tokenId, collectionAddr) => {
+    return call(
+      `${API_BASE_URL}/ice/upgradeToken/${tokenId}/${collectionAddr}`,
       'GET'
     );
   },
 
-  GET_METADATA_FROM_TOKEN_URI: (contractAddr, tokenID) => {
+  GET_METADATA_FROM_TOKEN_URI: (contractAddr, tokenId) => {
     return call(
-      `${API_BASE_URL}/ice/getMetadata/${contractAddr}/${tokenID}`,
+      `${API_BASE_URL}/ice/getMetadata/${contractAddr}/${tokenId}`,
       'GET'
     );
   },
@@ -88,13 +97,6 @@ const Fetch = {
   PLAYER_INFO: address => {
     return call(`${API_BASE_URL}/admin/getUser?address=${address}`, 'GET');
   },
-  UPDATE_FREE_PLAYER_BALANCE: (amount, address) => {
-    return call(`${API_BASE_URL}/admin/updateUserBalances?freePlayAmountChange=${amount}&user=${address}`, 'GET');
-  },
-
-  UPDATE_ICE_CHIP_BALANCE: (amount, address) => {
-    return call(`${API_BASE_URL}/admin/updateUserBalances?iceChipsAmountChange=${amount}&user=${address}`, 'GET');
-  },
 
   POKER_DATA: address => {
     return call(
@@ -106,6 +108,20 @@ const Fetch = {
   ICE_AMOUNTS: address => {
     return call(
       `${API_BASE_URL}/ice/getUnclaimedRewardsAmount?address=${address}`,
+      'GET'
+    );
+  },
+
+  UPDATE_FREE_PLAYER_BALANCE: (amount, address) => {
+    return call(
+      `${API_BASE_URL}/admin/updateUserBalances?freePlayAmountChange=${amount}&user=${address}`,
+      'GET'
+    );
+  },
+
+  UPDATE_ICE_CHIP_BALANCE: (amount, address) => {
+    return call(
+      `${API_BASE_URL}/admin/updateUserBalances?iceChipsAmountChange=${amount}&user=${address}`,
       'GET'
     );
   },
@@ -130,19 +146,19 @@ const Fetch = {
     });
   },
 
-  DELEGATE_NFT: (delegateAddress, tokenID, contractAddress) => {
+  DELEGATE_NFT: (delegateAddress, tokenId, contractAddress) => {
     return call(`${API_BASE_URL}/ice/delegateToken`, 'POST', true, {
       delegateAddress,
-      tokenID,
+      tokenId,
       contractAddress,
     });
   },
 
-  UNDELEGATE_NFT: (tokenOwner, delegateAddress, tokenID, contractAddress) => {
+  UNDELEGATE_NFT: (tokenOwner, delegateAddress, tokenId, contractAddress) => {
     return call(`${API_BASE_URL}/ice/undelegateToken`, 'POST', true, {
       tokenOwner,
       delegateAddress,
-      tokenID,
+      tokenId,
       contractAddress,
     });
   },
@@ -184,22 +200,11 @@ const Fetch = {
     });
   },
 
-  // address is the address of the user that used the wearable. i.e if the token is delegated, it is the delegatee's adress.
-  WEARABLE_CHECKIN_STATUS: (address, tokenID) => {
+  GET_WEARABLE_INVENTORY: address => {
     return call(
-      `${API_BASE_URL}/ice/fetchWearableCheckinStatus`,
-      'POST',
-      true,
-      { address, tokenID }
-    );
-  },
-
-  GET_WEARABLE_INVENTORY: (address) => {
-    return call(
-      `${API_BASE_URL}/ice/getWearableInventory`,
+      `${API_BASE_URL}/ice/getWearableInventory?address=${address}`,
       'GET',
-      true,
-      { address }
+      true
     );
   },
 
@@ -282,14 +287,6 @@ const Fetch = {
     );
   },
 
-  DG_GOVERNANCE_SUPPLY_GECKO: () => {
-    return call(
-      `https://api.coingecko.com/api/v3/coins/decentral-games-governance`,
-      'GET',
-      false
-    );
-  },
-
   // ICE_PRICE: () => {
   //   return call(`https://api.coingecko.com/api/v3/coins/ice`, 'GET', false);
   // },
@@ -302,9 +299,38 @@ const Fetch = {
     );
   },
 
+  DG_GOVERNANCE_SUPPLY_GECKO: () => {
+    return call(
+      `https://api.coingecko.com/api/v3/coins/decentral-games-governance`,
+      'GET',
+      false
+    );
+  },
+
   POAPS: address => {
     return call(`https://api.poap.xyz/actions/scan/${address}`, 'GET', false);
   },
+
+  DELEGATION_BREAKDOWN: (time, address) => {
+    if (address) {
+      return call(`https://api.decentral.games/ice/getDelegationBreakdown/${time}?address=${address}`, 'GET');
+    } else {
+      return call(`https://api.decentral.games/ice/getDelegationBreakdown/${time}`, 'GET');
+    }
+  },
+
+  GAMEPLAY_REPORTS: (address) => {
+    if (address) {
+      return call(`https://api.decentral.games/ice/getGameplayReports/?address=${address}`, 'GET');
+    } else {
+      return call(`https://api.decentral.games/ice/getGameplayReports`, 'GET');
+    }
+  },
+
+  GET_FRONTPAGE_STATS: () =>  {
+    return call(`${API_BASE_URL}/admin/getFrontPageStats`, 'GET', false);
+
+  }
 };
 
 export default Fetch;

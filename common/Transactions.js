@@ -272,10 +272,14 @@ async function tokenAuthorization(tokenContract, userAddress, spenderAddress) {
 }
 
 // get NFT approval address/status for from token contract
-async function NFTApproved(tokenContract, tokenID) {
+async function NFTApproved(tokenContract, tokenId) {
+  // console.log('tokenContract...');
+  // console.log(tokenContract);
+  // console.log('token ID: ' + tokenId);
+
   try {
     const tokenAddress = await tokenContract.methods
-      .getApproved(tokenID)
+      .getApproved(tokenId)
       .call();
 
     let tokenApproved = false;

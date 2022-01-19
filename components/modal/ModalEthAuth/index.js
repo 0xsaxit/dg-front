@@ -26,6 +26,7 @@ const ModalEthAuth = props => {
   const [open, setOpen] = useState(false);
   const [openMintSuccess, setOpenMintSuccess] = useState(false);
   const [minting, setMinting] = useState(false);
+  // const [buttonMessage, setButtonMessage] = useState('Proceed to Mint');
   const [clickedAuthEth, setClickedAuthEth] = useState(false);
   const [clickedConfirm, setClickedConfirm] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -110,6 +111,17 @@ const ModalEthAuth = props => {
 
   useEffect(() => {
     const canPurchase = state.canPurchase;
+
+    // if (canPurchase) {
+    //   if (state.tokenAuths.WETH_AUTHORIZATION) {
+    //     setButtonMessage('Confirm Purchase');
+    //   } else {
+    //     setButtonMessage('Authorize ETH');
+    //   }
+    // } else {
+    //   setButtonMessage('Cooldown Period');
+    // }
+
     setCanPurchase(canPurchase);
   }, [state.canPurchase]);
 
@@ -134,10 +146,10 @@ const ModalEthAuth = props => {
               authStatus
                 ? 'done'
                 : !clickedAuthEth
-                  ? 'initial'
-                  : clickedAuthEth
-                    ? 'clicked'
-                    : null
+                ? 'initial'
+                : clickedAuthEth
+                ? 'clicked'
+                : null
             }
             disabled={true}
             primaryText="Authorize ETH"
@@ -169,7 +181,7 @@ const ModalEthAuth = props => {
 
   async function fetchMintToken() {
     try {
-      const json = await Fetch.MINT_TOKEN(props.itemID, props.address);
+      const json = await Fetch.MINT_TOKEN(props.itemId, props.contractAddress);
       console.log('pooling json: ', json);
 
       if (json.status) {
@@ -177,6 +189,7 @@ const ModalEthAuth = props => {
       }
     } catch (error) {
       setErrorText('API Timeout');
+      // setButtonMessage('API Timeout');
       setLoading(false);
       setClickedConfirm(false);
 
@@ -187,13 +200,14 @@ const ModalEthAuth = props => {
   // send-off the API request to mint the user's Level 1 wearable
   async function mintToken() {
     setErrorText(null);
-    console.log('Minting NFT item ID: ' + props.itemID);
+    console.log('Minting NFT item ID: ' + props.itemId);
     setMinting(true);
+
     setLoading(true);
     setClickedConfirm(true);
 
-    console.log('props.itemID', props.itemID);
-    console.log('props.address', props.address);
+    console.log('props.itemId', props.itemId);
+    console.log('props.contractAddress', props.contractAddress);
 
     const intervalid = setInterval(() => {
       setTickCount(prevCount => prevCount + 1);
@@ -220,13 +234,6 @@ const ModalEthAuth = props => {
           data: refresh2,
         });
 
-        // update global state wearable Inventory data
-        const refresh3 = !state.refreshWearableInventory;
-        dispatch({
-          type: 'refresh_wearable_inventory_items',
-          data: refresh3,
-        });
-
         console.log('NFT minting successful');
 
         setOpenMintSuccess(true);
@@ -238,12 +245,14 @@ const ModalEthAuth = props => {
         props.close();
       } else if (!json.status) {
         setErrorText('Token Minting Error');
+        // setButtonMessage('Token Minting Error');
         setLoading(false);
         setClickedConfirm(false);
 
         console.log('NFT minting error (a): ' + json.result);
       } else if (json.status === 'error') {
         setErrorText(json.result);
+        // setButtonMessage(json.result);
         setLoading(false);
         setClickedConfirm(false);
 
@@ -251,6 +260,7 @@ const ModalEthAuth = props => {
       }
     } else {
       setErrorText('Token Minting Error');
+      // setButtonMessage('Token Minting Error');
       setLoading(false);
       setClickedConfirm(false);
     }

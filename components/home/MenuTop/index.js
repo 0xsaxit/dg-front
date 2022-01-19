@@ -2,24 +2,34 @@ import { useState, useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import cn from 'classnames';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Icon, Dropdown, Popup, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
 import { useMediaQuery } from 'hooks';
 import ModalInfo from 'components/modal/ModalInfo';
+import Fetch from 'common/Fetch';
 import ModalPopup from 'components/modal/ModalPopup';
 import ButtonConnect from '../../button/ButtonConnect/index.js';
+import LanguageModal from 'components/modal/LanguageModal';
 import styles from './MenuTop.module.scss';
 import MessageToast from 'components/home/MessageToast';
 import ButtonSwitchNetwork from '../../button/ButtonSwitchNetwork/index.js';
 import ReactGA from 'react-ga';
 import Global from 'components/Constants';
 
+// import { useTranslation, withTranslation, Trans } from 'react-i18next';
+
 const MenuTop = props => {
+  // const { t, i18n } = useTranslation();
+
+  // const changeLanguage = lng => {
+  //   i18n.changeLanguage(lng);
+  // };
+
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-  const isTablet = useMediaQuery('(min-width: 1176px)');
+  const isTablet = useMediaQuery('(min-width: 1240px)');
   const isMobile = useMediaQuery('(min-width: 768px)');
-  const isSquished = useMediaQuery('(min-width: 860px)');
+  const isSquished = useMediaQuery('(min-width: 920px)');
   const [open, setOpen] = useState(false);
   const [utm, setUtm] = useState('');
   const [scrollState, setScrollState] = useState('top');
@@ -71,6 +81,15 @@ const MenuTop = props => {
       document.removeEventListener('scroll', listener);
     };
   }, [scrollState]);
+
+  // const onCopy = () => {
+  //   navigator.clipboard.writeText(state.userAddress);
+  //   setCopied(true);
+
+  //   setTimeout(() => {
+  //     setCopied(false);
+  //   }, 3000);
+  // };
 
   // close menu automatically if left open for desktop screen sizes
   useEffect(() => {
@@ -310,7 +329,7 @@ const MenuTop = props => {
       <>
         {state.userStatus >= 4 && state.userLoggedIn && (
           <span className={styles.right_menu_items}>
-            {state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID && <ButtonSwitchNetwork />}
+            {state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID && <ButtonSwitchNetwork />} 
             {state.networkID === Global.CONSTANTS.PARENT_NETWORK_ID && isSquished ? <ModalInfo /> : null}
             <ModalPopup />
           </span>
@@ -334,9 +353,9 @@ const MenuTop = props => {
           className={cn(
             // AMNESIA_COMMENT: amnesia header class should be removed after we are done with amnesia
             state.isAmnesiaPage &&
-            scrollState === 'top' &&
-            !open &&
-            styles.amnesia_header,
+              scrollState === 'top' &&
+              !open &&
+              styles.amnesia_header,
             styles.dashboard_menu_container,
             open || scrollState !== 'top' || router.asPath !== '/'
               ? styles.dark

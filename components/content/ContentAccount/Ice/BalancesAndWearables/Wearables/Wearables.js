@@ -14,177 +14,12 @@ const Wearables = () => {
   const [maxICEBonus, setMaxICEBonus] = useState(0);
   const activeWearables = state.iceWearableItems.filter(
     item =>
-      item.meta_data &&
       item.isActivated &&
-      item.meta_data.attributes.find(el => el.trait_type === 'Bonus').value > 0
+      item.bonus > 0
   );
   const delegatedWearables = state.iceDelegatedItems.filter(
-    item =>
-      item.meta_data &&
-      item.meta_data.attributes.find(el => el.trait_type === 'Rank').value > 0
+    item => item.rank > 0
   );
-
-  // fetch Inventory Items
-  useEffect(() => {
-    (async () => {
-      let wearableInventoryItems = await Fetch.GET_WEARABLE_INVENTORY(
-        state.userAddress
-      );
-      dispatch({
-        type: 'ice_wearable_inventory_items',
-        data: wearableInventoryItems,
-      });
-    })();
-  }, [state.refreshWearableInventory]);
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // fetch user's incoming/outgoing delegate mapping data. Refreshes upon delegation/undelegation
-  useEffect(() => {
-    (async function () {
-      let maxICEValue = 0;
-      let maxICEDelegatedWearableBonuses = [];
-      let maxICEActiveWearableBonuses = {
-        Trousers: 0,
-        Blazer: 0,
-        Cigar: 0,
-        Loafers: 0,
-        Shades: 0,
-        Shoes: 0,
-        Pants: 0,
-        Jacket: 0,
-        Hat: 0,
-        Glasses: 0,
-      };
-
-      const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
-      activeWearables.map(activeWearable => {
-        if (
-          delegationInfo.outgoingDelegations &&
-          delegationInfo.outgoingDelegations.findIndex(
-            e => e.tokenId === activeWearable.tokenID
-          ) >= 0
-        ) {
-          var indexOfDelegated = maxICEDelegatedWearableBonuses.findIndex(
-            e => e.tokenID === activeWearable.tokenID
-          );
-          if (indexOfDelegated < 0) {
-            const newDelegatedWearableBonuses = {
-              tokenID: activeWearable.tokenID,
-              wearableBonuses: {
-                Trousers: 0,
-                Blazer: 0,
-                Cigar: 0,
-                Loafers: 0,
-                Shades: 0,
-                Shoes: 0,
-                Pants: 0,
-                Jacket: 0,
-                Hat: 0,
-                Glasses: 0,
-              },
-            };
-
-            Object.keys(newDelegatedWearableBonuses.wearableBonuses).map(
-              item => {
-                if (activeWearable.meta_data.name.search(item) >= 0) {
-                  if (
-                    newDelegatedWearableBonuses.wearableBonuses[item] <
-                    parseInt(
-                      activeWearable.meta_data.attributes.find(
-                        el => el.trait_type === 'Bonus'
-                      ).value
-                    ) *
-                      0.3
-                  ) {
-                    newDelegatedWearableBonuses.wearableBonuses[item] =
-                      parseInt(
-                        activeWearable.meta_data.attributes.find(
-                          el => el.trait_type === 'Bonus'
-                        ).value
-                      ) * 0.3;
-                  }
-                }
-              }
-            );
-            maxICEDelegatedWearableBonuses.push(newDelegatedWearableBonuses);
-          } else {
-            const delegatedWearableBonuses =
-              maxICEDelegatedWearableBonuses[indexOfDelegated].wearableBonuses;
-
-            Object.keys(delegatedWearableBonuses).map(item => {
-              if (activeWearable.meta_data.name.search(item) >= 0) {
-                if (
-                  delegatedWearableBonuses[item] <
-                  parseInt(
-                    activeWearable.meta_data.attributes.find(
-                      el => el.trait_type === 'Bonus'
-                    ).value
-                  ) *
-                    0.3
-                ) {
-                  delegatedWearableBonuses[item] =
-                    parseInt(
-                      activeWearable.meta_data.attributes.find(
-                        el => el.trait_type === 'Bonus'
-                      ).value
-                    ) * 0.3;
-                }
-              }
-            });
-          }
-        } else {
-          Object.keys(maxICEActiveWearableBonuses).map(item => {
-            if (activeWearable.meta_data.name.search(item) >= 0) {
-              if (
-                maxICEActiveWearableBonuses[item] <
-                parseInt(
-                  activeWearable.meta_data.attributes.find(
-                    el => el.trait_type === 'Bonus'
-                  ).value
-                )
-              ) {
-                maxICEActiveWearableBonuses[item] = parseInt(
-                  activeWearable.meta_data.attributes.find(
-                    el => el.trait_type === 'Bonus'
-                  ).value
-                );
-              }
-            }
-          });
-        }
-      });
-
-      delegatedWearables.map(delegatedWearable => {
-        Object.keys(maxICEActiveWearableBonuses).map(item => {
-          if (delegatedWearable.meta_data.name.search(item) >= 0) {
-            const bonusValue =
-              parseInt(
-                delegatedWearable.meta_data.attributes.find(
-                  el => el.trait_type === 'Bonus'
-                ).value
-              ) * 0.7;
-            if (maxICEActiveWearableBonuses[item] < bonusValue) {
-              maxICEActiveWearableBonuses[item] = bonusValue;
-            }
-          }
-        });
-      });
-
-      // Get maxICEBonus
-      Object.keys(maxICEActiveWearableBonuses).map(item => {
-        maxICEValue += maxICEActiveWearableBonuses[item];
-      });
-
-      maxICEDelegatedWearableBonuses.map(e => {
-        Object.keys(e.wearableBonuses).map(item => {
-          maxICEValue += e.wearableBonuses[item];
-        });
-      });
-
-      setMaxICEBonus(Math.round(maxICEValue * 1000) / 1000);
-    })();
-  }, [state.refreshDelegateInfo]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -192,12 +27,10 @@ const Wearables = () => {
     <section className={styles.wearableSection}>
       <div className={styles.wearableHeader}>
         <div>
-          <h2>ICED Wearables</h2>
+          <h2>ICE Wearables</h2>
           {!!state.iceWearableItems.length ||
           !!state.iceDelegatedItems.length ? (
-            <p>{`(${activeWearables.length + delegatedWearables.length} of ${
-              state.iceWearableItems.length + state.iceDelegatedItems.length
-            } Active)`}</p>
+            <p>{`(${activeWearables.length} of ${state.iceWearableItems.length} Active)`}</p>
           ) : null}
         </div>
         <Button className={styles.open_sea} href="/ice/marketplace">
@@ -220,32 +53,20 @@ const Wearables = () => {
       <section className={styles.grid_container}>
         {!!state.iceWearableItems.length || !!state.iceDelegatedItems.length ? (
           <div className={styles.wearables_grid}>
-            {state.iceWearableItems.map((item, index) => (
-              <ICEWearableCard
-                key={index}
-                data={item.meta_data}
-                tokenID={item.tokenID}
-                address={item.address}
-                itemID={item.itemID}
-                isActivated={item.isActivated}
-                isCheckedIn={item.isCheckedIn}
-              />
-            ))}
+            {state.iceWearableItems.map((item, index) => {
+              return (
+                (item.tokenOwner === state.userAddress) 
+                ? <ICEWearableCard item={item} key={index} />
+                : null
+              );
+            })}
 
             {state.iceDelegatedItems.map((item, index) => (
-              <ICEDelegatedCard
-                key={index}
-                data={item.meta_data}
-                ownerAddress={item.ownerAddress}
-                tokenID={item.tokenID}
-                address={item.address}
-                itemID={item.itemID}
-                isCheckedIn={item.isCheckedIn}
-              />
+              <ICEDelegatedCard item={item} key={index} />
             ))}
           </div>
         ) : (
-          <div className={styles.no_ice_wearables}>No ICE Wearabels</div>
+          <div className={styles.no_ice_wearables}>No ICE Wearables</div>
         )}
       </section>
     </section>

@@ -35,8 +35,11 @@ const DAO = props => {
   const [web3, setWeb3] = useState({});
   const [currenReward, setCurrentReward] = useState(0);
   const [finishTime, setFinishTime] = useState(0);
+
   const [price, setPrice] = useState(0);
+
   const [amountInput, setAmountInput] = useState('10000000000000000000');
+
   const DGState = props.DGState;
   const DGBalances = state.DGBalances.BALANCE_STAKING_UNISWAP;
   const DGStakingBalances = state.stakingBalances.BALANCE_STAKED_UNISWAP;
@@ -74,6 +77,16 @@ const DAO = props => {
       fetchData();
     }
   }, [state.userStatus]);
+
+  // fetch circulating supply
+  // useEffect(() => {
+  //   (async function () {
+  //     const json = await Fetch.DG_SUPPLY_GECKO();
+  //     if (json && json.market_data) {
+  //       setPrice(json.market_data.current_price.usd);
+  //     }
+  //   })();
+  // }, []);
 
   useEffect(() => {
     setPrice(state.DGPrices.dg);
@@ -401,7 +414,7 @@ const DAO = props => {
                   </div>
                 </Link>
 
-                {DGBalances > 0 || DGStakingBalances > 0 &&
+                {DGBalances > 0 || DGStakingBalances > 0 && 
                   <Link href="/dg/liquidity">
                     <div className={styles.menu_item}>
                       <svg
@@ -629,7 +642,7 @@ const DAO = props => {
                   </div>
                 </Link>
 
-                {DGBalances > 0 || DGStakingBalances > 0 &&
+                {DGBalances > 0 || DGStakingBalances > 0 && 
                   <Link href="/dg/liquidity">
                     <div
                       className={
@@ -681,16 +694,16 @@ const DAO = props => {
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
+                        fillRule="evenodd"
+                        clipRule="evenodd"
                         d="M2 8C2 4.68629 4.68629 2 8 2C9.43178 2 10.7464 2.50151 11.7779 3.33844C12.2293 2.8331 12.7529 2.39368 13.3326 2.03643C11.9174 0.770024 10.0486 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16C10.0486 16 11.9174 15.23 13.3326 13.9636C12.7529 13.6063 12.2293 13.1669 11.7779 12.6616C10.7464 13.4985 9.43178 14 8 14C4.68629 14 2 11.3137 2 8Z"
                         fill={
                           DGState === 'tokenMigration' ? 'white' : '#808080'
                         }
                       />
                       <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
+                        fillRule="evenodd"
+                        clipRule="evenodd"
                         d="M17 2C13.6863 2 11 4.68629 11 8C11 11.3137 13.6863 14 17 14C20.3137 14 23 11.3137 23 8C23 4.68629 20.3137 2 17 2ZM9 8C9 3.58172 12.5817 0 17 0C21.4183 0 25 3.58172 25 8C25 12.4183 21.4183 16 17 16C12.5817 16 9 12.4183 9 8Z"
                         fill={
                           DGState === 'tokenMigration' ? 'white' : '#808080'

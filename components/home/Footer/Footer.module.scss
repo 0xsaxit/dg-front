@@ -10,9 +10,87 @@
   .grid_container {
     max-width: 1400px;
     margin: auto;
-    padding: 122px 72px 0 72px;
+    padding: 100px 72px 0 72px;
     display: flex;
     justify-content: space-between;
+
+    .top_section {
+      .dg_section {
+        border-top: 2px solid rgba(255, 255, 255, 0.3);
+        border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+
+        .section1 {
+          display: flex;
+          justify-content: left;
+
+          img {
+            width: 40px;
+            height: 40px;
+          }
+
+          div {
+            font-size: 24px;
+            font-family: 'Larsseit-Regular';
+            color: #FFF;
+            line-height: 32px;
+            letter-spacing: 1px;
+            margin-left: 25px;
+            margin-top: 0px;
+          }
+        }
+
+        .section2 {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          div {
+            font-size: 24px;
+            font-family: 'Larsseit-Regular';
+            color: #FFF;
+            letter-spacing: 0.8px;
+            opacity: 0.6;
+          }
+        }
+
+        .section3 {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          div {
+            font-size: 24px;
+            font-family: 'Larsseit-Regular';
+            letter-spacing: 0.8px;
+            opacity: 0.6;
+          }
+          .red {
+            color: #ea3943 !important;
+          }
+
+          .green {
+            color: #67dd6c !important;
+          }
+        }
+      }
+    }
+
+    .cryptoCom {
+      font-size: 24px;
+      font-family: 'Larsseit-Regular';
+      letter-spacing: 0.8px;
+      color: #376aaf;
+      margin-top: 24px;
+      margin-bottom: 85px;
+
+      img {
+        position: relative;
+        top: 7px;
+        margin-left: 3px;
+        margin-right: 3px;
+        width: 30px;
+        height: 30px;
+      }
+    }
 
     .grid_column {
       width: 18%;
@@ -211,6 +289,7 @@
   }
 
   .input_placeholder {
+
     .sign_up_newsletter {
       background: #006eff;
       color: white;

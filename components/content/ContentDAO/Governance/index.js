@@ -36,8 +36,27 @@ const Governance = props => {
 
   const { userAddress, userStatus, refreshBalances } = state;
 
+  function roundDownDecimals(value) {
+    // console.log("value: ", value);
+    const roundedDown = parseInt(value * 1000) / 1000;
+    // console.log(roundedDown)
+    return roundedDown;
+  }
+
   const handleAmountInputChange = e => {
-    setAmountInput(Number(e.target.value));
+
+    let enteredValue = Number(e.target.value);
+
+    if(e.key !== "Backspace") {
+      if(e.target.value.includes('.')) {
+        if(e.target.value.split('.')[1].length >=3) {
+          enteredValue = roundDownDecimals(e.target.value)
+        }
+      }
+    }
+    
+    setAmountInput(enteredValue);
+
   };
 
   useEffect(() => {
@@ -59,7 +78,7 @@ const Governance = props => {
         setDGTownHallContract(_DGTownHallContract);
 
         setAPY(
-          BigNumber(5214300000)
+          BigNumber(Global.CONSTANTS.APR_NUMBER * 100)
             .div(BigNumber(balance))
             .multipliedBy(Constants.CONSTANTS.FACTOR)
             .toString()
@@ -344,7 +363,12 @@ const Governance = props => {
               <Button
                 className={styles.max_button}
                 onClick={() => {
-                  setAmountInput(stakeType === 'Stake' ? dgAmount : xDGAmount);
+  
+                  if(stakeType === 'Stake') {
+                    setAmountInput(roundDownDecimals(dgAmount));
+                  } else {
+                    setAmountInput(roundDownDecimals(xDGAmount));
+                  }
                 }}
               >
                 MAX
@@ -360,7 +384,7 @@ const Governance = props => {
                     : styles.error
                 }
               >
-                {props.formatPrice(
+                {roundDownDecimals(
                   stakeType === 'Stake' ? dgAmount : xDGAmount,
                   3
                 )}

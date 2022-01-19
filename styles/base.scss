@@ -5,8 +5,13 @@ $color-blue: #006eff;
 $color-lightgray: #2f2f2f;
 $color-darkgray: #2a2a2a;
 $color-dark: #1f1f1f;
-$color-black: #000000;
 $color-white: #ffffff;
+$color-black: #000000;
+
+$border-color: $color-darkgray;
+
+$color-darkgray: #2a2a2a;
+$color-black: #000000;
 
 $border-color: $color-darkgray;
 
@@ -50,10 +55,84 @@ $mq-breakpoints: (
   }
 }
 
-.body{  
-  
-  .ui{
-    
+.body {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  p,
+  button,
+  a {
+    -webkit-font-smoothing: antialiased !important;
+  }
+
+  h1 {
+    font-family: "Larsseit-ExtraBold";
+    font-weight: 800 !important;
+    font-size: 60px;
+    margin-bottom: 0px;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-family: "Larsseit-ExtraBold";
+    font-weight: 800 !important;
+    font-size: 32px;
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+
+  h3 {
+    font-family: "Larsseit-ExtraBold";
+    font-weight: 800 !important;
+    font-size: 32px;
+    margin-bottom: 0px;
+    line-height: 1.4;
+  }
+
+  .nft-other-h3 {
+    font-family: "Larsseit-Bold";
+    font-size: 24px;
+    margin-top: 0px;
+  }
+
+  .home-other-h3 {
+    font-family: "Larsseit-Bold";
+    font-size: 30px;
+    padding: 2px 0px 3px 0px;
+    margin-top: 0px;
+    text-align: center;
+  }
+
+  h4 {
+    font-family: "Larsseit-ExtraBold";
+    font-weight: 800 !important;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  h5 {
+    font-family: "Larsseit-Regular";
+    font-weight: 600 !important;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 1.4;
+  }
+
+  p {
+    font-family: "Larsseit-Regular";
+    font-size: 21px;
+    font-weight: normal;
+    line-height: 1.4;
+  }
+
+  .ui {
     &::-webkit-scrollbar-track {
       background-color: transparent;
       transition: 0.2s ease-in;
@@ -76,7 +155,7 @@ $mq-breakpoints: (
       transition: 0.2s ease-in;
       border-radius: 36px;
     }
-    
+
     .scrolling.dimmable.dimmed {
       overflow: hidden !important;
       margin-right: -15px !important;
@@ -86,106 +165,42 @@ $mq-breakpoints: (
       object-fit: cover;
     }
 
-    section#modalContent.sc-bqGGPW.jMpqDL, .iPexDg.iPexDg.iPexDg, .jMpqDL.jMpqDL.jMpqDL {
+    section#modalContent.sc-bqGGPW.jMpqDL,
+    .iPexDg.iPexDg.iPexDg,
+    .jMpqDL.jMpqDL.jMpqDL {
       background-color: black !important;
     }
 
-    h1, h2, h3, h4, h5, p, button, a {
-      -webkit-font-smoothing: antialiased !important;
-    }
-    
-    
-    h1 {
-      font-family: 'Larsseit-ExtraBold';
-      font-weight: 800 !important;
-      font-size: 60px;
-      margin-bottom: 0px;
-      line-height: 1.2;
-    }
-
-    h2 {
-      font-family: 'Larsseit-ExtraBold';
-      font-weight: 800 !important;
-      font-size: 32px;
-      margin-bottom: 16px;
-      line-height: 1.4;
-    }
-
-    h3 {
-      font-family: 'Larsseit-ExtraBold';
-      font-weight: 800 !important;
-      font-size: 32px;
-      margin-bottom: 0px;
-      line-height: 1.4;
-    }
-
-    .nft-other-h3 {
-      font-family: 'Larsseit-Bold';
-      font-size: 24px;
-      margin-top: 0px;
-    }
-
-    .home-other-h3 {
-      font-family: 'Larsseit-Bold';
-      font-size: 30px;
-      padding: 2px 0px 3px 0px;
-      margin-top: 0px;
-      text-align: center;
-    }
-
-    h4 {
-      font-family: 'Larsseit-ExtraBold';
-      font-weight: 800 !important;
-      margin-top: 0px;
-      margin-bottom: 0px;
-      font-size: 24px;
-      font-weight: 500;
-      line-height: 1.4;
-    }
-
-    h5 {
-      font-family: 'Larsseit-Regular';
-      font-weight: 600 !important;
-      margin-top: 0px;
-      margin-bottom: 0px;
-      font-size: 24px;
-      font-weight: normal;
-      line-height: 1.4;
-    }
-
-    p {
-      font-family: 'Larsseit-Regular';
-      font-size: 21px;
-      font-weight: normal;
-      line-height: 1.4;
-    }
-    
     .modal-a:hover {
       color: white;
       filter: brightness(0.75);
     }
-    
+
     &.table {
       margin-top: 0px;
       border: 0px solid white !important;
       background: black;
-      
+
       tr td {
+        font-weight: 700 !important;
         border: 0px solid white !important;
+        padding: 15px 18px 15px 18px;
+        font-size: 18px;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 0px;
       }
-      
+
       td {
-        
         &:first-child {
           border-top-left-radius: 24px;
           border-bottom-left-radius: 24px;
           height: 68px;
         }
-        
+
         &:last-child {
           border-bottom-right-radius: 24px;
           border-top-right-radius: 24px;
-        }        
+        }
       }
 
       thead th {
@@ -196,15 +211,16 @@ $mq-breakpoints: (
         font-size: 18px;
         color: rgba(255, 255, 255);
         margin-bottom: 0px;
-        
+
         &.leaderboard-header {
           font-size: 20px;
           font-family: Larsseit-Bold;
           text-transform: capitalize;
         }
       }
-      
-      thead th, thead th:only-child {
+
+      thead th,
+      thead th:only-child {
         position: sticky;
         top: 0px;
       }
@@ -218,19 +234,20 @@ $mq-breakpoints: (
         padding-top: 18px !important;
         padding-bottom: 17px !important;
       }
-      
+
       .leaders-col-2 {
         display: flex;
         justify-content: flex-end;
       }
     }
-    
+
     .checkbox {
       margin-top: 4px;
       margin-right: 24px;
     }
 
-    .checkbox .box:before, .checkbox label:before {
+    .checkbox .box:before,
+    .checkbox label:before {
       border: 2px solid white;
       border-radius: 6px;
       width: 24px;
@@ -238,12 +255,18 @@ $mq-breakpoints: (
       background: transparent;
     }
 
-    .checkbox input:checked~.box:before, .checkbox input:checked~label:before, .checkbox .box:hover::before, .checkbox label:hover::before, .checkbox input:checked~.box:before, .checkbox input:checked~label:before {
+    .checkbox input:checked ~ .box:before,
+    .checkbox input:checked ~ label:before,
+    .checkbox .box:hover::before,
+    .checkbox label:hover::before,
+    .checkbox input:checked ~ .box:before,
+    .checkbox input:checked ~ label:before {
       background-color: transparent !important;
       border: 2px solid white;
     }
 
-    .checkbox input:checked~.box:after, .checkbox input:checked~label:after {
+    .checkbox input:checked ~ .box:after,
+    .checkbox input:checked ~ label:after {
       border-radius: 6px;
       width: 24px;
       height: 24px;
@@ -252,12 +275,12 @@ $mq-breakpoints: (
       background: #0d6efd;
       color: white !important;
     }
-    
+
     &.button {
-      font-family: 'Larsseit-Bold';
+      font-family: "Larsseit-Bold";
       border-radius: 16px;
       transition: 0.2s ease-in !important;
-      
+
       &.account-button {
         padding-right: 16px;
         padding-left: 16px;
@@ -268,7 +291,7 @@ $mq-breakpoints: (
         margin-right: 16px;
         font-size: 18px !important;
         transition: 0.2s ease-in;
-        
+
         &:hover {
           opacity: 0.6;
           background-color: #1f1f1f;
@@ -287,19 +310,23 @@ $mq-breakpoints: (
       border: none !important;
     }
 
-    .column.grid>[class*='sixteen wide'].column, .grid>.column.row>[class*='sixteen wide'].column, .grid>.row>[class*='sixteen wide'].column, .grid>[class*='sixteen wide'].column {
+    .column.grid > [class*="sixteen wide"].column,
+    .grid > .column.row > [class*="sixteen wide"].column,
+    .grid > .row > [class*="sixteen wide"].column,
+    .grid > [class*="sixteen wide"].column {
       border-radius: 4px;
     }
   }
 }
 
-.ui.dimmer, .transak_modal-overlay {
+.ui.dimmer,
+.transak_modal-overlay {
   background: rgba(26, 26, 26, 0.65);
 }
 
 .no-result-div {
   margin-top: 40px;
-  
+
   .title {
     font-size: 24px;
     text-align: center;
@@ -353,7 +380,6 @@ $mq-breakpoints: (
   margin-right: 30px;
 }
 
-
 .avatar-edit-circle {
   background-color: #1f1f1f;
   position: relative;
@@ -364,14 +390,14 @@ $mq-breakpoints: (
   float: right;
   margin-top: -40px;
   margin-right: 2px;
-  
+
   &:hover {
     filter: brightness(0.9);
   }
 }
 
 .account-hover {
-  font-family: 'Larsseit-Medium';
+  font-family: "Larsseit-Medium";
   font-size: 18px !important;
   cursor: pointer;
   margin-left: 32px !important;
@@ -414,20 +440,20 @@ $mq-breakpoints: (
   font-size: 18px !important;
   opacity: 0.5;
   padding-left: 8px;
-  margin-top: -4px !important;    
+  margin-top: -4px !important;
   transition: all linear 0.1s;
-  
+
   &:hover {
     cursor: pointer;
     color: white !important;
     transition: all linear 0.1s;
     opacity: 1;
-    
+
     .svg {
       opacity: 0.1;
     }
-    
-    >i.clone.outline.icon {
+
+    > i.clone.outline.icon {
       cursor: pointer;
       color: white !important;
       transition: all linear 0.1s;
@@ -450,23 +476,21 @@ $mq-breakpoints: (
   z-index: 5 !important;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  
+
   &::-webkit-scrollbar {
     display: none;
   }
 }
 
-.account-other-tabs
-
 .popup {
   border-radius: 8px !important;
   margin-left: 5px;
-  
+
   &:before {
     position: absolute;
-    content: '';
-    width: .71428571em;
-    height: .71428571em;
+    content: "";
+    width: 0.71428571em;
+    height: 0.71428571em;
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
     z-index: 2;
@@ -474,27 +498,58 @@ $mq-breakpoints: (
     box-shadow: 1px 1px 0 0 #bababc;
     background: #fff;
   }
-  
+
   .content {
-    padding-top: 5px;
-    padding-right: 5px;
-    
+    .itemDiv {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      p {
+        font-size: 11px;
+        line-height: 14px;
+        margin-bottom: 15px;
+        margin-left: 0;
+      }
+
+      img {
+        width: 50px;
+        height: 50px;
+      }
+
+      h3 {
+        margin-top: 12px;
+        font-size: 14px;
+        line-height: 19px;
+      }
+    }
+
+    .info {
+      width: 17px !important;
+      position: absolute !important;
+    }
+
     p {
       font-size: 13px;
       line-height: 18px;
       letter-spacing: 0.5px;
       margin-left: 30px;
     }
-    
-    .info {
-      width: 17px !important;
-      position: absolute !important;
-    }
   }
-  
-  .accountTooltip .tooltip_body {
-    display: flex;
-    align-items: center;
+
+  .accountTooltip {
+    .tooltip_body {
+      display: flex;
+      align-items: center;
+      p {
+        font-size: 13px;
+        line-height: 18px;
+        letter-spacing: 0.5px;
+        margin-left: 30px;
+        font-family: "Larsseit-Medium";
+      }
+    }
   }
 }
 
@@ -502,11 +557,11 @@ $mq-breakpoints: (
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
   .title {
     max-width: 270px;
     margin-top: 25px;
-    font-family: 'Larsseit-Bold';
+    font-family: "Larsseit-Bold";
     font-size: 20px;
     text-align: center;
   }
@@ -547,7 +602,6 @@ img.avatar-picture-binance {
 }
 
 .ui.button {
-  
   &.casino-balance-button {
     height: 54px;
     width: 300px;
@@ -558,7 +612,7 @@ img.avatar-picture-binance {
     margin-top: 20px;
     padding: 12px 24px 12px 24px;
     transition: all linear 0.1s;
-    
+
     &:hover {
       border: 2px solid rgba(255, 255, 255, 1);
       transition: all linear 0.1s;
@@ -578,11 +632,12 @@ img.avatar-picture-binance {
     width: 100%;
   }
 
-  &.casino-button:hover, &.casino-button:focus {
+  &.casino-button:hover,
+  &.casino-button:focus {
     background-color: #006eff;
     filter: brightness(0.9) !important;
   }
-  
+
   &.account-deposit-button {
     height: 54px;
     width: 47.5%;
@@ -591,7 +646,7 @@ img.avatar-picture-binance {
     color: white;
     font-size: 18px !important;
     padding-top: 17px;
-    
+
     &.binance {
       height: 54px;
       width: 48.5%;
@@ -602,7 +657,7 @@ img.avatar-picture-binance {
       padding-top: 17px;
     }
   }
-  
+
   &.modal-button {
     height: 48px;
     width: 48.5%;
@@ -642,6 +697,25 @@ img.avatar-picture-binance {
     padding-top: 21px;
     line-height: 20px;
   }
+  &.etherscan-button-mobile {
+    background-color: rgba(255, 255, 255, 0);
+    font-size: 18px;
+    font-weight: bold;
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    color: white;
+    height: 40px;
+    padding: 0 12px;
+    line-height: 0px;
+    opacity: 100% !important;
+    text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    @media (min-width: 576px) {
+      display: none;
+    }
+  }
 }
 
 .casino-balance-text {
@@ -649,7 +723,7 @@ img.avatar-picture-binance {
   font-size: 18px !important;
   line-height: 24px !important;
   font-family: Larsseit-Bold !important;
-  
+
   &.two {
     float: right;
     font-size: 16px !important;
@@ -663,7 +737,7 @@ img.avatar-picture-binance {
   margin: 0;
   padding-top: 16px;
   transition: all linear 0.1s;
-  
+
   &:hover {
     cursor: pointer;
     opacity: 70%;
@@ -671,19 +745,18 @@ img.avatar-picture-binance {
   }
 }
 
-.account-address{
-  
+.account-address {
   &:hover {
     cursor: pointer;
     color: white !important;
     transition: all linear 0.1s;
     opacity: 1;
-    
+
     .svg {
       opacity: 0.1;
     }
-    
-    &>i.clone.outline.icon {
+
+    & > i.clone.outline.icon {
       cursor: pointer;
       color: white !important;
       transition: all linear 0.1s;
@@ -700,7 +773,7 @@ img.avatar-picture-binance {
   width: 330px !important;
   height: 75px;
   border-radius: 32px;
-  
+
   .copied-text {
     color: white;
     font-size: 24px !important;
@@ -709,9 +782,6 @@ img.avatar-picture-binance {
   }
 }
 
-
-
-
 /* ----------------------------------------- */
 
 /*               SLIDER OVERRIDE             */
@@ -719,7 +789,6 @@ img.avatar-picture-binance {
 /* ----------------------------------------- */
 
 .slick-slider {
-
   .slick-arrow {
     background-color: #006eff;
     width: 40px;
@@ -756,7 +825,6 @@ img.avatar-picture-binance {
       }
     }
 
-
     &.slick-prev {
       left: 25px;
       content: "\e824" !important;
@@ -774,7 +842,7 @@ img.avatar-picture-binance {
         font-family: revicons;
         display: none;
       }
-    }  
+    }
   }
 }
 

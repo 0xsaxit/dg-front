@@ -6,7 +6,6 @@ const ModalIceBreakDown = ({
     history,
     setShowingBreakDown
 }) => {
-    const [open, setOpen] = useState(true);
     const defaultImgs = [
         "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png",
         "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png",
@@ -14,590 +13,18 @@ const ModalIceBreakDown = ({
         "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png",
         "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png"
     ];
-    const gamePlayTemp = [
-        {
-            address: '0x723...2ab3',
-            nfts: [
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592479/robe_5_pezqkh.png",
-                    rank: 5,
-                    bonus: '45%',
-                }
-            ],
-            iceEarned: 2091,
-            xpEarned: 3,
-            tier: 'Top 20%',
-        }
-    ]
-    const delegationTemp = [
-        {
-            address: '0x723...2ab3',
-            nfts: [
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592477/hat_m_5_zulgdg.png",
-                    rank: 5,
-                    bonus: '42%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592479/robe_5_pezqkh.png",
-                    rank: 5,
-                    bonus: '45%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_5_nusll8.png",
-                    rank: 5,
-                    bonus: '48%',
-                }
-            ],
-            iceEarned: 2091,
-            xpEarned: 3,
-            tier: 'Top 20%',
-        },
-        {
-            address: '0x723...2ab3',
-            nfts: [
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592477/hat_m_5_zulgdg.png",
-                    rank: 5,
-                    bonus: '42%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592479/robe_5_pezqkh.png",
-                    rank: 5,
-                    bonus: '45%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_5_nusll8.png",
-                    rank: 5,
-                    bonus: '48%',
-                }
-            ],
-            iceEarned: 1920,
-            xpEarned: 4,
-            tier: 'Top 15%',
-        },
-        {
-            address: '0x723...2ab3',
-            nfts: [
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592476/hat_m_4_y9flz7.png",
-                    rank: 4,
-                    bonus: '42%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/robe_4_dovw7i.png",
-                    rank: 4,
-                    bonus: '45%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_3_l0bpxr.png",
-                    rank: 4,
-                    bonus: '48%',
-                }
-            ],
-            iceEarned: 400,
-            xpEarned: 6,
-            tier: 'Bottom 10%',
-        },
-        {
-            address: '0x724...2ab3',
-            nfts: [
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172290/pipe_green_g7chzb.png",
-                    rank: 2,
-                    bonus: '42%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172291/shirt_green_m_kcakd1.png",
-                    rank: 2,
-                    bonus: '45%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172290/shoes_green_frnbtm.png",
-                    rank: 2,
-                    bonus: '48%',
-                }
-            ],
-            iceEarned: 1920,
-            xpEarned: 4,
-            tier: 'Top 15%',
-        },
-        {
-            address: '0x723...2ab3',
-            nfts: [
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592477/hat_m_5_zulgdg.png",
-                    rank: 5,
-                    bonus: '42%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592479/robe_5_pezqkh.png",
-                    rank: 5,
-                    bonus: '45%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_5_nusll8.png",
-                    rank: 5,
-                    bonus: '48%',
-                }
-            ],
-            iceEarned: 2091,
-            xpEarned: 3,
-            tier: 'Top 20%',
-        },
-        {
-            address: '0x723...2ab3',
-            nfts: [
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592477/hat_m_5_zulgdg.png",
-                    rank: 5,
-                    bonus: '42%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592479/robe_5_pezqkh.png",
-                    rank: 5,
-                    bonus: '45%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_5_nusll8.png",
-                    rank: 5,
-                    bonus: '48%',
-                }
-            ],
-            iceEarned: 1920,
-            xpEarned: 4,
-            tier: 'Top 15%',
-        },
-        {
-            address: '0x723...2ab3',
-            nfts: [
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592476/hat_m_4_y9flz7.png",
-                    rank: 4,
-                    bonus: '42%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/robe_4_dovw7i.png",
-                    rank: 4,
-                    bonus: '45%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_3_l0bpxr.png",
-                    rank: 4,
-                    bonus: '48%',
-                }
-            ],
-            iceEarned: 400,
-            xpEarned: 6,
-            tier: 'Bottom 10%',
-        },
-        {
-            address: '0x724...2ab3',
-            nfts: [
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172290/pipe_green_g7chzb.png",
-                    rank: 2,
-                    bonus: '42%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172291/shirt_green_m_kcakd1.png",
-                    rank: 2,
-                    bonus: '45%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172290/shoes_green_frnbtm.png",
-                    rank: 2,
-                    bonus: '48%',
-                }
-            ],
-            iceEarned: 1920,
-            xpEarned: 4,
-            tier: 'Top 15%',
-        },
-        {
-            address: '0x723...2ab3',
-            nfts: [
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592477/hat_m_5_zulgdg.png",
-                    rank: 5,
-                    bonus: '42%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592479/robe_5_pezqkh.png",
-                    rank: 5,
-                    bonus: '45%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_5_nusll8.png",
-                    rank: 5,
-                    bonus: '48%',
-                }
-            ],
-            iceEarned: 2091,
-            xpEarned: 3,
-            tier: 'Top 20%',
-        },
-        {
-            address: '0x723...2ab3',
-            nfts: [
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592477/hat_m_5_zulgdg.png",
-                    rank: 5,
-                    bonus: '42%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592479/robe_5_pezqkh.png",
-                    rank: 5,
-                    bonus: '45%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_5_nusll8.png",
-                    rank: 5,
-                    bonus: '48%',
-                }
-            ],
-            iceEarned: 1920,
-            xpEarned: 4,
-            tier: 'Top 15%',
-        },
-        {
-            address: '0x723...2ab3',
-            nfts: [
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592476/hat_m_4_y9flz7.png",
-                    rank: 4,
-                    bonus: '42%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/robe_4_dovw7i.png",
-                    rank: 4,
-                    bonus: '45%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_3_l0bpxr.png",
-                    rank: 4,
-                    bonus: '48%',
-                }
-            ],
-            iceEarned: 400,
-            xpEarned: 6,
-            tier: 'Bottom 10%',
-        },
-        {
-            address: '0x724...2ab3',
-            nfts: [
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172290/pipe_green_g7chzb.png",
-                    rank: 2,
-                    bonus: '42%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172291/shirt_green_m_kcakd1.png",
-                    rank: 2,
-                    bonus: '45%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172290/shoes_green_frnbtm.png",
-                    rank: 2,
-                    bonus: '48%',
-                }
-            ],
-            iceEarned: 1920,
-            xpEarned: 4,
-            tier: 'Top 15%',
-        },
-        {
-            address: '0x723...2ab3',
-            nfts: [
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592477/hat_m_5_zulgdg.png",
-                    rank: 5,
-                    bonus: '42%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592479/robe_5_pezqkh.png",
-                    rank: 5,
-                    bonus: '45%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_5_nusll8.png",
-                    rank: 5,
-                    bonus: '48%',
-                }
-            ],
-            iceEarned: 2091,
-            xpEarned: 3,
-            tier: 'Top 20%',
-        },
-        {
-            address: '0x723...2ab3',
-            nfts: [
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592477/hat_m_5_zulgdg.png",
-                    rank: 5,
-                    bonus: '42%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592479/robe_5_pezqkh.png",
-                    rank: 5,
-                    bonus: '45%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_5_nusll8.png",
-                    rank: 5,
-                    bonus: '48%',
-                }
-            ],
-            iceEarned: 1920,
-            xpEarned: 4,
-            tier: 'Top 15%',
-        },
-        {
-            address: '0x723...2ab3',
-            nfts: [
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592476/hat_m_4_y9flz7.png",
-                    rank: 4,
-                    bonus: '42%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/robe_4_dovw7i.png",
-                    rank: 4,
-                    bonus: '45%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_3_l0bpxr.png",
-                    rank: 4,
-                    bonus: '48%',
-                }
-            ],
-            iceEarned: 400,
-            xpEarned: 6,
-            tier: 'Bottom 10%',
-        },
-        {
-            address: '0x724...2ab3',
-            nfts: [
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172290/pipe_green_g7chzb.png",
-                    rank: 2,
-                    bonus: '42%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172291/shirt_green_m_kcakd1.png",
-                    rank: 2,
-                    bonus: '45%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172290/shoes_green_frnbtm.png",
-                    rank: 2,
-                    bonus: '48%',
-                }
-            ],
-            iceEarned: 1920,
-            xpEarned: 4,
-            tier: 'Top 15%',
-        },
-        {
-            address: '0x723...2ab3',
-            nfts: [
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592477/hat_m_5_zulgdg.png",
-                    rank: 5,
-                    bonus: '42%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592479/robe_5_pezqkh.png",
-                    rank: 5,
-                    bonus: '45%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_5_nusll8.png",
-                    rank: 5,
-                    bonus: '48%',
-                }
-            ],
-            iceEarned: 2091,
-            xpEarned: 3,
-            tier: 'Top 20%',
-        },
-        {
-            address: '0x723...2ab3',
-            nfts: [
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592477/hat_m_5_zulgdg.png",
-                    rank: 5,
-                    bonus: '42%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592479/robe_5_pezqkh.png",
-                    rank: 5,
-                    bonus: '45%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_5_nusll8.png",
-                    rank: 5,
-                    bonus: '48%',
-                }
-            ],
-            iceEarned: 1920,
-            xpEarned: 4,
-            tier: 'Top 15%',
-        },
-        {
-            address: '0x723...2ab3',
-            nfts: [
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592476/hat_m_4_y9flz7.png",
-                    rank: 4,
-                    bonus: '42%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/robe_4_dovw7i.png",
-                    rank: 4,
-                    bonus: '45%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_3_l0bpxr.png",
-                    rank: 4,
-                    bonus: '48%',
-                }
-            ],
-            iceEarned: 400,
-            xpEarned: 6,
-            tier: 'Bottom 10%',
-        },
-        {
-            address: '0x724...2ab3',
-            nfts: [
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172290/pipe_green_g7chzb.png",
-                    rank: 2,
-                    bonus: '42%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172291/shirt_green_m_kcakd1.png",
-                    rank: 2,
-                    bonus: '45%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172290/shoes_green_frnbtm.png",
-                    rank: 2,
-                    bonus: '48%',
-                }
-            ],
-            iceEarned: 1920,
-            xpEarned: 4,
-            tier: 'Top 15%',
-        },
-        {
-            address: '0x723...2ab3',
-            nfts: [
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592477/hat_m_5_zulgdg.png",
-                    rank: 5,
-                    bonus: '42%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592479/robe_5_pezqkh.png",
-                    rank: 5,
-                    bonus: '45%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_5_nusll8.png",
-                    rank: 5,
-                    bonus: '48%',
-                }
-            ],
-            iceEarned: 2091,
-            xpEarned: 3,
-            tier: 'Top 20%',
-        },
-        {
-            address: '0x723...2ab3',
-            nfts: [
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592477/hat_m_5_zulgdg.png",
-                    rank: 5,
-                    bonus: '42%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592479/robe_5_pezqkh.png",
-                    rank: 5,
-                    bonus: '45%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_5_nusll8.png",
-                    rank: 5,
-                    bonus: '48%',
-                }
-            ],
-            iceEarned: 1920,
-            xpEarned: 4,
-            tier: 'Top 15%',
-        },
-        {
-            address: '0x723...2ab3',
-            nfts: [
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592476/hat_m_4_y9flz7.png",
-                    rank: 4,
-                    bonus: '42%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/robe_4_dovw7i.png",
-                    rank: 4,
-                    bonus: '45%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1636592480/slippers_3_l0bpxr.png",
-                    rank: 4,
-                    bonus: '48%',
-                }
-            ],
-            iceEarned: 400,
-            xpEarned: 6,
-            tier: 'Bottom 10%',
-        },
-        {
-            address: '0x724...2ab3',
-            nfts: [
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172290/pipe_green_g7chzb.png",
-                    rank: 2,
-                    bonus: '42%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172291/shirt_green_m_kcakd1.png",
-                    rank: 2,
-                    bonus: '45%',
-                },
-                {
-                    img: "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637172290/shoes_green_frnbtm.png",
-                    rank: 2,
-                    bonus: '48%',
-                }
-            ],
-            iceEarned: 1920,
-            xpEarned: 4,
-            tier: 'Top 15%',
-        }
-    ]
-    const records = history.type === 'Gameplay' ? gamePlayTemp : delegationTemp;
 
     return (
         <>
             <Modal
                 className={styles.breakdown_modal}
                 onClose={() => {
-                    setOpen(false),
-                        setShowingBreakDown(-1)
+                    setShowingBreakDown(-1)
                 }}
-                onOpen={() => setOpen(true)}
-                open={open}
+                open={true}
                 close
             >
-                <div className={styles.close_icon} onClick={() => setOpen(false)}>
+                <div className={styles.close_icon} onClick={() => setShowingBreakDown(-1)}>
                     <span className={styles.button_close}>
                         <svg
                             width="12"
@@ -629,21 +56,21 @@ const ModalIceBreakDown = ({
                             <div className={styles.tier}>Leaderboard Tier</div>
                         </div>
                         <div className={styles.content}>
-                            {records.map((record, index) => {
+                            {history.records.map((record, index) => {
                                 return (
                                     <div key={index} className={styles.row}>
                                         <div className={styles.address}>
-                                            {record.address}
+                                            {record.address.substr(0, 5)}...{record.address.substr(record.address.length - 4, record.address.length)}
                                         </div>
                                         <div className={styles.nfts} style={{ marginTop: '10px' }}>
                                             {defaultImgs.map((def, i) => {
-                                                if (record.nfts && record.nfts.length > 0 && record.nfts.length > i) {
+                                                if (record.wearableSnapshot && record.wearableSnapshot.wearableData.length > 0 && record.wearableSnapshot.wearableData.length > i) {
                                                     return (
                                                         <div key={i} className={styles.nft}>
-                                                            <img src={`${record.nfts[i].img}`} />
-                                                            <div className={styles.rank}> {record.nfts[i].rank} </div>
+                                                            <img src={`${record.wearableSnapshot.wearableData[i].image}`} />
+                                                            <div className={styles.rank}> {record.wearableSnapshot.wearableData[i].rank} </div>
                                                             <div className={styles.bottomInfo}>
-                                                                +{record.nfts[i].bonus}
+                                                                +{record.wearableSnapshot.wearableData[i].bonus}%
                                                                 <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
                                                             </div>
                                                         </div>
@@ -663,15 +90,18 @@ const ModalIceBreakDown = ({
                                         </div>
                                         <div className={styles.iceEarned} style={{ paddingLeft: '53px', textAlign: 'left' }}>
                                             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
-                                            {record.iceEarned} ICE
+                                            {history.type === 'Gameplay' ? record.iceEarnedPlayer : record.iceEarnedDelegator} ICE
                                         </div>
                                         <div className={styles.xpEarned} style={{ paddingLeft: '60px', textAlign: 'left' }}>
                                             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_XP_ICN_f9w2se.svg" alt="xp" />
-                                            {record.xpEarned} XP
+                                            {history.type === 'Gameplay' ? history.xpEarned : record.xpEarned} XP
                                         </div>
                                         <div className={styles.tier} style={{ paddingLeft: '65px', textAlign: 'left' }}>
                                             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175017/cup_w68eni.png" alt="xp" />
-                                            {record.tier}
+                                            {record.leaderboardPercentile + 5 <= 50 ?
+                                                `Top ${record.leaderboardPercentile + 5}%`
+                                                :
+                                                `Bottom ${100 - record.leaderboardPercentile}%`}
                                         </div>
                                     </div>
                                 )

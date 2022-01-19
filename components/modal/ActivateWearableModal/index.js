@@ -5,6 +5,7 @@ import Web3 from 'web3';
 import ABI_DG_LIGHT_TOKEN from '../../../components/ABI/ABIChildTokenLightDG';
 import ABI_ICE_REGISTRANT from '../../../components/ABI/ABIICERegistrant.json';
 import MetaTx from '../../../common/MetaTx';
+// import MetamaskAction from './MetamaskAction';
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './ActivateWearableModal.module.scss';
 import ModalActivationSuccess from '../ModalActivationSuccess';
@@ -36,7 +37,9 @@ const ActivateWearableModal = props => {
     if (state.userStatus >= 4) {
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
+
       // const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
+
       const biconomy = new Biconomy(
         new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
         {
@@ -60,6 +63,7 @@ const ActivateWearableModal = props => {
         Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
       );
       setIceRegistrantContract(iceRegistrantContract);
+
       setInstances(true); // contract instantiation complete
 
       biconomy
@@ -78,7 +82,7 @@ const ActivateWearableModal = props => {
       (async function () {
         // update token hash from iceRegistrant contract
         const tokenHash = await iceRegistrantContract.methods
-          .getHash(props.address, props.tokenID)
+          .getHash(props.contractAddress, props.tokenId)
           .call();
 
         // get previous owner based on token hash
@@ -95,6 +99,7 @@ const ActivateWearableModal = props => {
     const authStatusDGLight = state.tokenAuths.DG_LIGHT_AUTHORIZATION;
 
     console.log("token  =====> ", state.tokenAuths.DG_LIGHT_AUTHORIZATION);
+
     setAuthStatusDGLight(authStatusDGLight);
   }, [state.tokenAmounts]);
 
@@ -259,14 +264,14 @@ const ActivateWearableModal = props => {
   async function metaTransactionReICE() {
     console.log('Meta-transaction NFT Activation');
     console.log('Previous owner: ' + previousOwner);
-    console.log('Collection address: ' + props.address);
-    console.log('Token ID: ' + props.tokenID);
+    console.log('Collection address: ' + props.contractAddress);
+    console.log('Token ID: ' + props.tokenId);
 
     try {
       setClicked(true);
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = iceRegistrantContract.methods
-        .reIceNFT(previousOwner, props.address, props.tokenID)
+        .reIceNFT(previousOwner, props.contractAddress, props.tokenId)
         .encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(
@@ -297,13 +302,6 @@ const ActivateWearableModal = props => {
         dispatch({
           type: 'refresh_balances',
           data: refreshBalances,
-        });
-
-        // update global state wearable Inventory data
-        const refreshWearableInventory = !state.refreshWearableInventory;
-        dispatch({
-          type: 'refresh_wearable_inventory_items',
-          data: refreshWearableInventory,
         });
 
         // close this modal and open the success modal
@@ -368,8 +366,8 @@ const ActivateWearableModal = props => {
                   ? 'Confirming...'
                   : 'Confirm Activation'
                 : clicked
-                  ? 'Authorizing ...'
-                  : 'Authorize DG'}
+                ? 'Authorizing ...'
+                : 'Authorize DG'}
             </Button>
           </div>
           {showErrorCase()}
@@ -378,7 +376,7 @@ const ActivateWearableModal = props => {
         <ModalActivationSuccess
           show={openUpgradeSuccess}
           setOpenUpgradeSuccess={setOpenUpgradeSuccess}
-          tokenID={props.tokenID}
+          tokenId={props.tokenId}
           close={() => {
             setOpenUpgradeSuccess(false);
           }}

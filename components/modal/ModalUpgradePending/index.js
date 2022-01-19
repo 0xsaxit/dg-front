@@ -9,6 +9,8 @@ import ABI_COLLECTION_PH from '../../../components/ABI/ABICollectionPH';
 import ABI_COLLECTION_LINENS from '../../../components/ABI/ABICollectionLinens';
 import ABI_COLLECTION_BOMBER from '../../../components/ABI/ABICollectionBomber';
 import ABI_COLLECTION_CRYPTO_DRIP from '../../../components/ABI/ABICollectionCryptoDrip';
+import ABI_COLLECTION_JOKER from '../../../components/ABI/ABICollectionJoker';
+import ABI_COLLECTION_FOUNDING_FATHERS from '../../../components/ABI/ABICollectionFounderFather';
 import MetaTx from '../../../common/MetaTx';
 import Fetch from '../../../common/Fetch';
 import { Modal, Button } from 'semantic-ui-react';
@@ -48,8 +50,8 @@ const ModalUpgradePending = props => {
   // initialize Web3 providers and create token contract instance
   useEffect(() => {
     if (state.userStatus >= 4) {
-      console.log('Wearables token ID: ' + props.tokenID);
-      console.log('Wearables item ID: ' + props.itemID);
+      console.log('Wearables token ID: ' + props.tokenId);
+      console.log('Wearables item ID: ' + props.itemId);
 
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
@@ -81,36 +83,52 @@ const ModalUpgradePending = props => {
       let collectionContract = {};
       let collectionID = 0;
 
-      if (props.address === Global.ADDRESSES.COLLECTION_V2_ADDRESS) {
+      if (props.contractAddress === Global.ADDRESSES.COLLECTION_V2_ADDRESS) {
         collectionContract = new getWeb3.eth.Contract(
           ABI_COLLECTION_V2,
           Global.ADDRESSES.COLLECTION_V2_ADDRESS
         );
         collectionID = 10;
-      } else if (props.address === Global.ADDRESSES.COLLECTION_PH_ADDRESS) {
+      } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_PH_ADDRESS) {
         collectionContract = new getWeb3.eth.Contract(
           ABI_COLLECTION_PH,
           Global.ADDRESSES.COLLECTION_PH_ADDRESS
         );
         collectionID = 12;
-      } else if (props.address === Global.ADDRESSES.COLLECTION_LINENS_ADDRESS) {
+      } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_LINENS_ADDRESS) {
         collectionContract = new getWeb3.eth.Contract(
           ABI_COLLECTION_LINENS,
           Global.ADDRESSES.COLLECTION_LINENS_ADDRESS
         );
         collectionID = 13;
-      } else if (props.address === Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS) {
+      } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS) {
         collectionContract = new getWeb3.eth.Contract(
           ABI_COLLECTION_BOMBER,
           Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS
         );
         collectionID = 14;
-      } else if (props.address === Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS) {
+      } else if (
+        props.contractAddress === Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS
+      ) {
         collectionContract = new getWeb3.eth.Contract(
           ABI_COLLECTION_CRYPTO_DRIP,
           Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS
         );
         collectionID = 16;
+      } else if (
+        props.contractAddress === Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS
+      ) {
+        collectionContract = new getWeb3.eth.Contract(
+          ABI_COLLECTION_FOUNDING_FATHERS,
+          Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS
+        );
+        collectionID = 17;
+      } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_JOKER_ADDRESS) {
+        collectionContract = new getWeb3.eth.Contract(
+          ABI_COLLECTION_JOKER,
+          Global.ADDRESSES.COLLECTION_JOKER_ADDRESS
+        );
+        collectionID = 18;
       }
 
       setCollectionContract(collectionContract);
@@ -152,11 +170,11 @@ const ModalUpgradePending = props => {
     }
   }, [successInUpgrade]);
 
-  // get NFT authorization state based on props.tokenID
+  // get NFT authorization state based on props.tokenId
   useEffect(() => {
     if (state.nftAuthorizations.length) {
       const result = state.nftAuthorizations.find(
-        item => item.tokenID === props.tokenID
+        item => item.tokenId === props.tokenId
       );
       console.log('NFT auth status: ' + result.authStatus);
 
@@ -207,28 +225,33 @@ const ModalUpgradePending = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
-  
+
   function refresh() {
-     // update global state token amounts
-     const refreshTokenAmounts = !state.refreshTokenAmounts;
-     dispatch({
-       type: 'refresh_token_amounts',
-       data: refreshTokenAmounts,
-     });
+    // update global state token amounts
+    const refreshTokenAmounts = !state.refreshTokenAmounts;
+    dispatch({
+      type: 'refresh_token_amounts',
+      data: refreshTokenAmounts,
+    });
 
-     // update global state wearables data
-     const refreshWearable = !state.refreshWearable;
-     dispatch({
-       type: 'refresh_wearable_items',
-       data: refreshWearable,
-     });
+    // update global state wearables data
+    const refreshWearable = !state.refreshWearable;
+    dispatch({
+      type: 'refresh_wearable_items',
+      data: refreshWearable,
+    });
+    
+    // dispatch({
+    //   type: 'ice_wearable_items_loading',
+    //   data: true,
+    // });
 
-     // update global state balances
-     const refreshBalances = !state.refreshBalances;
-     dispatch({
-       type: 'refresh_balances',
-       data: refreshBalances,
-     });
+    // update global state balances
+    const refreshBalances = !state.refreshBalances;
+    dispatch({
+      type: 'refresh_balances',
+      data: refreshBalances,
+    });
   }
 
   function init() {
@@ -348,11 +371,11 @@ const ModalUpgradePending = props => {
             analytics.track(activeItem.trackEvent);
             activeItem.handleClick();
           }}
-          disabled={(!loading && mexaStatus) ? false : true}
+          disabled={!loading && mexaStatus ? false : true}
         >
           <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png" />
 
-          {(!loading && mexaStatus) ? activeItem.text : <Loader />}
+          {!loading && mexaStatus ? activeItem.text : <Loader />}
         </Button>
       );
     }
@@ -475,16 +498,16 @@ const ModalUpgradePending = props => {
 
   async function metaTransactionNFT() {
     const token = 'NFT';
-    console.log('Meta-transaction NFT: ' + props.tokenID);
+    console.log('Meta-transaction NFT: ' + props.tokenId);
     console.log('Spender address: ' + spenderAddress);
-    console.log('Collection address: ' + props.address);
+    console.log('Collection address: ' + props.contractAddress);
     setLoading(true);
     setUpdateStatus({ name: token, value: 'clicked' });
 
     try {
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = collectionContract.methods
-        .approve(Global.ADDRESSES.ICE_REGISTRANT_ADDRESS, props.tokenID)
+        .approve(Global.ADDRESSES.ICE_REGISTRANT_ADDRESS, props.tokenId)
         .encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(
@@ -524,16 +547,16 @@ const ModalUpgradePending = props => {
 
   // send the API request to upgrade the user's wearable
   async function upgradeToken() {
-    console.log('Upgrading NFT token ID: ' + props.tokenID);
-    console.log('Collection address: ' + props.address);
+    console.log('Upgrading NFT token ID: ' + props.tokenId);
+    console.log('Collection address: ' + props.contractAddress);
 
     const token = 'WEARABLE';
     setLoading(true);
     setUpdateStatus({ name: token, value: 'clicked' });
 
     try {
-      const json = await Fetch.UPGRADE_TOKEN(props.tokenID, props.address);
-      
+      const json = await Fetch.UPGRADE_TOKEN(props.tokenId, props.contractAddress);
+
       if (json.status) {
         console.log('success in upgrading:', json);
         setSuccessInUpgrade(true);

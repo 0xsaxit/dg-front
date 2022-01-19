@@ -8,7 +8,7 @@ const IceCheckedInTooltip = () => {
       <div className={styles.imgDiv}>
         <img
           className={styles.img}
-          src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637210248/checked_in_kkxwqv.png"
+          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1641401363/ICE_ENABLED_spugin.svg"
         />
         <Popup
           trigger={
@@ -29,9 +29,9 @@ const IceCheckedInTooltip = () => {
             <p className={styles.popup_content}>
               This wearable has been
               <br /> checked in today. If you would
-              <br /> like to undelegate your
-              <br /> wearable, the withdrawal will be
-              <br /> scheduled for after 12AM UTC.
+              <br /> like to withdraw delegation, the
+              <br /> withdrawal will be scheduled
+              <br /> for after 12AM UTC.
             </p>
           </Popup.Content>
         </Popup>

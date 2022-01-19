@@ -1,52 +1,96 @@
 import { Button } from 'semantic-ui-react';
 import cn from 'classnames';
+import { Grid } from 'semantic-ui-react';
 import { useMediaQuery } from 'hooks';
 import Aux from 'components/_Aux';
+import images from 'common/Images';
 import styles from './DG.module.scss';
+// import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
 function SectionTwo() {
   const mobile = useMediaQuery('(max-width: 767px)');
   const tablet = useMediaQuery('(max-width: 992px)');
+  // const { t, i18n } = useTranslation();
 
   return (
     <Aux>
       <div className={cn(styles.section_two, 'container-fluid')}>
-        <div className={styles.tout_container}>
-          <h1 className={styles.tout_h1}>Wear NFTs, Play Poker, Earn ICE</h1>
-          <p className={styles.tout_p}>
-            Play to earn with free play poker in the metaverse. Beta is now
-            live!
+        <section className={styles.backedBy}>
+          <p className={styles.title}>
+            BACKED BY
           </p>
+
+          <Grid>
+            <Grid.Row>
+              <Grid.Column className={styles.section} computer={2} tablet={4} mobile={8}>
+                <img src={images.C_C} alt="C+C" />
+              </Grid.Column>
+              <Grid.Column className={styles.section} computer={2} tablet={4} mobile={8}>
+                <img src={images.BINANCE} alt="BINANCE" />
+              </Grid.Column>
+              <Grid.Column className={styles.section} computer={2} tablet={4} mobile={8}>
+                <img src={images.POLYGON} alt="POLYGON" />
+              </Grid.Column>
+              <Grid.Column className={styles.section} computer={2} tablet={4} mobile={8}>
+                <img src={images.DCG} alt="DCG" />
+              </Grid.Column>
+              <Grid.Column className={styles.section} computer={2} tablet={4} mobile={8}>
+                <img src={images.DECENTRALAND} alt="DECENTRALAND" />
+              </Grid.Column>
+              <Grid.Column className={styles.section} computer={2} tablet={4} mobile={8}>
+                <img src={images.CLUSTER} alt="CLUSTER" />
+              </Grid.Column>
+              <Grid.Column className={styles.section} computer={2} tablet={4} mobile={8}>
+                <img src={images.HASHKEY} alt="HASHKEY" />
+              </Grid.Column>
+              <Grid.Column className={styles.section} computer={2} tablet={4} mobile={8}>
+                <img src={images.GBV} alt="GBV" />
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </section>
+
+        <div className={styles.tout_container}>
+          <p className={styles.tout_subTitle}>DECENTRAL GAMES ICE POKER</p>
+          <h1 className={styles.tout_h1}>
+            Get Wearable &nbsp;{"->"}&nbsp;{mobile && (<br />)}  Play Free Poker &nbsp;{"->"} &nbsp;Earn ICE</h1>
           <div>
             {!mobile && (
-              <img
+              <video
                 className={styles.tout_image}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,q_auto:best/v1632060620/Group_805_gxueoj.png"
+                src="https://res.cloudinary.com/dnzambf4m/video/upload/v1641930738/ICE_Poker_Table_Home_Page_3_iufyq3.webm"
                 type="video/mp4"
-              ></img>
+                frameBorder="0"
+                autoPlay={true}
+                loop
+                muted
+              ></video>
             )}
             {mobile && (
               <img
                 className={styles.tout_image}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,q_auto:best/v1632060620/Group_805_gxueoj.png"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1641906605/icePokerTable_c1ilew.png"
                 alt="img"
               />
             )}
           </div>
+          <p className={styles.tout_p}>
+            Play to earn with free play poker in the metaverse or in your web browser. Metaverse beta is now live!
+          </p>
           <span className={styles.tout_span}>
             <Button className={styles.grey_button} href="/ice/start">
-              {mobile ? 'Start' : 'Get Started'}
+              Get Started
             </Button>
             <Button
               className={styles.blue_button}
               href="https://api.decentral.games/ice/play?position=-110%2C129"
               target="_blank"
             >
-              {mobile ? 'Play' : 'Play Now'}
+              Play Now
             </Button>
           </span>
 
-          <a href="https://ice.decentral.games" target="_blank">
+          {/* <a href="https://ice.decentral.games" target="_blank">
             <p className={styles.wp_text}>
               Read Whitepaper
               <svg
@@ -63,12 +107,13 @@ function SectionTwo() {
                 />
               </svg>
             </p>
-          </a>
+          </a> */}
         </div>
 
         <div
           className={cn(
             'row flex-md-row flex-column-reverse',
+            styles.section_two_one,
             styles.image_span,
             styles.text_group
           )}
@@ -83,35 +128,31 @@ function SectionTwo() {
           >
             <h1 className={styles.section_h1}>
               {/* {t('Home.PLAYTOEARN')} */}
-              Play to Earn
+              Borrow a wearable for free.<br />
+              Play free poker. Start earning.
             </h1>
             <p className={styles.section_p}>
               {/* {t('Home.PLAY_GAMES_META')} */}
-              Play games in the metaverse and earn $DG token win or lose. Get up
-              to 50% of your expected losses back in $DG.
+              You can play ICE Poker and earn without buying an NFT. Find a lender (delegator) in our discord.
             </p>
 
             <span className={styles.button_span}>
               <Button
                 className={styles.grey_button}
-                href="https://ice.decentral.games/"
+                href="https://ice.decentral.games/ice-nft-wearables"
                 target="_blank"
               >
-                {
-                  mobile
-                    ? 'Info' //t('Home.INFO')
-                    : 'Learn More' //t('Home.LEARNMORE')
-                }
+                Learn More
               </Button>
               <Button
                 className={styles.blue_button}
-                href="/games"
+                href="https://discord.com/invite/cvbSNzY"
                 target="_blank"
               >
                 {
                   mobile
-                    ? 'Games' // t('Home.GAMES')
-                    : 'See Games' // t('Home.SEEGAMES')
+                    ? 'Find a Lender (Delegator)' // t('Home.GAMES')
+                    : 'Find a Lender' // t('Home.SEEGAMES')
                 }
               </Button>
             </span>
@@ -126,7 +167,7 @@ function SectionTwo() {
             {!mobile && (
               <video
                 className={styles.image}
-                src="https://res.cloudinary.com/dnzambf4m/video/upload/c_scale,q_auto:best/v1626798440/Play_to_Earn_1_mrum0a.webm"
+                src="https://res.cloudinary.com/dnzambf4m/video/upload/v1641930581/Wearable_Tout_Floater_gyks3a.webm"
                 type="video/mp4"
                 frameBorder="0"
                 autoPlay={true}
@@ -137,7 +178,7 @@ function SectionTwo() {
             {mobile && (
               <img
                 className={styles.image}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,q_auto:best/c_crop,h_1324,w_1950/v1626536789/Screen_Shot_2021-07-17_at_5.46.07_PM_p672iu.png"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1641908235/iceWearable_mcr5kd.png"
                 alt="img"
               />
             )}
@@ -145,31 +186,30 @@ function SectionTwo() {
         </div>
       </div>
 
-      <div className={cn(styles.section_two, 'container-fluid')}>
+      <div className={cn(styles.section_two_second, 'container-fluid')}>
         <div className={cn('row', styles.image_span)}>
           <div
             className={
               mobile
                 ? 'col-xs d-flex justify-content-center'
-                : 'col-md-6 d-flex justify-content-center'
+                : 'col-md-5 d-flex'
             }
           >
             {!mobile && (
               <video
                 className={styles.image}
-                src="https://res.cloudinary.com/dnzambf4m/video/upload/c_scale,q_auto:best/v1626798440/Wallet_1_k0dqit.webm"
+                src="https://res.cloudinary.com/dnzambf4m/video/upload/v1641930583/Delegation_Stats_ub09zu.webm"
                 type="video/mp4"
                 frameBorder="0"
                 autoPlay={true}
                 loop
                 muted
-                style={{ left: mobile ? 0 : tablet ? -72 : -100 }}
               ></video>
             )}
             {mobile && (
               <img
                 className={styles.image}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,q_auto:best/v1626804495/Screen_Shot_2021-07-17_at_5.45.43_PM_wv07nl.png"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1641906605/Deposit_Modal_edwr9p.png"
                 alt="img"
               />
             )}
@@ -179,42 +219,35 @@ function SectionTwo() {
             className={cn(
               styles.text_group,
               mobile
-                ? 'col-md-6'
-                : 'col-md-6 d-flex flex-column justify-content-center'
+                ? 'col-md-7'
+                : 'col-md-7 d-flex flex-column justify-content-center'
             )}
             style={{ position: 'relative', zIndex: '3' }}
           >
             <h1 className={styles.section_h1}>
               {/* {t('Home.EARNAPY')} */}
-              Earn APY%
+              Or lend out your NFTs for passive income.
+              {mobile ? null : ' All while your assets stay in your wallet.'}
             </h1>
             <p className={styles.section_p}>
               {/* {t('Home.STAKE_DG_GOVERNANCE')} */}
-              Stake $DG in governance and earn up to 40% in yield rewards.
+              As an ICE Wearable owner, you can build your own team of poker players. Measure performance and manage your very own profit generating guild—all while everything remains in your wallet.
             </p>
 
             <span className={styles.button_span}>
               <Button
                 className={styles.grey_button}
-                href="https://docs.decentral.games/"
+                href="https://ice.decentral.games/ice-nft-wearables"
                 target="_blank"
               >
-                {
-                  mobile
-                    ? 'Info' //t('Home.INFO')
-                    : 'Learn More' //t('Home.LEARNMORE')
-                }
+                Learn More
               </Button>
               <Button
                 className={styles.blue_button}
-                href="https://docs.decentral.games/getting-started/earn-dg-gov-rewards"
+                href="https://decentral.games/ice/marketplace"
                 target="_blank"
               >
-                {
-                  mobile
-                    ? 'Earn' //t('Home.EARN')
-                    : 'Earn APY%' //t('Home.EARNAPY')
-                }
+                Browser Wearables
               </Button>
             </span>
           </div>
@@ -238,34 +271,16 @@ function SectionTwo() {
             style={{ position: 'relative', zIndex: '3' }}
           >
             <h1 className={styles.section_h1}>
-              Vote in the DAO {/* {t('Home.VOTE_IN_THE_DAO')}  */}
-              <br />
-              (Be The House) {/* {t('Home.BE_THE_HOUSE')} */}
+              Stake DG. Vote in the DAO. {/* {t('Home.VOTE_IN_THE_DAO')}  */}
             </h1>
             <p className={styles.section_p}>
               {/* {t('Home.WITH_THE_DG_DAO')} */}
-              With the $DG DAO, you own the casino. Control the profits, vote
-              for new games, and decide on feature proposals.
+              Govern the DG Treasury and vote on proposals for new games and features.
             </p>
 
             <span className={styles.button_span}>
-              <Button
-                className={styles.grey_button}
-                href="https://docs.decentral.games/"
-                target="_blank"
-              >
-                {
-                  mobile
-                    ? 'Info' // t('Home.INFO')
-                    : 'Learn More ' // t('Home.LEARNMORE')
-                }
-              </Button>
               <Button className={styles.blue_button} href="/dg/">
-                {
-                  tablet
-                    ? 'Explore' // t('Home.EXPLORER')
-                    : 'Explore Treasury' // t('Home.EXPLORER_THREASURY')
-                }
+                Explore Treasury
               </Button>
             </span>
           </div>

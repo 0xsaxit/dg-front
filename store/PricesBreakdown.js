@@ -38,9 +38,10 @@ function PricesBreakdown() {
               eth: priceETH,
               dai: 1,
               usdt: 1,
-              dg: priceDG,
               xDG: priceXDG,
+              dg: priceDG,
               ice: priceICE,
+              xDG: priceXDG,
             },
           });
         } catch (error) {

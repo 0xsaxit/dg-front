@@ -27,15 +27,18 @@ const CONSTANTS = {
   DESCRIPTION: 'Free to play, play to earn gaming in the metaverse. Play ICE Poker, trade NFTs, vote in the DAO, and earn real value from your favorite games.',
   DISCORD_URL: 'https://discord.gg/cvbSNzY',
   SOCIAL_HANDLE: 'decentralgames',
-  MAX_ITEM_COUNT: 10, // maximum number of tokenOfOwner indexes to query on the accessories contract
+  MAX_ITEM_COUNT: 70, // maximum number of tokenOfOwner indexes to query on the accessories contract ********** was 10 **********
   MAX_DELEGATION_COUNT: 5, // maximum number of delegated NFTs a user can have
   VERIFY_URL: 'staging.decentral.games',
   WETH_MINT_AMOUNT: 0.25, // amount of WETH required for minting
+  ICE_MINT_AMOUNT: 8000, // amount of ICE required for minting
   DG_STAKED_AMOUNT: 1, // amount of DG user is required to have staked in order to mint wearable
   XDG_STAKED_AMOUNT: 1000, // amount of DG user is required to have staked in order to mint wearable
   POOLING_TIME_OUT: 8000, // API endpoint request pool interval (milliseconds)
   POOLING_LIMIT_COUNT: 6, // attempt to call API endpoint this number of times
   MINT_STATUS: 29, // minimum userStatus level for minting wearables (we can replace with appConfig variable when it's available)
+  APR_NUMBER: 26071500, // APR constant number,
+  TOKEN_DECIMALS: 18, // the decimals of register contract,
 };
 
 const IMG_URLS_UPGRADE = {
@@ -239,6 +242,86 @@ const IMG_URLS_UPGRADE = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781040/Crypto%20Drip/Individual%20Assets/Shoes_level_4_db0xpw.png',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1639781040/Crypto%20Drip/Individual%20Assets/shoes_level_5_ieba6p.png',
   ],
+  'Father Feather': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558289/ICE%20Founding%20Fathers%20%28Square%29/feather_level_1_rd61am_krstod.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558289/ICE%20Founding%20Fathers%20%28Square%29/feather_level_1_rd61am_krstod.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558298/ICE%20Founding%20Fathers%20%28Square%29/feather_level_2_e1wqvr_ssikux.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558298/ICE%20Founding%20Fathers%20%28Square%29/feather_level_3_dz34tu_ucztbr.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558295/ICE%20Founding%20Fathers%20%28Square%29/feather_level_4_ween0k_hobssi.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558293/ICE%20Founding%20Fathers%20%28Square%29/feather_level_5_zsqs3l_etcva6.png'
+  ],
+  'Father Flow': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558298/ICE%20Founding%20Fathers%20%28Square%29/hair_level_1_dampks_dopxd0.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558298/ICE%20Founding%20Fathers%20%28Square%29/hair_level_1_dampks_dopxd0.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558316/ICE%20Founding%20Fathers%20%28Square%29/hair_level_2_v44ugc_huhzdc.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558314/ICE%20Founding%20Fathers%20%28Square%29/hair_level_3_ykvgjg_d1pbul.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558318/ICE%20Founding%20Fathers%20%28Square%29/hair_level_4_ofhzpz_hwgccp.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558321/ICE%20Founding%20Fathers%20%28Square%29/hair_level_5_wfkmvf_nlohzo.png'
+  ],
+  'Father Frock': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558293/ICE%20Founding%20Fathers%20%28Square%29/coat_level_1_ivacwe_tlon3n.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558293/ICE%20Founding%20Fathers%20%28Square%29/coat_level_1_ivacwe_tlon3n.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558317/ICE%20Founding%20Fathers%20%28Square%29/coat_level_2_cj8dkw_cysq0f.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558315/ICE%20Founding%20Fathers%20%28Square%29/coat_level_3_uxzd4x_mate5v.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558317/ICE%20Founding%20Fathers%20%28Square%29/coat_level_4_borybu_htnbqv.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558294/ICE%20Founding%20Fathers%20%28Square%29/coat_level_5_ogr04n_zhvcpy.png'
+  ],
+  'Father Breeches': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558301/ICE%20Founding%20Fathers%20%28Square%29/pants_level_1_srgdhc_itqcyg.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558301/ICE%20Founding%20Fathers%20%28Square%29/pants_level_1_srgdhc_itqcyg.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558305/ICE%20Founding%20Fathers%20%28Square%29/pants_level_2_xfvww3_y00twe.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558306/ICE%20Founding%20Fathers%20%28Square%29/pants_level_3_phdrnf_trydjd.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558307/ICE%20Founding%20Fathers%20%28Square%29/pants_level_4_lnvwdh_rl7hux.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558311/ICE%20Founding%20Fathers%20%28Square%29/pants_level_5_r1hvt3_lpuhv1.png'
+  ],
+  'Father Mules': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558298/ICE%20Founding%20Fathers%20%28Square%29/mules_level_1_u7jgmh_axb6lm.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558298/ICE%20Founding%20Fathers%20%28Square%29/mules_level_1_u7jgmh_axb6lm.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558304/ICE%20Founding%20Fathers%20%28Square%29/mules_level_2_mpcfus_mhiyq5.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558301/ICE%20Founding%20Fathers%20%28Square%29/mules_level_3_ipr5rb_qpakmo.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558305/ICE%20Founding%20Fathers%20%28Square%29/mules_level_4_agokrm_cnuvxg.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1640558306/ICE%20Founding%20Fathers%20%28Square%29/mules_level_5_h2w7re_cuo0t6.png'
+  ],
+  'Joker Bauble': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569827/staff1_ld2xnm.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569827/staff1_ld2xnm.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569827/staff2_baigvx.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569827/staff3_e4nhcb.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569827/staff4_pua32b.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569827/staff5_cxy9pt.jpg',
+  ],
+  "Cap'N'Bells": [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/hat1_qpw84y.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/hat1_qpw84y.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569825/hat2_tk9wh5.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/hat3_dd7e8u.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569825/hat4_zxvoiq.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569825/hat5_qwa5u7.jpg'
+  ],
+  'Joker Ruffle': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569827/upperbody_f_1_tnvzse.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569827/upperbody_f_1_tnvzse.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569828/upperbody_f_2_grmna3.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569828/upperbody_f_3_cetveb.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569828/upperbody_f_4_g71ikm.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569828/upperbody_f_5_vqu2ps.jpg'
+  ],
+  'Joker Skirt': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569825/lowerbody_f1_zyq8dj.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569825/lowerbody_f1_zyq8dj.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569825/lowerbody_f2_bbpge6.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569825/lowerbody_f3_of1pzi.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569826/lowerbody_f4_inxwju.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569826/lowerbody_f5_tq1qhx.jpg'
+  ],
+  'Winklepickers': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/feet1_jb7qey.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/feet1_jb7qey.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/feet2_rw32ke.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/feet3_hprrd3.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/feet4_urdt1x.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/feet5_fzihvy.jpg'
+  ]
 };
 
 // wallet and contract addresses
@@ -291,12 +374,13 @@ const ADDRESSES = (() => {
   const UNISWAP_ADDRESS_WETH = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2';
   const TOMINOYA_CONTRACT_ADDRESS = '0xF4618abb5E8031454238696A0F013DcD1476dc33';
   const DECENTRAL_GAMES_EVENTS = '0x154620ddfdcd6ab15dd9c1682386debad1eef536';
-  const COLLECTION_V2_ADDRESS = '0xCb06f6aeE0655252a3f6f2884680421D55d3C645';
-  const COLLECTION_PH_ADDRESS = '0x4cd15dcd96362cF85E19039C3C2D661e5e43145E';
+  const COLLECTION_V2_ADDRESS = '0xcb06f6aee0655252a3f6f2884680421d55d3c645';
+  const COLLECTION_PH_ADDRESS = '0x4cd15dcd96362cf85e19039c3c2d661e5e43145e';
   const COLLECTION_LINENS_ADDRESS = '0xd79cf5a41d8caec4688e01b4754ea2da6f51e856';
   const COLLECTION_BOMBER_ADDRESS = '0xd07a56f7198ae6e4e3d6738bd8c4b81d21bf0403';
   const COLLECTION_CRYPTO_DRIP_ADDRESS = '0x897243a54b03b46a17b55d5609465e9719a6ffa0';
   const COLLECTION_FOUNDER_FATHERS_ADDRESS = '0x09eeac7dff0dc304e25cbb7bdbfae798488fc34f';
+  const COLLECTION_JOKER_ADDRESS = '0x451612c0e742e27f2cfb3888ad2813eec8dd1ba3';
   const ICE_TOKEN_ADDRESS = '0xc6C855AD634dCDAd23e64DA71Ba85b8C51E5aD7c';
 
   console.log('OWNER_WALLET_ADDRESS: ' + OWNER_WALLET_ADDRESS);
@@ -390,6 +474,7 @@ const ADDRESSES = (() => {
     COLLECTION_BOMBER_ADDRESS,
     COLLECTION_CRYPTO_DRIP_ADDRESS,
     COLLECTION_FOUNDER_FATHERS_ADDRESS,
+    COLLECTION_JOKER_ADDRESS,
     ICE_TOKEN_ADDRESS
   };
 })();

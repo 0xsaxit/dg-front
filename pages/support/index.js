@@ -27,12 +27,12 @@ const Admin = () => {
       }}>
         {state.userStatus >=20 ? (
         <ToolWidget />) : (
-          <div styles={{color: 'white', fontSize: '18px'}}>
+          <div style={{color: 'white', fontSize: '18px'}}>
             Please ensure you've connected using an admin wallet address.
           </div>
         )}
       </div>
-      
+
     </Layout>
   );
 };

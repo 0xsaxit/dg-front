@@ -11,22 +11,73 @@ import Global from '../../../Constants';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import 'components/modal/CheckMintableModal'
+import CheckMintableModal from 'components/modal/CheckMintableModal';
 
 const MarketPlace = () => {
   // dispatch new user status to Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
+  const [openCheckEligibility, setOpenCheckEligibility] = useState(false);
   // define local variables
-  const [previewLevel, setPreviewLevel] = useState([0, 0, 0, 0, 0]);
+  const [previewLevel, setPreviewLevel] = useState([0, 0, 0, 0, 0, 0, 0]);
   const wearables = [
+    {
+      title: 'ICE Joker',
+      address: Global.ADDRESSES.COLLECTION_JOKER_ADDRESS,
+      preview: [
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569807/Fit_1_zw1bwd.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569807/Fit_2_pplvph.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569807/Fit_3_mkggnr.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569808/Fit_4_fktcat.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569808/Fit_5_z5ysrm.png',
+      ],
+      details: {
+        JokerBauble: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569827/staff1_ld2xnm.jpg',
+          'Joker Bauble',
+          'ICE Joker',
+          'Accessory',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569827/staff1_ld2xnm.jpg',
+        ],
+        JokerCap: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/hat1_qpw84y.jpg',
+          `Cap'N'Bells`,
+          'ICE Joker',
+          'Head',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/hat1_qpw84y.jpg',
+        ],
+        JokerRuffle: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569827/upperbody_f_1_tnvzse.jpg',
+          'Joker Ruffle',
+          'ICE Joker',
+          'Torso',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569827/upperbody_f_1_tnvzse.jpg',
+        ],
+        JokerSkirt: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569826/lowerbody_m1_qwvegm.jpg',
+          'Joker Skirt',
+          'ICE Joker',
+          'Legs',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569826/lowerbody_m1_qwvegm.jpg',
+        ],
+        JokerWinklepickers: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/feet1_jb7qey.jpg',
+          'Winklepickers',
+          'ICE Joker',
+          'Feet',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/feet1_jb7qey.jpg',
+        ],
+      },
+    },
     {
       title: 'Founder Fathers',
       address: Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_1_fvhl6y.png',
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_2_pqzdsy.png',
-        'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_4_zn5mqz.png',
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_3_yloaxi.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_4_zn5mqz.png',
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_5_cnndmr.png',
       ],
       details: {
@@ -394,25 +445,43 @@ const MarketPlace = () => {
       prevArrow: <CarouselPrevArrow />,
     };
 
+    const checkSoldOutStatus = (itemList, maxMint) =>{
+      return itemList.some((item)=>
+        (item[0] - maxMint) != 0
+      )
+    }
+
+    const buyOnSecondaryButton = ()  => {
+      return(
+      <Button className={styles.wearable_button}>
+        Buy on Secondary                      
+      </Button>)};
+
+    const soldOutButton = () => {
+      return(
+      <Button disabled className={styles.sold_button}>
+        Sold Out
+      </Button>)};
+
     return (
       <section>
         {wearables.map((wearable, index) => {
           let itemLimits;
           if (index === 0) {
-            itemLimits = state.itemLimits6;
+            itemLimits = state.itemLimits7;
           } else if (index === 1) {
-            itemLimits = state.itemLimits5;
+            itemLimits = state.itemLimits6;
           } else if (index === 2) {
-            itemLimits = state.itemLimits4;
+            itemLimits = state.itemLimits5;
           } else if (index === 3) {
-            itemLimits = state.itemLimits3;
+            itemLimits = state.itemLimits4;
           } else if (index === 4) {
-            itemLimits = state.itemLimits2;
+            itemLimits = state.itemLimits3;
           } else if (index === 5) {
+            itemLimits = state.itemLimits2;
+          } else if (index === 6) {
             itemLimits = state.itemLimits1;
           }
-
-          console.log(state.appConfig.maxMintCounts);
 
           let maxMintCounts = 0;
           if (state.appConfig && state.appConfig.maxMintCounts) {
@@ -423,11 +492,16 @@ const MarketPlace = () => {
             })
           }
 
-          console.log(wearable, state.userStatus, state.appConfig.minMintVerifyStep, maxMintCounts, itemLimits);
-
           return (
             <section key={index} className={styles.wearable_section}>
-              <h3>{wearable.title}</h3>
+              <h3>
+                {wearable.title}
+
+                {/*{wearable.title === 'ICE Joker' && (
+                  <CheckMintableModal />
+                )}*/}
+              </h3>
+              
               <Slider {...settings}>
                 <div
                   className={styles.games_container}
@@ -533,64 +607,55 @@ const MarketPlace = () => {
                     </div>
 
                     <div className={styles.button_container}>
-                      {state.userStatus >= 4 && itemLimits[i][0] < 0 ? (
-                        // items loading, display spinner
-
-                        <Button disabled className={styles.sold_button}>
-                          <Spinner width={20} height={20} />
-                        </Button>
-                      ) : state.userStatus >= state.appConfig.minMintVerifyStep &&
-                        (maxMintCounts - itemLimits[i][0]) > 0 ? (
-                        // minting enabled
-
-                        <div className={styles.flex_50}>
-                          <ModalMintWearable
-                            index={i}
-                            maxMintCounts={maxMintCounts}
-                            numberLeft={itemLimits[i][0]}
-                            itemID={itemLimits[i][1]}
-                            address={itemLimits[5]}
-                            wearableImg={wearable.details[item][0]}
-                            wearableBodyType={wearable.details[item][3]}
-                            wearableBodyImg={wearable.details[item][4]}
-                            wearableName={wearable.details[item][1]}
-                          />
-                        </div>
-                      ) : // Minting Disabled States
-                        (maxMintCounts - itemLimits[i][0]) >= 0 && (maxMintCounts - itemLimits[i][0]) < 1 ? (
-                          wearable.title === 'Founder Fathers' ? (
-                            // Sold Out State
-                            <Button disabled className={styles.sold_button}>
-                              Sold Out
-                            </Button>
-                          )
-                            : (
-                              // Buy on Secondary
-                              <a
-                                className={styles.flex_50}
-                                href="https://opensea.io/collection/decentral-games-ice"
-                                target="_blank"
-                                style={{
-                                  width: '100%',
-                                }}
-                              >
-                                <Button className={styles.wearable_button}>
-                                  Buy on Secondary
-                                </Button>
-                              </a>
-                            )
-                        ) : state.userStatus < state.appConfig.minMintVerifyStep &&
-                          (maxMintCounts - itemLimits[i][0]) > 0 ? (
-                          // Coming Soon State
+                      {state.userLoggedIn ?
+                        state.userStatus >= 4 && itemLimits[i][0] < 0 ? (
+                          // items loading, display spinner
                           <Button disabled className={styles.sold_button}>
-                            Coming Soon!
+                            <Spinner width={20} height={20} />
                           </Button>
-                        ) : state.userStatus < 4 ? (
-                          // Logged Out State
+                        ) : state.userStatus >= state.appConfig.minMintVerifyStep &&
+                          (maxMintCounts - itemLimits[i][0]) > 0 ? (
+                          // minting enabled
                           <div className={styles.flex_50}>
-                            <ModalLoginICE />
+                            <ModalMintWearable
+                              index={i}
+                              maxMintCounts={maxMintCounts}
+                              numberLeft={itemLimits[i][0]}
+                              itemId={itemLimits[i][1]}
+                              contractAddress={itemLimits[5]}
+                              wearableImg={wearable.details[item][0]}
+                              wearableBodyType={wearable.details[item][3]}
+                              wearableBodyImg={wearable.details[item][4]}
+                              wearableName={wearable.details[item][1]}
+                            />
                           </div>
-                        ) : null}
+                        ) : // Minting Disabled States
+                          maxMintCounts !== 0 && (maxMintCounts - itemLimits[i][0]) >= 0 && (maxMintCounts - itemLimits[i][0]) < 1 ? (
+                            // Buy on Secondary (Previous Mint)
+                            <a
+                              className={styles.flex_50}
+                              href="https://opensea.io/collection/decentral-games-ice"
+                              target="_blank"
+                              style={{
+                                width: '100%',
+                              }}
+                            >
+                              {checkSoldOutStatus(itemLimits.slice(0,-1), maxMintCounts) ? soldOutButton() : buyOnSecondaryButton() }
+
+                            </a>
+                          ) : state.userStatus < state.appConfig.minMintVerifyStep &&
+                            ((maxMintCounts - itemLimits[i][0]) > 0 || (maxMintCounts === 0 && itemLimits[i][0] === 0)) ? (
+                            // Coming Soon State
+                            <Button disabled className={styles.sold_button}>
+                              Coming Soon!
+                            </Button>
+                          ) : null
+                        :
+                        // Logged Out State
+                        <div className={styles.flex_50}>
+                          <ModalLoginICE />
+                        </div>
+                      }
                     </div>
                   </div>
                 ))}
@@ -637,6 +702,8 @@ const MarketPlace = () => {
         </div>
 
         <div className={styles.outter_games_container}>{getCarousel()}</div>
+        {/* {openCheckEligibility && <CheckMintableModal />} */}
+        
       </span>
     </div>
   );

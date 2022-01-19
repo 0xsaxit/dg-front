@@ -14,57 +14,39 @@ const ModalUpgradeSuccess = props => {
 
   // define local variables
   const [open, setOpen] = useState(true);
-  const [image, setImage] = useState('');
-  const [description, setDescription] = useState('x of 100');
-  const [rank, setRank] = useState({});
-  const [animationStage, setAnimationStage] = useState(1);
+  const [image, setImage] = useState("")
+  const [description, setDescription] = useState("x of 100");
+  const [rank, setRank] = useState({})
+  const [bonus, setBonus] = useState({})
+  const [animationStage, setAnimationStage] = useState(1)
 
   useEffect(() => {
-    // refresh();
-    const itemInfo = state.iceWearableItems.filter(
-      item => item.tokenID === props.tokenID
-    )[0];
+    const itemInfo = state.iceWearableItems.filter(item => item.tokenId === props.tokenId)[0];
     setImage(props.imgURL ? props.imgURL : '');
-    setDescription(
-      itemInfo.meta_data
-        ? itemInfo.meta_data.description.split(' ').at(-1).replace('/', ' of ')
-        : ''
-    );
-    setRank(
-      itemInfo.meta_data
-        ? GetRank(
-            parseInt(
-              itemInfo.meta_data.attributes.find(
-                el => el.trait_type === 'Bonus'
-              ).value
-            )
-          )
-        : 0
-    );
-    console.log('Upgraded Wearable Info ', itemInfo);
-  }, [state.iceWearableItems]);
+    setDescription(itemInfo.description.split(' ').at(-1).replace('/', ' of '));
+    setRank(itemInfo.rank);
+    setBonus("+" + itemInfo.bonus + "%");
+  }, [state.iceWearableItems])
 
   function refresh() {
-    // update global state token amounts
-    const refreshTokenAmounts = !state.refreshTokenAmounts;
-    dispatch({
-      type: 'refresh_token_amounts',
-      data: refreshTokenAmounts,
-    });
+     // update global state token amounts
+     const refreshTokenAmounts = !state.refreshTokenAmounts;
+     dispatch({
+       type: 'refresh_token_amounts',
+       data: refreshTokenAmounts,
+     });
 
-    // update global state wearables data
-    const refreshWearable = !state.refreshWearable;
-    dispatch({
-      type: 'refresh_wearable_items',
-      data: refreshWearable,
-    });
-
-    // update global state wearable Inventory data
-    const refreshWearableInventory = !state.refreshWearableInventory;
-    dispatch({
-      type: 'refresh_wearable_inventory_items',
-      data: refreshWearableInventory,
-    });
+     // update global state wearables data
+     const refreshWearable = !state.refreshWearable;
+     dispatch({
+       type: 'refresh_wearable_items',
+       data: refreshWearable,
+     });
+     
+     dispatch({
+       type: 'ice_wearable_items_loading',
+       data: true,
+     });
 
     // update global state balances
     const refreshBalances = !state.refreshBalances;
@@ -144,27 +126,16 @@ const ModalUpgradeSuccess = props => {
         </span>
       </div>
 
-      {animationStage === 1 ? (
-        <UpgradeWearableBox
-          height={540}
-          onCompletion={() => {
-            console.log('First Wearable Upgrade Animation Complete');
-            setAnimationStage(2);
-          }}
-        />
-      ) : (
+      {(animationStage===1) ?
+        <UpgradeWearableBox height={540} onCompletion={()=>{setAnimationStage(2)}}/>
+        :
         <div className={cn(styles.fadeIn, styles.success_container)}>
-          <Confetti
-            onCompletion={() => {
-              console.log('Second Wearable Upgrade Animation Complete');
-              setAnimationStage(3);
-            }}
-          />
+          <Confetti onCompletion={()=>{setAnimationStage(3)}}/>
           <div className={styles.title}>Upgrade Successful!</div>
 
           <div className={styles.card}>
             <div className={styles.toppercent}>
-              {rank.percentage}
+              {bonus}
               <img
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631326183/ICE_Diamon_ICN_k27aap.png"
                 style={{ width: '20px', marginLeft: '3px' }}
@@ -174,9 +145,9 @@ const ModalUpgradeSuccess = props => {
               <img src={image} className={styles.logo} />
             </div>
             <div className={styles.properties}>
-              <div className={styles.round}>Rank {rank.value}</div>
+              <div className={styles.round}>Rank {rank}</div>
               <div className={styles.round}>
-                {rank.percentage}
+                {bonus}
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631326183/ICE_Diamon_ICN_k27aap.png"
                   style={{ width: '14px', marginLeft: '2px' }}
@@ -185,7 +156,6 @@ const ModalUpgradeSuccess = props => {
               <div className={styles.round}>{description}</div>
             </div>
           </div>
-
           <div className={styles.buttons}>
             {props.delegateAddress ? (
               <Button
@@ -193,7 +163,7 @@ const ModalUpgradeSuccess = props => {
                 onClick={() => {
                   props.setUpgrade(4);
                   setOpen(false);
-                  refresh();
+                  // refresh();
                 }}
               >
                 Redelegate Wearable
@@ -219,7 +189,7 @@ const ModalUpgradeSuccess = props => {
             </Button>
           </div>
         </div>
-      )}
+      }
     </Modal>
   );
 };

@@ -53,6 +53,7 @@
       font-size: 18px;
       line-height: 24px;
       margin-bottom: 55px;
+      text-align: center;
 
       a {
         color: #1e70bf;
@@ -134,14 +135,12 @@
 
 .button_trigger_redelegation {
   background: #006eff !important;
-  border-radius: 16px;
+  border-radius: 10px !important;
   font-family: Larsseit-Bold;
   font-style: normal;
-  font-size: 24px !important;
   text-align: center;
   color: #ffffff;
   margin: 0 !important;
-  height: 70px;
   color: white !important;
   width: 100%;
 
@@ -154,10 +153,7 @@
 .delegate_modal {
   background: black !important;
   border-radius: 16px !important;
-  padding-top: 40px;
-  padding-bottom: 21px;
-  padding-left: 56px;
-  padding-right: 35px;
+  padding:40px;
 
   .top_buttons {
     cursor: pointer;
@@ -268,6 +264,8 @@
   }
 
   .wear_box_right {
+    width: 384px;
+
     .main {
       margin-right: 32px;
 
@@ -435,6 +433,7 @@
         font-size: 18px !important;
         line-height: 24px !important;
         height: 48px;
+        width: 113.17px;
         background: #006eff;
         border-radius: 10px;
         text-align: center;

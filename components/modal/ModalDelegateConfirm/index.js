@@ -12,10 +12,22 @@ const ModalDelegateConfirm = props => {
 
   // update global state delegation information
   function setGlobalState() {
-    const refresh = !state.refreshDelegateInfo;
+    // update global state delegated items
+    const refreshDelegation = !state.refreshDelegation;
     dispatch({
-      type: 'refresh_delegate_info',
-      data: refresh,
+      type: 'refresh_delegation',
+      data: refreshDelegation,
+    });
+    
+    const refreshWearable = !state.refreshWearable;
+    dispatch({
+      type: 'refresh_wearable_items',
+      data: refreshWearable,
+    });
+    
+    dispatch({
+      type: 'ice_wearable_items_loading',
+      data: true,
     });
 
     setOpen(false);
@@ -97,7 +109,7 @@ const ModalDelegateConfirm = props => {
           <div className={styles.header}>Withdrawal Successful!</div>
 
           <div className={styles.description}>
-            You’re no longer delegating to <a>{props.address}</a> Any previous
+            You’re no longer delegating to <a>{props.delegateAddress}</a> Any previous
             profits can be claimed from your <a>ICE rewards page.</a>
           </div>
 

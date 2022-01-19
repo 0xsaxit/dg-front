@@ -1,0 +1,348 @@
+@import "styles/base.scss";
+
+.main_wrapper {
+    position: relative;
+    margin-top: 80px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+
+    .title {
+        h1 {
+            font-family: "Larsseit-ExtraBold";
+            font-weight: 800 !important;
+            font-size: 24px;
+            line-height: 32px;
+            text-align: center;
+            margin-bottom: 0;
+        }
+
+        @include mq($until: 499px) {
+            h1 {
+                font-size: 24px;
+            }
+        }
+    }
+
+    .time_div {
+        display: flex;
+        justify-content: center;
+        border: 1px solid #1f1f1f;
+        border-radius: 24px;
+        padding: 3px;
+        margin-top: 12px;
+
+        div {
+            font-family: "Larsseit-Medium";
+            font-size: 14px;
+            line-height: 19px;
+            text-align: center;
+            color: #fff;
+            background: transparent;
+            width: 80px;
+            padding: 2px;
+            margin: 2px;
+            border-radius: 24px;
+            cursor: pointer;
+            transition: 0.2s ease-in;
+
+            &:hover {
+                background: #1f1f1f;
+                transition: 0.2s ease-in;
+            }
+        }
+
+        .active {
+            background: #1f1f1f;
+        }
+    }
+}
+
+.delegation_table {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    // width: 1670px;
+    margin-top: 40px;
+    margin-left: 80px !important;
+    margin-bottom: 50px !important;
+    transform: scale(1);
+
+    table {
+        position: relative;
+
+        thead {
+            th {
+                font-size: 17px !important;
+                font-family: "Larsseit-Bold";
+                letter-spacing: 0.5px;
+                text-align: center !important;
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+                cursor: pointer !important;
+
+                svg {
+                    position: relative;
+                    left: 10px;
+                    top: 1.5px;
+                    transition: 0.2s ease-in;
+                }
+
+                .inc {
+                    transform: rotate(180deg);
+                }
+
+                .dec {
+                    transform: rotate(0deg);
+                }
+            }
+        }
+
+        tbody {
+            position: relative;
+
+            tr {
+                display: flex;
+                align-items: center;
+                border-radius: 24px;
+                margin-bottom: 0px;
+                user-select: none;
+
+                td {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    letter-spacing: 0.5px;
+                    padding: 15px 24px 15px 24px;
+                    height: 70px;
+                    font-size: 17px;
+                    font-family: "Larsseit-Medium";
+                    color: rgba(255, 255, 255, 0.6) !important;
+
+                    &:first-child {
+                        color: #fff !important;
+                    }
+                }
+
+                .user_info {
+                    display: flex;
+                    justify-content: left;
+                    align-items: center;
+                    width: 200px;
+
+                    section {
+                        position: relative;
+                        display: flex;
+                        justify-content: left;
+                        align-items: center;
+                        cursor: pointer;
+
+                        &::after {
+                            position: absolute;
+                            width: 160px;
+                            top: 48px;
+                            left: 0px;
+                            display: block;
+                            content: "";
+                            border-bottom: solid 2px rgba(255, 255, 255, 0.6);
+                            transform: scaleX(0);
+                            transition: transform 500ms ease-in-out;
+                        }
+
+                        &:hover {
+                            &::after {
+                                transform: scaleX(1) !important;
+                            }
+                        }
+                    }
+
+                    img {
+                        width: 40px;
+                        height: 40px;
+                        background-color: rgb(59, 59, 59);
+                        border-radius: 50%;
+                        margin-right: 16px;
+                    }
+                }
+
+                .nfts {
+                    display: flex;
+                    justify-content: center;
+                    width: 250px;
+                    text-align: center;
+                    margin-top: 13px !important;
+
+                    .nft {
+                        position: relative;
+                        width: 36px;
+                        height: 60px;
+                        margin: 0px 4px;
+
+                        img {
+                            border-radius: 8px;
+                        }
+
+                        .rank {
+                            position: absolute;
+                            top: 20px;
+                            left: 3px;
+                            width: 13px;
+                            height: 13px;
+                            font-size: 7px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            border-radius: 50%;
+                            background: rgba(0, 0, 0, 0.7);
+                        }
+
+                        .bottomInfo {
+                            position: relative;
+                            font-size: 8px;
+                            color: #fff;
+                            display: flex;
+                            justify-content: center;
+                            margin-top: -3px;
+
+                            img {
+                                width: 8px;
+                                margin-left: 1px;
+                                margin-top: -2px;
+                            }
+                        }
+                    }
+                }
+
+                .dailyICE {
+                    position: relative;
+                    width: 150px;
+
+                    img {
+                        position: relative;
+                        width: 16px;
+                        top: 0px;
+                        left: 6px;
+                    }
+                }
+
+                .iceEarned {
+                    position: relative;
+                    width: 150px;
+
+                    img {
+                        position: relative;
+                        width: 16px;
+                        top: 0px;
+                        left: 6px;
+                    }
+                }
+
+                .tier {
+                    position: relative;
+                    width: 180px;
+
+                    img {
+                        position: relative;
+                        width: 22px;
+                        top: 7px;
+                        margin-top: -10px;
+                        margin-right: 15px;
+                    }
+                }
+
+                button {
+                    background: transparent !important;
+                    color: #fff !important;
+                    font-family: "Larsseit-Light";
+                    letter-spacing: 0.5px;
+                    border: 2px solid rgba(255, 255, 255, 0.08) !important;
+                    transition: 0.2s ease-in;
+
+                    &:hover {
+                        border: 2px solid rgba(255, 255, 255) !important;
+                        transition: 0.2s ease-in;
+                    }
+                }
+            }
+        }
+    }
+
+    .fixed {
+        width: 250px;
+
+        tbody {
+            tr {
+                width: 250px !important;
+                border-right: 2px solid rgba(255, 255, 255, 0.1);
+                border-bottom-right-radius: 0px !important;
+                border-top-right-radius: 0px !important;
+            }
+        }
+    }
+
+    .scroll {
+        cursor: pointer;
+        margin-top: 0px;
+        max-width: calc(100vw - 590px) !important;
+        overflow-x: scroll !important;
+
+        table {
+            width: 1420px !important;
+        }
+
+        thead {
+            tr {
+                width: 1420px !important;
+            }
+        }
+
+        tbody {
+            tr {
+                width: 1420px !important;
+                border-bottom-left-radius: 0px !important;
+                border-top-left-radius: 0px !important;
+            }
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: transparent !important;
+            transition: 0.2s ease-in !important;
+        }
+
+        &::-webkit-scrollbar {
+            width: 5px;
+            height: 8px;
+            background-color: transparent !important;
+            transition: 0.2s ease-in !important;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.2) !important;
+            transition: 0.2s ease-in !important;
+        }
+
+        &:hover::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.2) !important;
+            background-size: 5px 20px !important;
+            transition: 0.2s ease-in !important;
+            border-radius: 36px !important;
+        }
+    }
+
+    @include mq($until: 1040px) {
+        margin-left: 30px !important;
+
+        table {
+            margin-bottom: 0px;
+        }
+
+        .fixed {
+        }
+
+        .scroll {
+            width: calc(100vw - 315px) !important;
+            margin-left: 0px;
+        }
+    }
+}

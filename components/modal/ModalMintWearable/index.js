@@ -1,8 +1,10 @@
 import { useEffect, useContext, useState } from 'react';
 import { Modal, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
-import ModalETHAuth from 'components/modal/ModalEthAuth';
+import ModalEthAuth from 'components/modal/ModalEthAuth';
+import ModalIceAuth from 'components/modal/ModalIceAuth';
 import IceMintETHTooltip from 'components/tooltips/IceMintETHTooltip';
+import IceMintIceTooltip from 'components/tooltips/IceMintICETooltip';
 import IceMintDGStackedTooltip from 'components/tooltips/IceMintDGStackedTooltip';
 import styles from './ModalMintWearable.module.scss';
 import Images from 'common/Images';
@@ -16,6 +18,7 @@ const ModalMint = props => {
   // define local variables
   const [open, setOpen] = useState(false);
   const [openETHAuth, setOpenETHAuth] = useState(false);
+  const [openICEAuth, setOpenICEAuth] = useState(false);
   const [xDG, setXDG] = useState(0);
 
   useEffect(() => {
@@ -57,14 +60,14 @@ const ModalMint = props => {
   function priceAndStaked() {
     return (
       <div className={styles.price_area}>
-        Price{' '}
+        {/*Price{' '}
         <span>
           ($
-          {(state.DGPrices.eth * Global.CONSTANTS.WETH_MINT_AMOUNT).toFixed(
+          {(state.DGPrices.ice * Global.CONSTANTS.ICE_MINT_AMOUNT).toFixed(
             2
           )}
           )
-        </span>
+        </span>*/}
         <div className={styles.card_area}>
           <div className={styles.card_area_body}>
             {state.userBalances[2][3] < Global.CONSTANTS.WETH_MINT_AMOUNT ? (
@@ -125,7 +128,7 @@ const ModalMint = props => {
               />
             </div>
 
-            {state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD >=
+            {state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD >= 
               Global.CONSTANTS.DG_STAKED_AMOUNT ||
               xDG >=
               Global.CONSTANTS.XDG_STAKED_AMOUNT ? (
@@ -149,7 +152,7 @@ const ModalMint = props => {
             ) : (
               <div>
                 <div className={styles.description}>
-                  You must have at least 1000 xDG or 1 (old) DG staked in governance to mint
+                  You must have at least 1,000 xDG or 1 (old) DG staked in governance to mint
                 </div>
               </div>
             )}
@@ -158,6 +161,7 @@ const ModalMint = props => {
       </div>
     );
   }
+
 
   function roundup(num) {
     let decimalPlaces = 0;
@@ -205,46 +209,47 @@ const ModalMint = props => {
   }
 
   function buttons() {
-    return (
-      <div className={styles.button_area}>
-        {(state.userBalances[2][3] <
-          state.tokenAmounts.WETH_COST_AMOUNT) ||
-          (state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD <
-          Global.CONSTANTS.DG_STAKED_AMOUNT &&
-          xDG < Global.CONSTANTS.XDG_STAKED_AMOUNT) ? (
-          <Button className={styles.button_upgrade} disabled={true}>
-            Mint Wearable
-          </Button>
-        ) : (
-          <Button
-            className={styles.button_upgrade}
-            onClick={() => {
-              setOpen(false);
-              setOpenETHAuth(true);
-            }}
-          >
-            Mint Wearable
-          </Button>
-        )}
+   return (
+     <div className={styles.button_area}>
+       {(state.userBalances[2][3] <
+         state.tokenAmounts.WETH_COST_AMOUNT) ||
+         (state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD < 
+         Global.CONSTANTS.DG_STAKED_AMOUNT &&
+         xDG < Global.CONSTANTS.XDG_STAKED_AMOUNT) ? (
+         <Button className={styles.button_upgrade} disabled={true}>
+           Mint Wearable
+         </Button>
+       ) : (
+         <Button
+           className={styles.button_upgrade}
+           onClick={() => {
+             setOpen(false);
+             setOpenETHAuth(true);
+           }}
+         >
+           Mint Wearable
+         </Button>
+       )}
 
-        <Button
-          className={styles.button_close}
-          onClick={() => {
-            window.open(
-              'https://ice.decentral.games/ice-nft-wearables',
-              '_blank'
-            );
-          }}
-        >
-          Learn More
-        </Button>
-      </div>
-    );
-  }
+       <Button
+         className={styles.button_close}
+         onClick={() => {
+           window.open(
+             'https://ice.decentral.games/ice-nft-wearables',
+             '_blank'
+           );
+         }}
+       >
+         Learn More
+       </Button>
+     </div>
+   );
+ }
 
+  //TODO: Refactor this so that it is not hardcoded
   function ethAuthModal() {
     return (
-      <ModalETHAuth
+      <ModalEthAuth
         itemID={props.itemID}
         address={props.address}
         wearableImg={props.wearableImg}

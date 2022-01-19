@@ -81,6 +81,7 @@ const initialState = {
     usdt: 0,
     dg: 0,
     ice: 0,
+    xDG: 0,
   },
   DGBreakdown: {
     eth: 0,
@@ -142,6 +143,13 @@ const initialState = {
     [-1, 20],
   ],
   itemLimits6: [
+    [-1, 0],
+    [-1, 5],
+    [-1, 10],
+    [-1, 15],
+    [-1, 20],
+  ],
+  itemLimits7: [
     [-1, 0],
     [-1, 5],
     [-1, 10],
@@ -216,6 +224,7 @@ const initialState = {
   // xpAmount: 0,
   userVerified: true,
   isAmnesiaPage: false,
+  delegatorSplits: [],
 };
 
 const reducer = (state, action) => {
@@ -386,29 +395,16 @@ const reducer = (state, action) => {
         ...state,
         itemLimits6: action.data,
       };
-    case 'ice_wearable_inventory_items':
+    case 'item_limits_7':
       return {
         ...state,
-        iceWearableInventoryItems: action.data,
+        itemLimits7: action.data,
       };
-
-    case 'ice_wearable_inventory_items_loading':
-      return {
-        ...state,
-        iceWearableInventoryItemsLoading: action.data,
-      };
-
-    case 'ice_wearable_inventory_items_success':
-      return {
-        ...state,
-        iceWearableInventoryItemsLoading: action.data,
-      }
     case 'ice_wearable_items':
       return {
         ...state,
         iceWearableItems: action.data,
       };
-
     case 'ice_wearable_items_loading':
       return {
         ...state,
@@ -474,6 +470,12 @@ const reducer = (state, action) => {
     //     ...state,
     //     collectionMappings: action.data,
     //   };
+
+    case 'delegator_splits':
+      return {
+        ...state,
+        delegatorSplits: action.data
+      };
 
     case 'dg_prices':
       return {
@@ -546,8 +548,8 @@ const reducer = (state, action) => {
         ...state,
         refreshWearable: action.data,
       };
-    
-    case 'refresh_wearable_inventory_items':
+
+    case 'refresh_wearable_inventory':
       return {
         ...state,
         refreshWearableInventory: action.data,

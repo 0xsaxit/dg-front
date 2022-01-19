@@ -16,6 +16,7 @@ const NeedMoreUpgrade = ({
 
   // define local variables
   const [open, setOpen] = useState(true);
+  //const [upgradePending, setUpgradePending] = useState(false);
 
   return (
     <Modal
@@ -145,10 +146,10 @@ const NeedMoreUpgrade = ({
             <div className={styles.button_container}>
               <Button
                 className={styles.blue_button}
-                href="https://quickswap.exchange/#/swap?outputCurrency=0x2a93172c8dccbfbc60a39d56183b7279a2f647b4"
+                href="https://quickswap.exchange/#/swap?outputCurrency=0xef938b6da8576a896f6e0321ef80996f4890f9c4"
                 target="_blank"
               >
-                Buy $DG
+                Buy DG
                 <ExternalLinkArrow />
               </Button>
 

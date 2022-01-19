@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { GlobalContext } from '../../../../store';
 import GetRank from '../../../../common/GetIceWearableRank';
 import IceWearableBonusTooltip from 'components/tooltips/IceWearableBonusTooltip';
@@ -6,6 +6,7 @@ import ModalWithdrawDelegation from 'components/modal/ModalWithdrawDelegation';
 import styles from './ICEDelegatedCard.module.scss';
 import Aux from '../../../_Aux';
 import IceCheckedInTooltip from 'components/tooltips/IceCheckedInTooltip';
+import Fetch from '../../../../common/Fetch';
 
 const ICEWearableCard = props => {
   // get user's wallet address from the Context API store
@@ -13,10 +14,11 @@ const ICEWearableCard = props => {
 
   // define local variables
   const buttonUndelegate = 'Withdraw Delegation';
-  const { name, description, image, attributes } = props.data;
-  const rank = GetRank(
-    parseInt(attributes.find(el => el.trait_type === 'Bonus').value)
-  );
+  const { name, description, rank, image, tokenId, checkInStatus, contractAddress, itemId, tokenOwner } = props.item;
+  const bonus = "+" + props.item.bonus + "%";
+  const delegateAddress = props.item.delegationStatus.delegatedTo || '';
+  const delegationStatus = props.item.delegationStatus.isQueuedForUndelegationByDelegatee ||
+                            props.item.delegationStatus.isQueuedForUndelegationByOwner;
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -25,7 +27,7 @@ const ICEWearableCard = props => {
     return (
       <Aux>
         <div className={styles.wear_box_purple}>
-          {props.isCheckedIn && <IceCheckedInTooltip />}
+          {checkInStatus && <IceCheckedInTooltip />}
           <img src={image} />
         </div>
 
@@ -45,8 +47,8 @@ const ICEWearableCard = props => {
               />
             </svg>
           </div>
-          <div className={styles.card}>{`Rank ${rank.value}`}</div>
-          <IceWearableBonusTooltip bonus={rank.percentage} />
+          <div className={styles.card}>{`Rank ${rank}`}</div>
+          <IceWearableBonusTooltip bonus={bonus} />
           <div className={styles.card}>
             {description.split(' ').at(-1).replace('/', ' of ')}
           </div>
@@ -54,7 +56,7 @@ const ICEWearableCard = props => {
 
         <div className={styles.card_title}>
           <p>{name.split('(ICE')[0].trim()}</p>
-          <p>{`(ICE Rank ${rank.value})`}</p>
+          <p>{`(ICE Rank ${rank})`}</p>
         </div>
       </Aux>
     );
@@ -68,11 +70,14 @@ const ICEWearableCard = props => {
 
           <div className={styles.button_area}>
             <ModalWithdrawDelegation
-              tokenID={props.tokenID}
-              address={props.address}
-              ownerAddress={props.ownerAddress}
+              tokenId={tokenId}
+              rank={rank}
+              contractAddress={contractAddress}
+              tokenOwner={tokenOwner}
               delegateAddress={state.userAddress}
+              delegationStatus={delegationStatus}
               buttonName={buttonUndelegate}
+              checkInStatus={checkInStatus}
             />
           </div>
         </div>

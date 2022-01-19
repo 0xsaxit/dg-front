@@ -63,7 +63,7 @@ const Images = {
   ATARI:
     'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1625819988/image_46_Traced_jtgu8c.svg',
   DECENTRALAND:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1628251343/logo-mono_jx3qy2.svg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1641898965/decentraland_klibif.png',
   MAKER:
     'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1625819988/image_44_Traced_cgbhf3.svg',
   BICONOMY:
