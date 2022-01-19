@@ -617,7 +617,8 @@ const MarketPlace = () => {
                               <Spinner width={20} height={20}/>
                             </Button>)
 
-                            // Items loaded, Minting enabled
+                            // Items loaded
+                            // Minting enabled
                           } else if (state.userStatus >= state.appConfig.minMintVerifyStep && (maxMintCounts - itemLimits[i][0]) > 0) {
                             return (
                                 <div className={styles.flex_50}>
