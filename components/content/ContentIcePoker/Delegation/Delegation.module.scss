@@ -80,11 +80,21 @@
                 text-align: center !important;
                 padding-left: 0px !important;
                 padding-right: 0px !important;
+                cursor: pointer !important;
 
                 svg {
                     position: relative;
                     left: 10px;
                     top: 1.5px;
+                    transition: 0.2s ease-in;
+                }
+
+                .inc {
+                    transform: rotate(180deg);
+                }
+
+                .dec {
+                    transform: rotate(0deg);
                 }
             }
         }
@@ -117,9 +127,35 @@
 
                 .user_info {
                     display: flex;
-                    justify-content: center;
+                    justify-content: left;
                     align-items: center;
-                    float: left;
+                    width: 200px;
+
+                    section {
+                        position: relative;
+                        display: flex;
+                        justify-content: left;
+                        align-items: center;
+                        cursor: pointer;
+
+                        &::after {
+                            position: absolute;
+                            width: 160px;
+                            top: 48px;
+                            left: 0px;
+                            display: block;
+                            content: "";
+                            border-bottom: solid 2px rgba(255, 255, 255, 0.6);
+                            transform: scaleX(0);
+                            transition: transform 500ms ease-in-out;
+                        }
+
+                        &:hover {
+                            &::after {
+                                transform: scaleX(1) !important;
+                            }
+                        }
+                    }
 
                     img {
                         width: 40px;
@@ -250,7 +286,7 @@
         margin-top: 0px;
         max-width: calc(100vw - 590px) !important;
         overflow-x: scroll !important;
-        
+
         table {
             width: 1420px !important;
         }
