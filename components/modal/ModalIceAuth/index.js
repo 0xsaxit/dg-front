@@ -34,7 +34,7 @@ const ModalIceAuth = props => {
   const [intervalId, setIntervalId] = useState(0);
   const [mintStatus, setMintStatus] = useState({});
   const [biconomyReady, setBiconomyReady] = useState(false);
-
+  
   /////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////
   // Update Open Modal Status
@@ -169,7 +169,7 @@ const ModalIceAuth = props => {
 
   async function fetchMintToken() {
     try {
-      const json = await Fetch.MINT_TOKEN(props.itemID, props.address);
+      const json = await Fetch.MINT_TOKEN(props.itemId, props.contractAddress);
       console.log('pooling json: ', json);
 
       if (json.status) {
@@ -187,13 +187,13 @@ const ModalIceAuth = props => {
   // send-off the API request to mint the user's Level 1 wearable
   async function mintToken() {
     setErrorText(null);
-    console.log('Minting NFT item ID: ' + props.itemID);
+    console.log('Minting NFT item ID: ' + props.itemId);
     setMinting(true);
     setLoading(true);
     setClickedConfirm(true);
 
-    console.log('props.itemID', props.itemID);
-    console.log('props.address', props.address);
+    console.log('props.itemId', props.itemId);
+    console.log('props.contractAddress', props.contractAddress);
 
     const intervalid = setInterval(() => {
       setTickCount(prevCount => prevCount + 1);
@@ -219,7 +219,7 @@ const ModalIceAuth = props => {
           type: 'refresh_wearable_items',
           data: refresh2,
         });
-
+        
         console.log('NFT minting successful');
 
         setOpenMintSuccess(true);
@@ -249,6 +249,7 @@ const ModalIceAuth = props => {
     }
     setMinting(false);
   }
+
 
   // Biconomy API meta-transaction. User must authorize ICE token contract to access their funds
   async function metaTransaction() {

@@ -104,7 +104,7 @@ const ModalMintSuccess = props => {
                 style={{ width: '14px', marginLeft: '2px' }}
               />
             </div>
-            <div className={styles.round}>1 of 100</div>
+            <div className={styles.round}>{props.numberLeft} of {props.maxMintCounts}</div>
           </div>
         </div>
 

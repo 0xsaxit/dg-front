@@ -1,4 +1,4 @@
-@import "styles/base.scss";
+@import 'styles/base.scss';
 
 .open_button {
   background-color: #1f1f1f !important;
@@ -147,6 +147,8 @@
   }
 
   .wear_box_right {
+    width: 384px;
+
     .main {
       margin-right: 32px;
 
@@ -314,6 +316,7 @@
         font-size: 18px !important;
         line-height: 24px !important;
         height: 48px;
+        width: 113.17px;
         background: #006eff;
         border-radius: 10px;
         text-align: center;

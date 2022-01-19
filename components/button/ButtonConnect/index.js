@@ -76,7 +76,7 @@ const ButtonConnect = () => {
       }
 
       // if we are on this block and have the loggedIn LS entry, assume a login
-      if (localStorage.getItem('loggedIn')) {
+      if (!!localStorage.getItem('token')) {
         dispatch({
           type: 'set_userLoggedIn',
           data: true,
@@ -207,8 +207,6 @@ const ButtonConnect = () => {
       type: 'set_userLoggedIn',
       data: true,
     });
-
-    localStorage.setItem('loggedIn', true);
   }
 
   async function upateVerified(arg) {
