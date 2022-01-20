@@ -231,7 +231,7 @@ function SectionTwo() {
             </h1>
             <p className={styles.section_p}>
               {/* {t('Home.STAKE_DG_GOVERNANCE')} */}
-              As an ICE Wearable owner, you can build your own team of poker players. Measure performance and manage your very own profit generating guild—all while everything remains in your wallet.
+              As an ICE Wearable owner, you can build your own team of poker players. Measure performance and manage your very own revenue generating guild—all while everything remains in your wallet.
             </p>
 
             <span className={styles.button_span}>
