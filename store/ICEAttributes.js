@@ -13,7 +13,7 @@ import ABI_COLLECTION_BOMBER from '../components/ABI/ABICollectionBomber';
 import ABI_COLLECTION_CRYPTO_DRIP from '../components/ABI/ABICollectionCryptoDrip.json';
 import ABI_COLLECTION_FOUNDER_FATHER from '../components/ABI/ABICollectionFounderFather.json';
 import ABI_COLLECTION_JOKER from '../components/ABI/ABICollectionJoker.json';
-import ABI_COLLECTION_CHEF from '../components/ABI/ABICOllectionChef.json';
+import ABI_COLLECTION_CHEF from '../components/ABI/ABICollectionChef.json';
 import ABI_ICEToken from '../components/ABI/ABIICEToken';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
@@ -92,7 +92,7 @@ function ICEAttributes() {
           Global.ADDRESSES.COLLECTION_JOKER_ADDRESS
         );
         const collectionV2Contract8 = new maticWeb3.eth.Contract(
-          ABI_COLLECTION_JOKER,
+          ABI_COLLECTION_CHEF,
           Global.ADDRESSES.COLLECTION_CHEF_ADDRESS
         );
 
