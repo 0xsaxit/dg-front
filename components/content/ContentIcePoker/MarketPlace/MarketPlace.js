@@ -684,7 +684,7 @@ const MarketPlace = () => {
         <div className={styles.header}>
           <div className={styles.header_top}>
             <h1>ICE Wearables Marketplace</h1>
-            {/* {state.userStatus > 20 && (
+            {state.userStatus > 14 && (
               <span className={styles.white_listed_address}>
                 Whitelisted Address &nbsp;
                 <svg
@@ -700,7 +700,7 @@ const MarketPlace = () => {
                   />
                 </svg>
               </span>
-            )} */}
+            )} 
           </div>
 
           <p className={styles.marketplace_p}>

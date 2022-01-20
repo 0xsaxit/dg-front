@@ -12,10 +12,6 @@ import Gameplay from '../../content/ContentDAO/Gameplay';
 import ContentTreasury from '../../content/ContentDAO/Treasury';
 import TokenMigration from '../../content/ContentDAO/TokenMigration';
 import FoxAnimation from '../../lottieAnimation/animations/fox';
-
-// import ContentMining from '../../content/ContentMining';
-import ContentMiningV1 from '../../content/ContentMiningV1';
-import ContentBalancer from '../../content/ContentBalancer';
 import ContentAirdrop from '../../content/ContentAirdrop';
 import ButtonReward1 from '../../button/ButtonReward1';
 import ButtonReward2 from '../../button/ButtonReward2';

@@ -42,7 +42,7 @@ const Images = {
   FEATURED_IMAGE:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1638490904/dg_tokensplit_blog_v5_d8rtwt.png',
   DG_COIN_LOGO:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1602117903/Group_14_Copy_2_afhe39.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631325895/dgNewLogo_hkvlps.png',
   XDG_COIN_LOGO:
     'https://res.cloudinary.com/dze4ze7xd/image/upload/v1637930449/xDG_Logo_of4plb.png',
   METAMASK:
