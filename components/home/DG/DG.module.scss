@@ -73,14 +73,13 @@
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 50px;
+    margin-top: 0px;
+    margin-bottom: 0px;
     position: relative;
     z-index: -1;
-    margin-top: 55px;
-    margin-bottom: 0px;
 
     @include mq($until: medium) {
-      width: 300px;
+      width: 360px;
       margin-top: 30px;
       margin-bottom: 30px;
     }
@@ -369,7 +368,7 @@
   }
 
   .section_two {
-    max-width: 1250px;
+    max-width: 1150px;
     padding: 0px 0px 0px 0px;
 
     .backedBy {
@@ -415,7 +414,7 @@
     @include mq($until: small) {
       .backedBy {
         padding: 30px 40px 15px 40px;
-        margin-top: 250px;
+        margin-top: 275px;
 
         .section {
           img {
@@ -428,13 +427,20 @@
   }
 
   .section_two_one {
+    margin-top: 120px !important;
+    margin-bottom: 150px !important;
+
     .image {
       width: 90%;
+    }
+
+    @include mq($until: small) {
+      margin-bottom: 50px !important;
     }
   }
 
   .section_two_second {
-    max-width: 1250px;
+    max-width: 1160px;
     padding: 0px 0px 0px 0px;
 
     .image_span {
@@ -547,7 +553,7 @@
     @include mq($until: small) {
       .image_span {
         .image {
-          width: 80%;
+          width: 90%;
           margin-bottom: 20px;
         }
 
@@ -654,9 +660,9 @@
       }
 
       @include mq($until: small) {
-        margin-top: calc(100vh - 100px);
+        margin-top: calc(100vh - 185px);
         text-align: center;
-        font-size: 32px;
+        font-size: 28px;
       }
     }
 
@@ -685,7 +691,7 @@
 
       @include mq($until: small) {
         font-size: 15px;
-        margin-top: 15px;
+        margin-top: 10px;
         padding-left: 0px !important;
         padding-right: 0px !important;
         text-align: center;
@@ -742,13 +748,13 @@
         .earn_dg_button {
           height: 50px;
           width: 200px;
-          font-size: 18px;
+          font-size: 17px;
           line-height: 20px;
         }
         .play_button {
           height: 50px;
-          width: 160px;
-          font-size: 18px;
+          width: 170px;
+          font-size: 17px;
           line-height: 0px;
         }
       }
@@ -848,8 +854,9 @@
 
       @include mq($until: small) {
         bottom: -200px;
-        padding: 0px 20px;
-        width: calc(100% - 30px);
+        padding: 0px 0px;
+        width: calc(100% - 45px);
+        margin: 0px !important;
 
         .section {
           h1 {

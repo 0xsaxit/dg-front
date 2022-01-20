@@ -688,6 +688,8 @@ const reducer = (state, action) => {
         ...state,
         isAmnesiaPage: action.data,
       };
+    case 'set_initialState':
+      return initialState;
     default:
       throw new Error('Wrong action type got dispatched');
   }

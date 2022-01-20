@@ -17,6 +17,8 @@ const Delegation = () => {
     const [time, setTime] = useState('Weekly');
     const [showBreakDown, setShowingBreakDown] = useState(-1);
     const [delegations, setDelegations] = useState([]);
+    const [sortingName, setSortingName] = useState('dailyICE');
+    const [sortingOrder, setSortingOrder] = useState('dec');
 
     useEffect(async () => {
         if (state.userStatus) {
@@ -42,6 +44,28 @@ const Delegation = () => {
         }
     }, [state.userStatus, time])
 
+    useEffect(() => {
+        const orderingData = [].concat(delegations);
+
+        if (orderingData && orderingData.length > 0) [
+            orderingData.sort(function (a, b) {
+                if (sortingName === 'dailyICE') {
+                    return (sortingOrder === 'dec') ? (b.stats.avgIceEarned - a.stats.avgIceEarned) : (a.stats.avgIceEarned - b.stats.avgIceEarned);
+                } else if (sortingName === 'iceEarned') {
+                    return (sortingOrder === 'dec') ? (b.stats.totalIceEarned - a.stats.totalIceEarned) : (a.stats.totalIceEarned - b.stats.totalIceEarned);
+                } else if (sortingName === 'daysCheckedIn') {
+                    return (sortingOrder === 'dec') ? (b.stats.daysCheckedIn - a.stats.daysCheckedIn) : (a.stats.daysCheckedIn - b.stats.daysCheckedIn);
+                } else if (sortingName === 'totalChallengesCompleted') {
+                    return (sortingOrder === 'dec') ? (b.stats.totalChallengesCompleted - a.stats.totalChallengesCompleted) : (a.stats.totalChallengesCompleted - b.stats.totalChallengesCompleted);
+                } else if (sortingName === 'avgLeaderboardTier') {
+                    return (sortingOrder === 'inc') ? (b.stats.avgLeaderboardTier - a.stats.avgLeaderboardTier) : (a.stats.avgLeaderboardTier - b.stats.avgLeaderboardTier);
+                }
+            })
+        ]
+
+        setDelegations(orderingData);
+    }, [sortingName, sortingOrder])
+
     const defaultImgs = [
         "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png",
         "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png",
@@ -49,6 +73,15 @@ const Delegation = () => {
         "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png",
         "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png"
     ];
+
+    function tableHeaderClicked(name) {
+        if (sortingName !== name) {
+            setSortingName(name);
+            setSortingOrder('dec');
+        } else {
+            setSortingOrder(sortingOrder === 'dec' ? 'inc' : 'dec');
+        }
+    }
 
     return (
         <section>
@@ -125,9 +158,11 @@ const Delegation = () => {
                                                     <Table.Cell style={{ width: '50px' }} >
                                                         {i + 1}
                                                     </Table.Cell>
-                                                    <Table.Cell className={styles.user_info} style={{ width: '200px', justifyContent: 'left' }} >
-                                                        <img src={row.imageURL} alt="avatar" />
-                                                        {row.address.substr(0, 5)}...{row.address.substr(row.address.length - 4, row.address.length)}
+                                                    <Table.Cell className={styles.user_info} >
+                                                        <section onClick={() => setShowingBreakDown(i)}>
+                                                            <img src={row.imageURL} alt="avatar" />
+                                                            {row.address.substr(0, 5)}...{row.address.substr(row.address.length - 4, row.address.length)}
+                                                        </section>
                                                     </Table.Cell>
                                                 </Table.Row>
                                             );
@@ -143,24 +178,35 @@ const Delegation = () => {
                                             <Table.HeaderCell style={{ width: '250px' }} >
                                                 NFTs Delegated
                                             </Table.HeaderCell>
-                                            <Table.HeaderCell style={{ width: '200px' }} >
+                                            <Table.HeaderCell style={{ width: '200px' }} onClick={() => tableHeaderClicked('dailyICE')}>
                                                 Avg.Daily ICE
-                                                <svg width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <svg style={{ opacity: `${sortingName === 'dailyICE' ? 1 : 0}` }} className={sortingOrder === 'inc' ? styles.inc : styles.dec} width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M6.49219 0.875C5.78906 0.875 5.32031 1.36719 5.32031 2.09375V10.6016L5.39062 12.2969L3.92188 10.5938L2.14062 8.8125C1.92969 8.60156 1.65625 8.44531 1.30469 8.44531C0.671875 8.44531 0.1875 8.90625 0.1875 9.57812C0.1875 9.88281 0.3125 10.1719 0.554688 10.4219L5.625 15.5C5.84375 15.7188 6.17188 15.8516 6.49219 15.8516C6.8125 15.8516 7.14062 15.7188 7.35938 15.5L12.4375 10.4219C12.6797 10.1719 12.8047 9.88281 12.8047 9.57812C12.8047 8.90625 12.3203 8.44531 11.6875 8.44531C11.3359 8.44531 11.0625 8.60156 10.8438 8.8125L9.0625 10.5938L7.59375 12.2969L7.67188 10.6016V2.09375C7.67188 1.36719 7.19531 0.875 6.49219 0.875Z" fill="white" />
                                                 </svg>
-
                                             </Table.HeaderCell>
-                                            <Table.HeaderCell style={{ width: '200px' }} >
+                                            <Table.HeaderCell style={{ width: '200px' }} onClick={() => tableHeaderClicked('iceEarned')}>
                                                 Total ICE Earned
+                                                <svg style={{ opacity: `${sortingName === 'iceEarned' ? 1 : 0}` }} className={sortingOrder === 'inc' ? styles.inc : styles.dec} width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M6.49219 0.875C5.78906 0.875 5.32031 1.36719 5.32031 2.09375V10.6016L5.39062 12.2969L3.92188 10.5938L2.14062 8.8125C1.92969 8.60156 1.65625 8.44531 1.30469 8.44531C0.671875 8.44531 0.1875 8.90625 0.1875 9.57812C0.1875 9.88281 0.3125 10.1719 0.554688 10.4219L5.625 15.5C5.84375 15.7188 6.17188 15.8516 6.49219 15.8516C6.8125 15.8516 7.14062 15.7188 7.35938 15.5L12.4375 10.4219C12.6797 10.1719 12.8047 9.88281 12.8047 9.57812C12.8047 8.90625 12.3203 8.44531 11.6875 8.44531C11.3359 8.44531 11.0625 8.60156 10.8438 8.8125L9.0625 10.5938L7.59375 12.2969L7.67188 10.6016V2.09375C7.67188 1.36719 7.19531 0.875 6.49219 0.875Z" fill="white" />
+                                                </svg>
                                             </Table.HeaderCell>
-                                            <Table.HeaderCell style={{ width: '150px' }} >
+                                            <Table.HeaderCell style={{ width: '150px' }} onClick={() => tableHeaderClicked('daysCheckedIn')}>
                                                 Check-Ins
+                                                <svg style={{ opacity: `${sortingName === 'daysCheckedIn' ? 1 : 0}` }} className={sortingOrder === 'inc' ? styles.inc : styles.dec} width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M6.49219 0.875C5.78906 0.875 5.32031 1.36719 5.32031 2.09375V10.6016L5.39062 12.2969L3.92188 10.5938L2.14062 8.8125C1.92969 8.60156 1.65625 8.44531 1.30469 8.44531C0.671875 8.44531 0.1875 8.90625 0.1875 9.57812C0.1875 9.88281 0.3125 10.1719 0.554688 10.4219L5.625 15.5C5.84375 15.7188 6.17188 15.8516 6.49219 15.8516C6.8125 15.8516 7.14062 15.7188 7.35938 15.5L12.4375 10.4219C12.6797 10.1719 12.8047 9.88281 12.8047 9.57812C12.8047 8.90625 12.3203 8.44531 11.6875 8.44531C11.3359 8.44531 11.0625 8.60156 10.8438 8.8125L9.0625 10.5938L7.59375 12.2969L7.67188 10.6016V2.09375C7.67188 1.36719 7.19531 0.875 6.49219 0.875Z" fill="white" />
+                                                </svg>
                                             </Table.HeaderCell>
-                                            <Table.HeaderCell style={{ width: '220px' }} >
+                                            <Table.HeaderCell style={{ width: '220px' }} onClick={() => tableHeaderClicked('totalChallengesCompleted')}>
                                                 Finished Challenges
+                                                <svg style={{ opacity: `${sortingName === 'totalChallengesCompleted' ? 1 : 0}` }} className={sortingOrder === 'inc' ? styles.inc : styles.dec} width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M6.49219 0.875C5.78906 0.875 5.32031 1.36719 5.32031 2.09375V10.6016L5.39062 12.2969L3.92188 10.5938L2.14062 8.8125C1.92969 8.60156 1.65625 8.44531 1.30469 8.44531C0.671875 8.44531 0.1875 8.90625 0.1875 9.57812C0.1875 9.88281 0.3125 10.1719 0.554688 10.4219L5.625 15.5C5.84375 15.7188 6.17188 15.8516 6.49219 15.8516C6.8125 15.8516 7.14062 15.7188 7.35938 15.5L12.4375 10.4219C12.6797 10.1719 12.8047 9.88281 12.8047 9.57812C12.8047 8.90625 12.3203 8.44531 11.6875 8.44531C11.3359 8.44531 11.0625 8.60156 10.8438 8.8125L9.0625 10.5938L7.59375 12.2969L7.67188 10.6016V2.09375C7.67188 1.36719 7.19531 0.875 6.49219 0.875Z" fill="white" />
+                                                </svg>
                                             </Table.HeaderCell>
-                                            <Table.HeaderCell style={{ width: '230px' }} >
+                                            <Table.HeaderCell style={{ width: '230px' }} onClick={() => tableHeaderClicked('avgLeaderboardTier')}>
                                                 Avg.Leaderboard Tier
+                                                <svg style={{ opacity: `${sortingName === 'avgLeaderboardTier' ? 1 : 0}` }} className={sortingOrder === 'inc' ? styles.inc : styles.dec} width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M6.49219 0.875C5.78906 0.875 5.32031 1.36719 5.32031 2.09375V10.6016L5.39062 12.2969L3.92188 10.5938L2.14062 8.8125C1.92969 8.60156 1.65625 8.44531 1.30469 8.44531C0.671875 8.44531 0.1875 8.90625 0.1875 9.57812C0.1875 9.88281 0.3125 10.1719 0.554688 10.4219L5.625 15.5C5.84375 15.7188 6.17188 15.8516 6.49219 15.8516C6.8125 15.8516 7.14062 15.7188 7.35938 15.5L12.4375 10.4219C12.6797 10.1719 12.8047 9.88281 12.8047 9.57812C12.8047 8.90625 12.3203 8.44531 11.6875 8.44531C11.3359 8.44531 11.0625 8.60156 10.8438 8.8125L9.0625 10.5938L7.59375 12.2969L7.67188 10.6016V2.09375C7.67188 1.36719 7.19531 0.875 6.49219 0.875Z" fill="white" />
+                                                </svg>
                                             </Table.HeaderCell>
                                             <Table.HeaderCell style={{ width: '170px' }} >
                                                 History

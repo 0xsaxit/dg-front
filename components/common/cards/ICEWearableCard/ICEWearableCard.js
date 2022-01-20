@@ -137,6 +137,7 @@ const ICEWearableCard = props => {
                     bonus={bonus}
                     description={description}
                     name={name.split('(ICE')[0].trim()}
+                    delegateAddress={delegateAddress}
                   />
                 )}
               </span>
