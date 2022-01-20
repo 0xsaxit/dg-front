@@ -16,7 +16,7 @@ import cn from 'classnames';
 // to create a redelegation modal, just pass the redelegation prop
 //////////////////////////////////////
 const ModalDelegate = ({
-  tokenID,
+  tokenId,
   address,
   imgSrc,
   rank,
@@ -495,8 +495,7 @@ const ModalDelegate = ({
       ) : (
         <ModalSuccessDelegation
           buttonName={buttonName}
-          // address={enteredAddress}
-          address={`${redelegateAddress?.slice(0, 4)}...${redelegateAddress?.substr(-4, 4)}`}
+          address={enteredAddress ? enteredAddress : `${redelegateAddress?.slice(0, 4)}...${redelegateAddress?.substr(-4, 4)}`}
           rank={rank}
         />
       )}
