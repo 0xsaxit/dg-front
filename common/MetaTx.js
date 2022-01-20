@@ -85,6 +85,7 @@ arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domainTypeToken); // 16
 arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domainTypeToken); // 18
+arrayDomainType.push(domainTypeToken); // 19
 
 metaTransactionType.push(
   { name: 'nonce', type: 'uint256' },
@@ -251,7 +252,7 @@ arrayDomainData.push(domainDataTokenDGLight); // 15
 arrayDomainData.push(domainDataAccessories5);
 arrayDomainData.push(domainDataAccessories6);
 arrayDomainData.push(domainDataAccessories7); // 18
-arrayDomainData.push(domainDataAccessories8);
+arrayDomainData.push(domainDataAccessories8); //19
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
