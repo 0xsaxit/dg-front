@@ -321,6 +321,46 @@ const IMG_URLS_UPGRADE = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/feet3_hprrd3.jpg',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/feet4_urdt1x.jpg',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/feet5_fzihvy.jpg'
+  ],
+  'Star Rating': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_1_obbp5w.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_1_obbp5w.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_2_xor28q.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_3_yjhd9a.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_4_wuzhbg.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_5_rdazt7.png'
+  ],
+  'Toque Blanche': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686093/hat_m_1_rcdevg.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686093/hat_m_1_rcdevg.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686094/hat_m_2_b5ajgz.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686094/hat_m_3_auno77.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686094/hat_m_4_uujofo.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686094/hat_m_5_lfivsm.png'
+  ],
+  "Chef's Top": [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/upperbody_m_1_llgrz7.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/upperbody_m_1_llgrz7.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686097/upperbody_m_2_znrunm.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686097/upperbody_m_3_noetue.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686097/upperbody_m_4_zg79ue.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686097/upperbody_m_5_k7km3d.png'
+  ],
+  "Chef's Apron": [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686095/lowerbody_m_1_u7mlil.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686095/lowerbody_m_1_u7mlil.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686094/lowerbody_m_2_ti0rhi.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686094/lowerbody_m_3_dkryza.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686095/lowerbody_m_4_ufw1bt.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686095/lowerbody_m_5_rkrvl4.png'
+  ],
+  "Nonslips": [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686095/shoes_1_tnfrpa.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686095/shoes_1_tnfrpa.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686095/shoes_2_z8mmjf.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686095/shoes_3_cr2zst.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/shoes_4_tgcdo2.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/shoes_5_m6scvr.png'
   ]
 };
 
@@ -381,6 +421,7 @@ const ADDRESSES = (() => {
   const COLLECTION_CRYPTO_DRIP_ADDRESS = '0x897243a54b03b46a17b55d5609465e9719a6ffa0';
   const COLLECTION_FOUNDER_FATHERS_ADDRESS = '0x09eeac7dff0dc304e25cbb7bdbfae798488fc34f';
   const COLLECTION_JOKER_ADDRESS = '0x451612c0e742e27f2cfb3888ad2813eec8dd1ba3';
+  const COLLECTION_CHEF_ADDRESS = '0xa96f7f2102c27a61e3a660d964e9aa613b68fe6b';
   const ICE_TOKEN_ADDRESS = '0xc6C855AD634dCDAd23e64DA71Ba85b8C51E5aD7c';
 
   console.log('OWNER_WALLET_ADDRESS: ' + OWNER_WALLET_ADDRESS);
@@ -475,6 +516,7 @@ const ADDRESSES = (() => {
     COLLECTION_CRYPTO_DRIP_ADDRESS,
     COLLECTION_FOUNDER_FATHERS_ADDRESS,
     COLLECTION_JOKER_ADDRESS,
+    COLLECTION_CHEF_ADDRESS,
     ICE_TOKEN_ADDRESS
   };
 })();
