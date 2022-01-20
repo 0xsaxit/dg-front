@@ -51,6 +51,12 @@ const Footer = () => {
               </p>
               <Link href="/dg">
                 <p className={styles.footer_link}>
+                  {/* {t('Footer.DAOHOME')}  */}
+                  DAO Home
+                </p>
+              </Link>
+              <Link href="/dg/treasury">
+                <p className={styles.footer_link}>
                   {/* {t('Footer.TREASURY')}  */}
                   Treasury
                 </p>
@@ -59,18 +65,6 @@ const Footer = () => {
                 <p className={styles.footer_link}>
                   {/* {t('Footer.GOVERNANCE')}  */}
                   Governance
-                </p>
-              </Link>
-              <Link href="https://snapshot.org/#/decentralgames.eth">
-                <p className={styles.footer_link}>
-                  {/* {t('Footer.GAMEPLAY')}  */}
-                  Proposals
-                </p>
-              </Link>
-              <Link href="/dg/migration">
-                <p className={styles.footer_link}>
-                  {/* {t('Footer.LIQUDITY')}  */}
-                  Migration
                 </p>
               </Link>
             </span>
