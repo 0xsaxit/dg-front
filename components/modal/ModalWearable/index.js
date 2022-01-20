@@ -167,9 +167,7 @@ const ModalWearable = props => {
             <div className={styles.wear_box_pink}>
               <img
                 src={
-                  Global.IMG_URLS_UPGRADE[wearableName][
-                    parseInt(Math.min(props.rank + 1, 5))
-                  ]
+                  Global.IMG_URLS_UPGRADE[wearableName][nextIceWearableRank]
                 }
               />
             </div>
@@ -453,8 +451,9 @@ const ModalWearable = props => {
       {upgrade == 4 && (
         <ModalDelegate
           tokenID={props.tokenID}
-          address={props.address}
+          contractAddress={props.contractAddress}
           rank={props.rank}
+          bonus={props.bonus}
           setUpgrade={setUpgrade}
           buttonName={'Upgrade'}
           redelegateAddress={props.delegateAddress}
