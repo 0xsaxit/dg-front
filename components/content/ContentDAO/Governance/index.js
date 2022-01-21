@@ -473,6 +473,7 @@ const Governance = props => {
                   ? 'https://quickswap.exchange/#/swap?inputCurrency=0xef938b6da8576a896f6E0321ef80996F4890f9c4&outputCurrency=0xc6480Da81151B2277761024599E8Db2Ad4C388C8'
                   : 'https://quickswap.exchange/#/swap?inputCurrency=0xc6480Da81151B2277761024599E8Db2Ad4C388C8&outputCurrency=0xef938b6da8576a896f6E0321ef80996F4890f9c4 '
               }
+              target="_blank"
             >
               Swap for {stakeType === 'Stake' ? 'x' : ''}DG on Quickswap&nbsp;
               <img
