@@ -346,3 +346,54 @@
         }
     }
 }
+
+.more_wearable {
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    background: transparent;
+    border: 1px solid #2A2A2A;
+    box-sizing: border-box;
+    border-radius: 16px;
+    padding: 32px 40px 32px 40px;
+   
+    width: 509px;
+    margin: 0 auto;
+
+    .title {
+        font-family: Larsseit-Bold;
+        font-style: normal;  
+        font-size: 20px;
+        line-height: 27px;
+        text-align: center;
+        color: #FFFFFF;
+    }
+
+    .desc {
+        margin-top: 8px;
+        margin-bottom: 16px;
+        font-family: Larsseit;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.5);        
+    }
+
+    .grey_button {        
+        font-family: Larsseit-Bold;
+        font-style: normal; 
+        font-size: 14px;
+        line-height: 20px;
+        text-align: center;
+        background: #1F1F1F;
+        border-radius: 10px; 
+        text-align: center;
+        color: #FFFFFF;
+        padding: 11px 75px 11px 75px;
+        margin: 0 auto;
+    }
+}

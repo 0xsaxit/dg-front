@@ -133,6 +133,7 @@ const Delegation = () => {
                     </div>
                     :
                     delegations && delegations.length > 0 ?
+                        <>
                         <div className={styles.delegation_table}>
                             <div className={styles.fixed}>
                                 <Table fixed unstackable>
@@ -288,9 +289,28 @@ const Delegation = () => {
                                     </Table.Body>
                                 </Table>
                             </div>
+
+                            
                         </div>
+                        <div className={styles.more_wearable}>
+                            <div className={styles.title}>
+                                More Wearables. More Players.
+                            </div>
+                            <div className={styles.desc}>
+                                Acquire more ICE Wearables to expand your roster of poker players.
+                            </div>
+
+                            <Button
+                                className={styles.grey_button}
+                                href="https://decentral.games/ice/marketplace"
+                                target="_blank"
+                            >
+                                Browser Wearables
+                            </Button>
+                        </div>
+                        </>
                         :
-                        <div style={{ marginTop: '100px' }}>
+                        <div style={{ marginTop: '30px' }}>
                             <EmptyResultAnimation />
                         </div>
                 : null}
