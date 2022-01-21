@@ -668,7 +668,10 @@ const Overview = props => {
                 <Button
                   className={styles.button_gov}
                   onClick={() => {
-                    router.push('/discord');
+                    window.open(
+                      'https://decentral.games/discord',
+                      '_blank'
+                    );
                   }}
                 >
                   Discussion
