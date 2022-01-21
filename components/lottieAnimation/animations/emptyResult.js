@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Lottie from 'react-lottie'
 import loadingData from '../json/emptyResult.json'
+import { Button } from 'semantic-ui-react';
+import styles from './animation.module.scss';
 
 class EmptyResultAnimation extends Component {
     render() {
@@ -14,9 +16,27 @@ class EmptyResultAnimation extends Component {
         };
 
         return (
-            <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-                <Lottie options={loadingOptions} height={180} width={250} />
-                <h4 className="title">No Result</h4>
+            <div className={styles.main_section}>
+                <img
+                    className={styles.image}
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1642685731/image_jnqaxd.png"
+                />
+                <div className={styles.title}>
+                    More Wearable
+                </div>
+
+                <div className={styles.desc}>
+                    Acquire more ICE Enabled Wearables to <br/>
+                    expand your roster of poker players.
+                </div>
+
+                <Button
+                    className={styles.blue_button}
+                    href="https://decentral.games/ice/marketplace"
+                    target="_blank"
+                >
+                    Browser Wearables
+                </Button>
             </div>
         )
     }
