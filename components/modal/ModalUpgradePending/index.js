@@ -10,6 +10,7 @@ import ABI_COLLECTION_LINENS from '../../../components/ABI/ABICollectionLinens';
 import ABI_COLLECTION_BOMBER from '../../../components/ABI/ABICollectionBomber';
 import ABI_COLLECTION_CRYPTO_DRIP from '../../../components/ABI/ABICollectionCryptoDrip';
 import ABI_COLLECTION_JOKER from '../../../components/ABI/ABICollectionJoker';
+import ABI_COLLECTION_CHEF from '../../../components/ABI/ABICollectionChef';
 import ABI_COLLECTION_FOUNDING_FATHERS from '../../../components/ABI/ABICollectionFounderFather';
 import MetaTx from '../../../common/MetaTx';
 import Fetch from '../../../common/Fetch';
@@ -129,6 +130,12 @@ const ModalUpgradePending = props => {
           Global.ADDRESSES.COLLECTION_JOKER_ADDRESS
         );
         collectionID = 18;
+      } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_CHEF_ADDRESS) {
+        collectionContract = new getWeb3.eth.Contract(
+          ABI_COLLECTION_CHEF,
+          Global.ADDRESSES.COLLECTION_CHEF_ADDRESS
+        );
+        collectionID = 19;
       }
 
       setCollectionContract(collectionContract);

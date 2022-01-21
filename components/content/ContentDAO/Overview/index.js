@@ -301,8 +301,7 @@ const Overview = props => {
             Stake $DG to earn <br /> and ‘Be The House’
           </p>
           <p className={styles.blue_lower}>
-            By staking $DG, you can govern the treasury, add proposals, and earn
-            yield.
+            By staking $DG, you can govern the <br/> treasury, add proposals, and earn yield.
           </p>
           <Button
             className={styles.blue_button}
@@ -668,7 +667,10 @@ const Overview = props => {
                 <Button
                   className={styles.button_gov}
                   onClick={() => {
-                    router.push('/discord');
+                    window.open(
+                      'https://decentral.games/discord',
+                      '_blank'
+                    );
                   }}
                 >
                   Discussion
