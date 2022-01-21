@@ -36,9 +36,7 @@ const Footer = () => {
     <>
       <div className={styles.footer_container}>
         <div className={cn(styles.grid_container, 'd-flex flex-column')}>
-          {!onlyTablet && !mobile && (
-            <div style={{ marginTop: '100px' }} />
-          )}
+          <div className={styles.cryptoWidgetSection} />
 
           <div
             className={cn(
