@@ -492,23 +492,25 @@ const MarketPlace = () => {
       prevArrow: <CarouselPrevArrow />,
     };
 
-    const checkSoldOutStatus = (itemList, maxMint) =>{
-      return itemList.some((item)=>
+    const checkSoldOutStatus = (itemList, maxMint) => {
+      return itemList.some((item) =>
         (item[0] - maxMint) != 0
       )
     }
 
-    const buyOnSecondaryButton = ()  => {
+    const buyOnSecondaryButton = () => {
       return (
-      <Button className={styles.wearable_button}>
-        Buy on Secondary
-      </Button>)};
+        <Button className={styles.wearable_button}>
+          Buy on Secondary
+        </Button>)
+    };
 
     const soldOutButton = () => {
       return (
-      <Button disabled className={styles.sold_button}>
-        Sold Out
-      </Button>)};
+        <Button disabled className={styles.sold_button}>
+          Sold Out
+        </Button>)
+    };
 
     return (
       <section>
@@ -550,7 +552,7 @@ const MarketPlace = () => {
                   <CheckMintableModal />
                 )}
               </h3>
-              
+
               <Slider {...settings}>
                 <div
                   className={styles.games_container}
@@ -663,16 +665,16 @@ const MarketPlace = () => {
                           if (state.userStatus >= 4 && itemLimits[i][0] < 0) {
                             // Items still loading, display spinner
                             return (
-                                <Button disabled className={styles.sold_button}>
-                              <Spinner width={20} height={20}/>
-                            </Button>)
+                              <Button disabled className={styles.sold_button}>
+                                <Spinner width={20} height={20} />
+                              </Button>)
 
                             // Items loaded
                             // Minting enabled
                           } else if (state.userStatus >= state.appConfig.minMintVerifyStep && (maxMintCounts - itemLimits[i][0]) > 0) {
                             return (
-                                <div className={styles.flex_50}>
-                              <ModalMintWearable
+                              <div className={styles.flex_50}>
+                                <ModalMintWearable
                                   index={i}
                                   maxMintCounts={maxMintCounts}
                                   numberLeft={itemLimits[i][0]}
@@ -682,39 +684,39 @@ const MarketPlace = () => {
                                   wearableBodyType={wearable.details[item][3]}
                                   wearableBodyImg={wearable.details[item][4]}
                                   wearableName={wearable.details[item][1]}
-                              />
-                            </div>)
+                                />
+                              </div>)
                             // Minting Disabled States
                           } else if (maxMintCounts !== 0 && (maxMintCounts - itemLimits[i][0]) >= 0 && (maxMintCounts - itemLimits[i][0]) < 1) {
                             return (
                               <a className={styles.flex_50}
-                              href="https://opensea.io/collection/decentral-games-ice"
-                              target="_blank"
-                              style={{
-                                width: '100%',
-                              }}>
-                              {
-                                // Show "Buy on Secondary" if all items in series are sold out, otherwise show "Sold Out" button
-                                checkSoldOutStatus(itemLimits.slice(0, -1), maxMintCounts) ?
+                                href="https://opensea.io/collection/decentral-games-ice"
+                                target="_blank"
+                                style={{
+                                  width: '100%',
+                                }}>
+                                {
+                                  // Show "Buy on Secondary" if all items in series are sold out, otherwise show "Sold Out" button
+                                  checkSoldOutStatus(itemLimits.slice(0, -1), maxMintCounts) ?
                                     soldOutButton() :
                                     buyOnSecondaryButton()}
-                            </a>)
+                              </a>)
                           } else if (state.userStatus < state.appConfig.minMintVerifyStep &&
-                              ((maxMintCounts - itemLimits[i][0]) > 0 || (maxMintCounts === 0 && itemLimits[i][0] === 0))) {
+                            ((maxMintCounts - itemLimits[i][0]) > 0 || (maxMintCounts === 0 && itemLimits[i][0] === 0))) {
                             // Coming Soon State
                             return (
-                                <Button disabled className={styles.sold_button}>
-                              Coming Soon!
-                            </Button>)
+                              <Button disabled className={styles.sold_button}>
+                                Coming Soon!
+                              </Button>)
                           } else {
                             return (<p>Failed to load mint button.</p>)
                           }
                         } else {
                           // Logged Out State
                           return (
-                              <div className={styles.flex_50}>
-                            <ModalLoginICE/>
-                          </div>)
+                            <div className={styles.flex_50}>
+                              <ModalLoginICE />
+                            </div>)
                         }
                       })()}
                     </div>
@@ -750,7 +752,7 @@ const MarketPlace = () => {
                   />
                 </svg>
               </span>
-            )} 
+            )}
           </div>
 
           <p className={styles.marketplace_p}>
@@ -764,7 +766,7 @@ const MarketPlace = () => {
 
         <div className={styles.outter_games_container}>{getCarousel()}</div>
         {/* {openCheckEligibility && <CheckMintableModal />} */}
-        
+
       </span>
     </div>
   );

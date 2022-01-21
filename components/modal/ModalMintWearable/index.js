@@ -199,7 +199,7 @@ const ModalMint = props => {
             <div className={styles.card_area_body}>
               <div className={styles.card}>
                 {props.wearableBodyType}
-                <img src={props.wearableBodyImg} className={styles.img_card2} />
+                <img src={Images[`MINT_ICON_${props.wearableBodyType.toUpperCase()}`]} className={styles.img_card2} />
               </div>
             </div>
           </div>
