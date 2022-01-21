@@ -130,7 +130,7 @@ const Balances = () => {
         {type === 'DG' ? (
           <Button
             className={styles.newLink}
-            href="https://quickswap.exchange/#/swap?outputCurrency=0x2a93172c8dccbfbc60a39d56183b7279a2f647b4"
+            href="https://app.uniswap.org/#/swap?outputCurrency=0x4b520c812e8430659fc9f12f6d0c39026c83588d"
             target="_blank"
           >
             Buy {arrow()}
