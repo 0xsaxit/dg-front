@@ -250,8 +250,8 @@ const ModalMint = props => {
   function ethAuthModal() {
     return (
       <ModalEthAuth
-        itemID={props.itemID}
-        address={props.address}
+        itemId={props.itemId}
+        contractAddress={props.contractAddress}
         wearableImg={props.wearableImg}
         show={openETHAuth}
         maxMintCounts={props.maxMintCounts}
