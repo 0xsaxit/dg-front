@@ -322,7 +322,31 @@ const IMG_URLS_UPGRADE = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/feet4_urdt1x.jpg',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/feet5_fzihvy.jpg'
   ],
-  'Star Rating': [
+  '1 Star Rating': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_1_obbp5w.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_1_obbp5w.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_2_xor28q.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_3_yjhd9a.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_4_wuzhbg.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_5_rdazt7.png'
+  ],
+  '2 Star Rating': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_1_obbp5w.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_1_obbp5w.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_2_xor28q.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_3_yjhd9a.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_4_wuzhbg.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_5_rdazt7.png'
+  ],
+  '3 Star Rating': [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_1_obbp5w.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_1_obbp5w.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_2_xor28q.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_3_yjhd9a.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_4_wuzhbg.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_5_rdazt7.png'
+  ],
+  '4 Star Rating': [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_1_obbp5w.png',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_1_obbp5w.png',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/star_2_xor28q.png',
