@@ -40,6 +40,21 @@
                 font-family: "Larsseit-Medium";
                 letter-spacing: 0.5px;
             }
+            button {
+                position: absolute;
+                right: 60px;
+                top: 55px;
+                width: 190px;
+                height: 36px;
+                font-size: 14px !important;
+                font-family: "Larsseit-Bold" !important;
+                letter-spacing: 0.5px !important;
+                line-height: 8px !important;
+                border: 2px solid rgba(255, 255, 255, 0.08) !important;
+                border-radius: 24px !important;
+                background: transparent !important;
+                color: #fff !important;
+            }
         }
 
         .history {
