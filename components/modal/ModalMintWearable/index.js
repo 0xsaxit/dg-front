@@ -70,21 +70,26 @@ const ModalMint = props => {
         </span>*/}
         <div className={styles.card_area}>
           <div className={styles.card_area_body}>
-            {state.userBalances[2][3] < Global.CONSTANTS.WETH_MINT_AMOUNT ? (
+            {(state.mintToken === 'ETH' ? state.userBalances[2][3] : state.iceAmounts.ICE_AVAILABLE_AMOUNT) < state.tokenAmounts.WETH_COST_AMOUNT ? (
               <span>
                 Not Enough
-                <IceMintETHTooltip />
+                {state.mintToken === 'ETH' ?
+                  <IceMintETHTooltip />
+                  : <IceMintIceTooltip />
+                }
               </span>
             ) : null}
 
             <div className={styles.card}>
-              {state.tokenAmounts.WETH_COST_AMOUNT} ETH
-              <img src={Images.ETH_CIRCLE} className={styles.img_card2} />
+              {state.tokenAmounts.WETH_COST_AMOUNT} {state.mintToken}
+              <img src={state.mintToken === 'ETH' ? Images.ETH_CIRCLE : Images.ICE_CIRCLE} className={styles.img_card2} />
             </div>
 
-            {state.userBalances[2][3] >= Global.CONSTANTS.WETH_MINT_AMOUNT ? (
+            {(state.mintToken === 'ETH' ? state.userBalances[2][3] : state.iceAmounts.ICE_AVAILABLE_AMOUNT) >= state.tokenAmounts.WETH_COST_AMOUNT ? (
               <div className={styles.green_check}>
-                {Number(state.userBalances[2][3]).toFixed(3)} ETH Available
+                {state.mintToken === 'ETH' ?
+                  Number(state.userBalances[2][3]).toFixed(3)
+                  : Number(state.iceAmounts.ICE_AVAILABLE_AMOUNT).toFixed(0)} {state.mintToken} Available
                 &nbsp;
                 <svg
                   width="9"
@@ -101,7 +106,7 @@ const ModalMint = props => {
               </div>
             ) : (
               <div className={styles.description}>
-                {Number(state.userBalances[2][3]).toFixed(3)} ETH Available
+                {Number(state.mintToken === 'ETH' ? state.userBalances[2][3] : state.iceAmounts.ICE_AVAILABLE_AMOUNT).toFixed(3)} {state.mintToken} Available
               </div>
             )}
 
@@ -128,7 +133,7 @@ const ModalMint = props => {
               />
             </div>
 
-            {state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD >= 
+            {state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD >=
               Global.CONSTANTS.DG_STAKED_AMOUNT ||
               xDG >=
               Global.CONSTANTS.XDG_STAKED_AMOUNT ? (
@@ -209,62 +214,86 @@ const ModalMint = props => {
   }
 
   function buttons() {
-   return (
-     <div className={styles.button_area}>
-       {(state.userBalances[2][3] <
-         state.tokenAmounts.WETH_COST_AMOUNT) ||
-         (state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD < 
-         Global.CONSTANTS.DG_STAKED_AMOUNT &&
-         xDG < Global.CONSTANTS.XDG_STAKED_AMOUNT) ? (
-         <Button className={styles.button_upgrade} disabled={true}>
-           Mint Wearable
-         </Button>
-       ) : (
-         <Button
-           className={styles.button_upgrade}
-           onClick={() => {
-             setOpen(false);
-             setOpenETHAuth(true);
-           }}
-         >
-           Mint Wearable
-         </Button>
-       )}
+    return (
+      <div className={styles.button_area}>
+        {((state.mintToken === 'ETH' ? state.userBalances[2][3] : state.iceAmounts.ICE_AVAILABLE_AMOUNT) <
+          state.tokenAmounts.WETH_COST_AMOUNT) ||
+          (state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD <
+            Global.CONSTANTS.DG_STAKED_AMOUNT &&
+            xDG < Global.CONSTANTS.XDG_STAKED_AMOUNT) ? (
+          <Button className={styles.button_upgrade} disabled={true}>
+            Mint Wearable
+          </Button>
+        ) : (
+          <Button
+            className={styles.button_upgrade}
+            onClick={() => {
+              setOpen(false);
+              if (state.mintToken === 'ETH') {
+                setOpenETHAuth(true);
+              } else {
+                setOpenICEAuth(true);
+              }
+            }}
+          >
+            Mint Wearable
+          </Button>
+        )}
 
-       <Button
-         className={styles.button_close}
-         onClick={() => {
-           window.open(
-             'https://ice.decentral.games/ice-nft-wearables',
-             '_blank'
-           );
-         }}
-       >
-         Learn More
-       </Button>
-     </div>
-   );
- }
+        <Button
+          className={styles.button_close}
+          onClick={() => {
+            window.open(
+              'https://ice.decentral.games/ice-nft-wearables',
+              '_blank'
+            );
+          }}
+        >
+          Learn More
+        </Button>
+      </div>
+    );
+  }
 
   //TODO: Refactor this so that it is not hardcoded
   function ethAuthModal() {
-    return (
-      <ModalEthAuth
-        itemID={props.itemID}
-        address={props.address}
-        wearableImg={props.wearableImg}
-        show={openETHAuth}
-        maxMintCounts={props.maxMintCounts}
-        numberLeft={props.numberLeft}
-        back={() => {
-          setOpen(true);
-          setOpenETHAuth(false);
-        }}
-        close={() => {
-          setOpenETHAuth(false);
-        }}
-      />
-    );
+    if (state.mintToken === 'ETH') {
+      return (
+        <ModalEthAuth
+          itemID={props.itemID}
+          address={props.address}
+          wearableImg={props.wearableImg}
+          show={openETHAuth}
+          maxMintCounts={props.maxMintCounts}
+          numberLeft={props.numberLeft}
+          back={() => {
+            setOpen(true);
+            setOpenETHAuth(false);
+          }}
+          close={() => {
+            setOpenETHAuth(false);
+          }}
+        />
+      );
+    } else {
+      return (
+        <ModalIceAuth
+          itemID={props.itemID}
+          address={props.address}
+          wearableImg={props.wearableImg}
+          show={openICEAuth}
+          maxMintCounts={props.maxMintCounts}
+          numberLeft={props.numberLeft}
+          back={() => {
+            setOpen(true);
+            setOpenICEAuth(false);
+          }}
+          close={() => {
+            setOpenICEAuth(false);
+          }}
+        />
+      );
+    }
   }
 
   function closeButton() {
