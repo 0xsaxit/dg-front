@@ -19,7 +19,7 @@ const ThirdStep = () => {
                     <div className={styles.button_div}>
                         <Button
                             onClick={() => {
-                                window.open("https://api.decentral.games/ice/play?position=-110%2C129", "_blank");
+                                window.open("https://api.decentral.games/ice/play", "_blank");
                             }}
                         >
                             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620413783/MANA_jw7ylg.png" alt="mana" />
