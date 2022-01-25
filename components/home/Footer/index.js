@@ -71,43 +71,37 @@ const Footer = () => {
 
             <span className={styles.grid_column}>
               <p className={styles.footer_header}>
-                {/* {t('Footer.PLAY')}  */}
-                Play
+                {/* {t('Footer.ICE_POKER')}  */}
+                Ice Poker
               </p>
-              <Link href="/games">
+              <Link href="/ice">
                 <p className={styles.footer_link}>
-                  {/* {t('Footer.GAMES')}  */}
-                  Games
+                  {/* {t('Footer.PLAY')}  */}
+                  Play
                 </p>
               </Link>
-              <Link href="/games/scenes">
+              <Link href="/ice/start">
                 <p className={styles.footer_link}>
-                  Casinos
+                  Get Started
                 </p>
               </Link>
-              <Link href="/games/leaderboard">
+              <Link href="/ice/marketplace">
                 <p className={styles.footer_link}>
-                  {/* {t('Footer.LEADERBOARD')}  */}
-                  Leaderboard
+                  {/* {t('Footer.MARKETPLACE')}  */}
+                  Marketplace
                 </p>
               </Link>
             </span>
 
             <span className={styles.grid_column}>
               <p className={styles.footer_header}>
-                {/* {t('Footer.SHOP')}  */}
-                Shop
+                {/* {t('Footer.EVENTS')}  */}
+                Events
               </p>
-              <Link href="/games/nfts">
+              <Link href="/events">
                 <p className={styles.footer_link}>
-                  {/* {t('Footer.NFTS')}  */}
-                  NFTs
-                </p>
-              </Link>
-              <Link href="/games/shop">
-                <p className={styles.footer_link}>
-                  {/* {t('Footer.DCL_SHOPS')}  */}
-                  DCL Shops
+                  {/* {t('Footer.ALL_EVENTS')}  */}
+                  All Events
                 </p>
               </Link>
             </span>
@@ -133,15 +127,21 @@ const Footer = () => {
 
             <span className={styles.grid_column}>
               <p className={styles.footer_header}>
-                {/* {t('Footer.EVENTS')}  */}
-                Events
+                {/* {t('Footer.COMMUNITY')}  */}
+                Community
               </p>
-              <Link href="/events">
+              <a href="https://discord.com/invite/cvbSNzY" target="_blank">
                 <p className={styles.footer_link}>
-                  {/* {t('Footer.ALL_EVENTS')}  */}
-                  All Events
+                  {/* {t('Footer.DISCORD')}  */}
+                  Discord
                 </p>
-              </Link>
+              </a>
+              <a href="https://t.me/decentralgames" target="_blank">
+                <p className={styles.footer_link}>
+                  {/* {t('Footer.TELEGRAM')}  */}
+                  Telegram
+                </p>
+              </a>
             </span>
 
             <div className={styles.grid_newsletter}>
