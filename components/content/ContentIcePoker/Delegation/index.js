@@ -320,6 +320,7 @@ const Delegation = () => {
             {
                 showBreakDown !== -1 ? (
                     <ModalIceDelegationBreakDown
+                        playerAddress={delegations && delegations.length > 0 ? delegations[showBreakDown].address : ''}
                         delegationBreakdown={delegations && delegations.length > 0 ? delegations[showBreakDown].breakdown : []}
                         setShowingBreakDown={setShowingBreakDown}
                     />

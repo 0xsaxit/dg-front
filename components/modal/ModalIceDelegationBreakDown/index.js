@@ -1,12 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import moment from 'moment';
-import { Modal } from 'semantic-ui-react';
+import { Modal, Button } from 'semantic-ui-react';
+import { GlobalContext } from 'store';
+import ModalWithdrawDelegation from 'components/modal/ModalWithdrawDelegation';
 import styles from './ModalIceDelegationBreakDown.module.scss';
 
 const ModalIceDelegationBreakDown = ({
+    playerAddress,
     delegationBreakdown,
     setShowingBreakDown
 }) => {
+    const [state, dispatch] = useContext(GlobalContext);
+    const [delegatedItem, setDelegatedItem] = useState(null);
+
+    useEffect(() => {
+        var index = state.iceWearableItems.findIndex(e => (e.delegationStatus.delegatedTo && e.delegationStatus.delegatedTo === playerAddress));
+        setDelegatedItem(state.iceWearableItems[index]);
+    }, [state.iceWearableItems, playerAddress])
+
     const defaultImgs = [
         "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png",
         "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png",
@@ -44,8 +55,21 @@ const ModalIceDelegationBreakDown = ({
 
                 <div className={styles.body}>
                     <div className={styles.title}>
-                        <h2>{delegationBreakdown[0].address.substr(0, 5)}...{delegationBreakdown[0].address.substr(delegationBreakdown[0].address.length - 4, delegationBreakdown[0].address.length)}</h2>
+                        <h2>{playerAddress.substr(0, 5)}...{playerAddress.substr(playerAddress.length - 4, playerAddress.length)}</h2>
                         <p>Delegatee Daily History</p>
+                        {delegatedItem && delegatedItem.delegationStatus.delegatedTo ?
+                            <ModalWithdrawDelegation
+                                checkInStatus={delegatedItem.checkInStatus}
+                                delegationStatus={delegatedItem.delegationStatus.isQueuedForUndelegationByDelegatee || delegatedItem.delegationStatus.isQueuedForUndelegationByOwner}
+                                tokenId={delegatedItem.tokenId}
+                                contractAddress={delegatedItem.contractAddress}
+                                tokenOwner={state.userAddress}
+                                delegateAddress={delegatedItem.delegationStatus.delegatedTo}
+                                rank={delegatedItem.rank}
+                                buttonName="Withdraw Delegation"
+                            />
+                            : null
+                        }
                     </div>
 
                     <div className={styles.history}>

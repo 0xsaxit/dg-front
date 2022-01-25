@@ -232,6 +232,7 @@ const initialState = {
   userVerified: true,
   isAmnesiaPage: false,
   delegatorSplits: [],
+  mintToken: 'ETH',
 };
 
 const reducer = (state, action) => {
@@ -451,6 +452,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         canPurchase: action.data,
+      };
+
+    case 'current_mint_token':
+      return {
+        ...state,
+        mintToken: action.data,
       };
 
     case 'token_amounts':
