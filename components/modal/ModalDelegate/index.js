@@ -123,6 +123,7 @@ const ModalDelegate = ({
     let errorMsg = '';
     let isDelegated = false;
 
+    setClicked(true);
     // if any index has data then we should show error
     const hasData = await hasDataByAddress(address);
     if (hasData) {
@@ -152,6 +153,7 @@ const ModalDelegate = ({
       });
     }
 
+    setClicked(false);
     setErrorMsg(errorMsg);
     return isDelegated;
   }
@@ -329,31 +331,34 @@ const ModalDelegate = ({
     console.log('Delegate token ID: ' + tokenId);
     console.log('Delegate address: ' + enteredAddress);
     console.log('Collection address: ' + contractAddress);
-    setClicked(true);
 
-    const json = await Fetch.DELEGATE_NFT(
-      enteredAddress,
-      tokenId,
-      contractAddress
-    );
+    if (enteredAddress) {
+      setClicked(true);
 
-    if (json.status) {
-      console.log('NFT delegation request: ' + json.result);
+      const json = await Fetch.DELEGATE_NFT(
+        enteredAddress,
+        tokenId,
+        contractAddress
+      );
 
-      // close this modal and open the success modal
-      setOpen(false);
-      setSuccess(true);
-    } else {
-      console.log('NFT delegation request error. Code: ' + json.code);
+      if (json.status) {
+        console.log('NFT delegation request: ' + json.result);
 
-      setErrorMsg('Delegation failed: ' + json.result);
+        // close this modal and open the success modal
+        setOpen(false);
+        setSuccess(true);
+      } else {
+        console.log('NFT delegation request error. Code: ' + json.code);
 
-      // if (json.code === 2) {
-      //   setErrorMsg(json.reason); // this wearable has already been checked-in today
-      // } else {
-      //   setErrorMsg('Delegation failed. Code: ' + json.code);
-      // }
-      setClicked(false);
+        setErrorMsg('Delegation failed: ' + json.result);
+
+        // if (json.code === 2) {
+        //   setErrorMsg(json.reason); // this wearable has already been checked-in today
+        // } else {
+        //   setErrorMsg('Delegation failed. Code: ' + json.code);
+        // }
+        setClicked(false);
+      }
     }
   }
 
@@ -375,8 +380,8 @@ const ModalDelegate = ({
                 redelegation
                   ? styles.button_trigger_redelegation
                   : rank === 5
-                  ? styles.open_button_fullWidth
-                  : styles.open_button
+                    ? styles.open_button_fullWidth
+                    : styles.open_button
               }
             >
               {buttonName}
@@ -436,7 +441,7 @@ const ModalDelegate = ({
                   }}
                   disabled={errorMsg === '' ? false : true}
                 >
-                  {redelegation? "Redelegate Wearable" : buttonName}
+                  {redelegation ? "Redelegate Wearable" : buttonName}
                 </Button>
               ) : (
                 <Button className={styles.button_redelegate} disabled={true}>
@@ -461,7 +466,7 @@ const ModalDelegate = ({
                           analytics.track('CLICKED DELEGATE');
                           delegateNFT();
                         }}
-                        disabled={errorMsg === '' ? false : true}
+                        disabled={errorMsg === '' && enteredAddress ? false : true}
                       >
                         {buttonName}
                       </Button>

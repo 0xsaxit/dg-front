@@ -47,14 +47,14 @@ const Governance = props => {
 
     let enteredValue = Number(e.target.value);
 
-    if(e.key !== "Backspace") {
-      if(e.target.value.includes('.')) {
-        if(e.target.value.split('.')[1].length >=3) {
+    if (e.key !== "Backspace") {
+      if (e.target.value.includes('.')) {
+        if (e.target.value.split('.')[1].length >= 3) {
           enteredValue = roundDownDecimals(e.target.value)
         }
       }
     }
-    
+
     setAmountInput(enteredValue);
 
   };
@@ -242,11 +242,11 @@ const Governance = props => {
             </div>
             <p className={styles.staking_subfooter}>
               {xDGAmount !== undefined &&
-              maticXDGAmount !== undefined &&
-              xDGPrice ? (
+                maticXDGAmount !== undefined &&
+                xDGPrice ? (
                 `$${props.formatPrice(
                   (parseFloat(xDGAmount) + parseFloat(maticXDGAmount)) *
-                    xDGPrice,
+                  xDGPrice,
                   2
                 )}`
               ) : (
@@ -261,12 +261,12 @@ const Governance = props => {
             <div className="d-flex mb-1 align-items-center">
               <div className={styles.item_value}>
                 {xDGAmount !== undefined &&
-                maticXDGAmount !== undefined &&
-                ratio ? (
+                  maticXDGAmount !== undefined &&
+                  ratio ? (
                   <>
                     {props.formatPrice(
                       (parseFloat(xDGAmount) + parseFloat(maticXDGAmount)) *
-                        ratio
+                      ratio
                     )}
                     <img
                       src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png"
@@ -280,13 +280,13 @@ const Governance = props => {
             </div>
             <p className={styles.staking_subfooter}>
               {xDGAmount !== undefined &&
-              maticXDGAmount !== undefined &&
-              ratio &&
-              xDGPrice ? (
+                maticXDGAmount !== undefined &&
+                ratio &&
+                xDGPrice ? (
                 `$${props.formatPrice(
                   (parseFloat(xDGAmount) + parseFloat(maticXDGAmount)) *
-                    ratio *
-                    xDGPrice,
+                  ratio *
+                  xDGPrice,
                   2
                 )}`
               ) : (
@@ -363,8 +363,8 @@ const Governance = props => {
               <Button
                 className={styles.max_button}
                 onClick={() => {
-  
-                  if(stakeType === 'Stake') {
+
+                  if (stakeType === 'Stake') {
                     setAmountInput(roundDownDecimals(dgAmount));
                   } else {
                     setAmountInput(roundDownDecimals(xDGAmount));
@@ -379,7 +379,7 @@ const Governance = props => {
               <h4
                 className={
                   Number(amountInput) <=
-                  Number(stakeType === 'Stake' ? dgAmount : xDGAmount)
+                    Number(stakeType === 'Stake' ? dgAmount : xDGAmount)
                     ? styles.success
                     : styles.error
                 }
@@ -408,9 +408,9 @@ const Governance = props => {
               }}
               disabled={
                 approving ||
-                loading ||
-                Number(amountInput) <= 0 ||
-                Number(amountInput) >
+                  loading ||
+                  Number(amountInput) <= 0 ||
+                  Number(amountInput) >
                   (stakeType === 'Stake' ? Number(dgAmount) : xDGAmount)
                   ? true
                   : false
@@ -420,9 +420,8 @@ const Governance = props => {
               &nbsp;
               {approving || loading
                 ? ''
-                : `${stakeType} ${amountInput > 0 ? amountInput : ''} ${
-                    stakeType === 'Unstake' ? 'x' : ''
-                  }DG`}
+                : `${stakeType} ${amountInput > 0 ? amountInput : ''} ${stakeType === 'Unstake' ? 'x' : ''
+                }DG`}
             </Button>
             <span>
               You Will Receive{' '}
@@ -465,7 +464,7 @@ const Governance = props => {
             </div>
           </div>
 
-          <div className={styles.button_wrapper}>
+          <div className={styles.button_wrapper} style={{ marginBottom: '15px' }}>
             <Button
               className={styles.button}
               href={
