@@ -162,6 +162,8 @@ const Delegation = () => {
                                                     <Table.Cell className={styles.user_info} >
                                                         <section onClick={() => setShowingBreakDown(i)}>
                                                             <img src={row.imageURL} alt="avatar" />
+                                                            {row.currentDelegations.some(delegation => delegation.checkInStatus) && 
+                                                                <img className={styles.check_in} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627301200/Green_Check_iahexg.png" alt="check in" />}
                                                             {row.address.substr(0, 5)}...{row.address.substr(row.address.length - 4, row.address.length)}
                                                         </section>
                                                     </Table.Cell>
