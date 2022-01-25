@@ -20,12 +20,13 @@ const ModalInfo = () => {
   const [xdgTotalUSD, setXDGTotalUSD] = useState(0);
   const [dgMining, setDGMining] = useState(0);
   const [dgMiningUSD, setDGMiningUSD] = useState(0);
-  const [dgSummationOld, setDGSummationOld] = useState(0);
-  const [dgSummationOldPolygon, setDGSummationOldPolygon] = useState(0);
-  const [dgSummationNew, setDGSummationNew] = useState(0);
+  const [dgSummationOld, setDGSummationOld] = useState(null);
+  const [dgSummationOldPolygon, setDGSummationOldPolygon] = useState(null);
+  const [dgSummationNew, setDGSummationNew] = useState(null);
   const [dgSummationAll, setDGSummationAll] = useState(0);
   const [DGPrice, setDGPrice] = useState(0);
   const [OldDGPrice, setOldDGPrice] = useState(0);
+  const [instance, setInstance] = useState(false);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -104,10 +105,16 @@ const ModalInfo = () => {
   }, [state.DGBalances]);
 
   useEffect(() => {
-    const dgSummationAll =
+    console.log(" loading balances: ... ",dgSummationNew, dgSummationOld, dgSummationOldPolygon);
+
+    if(isValidNumber(dgSummationNew) && isValidNumber(dgSummationOld) && isValidNumber(dgSummationOldPolygon)) {
+      setInstance(true);
+      const dgSummationAll =
       dgSummationNew + dgSummationOld + dgSummationOldPolygon;
 
-    setDGSummationAll(formatPrice(dgSummationAll, 0));
+     setDGSummationAll(formatPrice(dgSummationAll, 0));
+    }
+    
   }, [dgSummationNew, dgSummationOld, dgSummationOldPolygon]);
 
   useEffect(() => {
@@ -137,6 +144,13 @@ const ModalInfo = () => {
       .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
     return balanceAdjusted;
+  }
+
+  function isValidNumber(value) {
+    if(value === null || isNaN(value)) {
+      return false;
+    }
+    return true;
   }
 
   function topAmounts() {
@@ -357,7 +371,7 @@ const ModalInfo = () => {
   function breakdownButton() {
     return (
       <span>
-        {parseInt(dgSummationAll) ? (
+        {instance ? (
           <Button className="account-button" style={{ marginTop: 0 }}>
             <p className="right-menu-text bnb">
               {dgSummationAll.toLocaleString()} DG
