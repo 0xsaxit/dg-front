@@ -302,8 +302,8 @@ const ActivateWearableModal = props => {
         dispatch({
           type: 'refresh_balances',
           data: refreshBalances,
-        });
-
+        });  
+        
         // close this modal and open the success modal
         setErrorText(null);
         setOpen(false);
