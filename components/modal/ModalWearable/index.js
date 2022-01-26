@@ -206,17 +206,6 @@ const ModalWearable = props => {
             </div>
 
             <div className={styles.price_area}>
-              Price
-              <span style={{ opacity: 0.75 }}>
-                {' '}
-                ($
-                {(
-                  icePrices[Math.min(props.rank + 1, 5)] *
-                    state.DGPrices.ice +
-                  dgPrices[Math.min(props.rank + 1, 5)] * state.DGPrices.dg
-                ).toFixed(2)}
-                )
-              </span>
               <div className={styles.card_area}>
                 <div className={styles.card_area_body}>
                   {state.iceAmounts.ICE_AVAILABLE_AMOUNT <
