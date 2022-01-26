@@ -17,10 +17,57 @@ const MarketPlace = () => {
   // dispatch new user status to Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
-  const [openCheckEligibility, setOpenCheckEligibility] = useState(true);
   // define local variables
-  const [previewLevel, setPreviewLevel] = useState([0, 0, 0, 0, 0, 0, 0, 0]);
+  const [previewLevel, setPreviewLevel] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0]);
   const wearables = [
+    {
+      title: 'ICE Beach Club',
+      address: Global.ADDRESSES.COLLECTION_BEACH_ADDRESS,
+      preview: [
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159133/Male_1_nbm1oh.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159133/Male_2_ii0ffb.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159133/Male_3_zq64sh.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159133/Male_4_a2vfsw.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159133/Male_5_up7kdg.png'
+      ],
+      details: {
+        TintShades: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159176/glasses_1_eiuee1.png',
+          'Tint Shades',
+          'ICE Beach Club',
+          'Accessory',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159176/glasses_1_eiuee1.png'
+        ],
+        BeachFedora: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159178/hat_M_1_mkessn.png',
+          'Beach Fedora',
+          'ICE Beach Club',
+          'Head',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159178/hat_M_1_mkessn.png'
+        ],
+        PartyShirt: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159178/shirt_M_1_m1yfk1.png',
+          "Party Shirt",
+          'ICE Beach Club',
+          'Torso',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159178/shirt_M_1_m1yfk1.png'
+        ],
+        Boardies: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159179/shorts1_aesu2u.png',
+          "Boardies",
+          'ICE Beach Club',
+          'Legs',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159179/shorts1_aesu2u.png'
+        ],
+        BeachSlides: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159180/shoes1_iywurc.png',
+          "Beach Slides",
+          'ICE Beach Club',
+          'Feet',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159180/shoes1_iywurc.png'
+        ]
+      }
+    },
     {
       title: 'ICE Chef',
       address: Global.ADDRESSES.COLLECTION_CHEF_ADDRESS,
@@ -517,20 +564,22 @@ const MarketPlace = () => {
         {wearables.map((wearable, index) => {
           let itemLimits;
           if (index === 0) {
-            itemLimits = state.itemLimits8;
+            itemLimits = state.itemLimits9;
           } else if (index === 1) {
-            itemLimits = state.itemLimits7;
+            itemLimits = state.itemLimits8;
           } else if (index === 2) {
-            itemLimits = state.itemLimits6;
+            itemLimits = state.itemLimits7;
           } else if (index === 3) {
-            itemLimits = state.itemLimits5;
+            itemLimits = state.itemLimits6;
           } else if (index === 4) {
-            itemLimits = state.itemLimits4;
+            itemLimits = state.itemLimits5;
           } else if (index === 5) {
-            itemLimits = state.itemLimits3;
+            itemLimits = state.itemLimits4;
           } else if (index === 6) {
-            itemLimits = state.itemLimits2;
+            itemLimits = state.itemLimits3;
           } else if (index === 7) {
+            itemLimits = state.itemLimits2;
+          } else if (index === 8) {
             itemLimits = state.itemLimits1;
           }
 

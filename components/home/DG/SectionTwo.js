@@ -247,7 +247,7 @@ function SectionTwo() {
                 href="https://decentral.games/ice/marketplace"
                 target="_blank"
               >
-                Browser Wearables
+                Browse Wearables
               </Button>
             </span>
           </div>
@@ -317,4 +317,3 @@ function SectionTwo() {
 }
 
 export default SectionTwo;
-

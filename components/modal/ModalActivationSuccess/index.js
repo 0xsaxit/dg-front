@@ -10,8 +10,8 @@ const ModalActivationSuccess = props => {
   const [open, setOpen] = useState(true);
   const [image, setImage] = useState("")
   const [description, setDescription] = useState("x of 100");
-  const [rank, setRank] = useState({})
-  const [bonus, setBonus] = useState({})
+  const [rank, setRank] = useState("")
+  const [bonus, setBonus] = useState("")
 
 
   useEffect(() => {
