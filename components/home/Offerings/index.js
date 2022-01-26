@@ -67,7 +67,7 @@ const detailsCasinos = {
     'Blackjack',
   ],
   Chateau: [
-    'https://play.decentral.games/chateau',
+    'https://api.decentral.games/ice/play?position=-75%2C71',
     'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1624916719/Chateau_Chatoshi_lapse_2_gbjrgn.gif',
     'games-pic',
     'Chateau Satoshi',
