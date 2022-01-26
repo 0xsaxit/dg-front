@@ -361,7 +361,47 @@ const IMG_URLS_UPGRADE = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686095/shoes_3_cr2zst.png',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/shoes_4_tgcdo2.png',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/shoes_5_m6scvr.png'
-  ]
+  ],
+  "Tint Shades": [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159176/glasses_1_eiuee1.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159176/glasses_1_eiuee1.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159177/glasses_2_ekifvc.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159177/glasses_3_yju9wz.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159177/glasses_4_whyjmr.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159177/glasses_5_cxbkhf.png'
+  ],
+  "Beach Fedora": [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159178/hat_M_1_mkessn.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159178/hat_M_1_mkessn.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159177/hat_M_2_jtnctk.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159177/hat_M_3_segrjy.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159178/hat_M_4_ixkv4e.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159178/hat_M_5_ieysao.png'
+  ],
+  "Party Shirt": [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159178/shirt_M_1_m1yfk1.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159178/shirt_M_1_m1yfk1.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159178/Shirt_M_2_ozjt2j.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159178/shirt_M_3_xeqnpi.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159178/shirt_M_4_aebfmy.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159178/shirt_M_5_a0kzf7.png'
+  ],
+  "Boardies": [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159179/shorts1_aesu2u.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159179/shorts1_aesu2u.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159180/shorts2_nmcaww.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159180/shorts3_sfcj2i.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159180/shorts4_qmgrax.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159180/shorts5_scpk1z.png'
+  ],
+  "Beach Slides": [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159180/shoes1_iywurc.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159180/shoes1_iywurc.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159179/shoes2_bipe0g.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159179/shoes3_ocjt35.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159179/shoes4_awnqlx.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159179/shoes5_riykf1.png'
+  ],
 };
 
 // wallet and contract addresses
@@ -422,6 +462,7 @@ const ADDRESSES = (() => {
   const COLLECTION_FOUNDER_FATHERS_ADDRESS = '0x09eeac7dff0dc304e25cbb7bdbfae798488fc34f';
   const COLLECTION_JOKER_ADDRESS = '0x451612c0e742e27f2cfb3888ad2813eec8dd1ba3';
   const COLLECTION_CHEF_ADDRESS = '0xa96f7f2102c27a61e3a660d964e9aa613b68fe6b';
+  const COLLECTION_BEACH_ADDRESS = '0x49cb83b4c4980029200b6759d5fb7d3b21f10134';
   const ICE_TOKEN_ADDRESS = '0xc6C855AD634dCDAd23e64DA71Ba85b8C51E5aD7c';
 
   console.log('OWNER_WALLET_ADDRESS: ' + OWNER_WALLET_ADDRESS);
@@ -517,6 +558,7 @@ const ADDRESSES = (() => {
     COLLECTION_FOUNDER_FATHERS_ADDRESS,
     COLLECTION_JOKER_ADDRESS,
     COLLECTION_CHEF_ADDRESS,
+    COLLECTION_BEACH_ADDRESS,
     ICE_TOKEN_ADDRESS
   };
 })();
