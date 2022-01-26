@@ -13,7 +13,7 @@ function blogCategory() {
 
   useEffect(() => {
     const getPages = async () => {
-      const { data } = await ButterCMS.post.list({ page_size: 60 });
+      const { data } = await ButterCMS.post.list({ page_size: 70 });
       dispatch({
         type: 'update_pages',
         data,
