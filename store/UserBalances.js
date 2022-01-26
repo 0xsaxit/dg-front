@@ -137,11 +137,13 @@ function UserBalances() {
         units
       ) {
         try {
-          const amount = await tokenContract.methods
-            .balanceOf(userOrContractAddress)
-            .call();
+          if (tokenContract.methods) {
+            const amount = await tokenContract.methods
+              .balanceOf(userOrContractAddress)
+              .call();
 
-          return amount / Global.CONSTANTS.FACTOR;
+            return amount / Global.CONSTANTS.FACTOR;
+          }
         } catch (error) {
           console.log('Get balance failed', error);
         }
@@ -160,11 +162,13 @@ function UserBalances() {
         units
       ) {
         try {
-          const amount = await tokenContract.methods
-            .balanceOf(userOrContractAddress)
-            .call();
+          if (tokenContract.methods) {
+            const amount = await tokenContract.methods
+              .balanceOf(userOrContractAddress)
+              .call();
 
-          return amount;
+            return amount;
+          }
         } catch (error) {
           console.log('Get balance failed', error);
         }
