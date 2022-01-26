@@ -314,7 +314,7 @@ const Overview = props => {
         </div>
         <img
           className={styles.blue_img}
-          src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1627992941/Bitcoin_Dashboard_mhyajb.png"
+          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1643226580/Bitcoin_Dashboard_sqe5wt.png"
         />
         <div className={styles.close_button} onClick={() => setVisible(false)}>
           <svg
@@ -363,7 +363,7 @@ const Overview = props => {
             <h1 className={styles.dashboard_text}>Your DAO Dashboard</h1>
           </div>
 
-          {visible ? showDiv() : null}
+          {!visible ? showDiv() : null}
 
           <div className={styles.treasury_container}>
             <div className={styles.treasury_header}>
