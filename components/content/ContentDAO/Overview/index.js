@@ -363,7 +363,7 @@ const Overview = props => {
             <h1 className={styles.dashboard_text}>Your DAO Dashboard</h1>
           </div>
 
-          {!visible ? showDiv() : null}
+          {visible ? showDiv() : null}
 
           <div className={styles.treasury_container}>
             <div className={styles.treasury_header}>
