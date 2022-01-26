@@ -129,7 +129,7 @@ const ModalInfo = () => {
       setDGPrice(state.DGPrices.dg);
 
       const price_json = await Fetch.OLD_DG_PRICE();
-      setOldDGPrice(price_json['decentral-games-old'].usd);
+      setOldDGPrice(price_json?.['decentral-games-old']?.usd);
     }
 
     fetchData();
