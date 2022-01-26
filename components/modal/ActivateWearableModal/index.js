@@ -290,6 +290,12 @@ const ActivateWearableModal = props => {
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
+        const refreshWearable = !state.refreshWearable;
+        dispatch({
+          type: 'refresh_wearable_items',
+          data: refreshWearable,
+        });
+        
         // close this modal and open the success modal
         setErrorText(null);
         setOpen(false);
