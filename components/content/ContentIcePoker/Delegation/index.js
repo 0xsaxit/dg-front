@@ -307,7 +307,7 @@ const Delegation = () => {
                                 href="https://decentral.games/ice/marketplace"
                                 target="_blank"
                             >
-                                Browser Wearables
+                                Browse Wearables
                             </Button>
                         </div>
                         </>
