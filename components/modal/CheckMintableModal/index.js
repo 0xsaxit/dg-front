@@ -91,8 +91,6 @@ const CheckMintableModal = props => {
         .div(new BigNumber(10).pow(Global.CONSTANTS.TOKEN_DECIMALS))
         .toFixed(2);
 
-        // console.log("minting price =========================  ", amountAdjusted);
-
         setMintingPrice(amountAdjusted);
       })();
     }
@@ -186,13 +184,21 @@ const CheckMintableModal = props => {
   }
 
   function checkBalance() {
-    if(parseFloat(state.userBalances[2][3]) >=mintingPrice && (
+    if(checkEnoughETHorICE() && (
       state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD >=Global.CONSTANTS.DG_STAKED_AMOUNT ||
       xDG >=Global.CONSTANTS.XDG_STAKED_AMOUNT)) {
         return true;
       } else {
         return false;
       }
+  }
+
+  function checkEnoughETHorICE() {
+    if(state.mintToken === 'ETH') {
+      return parseFloat(state.userBalances[2][3]) < mintingPrice? false : true;
+    } else {
+      return parseFloat(state.iceAmounts.ICE_AVAILABLE_AMOUNT) < mintingPrice? false : true;
+    }
   }
 
   function title() {
@@ -233,12 +239,14 @@ const CheckMintableModal = props => {
             {/* left block */}
             <div className={styles.dg_section}>
               <div className={styles.dg_round_edit}>
-                  {parseFloat(state.userBalances[2][3]) < mintingPrice && (<div className={styles.tooltip}>
+                  {!checkEnoughETHorICE() && (<div className={styles.tooltip}>
                       Not Enough
                       <CheckMintTooltip staking={false} />
                   </div>)}
-                  {mintingPrice} ETH
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {state.mintToken === 'ETH'? Number(mintingPrice).toFixed(2) : Number(mintingPrice).toFixed(0)} {state.mintToken}
+                  
+                  {state.mintToken === 'ETH'?
+                  (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <circle cx="11.8125" cy="12" r="11.6875" fill="#EFEFEF"/>
                       <path d="M11.811 4.31958L7.1377 12.2557L11.811 10.082V4.31958Z" fill="#8A92B2"/>
                       <path d="M11.811 10.0823L7.1377 12.2559L11.811 15.0835V10.0823Z" fill="#62688F"/>
@@ -246,20 +254,23 @@ const CheckMintableModal = props => {
                       <path d="M11.8108 15.0835L16.4849 12.2559L11.8108 10.0823V15.0835Z" fill="#454A75"/>
                       <path d="M7.1377 13.1631L11.811 19.9029V15.9889L7.1377 13.1631Z" fill="#8A92B2"/>
                       <path d="M11.8108 15.9889V19.9029L16.4875 13.1631L11.8108 15.9889Z" fill="#62688F"/>
-                  </svg>
+                  </svg>) : (<img
+                    style={{ width: '24px', marginTop: '-4px' }}
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
+                  />)}
               </div>
 
               <div className={styles.dg_desc}>
-              {parseFloat(state.userBalances[2][3]) < mintingPrice? (
+              {!checkEnoughETHorICE() ? (
                 <>
                   <span className={styles.dg_insufficient}>
-                  {Number(state.userBalances[2][3]).toFixed(3)} ETH Available &nbsp;
+                  {state.mintToken ==='ETH'? Number(state.userBalances[2][3]).toFixed(3) : Number(state.iceAmounts.ICE_AVAILABLE_AMOUNT).toFixed(0)} {state.mintToken} Available &nbsp;
                   </span><br/>
                   (On Polygon)
                 </>) : (
                   <>
                     <span className={styles.dg_available}>
-                    {Number(state.userBalances[2][3]).toFixed(3)} ETH Available&nbsp;
+                    {state.mintToken ==='ETH'? Number(state.userBalances[2][3]).toFixed(3) : Number(state.iceAmounts.ICE_AVAILABLE_AMOUNT).toFixed(0)} {state.mintToken} Available&nbsp;
                     <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M4.33606 9.70984C4.71204 9.70984 5.00745 9.56482 5.21155 9.26404L10.212 1.64246C10.3571 1.42224 10.4161 1.21277 10.4161 1.01941C10.4161 0.498413 10.0187 0.111694 9.48157 0.111694C9.11633 0.111694 8.88538 0.245972 8.65979 0.595093L4.31458 7.44861L2.11243 4.74695C1.90833 4.49988 1.68274 4.39246 1.37122 4.39246C0.828735 4.39246 0.436646 4.77917 0.436646 5.30554C0.436646 5.54187 0.50647 5.74597 0.710571 5.97693L3.48206 9.30701C3.71301 9.58093 3.98157 9.70984 4.33606 9.70984Z" fill="#67DD6C"/>
                     </svg>
