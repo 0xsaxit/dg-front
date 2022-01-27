@@ -3,13 +3,7 @@ import { GlobalContext } from '../../store';
 import Web3 from 'web3';
 import Link from 'next/link';
 import { Divider, Input } from 'semantic-ui-react';
-import ContentGovernance from '../content/ContentGovernance';
-import ContentMining from '../content/ContentMining';
-import ContentMiningV1 from '../content/ContentMiningV1';
-import ContentBalancer from '../content/ContentBalancer';
-import ContentUniswap from '../content/ContentUniswap';
 import ContentAirdrop from '../content/ContentAirdrop';
-import ContentTreasury from '../content/ContentTreasury';
 import ButtonReward1 from '../button/ButtonReward1';
 import ButtonReward2 from '../button/ButtonReward2';
 import Transactions from '../../common/Transactions';
@@ -220,161 +214,6 @@ const Farming = props => {
     }
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // helper functions
-  function submenu() {
-    return (
-      <div style={{ margin: '270px 0px 00px 0px' }}>
-        <div className="account-other-tabs">
-          {DGState === 'treasury' ? (
-            <p className="account-other-p" style={{ width: '100%' }}>
-              <span className="account-hover active">Treasury</span>
-              <Link href="/dg/governance">
-                <span className="account-hover">Governance</span>
-              </Link>
-              <Link href="/dg/mining">
-                <span className="account-hover">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                    Gameplay
-                  </b>
-                  <b>Rewards</b>
-                </span>
-              </Link>
-              {DGBalances > 0 || DGStakingBalances > 0 && <Link href="/dg/liquidity">
-                <span className="account-hover">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                    Liquidity
-                  </b>
-                  <b>Provision</b>
-                </span>
-              </Link>}
-            </p>
-          ) : DGState === 'governance' ? (
-            <p className="account-other-p" style={{ width: '100%' }}>
-              <Link href="/dg">
-                <span className="account-hover">Treasury</span>
-              </Link>
-              <span className="account-hover active">Governance</span>
-              <Link href="/dg/mining">
-                <span className="account-hover">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                    Gameplay
-                  </b>
-                  <b>Rewards</b>
-                </span>
-              </Link>
-              {DGBalances > 0 || DGStakingBalances > 0 && <Link href="/dg/liquidity">
-                <span className="account-hover">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                    Liquidity
-                  </b>
-                  <b>Provision</b>
-                </span>
-              </Link>}
-            </p>
-          ) : DGState === 'mining' ? (
-            <p className="account-other-p" style={{ width: '100%' }}>
-              <Link href="/dg">
-                <span className="account-hover">Treasury</span>
-              </Link>
-              <Link href="/dg/governance">
-                <span className="account-hover">Governance</span>
-              </Link>
-              <span className="account-hover active">
-                <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                  Gameplay
-                </b>
-                <b>Rewards</b>
-              </span>
-              {DGBalances > 0 || DGStakingBalances > 0 && <Link href="/dg/liquidity">
-                <span className="account-hover">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                    Liquidity
-                  </b>
-                  <b>Provision</b>
-                </span>
-              </Link>}
-            </p>
-          ) : DGState === 'uniswap' ? (
-            <p className="account-other-p" style={{ width: '100%' }}>
-              <Link href="/dg">
-                <span className="account-hover">Treasury</span>
-              </Link>
-              <Link href="/dg/governance">
-                <span className="account-hover">Governance</span>
-              </Link>
-              <Link href="/dg/mining">
-                <span className="account-hover">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                    Gameplay
-                  </b>
-                  <b>Rewards</b>
-                </span>
-              </Link>
-              <span className="account-hover active">
-                <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                  Liquidity
-                </b>
-                <b>Provision</b>
-              </span>
-            </p>
-          ) : DGState === 'uniswap' ? (
-            <p className="account-other-p" style={{ width: '100%' }}>
-              <Link href="/dg">
-                <span className="account-hover">
-                  <b>TREASURY</b>
-                </span>
-              </Link>
-              <Link href="/dg/governance">
-                <span className="account-hover">
-                  <b>GOVERNANCE</b>
-                </span>
-              </Link>
-              <span className="account-hover">
-                <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                  GAMEPLAY
-                </b>
-                <b>REWARDS</b>
-              </span>
-              {DGBalances > 0 || DGStakingBalances > 0 && <Link href="/dg/liquidity">
-                <span className="account-hover active">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                    LIQUIDITY
-                  </b>
-                  <b>PROVISION</b>
-                </span>
-              </Link>}
-            </p>
-          ) : (
-            <p className="account-other-p" style={{ width: '100%' }}>
-              <Link href="/dg">
-                <span className="account-hover">Treasury</span>
-              </Link>
-              <Link href="/dg/governance">
-                <span className="account-hover">Governance</span>
-              </Link>
-              <span className="account-hover active">
-                <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                  Gameplay
-                </b>
-                <b>Rewards</b>
-              </span>
-              {DGBalances > 0 || DGStakingBalances > 0 && <Link href="/dg/liquidity">
-                <span className="account-hover">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                    Liquidity
-                  </b>
-                  <b>Provision</b>
-                </span>
-              </Link>}
-            </p>
-          )}
-        </div>
-      </div>
-    );
-  }
-
   function handleChange(e) {
     setAmountInput(e.target.value);
   }
@@ -461,46 +300,7 @@ const Farming = props => {
     <div className="main-container">
       <div className="page-container">
         <div className="account-other-inner-container">
-          {submenu()}
-
-          {DGState === 'governance' ? (
-            <ContentGovernance
-              price={price}
-              formatPrice={formatPrice}
-              staking={staking}
-              withdrawal={withdrawal}
-              reward={reward}
-            />
-          ) : DGState === 'mining' ? (
-            <ContentMining price={price} formatPrice={formatPrice} />
-          ) : DGState === 'balancer' ? (
-            <ContentBalancer
-              price={price}
-              formatPrice={formatPrice}
-              instances={instances}
-              stakingContractPool1={stakingContractPool1}
-              stakingContractPool2={stakingContractPool2}
-              staking={staking}
-              withdrawal={withdrawal}
-              reward={reward}
-            />
-          ) : DGState === 'uniswap' ? (
-            <ContentUniswap
-              price={price}
-              formatPrice={formatPrice}
-              staking={staking}
-              withdrawal={withdrawal}
-              reward={reward}
-            />
-          ) : DGState === 'treasury' ? (
-            <ContentTreasury formatPrice={formatPrice} />
-          ) : DGState === 'airdrop' ? (
-            <ContentAirdrop price={price} formatPrice={formatPrice} />
-          ) : DGState === 'admin' ? (
-            contentAdmin()
-          ) : DGState === 'miningv1' ? (
-            <ContentMiningV1 price={price} formatPrice={formatPrice} />
-          ) : null}
+          <ContentAirdrop price={price} formatPrice={formatPrice} />
         </div>
       </div>
     </div>

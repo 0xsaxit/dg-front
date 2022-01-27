@@ -257,15 +257,6 @@ const MenuTop = props => {
           </Link>
         )}
 
-        {isMobile && (
-          <Link href="/games">
-            <Menu.Item className={styles.menu_style}>
-              {/* {t('navMenu.OFFERINGS')} */}
-              Offerings
-            </Menu.Item>
-          </Link>
-        )}
-
         {!isTablet && (
           <svg
             width="22"

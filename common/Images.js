@@ -42,7 +42,7 @@ const Images = {
   FEATURED_IMAGE:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1638490904/dg_tokensplit_blog_v5_d8rtwt.png',
   DG_COIN_LOGO:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1602117903/Group_14_Copy_2_afhe39.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631325895/dgNewLogo_hkvlps.png',
   XDG_COIN_LOGO:
     'https://res.cloudinary.com/dze4ze7xd/image/upload/v1637930449/xDG_Logo_of4plb.png',
   METAMASK:
@@ -84,6 +84,16 @@ const Images = {
   // AMNESIA_COMMENT: remove this image when we are done with amnesia
   AMNESIA_SOCIAL_SHARE:
     'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632943973/amnesia/amnesia_dg_logo_uvqb6x.png',
+  MINT_ICON_HEAD:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatHat_pypkjx.svg',
+  MINT_ICON_FEET:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatShoes_hjvr3p.svg',
+  MINT_ICON_LEGS:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatLegs_tn9b57.svg',
+  MINT_ICON_TORSO:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631728323/FlatClothes-01_1_kbpyfj.svg',
+  MINT_ICON_ACCESSORY:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatAccessory_s1cjpg.svg',
 };
 
 export default Images;

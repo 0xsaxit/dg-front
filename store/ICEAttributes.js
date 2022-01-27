@@ -14,6 +14,7 @@ import ABI_COLLECTION_CRYPTO_DRIP from '../components/ABI/ABICollectionCryptoDri
 import ABI_COLLECTION_FOUNDER_FATHER from '../components/ABI/ABICollectionFounderFather.json';
 import ABI_COLLECTION_JOKER from '../components/ABI/ABICollectionJoker.json';
 import ABI_COLLECTION_CHEF from '../components/ABI/ABICollectionChef.json';
+import ABI_COLLECTION_BEACH from '../components/ABI/ABICollectionBeach.json';
 import ABI_ICEToken from '../components/ABI/ABIICEToken';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
@@ -95,6 +96,10 @@ function ICEAttributes() {
           ABI_COLLECTION_CHEF,
           Global.ADDRESSES.COLLECTION_CHEF_ADDRESS
         );
+        const collectionV2Contract9 = new maticWeb3.eth.Contract(
+          ABI_COLLECTION_BEACH,
+          Global.ADDRESSES.COLLECTION_BEACH_ADDRESS
+        );
 
         const collectionArray = [];
         collectionArray.push([
@@ -137,6 +142,11 @@ function ICEAttributes() {
           Global.ADDRESSES.COLLECTION_CHEF_ADDRESS,
           [0, 5, 10, 15, 20],
         ]);
+        collectionArray.push([
+          collectionV2Contract9,
+          Global.ADDRESSES.COLLECTION_BEACH_ADDRESS,
+          [0, 5, 10, 15, 20],
+        ]);
         setCollectionArray(collectionArray);
 
         const IceTokenContract = new maticWeb3.eth.Contract(
@@ -152,6 +162,16 @@ function ICEAttributes() {
     }
   }, [state.userStatus]);
 
+  useEffect(async () => {
+    if (instances) {
+      const paymentTokenAddress = await ICERegistrantContract.methods.paymentToken().call();
+      dispatch({
+        type: 'current_mint_token',
+        data: paymentTokenAddress.toLowerCase() === '0x7ceb23fd6bc0add59e62ac25578270cff1b9f619' ? 'ETH' : 'ICE'
+      })
+    }
+  }, [instances])
+
   // anytime user mints/updates/activates an NFT this code will execute
   useEffect(() => {
     if (instances) {
@@ -162,12 +182,12 @@ function ICEAttributes() {
             data: true,
           });
         }
-        
+
         let iceWearableItems = await Fetch.GET_WEARABLE_INVENTORY(state.userAddress);
-        iceWearableItems.sort((a, b) => {return a.tokenId - b.tokenId})
-        
+        iceWearableItems.sort((a, b) => { return a.tokenId - b.tokenId })
+
         for (var i = 0; i < iceWearableItems.length; i++) {
-          
+
           const collectionContract = collectionArray.find(
             collection => collection[1].toLowerCase() === iceWearableItems[i].contractAddress.toLowerCase()
           )
@@ -289,6 +309,12 @@ function ICEAttributes() {
           data: itemLimits8,
         });
 
+        const itemLimits9 = await getItemLimits(8);
+        dispatch({
+          type: 'item_limits_9',
+          data: itemLimits9,
+        });
+
         // get the user's cool-down status
         console.log(' ==== <Before getCoolDownStatus> ====');
         const canPurchase = await getCoolDownStatus();
@@ -345,7 +371,7 @@ function ICEAttributes() {
 
         console.log(
           'Get token authorization: DG_Light: ' +
-            tokenAuths.DG_LIGHT_AUTHORIZATION
+          tokenAuths.DG_LIGHT_AUTHORIZATION
         );
         console.log(
           'Get token authorization: ICE: ' + tokenAuths.ICE_AUTHORIZATION
@@ -436,21 +462,21 @@ function ICEAttributes() {
       );
       console.log(
         'Token ID: ' +
-          tokenIdArray[2] +
-          ', quantity: ' +
-          parseInt(ITEM_LIMIT_10)
+        tokenIdArray[2] +
+        ', quantity: ' +
+        parseInt(ITEM_LIMIT_10)
       );
       console.log(
         'Token ID: ' +
-          tokenIdArray[3] +
-          ', quantity: ' +
-          parseInt(ITEM_LIMIT_15)
+        tokenIdArray[3] +
+        ', quantity: ' +
+        parseInt(ITEM_LIMIT_15)
       );
       console.log(
         'Token ID: ' +
-          tokenIdArray[4] +
-          ', quantity: ' +
-          parseInt(ITEM_LIMIT_20)
+        tokenIdArray[4] +
+        ', quantity: ' +
+        parseInt(ITEM_LIMIT_20)
       );
 
       itemsArray.push(

@@ -11,6 +11,7 @@ import ABI_COLLECTION_BOMBER from '../../../components/ABI/ABICollectionBomber';
 import ABI_COLLECTION_CRYPTO_DRIP from '../../../components/ABI/ABICollectionCryptoDrip';
 import ABI_COLLECTION_JOKER from '../../../components/ABI/ABICollectionJoker';
 import ABI_COLLECTION_CHEF from '../../../components/ABI/ABICollectionChef';
+import ABI_COLLECTION_BEACH from '../../../components/ABI/ABICollectionBeach'
 import ABI_COLLECTION_FOUNDING_FATHERS from '../../../components/ABI/ABICollectionFounderFather';
 import MetaTx from '../../../common/MetaTx';
 import Fetch from '../../../common/Fetch';
@@ -136,6 +137,12 @@ const ModalUpgradePending = props => {
           Global.ADDRESSES.COLLECTION_CHEF_ADDRESS
         );
         collectionID = 19;
+      } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_BEACH_ADDRESS) {
+        collectionContract = new getWeb3.eth.Contract(
+          ABI_COLLECTION_BEACH,
+          Global.ADDRESSES.COLLECTION_BEACH_ADDRESS
+        );
+        collectionID = 20;
       }
 
       setCollectionContract(collectionContract);
@@ -247,7 +254,7 @@ const ModalUpgradePending = props => {
       type: 'refresh_wearable_items',
       data: refreshWearable,
     });
-    
+
     // dispatch({
     //   type: 'ice_wearable_items_loading',
     //   data: true,

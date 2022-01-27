@@ -243,21 +243,17 @@ const ModalEthAuth = props => {
         setClickedConfirm(false);
         setErrorText(null);
         props.close();
-      } else if (!json.status) {
-        setErrorText('Token Minting Error');
-        // setButtonMessage('Token Minting Error');
+      } else {
+        let errorMsg = json.result;
+        if( errorMsg.includes('Transaction has been reverted by the EVM') ){
+          errorMsg = "Sold Out"
+        }
+        setErrorText(errorMsg);
         setLoading(false);
         setClickedConfirm(false);
 
         console.log('NFT minting error (a): ' + json.result);
-      } else if (json.status === 'error') {
-        setErrorText(json.result);
-        // setButtonMessage(json.result);
-        setLoading(false);
-        setClickedConfirm(false);
-
-        console.log('NFT minting error (b): ' + json.result);
-      }
+      } 
     } else {
       setErrorText('Token Minting Error');
       // setButtonMessage('Token Minting Error');

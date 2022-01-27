@@ -108,7 +108,7 @@ const ModalSuccessDelegation = props => {
               href={`https://polygonscan.com/address/${props.address}`}
               target="_blank"
             >
-              {props.address}
+              {props.address.slice(0, 4)}...{props.address.substr(-4, 4)}
             </a>
             .<br />
             Profits can be claimed from your{' '}

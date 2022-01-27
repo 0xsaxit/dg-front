@@ -5,7 +5,7 @@ import { Button } from 'semantic-ui-react';
 import styles from './Balances.module.scss';
 import Fetch from '../../../../../../common/Fetch';
 import Aux from '../../../../../_Aux';
-import SpinnerAnimation from 'components/lottieAnimation/animations/spinner';
+import LoadingAnimation from 'components/lottieAnimation/animations/LoadingAnimation';
 
 const Balances = () => {
   // dispatch user's ICE amounts to the Context API store
@@ -130,7 +130,7 @@ const Balances = () => {
         {type === 'DG' ? (
           <Button
             className={styles.newLink}
-            href="https://quickswap.exchange/#/swap?outputCurrency=0x2a93172c8dccbfbc60a39d56183b7279a2f647b4"
+            href="https://app.uniswap.org/#/swap?outputCurrency=0x4b520c812e8430659fc9f12f6d0c39026c83588d"
             target="_blank"
           >
             Buy {arrow()}
@@ -192,7 +192,7 @@ const Balances = () => {
           </Button>
         ) : (
           <Button className={styles.claim_button} disabled>
-            <SpinnerAnimation />
+            <LoadingAnimation />
           </Button>
         )}
       </div>
