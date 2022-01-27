@@ -8,6 +8,7 @@ import Aux from '../../_Aux';
 import { Biconomy } from '@biconomy/mexa';
 import Web3 from 'web3';
 import ABI_CHILD_TOKEN_WETH from '../../ABI/ABIChildTokenWETH';
+import ABI_CHILD_TOKEN_ICE from '../../ABI/ABIChildTokenICE';
 import ABI_ICE_REGISTRANT from '../../../components/ABI/ABIICERegistrant.json';
 import MetaTx from '../../../common/MetaTx';
 import { Loader } from 'semantic-ui-react';
@@ -22,7 +23,9 @@ const CheckMintableModal = props => {
   // define local variables
   const [open, setOpen] = useState(false);
   
-  const [tokenContract, setTokenContract] = useState({});
+  const [tokenContractETH, setTokenContractETH] = useState({});
+  const [tokenContractICE, setTokenContractICE] = useState({});
+
   const [spenderAddress, setSpenderAddress] = useState('');
   const [authStatus, setAuthStatus] = useState(false);
   const [clickedAuthEth, setClickedAuthEth] = useState(false);
@@ -53,11 +56,17 @@ const CheckMintableModal = props => {
       const spenderAddress = Global.ADDRESSES.ICE_REGISTRANT_ADDRESS;
       setSpenderAddress(spenderAddress);
 
-      const tokenContract = new getWeb3.eth.Contract(
+      const tokenContractETH = new getWeb3.eth.Contract(
         ABI_CHILD_TOKEN_WETH,
         Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH
       );
-      setTokenContract(tokenContract);
+      setTokenContractETH(tokenContractETH);
+
+      const tokenContractICE = new getWeb3.eth.Contract(
+        ABI_CHILD_TOKEN_ICE,
+        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ICE
+      );
+      setTokenContractICE(tokenContractICE);
 
       const iceRegistrantContract = new getWeb3.eth.Contract(
         ABI_ICE_REGISTRANT,
@@ -98,9 +107,9 @@ const CheckMintableModal = props => {
 
   // get WETH authorization status based on tokenAuths state object
   useEffect(() => {
-    const authStatus = state.tokenAuths.WETH_AUTHORIZATION;
-    console.log("authStatus 2 checking ... ", authStatus);
+    const authStatus = state.mintToken === 'ETH'? state.tokenAuths.WETH_AUTHORIZATION : state.tokenAuths.ICE_AUTHORIZATION;
 
+    console.log("authStatus 2 checking ... ", authStatus);
     setAuthStatus(authStatus);
   }, [state.tokenAuths]); 
 
@@ -184,7 +193,7 @@ const CheckMintableModal = props => {
   }
 
   function checkBalance() {
-    if(checkEnoughETHorICE() && (
+    if(authStatus && checkEnoughETHorICE() && (
       state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD >=Global.CONSTANTS.DG_STAKED_AMOUNT ||
       xDG >=Global.CONSTANTS.XDG_STAKED_AMOUNT)) {
         return true;
@@ -347,12 +356,12 @@ const CheckMintableModal = props => {
               disabled = {loading}
               className = {styles.primary}
               onClick = {() => {
-                metaTransaction();                
+                metaTransaction(state.mintToken);                
               }}
             >
               <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png" />
               {loading? (<Loader />) : (
-                'Authorize ETH'
+                'Authorize' + state.mintToken
               )}
             </Button>
           </div>)}
@@ -360,21 +369,37 @@ const CheckMintableModal = props => {
     );
   }
 
-    // Biconomy API meta-transaction. User must authorize WETH token contract to access their funds
-    async function metaTransaction() {
+    // Biconomy API meta-transaction. User must authorize WETH or ICE token contract to access their funds
+    async function metaTransaction(token) {
       try {
-        console.log('WETH authorization amount: ' + Global.CONSTANTS.MAX_AMOUNT);
+
+        let tokenContract = {};
+        let MetaTxNumber = 0;
+
+        console.log('Meta-transaction: ' + token);
+
+        if (token === 'ICE') {
+          tokenContract = tokenContractICE;
+          MetaTxNumber = 8;
+        } else if (token === 'DGLight') {
+          tokenContract = tokenContractETH;
+          MetaTxNumber = 15;
+        }
+
+
+        console.log(state.mintToken + ' authorization amount: ' + Global.CONSTANTS.MAX_AMOUNT);
         setClickedAuthEth(true);
         setLoading(true);
         setErrorText(null);
   
         // get function signature and send Biconomy API meta-transaction
+
         let functionSignature = tokenContract.methods
           .approve(spenderAddress, Global.CONSTANTS.MAX_AMOUNT)
           .encodeABI();
-  
+
         const txHash = await MetaTx.executeMetaTransaction(
-          6,
+          MetaTxNumber,
           functionSignature,
           tokenContract,
           state.userAddress,
@@ -405,8 +430,8 @@ const CheckMintableModal = props => {
           });
         }
       } catch (error) {
-        console.log('WETH authorization error: ' + error);
-        setErrorText('ETH Authorization failed, please try again');
+        console.log(state.mintToken + ' authorization error: ' + error);
+        setErrorText(state.mintToken + ' Authorization failed, please try again');
   
         setClickedAuthEth(false);
         setLoading(false);
