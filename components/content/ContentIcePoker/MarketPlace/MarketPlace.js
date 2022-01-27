@@ -597,7 +597,7 @@ const MarketPlace = () => {
               <h3>
                 {wearable.title}
 
-                {wearable.title === 'ICE Chef' && (
+                {index === 0 && (
                   <CheckMintableModal />
                 )}
               </h3>
