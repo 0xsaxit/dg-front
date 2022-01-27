@@ -87,8 +87,6 @@ const TreasuryTooltipLP = props => {
             />
             <div>
               <p style={{ marginBottom: '4px' }}>USDC-ICE LP: ${iceTreasury}</p>
-              <p style={{ marginBottom: '4px' }}>MVI-ETH LP: ${mviTreasury}</p>
-              <p style={{ marginBottom: '4px' }}>$INDEX Tokens: ${uniTreasury}</p>
               <p style={{ marginBottom: '4px' }}>DG-MATIC LP: ${dgMaticLp}</p>
               <p style={{ marginBottom: '4px' }}>DG-xDG LP: ${dgxDgLp}</p>
               <p style={{ marginTop: '0px' }}>DG-ETH LP: ${dgETHLp}</p>

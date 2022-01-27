@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../../store';
-import GetRank from '../../../common/GetIceWearableRank'
+import GetRank from '../../../common/GetIceWearableRank';
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './ModalUpgradeSuccess.module.scss';
 import cn from 'classnames';
-import UpgradeWearableBox from "components/lottieAnimation/animations/upgradeWearableBox"
-import Confetti from "components/lottieAnimation/animations/confetti"
+import UpgradeWearableBox from 'components/lottieAnimation/animations/upgradeWearableBox';
+import Confetti from 'components/lottieAnimation/animations/confetti';
+import ModalDelegate from '../ModalDelegate';
 
 const ModalUpgradeSuccess = props => {
   // fetch user's Polygon DG balance from the Context API store
@@ -47,19 +48,19 @@ const ModalUpgradeSuccess = props => {
        data: true,
      });
 
-     // update global state balances
-     const refreshBalances = !state.refreshBalances;
-     dispatch({
-       type: 'refresh_balances',
-       data: refreshBalances,
-     });
+    // update global state balances
+    const refreshBalances = !state.refreshBalances;
+    dispatch({
+      type: 'refresh_balances',
+      data: refreshBalances,
+    });
   }
-    
+
   return (
     <Modal
       className={styles.success_modal}
       onClose={() => {
-        console.log('closing')
+        console.log('closing');
         setOpen(false);
         props.setUpgrade(0);
         refresh();
@@ -69,10 +70,8 @@ const ModalUpgradeSuccess = props => {
       close
       trigger={<Button className={styles.open_button}>Upgrade</Button>}
     >
-      <div
-        className={styles.header_buttons}    
-      >
-        <span 
+      <div className={styles.header_buttons}>
+        <span
           className={styles.button_close}
           onClick={() => {
             setOpen(false);
@@ -126,7 +125,6 @@ const ModalUpgradeSuccess = props => {
           Help
         </span>
       </div>
-      
 
       {(animationStage===1) ?
         <UpgradeWearableBox height={540} onCompletion={()=>{setAnimationStage(2)}}/>
@@ -134,7 +132,7 @@ const ModalUpgradeSuccess = props => {
         <div className={cn(styles.fadeIn, styles.success_container)}>
           <Confetti onCompletion={()=>{setAnimationStage(3)}}/>
           <div className={styles.title}>Upgrade Successful!</div>
-          
+
           <div className={styles.card}>
             <div className={styles.toppercent}>
               {bonus}
@@ -144,10 +142,7 @@ const ModalUpgradeSuccess = props => {
               />
             </div>
             <div className={styles.image}>
-              <img
-                src={image}
-                className={styles.logo}
-              />
+              <img src={image} className={styles.logo} />
             </div>
             <div className={styles.properties}>
               <div className={styles.round}>Rank {rank}</div>
@@ -162,13 +157,26 @@ const ModalUpgradeSuccess = props => {
             </div>
           </div>
           <div className={styles.buttons}>
-            <Button 
-              href="https://api.decentral.games/ice/play?position=-110%2C129"
-              target="_blank"
-              className={styles.primary}
-            >
-              Play Now
-            </Button>
+            {props.delegateAddress ? (
+              <Button
+                className={styles.primary}
+                onClick={() => {
+                  props.setUpgrade(4);
+                  setOpen(false);
+                  // refresh();
+                }}
+              >
+                Redelegate Wearable
+              </Button>
+            ) : (
+              <Button
+                href="https://api.decentral.games/ice/play?position=-110%2C129"
+                target="_blank"
+                className={styles.primary}
+              >
+                Play Now
+              </Button>
+            )}
             <Button
               className={styles.none}
               onClick={() => {

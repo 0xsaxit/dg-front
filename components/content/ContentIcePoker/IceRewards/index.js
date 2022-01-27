@@ -10,7 +10,7 @@ import Fetch from '../../../../common/Fetch';
 import FoxAnimation from 'components/lottieAnimation/animations/fox';
 import EmptyResultAnimation from 'components/lottieAnimation/animations/emptyResult';
 import ModalIceBreakdown from 'components/modal/ModalIceBreakDown';
-import SpinnerAnimation from 'components/lottieAnimation/animations/spinner';
+import LoadingAnimation from 'components/lottieAnimation/animations/LoadingAnimation';
 import HourglassAnimation from 'components/lottieAnimation/animations/hourglass'
 
 const IceRewards = () => {
@@ -273,7 +273,7 @@ const IceRewards = () => {
                   {!clicked ? (
                     <>Claim {formatPrice(totalICE, 0)} ICE</>
                   ) : (
-                    <SpinnerAnimation />
+                    <LoadingAnimation />
                   )}
                 </Button>
               </div>

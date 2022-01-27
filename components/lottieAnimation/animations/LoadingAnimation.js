@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Lottie from 'react-lottie'
 import loadingData from '../json/spinner.json'
 
-class UpdatedSpinnerAnimation extends Component {
+class LoadingAnimation extends Component {
     render() {
         const loadingOptions = {
             loop: true,
@@ -12,14 +12,13 @@ class UpdatedSpinnerAnimation extends Component {
                 preserveAspectRatio: 'xMidYMid slice'
             }
         };
-        // console.log(this.props.height);
 
         return (
-            <div className="spinner-animation-div" style={{ marginRight: '0px' }}>
-                <Lottie options={loadingOptions} height={this.props.height} width={this.props.width} />
+            <div>
+                <Lottie options={loadingOptions} height={30} width={30} />
             </div>
         )
     }
 }
 
-export default UpdatedSpinnerAnimation;
+export default LoadingAnimation;

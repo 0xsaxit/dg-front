@@ -36,9 +36,7 @@ const Footer = () => {
     <>
       <div className={styles.footer_container}>
         <div className={cn(styles.grid_container, 'd-flex flex-column')}>
-          {!onlyTablet && !mobile && (
-            <div style={{ marginTop: '100px' }} />
-          )}
+          <div className={styles.cryptoWidgetSection} />
 
           <div
             className={cn(
@@ -53,6 +51,12 @@ const Footer = () => {
               </p>
               <Link href="/dg">
                 <p className={styles.footer_link}>
+                  {/* {t('Footer.DAOHOME')}  */}
+                  DAO Home
+                </p>
+              </Link>
+              <Link href="/dg/treasury">
+                <p className={styles.footer_link}>
                   {/* {t('Footer.TREASURY')}  */}
                   Treasury
                 </p>
@@ -63,59 +67,41 @@ const Footer = () => {
                   Governance
                 </p>
               </Link>
-              <Link href="https://snapshot.org/#/decentralgames.eth">
+            </span>
+
+            <span className={styles.grid_column}>
+              <p className={styles.footer_header}>
+                {/* {t('Footer.ICE_POKER')}  */}
+                Ice Poker
+              </p>
+              <Link href="/ice">
                 <p className={styles.footer_link}>
-                  {/* {t('Footer.GAMEPLAY')}  */}
-                  Proposals
+                  {/* {t('Footer.PLAY')}  */}
+                  Play
                 </p>
               </Link>
-              <Link href="/dg/migration">
+              <Link href="/ice/start">
                 <p className={styles.footer_link}>
-                  {/* {t('Footer.LIQUDITY')}  */}
-                  Migration
+                  Get Started
+                </p>
+              </Link>
+              <Link href="/ice/marketplace">
+                <p className={styles.footer_link}>
+                  {/* {t('Footer.MARKETPLACE')}  */}
+                  Marketplace
                 </p>
               </Link>
             </span>
 
             <span className={styles.grid_column}>
               <p className={styles.footer_header}>
-                {/* {t('Footer.PLAY')}  */}
-                Play
+                {/* {t('Footer.EVENTS')}  */}
+                Events
               </p>
-              <Link href="/games">
+              <Link href="/events">
                 <p className={styles.footer_link}>
-                  {/* {t('Footer.GAMES')}  */}
-                  Games
-                </p>
-              </Link>
-              <Link href="/games/scenes">
-                <p className={styles.footer_link}>
-                  Casinos
-                </p>
-              </Link>
-              <Link href="/games/leaderboard">
-                <p className={styles.footer_link}>
-                  {/* {t('Footer.LEADERBOARD')}  */}
-                  Leaderboard
-                </p>
-              </Link>
-            </span>
-
-            <span className={styles.grid_column}>
-              <p className={styles.footer_header}>
-                {/* {t('Footer.SHOP')}  */}
-                Shop
-              </p>
-              <Link href="/games/nfts">
-                <p className={styles.footer_link}>
-                  {/* {t('Footer.NFTS')}  */}
-                  NFTs
-                </p>
-              </Link>
-              <Link href="/games/shop">
-                <p className={styles.footer_link}>
-                  {/* {t('Footer.DCL_SHOPS')}  */}
-                  DCL Shops
+                  {/* {t('Footer.ALL_EVENTS')}  */}
+                  All Events
                 </p>
               </Link>
             </span>
@@ -141,15 +127,21 @@ const Footer = () => {
 
             <span className={styles.grid_column}>
               <p className={styles.footer_header}>
-                {/* {t('Footer.EVENTS')}  */}
-                Events
+                {/* {t('Footer.COMMUNITY')}  */}
+                Community
               </p>
-              <Link href="/events">
+              <a href="https://discord.com/invite/cvbSNzY" target="_blank">
                 <p className={styles.footer_link}>
-                  {/* {t('Footer.ALL_EVENTS')}  */}
-                  All Events
+                  {/* {t('Footer.DISCORD')}  */}
+                  Discord
                 </p>
-              </Link>
+              </a>
+              <a href="https://t.me/decentralgames" target="_blank">
+                <p className={styles.footer_link}>
+                  {/* {t('Footer.TELEGRAM')}  */}
+                  Telegram
+                </p>
+              </a>
             </span>
 
             <div className={styles.grid_newsletter}>

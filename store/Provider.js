@@ -156,6 +156,20 @@ const initialState = {
     [-1, 15],
     [-1, 20],
   ],
+  itemLimits8: [
+    [-1, 0],
+    [-1, 5],
+    [-1, 10],
+    [-1, 15],
+    [-1, 20],
+  ],
+  itemLimits9: [
+    [-1, 0],
+    [-1, 5],
+    [-1, 10],
+    [-1, 15],
+    [-1, 20],
+  ],
   iceWearableInventoryItems: [],
   iceWearableInventoryItemsLoading: false,
   iceWearableInventoryItemsSuccess: false,
@@ -225,6 +239,7 @@ const initialState = {
   userVerified: true,
   isAmnesiaPage: false,
   delegatorSplits: [],
+  mintToken: 'ETH',
 };
 
 const reducer = (state, action) => {
@@ -400,6 +415,16 @@ const reducer = (state, action) => {
         ...state,
         itemLimits7: action.data,
       };
+    case 'item_limits_8':
+      return {
+        ...state,
+        itemLimits8: action.data,
+      };
+    case 'item_limits_9':
+      return {
+        ...state,
+        itemLimits9: action.data,
+      };
     case 'ice_wearable_items':
       return {
         ...state,
@@ -439,6 +464,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         canPurchase: action.data,
+      };
+
+    case 'current_mint_token':
+      return {
+        ...state,
+        mintToken: action.data,
       };
 
     case 'token_amounts':
@@ -676,6 +707,8 @@ const reducer = (state, action) => {
         ...state,
         isAmnesiaPage: action.data,
       };
+    case 'set_initialState':
+      return initialState;
     default:
       throw new Error('Wrong action type got dispatched');
   }

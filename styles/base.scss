@@ -1,4 +1,4 @@
-@import '~sass-mq/mq';
+@import "~sass-mq/mq";
 
 $spacer: 1rem;
 $color-blue: #006eff;
@@ -779,6 +779,19 @@ img.avatar-picture-binance {
     font-size: 24px !important;
     font-weight: 700;
     padding-top: 19px;
+  }
+}
+
+.crypto-widget {
+  position: relative;
+  max-width: 1400px;
+  margin: auto;
+  margin-top: -600px;
+  padding: 100px 56px 0px 72px;
+  z-index: 10;
+
+  @media screen and (max-width: 1200px) {
+    display: none !important;
   }
 }
 
