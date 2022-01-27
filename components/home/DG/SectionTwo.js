@@ -226,12 +226,12 @@ function SectionTwo() {
           >
             <h1 className={styles.section_h1}>
               {/* {t('Home.EARNAPY')} */}
-              Or lend out your NFTs for passive income.
+              Lend out your NFTs for passive earning.
               {mobile ? null : ' All while your assets stay in your wallet.'}
             </h1>
             <p className={styles.section_p}>
               {/* {t('Home.STAKE_DG_GOVERNANCE')} */}
-              As an ICE Wearable owner, you can build your own team of poker players. Measure performance and manage your very own revenue generating guild—all while everything remains in your wallet.
+              As an ICE Wearable owner, you can build your own team of poker players. Measure performance and manage your very own ICE generating guild—all while everything remains in your wallet.
             </p>
 
             <span className={styles.button_span}>
