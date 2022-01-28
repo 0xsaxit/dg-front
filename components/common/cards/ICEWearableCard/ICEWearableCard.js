@@ -22,7 +22,7 @@ const ICEWearableCard = props => {
   const [undelegateLoading, setUndelegateLoading] = useState(0);
   const buttonDelegate = 'Delegate';
   const buttonUndelegate = 'Undelegate';
-  const { name, description, rank, image, tokenId, checkInStatus, contractAddress, isActivated, itemId } = props.item;
+  const { name, description, rank, image, imageUpgrade, tokenId, checkInStatus, contractAddress, isActivated, itemId } = props.item;
   const bonus = "+" + props.item.bonus + "%";
   const delegateAddress = props.item.delegationStatus.delegatedTo || '';
   const delegationStatus = props.item.delegationStatus.isQueuedForUndelegationByDelegatee ||
@@ -133,6 +133,7 @@ const ICEWearableCard = props => {
                     contractAddress={contractAddress}
                     itemId={itemId}
                     imgSrc={image}
+                    imgUpgradeSrc={imageUpgrade}
                     rank={rank}
                     bonus={bonus}
                     description={description}

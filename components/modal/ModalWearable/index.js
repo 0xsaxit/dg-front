@@ -167,7 +167,7 @@ const ModalWearable = props => {
             <div className={styles.wear_box_pink}>
               <img
                 src={
-                  Global.IMG_URLS_UPGRADE[wearableName][nextIceWearableRank]
+                  props.imgUpgradeSrc
                 }
               />
             </div>
@@ -432,7 +432,7 @@ const ModalWearable = props => {
         <ModalUpgradeSuccess
           tokenId={props.tokenId}
           setUpgrade={setUpgrade}
-          imgURL = {Global.IMG_URLS_UPGRADE.[wearableName].[nextIceWearableRank]}
+          imgURL = {props.imgUpgradeSrc}
           delegateAddress={props.delegateAddress}
         />
       )}
