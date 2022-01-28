@@ -301,8 +301,7 @@ const Overview = props => {
             Stake $DG to earn <br /> and ‘Be The House’
           </p>
           <p className={styles.blue_lower}>
-            By staking $DG, you can govern the treasury, add proposals, and earn
-            yield.
+            By staking $DG, you can govern the <br/> treasury, add proposals, and earn yield.
           </p>
           <Button
             className={styles.blue_button}
@@ -315,7 +314,7 @@ const Overview = props => {
         </div>
         <img
           className={styles.blue_img}
-          src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1627992941/Bitcoin_Dashboard_mhyajb.png"
+          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1643226580/Bitcoin_Dashboard_sqe5wt.png"
         />
         <div className={styles.close_button} onClick={() => setVisible(false)}>
           <svg
@@ -668,7 +667,10 @@ const Overview = props => {
                 <Button
                   className={styles.button_gov}
                   onClick={() => {
-                    router.push('/discord');
+                    window.open(
+                      'https://decentral.games/discord',
+                      '_blank'
+                    );
                   }}
                 >
                   Discussion

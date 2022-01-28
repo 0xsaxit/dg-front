@@ -146,8 +146,8 @@
     .divider {
       position: absolute;
       left: 50%;
-      top: 48px;
-      height: calc(100% - 100px);
+      top: 60px;
+      height: calc(100% - 136px);
       border-left: 1px solid $border-color;
 
       @include mq($until: medium) {
@@ -180,8 +180,8 @@
         .polygon_ellipse {
           width: 51px;
           height: 51px;
-          margin-top: 5px;
-          margin-bottom: 13px;
+          margin-top: 1px;
+          margin-bottom: 15px;
           border-radius: 50%;
         }
 
@@ -195,7 +195,7 @@
           height: 60px;
           border: 1px solid #2a2a2a;
           border-radius: 16px;
-          margin-bottom: 8px;
+          margin-bottom: 10px;
 
           img {
             width: 25px;
@@ -263,7 +263,7 @@
 
         .description {
           h4 {
-            font-family: 'Larsseit-Regular';
+            font-family: 'Larsseit-Bold';
             font-size: 11px;
             line-height: 14px;
             letter-spacing: 0.5px;
@@ -326,8 +326,8 @@
           margin-right: 0px;
           background: #1f1f1f;
           border-radius: 8px;
-          font-family: 'Larsseit-Light';
-          letter-spacing: 0.8px;
+          font-family: 'Larsseit-Bold';
+          letter-spacing: 0.5px;
           color: #ffffff;
           transition: 0.2s ease-in;
           margin-bottom: 8px;
