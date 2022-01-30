@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../../store';
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './CheckMintableModal.module.scss';
-import ModalActivationSuccess from '../ModalActivationSuccess';
 import Global from '../../Constants';
 import Aux from '../../_Aux';
 import { Biconomy } from '@biconomy/mexa';
