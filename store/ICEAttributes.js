@@ -222,27 +222,14 @@ function ICEAttributes() {
         });
         let iceDelegatedItems = [];
 
-        const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
         const wearableInventory = await Fetch.GET_WEARABLE_INVENTORY(
           state.userAddress
         );
-
-        if (
-          delegationInfo !== undefined &&
-          Object.keys(delegationInfo).length
-        ) {
-          delegationInfo.incomingDelegations.forEach((item, i) => {
-            try {
-              const matching_wearable = wearableInventory.find(
-                wearable => wearable.tokenId === item.tokenId
-              )
-
-              iceDelegatedItems.push(matching_wearable);
-            } catch (error) {
-              console.log('Fetch delegation info error: ' + error);
-            }
-          });
-        }
+    
+        wearableInventory.forEach((wearable, i) => {
+          if(wearable.delegationStatus.delegatedTo === state.userAddress)
+            iceDelegatedItems.push(wearable);
+        });
 
         dispatch({
           type: 'ice_delegated_items',

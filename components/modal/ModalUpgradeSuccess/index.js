@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../../store';
-import GetRank from '../../../common/GetIceWearableRank';
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './ModalUpgradeSuccess.module.scss';
 import cn from 'classnames';
 import UpgradeWearableBox from 'components/lottieAnimation/animations/upgradeWearableBox';
 import Confetti from 'components/lottieAnimation/animations/confetti';
-import ModalDelegate from '../ModalDelegate';
 
 const ModalUpgradeSuccess = props => {
   // fetch user's Polygon DG balance from the Context API store

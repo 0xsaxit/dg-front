@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './ModalActivationSuccess.module.scss';
 import { GlobalContext } from '../../../store';
-import GetRank from '../../../common/GetIceWearableRank'
+import Spinner from 'components/lottieAnimation/animations/spinner_updated';
 
 const ModalActivationSuccess = props => {
 
@@ -12,7 +12,6 @@ const ModalActivationSuccess = props => {
   const [description, setDescription] = useState("x of 100");
   const [rank, setRank] = useState("")
   const [bonus, setBonus] = useState("")
-
 
   useEffect(() => {
     const itemInfo = state.iceWearableItems.filter(item => item.tokenId === props.tokenId)[0];
@@ -117,11 +116,17 @@ const ModalActivationSuccess = props => {
 
           <div className={styles.card}>
             <div className={styles.toppercent}>
-              {bonus}
-              <img
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
-                style={{ width: '20px' }}
-              />
+              {bonus !== '+0%' ?
+                <>
+                  {bonus}
+                  <img
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
+                    style={{ width: '20px' }}
+                  />
+                </>
+                :
+                <Spinner width={30} height={30} />
+              }
             </div>
             <div className={styles.image}>
               <img src={image} className={styles.logo} />
@@ -129,11 +134,17 @@ const ModalActivationSuccess = props => {
             <div className={styles.properties}>
               <div className={styles.round}>Rank {rank}</div>
               <div className={styles.round}>
-                {bonus}
-                <img
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1630486742/image_2_pm0jck.png"
-                  style={{ width: '20px' }}
-                />
+                {bonus !== '+0%' ?
+                  <>
+                    {bonus}
+                    <img
+                      src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
+                      style={{ width: '14px', marginLeft: '3px' }}
+                    />
+                  </>
+                  :
+                  <Spinner width={20} height={20} />
+                }
               </div>
               <div className={styles.round}>
                 {description}
@@ -143,7 +154,7 @@ const ModalActivationSuccess = props => {
 
           <div className={styles.buttons}>
             <Button className={styles.primary}>Play Now</Button>
-            <Button 
+            <Button
               className={styles.none}
               onClick={() => {
                 close();
