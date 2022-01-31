@@ -30,7 +30,10 @@ function AppConfig() {
       }
     }
 
-    fetchData();
+    if(state.userLoggedIn) {
+      fetchData();
+    }
+    
   }, [state.userLoggedIn]);
 
   async function getAppConfig() {
