@@ -432,7 +432,7 @@ const ModalWearable = props => {
         <ModalUpgradeSuccess
           tokenId={props.tokenId}
           setUpgrade={setUpgrade}
-          imgURL = {props.imgUpgradeSrc}
+          imgURL = {props.imgSrc} //the wearable will already be upgraded in state.iceWearableItems already
           delegateAddress={props.delegateAddress}
         />
       )}
