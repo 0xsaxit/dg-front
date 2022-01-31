@@ -172,7 +172,7 @@ const ModalIceAuth = props => {
       const json = await Fetch.MINT_TOKEN(props.itemId, props.contractAddress);
       console.log('pooling json: ', json);
 
-      if (json.status) {
+      if (typeof json.status !== "undefined") {
         setMintStatus(json);
       }
     } catch (error) {
