@@ -73,6 +73,9 @@ const ModalPopup = () => {
     dispatch({
       type: 'set_initialState',
     });
+
+    //clear localstorage
+    localStorage.clear();
   };
 
   /////////////////////////////////////////////////////////////////////////////////////////
