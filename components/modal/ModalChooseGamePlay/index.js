@@ -42,7 +42,7 @@ const ModalChooseGamePlay = ({
                             src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637263761/GamePlayDext_grjsqp.png"
                             alt=""
                             onClick={() => {
-                                window.open("https://api.decentral.games/ice/play?position=-110%2C129", "_blank");
+                                window.open("https://api.decentral.games/ice/play", "_blank");
                             }}
                         />
                         <h1>Play to Earn<br />ICE Poker</h1>
