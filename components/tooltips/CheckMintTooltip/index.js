@@ -21,10 +21,11 @@ const CheckMintTooltip = (props) => {
             </svg>
           </div>
         }
-        // on='click'
-        position="top center"        
+        
+        position="top center"
         hideOnScroll={true}
         className={styles.popup}
+        hoverable
       >
         <Popup.Content className="checkMintTooltip">
           <div className="tooltip_body">
@@ -38,14 +39,14 @@ const CheckMintTooltip = (props) => {
                   You must have your ETH on Polygon 
                   to mint this wearable. You can 
                   bridge your ETH from Mainnet to 
-                  Polygon <a>here</a>.
+                  Polygon <a href="https://wallet.polygon.technology/bridge/" target="_blank">here</a>.
                 </p>
               ) : (
                 <p>
                   You must have at least 1000 xDG or 
                   one (Old) DG staked in governance 
                   to mint a new ICE wearable. You 
-                  <a> can buy DG here</a> and <a>you can stake 
+                  <a href="https://app.uniswap.org/#/swap?outputCurrency=0x4b520c812e8430659fc9f12f6d0c39026c83588d" target="_blank"> can buy DG here</a> and <a href="https://decentral.games/dg/governance" target="_blank">you can stake 
                   DG here</a>.
                 </p>
               )}
