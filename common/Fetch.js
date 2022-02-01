@@ -136,6 +136,10 @@ const Fetch = {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // POST API calls (no wallet address necessary)
+  VERIFY_TOKEN: async () => {
+    return await call(`${API_BASE_URL}/authentication/verifyToken`, 'POST', true);
+  },
+
   USER_STATUS: () => {
     return call(`${API_BASE_URL}/order/webLogin`, 'POST', true);
   },
@@ -294,14 +298,6 @@ const Fetch = {
   LAND_PRICE: () => {
     return call(
       `https://nonfungible.com/api/v4/market/summary/decentraland?daily=true&filter=[{"id":"nftTicker","value":"LAND"},{"id":"saleType","value":""}]`,
-      'GET',
-      false
-    );
-  },
-
-  DG_GOVERNANCE_SUPPLY_GECKO: () => {
-    return call(
-      `https://api.coingecko.com/api/v3/coins/decentral-games-governance`,
       'GET',
       false
     );
