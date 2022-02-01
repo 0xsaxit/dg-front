@@ -73,8 +73,6 @@ const ButtonConnect = (props) => {
   useEffect(() => {
     if (window.ethereum && window.ethereum?.selectedAddress) {
       window.addEventListener('load', function () {
-        setMetamaskEnabled(true);
-
         window.ethereum.on('accountsChanged', () => {
           if (window.ethereum?.selectedAddress) {
             dispatch({
@@ -122,6 +120,15 @@ const ButtonConnect = (props) => {
   }, [scrollState]);
 
   let userAddress = '';
+
+  useEffect(() => {
+    if (window.ethereum) {
+      setMetamaskEnabled(true);
+    } else {
+      setMetamaskEnabled(false);
+    }
+    setLoading(false);
+  });
 
   async function openMetaMask() {
     if (metamaskEnabled) {
