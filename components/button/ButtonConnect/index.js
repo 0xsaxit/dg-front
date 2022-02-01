@@ -10,6 +10,7 @@ import {useMediaQuery} from 'hooks';
 import ModalLoginTop from 'components/modal/ModalLoginTop';
 import styles from './ButtonConnect.module.scss';
 import Global from 'components/Constants';
+import Web3 from "web3";
 
 export const assignToken = async (dispatch, accountSwitch = false) => {
   // Clear token and expiretime to be safe
@@ -22,10 +23,12 @@ export const assignToken = async (dispatch, accountSwitch = false) => {
   if (userAddress && document.visibilityState === 'visible') {
     const timestamp = Date.now();
 
-    const msg = window.web3.utils.utf8ToHex(
+    const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+
+    const msg = web3.utils.utf8ToHex(
       `Decentral Games Login\nTimestamp: ${timestamp}`
     );
-    const signature = await window.web3.eth.personal.sign(
+    const signature = await web3.eth.personal.sign(
       msg,
       window.ethereum?.selectedAddress,
       null
@@ -238,6 +241,7 @@ const ButtonConnect = (props) => {
   return (
     <Aux>
       {(() => {
+        // Alternate button for /start rouet
         if (props.showAlternateButton) {
           return (<Button
             onClick={() => openMetaMask()}
@@ -256,6 +260,7 @@ const ButtonConnect = (props) => {
             Connect
           </Button>)
         } else if (metamaskEnabled) {
+          // Primary button, metamask is enabled
           return (<div className={styles.main_right_panel}>
               <Button
                 color="blue"
@@ -283,16 +288,17 @@ const ButtonConnect = (props) => {
             </div>
           )
         } else {
+          // Alternate button to download metamask
           return (
             <div className={styles.main_right_panel}>
               <ModalLoginTop/>
+
+              {/* Help Button */}
               <a
                 href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
                 target="_blank"
                 className={styles.get_metamask}
-              >
-                ?
-              </a>
+              >?</a>
             </div>
           )
         }

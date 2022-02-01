@@ -15,3 +15,5 @@ yarn-error.log*
 
 .DS_Store
 package-lock.json
+/.idea/vcs.xml
+/.idea/workspace.xml
