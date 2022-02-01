@@ -6,7 +6,9 @@ import Fetch, { API_BASE_URL } from 'common/Fetch';
 import call from 'common/API';
 import Aux from '../_Aux';
 
-export const assignToken = async () => {
+export const assignToken = async (dispatch) => {
+  console.log('Getting new access token...');
+
   const userAddress = window.ethereum?.selectedAddress;
   if (userAddress) {
     const timestamp = Date.now();
@@ -31,6 +33,11 @@ export const assignToken = async () => {
       'expiretime',
       Number(new Date().getTime() / 1000 + 12 * 3600)
     );
+
+    dispatch({
+      type: 'set_userLoggedIn',
+      data: true,
+    });
   }
 };
 
@@ -51,7 +58,7 @@ const ButtonStartConnect = () => {
   useEffect(() => {
     if (window.ethereum && window.ethereum?.selectedAddress) {
       window.ethereum.on('accountsChanged', () => {
-        assignToken();
+        assignToken(dispatch);
       });
 
       const currentTimestamp = new Date().getTime() / 1000;
@@ -59,7 +66,7 @@ const ButtonStartConnect = () => {
         Number(localStorage.getItem('expiretime')) || Number.MAX_SAFE_INTEGER;
 
       if (currentTimestamp > expiredTimestamp) {
-        assignToken();
+        assignToken(dispatch);
       }
     }
 
@@ -126,7 +133,7 @@ const ButtonStartConnect = () => {
         !localStorage.getItem('token') ||
         currentTimestamp > expiredTimestamp
       ) {
-        assignToken();
+        assignToken(dispatch);
       }
 
       // dispatch user address to the Context API store
