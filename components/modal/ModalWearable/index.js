@@ -113,7 +113,7 @@ const ModalWearable = props => {
               }}
             >
               <div className={styles.wear_box_mark}>
-                +{props.bonus}%
+                {props.bonus}
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1630857308/diamond_1_1_r6etkk.png"
                   className={styles.img_card}
@@ -126,7 +126,7 @@ const ModalWearable = props => {
             <div className={styles.card_body}>
               <div className={styles.card}>Rank {props.rank}</div>
               <div className={styles.card}>
-                +{props.bonus}%
+                {props.bonus}
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1630857308/diamond_1_1_r6etkk.png"
                   className={styles.img_card}
@@ -167,7 +167,7 @@ const ModalWearable = props => {
             <div className={styles.wear_box_pink}>
               <img
                 src={
-                  Global.IMG_URLS_UPGRADE[wearableName][nextIceWearableRank]
+                  props.imgUpgradeSrc
                 }
               />
             </div>
@@ -184,7 +184,7 @@ const ModalWearable = props => {
                 />
               </div>
               <div className={styles.card}>
-                x of {props.description.split('/').at(-1)}
+                {props.description.split(' ').at(-1).replace('/', ' of ')}
               </div>
             </div>
           </div>
@@ -432,7 +432,7 @@ const ModalWearable = props => {
         <ModalUpgradeSuccess
           tokenId={props.tokenId}
           setUpgrade={setUpgrade}
-          imgURL = {Global.IMG_URLS_UPGRADE.[wearableName].[nextIceWearableRank]}
+          imgURL = {props.imgSrc} //the wearable will already be upgraded in state.iceWearableItems already
           delegateAddress={props.delegateAddress}
         />
       )}

@@ -1,7 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { GlobalContext } from '../../../../store';
-import Fetch from '../../../../common/Fetch';
-import GetRank from '../../../../common/GetIceWearableRank';
 import IceP2EEnabledTooltip from 'components/tooltips/IceP2EEnabledTooltip';
 import IceNeedToActivateTooltip from 'components/tooltips/IceNeedToActivateTooltip';
 import IceWearableBonusTooltip from 'components/tooltips/IceWearableBonusTooltip';
@@ -13,16 +11,13 @@ import NeedMoreDGActivateModal from 'components/modal/NeedMoreDGActivateModal';
 import ModalWearable from 'components/modal/ModalWearable';
 import styles from './ICEWearableCard.module.scss';
 import Aux from '../../../_Aux';
-import SpinnerAnimation from 'components/lottieAnimation/animations/spinner';
 
 const ICEWearableCard = props => {
   // get user's wallet address from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-
-  const [undelegateLoading, setUndelegateLoading] = useState(0);
   const buttonDelegate = 'Delegate';
   const buttonUndelegate = 'Undelegate';
-  const { name, description, rank, image, tokenId, checkInStatus, contractAddress, isActivated, itemId } = props.item;
+  const { name, description, rank, image, imageUpgrade, tokenId, checkInStatus, contractAddress, isActivated, itemId } = props.item;
   const bonus = "+" + props.item.bonus + "%";
   const delegateAddress = props.item.delegationStatus.delegatedTo || '';
   const delegationStatus = props.item.delegationStatus.isQueuedForUndelegationByDelegatee ||
@@ -133,6 +128,7 @@ const ICEWearableCard = props => {
                     contractAddress={contractAddress}
                     itemId={itemId}
                     imgSrc={image}
+                    imgUpgradeSrc={imageUpgrade}
                     rank={rank}
                     bonus={bonus}
                     description={description}
