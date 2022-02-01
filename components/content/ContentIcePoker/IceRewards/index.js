@@ -42,8 +42,7 @@ const IceRewards = () => {
   useEffect(() => {
     (async () => {
       let json = await Fetch.ICE_AMOUNTS(state.userAddress);
-      const unclaimed = json.totalUnclaimedAmount;
-      setTotalICE(formatPrice(unclaimed, 0));
+      setTotalICE(json.totalUnclaimedAmount);
     })();
   }, [totalICE]);
 
