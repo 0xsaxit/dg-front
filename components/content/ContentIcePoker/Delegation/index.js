@@ -327,8 +327,7 @@ const Delegation = () => {
 
                             <Button
                                 className={styles.grey_button}
-                                href="https://decentral.games/ice/marketplace"
-                                target="_blank"
+                                href="/ice/marketplace"
                             >
                                 Browse Wearables
                             </Button>

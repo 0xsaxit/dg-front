@@ -46,7 +46,7 @@ const CheckMintTooltip = (props) => {
                   You must have at least 1000 xDG or 
                   one (Old) DG staked in governance 
                   to mint a new ICE wearable. You 
-                  <a href="https://app.uniswap.org/#/swap?outputCurrency=0x4b520c812e8430659fc9f12f6d0c39026c83588d" target="_blank"> can buy DG here</a> and <a href="https://decentral.games/dg/governance" target="_blank">you can stake 
+                  <a href="https://app.uniswap.org/#/swap?outputCurrency=0x4b520c812e8430659fc9f12f6d0c39026c83588d" target="_blank"> can buy DG here</a> and <a href="/dg/governance" target="_blank">you can stake
                   DG here</a>.
                 </p>
               )}
