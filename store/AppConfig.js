@@ -27,9 +27,6 @@ function AppConfig() {
       // If token is invalid, clear old token and fetch new token
       if (!isTokenValid) {
         console.log('Access token expired. Removing token.');
-        localStorage.removeItem('token');
-        localStorage.removeItem('expiretime');
-
         dispatch({
           type: 'set_userLoggedIn',
           data: false,
@@ -39,6 +36,10 @@ function AppConfig() {
         console.log('Using new access token.');
       } else {
         console.log('Access token valid: using existing token.');
+        dispatch({
+          type: 'set_userLoggedIn',
+          data: true,
+        });
       }
     }
 

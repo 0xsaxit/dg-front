@@ -12,6 +12,10 @@ import styles from './ButtonConnect.module.scss';
 import Global from 'components/Constants';
 
 export const assignToken = async (dispatch, accountSwitch = false) => {
+  // Clear token and expiretime to be safe
+  localStorage.removeItem('token');
+  localStorage.removeItem('expiretime');
+
   console.log('Getting new access token...');
 
   const userAddress = window.ethereum?.selectedAddress;
@@ -34,6 +38,7 @@ export const assignToken = async (dispatch, accountSwitch = false) => {
     );
 
     localStorage.setItem('token', token);
+    // Token expires 12 hours and 1 seconds from time it's set
     localStorage.setItem('expiretime', Number(timestamp / 1000 + 12 * 3600));
 
     dispatch({
@@ -48,7 +53,6 @@ export const assignToken = async (dispatch, accountSwitch = false) => {
 };
 
 const ButtonConnect = (props) => {
-  console.log('props', props)
   // dispatch new user status to Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -57,13 +61,17 @@ const ButtonConnect = (props) => {
   const [scrollState, setScrollState] = useState('top');
   const [binance, setBinance] = useState(false);
   const [loading, setLoading] = useState(true);
-
   const router = useRouter();
+  const currentTimestamp = new Date().getTime() / 1000;
+  const expiredTimestamp = Number(localStorage.getItem('expiretime')) || Number.MAX_SAFE_INTEGER;
+
   let listener = null;
 
   useEffect(() => {
     if (window.ethereum && window.ethereum?.selectedAddress) {
       window.addEventListener('load', function () {
+        setMetamaskEnabled(true);
+
         window.ethereum.on('accountsChanged', () => {
           if (window.ethereum?.selectedAddress) {
             dispatch({
@@ -74,14 +82,6 @@ const ButtonConnect = (props) => {
           assignToken(dispatch, true);
         });
       });
-
-      const currentTimestamp = new Date().getTime() / 1000;
-      const expiredTimestamp =
-        Number(localStorage.getItem('expiretime')) || Number.MAX_SAFE_INTEGER;
-
-      if (currentTimestamp > expiredTimestamp) {
-        openMetaMask();
-      }
     } else {
       // User doesn't have MetaMask installed, clear token
       localStorage.removeItem('token');
@@ -93,6 +93,8 @@ const ButtonConnect = (props) => {
     } else {
       setBinance(false);
     }
+
+    setLoading(false);
   }, []);
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -117,15 +119,6 @@ const ButtonConnect = (props) => {
   }, [scrollState]);
 
   let userAddress = '';
-
-  useEffect(() => {
-    if (window.ethereum) {
-      setMetamaskEnabled(true);
-    } else {
-      setMetamaskEnabled(false);
-    }
-    setLoading(false);
-  });
 
   async function openMetaMask() {
     if (metamaskEnabled) {
