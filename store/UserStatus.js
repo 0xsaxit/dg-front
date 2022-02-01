@@ -11,44 +11,46 @@ function UserStatus() {
   let userAddress = '';
 
   useEffect(() => {
-    if (window.ethereum) {
-      userAddress = window.ethereum?.selectedAddress;
+    if (state.userLoggedIn) {
+      if (window.ethereum) {
+        userAddress = window.ethereum?.selectedAddress;
 
-      if (userAddress) {
-        // set user status to 3 to denote fetching user status, and dispatch the user address
-        dispatch({
-          type: 'update_status',
-          data: 3,
-        });
+        if (userAddress) {
+          // set user status to 3 to denote fetching user status, and dispatch the user address
+          dispatch({
+            type: 'update_status',
+            data: 3,
+          });
 
-        dispatch({
-          type: 'user_address',
-          data: userAddress,
-        });
+          dispatch({
+            type: 'user_address',
+            data: userAddress,
+          });
 
-        // fetch user status
-        async function fetchData() {
-          const response = await getUserStatus();
+          // fetch user status
+          async function fetchData() {
+            const response = await getUserStatus();
 
-          // if the response is truthy set the user's respective status, else set status back to 0
-          // (/websiteLogin API call will return error if new wallet address)
-          if (response) {
-            dispatch({
-              type: 'update_status',
-              data: response,
-            });
-          } else {
-            dispatch({
-              type: 'update_status',
-              data: 0,
-            });
+            // if the response is truthy set the user's respective status, else set status back to 0
+            // (/websiteLogin API call will return error if new wallet address)
+            if (response) {
+              dispatch({
+                type: 'update_status',
+                data: response,
+              });
+            } else {
+              dispatch({
+                type: 'update_status',
+                data: 0,
+              });
+            }
           }
-        }
 
-        fetchData();
+          fetchData();
+        }
       }
     }
-  }, []);
+  }, [state.userLoggedIn]);
 
   // async function getUserStatus() {
   //   try {
