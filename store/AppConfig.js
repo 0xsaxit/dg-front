@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { GlobalContext } from './index';
 import Fetch from '../common/Fetch';
-import { assignToken } from '../components/button/ButtonStartConnect';
+import { assignToken } from "../components/button/ButtonConnect";
 
 function AppConfig() {
   // dispatch user's status value to the Context API store

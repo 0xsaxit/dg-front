@@ -62,7 +62,8 @@ function Application({ Component, pageProps, store }) {
 
   return (
     <Provider store={store}>
-      <style jsx global>{`
+        <AppConfig />
+        <style jsx global>{`
         body {
           background: black;
         }
@@ -77,7 +78,6 @@ function Application({ Component, pageProps, store }) {
       {/* </>
       )} */}
 
-      <AppConfig />
       <CryptoWidget pathName={router.pathname} />
       <UserStatus />
       <UserBalances />

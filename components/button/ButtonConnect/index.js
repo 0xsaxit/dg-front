@@ -1,17 +1,19 @@
-import { useState, useContext, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import {useContext, useEffect, useState} from 'react';
+import {useRouter} from 'next/router';
 import cn from 'classnames';
-import { Button } from 'semantic-ui-react';
-import { GlobalContext } from 'store';
-import Fetch, { API_BASE_URL } from 'common/Fetch';
+import {Button} from 'semantic-ui-react';
+import {GlobalContext} from 'store';
+import Fetch, {API_BASE_URL} from 'common/Fetch';
 import call from 'common/API';
 import Aux from 'components/_Aux';
-import { useMediaQuery } from 'hooks';
+import {useMediaQuery} from 'hooks';
 import ModalLoginTop from 'components/modal/ModalLoginTop';
 import styles from './ButtonConnect.module.scss';
 import Global from 'components/Constants';
 
-const assignToken = async (accountSwitch = false) => {
+export const assignToken = async (dispatch, accountSwitch = false) => {
+  console.log('Getting new access token...');
+
   const userAddress = window.ethereum?.selectedAddress;
   if (userAddress && document.visibilityState === 'visible') {
     const timestamp = Date.now();
@@ -34,13 +36,19 @@ const assignToken = async (accountSwitch = false) => {
     localStorage.setItem('token', token);
     localStorage.setItem('expiretime', Number(timestamp / 1000 + 12 * 3600));
 
+    dispatch({
+      type: 'set_userLoggedIn',
+      data: true,
+    });
+
     if (accountSwitch) {
       window.location.reload();
     }
   }
 };
 
-const ButtonConnect = () => {
+const ButtonConnect = (props) => {
+  console.log('props', props)
   // dispatch new user status to Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -63,7 +71,7 @@ const ButtonConnect = () => {
               data: window.ethereum?.selectedAddress,
             });
           }
-          assignToken(true);
+          assignToken(dispatch, true);
         });
       });
 
@@ -74,15 +82,8 @@ const ButtonConnect = () => {
       if (currentTimestamp > expiredTimestamp) {
         openMetaMask();
       }
-
-      // if we are on this block and have the loggedIn LS entry, assume a login
-      if (!!localStorage.getItem('token')) {
-        dispatch({
-          type: 'set_userLoggedIn',
-          data: true,
-        });
-      }
     } else {
+      // User doesn't have MetaMask installed, clear token
       localStorage.removeItem('token');
       localStorage.removeItem('expiretime');
     }
@@ -161,7 +162,7 @@ const ButtonConnect = () => {
         userAddress: userAddress,
       });
 
-      await assignToken();
+      await assignToken(dispatch);
 
       // dispatch user address to the Context API store
       dispatch({
@@ -243,44 +244,66 @@ const ButtonConnect = () => {
 
   return (
     <Aux>
-      {metamaskEnabled ? (
-        <div className={styles.main_right_panel}>
-          <Button
-            color="blue"
-            className={cn(
-              // AMNESIA_COMMENT: amnesia_button class should be removed after we are done with amnesia
-              state.isAmnesiaPage && styles.amnesia_button,
-              styles.metamask_button,
-              binance ? styles.binance_top : ''
-            )}
+      {(() => {
+        if (props.showAlternateButton) {
+          return (<Button
             onClick={() => openMetaMask()}
+            style={{
+              background: '#006EFF',
+              height: '64px',
+              borderRadius: '16px',
+              width: '171px',
+              color: 'white',
+              fontSize: '23px',
+              fontFamily: 'Larsseit-Bold',
+              alignSelf: 'center',
+              marginLeft: '4px',
+            }}
           >
-            <img
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png"
-              className={styles.metamask_icon}
-            />
-            {tablet ? 'Connect' : 'Connect MetaMask'}
-          </Button>
-          <a
-            href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
-            target="_blank"
-            className={styles.get_metamask}
-          >
-            ?
-          </a>
-        </div>
-      ) : (
-        <div className={styles.main_right_panel}>
-          <ModalLoginTop />
-          <a
-            href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
-            target="_blank"
-            className={styles.get_metamask}
-          >
-            ?
-          </a>
-        </div>
-      )}
+            Connect
+          </Button>)
+        } else if (metamaskEnabled) {
+          return (<div className={styles.main_right_panel}>
+              <Button
+                color="blue"
+                className={cn(
+                  // AMNESIA_COMMENT: amnesia_button class should be removed after we are done with amnesia
+                  state.isAmnesiaPage && styles.amnesia_button,
+                  styles.metamask_button,
+                  binance ? styles.binance_top : ''
+                )}
+                onClick={() => openMetaMask()}
+              >
+                <img
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png"
+                  className={styles.metamask_icon}
+                />
+                {tablet ? 'Connect' : 'Connect MetaMask'}
+              </Button>
+              <a
+                href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
+                target="_blank"
+                className={styles.get_metamask}
+              >
+                ?
+              </a>
+            </div>
+          )
+        } else {
+          return (
+            <div className={styles.main_right_panel}>
+              <ModalLoginTop/>
+              <a
+                href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
+                target="_blank"
+                className={styles.get_metamask}
+              >
+                ?
+              </a>
+            </div>
+          )
+        }
+      })()}
     </Aux>
   );
 };
