@@ -61,10 +61,10 @@ function SectionOne(props) {
             <h1>
               {' '}
               {/* { t('Home.PLAY') } */}
-              Play-to-earn gaming {mobile ? <br /> : null} in the metaverse
+              Play & earn gaming {mobile ? <br /> : null} in the metaverse
             </h1>
             <p className={cn(styles.content, mobile ? 'px-6 mx-auto' : 'px-0')}>
-              We build games that give players economic freedom. Play to earn and scale your own metaverse business. ICE Poker beta is live now.
+              We build games that reward you to play. Play, earn, and scale your own metaverse guild. ICE Poker beta is now live.
             </p>
             <span className={styles.button_group}>
               <Button
