@@ -12,7 +12,6 @@ import Segment from '../components/Segment';
 import UserStatus from '../store/UserStatus';
 import UserBalances from '../store/UserBalances';
 import Transactions from '../store/Transactions';
-import TreasuryNumbers from '../store/TreasuryNumbers';
 import GameRecords from '../store/GameRecords';
 import ActiveStatus from '../store/ActiveStatus';
 import CryptoWidget from '../store/CryptoWidget';
@@ -22,7 +21,6 @@ import UsersList from '../store/UsersList';
 import DGBalances from '../store/DGBalances';
 import PricesBreakdown from '../store/PricesBreakdown';
 import NFTSPOAPS from '../store/NFTSPOAPS';
-import EventsData from '../store/EventsData';
 import SubgraphQuery from '../store/SubgraphQuery';
 import ICEAttributes from '../store/ICEAttributes';
 import AppConfig from '../store/AppConfig';
@@ -34,31 +32,6 @@ import { useRouter } from 'next/router';
 
 function Application({ Component, pageProps, store }) {
   const router = useRouter();
-  // const [pageLoading, setPageLoading] = useState(true);
-
-  // useEffect(() => {
-  //   setPageLoading(true);
-  //   const timer = setTimeout(() => {
-  //     console.log('This will run after 3 second on first load!');
-  //     setPageLoading(false);
-  //   }, 3000);
-  //   return () => clearTimeout(timer);
-  // }, []);
-
-  // useEffect(() => {
-  //   const handleStart = () => {
-  //     console.log('1. Page Loading is started.');
-  //     setPageLoading(true);
-  //   };
-  //   const handleComplete = () => {
-  //     console.log('2. Page Loading is completed.');
-  //     setPageLoading(false);
-  //   };
-
-  //   router.events.on('routeChangeStart', handleStart);
-  //   router.events.on('routeChangeComplete', handleComplete);
-  //   router.events.on('routeChangeError', handleComplete);
-  // }, [router]);
 
   return (
     <Provider store={store}>
@@ -67,21 +40,13 @@ function Application({ Component, pageProps, store }) {
           background: black;
         }
       `}</style>
-
-      {/* {pageLoading ? (
-        <Spinner background={1} />
-      ) : (
-        <> */}
       <Segment />
       <Component {...pageProps} />
-      {/* </>
-      )} */}
       <AppConfig />
       <CryptoWidget pathName={router.pathname} />
       <UserStatus />
       <UserBalances />
       <Transactions />
-      <TreasuryNumbers />
       <GameRecords />
       <ActiveStatus />
       <UserInfo />
@@ -90,7 +55,6 @@ function Application({ Component, pageProps, store }) {
       <DGBalances />
       <PricesBreakdown />
       <NFTSPOAPS />
-      <EventsData />
       <SubgraphQuery />
       <ICEAttributes />
     </Provider>

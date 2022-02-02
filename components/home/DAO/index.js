@@ -31,11 +31,8 @@ const DAO = props => {
   const [web3, setWeb3] = useState({});
   const [currenReward, setCurrentReward] = useState(0);
   const [finishTime, setFinishTime] = useState(0);
-
   const [price, setPrice] = useState(0);
-
   const [amountInput, setAmountInput] = useState('10000000000000000000');
-
   const DGState = props.DGState;
   const DGBalances = state.DGBalances.BALANCE_STAKING_UNISWAP;
   const DGStakingBalances = state.stakingBalances.BALANCE_STAKED_UNISWAP;
@@ -43,6 +40,18 @@ const DAO = props => {
   // Responsive
   const isMobile = useMediaQuery('(max-width: 1040px)');
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  // Get Treasury data
+  useEffect(() => {
+    (async () => {
+      let json = await Fetch.TREASURY_STATS_NUMBERS('week');
+
+      dispatch({
+        type: 'treasury_numbers',
+        data: json,
+      });
+    })();
+  }, []);
 
   useEffect(() => {
     setMobileOpen(!isMobile);
