@@ -61,7 +61,7 @@ function SectionOne(props) {
             <h1>
               {' '}
               {/* { t('Home.PLAY') } */}
-              Play & Earn Gaming {mobile ? <br /> : null} in the Metaverse
+              Play & earn gaming {mobile ? <br /> : null} in the metaverse
             </h1>
             <p className={cn(styles.content, mobile ? 'px-6 mx-auto' : 'px-0')}>
               We build games that reward you to play. Play, earn, and scale your own metaverse guild. ICE Poker beta is now live.
