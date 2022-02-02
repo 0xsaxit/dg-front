@@ -1,12 +1,12 @@
-import {useContext, useEffect, useState} from 'react';
-import {useRouter} from 'next/router';
+import { useContext, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import cn from 'classnames';
-import {Button} from 'semantic-ui-react';
-import {GlobalContext} from 'store';
-import Fetch, {API_BASE_URL} from 'common/Fetch';
+import { Button } from 'semantic-ui-react';
+import { GlobalContext } from 'store';
+import Fetch, { API_BASE_URL } from 'common/Fetch';
 import call from 'common/API';
 import Aux from 'components/_Aux';
-import {useMediaQuery} from 'hooks';
+import { useMediaQuery } from 'hooks';
 import ModalLoginTop from 'components/modal/ModalLoginTop';
 import styles from './ButtonConnect.module.scss';
 import Global from 'components/Constants';
@@ -244,69 +244,61 @@ const ButtonConnect = (props) => {
 
   return (
     <Aux>
-      {(() => {
-        // Alternate button for /start rouet
-        if (props.showAlternateButton) {
-          return (<Button
-            onClick={() => openMetaMask()}
-            style={{
-              background: '#006EFF',
-              height: '64px',
-              borderRadius: '16px',
-              width: '171px',
-              color: 'white',
-              fontSize: '23px',
-              fontFamily: 'Larsseit-Bold',
-              alignSelf: 'center',
-              marginLeft: '4px',
-            }}
-          >
-            Connect
-          </Button>)
-        } else if (metamaskEnabled) {
-          // Primary button, metamask is enabled
-          return (<div className={styles.main_right_panel}>
-              <Button
-                color="blue"
-                className={cn(
-                  // AMNESIA_COMMENT: amnesia_button class should be removed after we are done with amnesia
-                  state.isAmnesiaPage && styles.amnesia_button,
-                  styles.metamask_button,
-                  binance ? styles.binance_top : ''
-                )}
-                onClick={() => openMetaMask()}
-              >
-                <img
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png"
-                  className={styles.metamask_icon}
-                />
-                {tablet ? 'Connect' : 'Connect MetaMask'}
-              </Button>
-              <a
-                href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
-                target="_blank"
-                className={styles.get_metamask}
-              >
-                ?
-              </a>
-            </div>
-          )
-        } else {
-          // Alternate button to download metamask
-          return (
-            <div className={styles.main_right_panel}>
-              <ModalLoginTop/>
+      {props.showAlternateButton ?
+        <Button
+          onClick={() => openMetaMask()}
+          style={{
+            background: '#006EFF',
+            height: '64px',
+            borderRadius: '16px',
+            width: '171px',
+            color: 'white',
+            fontSize: '23px',
+            fontFamily: 'Larsseit-Bold',
+            alignSelf: 'center',
+            marginLeft: '4px',
+          }}
+        >
+          Connect
+        </Button>
+        : metamaskEnabled ?
+          <div className={styles.main_right_panel}>
+            <Button
+              color="blue"
+              className={cn(
+                // AMNESIA_COMMENT: amnesia_button class should be removed after we are done with amnesia
+                state.isAmnesiaPage && styles.amnesia_button,
+                styles.metamask_button,
+                binance ? styles.binance_top : ''
+              )}
+              onClick={() => openMetaMask()}
+            >
+              <img
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png"
+                className={styles.metamask_icon}
+              />
+              {tablet ? 'Connect' : 'Connect MetaMask'}
+            </Button>
+            <a
+              href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
+              target="_blank"
+              className={styles.get_metamask}
+            >
+              ?
+            </a>
+          </div>
+          :
+          <div className={styles.main_right_panel}>
+            <ModalLoginTop />
 
-              {/* Help Button */}
-              <a
-                href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
-                target="_blank"
-                className={styles.get_metamask}
-              >?</a>
-            </div>
-          )
-        }
-      })()}
+            {/* Help Button */}
+            <a
+              href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
+              target="_blank"
+              className={styles.get_metamask}
+            >?</a>
+          </div>
+      }
     </Aux>
   );
 };
