@@ -65,9 +65,6 @@ const ButtonConnect = (props) => {
   const [binance, setBinance] = useState(false);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
-  const currentTimestamp = new Date().getTime() / 1000;
-  const expiredTimestamp = Number(localStorage.getItem('expiretime')) || Number.MAX_SAFE_INTEGER;
-
   let listener = null;
 
   useEffect(() => {
