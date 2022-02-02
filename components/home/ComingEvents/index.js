@@ -6,6 +6,7 @@ import Spinner from 'components/Spinner';
 import Global from 'components/Constants';
 
 import styles from './ComingEvents.module.scss';
+import Fetch from "../../../common/Fetch";
 
 const ComingEvents = () => {
   // get DCL events data from the Context API store
@@ -15,6 +16,18 @@ const ComingEvents = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [eventOngoing, setEventOngoing] = useState(false);
+
+  // Get Events data from Decentraland
+  useEffect(() => {
+    (async () => {
+      let json = await Fetch.EVENTS();
+
+      dispatch({
+        type: 'events_data',
+        data: json,
+      });
+    })();
+  }, []);
 
   useEffect(() => {
     if (!isEmpty(eventsData)) {
