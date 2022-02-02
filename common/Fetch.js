@@ -137,7 +137,7 @@ const Fetch = {
   /////////////////////////////////////////////////////////////////////////////////////////
   // POST API calls (no wallet address necessary)
   VERIFY_TOKEN: async () => {
-    return await call(`${API_BASE_URL}/authentication/verifyToken`, 'POST', true);
+    return await call(`${API_BASE_URL}/authentication/verifyToken`, 'POST', true, {}, true);
   },
 
   USER_STATUS: () => {
