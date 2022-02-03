@@ -309,6 +309,19 @@ const Fetch = {
     }
   },
 
+  EDIT_DELEGATION_NICKNAME: async (nickname, delegateAddress) => {
+    return await call(`https://api.decentral.games/ice/editDelegation`, 'PATCH', true, {
+      nickname: nickname,
+      delegateAddress: delegateAddress
+    });
+  },
+
+  EDIT_DELEGATION_GUILDNAME: async (guildName) => {
+    return await call(`https://api.decentral.games/ice/editDelegation`, 'PATCH', true, {
+      guildName: guildName
+    });
+  },
+
   GAMEPLAY_REPORTS: (address) => {
     if (address) {
       return call(`https://api.decentral.games/ice/getGameplayReports/?address=${address}`, 'GET');
@@ -317,7 +330,7 @@ const Fetch = {
     }
   },
 
-  GET_FRONTPAGE_STATS: () =>  {
+  GET_FRONTPAGE_STATS: () => {
     return call(`${API_BASE_URL}/admin/getFrontPageStats`, 'GET', false);
 
   }
