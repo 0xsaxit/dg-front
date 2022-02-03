@@ -159,10 +159,13 @@ const Delegation = () => {
         saveUpdatedNickName();
     });
 
-    function saveUpdatedTitle() {
+    async function saveUpdatedTitle() {
         saveEditingTitle(false);
         if (!title) {
             setTitle(pastTitle);
+        } else {
+            var response = await Fetch.EDIT_DELEGATION_GUILDNAME(title);
+            console.log("@@@@@@@@@@@@@@@@@@@@@", response);
         }
         savePastTitle("");
     }

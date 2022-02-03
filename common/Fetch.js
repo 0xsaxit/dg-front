@@ -322,6 +322,12 @@ const Fetch = {
     });
   },
 
+  EDIT_DELEGATION_GUILDNAME: async (guildName) => {
+    return await call(`https://api.decentral.games/ice/editDelegation`, 'PATCH', true, {
+      guildName: guildName
+    });
+  },
+
   GAMEPLAY_REPORTS: (address) => {
     if (address) {
       return call(`https://api.decentral.games/ice/getGameplayReports/?address=${address}`, 'GET');
