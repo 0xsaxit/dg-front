@@ -137,8 +137,7 @@ const Overview = props => {
     }
   }, [snapshotOne, snapshotTwo, snapshotThree, currentDate]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // use for both the graph and the stats
   // that'll just be week? to match discord bot 'in the past week'
   // that data will include the percent changes for both daily/weekly in the changes object
@@ -249,8 +248,7 @@ const Overview = props => {
     }
   }, [state.userStatus, state.stakingBalances.BALANCE_USER_GOVERNANCE]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // helper functions
   function getWeeklyChange() {
     return (
