@@ -27,6 +27,7 @@ import AppConfig from '../store/AppConfig';
 
 // import Spinner from 'components/Spinner';
 import { useRouter } from 'next/router';
+import Socket from 'common/Socket';
 // import { useEffect, useContext, useState } from 'react';
 // import { GlobalContext } from '../store';
 
@@ -42,6 +43,10 @@ function Application({ Component, pageProps, store }) {
       `}</style>
       <Segment />
       <Component {...pageProps} />
+      {/* </>
+      )} */}
+
+      <Socket />
       <AppConfig />
       <CryptoWidget pathName={router.pathname} />
       <UserStatus />
