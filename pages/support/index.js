@@ -25,10 +25,10 @@ const Admin = () => {
         alignItems: 'center',
         height: '100vh' 
       }}>
-        {state.userStatus >=20 ? (
+        {state.userStatus >= 20 ? (
         <ToolWidget />) : (
           <div style={{color: 'white', fontSize: '18px'}}>
-            Please ensure you've connected using an admin wallet address.
+            Please ensure you've connected using an admin wallet address
           </div>
         )}
       </div>

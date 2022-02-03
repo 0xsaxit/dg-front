@@ -61,8 +61,7 @@ function Test({ state }) {
     ...newPokerData,
   ].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   useEffect(() => {
     if (state.transactions[0].length && state.transactions[1]) {
       setIsLoading(false);

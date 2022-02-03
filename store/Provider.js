@@ -33,7 +33,7 @@ const initialState = {
   userLoggedIn: false,
   transactions: [{}, {}],
   appConfig: {},
-  treasuryNumbers: {},
+  treasuryNumbers: undefined,
   txHash: '',
   gameRecords: {},
   networkID: 0,
@@ -92,7 +92,7 @@ const initialState = {
   },
   wearables: [],
   poaps: [],
-  eventsData: {},
+  eventsData: undefined,
   stakingBalances: {
     BALANCE_CONTRACT_BPT_1: 0,
     BALANCE_CONTRACT_BPT_2: 0,
