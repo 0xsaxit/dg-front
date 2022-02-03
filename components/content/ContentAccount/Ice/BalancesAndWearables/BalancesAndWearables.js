@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { GlobalContext } from 'store';
 import Balances from './Balances';
-import Wearables from './Wearables';
+import IceWearables from './Wearables';
 import Aux from '../../../../_Aux';
 
 const BalancesAndWearables = () => {
@@ -9,7 +9,7 @@ const BalancesAndWearables = () => {
   return (
     <Aux>
       <Balances state={state} />
-      <Wearables />
+      <IceWearables />
     </Aux>
   );
 };

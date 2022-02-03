@@ -15,8 +15,7 @@ const ContentAirdrop = (props) => {
   const [tokenUSD, setTokenUSD] = useState(0);
   const [keeperContract, setKeeperContract] = useState(0);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   useEffect(() => {
     if (state.userStatus >= 4) {
       // initialize Web3 provider and create contract instance
@@ -40,8 +39,7 @@ const ContentAirdrop = (props) => {
     }
   }, [props.price, state.DGBalances.BALANCE_KEEPER_DG]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // claim DG tokens from keeper contract
   async function scrapeMyTokens() {
     console.log('Call scrapeMyTokens() function to claim DG tokens');

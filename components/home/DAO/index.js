@@ -44,12 +44,15 @@ const DAO = props => {
   // Get Treasury data
   useEffect(() => {
     (async () => {
-      let json = await Fetch.TREASURY_STATS_NUMBERS('week');
+      // Fetch data if not within the app state
+      if (!state.treasuryNumbers) {
+        let json = await Fetch.TREASURY_STATS_NUMBERS('week');
 
-      dispatch({
-        type: 'treasury_numbers',
-        data: json,
-      });
+        dispatch({
+          type: 'treasury_numbers',
+          data: json,
+        });
+      }
     })();
   }, []);
 
@@ -57,8 +60,6 @@ const DAO = props => {
     setMobileOpen(!isMobile);
   }, [isMobile]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     if (state.userStatus >= 4) {
       // initialize Web3 provider and create contract instances
@@ -135,8 +136,6 @@ const DAO = props => {
     return BigNumber(valueStr).toFormat(Math.min(decimals, decimalLength - 1));
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   // stake, withdraw, and get reward from staking contracts
   function getAmounts(amount) {
     const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
@@ -248,8 +247,7 @@ const DAO = props => {
     }
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+
   // helper functions
   function submenu() {
     return (
@@ -878,17 +876,6 @@ const DAO = props => {
                 />
               )}
             </>
-          ) : DGState === 'balancer' ? (
-            <ContentBalancer
-              price={price}
-              formatPrice={formatPrice}
-              instances={instances}
-              stakingContractPool1={stakingContractPool1}
-              stakingContractPool2={stakingContractPool2}
-              staking={staking}
-              withdrawal={withdrawal}
-              reward={reward}
-            />
           ) : DGState === 'treasury' ? (
             <ContentTreasury formatPrice={formatPrice} />
           ) : DGState === 'airdrop' ? (

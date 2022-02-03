@@ -35,8 +35,7 @@ const Treasury = props => {
   const [unvestedDG, setUnvestedDG] = useState(0);
   const [dgTreasuryPercent, setDgTreasuryPercent] = useState(0);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // use for both the graph and the stats
   // that'll just be week? to match discord bot 'in the past week'
   // that data will include the percent changes for both daily/weekly in the changes object
@@ -141,8 +140,7 @@ const Treasury = props => {
     }
   }, [state.treasuryNumbers, dgTreasury]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // helper functions
   function getWeeklyChange() {
     return (

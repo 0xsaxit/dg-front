@@ -30,8 +30,7 @@ const Farming = props => {
   const DGBalances = state.DGBalances.BALANCE_STAKING_UNISWAP;
   const DGStakingBalances = state.stakingBalances.BALANCE_STAKED_UNISWAP;
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   useEffect(() => {
     if (state.userStatus >= 4) {
       // initialize Web3 provider and create contract instances
@@ -101,8 +100,7 @@ const Farming = props => {
     return priceFormatted;
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // stake, withdraw, and get reward from staking contracts
   function getAmounts(amount) {
     const amountAdjusted = amount * Global.CONSTANTS.FACTOR;

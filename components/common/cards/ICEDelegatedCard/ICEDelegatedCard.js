@@ -20,8 +20,6 @@ const ICEWearableCard = props => {
   const delegationStatus = props.item.delegationStatus.isQueuedForUndelegationByDelegatee ||
                             props.item.delegationStatus.isQueuedForUndelegationByOwner;
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
   function imageAndDescription() {
     return (
