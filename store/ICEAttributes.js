@@ -33,8 +33,6 @@ function ICEAttributes() {
   const [collectionArray, setCollectionArray] = useState([]);
   const [iceTokenContract, setIceTokenContract] = useState({});
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     if (state.userStatus >= 4) {
       const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
@@ -412,8 +410,6 @@ function ICEAttributes() {
     }
   }, [instances, state.iceWearableItems, state.refreshNFTAuths]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   async function getItemLimits(index) {
     const collectionAddress = collectionArray[index][1];
     const tokenIdArray = collectionArray[index][2];

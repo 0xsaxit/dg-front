@@ -21,8 +21,7 @@ const ModalWithdrawDelegation = props => {
   // const [remainingTime, setRemainingTime] = useState(0);
   const isDelegator = props.tokenOwner === state.userAddress;
   const remainingTime = getRemainingTime()
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // helper functions
 
   console.log('delegate Address =>', props.delegateAddress);

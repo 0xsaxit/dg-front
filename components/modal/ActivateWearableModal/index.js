@@ -30,8 +30,7 @@ const ActivateWearableModal = props => {
   const [openUpgradeSuccess, setOpenUpgradeSuccess] = useState(false);
   const [errorText, setErrorText] = useState(null);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // initialize Web3 providers and create token contract instance
   useEffect(() => {
     if (state.userStatus >= 4) {
@@ -103,8 +102,7 @@ const ActivateWearableModal = props => {
     setAuthStatusDGLight(authStatusDGLight);
   }, [state.tokenAmounts]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // helper functions
   function modalButtons(type) {
     if (type === 'help') {

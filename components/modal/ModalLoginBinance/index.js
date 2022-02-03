@@ -17,8 +17,7 @@ const ModalLoginBinance = () => {
   const [metamaskEnabled, setMetamaskEnabled] = useState(false);
   const [safari, setSafari] = useState(false);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // using Safari browser
   useEffect(() => {
     if (window.safari !== undefined) {
