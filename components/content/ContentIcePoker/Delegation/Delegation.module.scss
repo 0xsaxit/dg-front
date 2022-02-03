@@ -9,6 +9,10 @@
     flex-direction: column;
 
     .title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
         h1 {
             font-family: "Larsseit-ExtraBold";
             font-weight: 800 !important;
@@ -16,6 +20,35 @@
             line-height: 32px;
             text-align: center;
             margin-bottom: 0;
+        }
+
+        input {
+            max-width: 420px;
+            height: 30px;
+            background-color: transparent;
+            font-size: 24px !important;
+            font-family: "Larsseit-Bold";
+            color: #006eff;
+            border: none;
+
+            &:disabled {
+                color: rgba(255, 255, 255, 0.6) !important;
+            }
+
+            &:focus-visible {
+                outline: none;
+            }
+
+            &::placeholder {
+                color: #006eff !important;
+            }
+        }
+
+        img {
+            width: 20px;
+            height: auto;
+            margin-left: 10px;
+            cursor: pointer;
         }
 
         @include mq($until: 499px) {
@@ -138,23 +171,67 @@
                         align-items: center;
                         cursor: pointer;
 
-                        &::after {
-                            position: absolute;
-                            width: 160px;
-                            top: 48px;
-                            left: 0px;
-                            display: block;
-                            content: "";
-                            border-bottom: solid 2px rgba(255, 255, 255, 0.6);
-                            transform: scaleX(0);
-                            transition: transform 500ms ease-in-out;
-                        }
+                        .nickNameDiv {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
 
-                        &:hover {
-                            &::after {
-                                transform: scaleX(1) !important;
+                            input {
+                                max-width: 140px;
+                                background-color: transparent;
+                                font-size: 18px;
+                                font-family: "Larsseit-Bold";
+                                color: #006eff;
+                                border: none;
+
+                                &:disabled {
+                                    color: rgba(255, 255, 255, 0.6) !important;
+                                }
+
+                                &:focus-visible {
+                                    outline: none;
+                                }
+
+                                &::placeholder {
+                                    color: #006eff !important;
+                                }
+                            }
+
+                            h1 {
+                                font-size: 18px;
+                                font-family: "Larsseit-Bold";
+                                color: rgba(255, 255, 255, 0.6) !important;
+                                text-decoration: underline;
+                            }
+
+                            img {
+                                width: 12px;
+                                height: auto;
+                                border-radius: 0px !important;
+                                background-color: transparent;
+                                margin-left: 8px;
+                                margin-right: 0px;
+                                margin-top: -1px;
                             }
                         }
+
+                        // &::after {
+                        //     position: absolute;
+                        //     width: 160px;
+                        //     top: 48px;
+                        //     left: 0px;
+                        //     display: block;
+                        //     content: "";
+                        //     border-bottom: solid 2px rgba(255, 255, 255, 0.6);
+                        //     transform: scaleX(0);
+                        //     transition: transform 500ms ease-in-out;
+                        // }
+
+                        // &:hover {
+                        //     &::after {
+                        //         transform: scaleX(1) !important;
+                        //     }
+                        // }
                     }
 
                     img {
@@ -164,7 +241,6 @@
                         border-radius: 50%;
                         margin-right: 16px;
                     }
-
 
                     .check_in {
                         width: 12px;
@@ -357,27 +433,26 @@
 }
 
 .more_wearable {
-
     display: flex;
     justify-content: center;
     flex-direction: column;
 
     background: transparent;
-    border: 1px solid #2A2A2A;
+    border: 1px solid #2a2a2a;
     box-sizing: border-box;
     border-radius: 16px;
     padding: 32px 40px 32px 40px;
-   
+
     width: 509px;
     margin: 0 auto;
 
     .title {
         font-family: Larsseit-Bold;
-        font-style: normal;  
+        font-style: normal;
         font-size: 20px;
         line-height: 27px;
         text-align: center;
-        color: #FFFFFF;
+        color: #ffffff;
     }
 
     .desc {
@@ -389,19 +464,19 @@
         font-size: 14px;
         line-height: 20px;
         text-align: center;
-        color: rgba(255, 255, 255, 0.5);        
+        color: rgba(255, 255, 255, 0.5);
     }
 
-    .grey_button {        
+    .grey_button {
         font-family: Larsseit-Bold;
-        font-style: normal; 
+        font-style: normal;
         font-size: 14px;
         line-height: 20px;
         text-align: center;
-        background: #1F1F1F;
-        border-radius: 10px; 
+        background: #1f1f1f;
+        border-radius: 10px;
         text-align: center;
-        color: #FFFFFF;
+        color: #ffffff;
         padding: 11px 75px 11px 75px;
         margin: 0 auto;
     }
