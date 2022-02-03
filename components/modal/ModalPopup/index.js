@@ -311,9 +311,11 @@ const ModalPopup = () => {
             <Link href="/account/history">
               <p className="account-dropdown-item"> Gameplay History </p>
             </Link>
-            <Link href="/account/referrals">
-              <p className="account-dropdown-item"> Referrals </p>
-            </Link>
+            {!!state.DGBalances.BALANCE_AFFILIATES.length && (
+              <Link href="/account/referrals">
+                <p className="account-dropdown-item"> Referrals </p>
+              </Link>
+            )}
             <a onClick={disconnect}>
               <p className="account-dropdown-item"> Disconnect </p>
             </a>
