@@ -47,7 +47,11 @@ const ContentEvents = ({ events, eventOngoing }) => {
       </div>
 
       <div>
-        <a href={events[0].url} className={cn('mt-0', styles.nft_container)}>
+        <a 
+          href={`https://events.decentraland.org/en/?event=${events[0].id}`} 
+          className={cn('mt-0', styles.nft_container)}
+          target="_blank"
+        >
           <span className={styles.featured_event_grid}>
             <Image
               src={events[0].image}
@@ -99,9 +103,9 @@ const ContentEvents = ({ events, eventOngoing }) => {
         <div className={styles.outter_games_container}>
           {events.slice(1).map((event, i) => (
             <a
-              href={event.url}
-              target="_blank"
+              href={`https://events.decentraland.org/en/?event=${event.id}`}
               className={styles.games_container}
+              target="_blank"
             >
               <img
                 src={event.image}
