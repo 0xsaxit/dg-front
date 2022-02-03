@@ -12,8 +12,8 @@ export const ApiUrlsByAppEnv = {
 
 export const SocketUrlsByAppEnv = {
     localhost: useLocalhostSockets ? 'wss://localhost:5000' : 'wss://socket.decentral.games',
-    testing:'wss://testing.socket.decentral.games',
-    development: 'wss://dev.docket.decentral.games',
-    staging: 'wss://staging.socket.decentral.games',
+    testing:'wss://socket.testing.decentral.games',
+    development: 'wss://socket.dev.decentral.games',
+    staging: 'wss://socket.staging.decentral.games',
     production: 'wss://socket.decentral.games'
 };
