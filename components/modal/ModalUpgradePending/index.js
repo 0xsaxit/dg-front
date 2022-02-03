@@ -359,7 +359,7 @@ const ModalUpgradePending = props => {
             <Aux>
               <MetamaskAction
                 primaryText={item.text}
-                actionState={'clicked'}
+                actionState={item.actionState}
                 onClick={() => {
                   console.log('circle clicked', item);
                 }}

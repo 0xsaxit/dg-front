@@ -1,6 +1,7 @@
 const useLocalhostApis = false;
 const useLocalhostSockets = false;
 
+
 export const ApiUrlsByAppEnv = {
     localhost: useLocalhostApis ? 'http://localhost:5000' : 'https://api.decentral.games',
     testing:'https://api.testing.decentral.games',

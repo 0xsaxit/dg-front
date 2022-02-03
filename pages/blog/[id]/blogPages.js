@@ -54,7 +54,7 @@ const BlogDetail = () => {
 
 BlogDetail.getInitialProps = async ({ query }) => {
   const slug = query.id;
-  const { data } = await Butter.instance.post.list({ page_size: 60 });
+  const { data } = await Butter.instance.post.list({ page_size: 70 });
   const currentPage = data.data.find((page) => page.slug === slug);
   var currentPage_title = currentPage.title;
   currentPage_title = currentPage_title.replace(': ', ':');

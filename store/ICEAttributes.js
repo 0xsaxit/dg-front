@@ -105,22 +105,26 @@ function ICEAttributes() {
         collectionArray.push([
           collectionV2Contract,
           Global.ADDRESSES.COLLECTION_V2_ADDRESS,
-          [0, 5, 10, 15, 20],
+          [20, 10, 5, 0, 15],
+          // [0, 5, 10, 15, 20],
         ]);
         collectionArray.push([
           collectionV2Contract2,
           Global.ADDRESSES.COLLECTION_PH_ADDRESS,
-          [0, 5, 10, 15, 20],
+          [20, 15, 10, 5, 0],
+          // [0, 5, 10, 15, 20],
         ]);
         collectionArray.push([
           collectionV2Contract3,
           Global.ADDRESSES.COLLECTION_LINENS_ADDRESS,
-          [0, 5, 17, 13, 21],
+          [5, 0, 17, 13, 21],
+          // [0, 5, 17, 13, 21],
         ]);
         collectionArray.push([
           collectionV2Contract4,
           Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS,
-          [2, 12, 16, 20, 7],
+          [20, 12, 16, 2, 7]
+          // [2, 12, 16, 20, 7],
         ]);
         collectionArray.push([
           collectionV2Contract5,
@@ -222,27 +226,14 @@ function ICEAttributes() {
         });
         let iceDelegatedItems = [];
 
-        const delegationInfo = await Fetch.DELEGATE_INFO(state.userAddress);
         const wearableInventory = await Fetch.GET_WEARABLE_INVENTORY(
           state.userAddress
         );
-
-        if (
-          delegationInfo !== undefined &&
-          Object.keys(delegationInfo).length
-        ) {
-          delegationInfo.incomingDelegations.forEach((item, i) => {
-            try {
-              const matching_wearable = wearableInventory.find(
-                wearable => wearable.tokenId === item.tokenId
-              )
-
-              iceDelegatedItems.push(matching_wearable);
-            } catch (error) {
-              console.log('Fetch delegation info error: ' + error);
-            }
-          });
-        }
+    
+        wearableInventory.forEach((wearable, i) => {
+          if(wearable.delegationStatus.delegatedTo === state.userAddress)
+            iceDelegatedItems.push(wearable);
+        });
 
         dispatch({
           type: 'ice_delegated_items',
