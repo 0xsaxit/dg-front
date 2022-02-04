@@ -108,7 +108,7 @@ function SectionOne(props) {
                 :
                 <h1>${formatBigNumber(monthlyRevenue)}</h1>
               }
-              <p className={styles.color2}>Revenue This Month</p>
+              <p className={styles.color2}>Revenue Last Month</p>
             </Grid.Column>
             <Grid.Column className={styles.section} computer={4} tablet={4} mobile={8}>
               {monthlyVisitors === -1 ?
