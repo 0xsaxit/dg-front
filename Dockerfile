@@ -33,7 +33,6 @@ RUN apk add --update --no-cache python3 build-base && \
     rm -rf /var/cache/apk/* && \
     yarn audit --level critical || true && \
     yarn install && \
-    yarn outdated || true && \
     npx next telemetry disable && \
     env && \
     yarn run build:$APP_ENV # Build For Proper Env
