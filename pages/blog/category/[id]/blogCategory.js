@@ -33,7 +33,6 @@ function blogCategory() {
                   margin: '100px 0px 0px 0px',
                   fontSize: '24px',
                   fontFamily: 'Larsseit-ExtraBold',
-                  margin: '0px 0px 0px 0px',
                   color: 'white',
                   float: 'left'
                 }}
