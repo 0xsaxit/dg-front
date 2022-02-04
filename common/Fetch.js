@@ -10,6 +10,8 @@ const { APP_ENV } = publicRuntimeConfig;
 export const API_BASE_URL =
   ApiUrlsByAppEnv[APP_ENV] || 'https://api.decentral.games';
 
+const API_BASE_URL_PROD_OR_LOCALHOST_ONLY = APP_ENV === 'localhost' ? ApiUrlsByAppEnv['localhost'] : ApiUrlsByAppEnv['production'];
+
 console.log('APP_ENV (NODE_ENV): ', APP_ENV);
 console.log('API_BASE_URL: ', API_BASE_URL);
 
@@ -300,32 +302,40 @@ const Fetch = {
     return call(`https://api.poap.xyz/actions/scan/${address}`, 'GET', false);
   },
 
+  /*****************************************************
+   * Delegation data is only available in production. Use `API_BASE_URL_PROD_OR_LOCALHOST_ONLY` to allow localhost debugging, while defaulting to production in all other cases.
+   ******************************************************/
+
   DELEGATION_BREAKDOWN: (time, address) => {
     if (address) {
-      return call(`https://api.decentral.games/ice/getDelegationBreakdown/${time}?address=${address}`, 'GET');
+      return call(`${API_BASE_URL_PROD_OR_LOCALHOST_ONLY}/ice/getDelegationBreakdown/${time}?address=${address}`, 'GET');
     } else {
-      return call(`https://api.decentral.games/ice/getDelegationBreakdown/${time}`, 'GET');
+      return call(`${API_BASE_URL_PROD_OR_LOCALHOST_ONLY}/ice/getDelegationBreakdown/${time}`, 'GET');
     }
   },
 
   EDIT_DELEGATION_NICKNAME: async (nickname, delegateAddress) => {
-    return await call(`https://api.decentral.games/ice/editDelegation`, 'PATCH', true, {
+    return await call(`${API_BASE_URL_PROD_OR_LOCALHOST_ONLY}/ice/editDelegation`, 'PATCH', true, {
       nickname: nickname,
       delegateAddress: delegateAddress
     });
   },
 
   EDIT_DELEGATION_GUILDNAME: async (guildName) => {
-    return await call(`https://api.decentral.games/ice/editDelegation`, 'PATCH', true, {
+    return await call(`${API_BASE_URL_PROD_OR_LOCALHOST_ONLY}/ice/editDelegation`, 'PATCH', true, {
       guildName: guildName
     });
   },
 
+  /*****************************************************
+   * End delegation APIS using `API_BASE_URL_PROD_OR_LOCALHOST_ONLY`
+  /******************************************************/
+
   GAMEPLAY_REPORTS: (address) => {
     if (address) {
-      return call(`https://api.decentral.games/ice/getGameplayReports/?address=${address}`, 'GET');
+      return call(`${API_BASE_URL_PROD_OR_LOCALHOST_ONLY}/ice/getGameplayReports/?address=${address}`, 'GET');
     } else {
-      return call(`https://api.decentral.games/ice/getGameplayReports`, 'GET');
+      return call(`${API_BASE_URL_PROD_OR_LOCALHOST_ONLY}/ice/getGameplayReports`, 'GET');
     }
   },
 

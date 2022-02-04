@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext, useRef } from 'react'
+import { FC, ReactElement, useContext, useEffect, useRef, useState } from 'react'
 import AutosizeInput from 'react-input-autosize'
 import { GlobalContext } from '@/store';
-import { Table, Button } from 'semantic-ui-react';
+import { Button, Table } from 'semantic-ui-react';
 import ModalIceDelegationBreakDown from 'components/modal/ModalIceDelegationBreakDown';
 import FoxAnimation from 'components/lottieAnimation/animations/fox'
 import HourglassAnimation from 'components/lottieAnimation/animations/hourglass'
@@ -9,7 +9,18 @@ import EmptyResultAnimation from 'components/lottieAnimation/animations/emptyRes
 import Fetch from 'common/Fetch';
 import styles from './Delegation.module.scss'
 
-const Delegation = () => {
+enum DelegationStates {
+    All = 'All Delegates',
+    Active = 'Active Delegates',
+    Past= 'Past Delegates',
+}
+
+export interface DelegationType {
+    className?: string;
+    isLoading?: boolean;
+}
+
+const Delegation: FC<DelegationType> = ({ className = '', isLoading }: DelegationType) :ReactElement => {
     // get delegation data from the Context API store
     const [state, dispatch] = useContext(GlobalContext);
 
@@ -26,6 +37,7 @@ const Delegation = () => {
     const [pastTitle, savePastTitle] = useState(null);
     const [editingNickNameIndex, saveEditingNickNameIndex] = useState(-1);
     const [pastNickName, savePastNickName] = useState({ index: -1, value: null });
+    const [delegationStatusFilter, setDelegationStatusFilter] = useState(DelegationStates.All);
 
     useEffect(() => {
         const fetchGuildName = async () => {
@@ -42,29 +54,31 @@ const Delegation = () => {
         fetchLeaderboardMultiplerMap();
     }, []);
 
-    useEffect(async () => {
-        if (state.userStatus) {
-            setLoading(true);
+    useEffect(() => {
+        (async () => {
+            if (state.userLoggedIn) {
+                setLoading(true);
 
-            // Get Delegation Breakdown from the API
-            let response = await Fetch.DELEGATION_BREAKDOWN(time === 'Weekly' ? 'week' : time === 'Monthly' ? 'month' : 'all');
-            console.log(response);
+                // Get Delegation Breakdown from the API
+                let response = await Fetch.DELEGATION_BREAKDOWN(time === 'Weekly' ? 'week' : time === 'Monthly' ? 'month' : 'all');
+                console.log(response);
 
-            if (response && response.length > 0) {
-                response.sort(function (a, b) {
-                    return b.stats.avgIceEarned - a.stats.avgIceEarned;
-                })
-                for (var i = 0; i < response.length; i++) {
-                    response[i].breakdown.sort(function (a, b) {
-                        return new Date(b.gameplayDay) - new Date(a.gameplayDay);
+                if (response && response.length > 0) {
+                    response.sort(function (a, b) {
+                        return b.stats.avgIceEarned - a.stats.avgIceEarned;
                     })
+                    for (var i = 0; i < response.length; i++) {
+                        response[i].breakdown.sort(function (a, b) {
+                            return Number(new Date(b.gameplayDay)) - Number(new Date(a.gameplayDay));
+                        })
+                    }
                 }
-            }
-            setDelegations(response && response.length > 0 ? response : []);
+                setDelegations(response && response.length > 0 ? response : []);
 
-            setLoading(false);
-        }
-    }, [state.userStatus, time])
+                setLoading(false);
+            }
+        })()
+    }, [state.userLoggedIn, time])
 
     useEffect(() => {
         const orderingData = [].concat(delegations);
@@ -81,7 +95,7 @@ const Delegation = () => {
                     return (sortingOrder === 'dec') ? (b.stats.totalChallengesCompleted - a.stats.totalChallengesCompleted) : (a.stats.totalChallengesCompleted - b.stats.totalChallengesCompleted);
                 } else if (sortingName === 'avgLeaderboardTier' || sortingName === 'avgLeaderboardMultiplier') {
                     return (sortingOrder === 'inc') ? (b.stats.avgLeaderboardTier - a.stats.avgLeaderboardTier) : (a.stats.avgLeaderboardTier - b.stats.avgLeaderboardTier);
-                } 
+                }
             })
         ]
 
@@ -95,10 +109,10 @@ const Delegation = () => {
         "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png",
         "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png"
     ];
-    const titleRef = useRef();
-    const titleInputRef = useRef();
-    const nickNameRef = useRef();
-    const nickNameInputRef = useRef();
+    const titleRef = useRef<HTMLDivElement>(null);
+    const titleInputRef = useRef<AutosizeInput>(null);
+    const nickNameRef = useRef<HTMLDivElement>(null);
+    const nickNameInputRef = useRef<AutosizeInput>(null);
 
     function tableHeaderClicked(name) {
         if (sortingName !== name) {
@@ -239,7 +253,7 @@ const Delegation = () => {
     }
 
     return (
-        <section>
+        <section className={`delegation-dashboard component ${className}`}>
             <div className={styles.main_wrapper}>
                 {!state.userStatus ?
                     <FoxAnimation />
@@ -276,6 +290,7 @@ const Delegation = () => {
                             />
                         </div>
 
+                        {/* Filter by Timeline */}
                         <div className={styles.time_div}>
                             <div
                                 className={time === 'Weekly' ? styles.active : null}
@@ -300,6 +315,36 @@ const Delegation = () => {
                                 }}
                             >
                                 All Time
+                            </div>
+                        </div>
+
+
+                        {/* Filter by Active Delegation Status */}
+                        <div className={styles.time_div}>
+                            <div
+                                className={delegationStatusFilter === DelegationStates.All ? styles.active : null}
+                                onClick={() => {
+                                    setDelegationStatusFilter(DelegationStates.All);
+                                }}
+                            >
+                                { DelegationStates.All }
+                            </div>
+                            <div
+                                className={delegationStatusFilter === DelegationStates.Active ? styles.active : null}
+                                onClick={() => {
+                                    setDelegationStatusFilter(DelegationStates.Active);
+                                }}
+                            >
+                                { DelegationStates.Active }
+
+                            </div>
+                            <div
+                                className={delegationStatusFilter === DelegationStates.Past ? styles.active : null}
+                                onClick={() => {
+                                    setDelegationStatusFilter(DelegationStates.Past);
+                                }}
+                            >
+                                { DelegationStates.Past }
                             </div>
                         </div>
                     </>
@@ -412,71 +457,110 @@ const Delegation = () => {
                                                 }
 
                                                 return (
-                                                    <Table.Row key={i} style={{ background: style }}>
-                                                        <Table.Cell style={{ width: '250px' }} >
-                                                            <div className={styles.nfts} style={{ marginTop: '10px' }}>
-                                                                {defaultImgs.map((def, i) => {
-                                                                    if (row.currentDelegations && row.currentDelegations.length > i) {
-                                                                        return (
-                                                                            <div key={i} className={styles.nft}>
-                                                                                <img src={`${row.currentDelegations[i].image}`} />
-                                                                                <div className={styles.rank}> {row.currentDelegations[i].rank} </div>
-                                                                                <div className={styles.bottomInfo}>
-                                                                                    +{row.currentDelegations[i].bonus}%
-                                                                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
-                                                                                </div>
-                                                                            </div>
-                                                                        )
-                                                                    } else {
-                                                                        return (
-                                                                            <div key={i} className={styles.nft}>
-                                                                                <img src={`${def}`} />
-                                                                                <div className={styles.bottomInfo} style={{ opacity: 0.6 }}>
-                                                                                    +0%
-                                                                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
-                                                                                </div>
-                                                                            </div>
-                                                                        )
-                                                                    }
-                                                                })}
-                                                            </div>
-                                                        </Table.Cell>
-                                                        <Table.Cell style={{ width: '200px' }} >
-                                                            <div className={styles.dailyICE} style={{ textAlign: 'center' }}>
-                                                                {Math.round(row.stats.avgIceEarned)}
-                                                                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
-                                                            </div>
-                                                        </Table.Cell>
-                                                        <Table.Cell style={{ width: '200px' }} >
-                                                            <div className={styles.iceEarned} style={{ textAlign: 'center' }}>
-                                                                {Math.round(row.stats.totalIceEarned)}
-                                                                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
-                                                            </div>
-                                                        </Table.Cell>
-                                                        <Table.Cell style={{ width: '150px' }} >
-                                                            {row.stats.daysCheckedIn} of {row.stats.totalPossibleCheckIns}
-                                                        </Table.Cell>
-                                                        <Table.Cell style={{ width: '220px' }} >
-                                                            {row.stats.totalChallengesCompleted} of {row.stats.totalChallengesAssigned}
-                                                        </Table.Cell>
-                                                        <Table.Cell style={{ width: '230px' }} >
-                                                            <div className={styles.tier} style={{ textAlign: 'center' }}>
-                                                                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175017/cup_w68eni.png" alt="xp" />
-                                                                {row.stats.avgLeaderboardTier + 5 <= 50 ?
-                                                                    `Top ${Math.round(row.stats.avgLeaderboardTier) + 5}%`
-                                                                    :
-                                                                    `Bottom ${100 - Math.round(row.stats.avgLeaderboardTier)}%`}
-                                                            </div>
-                                                        </Table.Cell>
-                                                        <Table.Cell style={{ width: '260px' }} >
-                                                            <div className={styles.tier} style={{ textAlign: 'center' }}>
-                                                                {!!multiplierMap.length && multiplierMap[Math.floor(row.stats.avgLeaderboardTier / 5)]}x
-                                                            </div>
-                                                        </Table.Cell>
-                                                        <Table.Cell style={{ width: '170px' }} >
-                                                            <Button className={styles.breakdown} onClick={() => setShowingBreakDown(i)}>See History</Button>
-                                                        </Table.Cell>
-                                                    </Table.Row>
+                                                  (() => {
+                                                   if (delegationStatusFilter === DelegationStates.All) {
+                                                       return <Table.Row key={i} style={{background: style}}>
+
+                                                           {/* NFTs Delegated */}
+                                                           <Table.Cell style={{width: '250px'}}>
+                                                               <div className={styles.nfts} style={{marginTop: '10px'}}>
+                                                                   {defaultImgs.map((def, i) => {
+                                                                       if (row.currentDelegations && row.currentDelegations.length > i) {
+                                                                           return (
+                                                                               <div key={i} className={styles.nft}>
+                                                                                   <img
+                                                                                       src={`${row.currentDelegations[i].image}`}/>
+                                                                                   <div
+                                                                                       className={styles.rank}> {row.currentDelegations[i].rank} </div>
+                                                                                   <div className={styles.bottomInfo}>
+                                                                                       +{row.currentDelegations[i].bonus}%
+                                                                                       <img
+                                                                                           src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
+                                                                                           alt="ice"/>
+                                                                                   </div>
+                                                                               </div>
+                                                                           )
+                                                                       } else {
+                                                                           return (
+                                                                               <div key={i} className={styles.nft}>
+                                                                                   <img src={`${def}`}/>
+                                                                                   <div className={styles.bottomInfo}
+                                                                                        style={{opacity: 0.6}}>
+                                                                                       +0%
+                                                                                       <img
+                                                                                           src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
+                                                                                           alt="ice"/>
+                                                                                   </div>
+                                                                               </div>
+                                                                           )
+                                                                       }
+                                                                   })}
+                                                               </div>
+                                                           </Table.Cell>
+
+                                                           {/* Avg.Daily ICE */}
+                                                           <Table.Cell style={{width: '200px'}}>
+                                                               <div className={styles.dailyICE}
+                                                                    style={{textAlign: 'center'}}>
+                                                                   {Math.round(row.stats.avgIceEarned)}
+                                                                   <img
+                                                                       src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
+                                                                       alt="ice"/>
+                                                               </div>
+                                                           </Table.Cell>
+
+                                                           {/* Total ICE Earned */}
+                                                           <Table.Cell style={{width: '200px'}}>
+                                                               <div className={styles.iceEarned}
+                                                                    style={{textAlign: 'center'}}>
+                                                                   {Math.round(row.stats.totalIceEarned)}
+                                                                   <img
+                                                                       src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
+                                                                       alt="ice"/>
+                                                               </div>
+                                                           </Table.Cell>
+
+                                                           {/* Check-Ins */}
+                                                           <Table.Cell style={{width: '150px'}}>
+                                                               {row.stats.daysCheckedIn} of {row.stats.totalPossibleCheckIns}
+                                                           </Table.Cell>
+
+                                                           {/* Finished Challenges */}
+                                                           <Table.Cell style={{width: '220px'}}>
+                                                               {row.stats.totalChallengesCompleted} of {row.stats.totalChallengesAssigned}
+                                                           </Table.Cell>
+
+                                                           {/* Avg.Leaderboard Tier */}
+                                                           <Table.Cell style={{width: '230px'}}>
+                                                               <div className={styles.tier}
+                                                                    style={{textAlign: 'center'}}>
+                                                                   <img
+                                                                       src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175017/cup_w68eni.png"
+                                                                       alt="xp"/>
+                                                                   {row.stats.avgLeaderboardTier + 5 <= 50 ?
+                                                                       `Top ${Math.round(row.stats.avgLeaderboardTier) + 5}%`
+                                                                       :
+                                                                       `Bottom ${100 - Math.round(row.stats.avgLeaderboardTier)}%`}
+                                                               </div>
+                                                           </Table.Cell>
+
+                                                           {/* Avg.Leaderboard Multiplier */}
+                                                           <Table.Cell style={{width: '260px'}}>
+                                                               <div className={styles.tier}
+                                                                    style={{textAlign: 'center'}}>
+                                                                   {!!multiplierMap.length && multiplierMap[Math.floor(row.stats.avgLeaderboardTier / 5)]}x
+                                                               </div>
+                                                           </Table.Cell>
+
+                                                           {/* History */}
+                                                           <Table.Cell style={{width: '170px'}}>
+                                                               <Button className={styles.breakdown}
+                                                                       onClick={() => setShowingBreakDown(i)}>See
+                                                                   History</Button>
+                                                           </Table.Cell>
+                                                       </Table.Row>
+                                                   }
+                                                  })()
                                                 );
                                             })}
                                         </Table.Body>
