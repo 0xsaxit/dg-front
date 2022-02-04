@@ -8,8 +8,8 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        APP_ENV: development # change this to adjust which environments APIs are called
-        NODE_ENV: development # NOTE: Can only be "test", "development" or "production" per NextJS config rules
+        APP_ENV: testing # change this to adjust which environments APIs are called
+        NODE_ENV: test # NOTE: Can only be "test", "development" or "production" per NextJS config rules
     restart: always
     user: root
     ports:
