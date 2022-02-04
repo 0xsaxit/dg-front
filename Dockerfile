@@ -1,7 +1,8 @@
 FROM node:16.9.0-alpine3.14 as base
 
-################################################################################
-
+####################################
+# First build
+####################################
 FROM base as build
 
 ARG CI=true
@@ -20,29 +21,25 @@ ENV NODE_ENV=$NODE_ENV
 RUN echo "build APP_ENV: $APP_ENV"
 RUN echo "build NODE_ENV: $NODE_ENV"
 
-RUN apk add --no-cache ca-certificates git build-base python2 &&\
-    rm -rf /var/cache/apk/*
-
+# Create app directory
 WORKDIR /app
 
-COPY package*.json yarn.lock ./
-
-RUN yarn audit --level critical || true
-
-RUN yarn install
-
-RUN yarn outdated || true
-
+# Bundle app source
 COPY . .
 
-RUN npx next telemetry disable &&\
-    env
+# Install python build tools
 
-# Build For Proper Env - construct the string then run the command
-RUN cmd="NODE_OPTIONS=\"--max-old-space-size=8192\" yarn run build:$APP_ENV"; \
-    eval $cmd;
+RUN apk add --update --no-cache python3 build-base && \
+    rm -rf /var/cache/apk/* && \
+    yarn audit --level critical || true && \
+    yarn install && \
+    npx next telemetry disable && \
+    env && \
+    yarn run build:$APP_ENV # Build For Proper Env
 
-################################################################################
+####################################
+# Second build - This is the deployed docker image
+####################################
 
 FROM base as runtime
 LABEL website="Decentral Games Website - $APP_ENV"
