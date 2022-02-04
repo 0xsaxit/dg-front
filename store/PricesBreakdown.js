@@ -1,5 +1,5 @@
 import { useEffect, useContext } from 'react';
-import { GlobalContext } from './index';
+import { GlobalContext } from '@/store';
 import Web3 from 'web3';
 import Transactions from '../common/Transactions';
 import Fetch from '../common/Fetch';

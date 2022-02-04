@@ -6,7 +6,7 @@ import Web3 from 'web3';
 import axios from 'axios';
 import { Loader, Button, Table } from 'semantic-ui-react';
 import { Line } from 'react-chartjs-2';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import MetaTx from 'common/MetaTx';
 import Global from 'components/Constants';
 import styles from './Overview.module.scss';

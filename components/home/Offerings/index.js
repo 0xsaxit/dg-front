@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from '@/store';
 import Link from 'next/link';
 import ContentOfferings from '../../content/ContentOfferings';
 import ContentLeaderboard from '../../content/ContentLeaderboard/index';

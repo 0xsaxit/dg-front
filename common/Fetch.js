@@ -1,6 +1,5 @@
-import call from 'common/API';
+import call from './API';
 import getConfig from 'next/config';
-import { MenuMenu } from 'semantic-ui-react';
 import { ApiUrlsByAppEnv } from './environments';
 
 // This imports NODE_ENV from next.config.js

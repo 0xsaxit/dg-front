@@ -1,5 +1,5 @@
 import { useEffect, useContext, useState } from 'react';
-import { GlobalContext } from '../store';
+import { GlobalContext } from '@/store';
 import { useRouter } from 'next/router';
 
 const Segment = () => {

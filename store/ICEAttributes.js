@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from './index';
+import { GlobalContext } from '@/store';
 import Web3 from 'web3';
 import ABI_ICE_REGISTRANT from '../components/ABI/ABIICERegistrant.json';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';

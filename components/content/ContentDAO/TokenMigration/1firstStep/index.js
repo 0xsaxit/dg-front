@@ -5,7 +5,7 @@ import BigNumber from 'bignumber.js';
 import Spinner from 'components/lottieAnimation/animations/spinner';
 import styles from './firstStep.module.scss'
 import Global from 'components/Constants';
-import { GlobalContext } from '../../../../../store';
+import { GlobalContext } from '@/store';
 import Transactions from '../../../../../common/Transactions';
 
 const FirstStep = (props) => {

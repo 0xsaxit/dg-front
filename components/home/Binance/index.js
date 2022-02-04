@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from '@/store';
 import Link from 'next/link';
 import { Button, Divider, Image, Icon } from 'semantic-ui-react';
 import ModalVideo from '../../modal/ModalVideo';

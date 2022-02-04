@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { Modal, Button } from 'semantic-ui-react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import styles from './NeedMoreUpgrade.module.scss';
 import { ICEIcon, DGLogo, XP, ExternalLinkArrow } from './Assets';
 

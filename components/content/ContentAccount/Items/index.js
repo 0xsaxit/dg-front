@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import cn from 'classnames';
 import { Grid, Image } from 'semantic-ui-react';
 import Aux from 'components/_Aux';

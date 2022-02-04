@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, useRef } from 'react'
 import AutosizeInput from 'react-input-autosize'
-import { GlobalContext } from '../../../../store';
+import { GlobalContext } from '@/store';
 import { Table, Button } from 'semantic-ui-react';
 import ModalIceDelegationBreakDown from 'components/modal/ModalIceDelegationBreakDown';
 import FoxAnimation from 'components/lottieAnimation/animations/fox'

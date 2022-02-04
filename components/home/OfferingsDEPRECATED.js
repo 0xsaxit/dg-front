@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from '@/store';
 import Link from 'next/link';
 import { Divider, Icon } from 'semantic-ui-react';
 import ContentOfferings from '../content/ContentOfferings';

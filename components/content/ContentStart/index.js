@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useContext, useEffect } from 'react';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from '@/store';
 import cn from 'classnames';
 import { Grid, Image, Button } from 'semantic-ui-react';
 import Aux from 'components/_Aux';

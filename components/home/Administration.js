@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from '@/store';
 import { Divider } from 'semantic-ui-react';
 import Web3 from 'web3';
 import Link from 'next/link';

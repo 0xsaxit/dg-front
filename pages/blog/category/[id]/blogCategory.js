@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../../../store';
-import _ from 'lodash';
+import { GlobalContext } from '@/store';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import ButterCMS from '../../../../common/ButterCMS';

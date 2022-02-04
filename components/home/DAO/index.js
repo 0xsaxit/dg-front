@@ -4,7 +4,7 @@ import Web3 from 'web3';
 import Link from 'next/link';
 import { Divider, Input } from 'semantic-ui-react';
 import { useMediaQuery } from 'hooks';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from '@/store';
 import Overview from '../../content/ContentDAO/Overview';
 import Governance from '../../content/ContentDAO/Governance';
 import Liquidity from '../../content/ContentDAO/Liquidity';

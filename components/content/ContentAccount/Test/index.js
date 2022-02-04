@@ -1,5 +1,4 @@
-import { useEffect, useContext, useState } from 'react';
-import { GlobalContext } from 'store/index';
+import { useEffect, useState } from 'react';
 import cn from 'classnames';
 import { get, map, sumBy } from 'lodash';
 import Global from 'components/Constants';

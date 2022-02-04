@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import Web3 from 'web3';
 import { useRouter } from 'next/router';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from '@/store';
 import Global from '../Constants';
 
 const MessageBar = () => {

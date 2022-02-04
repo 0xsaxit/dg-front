@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import cn from 'classnames';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import Link from 'next/link';
 import Spinner from 'components/Spinner';
 import ContentAccount from 'components/content/ContentAccount';

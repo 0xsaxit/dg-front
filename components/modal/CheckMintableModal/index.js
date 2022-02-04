@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from '@/store';
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './CheckMintableModal.module.scss';
 import Global from '../../Constants';

@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { GlobalContext } from './Context';
+import { GlobalContext } from '@/store';
 
 const initialState = {
   categories: ['All', 'Announcements', 'Tutorials', 'Technology'],

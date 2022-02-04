@@ -5,7 +5,7 @@ import Global from '../components/Constants';
 import Images from '../common/Images';
 
 import { useEffect, useContext, useState } from 'react';
-import { GlobalContext } from '../store';
+import { GlobalContext } from '@/store';
 import Fetch from "../common/Fetch";
 
 const Index = () => {

@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import Link from 'next/link';
 import Spinner from 'components/Spinner';
 import ContentMarketplace from 'components/content/ContentMarketplace';

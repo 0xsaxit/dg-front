@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import { Segment } from 'semantic-ui-react';
 import Screen from './screen';
-import { GlobalContext } from '../../store';
-import ButterCMS from '../../common/ButterCMS';
+import { GlobalContext } from '@/store';
+import ButterCMS from '@/common/ButterCMS';
 
 const Blog = (Paths) => {
   const [state, dispatch] = useContext(GlobalContext);

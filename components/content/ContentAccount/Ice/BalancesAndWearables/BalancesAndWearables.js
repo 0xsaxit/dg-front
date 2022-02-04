@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import Balances from './Balances';
 import IceWearables from './Wearables';
 import Aux from '../../../../_Aux';

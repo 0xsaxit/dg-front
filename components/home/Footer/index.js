@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { Button, Icon, Grid } from 'semantic-ui-react';
 import { useMediaQuery } from 'hooks';
 import Link from 'next/link';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import styles from './Footer.module.scss';
 // import { useTranslation, withTranslation, Trans } from 'react-i18next';
 

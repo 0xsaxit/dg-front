@@ -1,4 +1,4 @@
-import { GlobalContext } from '../../store';
+import { GlobalContext } from '@/store';
 import { useContext, useState, useEffect } from 'react';
 import DAO from '../../components/home/DAO';
 import Layout from '../../components/Layout.js';

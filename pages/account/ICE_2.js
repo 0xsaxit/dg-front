@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import AccountData from 'components/home/AccountData';
 import Layout from 'components/Layout.js';
 import Header from 'components/Header';

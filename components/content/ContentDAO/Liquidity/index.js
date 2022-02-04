@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import { useEffect, useContext, useState, React } from 'react';
-import { GlobalContext } from '../../../../store';
+import { GlobalContext } from '@/store';
 import { Button } from 'semantic-ui-react';
 import Aux from '../../../_Aux';
 import styles from './Liquidity.module.scss';
