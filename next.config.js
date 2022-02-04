@@ -15,12 +15,25 @@ module.exports = {
       use: ['@svgr/webpack'],
     });
 
-    // Fixes npm packages that depend on `fs` module
+    // webpack < 5 used to include polyfills for node.js core modules by default. This is no longer the case. Verify if you need this module and configure a polyfill for it. This tells webpack 5 to either not resolve the module during client-side rendering, or render the specified polyfill
     if (!isServer) {
-      config.node = {
-        fs: 'empty',
-        net: 'empty',
-        tls: 'empty',
+      config.resolve.fallback = {
+
+        /** Bundle web3 polyfills.
+         * @see: https://github.com/ChainSafe/web3.js#troubleshooting-and-known-issues*/
+        crypto: require.resolve("crypto-browserify"),
+        stream: require.resolve("stream-browserify"),
+        assert: require.resolve("assert"),
+        http: require.resolve("stream-http"),
+        https: require.resolve("https-browserify"),
+        os: require.resolve("os-browserify"),
+        url: require.resolve("url"),
+        url: require.resolve("querystring"),
+
+        // Don't bundle pure NodeJS libs not needed in the browser
+        fs: false,
+        net: false,
+        tls: false,
       };
     }
 
@@ -30,6 +43,11 @@ module.exports = {
           analyzerMode: 'server',
           analyzerPort: isServer ? 8888 : 8889,
           openAnalyzer: true,
+        }),
+
+        new webpack.ProvidePlugin({
+          process: 'process/browser',
+          Buffer: ['buffer', 'Buffer']
         })
       )
     }
@@ -39,6 +57,5 @@ module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
-  webpack5: false,
   optimizeFonnts: true,
 };

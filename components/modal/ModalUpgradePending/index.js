@@ -12,6 +12,7 @@ import ABI_COLLECTION_CRYPTO_DRIP from '../../../components/ABI/ABICollectionCry
 import ABI_COLLECTION_JOKER from '../../../components/ABI/ABICollectionJoker';
 import ABI_COLLECTION_CHEF from '../../../components/ABI/ABICollectionChef';
 import ABI_COLLECTION_BEACH from '../../../components/ABI/ABICollectionBeach'
+import ABI_COLLECTION_AIRLINE from '../../../components/ABI/ABICollectionAirline'
 import ABI_COLLECTION_FOUNDING_FATHERS from '../../../components/ABI/ABICollectionFounderFather';
 import MetaTx from '../../../common/MetaTx';
 import Fetch from '../../../common/Fetch';
@@ -142,6 +143,12 @@ const ModalUpgradePending = props => {
           Global.ADDRESSES.COLLECTION_BEACH_ADDRESS
         );
         collectionID = 20;
+      } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_AIRLINE_ADDRESS) {
+        collectionContract = new getWeb3.eth.Contract(
+          ABI_COLLECTION_AIRLINE,
+          Global.ADDRESSES.COLLECTION_AIRLINE_ADDRESS
+        );
+        collectionID = 21;
       }
 
       setCollectionContract(collectionContract);

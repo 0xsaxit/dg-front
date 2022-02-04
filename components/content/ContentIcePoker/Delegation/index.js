@@ -79,11 +79,9 @@ const Delegation = () => {
                     return (sortingOrder === 'dec') ? (b.stats.daysCheckedIn - a.stats.daysCheckedIn) : (a.stats.daysCheckedIn - b.stats.daysCheckedIn);
                 } else if (sortingName === 'totalChallengesCompleted') {
                     return (sortingOrder === 'dec') ? (b.stats.totalChallengesCompleted - a.stats.totalChallengesCompleted) : (a.stats.totalChallengesCompleted - b.stats.totalChallengesCompleted);
-                } else if (sortingName === 'avgLeaderboardTier') {
+                } else if (sortingName === 'avgLeaderboardTier' || sortingName === 'avgLeaderboardMultiplier') {
                     return (sortingOrder === 'inc') ? (b.stats.avgLeaderboardTier - a.stats.avgLeaderboardTier) : (a.stats.avgLeaderboardTier - b.stats.avgLeaderboardTier);
-                } else if (sortingName === 'avgLeaderboardMultiplier') {
-                    return (sortingOrder === 'inc') ? (b.stats.avgLeaderboardMultiplier - a.stats.avgLeaderboardMultiplier) : (a.stats.avgLeaderboardMultiplier - b.stats.avgLeaderboardMultiplier);
-                }
+                } 
             })
         ]
 
