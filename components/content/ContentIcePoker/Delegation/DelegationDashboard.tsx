@@ -8,6 +8,7 @@ import HourglassAnimation from 'components/lottieAnimation/animations/hourglass'
 import EmptyResultAnimation from 'components/lottieAnimation/animations/emptyResult';
 import Fetch from 'common/Fetch';
 import styles from './Delegation.module.scss'
+import cn from 'classnames';
 
 enum DelegationStates {
     All = 'All Delegates',
@@ -28,7 +29,8 @@ const Delegation: FC<DelegationType> = ({ className = '', isLoading }: Delegatio
     const [loading, setLoading] = useState(true);
     const [time, setTime] = useState('Weekly');
     const [showBreakDown, setShowingBreakDown] = useState(-1);
-    const [delegations, setDelegations] = useState([]);
+    const [rawDelegations, setRawDelegations] = useState([]);
+    const [filteredDelegations, setFilteredDelegations] = useState([]);
     const [sortingName, setSortingName] = useState('dailyICE');
     const [sortingOrder, setSortingOrder] = useState('dec');
     const [multiplierMap, setMultiplierMap] = useState([]);
@@ -37,7 +39,7 @@ const Delegation: FC<DelegationType> = ({ className = '', isLoading }: Delegatio
     const [pastTitle, savePastTitle] = useState(null);
     const [editingNickNameIndex, saveEditingNickNameIndex] = useState(-1);
     const [pastNickName, savePastNickName] = useState({ index: -1, value: null });
-    const [delegationStatusFilter, setDelegationStatusFilter] = useState(DelegationStates.All);
+    const [delegationStatusFilter, setDelegationStatusFilter] = useState(null);
 
     useEffect(() => {
         const fetchGuildName = async () => {
@@ -61,7 +63,6 @@ const Delegation: FC<DelegationType> = ({ className = '', isLoading }: Delegatio
 
                 // Get Delegation Breakdown from the API
                 let response = await Fetch.DELEGATION_BREAKDOWN(time === 'Weekly' ? 'week' : time === 'Monthly' ? 'month' : 'all');
-                console.log(response);
 
                 if (response && response.length > 0) {
                     response.sort(function (a, b) {
@@ -73,7 +74,17 @@ const Delegation: FC<DelegationType> = ({ className = '', isLoading }: Delegatio
                         })
                     }
                 }
-                setDelegations(response && response.length > 0 ? response : []);
+
+                const delegationData = response && response.length > 0 ? response : [];
+
+                // Used for display
+                setFilteredDelegations(delegationData);
+
+                // Used as the raw source for filtering
+                setRawDelegations(delegationData);
+
+                // Default filter status
+                setDelegationStatusFilter(DelegationStates.Active)
 
                 setLoading(false);
             }
@@ -81,9 +92,24 @@ const Delegation: FC<DelegationType> = ({ className = '', isLoading }: Delegatio
     }, [state.userLoggedIn, time])
 
     useEffect(() => {
-        const orderingData = [].concat(delegations);
+        /* Delegate Filtering needs to happen before the Sorting hook */
+        let filteredDelegations;
+        if (delegationStatusFilter === DelegationStates.All) {
+            filteredDelegations = rawDelegations;
 
-        if (orderingData && orderingData.length > 0) [
+        } else if (delegationStatusFilter === DelegationStates.Active) {
+            filteredDelegations = rawDelegations.filter(data => data.currentDelegations.length > 0)
+
+        } else if (delegationStatusFilter === DelegationStates.Past) {
+            filteredDelegations = rawDelegations.filter(data => data.currentDelegations.length === 0)
+        }
+
+        setFilteredDelegations(filteredDelegations)
+
+        /* Sorting needs to happen after Delegate Filtering hook */
+        const orderingData = [].concat(filteredDelegations);
+
+        if (orderingData && orderingData.length > 0) {
             orderingData.sort(function (a, b) {
                 if (sortingName === 'dailyICE') {
                     return (sortingOrder === 'dec') ? (b.stats.avgIceEarned - a.stats.avgIceEarned) : (a.stats.avgIceEarned - b.stats.avgIceEarned);
@@ -97,10 +123,10 @@ const Delegation: FC<DelegationType> = ({ className = '', isLoading }: Delegatio
                     return (sortingOrder === 'inc') ? (b.stats.avgLeaderboardTier - a.stats.avgLeaderboardTier) : (a.stats.avgLeaderboardTier - b.stats.avgLeaderboardTier);
                 }
             })
-        ]
+        }
 
-        setDelegations(orderingData);
-    }, [sortingName, sortingOrder])
+        setFilteredDelegations(orderingData);
+    }, [sortingName, sortingOrder, delegationStatusFilter])
 
     const defaultImgs = [
         "https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png",
@@ -141,7 +167,7 @@ const Delegation: FC<DelegationType> = ({ className = '', isLoading }: Delegatio
             if (pastNickName.index !== index) {
                 savePastNickName({
                     index: index,
-                    value: delegations[index].nickname ? delegations[index].nickname : ''
+                    value: filteredDelegations[index].nickname ? filteredDelegations[index].nickname : ''
                 })
             }
             updateDelegationName(index, "");
@@ -157,9 +183,9 @@ const Delegation: FC<DelegationType> = ({ className = '', isLoading }: Delegatio
     }
 
     function updateDelegationName(index, nickname) {
-        const tempDelegations = [].concat(delegations);
+        const tempDelegations = [].concat(filteredDelegations);
         tempDelegations[index].nickname = nickname;
-        setDelegations(tempDelegations);
+        setFilteredDelegations(tempDelegations);
     }
 
     // Call hook passing in the ref and a function to call on outsdie click
@@ -182,10 +208,10 @@ const Delegation: FC<DelegationType> = ({ className = '', isLoading }: Delegatio
     }
 
     async function saveUpdatedNickName() {
-        if (!delegations[editingNickNameIndex].nickname) {
+        if (!filteredDelegations[editingNickNameIndex].nickname) {
             updateDelegationName(editingNickNameIndex, pastNickName.value);
         } else {
-            await Fetch.EDIT_DELEGATION_NICKNAME(delegations[editingNickNameIndex].nickname, delegations[editingNickNameIndex].address);
+            await Fetch.EDIT_DELEGATION_NICKNAME(filteredDelegations[editingNickNameIndex].nickname, filteredDelegations[editingNickNameIndex].address);
         }
         saveEditingNickNameIndex(-1);
         savePastNickName({
@@ -291,7 +317,7 @@ const Delegation: FC<DelegationType> = ({ className = '', isLoading }: Delegatio
                         </div>
 
                         {/* Filter by Timeline */}
-                        <div className={styles.time_div}>
+                        <div className={cn(styles.filter_pills, styles.timeline)}>
                             <div
                                 className={time === 'Weekly' ? styles.active : null}
                                 onClick={() => {
@@ -320,15 +346,7 @@ const Delegation: FC<DelegationType> = ({ className = '', isLoading }: Delegatio
 
 
                         {/* Filter by Active Delegation Status */}
-                        <div className={styles.time_div}>
-                            <div
-                                className={delegationStatusFilter === DelegationStates.All ? styles.active : null}
-                                onClick={() => {
-                                    setDelegationStatusFilter(DelegationStates.All);
-                                }}
-                            >
-                                { DelegationStates.All }
-                            </div>
+                        <div className={cn(styles.filter_pills, styles.delegation_status)}>
                             <div
                                 className={delegationStatusFilter === DelegationStates.Active ? styles.active : null}
                                 onClick={() => {
@@ -346,6 +364,14 @@ const Delegation: FC<DelegationType> = ({ className = '', isLoading }: Delegatio
                             >
                                 { DelegationStates.Past }
                             </div>
+                            <div
+                                className={delegationStatusFilter === DelegationStates.All ? styles.active : null}
+                                onClick={() => {
+                                    setDelegationStatusFilter(DelegationStates.All);
+                                }}
+                            >
+                                { DelegationStates.All }
+                            </div>
                         </div>
                     </>
                 }
@@ -357,11 +383,12 @@ const Delegation: FC<DelegationType> = ({ className = '', isLoading }: Delegatio
                         <HourglassAnimation />
                     </div>
                     :
-                    delegations && delegations.length > 0 ?
+                    filteredDelegations && filteredDelegations.length > 0 ?
                         <>
                             <div className={styles.delegation_table}>
                                 <div className={styles.fixed}>
                                     <Table fixed unstackable>
+
                                         <Table.Header>
                                             <Table.Row>
                                                 <Table.HeaderCell style={{ width: '50px' }} />
@@ -370,8 +397,9 @@ const Delegation: FC<DelegationType> = ({ className = '', isLoading }: Delegatio
                                                 </Table.HeaderCell>
                                             </Table.Row>
                                         </Table.Header>
+
                                         <Table.Body>
-                                            {delegations.map((row, i) => {
+                                            {filteredDelegations.map((row, i) => {
                                                 let style = '';
                                                 {
                                                     i % 2 === 0
@@ -447,8 +475,9 @@ const Delegation: FC<DelegationType> = ({ className = '', isLoading }: Delegatio
                                                 </Table.HeaderCell>
                                             </Table.Row>
                                         </Table.Header>
+
                                         <Table.Body>
-                                            {delegations.map((row, i) => {
+                                            {filteredDelegations.map((row, i) => {
                                                 let style = '';
                                                 {
                                                     i % 2 === 0
@@ -458,8 +487,7 @@ const Delegation: FC<DelegationType> = ({ className = '', isLoading }: Delegatio
 
                                                 return (
                                                   (() => {
-                                                   if (delegationStatusFilter === DelegationStates.All) {
-                                                       return <Table.Row key={i} style={{background: style}}>
+                                                   return <Table.Row key={i} style={{background: style}}>
 
                                                            {/* NFTs Delegated */}
                                                            <Table.Cell style={{width: '250px'}}>
@@ -559,7 +587,6 @@ const Delegation: FC<DelegationType> = ({ className = '', isLoading }: Delegatio
                                                                    History</Button>
                                                            </Table.Cell>
                                                        </Table.Row>
-                                                   }
                                                   })()
                                                 );
                                             })}
@@ -594,8 +621,8 @@ const Delegation: FC<DelegationType> = ({ className = '', isLoading }: Delegatio
             {
                 showBreakDown !== -1 ? (
                     <ModalIceDelegationBreakDown
-                        playerAddress={delegations && delegations.length > 0 ? delegations[showBreakDown].address : ''}
-                        delegationBreakdown={delegations && delegations.length > 0 ? delegations[showBreakDown].breakdown : []}
+                        playerAddress={filteredDelegations && filteredDelegations.length > 0 ? filteredDelegations[showBreakDown].address : ''}
+                        delegationBreakdown={filteredDelegations && filteredDelegations.length > 0 ? filteredDelegations[showBreakDown].breakdown : []}
                         setShowingBreakDown={setShowingBreakDown}
                     />
                 ) : null
