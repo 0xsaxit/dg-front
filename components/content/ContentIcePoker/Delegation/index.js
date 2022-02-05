@@ -30,8 +30,8 @@ const Delegation = () => {
     useEffect(() => {
         const fetchGuildName = async () => {
             const { guildName } = await Fetch.PLAYER_INFO(state.userAddress);
-            console.log("###############", guildName);
             setTitle(guildName ? guildName : 'Your Guild');
+            savePastTitle(guildName ? guildName : 'Your Guild');
         }
         const fetchLeaderboardMultiplerMap = async () => {
             const { leaderboardMultiplierMap } = await Fetch.GET_REWARDS_CONFIG();
@@ -161,19 +161,17 @@ const Delegation = () => {
         saveEditingTitle(false);
         if (!title) {
             setTitle(pastTitle);
-        } else {
-            var response = await Fetch.EDIT_DELEGATION_GUILDNAME(title);
-            console.log("@@@@@@@@@@@@@@@@@@@@@", response);
+        } else if (title !== pastTitle) {
+            await Fetch.EDIT_DELEGATION_GUILDNAME(title);
+            savePastTitle(title);
         }
-        savePastTitle("");
     }
 
     async function saveUpdatedNickName() {
         if (!delegations[editingNickNameIndex].nickname) {
             updateDelegationName(editingNickNameIndex, pastNickName.value);
         } else {
-            var response = await Fetch.EDIT_DELEGATION_NICKNAME(delegations[editingNickNameIndex].nickname, delegations[editingNickNameIndex].address);
-            console.log("@@@@@@@@@@@@@@@@@@@@@", response);
+            await Fetch.EDIT_DELEGATION_NICKNAME(delegations[editingNickNameIndex].nickname, delegations[editingNickNameIndex].address);
         }
         saveEditingNickNameIndex(-1);
         savePastNickName({

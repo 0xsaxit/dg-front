@@ -237,9 +237,9 @@ function ICEAttributes() {
         const wearableInventory = await Fetch.GET_WEARABLE_INVENTORY(
           state.userAddress
         );
-    
+
         wearableInventory.forEach((wearable, i) => {
-          if(wearable.delegationStatus.delegatedTo === state.userAddress)
+          if (wearable.delegationStatus.delegatedTo === state.userAddress)
             iceDelegatedItems.push(wearable);
         });
 
@@ -260,52 +260,10 @@ function ICEAttributes() {
     if (instances) {
       (async function () {
         // update global state wearables limit amounts for each collection
-        const itemLimits1 = await getItemLimits(0);
+        const itemLimits10 = await getItemLimits(9);
         dispatch({
-          type: 'item_limits_1',
-          data: itemLimits1,
-        });
-
-        const itemLimits2 = await getItemLimits(1);
-        dispatch({
-          type: 'item_limits_2',
-          data: itemLimits2,
-        });
-
-        const itemLimits3 = await getItemLimits(2);
-        dispatch({
-          type: 'item_limits_3',
-          data: itemLimits3,
-        });
-
-        const itemLimits4 = await getItemLimits(3);
-        dispatch({
-          type: 'item_limits_4',
-          data: itemLimits4,
-        });
-
-        const itemLimits5 = await getItemLimits(4);
-        dispatch({
-          type: 'item_limits_5',
-          data: itemLimits5,
-        });
-
-        const itemLimits6 = await getItemLimits(5);
-        dispatch({
-          type: 'item_limits_6',
-          data: itemLimits6,
-        });
-
-        const itemLimits7 = await getItemLimits(6);
-        dispatch({
-          type: 'item_limits_7',
-          data: itemLimits7,
-        });
-
-        const itemLimits8 = await getItemLimits(7);
-        dispatch({
-          type: 'item_limits_8',
-          data: itemLimits8,
+          type: 'item_limits_10',
+          data: itemLimits10,
         });
 
         const itemLimits9 = await getItemLimits(8);
@@ -314,10 +272,52 @@ function ICEAttributes() {
           data: itemLimits9,
         });
 
-        const itemLimits10 = await getItemLimits(9);
+        const itemLimits8 = await getItemLimits(7);
         dispatch({
-          type: 'item_limits_10',
-          data: itemLimits10,
+          type: 'item_limits_8',
+          data: itemLimits8,
+        });
+
+        const itemLimits7 = await getItemLimits(6);
+        dispatch({
+          type: 'item_limits_7',
+          data: itemLimits7,
+        });
+
+        const itemLimits6 = await getItemLimits(5);
+        dispatch({
+          type: 'item_limits_6',
+          data: itemLimits6,
+        });
+
+        const itemLimits5 = await getItemLimits(4);
+        dispatch({
+          type: 'item_limits_5',
+          data: itemLimits5,
+        });
+
+        const itemLimits4 = await getItemLimits(3);
+        dispatch({
+          type: 'item_limits_4',
+          data: itemLimits4,
+        });
+
+        const itemLimits3 = await getItemLimits(2);
+        dispatch({
+          type: 'item_limits_3',
+          data: itemLimits3,
+        });
+
+        const itemLimits2 = await getItemLimits(1);
+        dispatch({
+          type: 'item_limits_2',
+          data: itemLimits2,
+        });
+
+        const itemLimits1 = await getItemLimits(0);
+        dispatch({
+          type: 'item_limits_1',
+          data: itemLimits1,
         });
 
         // get the user's cool-down status
