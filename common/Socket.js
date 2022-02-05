@@ -15,7 +15,8 @@ const Socket = () => {
       const webSocket = new WebSocket(SocketUrlsByAppEnv[APP_ENV] || 'wss://socket.decentral.games');
 
       webSocket.onopen = async () => {
-        webSocket.send(encode('WEBSITE')); // generate website socket client
+        const web = encode(JSON.stringify({ WEBSITE: true }));
+        webSocket.send(web); // generate website socket client
       };
 
       webSocket.onmessage = async (message) => {
