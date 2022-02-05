@@ -349,34 +349,37 @@ const Delegation: FC<DelegationType> = ({className = '', isLoading}: DelegationT
                             </div>
 
                             {/* Filter by Active Delegation Status */}
+                            {(() => {
+                                if (state.userStatus >= 20) {
+                                    return <div className={cn(styles.filter_pills, styles.delegation_status)}>
+                                        <div
+                                            className={delegationStatusFilter === DelegationStates.Active ? styles.active : null}
+                                            onClick={() => {
+                                                setDelegationStatusFilter(DelegationStates.Active);
+                                            }}
+                                        >
+                                            {DelegationStates.Active}
 
-                            <div className={cn(styles.filter_pills, styles.delegation_status)}>
-                                <div
-                                    className={delegationStatusFilter === DelegationStates.Active ? styles.active : null}
-                                    onClick={() => {
-                                        setDelegationStatusFilter(DelegationStates.Active);
-                                    }}
-                                >
-                                    {DelegationStates.Active}
-
-                                </div>
-                                <div
-                                    className={delegationStatusFilter === DelegationStates.Past ? styles.active : null}
-                                    onClick={() => {
-                                        setDelegationStatusFilter(DelegationStates.Past);
-                                    }}
-                                >
-                                    {DelegationStates.Past}
-                                </div>
-                                <div
-                                    className={delegationStatusFilter === DelegationStates.All ? styles.active : null}
-                                    onClick={() => {
-                                        setDelegationStatusFilter(DelegationStates.All);
-                                    }}
-                                >
-                                    {DelegationStates.All}
-                                </div>
-                            </div>
+                                        </div>
+                                        <div
+                                            className={delegationStatusFilter === DelegationStates.Past ? styles.active : null}
+                                            onClick={() => {
+                                                setDelegationStatusFilter(DelegationStates.Past);
+                                            }}
+                                        >
+                                            {DelegationStates.Past}
+                                        </div>
+                                        <div
+                                            className={delegationStatusFilter === DelegationStates.All ? styles.active : null}
+                                            onClick={() => {
+                                                setDelegationStatusFilter(DelegationStates.All);
+                                            }}
+                                        >
+                                            {DelegationStates.All}
+                                        </div>
+                                    </div>
+                                }
+                            })()}
                         </>
                     </div>)
                 }
