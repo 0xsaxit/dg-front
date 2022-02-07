@@ -1,6 +1,6 @@
 import { useEffect, useContext, useState } from 'react';
 import { isEmpty } from 'lodash';
-import { GlobalContext } from 'store/index';
+import { GlobalContext } from '@/store';
 import ContentEvents from './ContentEvents';
 import Spinner from 'components/Spinner';
 import Global from 'components/Constants';

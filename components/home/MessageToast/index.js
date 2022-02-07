@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import Web3 from 'web3';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from '@/store';
 import Global from '../../Constants';
 import styles from './MessageToast.module.scss';
 import cn from 'classnames';

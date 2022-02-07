@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import cn from 'classnames';
 import { Button } from 'semantic-ui-react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import Fetch, { API_BASE_URL } from 'common/Fetch';
 import call from 'common/API';
 import Aux from 'components/_Aux';

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import History from './History';
 import Balances from './Balances';
 import Referrals from './Referrals';

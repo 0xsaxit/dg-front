@@ -24,12 +24,8 @@ import NFTSPOAPS from '../store/NFTSPOAPS';
 import SubgraphQuery from '../store/SubgraphQuery';
 import ICEAttributes from '../store/ICEAttributes';
 import AppConfig from '../store/AppConfig';
-
-// import Spinner from 'components/Spinner';
 import { useRouter } from 'next/router';
 import Socket from 'common/Socket';
-// import { useEffect, useContext, useState } from 'react';
-// import { GlobalContext } from '../store';
 
 function Application({ Component, pageProps, store }) {
   const router = useRouter();

@@ -1,4 +1,4 @@
-import { GlobalContext } from '../../store';
+import { GlobalContext } from '@/store';
 //import { useContext } from 'react';
 import React, { useContext, useEffect } from 'react';
 import AccountData from '../../components/home/AccountData';

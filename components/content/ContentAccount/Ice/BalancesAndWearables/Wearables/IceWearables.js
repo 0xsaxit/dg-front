@@ -3,7 +3,7 @@ import ICEWearableCard from 'components/common/cards/ICEWearableCard';
 import ICEDelegatedCard from 'components/common/cards/ICEDelegatedCard';
 import { Button } from 'semantic-ui-react';
 import styles from './Wearables.module.scss';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 
 const IceWearables = () => {
   // define local variables

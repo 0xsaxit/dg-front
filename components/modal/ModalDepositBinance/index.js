@@ -2,7 +2,7 @@ import { useEffect, useContext, useState } from 'react';
 import cn from 'classnames';
 import Web3 from 'web3';
 import { Modal, Icon, Button, Checkbox, Input } from 'semantic-ui-react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import Global from 'components/Constants';
 import styles from './ModalDepositBinance.module.scss';
 import Images from '../../../common/Images';

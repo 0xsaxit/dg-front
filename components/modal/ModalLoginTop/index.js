@@ -1,7 +1,7 @@
 import { useEffect, useContext, useState } from 'react';
 import Web3 from 'web3';
 import { Modal, Icon, Button } from 'semantic-ui-react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import styles from '../ModalLogin/ModalLogin.module.scss';
 import Fetch from '../../../common/Fetch';
 import { useMediaQuery } from "../../../hooks";

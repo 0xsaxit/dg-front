@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from '@/store';
 import { Button, Grid } from 'semantic-ui-react';
 import cn from 'classnames';
 import { useMediaQuery } from 'hooks';

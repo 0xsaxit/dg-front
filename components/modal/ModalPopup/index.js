@@ -1,7 +1,7 @@
 import { useEffect, useContext, useState } from 'react';
 import Link from 'next/link';
 import { Popup, Button } from 'semantic-ui-react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import Global from 'components/Constants';
 import { useRouter } from 'next/router';
 // import { useTranslation, withTranslation, Trans } from 'react-i18next';

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { GlobalContext } from '../../../../store';
+import { GlobalContext } from '@/store';
 import ModalMintWearable from 'components/modal/ModalMintWearable';
 import ModalLoginICE from 'components/modal/ModalLoginICE';
 import Spinner from 'components/lottieAnimation/animations/spinner_updated';

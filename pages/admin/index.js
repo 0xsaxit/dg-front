@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from '@/store';
 import Administration from '../../components/home/Administration';
 import Layout from '../../components/Layout.js';
 import Header from '../../components/Header';

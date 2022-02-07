@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { GlobalContext } from './index';
+import { GlobalContext } from '@/store';
 import Fetch from '../common/Fetch';
 import { assignToken } from "../components/button/ButtonConnect";
 

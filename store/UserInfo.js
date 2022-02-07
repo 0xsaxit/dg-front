@@ -1,5 +1,5 @@
 import { useEffect, useContext, useState } from 'react';
-import { GlobalContext } from './index';
+import { GlobalContext } from '@/store';
 import Fetch from '../common/Fetch';
 // import Global from '../components/Constants';
 

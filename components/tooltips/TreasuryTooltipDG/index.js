@@ -1,6 +1,6 @@
 import styles from './TreasuryTooltipDG.module.scss';
 import { Popup } from 'semantic-ui-react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import React, { useEffect, useContext, useState } from 'react';
 
 const TreasuryTooltipDG = props => {

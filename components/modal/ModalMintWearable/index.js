@@ -1,6 +1,6 @@
 import { useEffect, useContext, useState } from 'react';
 import { Modal, Button } from 'semantic-ui-react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import ModalEthAuth from 'components/modal/ModalEthAuth';
 import ModalIceAuth from 'components/modal/ModalIceAuth';
 import IceMintETHTooltip from 'components/tooltips/IceMintETHTooltip';

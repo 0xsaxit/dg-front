@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { Table } from 'semantic-ui-react';
 import { Line } from 'react-chartjs-2';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import styles from './Treasury.module.scss';
 import TooltipOne from 'components/tooltips/TreasuryTooltipDG/index.js';
 import TooltipTwo from 'components/tooltips/TreasuryTooltipGameplay/index.js';

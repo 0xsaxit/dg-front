@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import cn from 'classnames';
 import { Menu, Icon, Dropdown, Popup, Button } from 'semantic-ui-react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import { useMediaQuery } from 'hooks';
 import ModalInfo from 'components/modal/ModalInfo';
 import Fetch from 'common/Fetch';

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { GlobalContext } from '../../../../store';
+import { GlobalContext } from '@/store';
 import IceP2EEnabledTooltip from 'components/tooltips/IceP2EEnabledTooltip';
 import IceNeedToActivateTooltip from 'components/tooltips/IceNeedToActivateTooltip';
 import IceWearableBonusTooltip from 'components/tooltips/IceWearableBonusTooltip';

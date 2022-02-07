@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from '@/store';
 import { Modal, Button } from 'semantic-ui-react';
 import Fetch from '../../../common/Fetch';
 import styles from './ModalDelegate.module.scss';

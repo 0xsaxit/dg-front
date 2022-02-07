@@ -1,5 +1,5 @@
 import { useEffect, useContext } from 'react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import getConfig from 'next/config';
 import { decode, encode } from './crypto';
 import { SocketUrlsByAppEnv } from './environments';

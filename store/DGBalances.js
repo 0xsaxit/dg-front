@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from './index';
+import { GlobalContext } from '@/store';
 import Web3 from 'web3';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
 import ABI_CHILD_TOKEN_MANA from '../components/ABI/ABIChildTokenMANA';

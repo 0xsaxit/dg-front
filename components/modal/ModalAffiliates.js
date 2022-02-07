@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from '@/store';
 import { Icon, Modal, Divider } from 'semantic-ui-react';
 import Global from '../Constants';
 
