@@ -4,6 +4,11 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const path = require('path');
 
 module.exports = {
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors. Use when you already have ESLint configured to run in a separate part of your workflow (for example, in CI or a pre-commit hook).
+    ignoreDuringBuilds: true,
+  },
   productionBrowserSourceMaps: process.env.APP_ENV !== 'production' ? true : false, // enables debugging for non production mode
   publicRuntimeConfig: {
     APP_ENV: process.env.APP_ENV
