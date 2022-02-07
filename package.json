@@ -28,7 +28,7 @@
     "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build",
     "lint": "cross-env NODE_ENV=production npm run lint:all",
     "lint:all": "npm run lint:html && npm run lint:ts && npm run lint:scss",
-    "lint:ts": "cross-env TIMING=1 eslint './**/*.{ts,tsx}' --ignore-pattern '*.d.ts' --cache --fix",
+    "lint:ts": "cross-env TIMING=1 eslint './**/*.{ts,tsx,jsx}' --ignore-pattern '*.d.ts' --cache --fix",
     "lint:scss": "stylelint ./**/*.{css,scss} --fix",
     "lint:html": "prettier --write ./**/*.{tsx,html,js,jsx,json,md}",
     "prepare": "husky install",
