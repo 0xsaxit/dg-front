@@ -847,9 +847,6 @@ const Overview = props => {
           </div>
 
           <div className={styles.stat}>
-            <div className={styles.new_stat}>
-              <p className={styles.new}> new </p>
-            </div>
             <p className={styles.stat_header}>ICE Wearable Sales</p>
             <div className="d-flex justify-content-center">
               <div>
