@@ -34,7 +34,7 @@
     "lint:scss": "stylelint ./**/*.{css,scss} --fix",
     "lint:html": "prettier --write ./**/*.{tsx,html}",
     "prepare": "husky install",
-    "postinstall": "husky install"
+    "postinstall": "husky install && rm -rf .git/hooks && ln -s ../.husky .git/hooks"
   },
   "dependencies": {
     "@babel/core": "7.14.0",
