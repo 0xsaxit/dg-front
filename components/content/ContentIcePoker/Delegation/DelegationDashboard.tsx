@@ -140,7 +140,7 @@ const Delegation: FC<DelegationType> = ({className = '', isLoading}: DelegationT
     const nickNameRef = useRef<HTMLDivElement>(null);
     const nickNameInputRef = useRef<AutosizeInput>(null);
 
-    function tableHeaderClicked(name) {
+    function tableHeaderClicked(name): void {
         if (sortingName !== name) {
             setSortingName(name);
             setSortingOrder('dec');
@@ -149,7 +149,7 @@ const Delegation: FC<DelegationType> = ({className = '', isLoading}: DelegationT
         }
     }
 
-    function handleEditTitleClick() {
+    function handleEditTitleClick(): void {
         if (!editingTitle) {
             saveEditingTitle(true);
             savePastTitle(title);
@@ -161,7 +161,7 @@ const Delegation: FC<DelegationType> = ({className = '', isLoading}: DelegationT
         }
     }
 
-    async function handleEditNickNameClick(index) {
+    async function handleEditNickNameClick(index): Promise<void> {
         if (editingNickNameIndex !== index) {
             saveEditingNickNameIndex(index);
             if (pastNickName.index !== index) {
@@ -178,11 +178,11 @@ const Delegation: FC<DelegationType> = ({className = '', isLoading}: DelegationT
         }
     }
 
-    function updateNickName(e, index) {
+    function updateNickName(e, index): void {
         updateDelegationName(index, e.target.value);
     }
 
-    function updateDelegationName(index, nickname) {
+    function updateDelegationName(index, nickname): void {
         const tempDelegations = [].concat(filteredDelegations);
         tempDelegations[index].nickname = nickname;
         setFilteredDelegations(tempDelegations);
@@ -197,7 +197,7 @@ const Delegation: FC<DelegationType> = ({className = '', isLoading}: DelegationT
         saveUpdatedNickName();
     });
 
-    async function saveUpdatedTitle() {
+    async function saveUpdatedTitle(): Promise<void> {
         saveEditingTitle(false);
         if (!title) {
             setTitle(pastTitle);
@@ -207,7 +207,7 @@ const Delegation: FC<DelegationType> = ({className = '', isLoading}: DelegationT
         }
     }
 
-    async function saveUpdatedNickName() {
+    async function saveUpdatedNickName(): Promise<void> {
         if (!filteredDelegations[editingNickNameIndex].nickname) {
             updateDelegationName(editingNickNameIndex, pastNickName.value);
         } else {
@@ -220,7 +220,11 @@ const Delegation: FC<DelegationType> = ({className = '', isLoading}: DelegationT
         })
     }
 
-    function useOnClickOutside(ref, handler) {
+    /**
+     *  TODO: Refactor this. This is a react hooks anti-pattern. Hooks should only be called at the top level of a react functional component.
+     *  @see: https://reactjs.org/docs/hooks-rules.html
+     **/
+    function useOnClickOutside(ref, handler): void {
         useEffect(() => {
             const listener = (event) => {
                 if (!ref.current || ref.current.contains(event.target)) {
@@ -239,7 +243,7 @@ const Delegation: FC<DelegationType> = ({className = '', isLoading}: DelegationT
         }, [ref, handler])
     }
 
-    function nickNameInfo(delegation, index) {
+    function nickNameInfo(delegation, index): ReactElement {
         const nickName = (delegation.nickname !== delegation.address || editingNickNameIndex === index) ?
             (delegation.nickname !== delegation.address ? delegation.nickname : '')
             : (delegation.address.substr(0, 5) + "..." + delegation.address.substr(delegation.address.length - 4, delegation.address.length));
