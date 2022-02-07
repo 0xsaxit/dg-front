@@ -22,11 +22,11 @@ enum TimePeriods {
   All = 'all'
 }
 
-export interface DelegationType {
+export interface DelegationDashboardType {
   className?: string;
 }
 
-const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): ReactElement => {
+const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: DelegationDashboardType): ReactElement => {
   // get delegation data from the Context API store
   const [state] = useContext(GlobalContext);
 
@@ -690,4 +690,4 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
   );
 };
 
-export default Delegation;
+export default DelegationDashboard;
