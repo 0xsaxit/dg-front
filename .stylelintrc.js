@@ -20,7 +20,7 @@ module.exports = {
     rules: {
         'no-descending-specificity': null, // TODO: There are many classes that follow descending specificity - they need to be reorganized to follow ascending specificity as CSS was intended.
         'selector-max-id': 2,
-        indentation: 4,
+        indentation: 2,
         'no-empty-source': null, // allow empty stylesheets to stick with convention
         'selector-type-no-unknown': null, // allow custom Angular elements
         'max-empty-lines': 1,

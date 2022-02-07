@@ -1,6 +1,6 @@
 // Config default overrides for Prettier
 module.exports = {
-  tabWidth: 4,
+  tabWidth: 2,
   printWidth: 180,
   endOfLine: 'auto',
   arrowParens: 'avoid',
