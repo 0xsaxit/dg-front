@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import { useEffect, useContext, useState, React } from 'react';
-import { GlobalContext } from '../../../../store';
+import { GlobalContext } from '@/store';
 import { Button } from 'semantic-ui-react';
 import Global from 'components/Constants';
 import Transactions from 'common/Transactions';
@@ -57,8 +57,7 @@ const Gameplay = props => {
     }
   }, [state.userStatus]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // Biconomy API meta-transaction. Dispatch DG tokens to player
   async function metaTransaction() {
     try {

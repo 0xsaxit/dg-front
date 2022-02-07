@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from '@/store';
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './ModalUpgradeSuccess.module.scss';
 import cn from 'classnames';

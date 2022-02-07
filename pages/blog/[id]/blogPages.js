@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import Screen from '../../../components/blogdetail/screen';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from '@/store';
 import { Segment } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 import ButterCMS from '../../../common/ButterCMS';

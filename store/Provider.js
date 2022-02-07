@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { GlobalContext } from './Context';
+import { GlobalContext } from '@/store';
 
 const initialState = {
   categories: ['All', 'Announcements', 'Tutorials', 'Technology'],
@@ -33,7 +33,7 @@ const initialState = {
   userLoggedIn: false,
   transactions: [{}, {}],
   appConfig: {},
-  treasuryNumbers: {},
+  treasuryNumbers: undefined,
   txHash: '',
   gameRecords: {},
   networkID: 0,
@@ -68,7 +68,7 @@ const initialState = {
     BALANCE_MINING_DG: 0,
     BALANCE_MINING_DG_V2: 0,
     BALANCE_KEEPER_DG: 0,
-    BALANCE_AFFILIATES: [0, 0],
+    BALANCE_AFFILIATES: [],
     ICE_BALANCE_LP: 0,
     USDC_BALANCE_LP: 0,
     BALANCE_WETH_WEARABLES: 0,
@@ -92,7 +92,7 @@ const initialState = {
   },
   wearables: [],
   poaps: [],
-  eventsData: {},
+  eventsData: undefined,
   stakingBalances: {
     BALANCE_CONTRACT_BPT_1: 0,
     BALANCE_CONTRACT_BPT_2: 0,
@@ -164,6 +164,13 @@ const initialState = {
     [-1, 20],
   ],
   itemLimits9: [
+    [-1, 0],
+    [-1, 5],
+    [-1, 10],
+    [-1, 15],
+    [-1, 20],
+  ],
+  itemLimits10: [
     [-1, 0],
     [-1, 5],
     [-1, 10],
@@ -424,6 +431,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         itemLimits9: action.data,
+      };
+    case 'item_limits_10':
+      return {
+        ...state,
+        itemLimits10: action.data,
       };
     case 'ice_wearable_items':
       return {

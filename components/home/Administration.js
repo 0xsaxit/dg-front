@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from '@/store';
 import { Divider } from 'semantic-ui-react';
 import Web3 from 'web3';
 import Link from 'next/link';
@@ -21,8 +21,7 @@ const Administration = (props) => {
 
   const dataType = props.dataType;
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   useEffect(() => {
     if (props.dataType === 'balances') {
       setEthBalance(state.ethBalance);
@@ -46,8 +45,7 @@ const Administration = (props) => {
     }
   }, [state.userStatus]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // get treasury contract's and all games' paused status (true or false)
   // useEffect(() => {
   //   if (instances) {
@@ -67,8 +65,7 @@ const Administration = (props) => {
   //   }
   // }, [instances]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // ping the treasury contract for pause status
   // async function dataInterval() {
   //   async function fetchData() {
@@ -106,8 +103,7 @@ const Administration = (props) => {
   //   return () => clearInterval(interval);
   // }
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // helper functions
   function topLinks() {
     return (

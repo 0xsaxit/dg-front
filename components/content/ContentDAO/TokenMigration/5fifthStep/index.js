@@ -5,7 +5,7 @@ import Spinner from 'components/lottieAnimation/animations/spinner'
 import styles from './fifthStep.module.scss'
 import Web3 from 'web3';
 import Global from 'components/Constants'
-import { GlobalContext } from '../../../../../store'
+import { GlobalContext } from '@/store';
 import Transactions from '../../../../../common/Transactions'
 
 const FifthStep = (props) => {

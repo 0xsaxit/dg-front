@@ -1,4 +1,4 @@
-import { GlobalContext } from '../../store';
+import { GlobalContext } from '@/store';
 import { useContext } from 'react';
 import Farming from '../../components/home/Farming';
 import Layout from '../../components/Layout.js';
@@ -18,7 +18,7 @@ const Admin = () => {
         image={Images.SOCIAL_SHARE}
       />
 
-      {state.userStatus === 28 ? (
+      {state.userStatus >= 28 ? (
         <Farming DGState={'admin'} />
       ) : (
         <div className="account-other-inner-p">

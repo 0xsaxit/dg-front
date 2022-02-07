@@ -244,8 +244,7 @@ function SectionTwo() {
               </Button>
               <Button
                 className={styles.blue_button}
-                href="https://decentral.games/ice/marketplace"
-                target="_blank"
+                href="/ice/marketplace"
               >
                 Browse Wearables
               </Button>

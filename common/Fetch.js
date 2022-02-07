@@ -1,6 +1,5 @@
-import call from 'common/API';
+import call from './API';
 import getConfig from 'next/config';
-import { MenuMenu } from 'semantic-ui-react';
 import { ApiUrlsByAppEnv } from './environments';
 
 // This imports NODE_ENV from next.config.js
@@ -11,12 +10,13 @@ const { APP_ENV } = publicRuntimeConfig;
 export const API_BASE_URL =
   ApiUrlsByAppEnv[APP_ENV] || 'https://api.decentral.games';
 
+const API_BASE_URL_PROD_OR_LOCALHOST_ONLY = APP_ENV === 'localhost' ? ApiUrlsByAppEnv['localhost'] : ApiUrlsByAppEnv['production'];
+
 console.log('APP_ENV (NODE_ENV): ', APP_ENV);
 console.log('API_BASE_URL: ', API_BASE_URL);
 
 const Fetch = {
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // GET API calls (no wallet address necessary)
   APP_CONFIG: () => {
     return call(`${API_BASE_URL}/admin/getAppConfig`, 'GET');
@@ -91,8 +91,7 @@ const Fetch = {
   //   return call(`${API_BASE_URL}/ice/getRewardsConfig`, 'GET');
   // },
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // GET API calls (wallet address necessary)
   PLAYER_INFO: address => {
     return call(`${API_BASE_URL}/admin/getUser?address=${address}`, 'GET');
@@ -126,16 +125,18 @@ const Fetch = {
     );
   },
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // GET API calls (wallet address optional)
   DELEGATE_INFO: address => {
     return call(`${API_BASE_URL}/ice/delegateInfo?address=${address}`, 'GET');
   },
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // POST API calls (no wallet address necessary)
+  VERIFY_TOKEN: async () => {
+    return await call(`${API_BASE_URL}/authentication/verifyToken`, 'POST', true, {}, true);
+  },
+
   USER_STATUS: () => {
     return call(`${API_BASE_URL}/order/webLogin`, 'POST', true);
   },
@@ -163,8 +164,7 @@ const Fetch = {
     });
   },
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // POST API calls (wallet address necessary)
   UPDATE_TOKEN_ARRAY: (address, index) => {
     return call(`${API_BASE_URL}/order/updateTokenArray`, 'POST', true, {
@@ -208,8 +208,7 @@ const Fetch = {
     );
   },
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // third-party API calls
   NFTS_1: address => {
     return call(
@@ -299,35 +298,48 @@ const Fetch = {
     );
   },
 
-  DG_GOVERNANCE_SUPPLY_GECKO: () => {
-    return call(
-      `https://api.coingecko.com/api/v3/coins/decentral-games-governance`,
-      'GET',
-      false
-    );
-  },
-
   POAPS: address => {
     return call(`https://api.poap.xyz/actions/scan/${address}`, 'GET', false);
   },
 
+  /*****************************************************
+   * Delegation data is only available in production. Use `API_BASE_URL_PROD_OR_LOCALHOST_ONLY` to allow localhost debugging, while defaulting to production in all other cases.
+   ******************************************************/
+
   DELEGATION_BREAKDOWN: (time, address) => {
     if (address) {
-      return call(`https://api.decentral.games/ice/getDelegationBreakdown/${time}?address=${address}`, 'GET');
+      return call(`${API_BASE_URL_PROD_OR_LOCALHOST_ONLY}/ice/getDelegationBreakdown/${time}?address=${address}`, 'GET');
     } else {
-      return call(`https://api.decentral.games/ice/getDelegationBreakdown/${time}`, 'GET');
+      return call(`${API_BASE_URL_PROD_OR_LOCALHOST_ONLY}/ice/getDelegationBreakdown/${time}`, 'GET');
     }
   },
+
+  EDIT_DELEGATION_NICKNAME: async (nickname, delegateAddress) => {
+    return await call(`${API_BASE_URL_PROD_OR_LOCALHOST_ONLY}/ice/editDelegation`, 'PATCH', true, {
+      nickname: nickname,
+      delegateAddress: delegateAddress
+    });
+  },
+
+  EDIT_DELEGATION_GUILDNAME: async (guildName) => {
+    return await call(`${API_BASE_URL_PROD_OR_LOCALHOST_ONLY}/ice/editDelegation`, 'PATCH', true, {
+      guildName: guildName
+    });
+  },
+
+  /*****************************************************
+   * End delegation APIS using `API_BASE_URL_PROD_OR_LOCALHOST_ONLY`
+  /******************************************************/
 
   GAMEPLAY_REPORTS: (address) => {
     if (address) {
-      return call(`https://api.decentral.games/ice/getGameplayReports/?address=${address}`, 'GET');
+      return call(`${API_BASE_URL_PROD_OR_LOCALHOST_ONLY}/ice/getGameplayReports/?address=${address}`, 'GET');
     } else {
-      return call(`https://api.decentral.games/ice/getGameplayReports`, 'GET');
+      return call(`${API_BASE_URL_PROD_OR_LOCALHOST_ONLY}/ice/getGameplayReports`, 'GET');
     }
   },
 
-  GET_FRONTPAGE_STATS: () =>  {
+  GET_FRONTPAGE_STATS: () => {
     return call(`${API_BASE_URL}/admin/getFrontPageStats`, 'GET', false);
 
   }

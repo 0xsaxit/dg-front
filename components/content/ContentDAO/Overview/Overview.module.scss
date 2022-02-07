@@ -500,11 +500,11 @@
 }
 
 .treasury_container_mobile {
-  margin: 48px 24px 0px 24px;
+  margin: 48px 24px 48px 24px;
   padding: 28px;
   border: 1px solid rgba(42, 42, 42, 1);
   border-radius: 16px;
-  width: 100%;
+  width: calc(100% - 48px);
 
   @media (min-width: 500px) {
     display: none;
@@ -559,6 +559,7 @@
     .stat {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       margin: 0px 0px 18px 0px;
 
       .stat_header {
@@ -587,6 +588,10 @@
         font-size: 14px;
         font-family: Larsseit-Bold;
         color: #ea3943 !important;
+      }
+
+      span {
+        align-items: center;
       }
     }
 

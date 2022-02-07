@@ -9,7 +9,7 @@ import {
   Input,
   Loader,
 } from 'semantic-ui-react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import Global from 'components/Constants';
 import styles from './ModalAccept.module.scss';
 import Images from '../../../common/Images';

@@ -1,5 +1,5 @@
 import { useEffect, useContext, useState } from 'react';
-import { GlobalContext } from '../store';
+import { GlobalContext } from '@/store';
 import { initGA, logPageView } from './Analytics';
 import MenuTop from './home/MenuTop/index.js';
 import { ThemeProvider } from 'styled-components';

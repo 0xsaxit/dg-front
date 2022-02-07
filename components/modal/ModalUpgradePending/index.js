@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from '@/store';
 import { Biconomy } from '@biconomy/mexa';
 import Web3 from 'web3';
 import ABI_DG_LIGHT_TOKEN from '../../../components/ABI/ABIChildTokenLightDG';
@@ -12,6 +12,7 @@ import ABI_COLLECTION_CRYPTO_DRIP from '../../../components/ABI/ABICollectionCry
 import ABI_COLLECTION_JOKER from '../../../components/ABI/ABICollectionJoker';
 import ABI_COLLECTION_CHEF from '../../../components/ABI/ABICollectionChef';
 import ABI_COLLECTION_BEACH from '../../../components/ABI/ABICollectionBeach'
+import ABI_COLLECTION_AIRLINE from '../../../components/ABI/ABICollectionAirline'
 import ABI_COLLECTION_FOUNDING_FATHERS from '../../../components/ABI/ABICollectionFounderFather';
 import MetaTx from '../../../common/MetaTx';
 import Fetch from '../../../common/Fetch';
@@ -47,8 +48,7 @@ const ModalUpgradePending = props => {
   const [refreshActiveItem, setRefreshActiveItem] = useState(false);
   const [successInUpgrade, setSuccessInUpgrade] = useState(false);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // initialize Web3 providers and create token contract instance
   useEffect(() => {
     if (state.userStatus >= 4) {
@@ -143,6 +143,12 @@ const ModalUpgradePending = props => {
           Global.ADDRESSES.COLLECTION_BEACH_ADDRESS
         );
         collectionID = 20;
+      } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_AIRLINE_ADDRESS) {
+        collectionContract = new getWeb3.eth.Contract(
+          ABI_COLLECTION_AIRLINE,
+          Global.ADDRESSES.COLLECTION_AIRLINE_ADDRESS
+        );
+        collectionID = 21;
       }
 
       setCollectionContract(collectionContract);
@@ -236,8 +242,7 @@ const ModalUpgradePending = props => {
     setActiveItem(active);
   }, [refreshActiveItem]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // helper functions
 
   function refresh() {
@@ -359,7 +364,7 @@ const ModalUpgradePending = props => {
             <Aux>
               <MetamaskAction
                 primaryText={item.text}
-                actionState={'clicked'}
+                actionState={item.actionState}
                 onClick={() => {
                   console.log('circle clicked', item);
                 }}

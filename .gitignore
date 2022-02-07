@@ -15,3 +15,15 @@ yarn-error.log*
 
 .DS_Store
 package-lock.json
+/.idea/vcs.xml
+/.idea/workspace.xml
+
+# Yarn
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.eslintcache

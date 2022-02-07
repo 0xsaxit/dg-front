@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 // import Newest from './Newest';
 // import Latest from './Latest';
 // import Delegate from './Delegate';

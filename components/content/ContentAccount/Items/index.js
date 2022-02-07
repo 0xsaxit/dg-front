@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import cn from 'classnames';
 import { Grid, Image } from 'semantic-ui-react';
 import Aux from 'components/_Aux';
-import IceWearables from '../Ice/BalancesAndWearables/Wearables'
+import IceWearables from '../Ice/BalancesAndWearables/Wearables/IceWearables'
 import styles from './Items.module.scss';
 import Images from 'common/Images';
 

@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from '@/store';
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './CheckMintableModal.module.scss';
 import Global from '../../Constants';
@@ -123,8 +123,7 @@ const CheckMintableModal = props => {
     state.DGBalances.BALANCE_CHILD_TOKEN_XDG]
   );  
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // helper functions
 
   function modalButtons(type) {

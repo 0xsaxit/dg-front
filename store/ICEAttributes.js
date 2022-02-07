@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from './index';
+import { GlobalContext } from '@/store';
 import Web3 from 'web3';
 import ABI_ICE_REGISTRANT from '../components/ABI/ABIICERegistrant.json';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
@@ -15,6 +15,7 @@ import ABI_COLLECTION_FOUNDER_FATHER from '../components/ABI/ABICollectionFounde
 import ABI_COLLECTION_JOKER from '../components/ABI/ABICollectionJoker.json';
 import ABI_COLLECTION_CHEF from '../components/ABI/ABICollectionChef.json';
 import ABI_COLLECTION_BEACH from '../components/ABI/ABICollectionBeach.json';
+import ABI_COLLECTION_AIRLINE from '../components/ABI/ABICollectionAirline.json';
 import ABI_ICEToken from '../components/ABI/ABIICEToken';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
@@ -33,8 +34,6 @@ function ICEAttributes() {
   const [collectionArray, setCollectionArray] = useState([]);
   const [iceTokenContract, setIceTokenContract] = useState({});
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     if (state.userStatus >= 4) {
       const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
@@ -100,27 +99,35 @@ function ICEAttributes() {
           ABI_COLLECTION_BEACH,
           Global.ADDRESSES.COLLECTION_BEACH_ADDRESS
         );
+        const collectionV2Contract10 = new maticWeb3.eth.Contract(
+          ABI_COLLECTION_AIRLINE,
+          Global.ADDRESSES.COLLECTION_AIRLINE_ADDRESS
+        );
 
         const collectionArray = [];
         collectionArray.push([
           collectionV2Contract,
           Global.ADDRESSES.COLLECTION_V2_ADDRESS,
-          [0, 5, 10, 15, 20],
+          [20, 10, 5, 0, 15],
+          // [0, 5, 10, 15, 20],
         ]);
         collectionArray.push([
           collectionV2Contract2,
           Global.ADDRESSES.COLLECTION_PH_ADDRESS,
-          [0, 5, 10, 15, 20],
+          [20, 15, 10, 5, 0],
+          // [0, 5, 10, 15, 20],
         ]);
         collectionArray.push([
           collectionV2Contract3,
           Global.ADDRESSES.COLLECTION_LINENS_ADDRESS,
-          [0, 5, 17, 13, 21],
+          [5, 0, 17, 13, 21],
+          // [0, 5, 17, 13, 21],
         ]);
         collectionArray.push([
           collectionV2Contract4,
           Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS,
-          [2, 12, 16, 20, 7],
+          [20, 12, 16, 2, 7]
+          // [2, 12, 16, 20, 7],
         ]);
         collectionArray.push([
           collectionV2Contract5,
@@ -145,6 +152,11 @@ function ICEAttributes() {
         collectionArray.push([
           collectionV2Contract9,
           Global.ADDRESSES.COLLECTION_BEACH_ADDRESS,
+          [0, 5, 10, 15, 20],
+        ]);
+        collectionArray.push([
+          collectionV2Contract10,
+          Global.ADDRESSES.COLLECTION_AIRLINE_ADDRESS,
           [0, 5, 10, 15, 20],
         ]);
         setCollectionArray(collectionArray);
@@ -225,9 +237,9 @@ function ICEAttributes() {
         const wearableInventory = await Fetch.GET_WEARABLE_INVENTORY(
           state.userAddress
         );
-    
+
         wearableInventory.forEach((wearable, i) => {
-          if(wearable.delegationStatus.delegatedTo === state.userAddress)
+          if (wearable.delegationStatus.delegatedTo === state.userAddress)
             iceDelegatedItems.push(wearable);
         });
 
@@ -248,46 +260,16 @@ function ICEAttributes() {
     if (instances) {
       (async function () {
         // update global state wearables limit amounts for each collection
-        const itemLimits1 = await getItemLimits(0);
+        const itemLimits10 = await getItemLimits(9);
         dispatch({
-          type: 'item_limits_1',
-          data: itemLimits1,
+          type: 'item_limits_10',
+          data: itemLimits10,
         });
 
-        const itemLimits2 = await getItemLimits(1);
+        const itemLimits9 = await getItemLimits(8);
         dispatch({
-          type: 'item_limits_2',
-          data: itemLimits2,
-        });
-
-        const itemLimits3 = await getItemLimits(2);
-        dispatch({
-          type: 'item_limits_3',
-          data: itemLimits3,
-        });
-
-        const itemLimits4 = await getItemLimits(3);
-        dispatch({
-          type: 'item_limits_4',
-          data: itemLimits4,
-        });
-
-        const itemLimits5 = await getItemLimits(4);
-        dispatch({
-          type: 'item_limits_5',
-          data: itemLimits5,
-        });
-
-        const itemLimits6 = await getItemLimits(5);
-        dispatch({
-          type: 'item_limits_6',
-          data: itemLimits6,
-        });
-
-        const itemLimits7 = await getItemLimits(6);
-        dispatch({
-          type: 'item_limits_7',
-          data: itemLimits7,
+          type: 'item_limits_9',
+          data: itemLimits9,
         });
 
         const itemLimits8 = await getItemLimits(7);
@@ -296,10 +278,46 @@ function ICEAttributes() {
           data: itemLimits8,
         });
 
-        const itemLimits9 = await getItemLimits(8);
+        const itemLimits7 = await getItemLimits(6);
         dispatch({
-          type: 'item_limits_9',
-          data: itemLimits9,
+          type: 'item_limits_7',
+          data: itemLimits7,
+        });
+
+        const itemLimits6 = await getItemLimits(5);
+        dispatch({
+          type: 'item_limits_6',
+          data: itemLimits6,
+        });
+
+        const itemLimits5 = await getItemLimits(4);
+        dispatch({
+          type: 'item_limits_5',
+          data: itemLimits5,
+        });
+
+        const itemLimits4 = await getItemLimits(3);
+        dispatch({
+          type: 'item_limits_4',
+          data: itemLimits4,
+        });
+
+        const itemLimits3 = await getItemLimits(2);
+        dispatch({
+          type: 'item_limits_3',
+          data: itemLimits3,
+        });
+
+        const itemLimits2 = await getItemLimits(1);
+        dispatch({
+          type: 'item_limits_2',
+          data: itemLimits2,
+        });
+
+        const itemLimits1 = await getItemLimits(0);
+        dispatch({
+          type: 'item_limits_1',
+          data: itemLimits1,
         });
 
         // get the user's cool-down status
@@ -408,8 +426,6 @@ function ICEAttributes() {
     }
   }, [instances, state.iceWearableItems, state.refreshNFTAuths]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   async function getItemLimits(index) {
     const collectionAddress = collectionArray[index][1];
     const tokenIdArray = collectionArray[index][2];

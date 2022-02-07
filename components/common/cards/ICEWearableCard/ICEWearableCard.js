@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { GlobalContext } from '../../../../store';
+import { GlobalContext } from '@/store';
 import IceP2EEnabledTooltip from 'components/tooltips/IceP2EEnabledTooltip';
 import IceNeedToActivateTooltip from 'components/tooltips/IceNeedToActivateTooltip';
 import IceWearableBonusTooltip from 'components/tooltips/IceWearableBonusTooltip';
@@ -20,11 +20,9 @@ const ICEWearableCard = props => {
   const { name, description, rank, image, imageUpgrade, tokenId, checkInStatus, contractAddress, isActivated, itemId } = props.item;
   const bonus = "+" + props.item.bonus + "%";
   const delegateAddress = props.item.delegationStatus.delegatedTo || '';
-  const delegationStatus = props.item.delegationStatus.isQueuedForUndelegationByDelegatee ||
-                            props.item.delegationStatus.isQueuedForUndelegationByOwner;
+  const delegationStatus = props.item.delegationStatus.isQueuedForUndelegationByDelegatee || props.item.delegationStatus.isQueuedForUndelegationByOwner;
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+
   // helper functions
   function imageAndDescription() {
     return (

@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from './index';
+import { GlobalContext } from '@/store';
 import Web3 from 'web3';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
 import ABI_CHILD_TOKEN_MANA from '../components/ABI/ABIChildTokenMANA';
@@ -46,8 +46,7 @@ function DGBalances() {
   let interval = {};
   let currentTime = 0;
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
 
   async function fetchData() {
     const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
@@ -247,8 +246,7 @@ function DGBalances() {
     }
   }, [state.stakeTime]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   async function getTokenBalances() {
     try {
       const BALANCE_BP_DG_1 = await Transactions.balanceOfToken(
@@ -633,8 +631,7 @@ function DGBalances() {
     }
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   async function getBalancesStaking() {
     try {
       const BALANCE_CONTRACT_BPT_1 = await Transactions.balanceOfToken(

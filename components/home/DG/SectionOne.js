@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from '@/store';
 import { Button, Grid } from 'semantic-ui-react';
 import cn from 'classnames';
 import { useMediaQuery } from 'hooks';
@@ -61,10 +61,10 @@ function SectionOne(props) {
             <h1>
               {' '}
               {/* { t('Home.PLAY') } */}
-              Play-to-earn gaming {mobile ? <br /> : null} in the metaverse
+              Play & earn gaming {mobile ? <br /> : null} in the metaverse
             </h1>
             <p className={cn(styles.content, mobile ? 'px-6 mx-auto' : 'px-0')}>
-              We build games that give players economic freedom. Play to earn and scale your own metaverse business. ICE Poker beta is live now.
+              We build games that reward you to play. Play, earn, and scale your own metaverse guild. ICE Poker beta is now live.
             </p>
             <span className={styles.button_group}>
               <Button
@@ -108,7 +108,7 @@ function SectionOne(props) {
                 :
                 <h1>${formatBigNumber(monthlyRevenue)}</h1>
               }
-              <p className={styles.color2}>Revenue This Month</p>
+              <p className={styles.color2}>Revenue Last Month</p>
             </Grid.Column>
             <Grid.Column className={styles.section} computer={4} tablet={4} mobile={8}>
               {monthlyVisitors === -1 ?

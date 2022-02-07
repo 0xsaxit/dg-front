@@ -2,7 +2,7 @@ import { useEffect, useContext, useState } from 'react';
 import cn from 'classnames';
 import Web3 from 'web3';
 import { Modal, Icon, Button } from 'semantic-ui-react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import Global from 'components/Constants';
 import styles from './ModalLoginBinance.module.scss';
 import Images from '../../../common/Images';
@@ -17,8 +17,7 @@ const ModalLoginBinance = () => {
   const [metamaskEnabled, setMetamaskEnabled] = useState(false);
   const [safari, setSafari] = useState(false);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // using Safari browser
   useEffect(() => {
     if (window.safari !== undefined) {

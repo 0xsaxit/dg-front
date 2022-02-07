@@ -1,5 +1,5 @@
 import { useEffect, useContext, useState } from 'react';
-import { GlobalContext } from './index';
+import { GlobalContext } from '@/store';
 import Web3 from 'web3';
 import ABI_CHILD_TOKEN_MANA from '../components/ABI/ABIChildTokenMANA';
 import ABI_CHILD_TOKEN_DAI from '../components/ABI/ABIChildTokenDAI';
@@ -25,8 +25,7 @@ function AdminBalances() {
 
   let arrayAmounts = state.adminBalances;
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   useEffect(() => {
     if (state.userStatus === 28) {
       // web3 = new Web3(state.walletProvider); // pass MetaMask provider to Web3 constructor
@@ -95,8 +94,7 @@ function AdminBalances() {
     }
   }, [instances]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // get Worker address ETH balance on Matic Network
   async function getEthBalance() {
     try {
