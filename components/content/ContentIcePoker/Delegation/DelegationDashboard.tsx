@@ -718,18 +718,20 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
                         }
                     }
                 }
+            })()}
 
-                if (showBreakDown !== -1) {
-                    return (
-                        <ModalIceDelegationBreakDown
-                            playerAddress={filteredDelegations && filteredDelegations.length > 0 ? filteredDelegations[showBreakDown].address : ''}
-                            delegationBreakdown={filteredDelegations && filteredDelegations.length > 0 ? filteredDelegations[showBreakDown].breakdown : []}
-                            setShowingBreakDown={setShowingBreakDown}
-                        />
-                    );
-                } else {
-                    return null;
-                }
+            {(() => {
+              if (showBreakDown !== -1) {
+                      return (
+                          <ModalIceDelegationBreakDown
+                              playerAddress={filteredDelegations && filteredDelegations.length > 0 ? filteredDelegations[showBreakDown].address : ''}
+                              delegationBreakdown={filteredDelegations && filteredDelegations.length > 0 ? filteredDelegations[showBreakDown].breakdown : []}
+                              setShowingBreakDown={setShowingBreakDown}
+                          />
+                      );
+                  } else {
+                      return null;
+                  }
             })()}
         </section>
     );
