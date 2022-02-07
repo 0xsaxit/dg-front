@@ -28,7 +28,6 @@ WORKDIR /app
 COPY . .
 
 # Install python build tools
-
 RUN apk add --update --no-cache python3 build-base && \
     rm -rf /var/cache/apk/* && \
     yarn audit --level critical || true && \

@@ -5,6 +5,8 @@ Dockerfile
 docker-compose.yml
 .dockerignore
 .git
+# Include git hooks in Docker build for successful compilation
+!.git/hooks
 .github
 .gitignore
 .next
