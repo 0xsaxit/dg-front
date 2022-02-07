@@ -173,7 +173,7 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
         if (!isEditingTitle) {
             saveIsEditingTitle(true);
             savePastTitle(title);
-            setTitle('');
+            setTitle(title);
 
             setTimeout(() => {
                 titleInputRef.current.input.focus();
@@ -181,27 +181,23 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
         }
     }
 
-    async function handleEditNickNameClick(index): Promise<void> {
+    async function handleEditNickNameClick(index: number, nickName): Promise<void> {
         if (editingNickNameIndex !== index) {
             saveEditingNickNameIndex(index);
 
             if (pastNickName.index !== index) {
                 savePastNickName({
                     index: index,
-                    value: filteredDelegations[index].nickname ? filteredDelegations[index].nickname : '',
+                    value: nickName ?? '',
                 });
             }
 
-            updateDelegationName(index, '');
+            updateDelegationName(index, nickName);
 
             setTimeout(() => {
                 nickNameInputRef.current.input.focus();
             }, 200);
         }
-    }
-
-    function updateNickName(e, index): void {
-        updateDelegationName(index, e.target.value);
     }
 
     function updateDelegationName(index, nickname): void {
@@ -211,17 +207,8 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
         setFilteredDelegations(tempDelegations);
     }
 
-    // Call hook passing in the ref and a function to call on outsdie click
-    useOnClickOutside(titleRef, (): void => {
-        saveUpdatedTitle();
-    });
-
-    useOnClickOutside(nickNameRef, (): void => {
-        saveUpdatedNickName();
-    });
-
     async function saveUpdatedTitle(): Promise<void> {
-        saveIsEditingTitle(false);
+      saveIsEditingTitle(false);
 
         if (!title) {
             setTitle(pastTitle);
@@ -245,30 +232,6 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
         });
     }
 
-    /**
-     *  TODO: Refactor this. This is a react hooks anti-pattern. Hooks should only be called at the top level of a react functional component.
-     *  @see: https://reactjs.org/docs/hooks-rules.html
-     **/
-    function useOnClickOutside(ref, handler): void {
-        useEffect(() => {
-            const listener = (event): void => {
-                if (!ref.current || ref.current.contains(event.target)) {
-                    return;
-                }
-
-                handler(event);
-            };
-
-            document.addEventListener('mousedown', listener);
-            document.addEventListener('touchstart', listener);
-
-            return (): void => {
-                document.removeEventListener('mousedown', listener);
-                document.removeEventListener('touchstart', listener);
-            };
-        }, [ref, handler]);
-    }
-
     function nickNameInfo(delegation, index): ReactElement {
         const nickName =
             delegation.nickname !== delegation.address || editingNickNameIndex === index
@@ -285,12 +248,15 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
                         name="nick-name"
                         value={nickName}
                         onChange={e => {
-                            updateNickName(e, index);
+                          updateDelegationName(index, e.target.value);
                         }}
                         onKeyDown={e => {
                             if (e.key === 'Enter') {
                                 saveUpdatedNickName();
                             }
+                        }}
+                        onBlur={(e) => {
+                          saveUpdatedNickName();
                         }}
                         disabled={index !== editingNickNameIndex}
                     />
@@ -302,7 +268,7 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
                     src="https://res.cloudinary.com/dnzambf4m/image/upload/v1643126922/edit_p53oml.png"
                     alt="edit"
                     onClick={() => {
-                        handleEditNickNameClick(index);
+                        handleEditNickNameClick(index, nickName);
                     }}
                 />
             </div>
@@ -332,6 +298,9 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
                                                 if (e.key === 'Enter') {
                                                     saveUpdatedTitle();
                                                 }
+                                            }}
+                                            onBlur={(e) => {
+                                              saveUpdatedTitle();
                                             }}
                                             disabled={!isEditingTitle}
                                         />
