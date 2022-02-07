@@ -17,6 +17,12 @@ enum DelegationStates {
     Past = 'Past Delegates',
 }
 
+enum TimePeriods {
+    Weekly = 'week',
+    Monthly = 'month',
+    All = 'all',
+}
+
 export interface DelegationType {
     className?: string;
 }
@@ -27,7 +33,7 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
 
     // define local variables
     const [isLoading, setIsLoading] = useState(true);
-    const [time, setTime] = useState('Weekly');
+    const [time, setTime] = useState(TimePeriods.Weekly);
     const [showBreakDown, setShowingBreakDown] = useState(-1);
     const [rawDelegations, setRawDelegations] = useState([]);
     const [filteredDelegations, setFilteredDelegations] = useState([]);
@@ -63,8 +69,18 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
             if (state.userLoggedIn) {
                 setIsLoading(true);
 
+                let period: string;
+
+                if (time === TimePeriods.Weekly) {
+                    period = TimePeriods.Weekly;
+                } else if (time === TimePeriods.Monthly) {
+                    period = TimePeriods.Monthly;
+                } else {
+                    period = TimePeriods.All;
+                }
+
                 // Get Delegation Breakdown from the API
-                const response = await Fetch.DELEGATION_BREAKDOWN(time === 'Weekly' ? 'week' : time === 'Monthly' ? 'month' : 'all');
+                const response = await Fetch.DELEGATION_BREAKDOWN(period);
 
                 if (response && response.length > 0) {
                     response.sort(function (a, b) {
@@ -335,25 +351,25 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
                                 {/* Filter by Timeline */}
                                 <div className={cn(styles.filter_pills, styles.timeline)}>
                                     <div
-                                        className={time === 'Weekly' ? styles.active : null}
+                                        className={time === TimePeriods.Weekly ? styles.active : null}
                                         onClick={() => {
-                                            setTime('Weekly');
+                                            setTime(TimePeriods.Weekly);
                                         }}
                                     >
                                         Weekly
                                     </div>
                                     <div
-                                        className={time === 'Monthly' ? styles.active : null}
+                                        className={time === TimePeriods.Monthly ? styles.active : null}
                                         onClick={() => {
-                                            setTime('Monthly');
+                                            setTime(TimePeriods.Monthly);
                                         }}
                                     >
                                         Monthly
                                     </div>
                                     <div
-                                        className={time === 'All Time' ? styles.active : null}
+                                        className={time === TimePeriods.All ? styles.active : null}
                                         onClick={() => {
-                                            setTime('All Time');
+                                            setTime(TimePeriods.All);
                                         }}
                                     >
                                         All Time
