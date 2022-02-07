@@ -260,14 +260,14 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
         ) : (
           <h1 onClick={() => setShowingBreakDown(index)}>{nickName.length > 12 ? nickName.substr(0, 10) + '...' : nickName}</h1>
         )}
-        <img
+        {state.userStatus >= 28 && <img
           className={styles.edit}
           src="https://res.cloudinary.com/dnzambf4m/image/upload/v1643126922/edit_p53oml.png"
           alt="edit"
           onClick={() => {
             handleEditNickNameClick(index, nickName);
           }}
-        />
+        />}
       </div>
     );
   }
@@ -304,14 +304,14 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
                   ) : (
                     <h1>{title.length > 24 ? title.substr(0, 24) + '...' : title}</h1>
                   )}
-                  <img
+                  {state.userStatus >= 28 && <img
                     className={styles.edit}
                     src="https://res.cloudinary.com/dnzambf4m/image/upload/v1643126922/edit_p53oml.png"
                     alt="edit"
                     onClick={() => {
                       handleEditTitleClick();
                     }}
-                  />
+                  />}
                 </div>
 
                 {/* Filter by Timeline */}
@@ -425,7 +425,7 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
                                     {row.currentDelegations.some(delegation => delegation.checkInStatus) && (
                                       <img className={styles.check_in} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627301200/Green_Check_iahexg.png" alt="check in" />
                                     )}
-                                    {nickNameInfo(row, i)}
+                                    { nickNameInfo(row, i)}
                                   </section>
                                 </Table.Cell>
                               </Table.Row>
