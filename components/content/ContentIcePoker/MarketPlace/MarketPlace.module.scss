@@ -89,7 +89,7 @@
 
             @include mq($until: 499px) {
                 margin-left: 20px;
-                width: calc(100vw - 110px);
+                width: calc(100vw - 40px);
 
                 p {
                     font-size: 15px;
@@ -152,7 +152,7 @@
             }
 
             @include mq($until: 499px) {
-                width: calc(100vw - 100px);
+                width: calc(100vw - 40px);
                 margin-left: 20px;
                 margin-top: 150px;
             }
