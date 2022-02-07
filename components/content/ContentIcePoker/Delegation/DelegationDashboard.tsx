@@ -1,5 +1,4 @@
 import React, { FC, ReactElement, useContext, useEffect, useRef, useState } from 'react';
-
 import AutosizeInput from 'react-input-autosize';
 import { GlobalContext } from '@/store';
 import { Button, Table } from 'semantic-ui-react';
@@ -111,7 +110,7 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
     }, [state.userLoggedIn, time]);
 
     useEffect(() => {
-        /* Delegate Filtering needs to happen before the Sorting hook */
+    /* Delegate Filtering needs to happen before the Sorting hook */
         let filteredDelegations;
 
         if (delegationStatusFilter === DelegationStates.All) {
@@ -136,9 +135,7 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
                 } else if (sortingName === 'daysCheckedIn') {
                     return sortingOrder === 'dec' ? b.stats.daysCheckedIn - a.stats.daysCheckedIn : a.stats.daysCheckedIn - b.stats.daysCheckedIn;
                 } else if (sortingName === 'totalChallengesCompleted') {
-                    return sortingOrder === 'dec'
-                        ? b.stats.totalChallengesCompleted - a.stats.totalChallengesCompleted
-                        : a.stats.totalChallengesCompleted - b.stats.totalChallengesCompleted;
+                    return sortingOrder === 'dec' ? b.stats.totalChallengesCompleted - a.stats.totalChallengesCompleted : a.stats.totalChallengesCompleted - b.stats.totalChallengesCompleted;
                 } else if (sortingName === 'avgLeaderboardTier' || sortingName === 'avgLeaderboardMultiplier') {
                     return sortingOrder === 'inc' ? b.stats.avgLeaderboardTier - a.stats.avgLeaderboardTier : a.stats.avgLeaderboardTier - b.stats.avgLeaderboardTier;
                 }
@@ -208,7 +205,7 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
     }
 
     async function saveUpdatedTitle(): Promise<void> {
-      saveIsEditingTitle(false);
+        saveIsEditingTitle(false);
 
         if (!title) {
             setTitle(pastTitle);
@@ -234,11 +231,11 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
 
     function nickNameInfo(delegation, index): ReactElement {
         const nickName =
-            delegation.nickname !== delegation.address || editingNickNameIndex === index
-                ? delegation.nickname !== delegation.address
-                    ? delegation.nickname
-                    : ''
-                : delegation.address.substr(0, 5) + '...' + delegation.address.substr(delegation.address.length - 4, delegation.address.length);
+      delegation.nickname !== delegation.address || editingNickNameIndex === index
+          ? delegation.nickname !== delegation.address
+              ? delegation.nickname
+              : ''
+          : delegation.address.substr(0, 5) + '...' + delegation.address.substr(delegation.address.length - 4, delegation.address.length);
 
         return (
             <div className={styles.nickNameDiv} ref={index === editingNickNameIndex ? nickNameRef : null}>
@@ -248,15 +245,15 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
                         name="nick-name"
                         value={nickName}
                         onChange={e => {
-                          updateDelegationName(index, e.target.value);
+                            updateDelegationName(index, e.target.value);
                         }}
                         onKeyDown={e => {
                             if (e.key === 'Enter') {
                                 saveUpdatedNickName();
                             }
                         }}
-                        onBlur={(e) => {
-                          saveUpdatedNickName();
+                        onBlur={e => {
+                            saveUpdatedNickName();
                         }}
                         disabled={index !== editingNickNameIndex}
                     />
@@ -277,7 +274,7 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
 
     return (
         <section className={`delegation-dashboard component ${className}`}>
-            {((): ReactElement => {
+            {(() => {
                 // Filtering Options
                 if (!state.userLoggedIn) {
                     return <div className={styles.main_wrapper}>{<FoxAnimation />}</div>;
@@ -299,8 +296,8 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
                                                     saveUpdatedTitle();
                                                 }
                                             }}
-                                            onBlur={(e) => {
-                                              saveUpdatedTitle();
+                                            onBlur={e => {
+                                                saveUpdatedTitle();
                                             }}
                                             disabled={!isEditingTitle}
                                         />
@@ -325,7 +322,7 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
                                             setTime(TimePeriods.Weekly);
                                         }}
                                     >
-                                        Weekly
+                    Weekly
                                     </div>
                                     <div
                                         className={time === TimePeriods.Monthly ? styles.active : null}
@@ -333,7 +330,7 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
                                             setTime(TimePeriods.Monthly);
                                         }}
                                     >
-                                        Monthly
+                    Monthly
                                     </div>
                                     <div
                                         className={time === TimePeriods.All ? styles.active : null}
@@ -341,7 +338,7 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
                                             setTime(TimePeriods.All);
                                         }}
                                     >
-                                        All Time
+                    All Time
                                     </div>
                                 </div>
 
@@ -426,11 +423,7 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
                                                                     <section>
                                                                         <img src={row.imageURL} onClick={() => setShowingBreakDown(i)} alt="avatar" />
                                                                         {row.currentDelegations.some(delegation => delegation.checkInStatus) && (
-                                                                            <img
-                                                                                className={styles.check_in}
-                                                                                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627301200/Green_Check_iahexg.png"
-                                                                                alt="check in"
-                                                                            />
+                                                                            <img className={styles.check_in} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627301200/Green_Check_iahexg.png" alt="check in" />
                                                                         )}
                                                                         {nickNameInfo(row, i)}
                                                                     </section>
@@ -448,7 +441,7 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
                                                     <Table.Row>
                                                         <Table.HeaderCell style={{ width: '250px' }}>NFTs Delegated</Table.HeaderCell>
                                                         <Table.HeaderCell style={{ width: '200px' }} onClick={() => tableHeaderClicked('dailyICE')}>
-                                                            Avg.Daily ICE
+                              Avg.Daily ICE
                                                             <svg
                                                                 style={{ opacity: `${sortingName === 'dailyICE' ? 1 : 0}` }}
                                                                 className={sortingOrder === 'inc' ? styles.inc : styles.dec}
@@ -465,7 +458,7 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
                                                             </svg>
                                                         </Table.HeaderCell>
                                                         <Table.HeaderCell style={{ width: '200px' }} onClick={() => tableHeaderClicked('iceEarned')}>
-                                                            Total ICE Earned
+                              Total ICE Earned
                                                             <svg
                                                                 style={{ opacity: `${sortingName === 'iceEarned' ? 1 : 0}` }}
                                                                 className={sortingOrder === 'inc' ? styles.inc : styles.dec}
@@ -482,7 +475,7 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
                                                             </svg>
                                                         </Table.HeaderCell>
                                                         <Table.HeaderCell style={{ width: '150px' }} onClick={() => tableHeaderClicked('daysCheckedIn')}>
-                                                            Check-Ins
+                              Check-Ins
                                                             <svg
                                                                 style={{ opacity: `${sortingName === 'daysCheckedIn' ? 1 : 0}` }}
                                                                 className={sortingOrder === 'inc' ? styles.inc : styles.dec}
@@ -499,7 +492,7 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
                                                             </svg>
                                                         </Table.HeaderCell>
                                                         <Table.HeaderCell style={{ width: '220px' }} onClick={() => tableHeaderClicked('totalChallengesCompleted')}>
-                                                            Finished Challenges
+                              Finished Challenges
                                                             <svg
                                                                 style={{ opacity: `${sortingName === 'totalChallengesCompleted' ? 1 : 0}` }}
                                                                 className={sortingOrder === 'inc' ? styles.inc : styles.dec}
@@ -516,7 +509,7 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
                                                             </svg>
                                                         </Table.HeaderCell>
                                                         <Table.HeaderCell style={{ width: '230px' }} onClick={() => tableHeaderClicked('avgLeaderboardTier')}>
-                                                            Avg.Leaderboard Tier
+                              Avg.Leaderboard Tier
                                                             <svg
                                                                 style={{ opacity: `${sortingName === 'avgLeaderboardTier' ? 1 : 0}` }}
                                                                 className={sortingOrder === 'inc' ? styles.inc : styles.dec}
@@ -533,7 +526,7 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
                                                             </svg>
                                                         </Table.HeaderCell>
                                                         <Table.HeaderCell style={{ width: '260px' }} onClick={() => tableHeaderClicked('avgLeaderboardMultiplier')}>
-                                                            Avg.Leaderboard Multiplier
+                              Avg.Leaderboard Multiplier
                                                             <svg
                                                                 style={{ opacity: `${sortingName === 'avgLeaderboardMultiplier' ? 1 : 0}` }}
                                                                 className={sortingOrder === 'inc' ? styles.inc : styles.dec}
@@ -577,7 +570,7 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
                                                                                         <img src={`${row.currentDelegations[i].image}`} />
                                                                                         <div className={styles.rank}> {row.currentDelegations[i].rank} </div>
                                                                                         <div className={styles.bottomInfo}>
-                                                                                            +{row.currentDelegations[i].bonus}%
+                                              +{row.currentDelegations[i].bonus}%
                                                                                             <img
                                                                                                 src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
                                                                                                 alt="ice"
@@ -590,7 +583,7 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
                                                                                     <div key={i} className={styles.nft}>
                                                                                         <img src={`${def}`} />
                                                                                         <div className={styles.bottomInfo} style={{ opacity: 0.6 }}>
-                                                                                            +0%
+                                              +0%
                                                                                             <img
                                                                                                 src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
                                                                                                 alt="ice"
@@ -607,10 +600,7 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
                                                                 <Table.Cell style={{ width: '200px' }}>
                                                                     <div className={styles.dailyICE} style={{ textAlign: 'center' }}>
                                                                         {Math.round(row.stats.avgIceEarned)}
-                                                                        <img
-                                                                            src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
-                                                                            alt="ice"
-                                                                        />
+                                                                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
                                                                     </div>
                                                                 </Table.Cell>
 
@@ -618,10 +608,7 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
                                                                 <Table.Cell style={{ width: '200px' }}>
                                                                     <div className={styles.iceEarned} style={{ textAlign: 'center' }}>
                                                                         {Math.round(row.stats.totalIceEarned)}
-                                                                        <img
-                                                                            src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
-                                                                            alt="ice"
-                                                                        />
+                                                                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
                                                                     </div>
                                                                 </Table.Cell>
 
@@ -638,10 +625,7 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
                                                                 {/* Avg.Leaderboard Tier */}
                                                                 <Table.Cell style={{ width: '230px' }}>
                                                                     <div className={styles.tier} style={{ textAlign: 'center' }}>
-                                                                        <img
-                                                                            src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175017/cup_w68eni.png"
-                                                                            alt="xp"
-                                                                        />
+                                                                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175017/cup_w68eni.png" alt="xp" />
                                                                         {row.stats.avgLeaderboardTier + 5 <= 50
                                                                             ? `Top ${Math.round(row.stats.avgLeaderboardTier) + 5}%`
                                                                             : `Bottom ${100 - Math.round(row.stats.avgLeaderboardTier)}%`}
@@ -658,7 +642,7 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
                                                                 {/* History */}
                                                                 <Table.Cell style={{ width: '170px' }}>
                                                                     <Button className={styles.breakdown} onClick={() => setShowingBreakDown(i)}>
-                                                                        See History
+                                    See History
                                                                     </Button>
                                                                 </Table.Cell>
                                                             </Table.Row>
@@ -673,7 +657,7 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
                                         <div className={styles.desc}>Acquire more ICE Wearables to expand your roster of poker players.</div>
 
                                         <Button className={styles.grey_button} href="/ice/marketplace">
-                                            Browse Wearables
+                      Browse Wearables
                                         </Button>
                                     </div>
                                 </>
@@ -690,17 +674,17 @@ const Delegation: FC<DelegationType> = ({ className = '' }: DelegationType): Rea
             })()}
 
             {(() => {
-              if (showBreakDown !== -1) {
-                      return (
-                          <ModalIceDelegationBreakDown
-                              playerAddress={filteredDelegations && filteredDelegations.length > 0 ? filteredDelegations[showBreakDown].address : ''}
-                              delegationBreakdown={filteredDelegations && filteredDelegations.length > 0 ? filteredDelegations[showBreakDown].breakdown : []}
-                              setShowingBreakDown={setShowingBreakDown}
-                          />
-                      );
-                  } else {
-                      return null;
-                  }
+                if (showBreakDown !== -1) {
+                    return (
+                        <ModalIceDelegationBreakDown
+                            playerAddress={filteredDelegations && filteredDelegations.length > 0 ? filteredDelegations[showBreakDown].address : ''}
+                            delegationBreakdown={filteredDelegations && filteredDelegations.length > 0 ? filteredDelegations[showBreakDown].breakdown : []}
+                            setShowingBreakDown={setShowingBreakDown}
+                        />
+                    );
+                } else {
+                    return null;
+                }
             })()}
         </section>
     );
