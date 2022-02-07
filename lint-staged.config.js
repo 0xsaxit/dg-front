@@ -4,7 +4,7 @@ const envProd = 'cross-env NODE_ENV=production';
 
 // Function Task to control lint-staged
 module.exports = {
-    '*.{tsx,jsx,html}': (filenames) => {
+    '*.{tsx,jsx,html,js,json,md}': (filenames) => {
         // Auto format all .html or JSX containing files with Prettier
 
         console.log(filenames)
