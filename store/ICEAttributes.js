@@ -11,7 +11,7 @@ import ABI_COLLECTION_PH from '../components/ABI/ABICollectionPH';
 import ABI_COLLECTION_LINENS from '../components/ABI/ABICollectionLinens';
 import ABI_COLLECTION_BOMBER from '../components/ABI/ABICollectionBomber';
 import ABI_COLLECTION_CRYPTO_DRIP from '../components/ABI/ABICollectionCryptoDrip.json';
-import ABI_COLLECTION_FOUNDER_FATHER from '../components/ABI/ABICollectionFounderFather.json';
+import ABI_COLLECTION_FOUNDING_FATHER from '../components/ABI/ABICollectionFoundingFather.json';
 import ABI_COLLECTION_JOKER from '../components/ABI/ABICollectionJoker.json';
 import ABI_COLLECTION_CHEF from '../components/ABI/ABICollectionChef.json';
 import ABI_COLLECTION_BEACH from '../components/ABI/ABICollectionBeach.json';
@@ -84,8 +84,8 @@ function ICEAttributes() {
           Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS
         );
         const collectionV2Contract6 = new maticWeb3.eth.Contract(
-          ABI_COLLECTION_FOUNDER_FATHER,
-          Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS
+          ABI_COLLECTION_FOUNDING_FATHER,
+          Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS
         );
         const collectionV2Contract7 = new maticWeb3.eth.Contract(
           ABI_COLLECTION_JOKER,
@@ -136,7 +136,7 @@ function ICEAttributes() {
         ]);
         collectionArray.push([
           collectionV2Contract6,
-          Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS,
+          Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS,
           [0, 5, 10, 15, 20],
         ]);
         collectionArray.push([
@@ -318,6 +318,12 @@ function ICEAttributes() {
         dispatch({
           type: 'item_limits_1',
           data: itemLimits1,
+        });
+
+        const itemLimits10 = await getItemLimits(9);
+        dispatch({
+          type: 'item_limits_10',
+          data: itemLimits10,
         });
 
         // get the user's cool-down status
