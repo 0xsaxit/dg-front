@@ -320,12 +320,6 @@ function ICEAttributes() {
           data: itemLimits1,
         });
 
-        const itemLimits10 = await getItemLimits(9);
-        dispatch({
-          type: 'item_limits_10',
-          data: itemLimits10,
-        });
-
         // get the user's cool-down status
         console.log(' ==== <Before getCoolDownStatus> ====');
         const canPurchase = await getCoolDownStatus();
