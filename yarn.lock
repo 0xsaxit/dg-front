@@ -4785,6 +4785,7 @@ __metadata:
     react-parallax: 3.3.0
     react-scroll-parallax: 2.4.0
     react-slick: 0.28.1
+    rimraf: 3.0.2
     sass: 1.32.0
     sass-mq: 5.0.1
     semantic-ui-css: 2.4.1
@@ -9980,7 +9981,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rimraf@npm:^3.0.2":
+"rimraf@npm:3.0.2, rimraf@npm:^3.0.2":
   version: 3.0.2
   resolution: "rimraf@npm:3.0.2"
   dependencies:
