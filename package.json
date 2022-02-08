@@ -32,7 +32,7 @@
     "lint:scss": "stylelint ./**/*.{css,scss} --fix",
     "lint:html": "prettier --write ./**/*.{tsx,html,js,jsx,json,md}",
     "prepare": "husky install",
-    "postinstall": "husky install && rm -rf .git/hooks && ln -s ../.husky .git/hooks"
+    "postinstall": "husky install && rimraf .git/hooks && ln -s ../.husky .git/hooks"
   },
   "dependencies": {
     "@babel/core": "7.14.0",
@@ -128,6 +128,7 @@
     "husky": "7.0.4",
     "lint-staged": "11.0.0",
     "prettier": "2.3.0",
+    "rimraf": "3.0.2",
     "typescript": "4.5.5"
   },
   "eslintConfig": {
