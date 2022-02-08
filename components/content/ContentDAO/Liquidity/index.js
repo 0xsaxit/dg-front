@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import { useEffect, useContext, useState, React } from 'react';
-import { GlobalContext } from '../../../../store';
+import { GlobalContext } from '@/store';
 import { Button } from 'semantic-ui-react';
 import Aux from '../../../_Aux';
 import styles from './Liquidity.module.scss';
@@ -15,8 +15,7 @@ const Liquidity = props => {
   const [amountInput, setAmountInput] = useState('');
   const [stakingContractUniswap, setStakingContractUniswap] = useState({});
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   useEffect(() => {
     if (state.userStatus >= 4) {
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
@@ -35,8 +34,7 @@ const Liquidity = props => {
     setAmountInput(e.target.value);
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   return (
     <Aux>
       <div>

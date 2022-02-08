@@ -1,17 +1,13 @@
-import { useEffect, useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import ICEWearableCard from 'components/common/cards/ICEWearableCard';
 import ICEDelegatedCard from 'components/common/cards/ICEDelegatedCard';
 import { Button } from 'semantic-ui-react';
 import styles from './Wearables.module.scss';
-import Fetch from 'common/Fetch';
-import { GlobalContext } from 'store';
-import ModalDelegate from 'components/modal/ModalDelegate';
-import ModalUpgradeSuccess from 'components/modal/ModalUpgradeSuccess';
+import { GlobalContext } from '@/store';
 
-const Wearables = () => {
+const IceWearables = () => {
   // define local variables
   const [state, dispatch] = useContext(GlobalContext);
-  const [maxICEBonus, setMaxICEBonus] = useState(0);
   const activeWearables = state.iceWearableItems.filter(
     item =>
       item.isActivated &&
@@ -21,8 +17,6 @@ const Wearables = () => {
     item => item.rank > 0
   );
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   return (
     <section className={styles.wearableSection}>
       <div className={styles.wearableHeader}>
@@ -51,7 +45,10 @@ const Wearables = () => {
       </div>
 
       <section className={styles.grid_container}>
-        {!!state.iceWearableItems.length || !!state.iceDelegatedItems.length ? (
+
+        {
+          // User has ICE wearables
+          state.iceWearableItems.length > 0 || state.iceDelegatedItems.length > 0? (
           <div className={styles.wearables_grid}>
             {state.iceWearableItems.map((item, index) => {
               return (
@@ -66,11 +63,12 @@ const Wearables = () => {
             ))}
           </div>
         ) : (
-          <div className={styles.no_ice_wearables}>No ICE Wearables</div>
+            // User doesn't have ICE wearables
+            <div className={styles.no_ice_wearables}>No ICE Wearables</div>
         )}
       </section>
     </section>
   );
 };
 
-export default Wearables;
+export default IceWearables;

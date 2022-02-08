@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import Link from 'next/link';
 import { Modal, Button } from 'semantic-ui-react';
 import Spinner from 'components/lottieAnimation/animations/spinner_updated';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from '@/store';
 import Fetch from '../../../common/Fetch';
 import styles from './ModalInfo.module.scss';
 import cn from 'classnames';

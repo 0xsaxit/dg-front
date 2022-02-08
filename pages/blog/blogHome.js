@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from '@/store';
 import { Image, Button } from 'semantic-ui-react';
 import _ from 'lodash';
 import Link from 'next/link';

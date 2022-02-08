@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../../../store';
-import _ from 'lodash';
+import { GlobalContext } from '@/store';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import ButterCMS from '../../../../common/ButterCMS';
@@ -34,7 +33,6 @@ function blogCategory() {
                   margin: '100px 0px 0px 0px',
                   fontSize: '24px',
                   fontFamily: 'Larsseit-ExtraBold',
-                  margin: '0px 0px 0px 0px',
                   color: 'white',
                   float: 'left'
                 }}

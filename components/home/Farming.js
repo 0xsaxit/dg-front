@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from '@/store';
 import Web3 from 'web3';
 import Link from 'next/link';
 import { Divider, Input } from 'semantic-ui-react';
@@ -30,8 +30,7 @@ const Farming = props => {
   const DGBalances = state.DGBalances.BALANCE_STAKING_UNISWAP;
   const DGStakingBalances = state.stakingBalances.BALANCE_STAKED_UNISWAP;
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   useEffect(() => {
     if (state.userStatus >= 4) {
       // initialize Web3 provider and create contract instances
@@ -101,8 +100,7 @@ const Farming = props => {
     return priceFormatted;
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // stake, withdraw, and get reward from staking contracts
   function getAmounts(amount) {
     const amountAdjusted = amount * Global.CONSTANTS.FACTOR;

@@ -4,7 +4,7 @@ import Web3 from 'web3';
 import Link from 'next/link';
 import { Divider, Input } from 'semantic-ui-react';
 import { useMediaQuery } from 'hooks';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from '@/store';
 import Overview from '../../content/ContentDAO/Overview';
 import Governance from '../../content/ContentDAO/Governance';
 import Liquidity from '../../content/ContentDAO/Liquidity';
@@ -31,11 +31,8 @@ const DAO = props => {
   const [web3, setWeb3] = useState({});
   const [currenReward, setCurrentReward] = useState(0);
   const [finishTime, setFinishTime] = useState(0);
-
   const [price, setPrice] = useState(0);
-
   const [amountInput, setAmountInput] = useState('10000000000000000000');
-
   const DGState = props.DGState;
   const DGBalances = state.DGBalances.BALANCE_STAKING_UNISWAP;
   const DGStakingBalances = state.stakingBalances.BALANCE_STAKED_UNISWAP;
@@ -44,12 +41,25 @@ const DAO = props => {
   const isMobile = useMediaQuery('(max-width: 1040px)');
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  // Get Treasury data
+  useEffect(() => {
+    (async () => {
+      // Fetch data if not within the app state
+      if (!state.treasuryNumbers) {
+        let json = await Fetch.TREASURY_STATS_NUMBERS('week');
+
+        dispatch({
+          type: 'treasury_numbers',
+          data: json,
+        });
+      }
+    })();
+  }, []);
+
   useEffect(() => {
     setMobileOpen(!isMobile);
   }, [isMobile]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     if (state.userStatus >= 4) {
       // initialize Web3 provider and create contract instances
@@ -126,8 +136,6 @@ const DAO = props => {
     return BigNumber(valueStr).toFormat(Math.min(decimals, decimalLength - 1));
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   // stake, withdraw, and get reward from staking contracts
   function getAmounts(amount) {
     const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
@@ -239,8 +247,7 @@ const DAO = props => {
     }
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+
   // helper functions
   function submenu() {
     return (
@@ -869,17 +876,6 @@ const DAO = props => {
                 />
               )}
             </>
-          ) : DGState === 'balancer' ? (
-            <ContentBalancer
-              price={price}
-              formatPrice={formatPrice}
-              instances={instances}
-              stakingContractPool1={stakingContractPool1}
-              stakingContractPool2={stakingContractPool2}
-              staking={staking}
-              withdrawal={withdrawal}
-              reward={reward}
-            />
           ) : DGState === 'treasury' ? (
             <ContentTreasury formatPrice={formatPrice} />
           ) : DGState === 'airdrop' ? (

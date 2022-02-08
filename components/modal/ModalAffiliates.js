@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from '@/store';
 import { Icon, Modal, Divider } from 'semantic-ui-react';
 import Global from '../Constants';
 
@@ -13,8 +13,7 @@ const ModalAffiliates = () => {
 
   const referralLink = Global.CONSTANTS.BASE_URL + '/' + state.userInfo.id;
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   const onCopy = () => {
     navigator.clipboard.writeText(referralLink);
     setCopied(true);

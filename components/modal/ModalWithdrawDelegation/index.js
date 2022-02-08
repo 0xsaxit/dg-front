@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from 'react';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from '@/store';
 import { Modal, Button } from 'semantic-ui-react';
 import Fetch from '../../../common/Fetch';
 import styles from './ModalWithdrawDelegation.module.scss';
@@ -21,8 +21,7 @@ const ModalWithdrawDelegation = props => {
   // const [remainingTime, setRemainingTime] = useState(0);
   const isDelegator = props.tokenOwner === state.userAddress;
   const remainingTime = getRemainingTime()
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // helper functions
 
   console.log('delegate Address =>', props.delegateAddress);

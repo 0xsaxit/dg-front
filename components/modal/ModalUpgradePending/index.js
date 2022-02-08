@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from '@/store';
 import { Biconomy } from '@biconomy/mexa';
 import Web3 from 'web3';
 import ABI_DG_LIGHT_TOKEN from '../../../components/ABI/ABIChildTokenLightDG';
@@ -48,8 +48,7 @@ const ModalUpgradePending = props => {
   const [refreshActiveItem, setRefreshActiveItem] = useState(false);
   const [successInUpgrade, setSuccessInUpgrade] = useState(false);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // initialize Web3 providers and create token contract instance
   useEffect(() => {
     if (state.userStatus >= 4) {
@@ -243,8 +242,7 @@ const ModalUpgradePending = props => {
     setActiveItem(active);
   }, [refreshActiveItem]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // helper functions
 
   function refresh() {

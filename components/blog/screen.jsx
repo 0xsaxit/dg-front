@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { withRouter } from 'next/router';
 import { Image, Divider, Grid, Icon } from 'semantic-ui-react';
 import _ from 'lodash';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from '@/store';
 
 const Screen = ({ pages, category, handleClickButton, match, history }) => {
   const filteredPages =

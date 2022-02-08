@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import Link from 'next/link';
 import Spinner from 'components/Spinner';
 import ContentMarketplace from 'components/content/ContentMarketplace';
@@ -15,16 +15,14 @@ const Marketplace = props => {
 
   const maketState = props.maketState;
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   useEffect(() => {
     // if (...) {
     setIsLoading(false);
     // }
   }, []);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // helper functions
   function topLinks() {
     return (

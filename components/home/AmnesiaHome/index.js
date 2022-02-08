@@ -1,5 +1,5 @@
 import { useEffect, useContext } from 'react';
-import { GlobalContext } from 'store/Context.js';
+import { GlobalContext } from '@/store';
 import Footer from 'components/home/Footer';
 import Global from '../../../components/Constants';
 import styles from './Amnesia.module.scss';

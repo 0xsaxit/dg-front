@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import cn from 'classnames';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import Link from 'next/link';
 import { Parallax } from 'react-parallax';
 import { Divider, Icon, Popup } from 'semantic-ui-react';
@@ -25,8 +25,7 @@ const AccountData = (props) => {
   const dataType = props.dataType;
   const maximumCount = 100; // ***** we should limit the data being returned from the server to 100 rows *****
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   useEffect(() => {
     if (state.transactions[0].length && state.transactions[1]) {
       setIsLoading(false);
@@ -70,8 +69,7 @@ const AccountData = (props) => {
     analytics.track('Clicked AFFILIATE LINK button');
   };
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // helper functions
   function topLinks() {
     return (

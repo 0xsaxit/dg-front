@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from './index';
+import { GlobalContext } from '@/store';
 import Web3 from 'web3';
 import ABI_ICE_REGISTRANT from '../components/ABI/ABIICERegistrant.json';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
@@ -34,8 +34,6 @@ function ICEAttributes() {
   const [collectionArray, setCollectionArray] = useState([]);
   const [iceTokenContract, setIceTokenContract] = useState({});
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     if (state.userStatus >= 4) {
       const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
@@ -110,22 +108,26 @@ function ICEAttributes() {
         collectionArray.push([
           collectionV2Contract,
           Global.ADDRESSES.COLLECTION_V2_ADDRESS,
-          [0, 5, 10, 15, 20],
+          [20, 10, 5, 0, 15],
+          // [0, 5, 10, 15, 20],
         ]);
         collectionArray.push([
           collectionV2Contract2,
           Global.ADDRESSES.COLLECTION_PH_ADDRESS,
-          [0, 5, 10, 15, 20],
+          [20, 15, 10, 5, 0],
+          // [0, 5, 10, 15, 20],
         ]);
         collectionArray.push([
           collectionV2Contract3,
           Global.ADDRESSES.COLLECTION_LINENS_ADDRESS,
-          [0, 5, 17, 13, 21],
+          [5, 0, 17, 13, 21],
+          // [0, 5, 17, 13, 21],
         ]);
         collectionArray.push([
           collectionV2Contract4,
           Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS,
-          [2, 12, 16, 20, 7],
+          [20, 12, 16, 2, 7]
+          // [2, 12, 16, 20, 7],
         ]);
         collectionArray.push([
           collectionV2Contract5,
@@ -235,9 +237,9 @@ function ICEAttributes() {
         const wearableInventory = await Fetch.GET_WEARABLE_INVENTORY(
           state.userAddress
         );
-    
+
         wearableInventory.forEach((wearable, i) => {
-          if(wearable.delegationStatus.delegatedTo === state.userAddress)
+          if (wearable.delegationStatus.delegatedTo === state.userAddress)
             iceDelegatedItems.push(wearable);
         });
 
@@ -258,52 +260,10 @@ function ICEAttributes() {
     if (instances) {
       (async function () {
         // update global state wearables limit amounts for each collection
-        const itemLimits1 = await getItemLimits(0);
+        const itemLimits10 = await getItemLimits(9);
         dispatch({
-          type: 'item_limits_1',
-          data: itemLimits1,
-        });
-
-        const itemLimits2 = await getItemLimits(1);
-        dispatch({
-          type: 'item_limits_2',
-          data: itemLimits2,
-        });
-
-        const itemLimits3 = await getItemLimits(2);
-        dispatch({
-          type: 'item_limits_3',
-          data: itemLimits3,
-        });
-
-        const itemLimits4 = await getItemLimits(3);
-        dispatch({
-          type: 'item_limits_4',
-          data: itemLimits4,
-        });
-
-        const itemLimits5 = await getItemLimits(4);
-        dispatch({
-          type: 'item_limits_5',
-          data: itemLimits5,
-        });
-
-        const itemLimits6 = await getItemLimits(5);
-        dispatch({
-          type: 'item_limits_6',
-          data: itemLimits6,
-        });
-
-        const itemLimits7 = await getItemLimits(6);
-        dispatch({
-          type: 'item_limits_7',
-          data: itemLimits7,
-        });
-
-        const itemLimits8 = await getItemLimits(7);
-        dispatch({
-          type: 'item_limits_8',
-          data: itemLimits8,
+          type: 'item_limits_10',
+          data: itemLimits10,
         });
 
         const itemLimits9 = await getItemLimits(8);
@@ -312,10 +272,52 @@ function ICEAttributes() {
           data: itemLimits9,
         });
 
-        const itemLimits10 = await getItemLimits(9);
+        const itemLimits8 = await getItemLimits(7);
         dispatch({
-          type: 'item_limits_10',
-          data: itemLimits10,
+          type: 'item_limits_8',
+          data: itemLimits8,
+        });
+
+        const itemLimits7 = await getItemLimits(6);
+        dispatch({
+          type: 'item_limits_7',
+          data: itemLimits7,
+        });
+
+        const itemLimits6 = await getItemLimits(5);
+        dispatch({
+          type: 'item_limits_6',
+          data: itemLimits6,
+        });
+
+        const itemLimits5 = await getItemLimits(4);
+        dispatch({
+          type: 'item_limits_5',
+          data: itemLimits5,
+        });
+
+        const itemLimits4 = await getItemLimits(3);
+        dispatch({
+          type: 'item_limits_4',
+          data: itemLimits4,
+        });
+
+        const itemLimits3 = await getItemLimits(2);
+        dispatch({
+          type: 'item_limits_3',
+          data: itemLimits3,
+        });
+
+        const itemLimits2 = await getItemLimits(1);
+        dispatch({
+          type: 'item_limits_2',
+          data: itemLimits2,
+        });
+
+        const itemLimits1 = await getItemLimits(0);
+        dispatch({
+          type: 'item_limits_1',
+          data: itemLimits1,
         });
 
         // get the user's cool-down status
@@ -424,8 +426,6 @@ function ICEAttributes() {
     }
   }, [instances, state.iceWearableItems, state.refreshNFTAuths]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   async function getItemLimits(index) {
     const collectionAddress = collectionArray[index][1];
     const tokenIdArray = collectionArray[index][2];

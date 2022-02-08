@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from '@/store';
 import Link from 'next/link';
 import ContentOfferings from '../../content/ContentOfferings';
 import ContentLeaderboard from '../../content/ContentLeaderboard/index';
@@ -201,8 +201,7 @@ const Offerings = props => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const isMobile = useMediaQuery('(max-width: 1040px)');
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // helper functions
   function submenu() {
     return (

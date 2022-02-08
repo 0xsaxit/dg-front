@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import { GlobalContext } from '../store/index';
+import { GlobalContext } from '@/store';
 import { useRouter } from 'next/router';
 import Content404 from '../components/content/Content404';
 import GetStarted from '../components/content/ContentStart/index.js';

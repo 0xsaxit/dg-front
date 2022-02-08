@@ -1,5 +1,4 @@
-import { useEffect, useContext, useState } from 'react';
-import { GlobalContext } from 'store/index';
+import { useEffect, useState } from 'react';
 import cn from 'classnames';
 import { get, map, sumBy } from 'lodash';
 import Global from 'components/Constants';
@@ -61,8 +60,7 @@ function Test({ state }) {
     ...newPokerData,
   ].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   useEffect(() => {
     if (state.transactions[0].length && state.transactions[1]) {
       setIsLoading(false);

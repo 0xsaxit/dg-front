@@ -3,7 +3,7 @@ import { NextSeo } from 'next-seo';
 import Aux from './_Aux';
 import Global from './Constants';
 import { useContext } from 'react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 
 const Header = props => {
   const [state, dispatch] = useContext(GlobalContext);

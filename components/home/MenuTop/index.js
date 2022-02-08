@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import cn from 'classnames';
 import { Menu, Icon, Dropdown, Popup, Button } from 'semantic-ui-react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import { useMediaQuery } from 'hooks';
 import ModalInfo from 'components/modal/ModalInfo';
 import Fetch from 'common/Fetch';
@@ -40,8 +40,7 @@ const MenuTop = props => {
   let listener = null;
   let linkDocs = '';
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
 
   useEffect(() => {
     if (state.userStatus >= 4) {
@@ -96,7 +95,7 @@ const MenuTop = props => {
     const interval = setInterval(() => {
       const frameWidth = window.innerWidth;
 
-      if (frameWidth > 1176) {
+      if (frameWidth > 1240) {
         setOpen(false);
       }
     }, 100);
@@ -136,8 +135,7 @@ const MenuTop = props => {
     setAffiliateState();
   }, [ref]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // helper functions
 
   function DGLogo() {
@@ -187,19 +185,19 @@ const MenuTop = props => {
       <div className={cn(styles.mobile_menu, open ? styles.open : '')}>
         <span className="d-flex flex-column w-100">
           {!isMobile && (
-            <Link href={`/ice`}>
-              <Menu.Item className={styles.menu_style}>ICE Poker</Menu.Item>
+            <Link href={`/account/ice`}>
+              <Menu.Item className={styles.menu_style}>My Account</Menu.Item>
             </Link>
           )}
           {!isMobile && (
-            <Link href="/dg">
-              <Menu.Item className={styles.menu_style}>DAO</Menu.Item>
+            <Link href="/ice">
+              <Menu.Item className={styles.menu_style}>ICE Poker</Menu.Item>
             </Link>
           )}
 
           {!isMobile && (
-            <Link href="/games">
-              <Menu.Item className={styles.menu_style}>Offerings</Menu.Item>
+            <Link href="/dg">
+              <Menu.Item className={styles.menu_style}>Treasury</Menu.Item>
             </Link>
           )}
 

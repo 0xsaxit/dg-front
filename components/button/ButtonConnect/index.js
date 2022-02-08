@@ -1,8 +1,8 @@
-import { useState, useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import cn from 'classnames';
 import { Button } from 'semantic-ui-react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import Fetch, { API_BASE_URL } from 'common/Fetch';
 import call from 'common/API';
 import Aux from 'components/_Aux';
@@ -10,16 +10,25 @@ import { useMediaQuery } from 'hooks';
 import ModalLoginTop from 'components/modal/ModalLoginTop';
 import styles from './ButtonConnect.module.scss';
 import Global from 'components/Constants';
+import Web3 from "web3";
 
-const assignToken = async (accountSwitch = false) => {
+export const assignToken = async (dispatch, accountSwitch = false) => {
+  // Clear token and expiretime to be safe
+  localStorage.removeItem('token');
+  localStorage.removeItem('expiretime');
+
+  console.log('Getting new access token...');
+
   const userAddress = window.ethereum?.selectedAddress;
   if (userAddress && document.visibilityState === 'visible') {
     const timestamp = Date.now();
 
-    const msg = window.web3.utils.utf8ToHex(
+    const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+
+    const msg = web3.utils.utf8ToHex(
       `Decentral Games Login\nTimestamp: ${timestamp}`
     );
-    const signature = await window.web3.eth.personal.sign(
+    const signature = await web3.eth.personal.sign(
       msg,
       window.ethereum?.selectedAddress,
       null
@@ -32,7 +41,13 @@ const assignToken = async (accountSwitch = false) => {
     );
 
     localStorage.setItem('token', token);
+    // Token expires 12 hours and 1 seconds from time it's set
     localStorage.setItem('expiretime', Number(timestamp / 1000 + 12 * 3600));
+
+    dispatch({
+      type: 'set_userLoggedIn',
+      data: true,
+    });
 
     if (accountSwitch) {
       window.location.reload();
@@ -40,7 +55,7 @@ const assignToken = async (accountSwitch = false) => {
   }
 };
 
-const ButtonConnect = () => {
+const ButtonConnect = (props) => {
   // dispatch new user status to Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -49,7 +64,6 @@ const ButtonConnect = () => {
   const [scrollState, setScrollState] = useState('top');
   const [binance, setBinance] = useState(false);
   const [loading, setLoading] = useState(true);
-
   const router = useRouter();
   let listener = null;
 
@@ -63,26 +77,11 @@ const ButtonConnect = () => {
               data: window.ethereum?.selectedAddress,
             });
           }
-          assignToken(true);
+          assignToken(dispatch, true);
         });
       });
-
-      const currentTimestamp = new Date().getTime() / 1000;
-      const expiredTimestamp =
-        Number(localStorage.getItem('expiretime')) || Number.MAX_SAFE_INTEGER;
-
-      if (currentTimestamp > expiredTimestamp) {
-        openMetaMask();
-      }
-
-      // if we are on this block and have the loggedIn LS entry, assume a login
-      if (!!localStorage.getItem('token')) {
-        dispatch({
-          type: 'set_userLoggedIn',
-          data: true,
-        });
-      }
     } else {
+      // User doesn't have MetaMask installed, clear token
       localStorage.removeItem('token');
       localStorage.removeItem('expiretime');
     }
@@ -92,10 +91,11 @@ const ButtonConnect = () => {
     } else {
       setBinance(false);
     }
+
+    setLoading(false);
   }, []);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   useEffect(() => {
     listener = document.addEventListener('scroll', e => {
       let scrolled = document.scrollingElement.scrollTop;
@@ -161,7 +161,7 @@ const ButtonConnect = () => {
         userAddress: userAddress,
       });
 
-      await assignToken();
+      await assignToken(dispatch);
 
       // dispatch user address to the Context API store
       dispatch({
@@ -243,44 +243,61 @@ const ButtonConnect = () => {
 
   return (
     <Aux>
-      {metamaskEnabled ? (
-        <div className={styles.main_right_panel}>
-          <Button
-            color="blue"
-            className={cn(
-              // AMNESIA_COMMENT: amnesia_button class should be removed after we are done with amnesia
-              state.isAmnesiaPage && styles.amnesia_button,
-              styles.metamask_button,
-              binance ? styles.binance_top : ''
-            )}
-            onClick={() => openMetaMask()}
-          >
-            <img
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png"
-              className={styles.metamask_icon}
-            />
-            {tablet ? 'Connect' : 'Connect MetaMask'}
-          </Button>
-          <a
-            href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
-            target="_blank"
-            className={styles.get_metamask}
-          >
-            ?
-          </a>
-        </div>
-      ) : (
-        <div className={styles.main_right_panel}>
-          <ModalLoginTop />
-          <a
-            href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
-            target="_blank"
-            className={styles.get_metamask}
-          >
-            ?
-          </a>
-        </div>
-      )}
+      {props.showAlternateButton ?
+        <Button
+          onClick={() => openMetaMask()}
+          style={{
+            background: '#006EFF',
+            height: '64px',
+            borderRadius: '16px',
+            width: '171px',
+            color: 'white',
+            fontSize: '23px',
+            fontFamily: 'Larsseit-Bold',
+            alignSelf: 'center',
+            marginLeft: '4px',
+          }}
+        >
+          Connect
+        </Button>
+        : metamaskEnabled ?
+          <div className={styles.main_right_panel}>
+            <Button
+              color="blue"
+              className={cn(
+                // AMNESIA_COMMENT: amnesia_button class should be removed after we are done with amnesia
+                state.isAmnesiaPage && styles.amnesia_button,
+                styles.metamask_button,
+                binance ? styles.binance_top : ''
+              )}
+              onClick={() => openMetaMask()}
+            >
+              <img
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png"
+                className={styles.metamask_icon}
+              />
+              {tablet ? 'Connect' : 'Connect MetaMask'}
+            </Button>
+            <a
+              href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
+              target="_blank"
+              className={styles.get_metamask}
+            >
+              ?
+            </a>
+          </div>
+          :
+          <div className={styles.main_right_panel}>
+            <ModalLoginTop />
+
+            {/* Help Button */}
+            <a
+              href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
+              target="_blank"
+              className={styles.get_metamask}
+            >?</a>
+          </div>
+      }
     </Aux>
   );
 };
