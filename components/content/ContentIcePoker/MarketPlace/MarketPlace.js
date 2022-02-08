@@ -213,8 +213,8 @@ const MarketPlace = () => {
       },
     },
     {
-      title: 'Founder Fathers',
-      address: Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS,
+      title: 'Founding Fathers',
+      address: Global.ADDRESSES.COLLECTION_Founding_FATHERS_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_1_fvhl6y.png',
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_2_pqzdsy.png',
@@ -226,35 +226,35 @@ const MarketPlace = () => {
         Feather: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116020/feather_level_1_rd61am.png',
           'Father Feather',
-          'Founder Fathers',
+          'Founding Fathers',
           'Accessory',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116020/feather_level_1_rd61am.png',
         ],
         Flow: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116025/hair_level_1_dampks.png',
           'Father Flow',
-          'Founder Fathers',
+          'Founding Fathers',
           'Head',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116025/hair_level_1_dampks.png',
         ],
         Frock: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116021/coat_level_1_ivacwe.png',
           'Father Frock',
-          'Founder Fathers',
+          'Founding Fathers',
           'Torso',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116021/coat_level_1_ivacwe.png',
         ],
         Breeches: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116030/pants_level_1_srgdhc.png',
           'Father Breeches',
-          'Founder Fathers',
+          'Founding Fathers',
           'Legs',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116030/pants_level_1_srgdhc.png',
         ],
         Shoes: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116026/mules_level_1_u7jgmh.png',
           'Father Mules',
-          'Founder Fathers',
+          'Founding Fathers',
           'Feet',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116026/mules_level_1_u7jgmh.png',
         ],
@@ -635,7 +635,7 @@ const MarketPlace = () => {
           let maxMintCounts = 0;
           if (state.appConfig && state.appConfig.maxMintCounts) {
             Object.keys(state.appConfig.maxMintCounts).map(address => {
-              if (address === wearable.address.toLowerCase()) {
+              if (address === wearable?.address?.toLowerCase()) {
                 maxMintCounts = state.appConfig.maxMintCounts[address];
               }
             })
