@@ -20,6 +20,7 @@ const AccountData = props => {
   const [dataPage, setDataPage] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [utm, setUtm] = useState('');
+
   // const [DGMined, setDGMined] = useState(''); ********** this needs to be updated for new dgPointer function **********
   const [copied, setCopied] = useState(false);
   const [totalICE, setTotalICE] = useState(0);
@@ -27,7 +28,6 @@ const AccountData = props => {
   const dataType = props.dataType;
   const maximumCount = 100; // ***** we should limit the data being returned from the server to 100 rows *****
 
-  
   useEffect(() => {
     if (state.transactions[0].length && state.transactions[1]) {
       setIsLoading(false);
@@ -159,6 +159,8 @@ const AccountData = props => {
               flexDirection: 'column',
               flex: 1,
               marginLeft: 30,
+              paddingLeft: '0px',
+              paddingRight: '0px'
             }}
           >
             <span style={{ display: 'flex', flexDirection: 'column' }}>
@@ -340,7 +342,7 @@ const AccountData = props => {
               ) : (
                 <Link href="/account/items">
                   <span className={cn('account-hover', styles.account_hover)}>
-                    Your Items
+                    Your Items - x
                   </span>
                 </Link>
               )}

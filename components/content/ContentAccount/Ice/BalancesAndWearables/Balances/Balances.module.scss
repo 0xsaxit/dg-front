@@ -182,6 +182,10 @@
         }
 
         .newLink {
+          @include mq($until: small) {
+            display: none;
+          }
+
           height: 45px;
           color: white;
           background: transparent;
@@ -214,6 +218,10 @@
         }
 
         .newLink_gamePlay {
+          @include mq($until: small) {
+            display: none;
+          }
+          
           height: 45px;
           color: white;
           background: #0c0c0c;

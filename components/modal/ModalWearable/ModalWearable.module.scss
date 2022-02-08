@@ -485,5 +485,6 @@
 @include mq($until: medium) {
   .open_button {
     font-size: 15px !important;
+    display: none !important;
   }
 }
