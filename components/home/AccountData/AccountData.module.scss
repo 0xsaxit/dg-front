@@ -4,6 +4,16 @@
   margin-top: -60px !important;
 }
 
+.account_other_tabs {
+	@include mq($until: medium) {
+		display: none;
+	}
+
+	@include mq($until: small) {
+		display: none;
+	}
+}
+
 .player_card {
 	position: relative;
 	z-index: 0;
