@@ -18,11 +18,11 @@
             justify-content: center;
             align-items: center;
 
-            color: white;
+            color: #ffffff;
             cursor: pointer;
             width: 36px;
             height: 36px;
-            background: black;
+            background: #000000;
             border-radius: 100%;
             padding: 8px 10px 8px 10px;
         }
@@ -30,27 +30,33 @@
 
     .body {
         .title {
-            h2 {
-                text-align: center;
-                margin-bottom: 0px;
+            .delegate_address {
+                p {
+                    opacity: 1;
+                    font-weight: 700;
+                    text-align: center;
+                    margin: 0 0 25px 0;
+                    font-size: 1.7rem !important;
+                }
             }
             p {
                 text-align: center;
                 font-size: 18px;
-                font-family: "Larsseit-Medium";
+                font-family: "Larsseit-Medium", sans-serif;
                 letter-spacing: 0.5px;
             }
+
             button {
                 position: absolute;
                 right: 60px;
-                top: 55px;
+                top: 80px;
                 width: 190px;
                 height: 36px;
                 font-size: 14px !important;
-                font-family: "Larsseit-Bold" !important;
+                font-family: "Larsseit-Bold", sans-serif !important;
                 letter-spacing: 0.5px !important;
                 line-height: 8px !important;
-                border: 2px solid rgba(255, 255, 255, 0.08) !important;
+                border: 2px solid rgba(255, 255, 255, 0.8) !important;
                 border-radius: 24px !important;
                 background: transparent !important;
                 color: #fff !important;
@@ -64,7 +70,7 @@
                 display: flex;
                 color: #fff;
                 font-size: 18px;
-                font-family: "Larsseit-Medium";
+                font-family: "Larsseit-Medium", sans-serif;;
                 letter-spacing: 0.5px;
                 text-align: center;
             }
@@ -73,7 +79,7 @@
                 max-height: 390px;
                 color: #fff;
                 font-size: 18px;
-                font-family: "Larsseit-Medium";
+                font-family: "Larsseit-Medium", sans-serif;;
                 letter-spacing: 0.5px;
                 text-align: center;
                 margin-top: 10px;
@@ -91,6 +97,7 @@
             .address {
                 width: 150px;
             }
+
             .nfts {
                 display: flex;
                 justify-content: center;
