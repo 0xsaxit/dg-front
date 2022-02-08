@@ -97,7 +97,7 @@ const AccountData = props => {
     }, 3000);
 
     // track 'Affiliate Link' button click event
-    analytics.track('Clicked AFFILIATE LINK button');
+    // analytics.track('Clicked AFFILIATE LINK button');
   };
 
   function topLinks() {
