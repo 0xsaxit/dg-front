@@ -1,5 +1,5 @@
 import { useEffect, useContext } from 'react';
-import { GlobalContext } from './index';
+import { GlobalContext } from '@/store';
 import axios from 'axios';
 
 function SubgraphQuery() {

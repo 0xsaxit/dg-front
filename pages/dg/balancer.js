@@ -1,4 +1,4 @@
-import { GlobalContext } from '../../store';
+import { GlobalContext } from '@/store';
 import { useContext } from 'react';
 import Farming from '../../components/home/Farming';
 import Layout from '../../components/Layout.js';

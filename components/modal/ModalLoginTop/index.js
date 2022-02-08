@@ -1,12 +1,11 @@
 import { useEffect, useContext, useState } from 'react';
-import cn from 'classnames';
 import Web3 from 'web3';
 import { Modal, Icon, Button } from 'semantic-ui-react';
-import { GlobalContext } from 'store';
-import Global from 'components/Constants';
+import { GlobalContext } from '@/store';
 import styles from '../ModalLogin/ModalLogin.module.scss';
-import Images from '../../../common/Images';
 import Fetch from '../../../common/Fetch';
+import { useMediaQuery } from "../../../hooks";
+import cn from "classnames";
 
 const ModalLogin = () => {
   // get user's unclaimed DG balance from the Context API store
@@ -27,7 +26,7 @@ const ModalLogin = () => {
   // get network ID
   useEffect(() => {
     if (window.ethereum) {
-      web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
       (async () => {
         const networkID = await web3.eth.net.getId();
@@ -104,25 +103,7 @@ const ModalLogin = () => {
     }
   }
 
-  // async function getUserStatus() {
-  //   console.log('Get user status: ModalLoginTop');
-
-  //   try {
-  //     // const responseIP = await Fetch.IP_ADDRESS();
-  //     // const jsonIP = await responseIP.json();
-
-  //     const responseStatus = await Fetch.USER_STATUS(userAddress, '');
-  //     const jsonStatus = await responseStatus.json();
-
-  //     if (!jsonStatus.status) return false;
-
-  //     return jsonStatus.status;
-  //   } catch {
-  //     console.log('Unregistered wallet: ModalLoginTop');
-
-  //     return false;
-  //   }
-  // }
+  const tablet = useMediaQuery('(max-width: 992px)');
 
   return (
     <Modal
@@ -132,28 +113,22 @@ const ModalLogin = () => {
       open={open}
       close
       trigger={
-        <span>
+        <div className={styles.main_right_panel}>
           <Button
             color="blue"
-            className="metamask-button top"
+            className={cn(
+              styles.metamask_button,
+              styles.top
+            )}
           >
-            <span>
-              <img 
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png"
-                style={{ height: '24px', paddingRight: '8px', marginBottom: '-7px' }} 
-              />
-              Connect Metamask
-            </span>
+            <img
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png"
+              className={styles.metamask_icon}
+            />
+            {tablet ? 'Connect' : 'Connect MetaMask'}
           </Button>
-          <Button
-            color="blue"
-            className="metamask-button-mobile top"
-          >
-            <span>
-              Connect
-            </span>
-          </Button>
-        </span>
+
+        </div>
       }
     >
       <div style={{ margin: '-68px 0px 50px -40px' }}>

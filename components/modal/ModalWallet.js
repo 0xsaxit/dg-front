@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
 import { Modal, Button, Divider, Icon, Checkbox } from 'semantic-ui-react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from '@/store';
 import ButtonVerify from '../button/ButtonVerify';
 import ButtonVerifyFortmatic from '../button/ButtonVerifyFortmatic';
 
@@ -16,8 +16,7 @@ const ModalWallet = () => {
   let menuStyle = [];
   let listener = null;
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   useEffect(() => {
     listener = document.addEventListener('scroll', (e) => {
       let scrolled = document.scrollingElement.scrollTop;

@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import Spinner from 'components/Spinner';
 import ContentSubgraphs from 'components/content/ContentSubgraphs';
 import Aux from 'components/_Aux';
@@ -13,16 +13,14 @@ const SubgraphData = props => {
 
   const dataType = props.dataType;
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   useEffect(() => {
     if (state.subgraphData.length) {
       setIsLoading(false);
     }
   }, [state.subgraphData]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   return (
     <div className="main-container">
       {isLoading ? (

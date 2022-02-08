@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { Table, Dropdown } from 'semantic-ui-react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import Images from 'common/Images';
 import FoxAnimation from '../../lottieAnimation/animations/fox'
 import StarAnimation from '../../lottieAnimation/animations/star';

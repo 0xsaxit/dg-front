@@ -110,7 +110,8 @@
   }
 
   @include mq($until: 499px) {
-    width: calc(100% - 80px);
+    width: 100%;
+    min-height: 100vh;
   }
 }
 
@@ -178,6 +179,10 @@
         cursor: pointer;
       }
     }
+  }
+
+  @include mq($until: 499px) {
+    display: none;
   }
 }
 

@@ -1,5 +1,5 @@
 import { Component, useState, useContext } from 'react';
-import { GlobalContext } from '../store';
+import { GlobalContext } from '@/store';
 import MailchimpSubscribe from 'react-mailchimp-subscribe';
 import { Button, Input, Icon } from 'semantic-ui-react';
 import Aux from './_Aux';

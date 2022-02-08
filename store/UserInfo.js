@@ -1,5 +1,5 @@
 import { useEffect, useContext, useState } from 'react';
-import { GlobalContext } from './index';
+import { GlobalContext } from '@/store';
 import Fetch from '../common/Fetch';
 // import Global from '../components/Constants';
 
@@ -12,8 +12,7 @@ function UserInfo() {
   const [ethPrice, setEthPrice] = useState(0);
   const [atriPrice, setAtriPrice] = useState(0);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
 
   useEffect(() => {
     (async function () {
@@ -37,7 +36,7 @@ function UserInfo() {
 
   // get user's play name, wallet address, MANA balance, email address, players list, and token totals
   useEffect(() => {
-    if (state.userAddress) {
+    if (state.userLoggedIn && state.userAddress) {
       (async function () {
         const jsonInfo = await Fetch.PLAYER_INFO(state.userAddress);
         console.log("%c jsonInfo: ", "color: red", jsonInfo);
@@ -74,7 +73,7 @@ function UserInfo() {
         }
       })();
     }
-  }, [state.userAddress, state.updateInfo, state.refreshBalances]);
+  }, [state.userLoggedIn, state.userAddress, state.updateInfo, state.refreshBalances]);
 
   return null;
 }

@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from '@/store';
 import { Button } from 'semantic-ui-react';
 import Fetch from '../../common/Fetch';
 import Aux from '../_Aux';

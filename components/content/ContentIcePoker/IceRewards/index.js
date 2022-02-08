@@ -32,8 +32,7 @@ const IceRewards = () => {
   const [iceRewardHistory, setHistory] = useState([]);
   const [showBreakDown, setShowingBreakDown] = useState(-1);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // after claiming rewards this code gets executed
   useEffect(() => {
     setClicked(false);
@@ -42,8 +41,7 @@ const IceRewards = () => {
   useEffect(() => {
     (async () => {
       let json = await Fetch.ICE_AMOUNTS(state.userAddress);
-      const unclaimed = json.totalUnclaimedAmount;
-      setTotalICE(formatPrice(unclaimed, 0));
+      setTotalICE(json.totalUnclaimedAmount);
     })();
   }, [totalICE]);
 
@@ -155,8 +153,7 @@ const IceRewards = () => {
     }
   }, [state.userStatus]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // helper functions
   function formatPrice(balanceDG, units) {
     const balanceAdjusted = Number(balanceDG)
@@ -166,8 +163,7 @@ const IceRewards = () => {
     return balanceAdjusted;
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // get Remaining Time
   function getRemainingTime() {
     const today = new Date();

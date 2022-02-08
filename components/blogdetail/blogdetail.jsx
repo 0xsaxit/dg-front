@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import Screen from './screen';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from '@/store';
 import { Segment } from 'semantic-ui-react';
 import ScrollToTop from '../Scroll';
 import ButterCMS from '../../common/ButterCMS';

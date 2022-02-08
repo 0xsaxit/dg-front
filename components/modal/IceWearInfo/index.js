@@ -1,6 +1,6 @@
 import { useEffect, useContext, useState } from 'react';
 import { Modal, Icon, Button } from 'semantic-ui-react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import styles from './IceWearInfo.module.scss';
 
 const IceWearInfo = () => {

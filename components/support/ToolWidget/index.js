@@ -1,12 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from 'store';
-import Link from 'next/link';
-// import Spinner from 'components/Spinner';
+import { GlobalContext } from '@/store';
 import { Modal, Button } from 'semantic-ui-react';
-import ContentMarketplace from 'components/content/ContentMarketplace';
-import Aux from 'components/_Aux';
 import styles from './ToolWidget.module.scss';
-import { style } from 'dom-helpers';
 import Fetch from '../../../common/Fetch';
 import Spinner from 'components/lottieAnimation/animations/spinner';
 

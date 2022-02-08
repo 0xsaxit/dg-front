@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Button } from 'semantic-ui-react';
 import { RampInstantSDK } from '@ramp-network/ramp-instant-sdk';
-import { GlobalContext } from 'store/index';
+import { GlobalContext } from '@/store';
 import Images from 'common/Images';
 import Global from 'components/Constants';
 import ModalAcceptMANA from 'components/modal/ModalAccept/MANA';

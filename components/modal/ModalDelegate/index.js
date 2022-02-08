@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from '@/store';
 import { Modal, Button } from 'semantic-ui-react';
 import Fetch from '../../../common/Fetch';
 import styles from './ModalDelegate.module.scss';
@@ -40,8 +40,7 @@ const ModalDelegate = ({
   const [web3, setWeb3] = useState({});
   const [errorMsg, setErrorMsg] = useState('');
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   useEffect(() => {
     if (state.userStatus >= 4) {
       // initialize Web3 providers and create token contract instance
@@ -87,8 +86,7 @@ const ModalDelegate = ({
     }
   }, []);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
 
   async function hasDataByAddress(address) {
     const tokenId = 0;

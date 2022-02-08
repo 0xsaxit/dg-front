@@ -2,7 +2,7 @@ import { useEffect, useContext, useState } from 'react';
 import cn from 'classnames';
 import Web3 from 'web3';
 import { Modal, Icon, Button, Checkbox, Input } from 'semantic-ui-react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import Global from 'components/Constants';
 import styles from './ModalDepositBinance.module.scss';
 import Images from '../../../common/Images';
@@ -27,8 +27,7 @@ const ModalDepositBinance = () => {
   const [amountInput, setAmountInput] = useState('0 BUSD');
 
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   function isCheckedOne() {
     if (checkedOne === true) {
       setCheckedOne(false);
@@ -61,8 +60,7 @@ const ModalDepositBinance = () => {
     }
   }, [open, checkedOne, checkedTwo, checkedThree]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   function handleChange(e) {
     setAmountInput(e.target.value);
   }
@@ -74,8 +72,7 @@ const ModalDepositBinance = () => {
   console.log('!!!');
   console.log(amountInput);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   return (
     <span>
       <Modal

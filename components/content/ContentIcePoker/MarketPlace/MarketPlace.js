@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { GlobalContext } from '../../../../store';
+import { GlobalContext } from '@/store';
 import ModalMintWearable from 'components/modal/ModalMintWearable';
 import ModalLoginICE from 'components/modal/ModalLoginICE';
 import Spinner from 'components/lottieAnimation/animations/spinner_updated';
@@ -319,12 +319,12 @@ const MarketPlace = () => {
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1637107740/Bomber%20Fit/Bomber_5_ixqifi.png',
       ],
       details: {
-        Pants: [
-          'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091242/Bomber%20Fit/pants_grey_m_zfrety.png',
-          'Bomber Pants',
+        Glasses: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091240/Bomber%20Fit/glasses_grey_qmjxqp.png',
+          'Bomber Glasses',
           'Bomber',
-          'Legs',
-          'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091242/Bomber%20Fit/pants_grey_m_zfrety.png',
+          'Accessory',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091240/Bomber%20Fit/glasses_grey_qmjxqp.png',
         ],
         Hat: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091241/Bomber%20Fit/hat_grey_m_ptl8se.png',
@@ -340,12 +340,12 @@ const MarketPlace = () => {
           'Torso',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091243/Bomber%20Fit/upperbody_grey_m_exs6ms.png',
         ],
-        Glasses: [
-          'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091240/Bomber%20Fit/glasses_grey_qmjxqp.png',
-          'Bomber Glasses',
+        Pants: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091242/Bomber%20Fit/pants_grey_m_zfrety.png',
+          'Bomber Pants',
           'Bomber',
-          'Accessory',
-          'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091240/Bomber%20Fit/glasses_grey_qmjxqp.png',
+          'Legs',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091242/Bomber%20Fit/pants_grey_m_zfrety.png',
         ],
         Shoes: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091243/Bomber%20Fit/shoes_grey_gftpjo.png',
@@ -367,19 +367,19 @@ const MarketPlace = () => {
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1637088370/Linens_5_vplmii.png',
       ],
       details: {
+        Cigar: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091411/Linen%20Fit/pipe_grery_lhnu6p.png',
+          'XL Pipe',
+          'Linen',
+          'Accessory',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091411/Linen%20Fit/pipe_grery_lhnu6p.png',
+        ],
         Hat: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091409/Linen%20Fit/hat_grey_m_m8dbi3.png',
           'Boater Hat',
           'Linen',
           'Head',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091409/Linen%20Fit/hat_grey_m_m8dbi3.png',
-        ],
-        Cigar: [
-          'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091411/Linen%20Fit/pipe_grery_lhnu6p.png',
-          'XL Pipe',
-          'Linen',
-          'Head',
-          'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091411/Linen%20Fit/pipe_grery_lhnu6p.png',
         ],
         Top: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1637091412/Linen%20Fit/shirt_grey_m_e61mwo.png',
@@ -415,26 +415,12 @@ const MarketPlace = () => {
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1636054316/Level_5_Hugh_ogwkwo.png',
       ],
       details: {
-        Shoes: [
-          'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133629/Slippers_Level_1_pmeiq1.png',
-          'Slippers',
+        Glasses: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133629/Shades_Level_1_x4axck.png',
+          'Smoking Glasses',
           'Party Host',
-          'Feet',
-          'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatShoes_hjvr3p.svg',
-        ],
-        Pants: [
-          'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133629/Pants_Level_1_y4iyir.png',
-          'Smoking Pants',
-          'Party Host',
-          'Legs',
-          'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatLegs_tn9b57.svg',
-        ],
-        SmokingJacket: [
-          'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133628/Smoking_Jacket_Level_1_h8khui.png',
-          'Smoking Jacket',
-          'Party Host',
-          'Torso',
-          'https://res.cloudinary.com/dnzambf4m/image/upload/v1631728323/FlatClothes-01_1_kbpyfj.svg',
+          'Accessory',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatAccessory_s1cjpg.svg',
         ],
         Hat: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133628/Sailor-Hat-_Level-1_jq3fnn.png',
@@ -443,12 +429,26 @@ const MarketPlace = () => {
           'Head',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatHat_pypkjx.svg',
         ],
-        Glasses: [
-          'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133629/Shades_Level_1_x4axck.png',
-          'Smoking Glasses',
+        SmokingJacket: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133628/Smoking_Jacket_Level_1_h8khui.png',
+          'Smoking Jacket',
           'Party Host',
-          'Accessory',
-          'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatAccessory_s1cjpg.svg',
+          'Torso',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1631728323/FlatClothes-01_1_kbpyfj.svg',
+        ],
+        Pants: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133629/Pants_Level_1_y4iyir.png',
+          'Smoking Pants',
+          'Party Host',
+          'Legs',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatLegs_tn9b57.svg',
+        ],
+        Shoes: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1636133629/Slippers_Level_1_pmeiq1.png',
+          'Slippers',
+          'Party Host',
+          'Feet',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatShoes_hjvr3p.svg',
         ],
       },
     },
@@ -463,19 +463,12 @@ const MarketPlace = () => {
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_5_mmcqjy.png',
       ],
       details: {
-        Pants: [
-          'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_suit_bottom_rank1_lower_body_trd5yw.png',
-          'Trousers',
+        Glasses: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_money_shades_rank1_eyewear_knm0f4.png',
+          'Shades',
           'DG Suit',
-          'Legs',
-          'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatLegs_tn9b57.svg',
-        ],
-        Top: [
-          'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_suit_top_rank1_upper_body_qlnqky.png',
-          'Blazer',
-          'DG Suit',
-          'Torso',
-          'https://res.cloudinary.com/dnzambf4m/image/upload/v1631728323/FlatClothes-01_1_kbpyfj.svg',
+          'Accessory',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatAccessory_s1cjpg.svg',
         ],
         Cigar: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_cigar_rank1_eyewear_lk5lnu.png',
@@ -484,6 +477,20 @@ const MarketPlace = () => {
           'Head',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatHat_pypkjx.svg',
         ],
+        Top: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_suit_top_rank1_upper_body_qlnqky.png',
+          'Blazer',
+          'DG Suit',
+          'Torso',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1631728323/FlatClothes-01_1_kbpyfj.svg',
+        ],
+        Pants: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_suit_bottom_rank1_lower_body_trd5yw.png',
+          'Trousers',
+          'DG Suit',
+          'Legs',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatLegs_tn9b57.svg',
+        ],
         Shoes: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_dress_rank1_shoes_feet_w7ncwa.png',
           'Loafers',
@@ -491,19 +498,11 @@ const MarketPlace = () => {
           'Feet',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatShoes_hjvr3p.svg',
         ],
-        Glasses: [
-          'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_money_shades_rank1_eyewear_knm0f4.png',
-          'Shades',
-          'DG Suit',
-          'Accessory',
-          'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatAccessory_s1cjpg.svg',
-        ],
       },
     },
   ];
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // helper functions
   function updatePreviewLevel(previewIndex, activeId) {
     let levels = previewLevel;

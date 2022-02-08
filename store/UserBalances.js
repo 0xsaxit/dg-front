@@ -1,5 +1,5 @@
 import { useEffect, useContext } from 'react';
-import { GlobalContext } from './index';
+import { GlobalContext } from '@/store';
 import Web3 from 'web3';
 import ABI_ROOT_TOKEN from '../components/ABI/ABIDummyToken';
 import ABI_CHILD_TOKEN_MANA from '../components/ABI/ABIChildTokenMANA';
@@ -66,8 +66,7 @@ function UserBalances() {
     return (amountETH / 1000000000000000000);
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // get balances on mainnet and Matic networks
   async function getTokenBalances() {
     const tokenContractRoot = new web3.eth.Contract(

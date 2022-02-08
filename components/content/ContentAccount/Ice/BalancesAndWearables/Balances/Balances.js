@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../../../../../store';
+import { GlobalContext } from '@/store';
 import cn from 'classnames';
 import { Button } from 'semantic-ui-react';
 import styles from './Balances.module.scss';
-import Fetch from '../../../../../../common/Fetch';
-import Aux from '../../../../../_Aux';
+import Fetch from '@/common/Fetch';
+import Aux from '@/components/_Aux';
 import LoadingAnimation from 'components/lottieAnimation/animations/LoadingAnimation';
 
 const Balances = () => {
@@ -52,15 +52,13 @@ const Balances = () => {
     })();
   }, [totalICE]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // after claiming rewards this code gets executed
   useEffect(() => {
     setClicked(false);
   }, [state.iceAmounts]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // helper functions
   function formatPrice(balanceDG, units) {
     const balanceAdjusted = Number(balanceDG)

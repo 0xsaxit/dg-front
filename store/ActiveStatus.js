@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from './index';
+import { GlobalContext } from '@/store';
 import { Biconomy } from '@biconomy/mexa';
 import Web3 from 'web3';
 import Global from '../components/Constants';

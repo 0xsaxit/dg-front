@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from '@/store';
 import { Biconomy } from '@biconomy/mexa';
 import Web3 from 'web3';
 import ABI_DG_LIGHT_TOKEN from '../../../components/ABI/ABIChildTokenLightDG';
@@ -30,8 +30,7 @@ const ActivateWearableModal = props => {
   const [openUpgradeSuccess, setOpenUpgradeSuccess] = useState(false);
   const [errorText, setErrorText] = useState(null);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // initialize Web3 providers and create token contract instance
   useEffect(() => {
     if (state.userStatus >= 4) {
@@ -103,8 +102,7 @@ const ActivateWearableModal = props => {
     setAuthStatusDGLight(authStatusDGLight);
   }, [state.tokenAmounts]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // helper functions
   function modalButtons(type) {
     if (type === 'help') {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './ModalActivationSuccess.module.scss';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from '@/store';
 import Spinner from 'components/lottieAnimation/animations/spinner_updated';
 
 const ModalActivationSuccess = props => {

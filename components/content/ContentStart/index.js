@@ -1,13 +1,12 @@
 import React from 'react';
 import { useState, useContext, useEffect } from 'react';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from '@/store';
 import cn from 'classnames';
 import { Grid, Image, Button } from 'semantic-ui-react';
 import Aux from 'components/_Aux';
 import styles from './Start.module.scss';
-import ButtonStartConnect from '../../button/ButtonStartConnect.js';
 import Footer from '../../home/Footer/index.js';
-
+import ButtonConnect from "../../button/ButtonConnect";
 
 function Start() {
   // dispatch new user status to Context API store
@@ -61,7 +60,7 @@ function Start() {
               </Button>
             ) : (
               <div className={styles.mobile_hide}>
-                <ButtonStartConnect />
+                <ButtonConnect showAlternateButton={true}/>
               </div>
             )}
           </div>

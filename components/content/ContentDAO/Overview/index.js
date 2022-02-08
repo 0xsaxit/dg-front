@@ -6,7 +6,7 @@ import Web3 from 'web3';
 import axios from 'axios';
 import { Loader, Button, Table } from 'semantic-ui-react';
 import { Line } from 'react-chartjs-2';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import MetaTx from 'common/MetaTx';
 import Global from 'components/Constants';
 import styles from './Overview.module.scss';
@@ -137,8 +137,7 @@ const Overview = props => {
     }
   }, [snapshotOne, snapshotTwo, snapshotThree, currentDate]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // use for both the graph and the stats
   // that'll just be week? to match discord bot 'in the past week'
   // that data will include the percent changes for both daily/weekly in the changes object
@@ -249,8 +248,7 @@ const Overview = props => {
     }
   }, [state.userStatus, state.stakingBalances.BALANCE_USER_GOVERNANCE]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // helper functions
   function getWeeklyChange() {
     return (
@@ -849,9 +847,6 @@ const Overview = props => {
           </div>
 
           <div className={styles.stat}>
-            <div className={styles.new_stat}>
-              <p className={styles.new}> new </p>
-            </div>
             <p className={styles.stat_header}>ICE Wearable Sales</p>
             <div className="d-flex justify-content-center">
               <div>

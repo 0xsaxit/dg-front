@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import Link from 'next/link';
 import { Modal, Button } from 'semantic-ui-react';
 import Spinner from 'components/lottieAnimation/animations/spinner_updated';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from '@/store';
 import styles from './ModalInfo.module.scss';
 import cn from 'classnames';
 import Global from '../../Constants';
@@ -28,8 +28,7 @@ const ModalInfo = () => {
   const [OldDGPrice, setOldDGPrice] = useState(0);
   const [instance, setInstance] = useState(false);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   useEffect(() => {
     const dgTotal =
       parseFloat(state.DGBalances.BALANCE_ROOT_DG_LIGHT) +
@@ -135,8 +134,7 @@ const ModalInfo = () => {
     fetchData();
   }, [state.DGPrices]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
+  
   // helper functions
   function formatPrice(balanceDG, units) {
     const balanceAdjusted = Number(balanceDG)

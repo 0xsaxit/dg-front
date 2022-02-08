@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { GlobalContext } from '../../../../store';
+import { GlobalContext } from '@/store';
 import { Table } from 'semantic-ui-react';
 import FoxAnimation from 'components/lottieAnimation/animations/fox'
 import SadEmoji from 'components/lottieAnimation/animations/sadEmoji';

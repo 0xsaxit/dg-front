@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import moment from 'moment';
 import { Modal, Button } from 'semantic-ui-react';
-import { GlobalContext } from 'store';
+import { GlobalContext } from '@/store';
 import ModalWithdrawDelegation from 'components/modal/ModalWithdrawDelegation';
 import styles from './ModalIceDelegationBreakDown.module.scss';
 
