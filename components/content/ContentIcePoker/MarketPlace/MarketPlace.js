@@ -54,8 +54,8 @@ const MarketPlace = () => {
         ],
         PilotPants: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1643943935/ICE%20Airline/lowerbody_m_1_jmsfwd.png',
-          "Boardies",
-          'Pilot Pants',
+          "Pilot Pants",
+          'ICE Airlines',
           'Legs',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1643943935/ICE%20Airline/lowerbody_m_1_jmsfwd.png'
         ],
@@ -213,8 +213,8 @@ const MarketPlace = () => {
       },
     },
     {
-      title: 'Founding Fathers',
-      address: Global.ADDRESSES.COLLECTION_Founding_FATHERS_ADDRESS,
+      title: 'Founding Father',
+      address: Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_1_fvhl6y.png',
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_2_pqzdsy.png',
@@ -226,35 +226,35 @@ const MarketPlace = () => {
         Feather: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116020/feather_level_1_rd61am.png',
           'Father Feather',
-          'Founding Fathers',
+          'Founding Father',
           'Accessory',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116020/feather_level_1_rd61am.png',
         ],
         Flow: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116025/hair_level_1_dampks.png',
           'Father Flow',
-          'Founding Fathers',
+          'Founding Father',
           'Head',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116025/hair_level_1_dampks.png',
         ],
         Frock: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116021/coat_level_1_ivacwe.png',
           'Father Frock',
-          'Founding Fathers',
+          'Founding Father',
           'Torso',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116021/coat_level_1_ivacwe.png',
         ],
         Breeches: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116030/pants_level_1_srgdhc.png',
           'Father Breeches',
-          'Founding Fathers',
+          'Founding Father',
           'Legs',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116030/pants_level_1_srgdhc.png',
         ],
         Shoes: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116026/mules_level_1_u7jgmh.png',
           'Father Mules',
-          'Founding Fathers',
+          'Founding Father',
           'Feet',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116026/mules_level_1_u7jgmh.png',
         ],
