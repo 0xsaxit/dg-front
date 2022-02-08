@@ -13,7 +13,7 @@ import ABI_COLLECTION_JOKER from '../../../components/ABI/ABICollectionJoker';
 import ABI_COLLECTION_CHEF from '../../../components/ABI/ABICollectionChef';
 import ABI_COLLECTION_BEACH from '../../../components/ABI/ABICollectionBeach'
 import ABI_COLLECTION_AIRLINE from '../../../components/ABI/ABICollectionAirline'
-import ABI_COLLECTION_FOUNDING_FATHERS from '../../../components/ABI/ABICollectionFounderFather';
+import ABI_COLLECTION_FOUNDING_FATHERS from '../../../components/ABI/ABICollectionFoundingFather';
 import MetaTx from '../../../common/MetaTx';
 import Fetch from '../../../common/Fetch';
 import { Modal, Button } from 'semantic-ui-react';
@@ -119,11 +119,11 @@ const ModalUpgradePending = props => {
         );
         collectionID = 16;
       } else if (
-        props.contractAddress === Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS
+        props.contractAddress === Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS
       ) {
         collectionContract = new getWeb3.eth.Contract(
           ABI_COLLECTION_FOUNDING_FATHERS,
-          Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS
+          Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS
         );
         collectionID = 17;
       } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_JOKER_ADDRESS) {
