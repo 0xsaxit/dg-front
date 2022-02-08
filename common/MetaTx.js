@@ -21,6 +21,7 @@ let accessoriesContract6 = '';
 let accessoriesContract7 = '';
 let accessoriesContract8 = '';
 let accessoriesContract9 = '';
+let accessoriesContract10 = '';
 
 let treasuryAddress = '';
 let dgPointerAddress = '';
@@ -48,6 +49,7 @@ accessoriesContract6 = Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS;
 accessoriesContract7 = Global.ADDRESSES.COLLECTION_JOKER_ADDRESS;
 accessoriesContract8 = Global.ADDRESSES.COLLECTION_CHEF_ADDRESS;
 accessoriesContract9 = Global.ADDRESSES.COLLECTION_BEACH_ADDRESS;
+accessoriesContract10 = Global.ADDRESSES.COLLECTION_AIRLINE_ADDRESS;
 
 treasuryAddress = Global.ADDRESSES.TREASURY_CONTRACT_ADDRESS;
 dgPointerAddress = Global.ADDRESSES.DG_POINTER_CONTRACT_ADDRESS;
@@ -89,6 +91,7 @@ arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domainTypeToken); // 18
 arrayDomainType.push(domainTypeToken); // 19
 arrayDomainType.push(domainTypeToken); // 20
+arrayDomainType.push(domainTypeToken); // 21
 
 metaTransactionType.push(
   { name: 'nonce', type: 'uint256' },
@@ -243,6 +246,13 @@ const domainDataAccessories9 = {
   salt: '0x' + Global.CONSTANTS.MATIC_NETWORK_ID.toString(16).padStart(64, '0'),
 };
 
+const domainDataAccessories10 = {
+  name: 'Decentraland Collection',
+  version: '2',
+  verifyingContract: accessoriesContract10,
+  salt: '0x' + Global.CONSTANTS.MATIC_NETWORK_ID.toString(16).padStart(64, '0'),
+};
+
 arrayDomainData.push(domainDataTokenMANA);
 arrayDomainData.push(domainDataTreasury);
 arrayDomainData.push(domainDataDGPointer);
@@ -264,6 +274,7 @@ arrayDomainData.push(domainDataAccessories6);
 arrayDomainData.push(domainDataAccessories7); // 18
 arrayDomainData.push(domainDataAccessories8); // 19
 arrayDomainData.push(domainDataAccessories9); // 20
+arrayDomainData.push(domainDataAccessories10); // 21
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////

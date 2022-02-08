@@ -18,8 +18,56 @@ const MarketPlace = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [previewLevel, setPreviewLevel] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+  const [previewLevel, setPreviewLevel] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
   const wearables = [
+    {
+      title: 'ICE Airlines',
+      address: Global.ADDRESSES.COLLECTION_AIRLINE_ADDRESS,
+      preview: [
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1643990279/ICE%20Airline/Male_1_y5pwpl.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1643943842/ICE%20Airline/Male_2_lxjgby.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1643943842/ICE%20Airline/Male_3_fq4hpz.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1643943842/ICE%20Airline/Male_4_hwvcly.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1643943842/ICE%20Airline/Male_5_dz5iz9.png'
+      ],
+      details: {
+        PilotGogs: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1643943931/ICE%20Airline/glasses_1_qtofuw.png',
+          'Pilot Gogs',
+          'ICE Airlines',
+          'Accessory',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1643943931/ICE%20Airline/glasses_1_qtofuw.png'
+        ],
+        PilotHat: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1643943933/ICE%20Airline/hat_m_1_hgkx5l.png',
+          'Pilot Hat',
+          'ICE Airlines',
+          'Head',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1643943933/ICE%20Airline/hat_m_1_hgkx5l.png'
+        ],
+        PilotShirt: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1643943937/ICE%20Airline/upperrbody_m_1_kcrpod.png',
+          "Pilot Shirt",
+          'ICE Airlines',
+          'Torso',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1643943937/ICE%20Airline/upperrbody_m_1_kcrpod.png'
+        ],
+        PilotPants: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1643943935/ICE%20Airline/lowerbody_m_1_jmsfwd.png',
+          "Boardies",
+          'Pilot Pants',
+          'Legs',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1643943935/ICE%20Airline/lowerbody_m_1_jmsfwd.png'
+        ],
+        PilotBoot: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1643943936/ICE%20Airline/shoes_1_dm1ovx.png',
+          "Pilot Boot",
+          'ICE Airlines',
+          'Feet',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1643943936/ICE%20Airline/shoes_1_dm1ovx.png'
+        ]
+      }
+    },
     {
       title: 'ICE Beach Club',
       address: Global.ADDRESSES.COLLECTION_BEACH_ADDRESS,
@@ -165,8 +213,8 @@ const MarketPlace = () => {
       },
     },
     {
-      title: 'Founder Fathers',
-      address: Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS,
+      title: 'Founding Fathers',
+      address: Global.ADDRESSES.COLLECTION_Founding_FATHERS_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_1_fvhl6y.png',
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_2_pqzdsy.png',
@@ -178,35 +226,35 @@ const MarketPlace = () => {
         Feather: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116020/feather_level_1_rd61am.png',
           'Father Feather',
-          'Founder Fathers',
+          'Founding Fathers',
           'Accessory',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116020/feather_level_1_rd61am.png',
         ],
         Flow: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116025/hair_level_1_dampks.png',
           'Father Flow',
-          'Founder Fathers',
+          'Founding Fathers',
           'Head',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116025/hair_level_1_dampks.png',
         ],
         Frock: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116021/coat_level_1_ivacwe.png',
           'Father Frock',
-          'Founder Fathers',
+          'Founding Fathers',
           'Torso',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116021/coat_level_1_ivacwe.png',
         ],
         Breeches: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116030/pants_level_1_srgdhc.png',
           'Father Breeches',
-          'Founder Fathers',
+          'Founding Fathers',
           'Legs',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116030/pants_level_1_srgdhc.png',
         ],
         Shoes: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116026/mules_level_1_u7jgmh.png',
           'Father Mules',
-          'Founder Fathers',
+          'Founding Fathers',
           'Feet',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116026/mules_level_1_u7jgmh.png',
         ],
@@ -564,29 +612,31 @@ const MarketPlace = () => {
         {wearables.map((wearable, index) => {
           let itemLimits;
           if (index === 0) {
-            itemLimits = state.itemLimits9;
+            itemLimits = state.itemLimits10;
           } else if (index === 1) {
-            itemLimits = state.itemLimits8;
+            itemLimits = state.itemLimits9;
           } else if (index === 2) {
-            itemLimits = state.itemLimits7;
+            itemLimits = state.itemLimits8;
           } else if (index === 3) {
-            itemLimits = state.itemLimits6;
+            itemLimits = state.itemLimits7;
           } else if (index === 4) {
-            itemLimits = state.itemLimits5;
+            itemLimits = state.itemLimits6;
           } else if (index === 5) {
-            itemLimits = state.itemLimits4;
+            itemLimits = state.itemLimits5;
           } else if (index === 6) {
-            itemLimits = state.itemLimits3;
+            itemLimits = state.itemLimits4;
           } else if (index === 7) {
-            itemLimits = state.itemLimits2;
+            itemLimits = state.itemLimits3;
           } else if (index === 8) {
+            itemLimits = state.itemLimits2;
+          } else if (index === 9) {
             itemLimits = state.itemLimits1;
           }
 
           let maxMintCounts = 0;
           if (state.appConfig && state.appConfig.maxMintCounts) {
             Object.keys(state.appConfig.maxMintCounts).map(address => {
-              if (address === wearable.address.toLowerCase()) {
+              if (address === wearable?.address?.toLowerCase()) {
                 maxMintCounts = state.appConfig.maxMintCounts[address];
               }
             })
