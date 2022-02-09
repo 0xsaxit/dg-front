@@ -27,7 +27,7 @@ const MenuTop = props => {
 
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-  const isTablet = useMediaQuery('(min-width: 1240px)');
+  const isTablet = useMediaQuery('(min-width: 1040px)');
   const isMobile = useMediaQuery('(min-width: 768px)');
   const isSquished = useMediaQuery('(min-width: 920px)');
   const [open, setOpen] = useState(false);
