@@ -25,7 +25,7 @@ const IceWearableCard: FC<IceWearableCardType> = ({ item, delegation, className 
   // get user's wallet address from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
   const [showBreakDown, setShowingBreakDown] = useState(-1);
-  const [nickName, setNickName] = useState(item.delegationStatus.delegatedNickName ? item.delegationStatus.delegatedNickName : item.delegationStatus.delegatedTo || '');
+  const [nickName, setNickName] = useState(item.delegationStatus.delegatedToNickname ? item.delegationStatus.delegatedToNickname : item.delegationStatus.delegatedTo || '');
   const [pastNickName, savePastNickName] = useState(null);
   const [isEditingNickName, saveIsEditingNickName] = useState(false);
 
