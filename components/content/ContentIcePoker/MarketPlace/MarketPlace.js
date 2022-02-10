@@ -630,7 +630,7 @@ const MarketPlace = () => {
               <h3>
                 {wearable.title}
 
-                {index === 0 && <CheckMintableModal />}
+                {index === 0 && state.userLoggedIn && <CheckMintableModal />}
               </h3>
 
               <Slider {...settings}>
