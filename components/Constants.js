@@ -37,7 +37,7 @@ const CONSTANTS = {
   POOLING_LIMIT_COUNT: 6, // attempt to call API endpoint this number of times
   MINT_STATUS: 29, // minimum userStatus level for minting wearables (we can replace with appConfig variable when it's available)
   APR_NUMBER: 26071500, // APR constant number,
-  TOKEN_DECIMALS: 18, // the decimals of register contract,
+  TOKEN_DECIMALS: 18 // the decimals of register contract,
 };
 
 // wallet and contract addresses
@@ -100,6 +100,7 @@ const ADDRESSES = (() => {
   const COLLECTION_CHEF_ADDRESS = '0xa96f7f2102c27a61e3a660d964e9aa613b68fe6b';
   const COLLECTION_BEACH_ADDRESS = '0x49cb83b4c4980029200b6759d5fb7d3b21f10134';
   const COLLECTION_AIRLINE_ADDRESS = '0xc60f0a9df4d42f593b3675755a55e1de97f82a05';
+  const COLLECTION_POET_ADDRESS = '0x5b2d60db65d80593bd5c5d36fcd99717ef03e850';
   const ICE_TOKEN_ADDRESS = '0xc6C855AD634dCDAd23e64DA71Ba85b8C51E5aD7c';
 
   console.log('OWNER_WALLET_ADDRESS: ' + OWNER_WALLET_ADDRESS);
@@ -139,12 +140,12 @@ const ADDRESSES = (() => {
   console.log('UNISWAP_ADDRESS_STAKING: ' + UNISWAP_ADDRESS_STAKING);
   console.log('UNISWAP_ADDRESS_WETH: ' + UNISWAP_ADDRESS_WETH);
   console.log('TOMINOYA_CONTRACT_ADDRESS: ' + TOMINOYA_CONTRACT_ADDRESS);
-  console.log('DECENTRAL_GAMES_EVENTS: ' + DECENTRAL_GAMES_EVENTS)
-  console.log('COLLECTION_V2_ADDRESS: ' + COLLECTION_V2_ADDRESS)
-  console.log('COLLECTION_PH_ADDRESS: ' + COLLECTION_PH_ADDRESS)
-  console.log('COLLECTION_LINENS_ADDRESS: ' + COLLECTION_LINENS_ADDRESS)
-  console.log('COLLECTION_BOMBER_ADDRESS: ' + COLLECTION_BOMBER_ADDRESS)
-  console.log('ICE_TOKEN_ADDRESS: ' + ICE_TOKEN_ADDRESS)
+  console.log('DECENTRAL_GAMES_EVENTS: ' + DECENTRAL_GAMES_EVENTS);
+  console.log('COLLECTION_V2_ADDRESS: ' + COLLECTION_V2_ADDRESS);
+  console.log('COLLECTION_PH_ADDRESS: ' + COLLECTION_PH_ADDRESS);
+  console.log('COLLECTION_LINENS_ADDRESS: ' + COLLECTION_LINENS_ADDRESS);
+  console.log('COLLECTION_BOMBER_ADDRESS: ' + COLLECTION_BOMBER_ADDRESS);
+  console.log('ICE_TOKEN_ADDRESS: ' + ICE_TOKEN_ADDRESS);
 
   return {
     OWNER_WALLET_ADDRESS,
@@ -197,6 +198,7 @@ const ADDRESSES = (() => {
     COLLECTION_CHEF_ADDRESS,
     COLLECTION_BEACH_ADDRESS,
     COLLECTION_AIRLINE_ADDRESS,
+    COLLECTION_POET_ADDRESS,
     ICE_TOKEN_ADDRESS
   };
 })();
@@ -204,5 +206,5 @@ const ADDRESSES = (() => {
 export default {
   KEYS,
   CONSTANTS,
-  ADDRESSES,
+  ADDRESSES
 };
