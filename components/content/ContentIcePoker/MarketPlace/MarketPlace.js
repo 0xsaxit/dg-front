@@ -18,8 +18,56 @@ const MarketPlace = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [previewLevel, setPreviewLevel] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+  const [previewLevel, setPreviewLevel] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
   const wearables = [
+    {
+      title: 'ICE Poet',
+      address: Global.ADDRESSES.COLLECTION_POET_ADDRESS,
+      preview: [
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1644863904/ICE%20Poet%20Fit/Fit_1_bzdlbm.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1644863904/ICE%20Poet%20Fit/Fit_2_wbssai.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1644863904/ICE%20Poet%20Fit/Fit_3_naqye8.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1644863904/ICE%20Poet%20Fit/Fit_4_ndrkvo.png',
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1644863904/ICE%20Poet%20Fit/Fit_5_inpdfb.png'
+      ],
+      details: {
+        SonnetShades: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1644863934/ICE%20Poet%20%28Square%29/glasses_1_uf5elp.png',
+          'Sonnet Shades',
+          'ICE Poet',
+          'Accessory',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1644863934/ICE%20Poet%20%28Square%29/glasses_1_uf5elp.png'
+        ],
+        Beret: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1644863936/ICE%20Poet%20%28Square%29/hat_1_fnlgwr.png',
+          'Beret',
+          'ICE Poet',
+          'Head',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1644863936/ICE%20Poet%20%28Square%29/hat_1_fnlgwr.png'
+        ],
+        TurtleNeck: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1644863938/ICE%20Poet%20%28Square%29/shirt_1_enafi5.png',
+          'Turtle Neck',
+          'ICE Poet',
+          'Torso',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1644863938/ICE%20Poet%20%28Square%29/shirt_1_enafi5.png'
+        ],
+        FunPants: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1644863936/ICE%20Poet%20%28Square%29/pants_1_bnff1n.png',
+          'Fun Pants',
+          'ICE Poet',
+          'Legs',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1644863936/ICE%20Poet%20%28Square%29/pants_1_bnff1n.png'
+        ],
+        HighTops: [
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1644863939/ICE%20Poet%20%28Square%29/shoes_1_g2aihx.png',
+          'High Tops',
+          'ICE Poet',
+          'Feet',
+          'https://res.cloudinary.com/dnzambf4m/image/upload/v1644863939/ICE%20Poet%20%28Square%29/shoes_1_g2aihx.png'
+        ]
+      }
+    },
     {
       title: 'ICE Airlines',
       address: Global.ADDRESSES.COLLECTION_AIRLINE_ADDRESS,
@@ -595,24 +643,26 @@ const MarketPlace = () => {
         {wearables.map((wearable, index) => {
           let itemLimits;
           if (index === 0) {
-            itemLimits = state.itemLimits10;
+            itemLimits = state.itemLimits11;
           } else if (index === 1) {
-            itemLimits = state.itemLimits9;
+            itemLimits = state.itemLimits10;
           } else if (index === 2) {
-            itemLimits = state.itemLimits8;
+            itemLimits = state.itemLimits9;
           } else if (index === 3) {
-            itemLimits = state.itemLimits7;
+            itemLimits = state.itemLimits8;
           } else if (index === 4) {
-            itemLimits = state.itemLimits6;
+            itemLimits = state.itemLimits7;
           } else if (index === 5) {
-            itemLimits = state.itemLimits5;
+            itemLimits = state.itemLimits6;
           } else if (index === 6) {
-            itemLimits = state.itemLimits4;
+            itemLimits = state.itemLimits5;
           } else if (index === 7) {
-            itemLimits = state.itemLimits3;
+            itemLimits = state.itemLimits4;
           } else if (index === 8) {
-            itemLimits = state.itemLimits2;
+            itemLimits = state.itemLimits3;
           } else if (index === 9) {
+            itemLimits = state.itemLimits2;
+          } else if (index === 10) {
             itemLimits = state.itemLimits1;
           }
 
