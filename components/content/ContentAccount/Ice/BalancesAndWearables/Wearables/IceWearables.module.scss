@@ -1,6 +1,6 @@
 @import "styles/base.scss";
 
-.wearableSection {
+.wearable_section {
   max-width: 1010px;
   margin: 0 auto;
   padding-left: 10px;
@@ -44,14 +44,14 @@
       }
 
       .play_text {
-        font-family: Larsseit-ExtraBold;
+        font-family: "Larsseit-ExtraBold";
         font-size: 24px;
         letter-spacing: -0.7px;
         text-align: center;
       }
 
       .play_lower {
-        font-family: Larsseit-Regular;
+        font-family: "Larsseit-Regular";
         font-size: 16px;
         line-height: 22px;
         color: rgba(255, 255, 255, 0.5) !important;
@@ -71,16 +71,16 @@
           height: 48px;
           width: 111px;
           font-size: 17px;
-          color: white;
+          color: #ffffff;
           border-radius: 12px;
-          font-family: Larsseit-Bold;
+          font-family: "Larsseit-Bold";
           margin-right: 16px;
 
           &:hover,
           &:focus,
           &:active {
             background: #1f1f1f;
-            color: white;
+            color: #ffffff;
             filter: brightness(0.9);
           }
         }
@@ -89,16 +89,16 @@
           background: #006eff;
           height: 48px;
           font-size: 17px;
-          color: white;
+          color: #ffffff;
           white-space: nowrap;
           border-radius: 12px;
-          font-family: Larsseit-Bold;
+          font-family: "Larsseit-Bold";
 
           &:hover,
           &:focus,
           &:active {
             background: #006eff;
-            color: white;
+            color: #ffffff;
             filter: brightness(0.9);
           }
         }
@@ -127,7 +127,7 @@
   }
 }
 
-.wearableHeader {
+.wearable_header {
   margin: auto;
   margin-top: 30px;
   margin-left: 10px;
@@ -135,14 +135,14 @@
   display: flex;
   justify-content: space-between;
 
-  & h2 {
+  h2 {
     font-size: 24px;
     margin-bottom: 0px;
     padding-top: 40px;
-    color: white;
+    color: #ffffff;
   }
 
-  & p {
+  p {
     color: rgba(255, 255, 255, 0.5) !important;
     font-size: 16px;
   }
@@ -151,7 +151,7 @@
     border-radius: 16px;
     margin-top: 40px;
     height: 35px;
-    color: white;
+    color: #ffffff;
     padding: 6px 24px 6px 24px;
     font-size: 14px;
     background: #1f1f1f;
@@ -162,13 +162,13 @@
 
     &:hover {
       filter: brightness(0.9) !important;
-      color: white;
+      color: #ffffff;
       background: #1f1f1f;
     }
 
     &:focus {
       filter: brightness(0.9) !important;
-      color: white;
+      color: #ffffff;
       background: #1f1f1f;
     }
 
@@ -183,17 +183,17 @@
 }
 
 @include mq($until: medium) {
-  .wearableHeader {
+  .wearable_header {
     padding-left: 0px !important;
     margin-left: 0px !important;
     margin-right: 0px !important;
     padding-right: 0px;
 
-    & h2 {
+    h2 {
       font-size: 20px;
     }
 
-    & p {
+    p {
       font-size: 14px;
     }
 
@@ -212,7 +212,7 @@
 }
 
 .no_ice_wearables {
-  font-family: Larsseit-Bold;
+  font-family: "Larsseit-Bold";
   font-size: 18px;
   text-align: center;
   color: rgba(255, 255, 255, 0.6) !important;

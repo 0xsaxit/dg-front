@@ -1,15 +1,18 @@
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable spaced-comment */
+/* eslint-disable react/react-in-jsx-scope */
 import { useState, useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import cn from 'classnames';
-import { Menu, Icon, Dropdown, Popup, Button } from 'semantic-ui-react';
+import { Menu } from 'semantic-ui-react';
 import { GlobalContext } from '@/store';
 import { useMediaQuery } from 'hooks';
 import ModalInfo from 'components/modal/ModalInfo';
-import Fetch from 'common/Fetch';
 import ModalPopup from 'components/modal/ModalPopup';
 import ButtonConnect from '../../button/ButtonConnect/index.js';
-import LanguageModal from 'components/modal/LanguageModal';
 import styles from './MenuTop.module.scss';
 import MessageToast from 'components/home/MessageToast';
 import ButtonSwitchNetwork from '../../button/ButtonSwitchNetwork/index.js';
@@ -18,7 +21,7 @@ import Global from 'components/Constants';
 
 // import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
-const MenuTop = props => {
+const MenuTop = () => {
   // const { t, i18n } = useTranslation();
 
   // const changeLanguage = lng => {
@@ -28,26 +31,24 @@ const MenuTop = props => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
   const isTablet = useMediaQuery('(min-width: 1040px)');
-  const isMobile = useMediaQuery('(min-width: 768px)');
+  const isMobile = useMediaQuery('(min-width: 786px)');
+  const isPhone = useMediaQuery('(max-width: 400px)');
   const isSquished = useMediaQuery('(min-width: 920px)');
   const [open, setOpen] = useState(false);
   const [utm, setUtm] = useState('');
   const [scrollState, setScrollState] = useState('top');
   const [ref, setRef] = useState('');
-  const [copied, setCopied] = useState(false);
-
   const router = useRouter();
+
   let listener = null;
   let linkDocs = '';
-
-  
 
   useEffect(() => {
     if (state.userStatus >= 4) {
       ReactGA.event({
         category: 'Logged In',
-        action: 'User Logged In',
-        label: 'Home Page',
+        action:   'User Logged In',
+        label:    'Home Page',
       });
     }
   }, [state.userStatus]);
@@ -63,8 +64,9 @@ const MenuTop = props => {
   }, [linkDocs]);
 
   useEffect(() => {
-    listener = document.addEventListener('scroll', e => {
-      let scrolled = document.scrollingElement.scrollTop;
+    listener = document.addEventListener('scroll', () => {
+      const scrolled = document.scrollingElement.scrollTop;
+
       if (scrolled >= 10) {
         if (scrollState !== 'amir') {
           setScrollState('amir');
@@ -80,15 +82,6 @@ const MenuTop = props => {
       document.removeEventListener('scroll', listener);
     };
   }, [scrollState]);
-
-  // const onCopy = () => {
-  //   navigator.clipboard.writeText(state.userAddress);
-  //   setCopied(true);
-
-  //   setTimeout(() => {
-  //     setCopied(false);
-  //   }, 3000);
-  // };
 
   // close menu automatically if left open for desktop screen sizes
   useEffect(() => {
@@ -106,6 +99,7 @@ const MenuTop = props => {
   // set utm
   useEffect(() => {
     const url = window.location.href;
+
     if (url.includes('?utm_source')) {
       sessionStorage.setItem('utm', url.substring(url.lastIndexOf('/') + 1));
       setUtm(sessionStorage.getItem('utm'));
@@ -125,6 +119,7 @@ const MenuTop = props => {
 
   useEffect(() => {
     const url = window.location.href;
+
     if (url.includes('0x')) {
       localStorage.setItem('ref', url.substring(url.lastIndexOf('/') + 1));
       setRef(localStorage.getItem('ref'));
@@ -132,10 +127,10 @@ const MenuTop = props => {
       localStorage.setItem('ref', '');
       setRef(localStorage.getItem('ref'));
     }
+
     setAffiliateState();
   }, [ref]);
 
-  
   // helper functions
 
   function DGLogo() {
@@ -143,12 +138,14 @@ const MenuTop = props => {
       <Link href="/">
         <img
           className={cn(
+
             // AMNESIA_COMMENT: remove the amnesia logo class
             styles.menu_logo,
             state.isAmnesiaPage && styles.amnesia_logo
           )}
           alt="Decentral Games Logo"
           src={
+
             // AMNESIA_COMMENT: remove the amnesia logo
             state.isAmnesiaPage
               ? 'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632943973/amnesia/amnesia_dg_logo_uvqb6x.png'
@@ -161,12 +158,14 @@ const MenuTop = props => {
         <Link href="/">
           <img
             className={cn(
+
               // AMNESIA_COMMENT: remove the amnesia logo class
               styles.menu_logo,
               state.isAmnesiaPage && styles.amnesia_logo
             )}
             alt="Decentral Games Logo"
             src={
+
               // AMNESIA_COMMENT: remove the amnesia logo
               state.isAmnesiaPage
                 ? 'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632943973/amnesia/amnesia_dg_logo_uvqb6x.png'
@@ -174,7 +173,7 @@ const MenuTop = props => {
             }
           />
         </Link>
-        &nbsp; Decentral Games
+        &nbsp; {isPhone ? 'DG' : 'Decentral Games'}
       </>
     );
   }
@@ -185,7 +184,7 @@ const MenuTop = props => {
       <div className={cn(styles.mobile_menu, open ? styles.open : '')}>
         <span className="d-flex flex-column w-100">
           {!isMobile && (
-            <Link href={`/account/ice`}>
+            <Link href={'/account/ice'}>
               <Menu.Item className={styles.menu_style}>My Account</Menu.Item>
             </Link>
           )}
@@ -220,7 +219,7 @@ const MenuTop = props => {
             <a
               href="https://ice.decentral.games"
               id="docs-top-menu"
-              target="_blank"
+              target="_blank" rel="noreferrer"
             >
               <Menu.Item className={styles.menu_style}>
                 {/* {t('navMenu.DOCS')} */}
@@ -238,9 +237,8 @@ const MenuTop = props => {
     return (
       <div className={styles.menu_items_to_hide}>
         {isMobile && (
-          <Link href={`/ice`}>
+          <Link href={'/ice'}>
             <Menu.Item className={styles.menu_style}>
-              {/* {t('navMenu.PLAY')} */}
               ICE Poker
             </Menu.Item>
           </Link>
@@ -249,7 +247,6 @@ const MenuTop = props => {
         {isMobile && (
           <Link href="/dg">
             <Menu.Item className={styles.menu_style}>
-              {/* {t('navMenu.DAO')} */}
               DAO
             </Menu.Item>
           </Link>
@@ -300,7 +297,7 @@ const MenuTop = props => {
             href="https://ice.decentral.games"
             id="docs-top-menu"
             className="d-flex"
-            target="_blank"
+            target="_blank" rel="noreferrer"
           >
             <Menu.Item className={styles.menu_style}>
               {/* {t('navMenu.DOCS')} */}
@@ -318,7 +315,7 @@ const MenuTop = props => {
       <>
         {state.userStatus >= 4 && state.userLoggedIn && (
           <span className={styles.right_menu_items}>
-            {state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID && <ButtonSwitchNetwork />} 
+            {state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID && <ButtonSwitchNetwork />}
             {state.networkID === Global.CONSTANTS.PARENT_NETWORK_ID && isSquished ? <ModalInfo /> : null}
             <ModalPopup />
           </span>
@@ -340,6 +337,7 @@ const MenuTop = props => {
       <span>
         <div
           className={cn(
+
             // AMNESIA_COMMENT: amnesia header class should be removed after we are done with amnesia
             state.isAmnesiaPage &&
               scrollState === 'top' &&
@@ -352,11 +350,25 @@ const MenuTop = props => {
           )}
         >
           <MessageToast />
-          <Menu className={cn(styles.menu_container)}>
+          {isPhone? (
+            <Menu className={cn(styles.menu_container)}>
+              {DGLogo()}
+              {balancesAndButtons()}
+              {shownOrHiddenItems()}
+            </Menu>
+
+          ) : (
+            <Menu className={cn(styles.menu_container)}>
+              {DGLogo()}
+              {shownOrHiddenItems()}
+              {balancesAndButtons()}
+            </Menu>
+          )}
+          {/* <Menu className={cn(styles.menu_container)}>
             {DGLogo()}
             {shownOrHiddenItems()}
-            {isMobile && balancesAndButtons()}
-          </Menu>
+            {isPhone && balancesAndButtons()}
+          </Menu> */}
           {dropdownMenu()}
         </div>
       </span>
