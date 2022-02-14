@@ -11,16 +11,16 @@
 
   .title {
     font-size: 24px !important;
-    font-family: Larsseit-Extrabold;
-    color: white;
+    font-family: "Larsseit-Extrabold";
+    color: #ffffff;
     margin-bottom: 4px;
     text-align: left;
   }
 
   .meta {
     font-size: 16px;
-    font-family: Larsseit-Medium;
-    color: white;
+    font-family: "Larsseit-Medium";
+    color: #ffffff;
     opacity: 0.6;
     text-align: left;
   }
@@ -61,15 +61,54 @@
       margin-top: 14px;
 
       .delegated {
+        display: flex;
+        align-items: center;
         position: absolute;
         top: -60px;
         left: 20px;
-        padding: 5px 15px;
+        padding: 7px 15px;
         border-radius: 25px;
-        color: #fff;
-        font-size: 12px;
-        font-family: "Larsseit-Medium";
         background: rgba(0, 0, 0, 0.75);
+        cursor: pointer;
+
+        div {
+          line-height: 12px;
+        }
+
+        input {
+          max-width: 140px;
+          height: 13px;
+          background-color: transparent;
+          font-size: 12px !important;
+          font-family: "Larsseit-Medium";
+          color: #ffffff;
+          border: none;
+
+          &:disabled {
+            color: rgba(255, 255, 255, 0.6) !important;
+          }
+
+          &:focus-visible {
+            outline: none;
+          }
+
+          &::placeholder {
+            color: #ffffff !important;
+          }
+        }
+
+        h1 {
+          color: #fff;
+          font-size: 12px;
+          font-family: "Larsseit-Medium";
+          font-weight: lighter !important;
+        }
+
+        img {
+          width: 12px;
+          height: auto;
+          margin-left: 5px;
+        }
 
         svg {
           margin-left: 5px;
@@ -87,7 +126,7 @@
         box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
 
-        font-family: Larsseit-Regular;
+        font-family: "Larsseit-Regular";
         font-style: normal;
         font-size: 12px;
         font-weight: 700;
@@ -109,11 +148,11 @@
   }
 
   .card_meta {
-    font-family: Larsseit-Medium;
+    font-family: "Larsseit-Medium";
     font-style: normal;
-    font-size: 18px;
+    font-size: 12px;
     line-height: 16px;
-    color: #ffb5b5;
+    color: #ffffff;
     opacity: 0.6;
     margin-top: 14px;
   }
@@ -122,7 +161,7 @@
     margin-top: 15px;
 
     p {
-      font-family: Larsseit-Bold;
+      font-family: "Larsseit-Bold";
       font-style: normal;
       font-size: 24px;
       line-height: 28px;
@@ -137,11 +176,11 @@
 
     .upgrade_button {
       background-color: #006eff !important;
-      color: white !important;
+      color: #ffffff !important;
       height: 43px;
       border-radius: 10px !important;
       width: 100%;
-      font-family: Larsseit-Bold !important;
+      font-family: "Larsseit-Bold" !important;
       font-size: 14px !important;
       line-height: 22px !important;
     }
@@ -155,7 +194,7 @@
       background: #2a2a2a;
       border-radius: 10px;
 
-      font-family: Larsseit-Regular;
+      font-family: "Larsseit-Regular";
       font-size: 14px;
       line-height: 27px;
       text-align: center;
