@@ -228,7 +228,7 @@ const AccountData = props => {
               )}
 
               {dataType === 'items' ? (
-                <span className={cn('account-hover', 'active', styles.account_hover)}>Your Items</span>
+                <span className={cn('account-hover', 'active', styles.account_hover)}>My Items</span>
               ) : state.dgLoading ? (
                 <span
                   className={cn('account-hover', styles.account_hover)}
@@ -239,11 +239,11 @@ const AccountData = props => {
                     });
                   }}
                 >
-                  Your Items
+                  My Items
                 </span>
               ) : (
                 <Link href="/account/items">
-                  <span className={cn('account-hover', styles.account_hover)}>Your Items - x</span>
+                  <span className={cn('account-hover', styles.account_hover)}>My Items</span>
                 </Link>
               )}
 
