@@ -30,7 +30,7 @@ const MenuTop = () => {
 
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-  const isTablet = useMediaQuery('(min-width: 1240px)');
+  const isTablet = useMediaQuery('(min-width: 1040px)');
   const isMobile = useMediaQuery('(min-width: 786px)');
   const isPhone = useMediaQuery('(max-width: 400px)');
   const isSquished = useMediaQuery('(min-width: 920px)');
