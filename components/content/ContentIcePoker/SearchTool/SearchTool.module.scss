@@ -1,0 +1,125 @@
+.unlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 120px;
+
+    .unlock_img {
+        position: relative;
+        margin-bottom: 10px;
+
+        .search {
+            width: 210px;
+        }
+        .lock {
+            position: absolute;
+            right: 0px;
+            bottom: 10px;
+            width: 110px;
+        }
+    }
+
+    .unlock_title {
+        position: relative;
+        font-family: "Larsseit-Bold";
+        font-weight: 800 !important;
+        font-size: 24px;
+        line-height: 32px;
+        text-align: center;
+        margin-bottom: 16px;
+    }
+
+    .unlock_description {
+        position: relative;
+        font-family: "Larsseit-Regular";
+        font-weight: 400 !important;
+        font-size: 16px;
+        line-height: 21px;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.5) !important;
+        margin-bottom: 20px;
+    }
+
+    .blue_button {
+        position: relative;
+        background-color: #006eff !important;
+        color: white !important;
+        font-family: "Larsseit-Bold";
+        font-size: 17px;
+        line-height: 24px;
+        border-radius: 12px;
+        transition: 0.2s ease-in;
+
+        &:active,
+        &:focus {
+            opacity: 1;
+            transition: 0.2s ease-in;
+        }
+
+        &:hover {
+            opacity: 0.6;
+            transition: 0.2s ease-in;
+        }
+    }
+}
+
+.playerLookUp {
+    position: relative;
+    margin-top: 80px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+
+    .header {
+        .title {
+            font-family: "Larsseit-ExtraBold";
+            font-weight: 800 !important;
+            font-size: 24px;
+            line-height: 32px;
+            text-align: center;
+            margin-bottom: 0;
+        }
+
+        .filter_pills {
+            display: flex;
+            justify-content: center;
+            border: 1px solid #1f1f1f;
+            border-radius: 24px;
+            padding: 3px;
+            margin-top: 12px;
+
+            div {
+                font-family: "Larsseit-Medium";
+                font-size: 14px;
+                line-height: 19px;
+                text-align: center;
+                color: #fff;
+                background: transparent;
+                padding: 2px;
+                margin: 2px;
+                border-radius: 24px;
+                cursor: pointer;
+                transition: 0.2s ease-in;
+
+                &:hover {
+                    background: #1f1f1f;
+                    transition: 0.2s ease-in;
+                }
+            }
+
+            &.timeline div {
+                width: 90px;
+            }
+
+            &.delegation_status div {
+                width: 150px;
+            }
+
+            .active {
+                background: #1f1f1f;
+            }
+        }
+    }
+}

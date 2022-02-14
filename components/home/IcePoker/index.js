@@ -6,6 +6,7 @@ import Home from '../../content/ContentIcePoker/Home';
 import GetStarted from '../../content/ContentIcePoker/GetStarted';
 import MarketPlace from '../../content/ContentIcePoker/MarketPlace/MarketPlace';
 import Leaderboard from '../../content/ContentIcePoker/Leaderboard';
+import SearchTool from '../../content/ContentIcePoker/SearchTool/SearchTool';
 import IceRewards from '../../content/ContentIcePoker/IceRewards';
 import DelegationDashboard from '../../content/ContentIcePoker/Delegation/DelegationDashboard';
 import MyAccount from '../../content/ContentIcePoker/MyAccount';
@@ -100,6 +101,27 @@ const IcePoker = props => {
                         clipRule="evenodd"
                         d="M14.75 6H9.75V20H14.75V6ZM9.75 4C8.64543 4 7.75 4.89543 7.75 6V11.1454C7.51839 11.0516 7.26522 11 7 11H3C1.89543 11 1 11.8954 1 13V20C1 21.1046 1.89543 22 3 22H7C7.5326 22 8.01658 21.7918 8.375 21.4524C8.73342 21.7918 9.21739 22 9.75 22H14.75C15.1672 22 15.5545 21.8723 15.875 21.6538C16.1955 21.8723 16.5828 22 17 22H22C23.1046 22 24 21.1046 24 20V9C24 7.89543 23.1046 7 22 7H17C16.9153 7 16.8319 7.00526 16.75 7.01547V6C16.75 4.89543 15.8546 4 14.75 4H9.75ZM7 13H3V20H7V13ZM17 9H22V20H17V9Z"
                         fill={iceState === 'leaderboard' ? 'white' : '#808080'}
+                      />
+                    </svg>
+                  </div>
+                </Link>
+
+                <Link href="/ice/search">
+                  <div className={styles.menu_item} style={{ marginTop: '2px' }}>
+                    <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M11.0874 19.5847C15.5057 19.5847 19.0874 16.0029 19.0874 11.5847C19.0874 7.16638 15.5057 3.58466 11.0874 3.58466C6.66912 3.58466 3.0874 7.16638 3.0874 11.5847C3.0874 16.0029 6.66912 19.5847 11.0874 19.5847Z"
+                        stroke={iceState === 'search' ? 'white' : '#808080'}
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M21.0873 21.5847L16.7373 17.2346"
+                        stroke={iceState === 'search' ? 'white' : '#808080'}
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
                       />
                     </svg>
                   </div>
@@ -254,6 +276,29 @@ const IcePoker = props => {
                   </div>
                 </Link>
 
+                <Link href="/ice/search">
+                  <div className={iceState === 'search' ? styles.menu_item_active : styles.menu_item}>
+                    <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M11.0874 19.5847C15.5057 19.5847 19.0874 16.0029 19.0874 11.5847C19.0874 7.16638 15.5057 3.58466 11.0874 3.58466C6.66912 3.58466 3.0874 7.16638 3.0874 11.5847C3.0874 16.0029 6.66912 19.5847 11.0874 19.5847Z"
+                        stroke={iceState === 'search' ? 'white' : '#808080'}
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M21.0873 21.5847L16.7373 17.2346"
+                        stroke={iceState === 'search' ? 'white' : '#808080'}
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+
+                    <div className={styles.menu_title}>Search Tool</div>
+                  </div>
+                </Link>
+
                 <Link href="/ice/claim">
                   <div className={iceState === 'iceRewards' ? styles.menu_item_active : styles.menu_item}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -338,6 +383,8 @@ const IcePoker = props => {
             <MarketPlace />
           ) : iceState === 'leaderboard' ? (
             <Leaderboard />
+          ) : iceState === 'search' ? (
+            <SearchTool />
           ) : iceState === 'iceRewards' ? (
             <IceRewards />
           ) : iceState === 'delegation' ? (
