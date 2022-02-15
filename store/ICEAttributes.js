@@ -52,17 +52,51 @@ function ICEAttributes() {
         const ICEMaticContract = new maticWeb3.eth.Contract(ABI_CHILD_TOKEN_ICE, Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ICE);
         setICEMaticContract(ICEMaticContract);
 
-        const collectionV2Contract = new maticWeb3.eth.Contract(ABI_COLLECTION_V2, Global.ADDRESSES.COLLECTION_V2_ADDRESS);
-        const collectionV2Contract2 = new maticWeb3.eth.Contract(ABI_COLLECTION_PH, Global.ADDRESSES.COLLECTION_PH_ADDRESS);
-        const collectionV2Contract3 = new maticWeb3.eth.Contract(ABI_COLLECTION_LINENS, Global.ADDRESSES.COLLECTION_LINENS_ADDRESS);
-        const collectionV2Contract4 = new maticWeb3.eth.Contract(ABI_COLLECTION_BOMBER, Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS);
-        const collectionV2Contract5 = new maticWeb3.eth.Contract(ABI_COLLECTION_CRYPTO_DRIP, Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS);
-        const collectionV2Contract6 = new maticWeb3.eth.Contract(ABI_COLLECTION_FOUNDING_FATHER, Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS);
-        const collectionV2Contract7 = new maticWeb3.eth.Contract(ABI_COLLECTION_JOKER, Global.ADDRESSES.COLLECTION_JOKER_ADDRESS);
-        const collectionV2Contract8 = new maticWeb3.eth.Contract(ABI_COLLECTION_CHEF, Global.ADDRESSES.COLLECTION_CHEF_ADDRESS);
-        const collectionV2Contract9 = new maticWeb3.eth.Contract(ABI_COLLECTION_BEACH, Global.ADDRESSES.COLLECTION_BEACH_ADDRESS);
-        const collectionV2Contract10 = new maticWeb3.eth.Contract(ABI_COLLECTION_AIRLINE, Global.ADDRESSES.COLLECTION_AIRLINE_ADDRESS);
-        const collectionV2Contract11 = new maticWeb3.eth.Contract(ABI_COLLECTION_POET, Global.ADDRESSES.COLLECTION_POET_ADDRESS);
+        const collectionV2Contract = new maticWeb3.eth.Contract(
+          ABI_COLLECTION_V2,
+          Global.ADDRESSES.COLLECTION_V2_ADDRESS
+        );
+        const collectionV2Contract2 = new maticWeb3.eth.Contract(
+          ABI_COLLECTION_PH,
+          Global.ADDRESSES.COLLECTION_PH_ADDRESS
+        );
+        const collectionV2Contract3 = new maticWeb3.eth.Contract(
+          ABI_COLLECTION_LINENS,
+          Global.ADDRESSES.COLLECTION_LINENS_ADDRESS
+        );
+        const collectionV2Contract4 = new maticWeb3.eth.Contract(
+          ABI_COLLECTION_BOMBER,
+          Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS
+        );
+        const collectionV2Contract5 = new maticWeb3.eth.Contract(
+          ABI_COLLECTION_CRYPTO_DRIP,
+          Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS
+        );
+        const collectionV2Contract6 = new maticWeb3.eth.Contract(
+          ABI_COLLECTION_FOUNDING_FATHER,
+          Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS
+        );
+        const collectionV2Contract7 = new maticWeb3.eth.Contract(
+          ABI_COLLECTION_JOKER,
+          Global.ADDRESSES.COLLECTION_JOKER_ADDRESS
+        );
+        const collectionV2Contract8 = new maticWeb3.eth.Contract(
+          ABI_COLLECTION_CHEF,
+          Global.ADDRESSES.COLLECTION_CHEF_ADDRESS
+        );
+        const collectionV2Contract9 = new maticWeb3.eth.Contract(
+          ABI_COLLECTION_BEACH,
+          Global.ADDRESSES.COLLECTION_BEACH_ADDRESS
+        );
+        const collectionV2Contract10 = new maticWeb3.eth.Contract(
+          ABI_COLLECTION_AIRLINE,
+          Global.ADDRESSES.COLLECTION_AIRLINE_ADDRESS
+        );
+        const collectionV2Contract11 = new maticWeb3.eth.Contract(
+          ABI_COLLECTION_POET, 
+          Global.ADDRESSES.COLLECTION_POET_ADDRESS
+        );
+
 
         const collectionArray = [];
         collectionArray.push([
