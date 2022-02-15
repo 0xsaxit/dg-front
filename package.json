@@ -32,7 +32,7 @@
     "lint:scss": "stylelint ./**/*.{css,scss} --fix",
     "lint:html": "prettier --write ./**/*.{tsx,html,js,jsx,json,md}",
     "prepare": "husky install",
-    "postinstall": "husky install && rm -rf .git/hooks && ln -s ../.husky .git/hooks"
+    "postinstall": "husky install && rimraf .git/hooks && symlink-dir ../.husky .git/hooks"
   },
   "dependencies": {
     "@babel/core": "7.14.0",
@@ -44,6 +44,7 @@
     "@typescript-eslint/eslint-plugin": "5.10.2",
     "@typescript-eslint/eslint-plugin-tslint": "5.10.2",
     "@typescript-eslint/parser": "5.10.2",
+    "@walletconnect/web3-provider": "^1.7.1",
     "assert": "2.0.0",
     "axios": "0.21.4",
     "bignumber.js": "9.0.1",
@@ -59,7 +60,7 @@
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-import": "2.25.4",
     "eslint-plugin-react": "7.28.0",
-    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-react-hooks": "4.3.0",
     "eslint-plugin-testing-library": "5.0.5",
     "eslint-plugin-unused-imports": "2.0.0",
     "eth-sig-util": "3.0.1",
@@ -128,6 +129,8 @@
     "husky": "7.0.4",
     "lint-staged": "11.0.0",
     "prettier": "2.3.0",
+    "rimraf": "3.0.2",
+    "symlink-dir": "5.0.1",
     "typescript": "4.5.5"
   },
   "eslintConfig": {

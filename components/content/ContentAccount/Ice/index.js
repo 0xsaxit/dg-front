@@ -4,12 +4,11 @@ import Fetch from '../../../../common/Fetch';
 import React from 'react';
 import Aux from 'components/_Aux';
 import NoWearablesSplash from './NoWearablesSplash';
-import BalancesAndWearables from './BalancesAndWearables';
+import BalancesAndWearables from './BalancesAndWearables/BalancesAndWearables';
 import Images from 'common/Images';
 import styles from './Ice.module.scss';
 
 const ICE = () => {
-
   // dispatch user's ICE amounts to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -29,16 +28,7 @@ const ICE = () => {
   return (
     <Aux>
       {!state.iceWearableItemsLoading && !state.iceDelegatedItemsLoading ? (
-        <Aux>
-          {state.userStatus &&
-          (!!state.iceWearableItems.length ||
-            !!state.iceDelegatedItems.length) ||
-              totalICE >= 0 ? (
-            <BalancesAndWearables />
-          ) : (
-            <NoWearablesSplash />
-          )}
-        </Aux>
+        <Aux>{(state.userStatus && (!!state.iceWearableItems.length || !!state.iceDelegatedItems.length)) || totalICE >= 0 ? <BalancesAndWearables /> : <NoWearablesSplash />}</Aux>
       ) : (
         <div className={styles.spinner_wrapper}>
           <img src={Images.LOADING_SPINNER} />
@@ -46,6 +36,6 @@ const ICE = () => {
       )}
     </Aux>
   );
-}
+};
 
 export default ICE;

@@ -12,8 +12,6 @@ function UserInfo() {
   const [ethPrice, setEthPrice] = useState(0);
   const [atriPrice, setAtriPrice] = useState(0);
 
-  
-
   useEffect(() => {
     (async function () {
       // get coin prices
@@ -39,7 +37,7 @@ function UserInfo() {
     if (state.userLoggedIn && state.userAddress) {
       (async function () {
         const jsonInfo = await Fetch.PLAYER_INFO(state.userAddress);
-        console.log("%c jsonInfo: ", "color: red", jsonInfo);
+        console.log('%c jsonInfo: ', 'color: red', jsonInfo);
 
         if (jsonInfo && jsonInfo._id) {
           const name = jsonInfo.avatarName;
@@ -63,12 +61,12 @@ function UserInfo() {
             playersList: playersList,
             tokenArray: tokenArray,
             balanceXP: balanceXP,
-            totalXP: totalXP,
+            totalXP: totalXP
           };
 
           dispatch({
             type: 'user_info',
-            data: data,
+            data: data
           });
         }
       })();

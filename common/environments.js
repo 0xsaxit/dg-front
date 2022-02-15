@@ -10,9 +10,9 @@ export const ApiUrlsByAppEnv = {
 };
 
 export const SocketUrlsByAppEnv = {
-  localhost: useLocalhostSockets ? 'ws://localhost:8080' : 'wss://socket.decentral.games',
-  testing: 'wss://socket.testing.decentral.games',
-  development: 'wss://socket.dev.decentral.games',
-  staging: 'wss://socket.staging.decentral.games',
-  production: 'wss://socket.decentral.games'
+  localhost: useLocalhostSockets ? 'ws://localhost:8080' : 'wss://website.socket.decentral.games',
+  testing: 'wss://website.socket.testing.decentral.games',
+  development: 'wss://website.socket.dev.decentral.games',
+  staging: 'wss://website.socket.staging.decentral.games',
+  production: 'wss://website.socket.decentral.games'
 };
