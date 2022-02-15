@@ -32,7 +32,7 @@ const MenuTop = () => {
   const [state, dispatch] = useContext(GlobalContext);
   const isTablet = useMediaQuery('(min-width: 1040px)');
   const isMobile = useMediaQuery('(min-width: 786px)');
-  const isPhone = useMediaQuery('(max-width: 400px)');
+  const isPhone = useMediaQuery('(max-width: 415px)');
   const isSquished = useMediaQuery('(min-width: 920px)');
   const [open, setOpen] = useState(false);
   const [utm, setUtm] = useState('');
@@ -131,6 +131,21 @@ const MenuTop = () => {
     setAffiliateState();
   }, [ref]);
 
+  const disconnect = () => {
+    // update "login" status in store and LS
+    dispatch({
+      type: 'set_userLoggedIn',
+      data: false,
+    });
+
+    dispatch({
+      type: 'set_initialState',
+    });
+
+    //clear localstorage
+    localStorage.clear();
+  };
+
   // helper functions
 
   function DGLogo() {
@@ -227,6 +242,14 @@ const MenuTop = () => {
               </Menu.Item>
             </a>
           )}
+
+          {isPhone && state.userLoggedIn && (
+            <Link href="/">
+              <Menu.Item className={styles.menu_style} onClick={disconnect}>
+                Disconnect
+              </Menu.Item>
+            </Link>
+          )}
         </span>
       </div>
     );
@@ -317,7 +340,7 @@ const MenuTop = () => {
           <span className={styles.right_menu_items}>
             {state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID && <ButtonSwitchNetwork />}
             {state.networkID === Global.CONSTANTS.PARENT_NETWORK_ID && isSquished ? <ModalInfo /> : null}
-            <ModalPopup />
+            {!isPhone && (<ModalPopup />) }
           </span>
         )}
         {(state.userStatus < 3 || !state.userLoggedIn) && (
