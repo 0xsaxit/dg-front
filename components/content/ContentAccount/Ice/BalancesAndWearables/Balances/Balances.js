@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/naming-convention */
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '@/store';
 import cn from 'classnames';
@@ -17,9 +21,9 @@ const Balances = () => {
 
   const balenceItems = [
     {
-      icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg',
-      name: 'ICE',
-      type: 'ICE',
+      icon:  'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg',
+      name:  'ICE',
+      type:  'ICE',
       model: formatPrice(state.iceAmounts.ICE_AVAILABLE_AMOUNT, 0),
       price: formatPrice(
         state.iceAmounts.ICE_AVAILABLE_AMOUNT * state.DGPrices.ice,
@@ -27,16 +31,16 @@ const Balances = () => {
       ),
     },
     {
-      icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_XP_ICN_f9w2se.svg',
-      name: 'Gameplay XP',
-      type: 'XP',
+      icon:  'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_XP_ICN_f9w2se.svg',
+      name:  'Gameplay XP',
+      type:  'XP',
       model: formatPrice(state.userInfo.balanceXP, 0),
       price: '0.00',
     },
     {
-      icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631325895/dgNewLogo_hkvlps.png',
-      name: 'Decentral Games',
-      type: 'DG',
+      icon:  'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631325895/dgNewLogo_hkvlps.png',
+      name:  'Decentral Games',
+      type:  'DG',
       model: formatPrice(state.DGBalances.BALANCE_CHILD_DG_LIGHT, 0),
       price: formatPrice(
         state.DGBalances.BALANCE_CHILD_DG_LIGHT * state.DGPrices.dg,
@@ -47,18 +51,17 @@ const Balances = () => {
 
   useEffect(() => {
     (async () => {
-      let json = await Fetch.ICE_AMOUNTS(state.userAddress);
+      const json = await Fetch.ICE_AMOUNTS(state.userAddress);
+
       setTotalICE(json.totalUnclaimedAmount);
     })();
   }, [totalICE]);
 
-  
   // after claiming rewards this code gets executed
   useEffect(() => {
     setClicked(false);
   }, [state.iceAmounts]);
 
-  
   // helper functions
   function formatPrice(balanceDG, units) {
     const balanceAdjusted = Number(balanceDG)
@@ -70,8 +73,9 @@ const Balances = () => {
 
   useEffect(() => {
     (async () => {
-      let json = await Fetch.ICE_AMOUNTS(state.userAddress);
+      const json = await Fetch.ICE_AMOUNTS(state.userAddress);
       const unclaimed = json.totalUnclaimedAmount;
+
       setTotalICE(formatPrice(unclaimed, 0));
     })();
   }, []);
@@ -201,7 +205,7 @@ const Balances = () => {
     console.log('Claiming ICE Rewards: ' + state.iceAmounts.ICE_CLAIM_AMOUNT);
     setClicked(true);
 
-    //Show Toast Message
+    // Show Toast Message
     let msg = '';
 
     try {
@@ -219,7 +223,7 @@ const Balances = () => {
           data: refresh,
         });
 
-        //Show Toast Message
+        // Show Toast Message
         msg = 'ICE claimed successfully!';
         setTotalICE(0);
       } else {

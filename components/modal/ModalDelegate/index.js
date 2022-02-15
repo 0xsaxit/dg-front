@@ -1,3 +1,7 @@
+/* eslint-disable unused-imports/no-unused-vars-ts */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable react/react-in-jsx-scope */
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '@/store';
 import { Modal, Button } from 'semantic-ui-react';
@@ -12,9 +16,9 @@ import Spinner from 'components/lottieAnimation/animations/spinner';
 import Web3 from 'web3';
 import cn from 'classnames';
 
-///////////////////////////////////////
+/// ////////////////////////////////////
 // to create a redelegation modal, just pass the redelegation prop
-//////////////////////////////////////
+/// ///////////////////////////////////
 const ModalDelegate = props => {
   // fetch user's wallet address from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -32,6 +36,7 @@ const ModalDelegate = props => {
     if (state.userStatus >= 4) {
       // initialize Web3 providers and create token contract instance
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+
       setWeb3(web3);
 
       const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
@@ -46,6 +51,7 @@ const ModalDelegate = props => {
       const collectionV2Contract2 = new maticWeb3.eth.Contract(ABI_COLLECTION_PH, Global.ADDRESSES.COLLECTION_PH_ADDRESS);
 
       const collectionArray = [];
+
       collectionArray.push([collectionV2Contract, Global.ADDRESSES.COLLECTION_V2_ADDRESS]);
       collectionArray.push([collectionV2Contract2, Global.ADDRESSES.COLLECTION_PH_ADDRESS]);
       setCollectionArray(collectionArray);
@@ -79,6 +85,7 @@ const ModalDelegate = props => {
 
       return tokenId;
     });
+
     await Promise.all(tokenById);
 
     return false;
@@ -89,8 +96,10 @@ const ModalDelegate = props => {
     let isDelegated = false;
 
     setClicked(true);
+
     // if any index has data then we should show error
     const hasData = await hasDataByAddress(address);
+
     if (hasData) {
       errorMsg = 'This user already owns a wearable and cannot be delegated to';
       isDelegated = true;
@@ -101,6 +110,7 @@ const ModalDelegate = props => {
       delegationInfo.incomingDelegations.forEach((item, i) => {
         if (item) {
           const tokenOwner = item.tokenOwner.toLowerCase();
+
           console.log('Entered address incoming delegator: ' + tokenOwner);
 
           // if entered address has delegated wearables and the delegator is not me
@@ -116,6 +126,7 @@ const ModalDelegate = props => {
 
     setClicked(false);
     setErrorMsg(errorMsg);
+
     return isDelegated;
   }
 
@@ -310,7 +321,7 @@ const ModalDelegate = props => {
               <h2 className={styles.redelegate_title}>Redelegate Wearable</h2>
               <p className={styles.redelegation_description}>
                 You previously delegated to{' '}
-                <a href={`https://polygonscan.com/address/${props.redelegateAddress}`} target="_blank">
+                <a href={`https://polygonscan.com/address/${props.redelegateAddress}`} target="_blank" rel="noreferrer">
                   {`${props.redelegateAddress?.slice(0, 4)}...${props.redelegateAddress?.substr(-4, 4)}`}
                 </a>
                 {'. '}
