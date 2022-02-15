@@ -9,6 +9,7 @@ import styles from './DG.module.scss';
 
 function SectionTwo() {
   const mobile = useMediaQuery('(max-width: 767px)');
+  const isSmallDevice = useMediaQuery('(max-width: 576px)');
   const tablet = useMediaQuery('(max-width: 992px)');
   // const { t, i18n } = useTranslation();
 
@@ -85,8 +86,9 @@ function SectionTwo() {
               className={styles.blue_button}
               href="https://api.decentral.games/ice/play"
               target="_blank"
+              disabled={isSmallDevice}
             >
-              Play Now
+              Play Now {isSmallDevice ? '(Desktop Only)': ''}
             </Button>
           </span>
 
