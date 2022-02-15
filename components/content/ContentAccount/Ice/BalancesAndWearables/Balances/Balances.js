@@ -1,7 +1,3 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
-/* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-/* eslint-disable @typescript-eslint/naming-convention */
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '@/store';
 import cn from 'classnames';

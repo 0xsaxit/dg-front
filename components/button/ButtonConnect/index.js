@@ -1,11 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-expressions */
-/* eslint-disable react/prop-types */
-/* eslint-disable @typescript-eslint/no-use-before-define */
-/* eslint-disable unused-imports/no-unused-vars-ts */
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable no-undef */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-/* eslint-disable react/react-in-jsx-scope */
 import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import cn from 'classnames';
