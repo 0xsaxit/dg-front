@@ -11,8 +11,9 @@ import ABI_COLLECTION_BOMBER from '../../../components/ABI/ABICollectionBomber';
 import ABI_COLLECTION_CRYPTO_DRIP from '../../../components/ABI/ABICollectionCryptoDrip';
 import ABI_COLLECTION_JOKER from '../../../components/ABI/ABICollectionJoker';
 import ABI_COLLECTION_CHEF from '../../../components/ABI/ABICollectionChef';
-import ABI_COLLECTION_BEACH from '../../../components/ABI/ABICollectionBeach'
-import ABI_COLLECTION_AIRLINE from '../../../components/ABI/ABICollectionAirline'
+import ABI_COLLECTION_BEACH from '../../../components/ABI/ABICollectionBeach';
+import ABI_COLLECTION_AIRLINE from '../../../components/ABI/ABICollectionAirline';
+import ABI_COLLECTION_POET from '../../../components/ABI/ABICollectionPoet';
 import ABI_COLLECTION_FOUNDING_FATHERS from '../../../components/ABI/ABICollectionFoundingFather';
 import MetaTx from '../../../common/MetaTx';
 import Fetch from '../../../common/Fetch';
@@ -90,8 +91,8 @@ const ModalUpgradePending = props => {
       } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS) {
         collectionContract = new getWeb3.eth.Contract(ABI_COLLECTION_CRYPTO_DRIP, Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS);
         collectionID = 16;
-      } else if ( props.contractAddress === Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS ) {
-        collectionContract = new getWeb3.eth.Contract(ABI_COLLECTION_FOUNDING_FATHERS,Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS);
+      } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS) {
+        collectionContract = new getWeb3.eth.Contract(ABI_COLLECTION_FOUNDING_FATHERS, Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS);
         collectionID = 17;
       } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_JOKER_ADDRESS) {
         collectionContract = new getWeb3.eth.Contract(ABI_COLLECTION_JOKER, Global.ADDRESSES.COLLECTION_JOKER_ADDRESS);
