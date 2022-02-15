@@ -114,13 +114,13 @@ const CheckMintableModal = props => {
 
   useEffect(() => {
     const xdgTotal =
-      parseFloat(state.stakingBalances.BALANCE_USER_GOVERNANCE) +
-      parseFloat(state.DGBalances.BALANCE_CHILD_TOKEN_XDG);
+      parseFloat(state.stakingBalances?.BALANCE_USER_GOVERNANCE) +
+      parseFloat(state.DGBalances?.BALANCE_CHILD_TOKEN_XDG);
 
     setXDG(xdgTotal);
   },
-    [state.stakingBalances.BALANCE_USER_GOVERNANCE,
-    state.DGBalances.BALANCE_CHILD_TOKEN_XDG]
+    [state.stakingBalances?.BALANCE_USER_GOVERNANCE,
+    state.DGBalances?.BALANCE_CHILD_TOKEN_XDG]
   );  
 
   
@@ -192,7 +192,7 @@ const CheckMintableModal = props => {
 
   function checkBalance() {
     if(authStatus && checkEnoughETHorICE() && (
-      state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD >=Global.CONSTANTS.DG_STAKED_AMOUNT ||
+      state.stakingBalances?.BALANCE_USER_GOVERNANCE_OLD >=Global.CONSTANTS.DG_STAKED_AMOUNT ||
       xDG >=Global.CONSTANTS.XDG_STAKED_AMOUNT)) {
         return true;
       } else {
@@ -330,7 +330,7 @@ const CheckMintableModal = props => {
               </div>
 
               <div className={styles.dg_desc}>
-              { state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD >=Global.CONSTANTS.DG_STAKED_AMOUNT ||
+              { state.stakingBalances?.BALANCE_USER_GOVERNANCE_OLD >=Global.CONSTANTS.DG_STAKED_AMOUNT ||
                 xDG >=Global.CONSTANTS.XDG_STAKED_AMOUNT ?
                 (<span className={styles.dg_available}>
                   You Have Enough Staked&nbsp;

@@ -126,7 +126,7 @@ const IceWearableCard: FC<IceWearableCardType> = ({ item, delegation, className 
 
             <div className={styles.button_area}>
               {!isActivated ? (
-                state.DGBalances.BALANCE_CHILD_DG_LIGHT < state.tokenAmounts.DG_MOVE_AMOUNT ? (
+                state.DGBalances?.BALANCE_CHILD_DG_LIGHT < state.tokenAmounts.DG_MOVE_AMOUNT ? (
                   <NeedMoreDGActivateModal />
                 ) : (
                   <ActivateWearableModal tokenId={tokenId} itemId={itemId} contractAddress={contractAddress} />

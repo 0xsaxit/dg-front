@@ -134,11 +134,11 @@ const NeedMoreUpgrade = ({
             <div className={styles.dg_icon}>
               <DGLogo />
             </div>
-            {state.DGBalances.BALANCE_CHILD_DG_LIGHT < upgradeNeedDgAmount ? (
+            {state.DGBalances?.BALANCE_CHILD_DG_LIGHT < upgradeNeedDgAmount ? (
               <span className={styles.dg_pill}>
                 Need{' '}
                 {upgradeNeedDgAmount -
-                  parseFloat(state.DGBalances.BALANCE_CHILD_DG_LIGHT).toFixed(2)}{' '}
+                  parseFloat(state.DGBalances?.BALANCE_CHILD_DG_LIGHT).toFixed(2)}{' '}
                 more
               </span>
             ) : null}
@@ -154,7 +154,7 @@ const NeedMoreUpgrade = ({
               </Button>
 
               <p className={styles.availability_info}>
-                {parseFloat(state.DGBalances.BALANCE_CHILD_DG_LIGHT).toFixed(2)} DG
+                {parseFloat(state.DGBalances?.BALANCE_CHILD_DG_LIGHT).toFixed(2)} DG
                 Available
               </p>
             </div>
