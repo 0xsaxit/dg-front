@@ -6,7 +6,7 @@ const initialState = {
   isLoading: false,
   pages: {
     data: [],
-    meta: {},
+    meta: {}
   },
   userStatus: 0,
   userAddress: '',
@@ -22,13 +22,13 @@ const initialState = {
     // totalPLAY: 0,
     // totalUSDT: 0,
     // totalATRI: 0,
-    tokenArray: [false, false, false, false, false, false],
+    tokenArray: [false, false, false, false, false, false]
   },
   userBalances: [
     [0, 0],
     [0, 0],
     [0, 0, 0, 0],
-    [0, 0],
+    [0, 0]
   ],
   userLoggedIn: false,
   transactions: [{}, {}],
@@ -44,7 +44,7 @@ const initialState = {
     treasury: [0, 0, 0, 0, 0, 0, ''],
     slots: [0, 0, 0, 0, 0, 0, ''],
     roulette: [0, 0, 0, 0, 0, 0, ''],
-    blackjack: [0, 0, 0, 0, 0, 0, ''],
+    blackjack: [0, 0, 0, 0, 0, 0, '']
   },
   usersList: [],
   DGBalances: {
@@ -71,7 +71,7 @@ const initialState = {
     BALANCE_AFFILIATES: [],
     ICE_BALANCE_LP: 0,
     USDC_BALANCE_LP: 0,
-    BALANCE_WETH_WEARABLES: 0,
+    BALANCE_WETH_WEARABLES: 0
   },
   DGPrices: {
     eth: 0,
@@ -81,14 +81,14 @@ const initialState = {
     usdt: 0,
     dg: 0,
     ice: 0,
-    xDG: 0,
+    xDG: 0
   },
   DGBreakdown: {
     eth: 0,
     mana: 0,
     dai: 0,
     atri: 0,
-    usdt: 0,
+    usdt: 0
   },
   wearables: [],
   poaps: [],
@@ -105,77 +105,84 @@ const initialState = {
     BALANCE_USER_GOVERNANCE: 0,
     BALANCE_CONTRACT_UNISWAP: 0,
     BALANCE_STAKED_UNISWAP: 0,
-    BALANCE_WALLET_UNISWAP: 0,
+    BALANCE_WALLET_UNISWAP: 0
   },
   itemLimits1: [
     [-1, 0],
     [-1, 5],
     [-1, 10],
     [-1, 15],
-    [-1, 20],
+    [-1, 20]
   ],
   itemLimits2: [
     [-1, 0],
     [-1, 5],
     [-1, 10],
     [-1, 15],
-    [-1, 20],
+    [-1, 20]
   ],
   itemLimits3: [
     [-1, 0],
     [-1, 5],
     [-1, 10],
     [-1, 15],
-    [-1, 20],
+    [-1, 20]
   ],
   itemLimits4: [
     [-1, 0],
     [-1, 5],
     [-1, 10],
     [-1, 15],
-    [-1, 20],
+    [-1, 20]
   ],
   itemLimits5: [
     [-1, 0],
     [-1, 5],
     [-1, 10],
     [-1, 15],
-    [-1, 20],
+    [-1, 20]
   ],
   itemLimits6: [
     [-1, 0],
     [-1, 5],
     [-1, 10],
     [-1, 15],
-    [-1, 20],
+    [-1, 20]
   ],
   itemLimits7: [
     [-1, 0],
     [-1, 5],
     [-1, 10],
     [-1, 15],
-    [-1, 20],
+    [-1, 20]
   ],
   itemLimits8: [
     [-1, 0],
     [-1, 5],
     [-1, 10],
     [-1, 15],
-    [-1, 20],
+    [-1, 20]
   ],
   itemLimits9: [
     [-1, 0],
     [-1, 5],
     [-1, 10],
     [-1, 15],
-    [-1, 20],
+    [-1, 20]
   ],
   itemLimits10: [
     [-1, 0],
     [-1, 5],
     [-1, 10],
     [-1, 15],
-    [-1, 20],
+    [-1, 20]
+  ],
+  itemLimits11: [
+    [-1, 0],
+    [-1, 5],
+    [-1, 10],
+    [-1, 15],
+    [-1, 20]
   ],
   iceWearableInventoryItems: [],
   iceWearableInventoryItemsLoading: false,
@@ -197,17 +204,17 @@ const initialState = {
     DG_COST_AMOUNT_4: 0,
     ICE_COST_AMOUNT_4: 0,
     DG_COST_AMOUNT_5: 0,
-    ICE_COST_AMOUNT_5: 0,
+    ICE_COST_AMOUNT_5: 0
   },
   iceAmounts: {
     ICE_AVAILABLE_AMOUNT: 0,
-    ICE_CLAIM_AMOUNT: 0,
+    ICE_CLAIM_AMOUNT: 0
   },
   xpAmounts: 0,
   tokenAuths: {
     DG_LIGHT_AUTHORIZATION: false,
     ICE_AUTHORIZATION: false,
-    WETH_AUTHORIZATION: false,
+    WETH_AUTHORIZATION: false
   },
   // collectionMappings: {},
   refreshTokens: 'Initial',
@@ -235,7 +242,7 @@ const initialState = {
   dgShow: false,
   openModal: {
     resumeID: 0,
-    lockID: 0,
+    lockID: 0
   },
   openModalInfo: false,
   dgWarningMsg: false,
@@ -246,7 +253,7 @@ const initialState = {
   userVerified: true,
   isAmnesiaPage: false,
   delegatorSplits: [],
-  mintToken: 'ETH',
+  mintToken: 'ETH'
 };
 
 const reducer = (state, action) => {
@@ -254,258 +261,263 @@ const reducer = (state, action) => {
     case 'is_loading':
       return {
         ...state,
-        isLoading: action.data,
+        isLoading: action.data
       };
 
     case 'update_pages':
       return {
         ...state,
-        pages: action.data,
+        pages: action.data
       };
 
     case 'update_status':
       return {
         ...state,
-        userStatus: action.data,
+        userStatus: action.data
       };
 
     case 'user_address':
       if (!action.data) {
         return {
-          ...state,
+          ...state
         };
       }
 
       return {
         ...state,
-        userAddress: action.data,
+        userAddress: action.data
       };
 
     case 'user_verify':
       return {
         ...state,
-        userVerified: action.data,
+        userVerified: action.data
       };
 
     case 'user_info':
       return {
         ...state,
-        userInfo: action.data,
+        userInfo: action.data
       };
 
     case 'update_balances':
       return {
         ...state,
-        userBalances: action.data,
+        userBalances: action.data
       };
 
     case 'update_eth_balance':
       return {
         ...state,
-        ethereumBal: action.data,
+        ethereumBal: action.data
       };
 
     case 'update_history':
       return {
         ...state,
-        transactions: action.data,
+        transactions: action.data
       };
 
     case 'app_config':
       return {
         ...state,
-        appConfig: action.data,
+        appConfig: action.data
       };
 
     case 'treasury_numbers':
       return {
         ...state,
-        treasuryNumbers: action.data,
+        treasuryNumbers: action.data
       };
 
     case 'tx_hash':
       return {
         ...state,
-        txHash: action.data,
+        txHash: action.data
       };
 
     case 'update_records':
       return {
         ...state,
-        gameRecords: action.data,
+        gameRecords: action.data
       };
 
     case 'network_id':
       return {
         ...state,
-        networkID: action.data,
+        networkID: action.data
       };
 
     case 'active_status':
       return {
         ...state,
-        activeStatus: action.data,
+        activeStatus: action.data
       };
 
     case 'eth_balance':
       return {
         ...state,
-        ethBalance: action.data,
+        ethBalance: action.data
       };
 
     case 'admin_balances':
       return {
         ...state,
-        adminBalances: action.data,
+        adminBalances: action.data
       };
 
     case 'users_list':
       return {
         ...state,
-        usersList: action.data,
+        usersList: action.data
       };
 
     case 'dg_balances':
       return {
         ...state,
-        DGBalances: action.data,
+        DGBalances: action.data
       };
 
     case 'dg_gameplay_collected':
       return {
         ...state,
-        DGGameplayCollected: action.data,
+        DGGameplayCollected: action.data
       };
 
     case 'staking_balances':
       return {
         ...state,
-        stakingBalances: action.data,
+        stakingBalances: action.data
       };
 
     case 'item_limits_1':
       return {
         ...state,
-        itemLimits1: action.data,
+        itemLimits1: action.data
       };
 
     case 'item_limits_2':
       return {
         ...state,
-        itemLimits2: action.data,
+        itemLimits2: action.data
       };
 
     case 'item_limits_3':
       return {
         ...state,
-        itemLimits3: action.data,
+        itemLimits3: action.data
       };
 
     case 'item_limits_4':
       return {
         ...state,
-        itemLimits4: action.data,
+        itemLimits4: action.data
       };
 
     case 'item_limits_5':
       return {
         ...state,
-        itemLimits5: action.data,
+        itemLimits5: action.data
       };
     case 'item_limits_6':
       return {
         ...state,
-        itemLimits6: action.data,
+        itemLimits6: action.data
       };
     case 'item_limits_7':
       return {
         ...state,
-        itemLimits7: action.data,
+        itemLimits7: action.data
       };
     case 'item_limits_8':
       return {
         ...state,
-        itemLimits8: action.data,
+        itemLimits8: action.data
       };
     case 'item_limits_9':
       return {
         ...state,
-        itemLimits9: action.data,
+        itemLimits9: action.data
       };
     case 'item_limits_10':
       return {
         ...state,
-        itemLimits10: action.data,
+        itemLimits10: action.data
+      };
+    case 'item_limits_11':
+      return {
+        ...state,
+        itemLimits11: action.data
       };
     case 'ice_wearable_items':
       return {
         ...state,
-        iceWearableItems: action.data,
+        iceWearableItems: action.data
       };
     case 'ice_wearable_items_loading':
       return {
         ...state,
-        iceWearableItemsLoading: action.data,
+        iceWearableItemsLoading: action.data
       };
 
     case 'ice_wearable_update_success':
       return {
         ...state,
-        iceWearableUpdatedSuccess: action.data,
+        iceWearableUpdatedSuccess: action.data
       };
 
     case 'ice_delegated_items':
       return {
         ...state,
-        iceDelegatedItems: action.data,
+        iceDelegatedItems: action.data
       };
 
     case 'ice_delegated_items_loading':
       return {
         ...state,
-        iceDelegatedItemsLoading: action.data,
+        iceDelegatedItemsLoading: action.data
       };
 
     case 'nft_authorizations':
       return {
         ...state,
-        nftAuthorizations: action.data,
+        nftAuthorizations: action.data
       };
 
     case 'can_purchase':
       return {
         ...state,
-        canPurchase: action.data,
+        canPurchase: action.data
       };
 
     case 'current_mint_token':
       return {
         ...state,
-        mintToken: action.data,
+        mintToken: action.data
       };
 
     case 'token_amounts':
       return {
         ...state,
-        tokenAmounts: action.data,
+        tokenAmounts: action.data
       };
 
     case 'ice_amounts':
       return {
         ...state,
-        iceAmounts: action.data,
+        iceAmounts: action.data
       };
 
     case 'xp_amounts':
       return {
         ...state,
-        xpAmounts: action.data,
+        xpAmounts: action.data
       };
 
     case 'token_auths':
       return {
         ...state,
-        tokenAuths: action.data,
+        tokenAuths: action.data
       };
 
     // case 'collection_mappings':
@@ -523,201 +535,201 @@ const reducer = (state, action) => {
     case 'dg_prices':
       return {
         ...state,
-        DGPrices: action.data,
+        DGPrices: action.data
       };
 
     case 'dg_breakdown':
       return {
         ...state,
-        DGBreakdown: action.data,
+        DGBreakdown: action.data
       };
 
     case 'wearables':
       return {
         ...state,
-        wearables: action.data,
+        wearables: action.data
       };
 
     case 'poaps':
       return {
         ...state,
-        poaps: action.data,
+        poaps: action.data
       };
 
     case 'events_data':
       return {
         ...state,
-        eventsData: action.data,
+        eventsData: action.data
       };
 
     case 'refresh_tokens':
       return {
         ...state,
-        refreshTokens: action.data,
+        refreshTokens: action.data
       };
 
     case 'refresh_balances':
       return {
         ...state,
-        refreshBalances: action.data,
+        refreshBalances: action.data
       };
 
     case 'refresh_token_auths':
       return {
         ...state,
-        refreshTokenAuths: action.data,
+        refreshTokenAuths: action.data
       };
 
     case 'refresh_token_amounts':
       return {
         ...state,
-        refreshTokenAmounts: action.data,
+        refreshTokenAmounts: action.data
       };
 
     case 'refresh_ice_amounts':
       return {
         ...state,
-        refreshICEAmounts: action.data,
+        refreshICEAmounts: action.data
       };
 
     case 'refresh_nft_auths':
       return {
         ...state,
-        refreshNFTAuths: action.data,
+        refreshNFTAuths: action.data
       };
 
     case 'refresh_wearable_items':
       return {
         ...state,
-        refreshWearable: action.data,
+        refreshWearable: action.data
       };
 
     case 'refresh_wearable_inventory':
       return {
         ...state,
-        refreshWearableInventory: action.data,
+        refreshWearableInventory: action.data
       };
 
     case 'refresh_delegate_info':
       return {
         ...state,
-        refreshDelegateInfo: action.data,
+        refreshDelegateInfo: action.data
       };
 
     case 'refresh_delegation':
       return {
         ...state,
-        refreshDelegation: action.data,
+        refreshDelegation: action.data
       };
 
     case 'update_info':
       return {
         ...state,
-        updateInfo: action.data,
+        updateInfo: action.data
       };
 
     case 'stake_time':
       return {
         ...state,
-        stakeTime: action.data,
+        stakeTime: action.data
       };
 
     case 'subgraph_data':
       return {
         ...state,
-        subgraphData: action.data,
+        subgraphData: action.data
       };
 
     case 'snapshot_data':
       return {
         ...state,
-        snapshotData: action.data,
+        snapshotData: action.data
       };
 
     case 'affiliate_address':
       return {
         ...state,
-        affiliateAddress: action.data,
+        affiliateAddress: action.data
       };
 
     case 'set_manaLoading':
       return {
         ...state,
-        manaLoading: action.data,
+        manaLoading: action.data
       };
 
     case 'set_daiLoading':
       return {
         ...state,
-        daiLoading: action.data,
+        daiLoading: action.data
       };
 
     case 'set_usdtLoading':
       return {
         ...state,
-        usdtLoading: action.data,
+        usdtLoading: action.data
       };
 
     case 'set_atriLoading':
       return {
         ...state,
-        atriLoading: action.data,
+        atriLoading: action.data
       };
 
     case 'set_wethLoading':
       return {
         ...state,
-        wethLoading: action.data,
+        wethLoading: action.data
       };
     case 'set_dgLoading':
       return {
         ...state,
-        dgLoading: action.data,
+        dgLoading: action.data
       };
     case 'set_iceLoading':
       return {
         ...state,
-        iceLoading: action.data,
+        iceLoading: action.data
       };
     case 'set_openModal':
       return {
         ...state,
-        openModal: action.data,
+        openModal: action.data
       };
     case 'set_openModalInfo':
       return {
         ...state,
-        openModalInfo: action.data,
+        openModalInfo: action.data
       };
     case 'set_dgShow':
       return {
         ...state,
-        dgShow: action.data,
+        dgShow: action.data
       };
     case 'set_dgWarningMsg':
       return {
         ...state,
-        dgWarningMsg: action.data,
+        dgWarningMsg: action.data
       };
     case 'show_toastMessage':
       return {
         ...state,
-        toastMessage: action.data,
+        toastMessage: action.data
       };
     case 'set_selectedLang':
       return {
         ...state,
-        selectedLang: action.data,
+        selectedLang: action.data
       };
     case 'set_userLoggedIn':
       return {
         ...state,
-        userLoggedIn: action.data,
+        userLoggedIn: action.data
       };
     case 'set_amnesia':
       return {
         ...state,
-        isAmnesiaPage: action.data,
+        isAmnesiaPage: action.data
       };
     case 'set_initialState':
       return initialState;
@@ -729,11 +741,7 @@ const reducer = (state, action) => {
 const Provider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  return (
-    <GlobalContext.Provider value={[state, dispatch]}>
-      {children}
-    </GlobalContext.Provider>
-  );
+  return <GlobalContext.Provider value={[state, dispatch]}>{children}</GlobalContext.Provider>;
 };
 
 export { Provider };

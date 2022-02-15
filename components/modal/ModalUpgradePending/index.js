@@ -11,8 +11,9 @@ import ABI_COLLECTION_BOMBER from '../../../components/ABI/ABICollectionBomber';
 import ABI_COLLECTION_CRYPTO_DRIP from '../../../components/ABI/ABICollectionCryptoDrip';
 import ABI_COLLECTION_JOKER from '../../../components/ABI/ABICollectionJoker';
 import ABI_COLLECTION_CHEF from '../../../components/ABI/ABICollectionChef';
-import ABI_COLLECTION_BEACH from '../../../components/ABI/ABICollectionBeach'
-import ABI_COLLECTION_AIRLINE from '../../../components/ABI/ABICollectionAirline'
+import ABI_COLLECTION_BEACH from '../../../components/ABI/ABICollectionBeach';
+import ABI_COLLECTION_AIRLINE from '../../../components/ABI/ABICollectionAirline';
+import ABI_COLLECTION_POET from '../../../components/ABI/ABICollectionPoet';
 import ABI_COLLECTION_FOUNDING_FATHERS from '../../../components/ABI/ABICollectionFoundingFather';
 import MetaTx from '../../../common/MetaTx';
 import Fetch from '../../../common/Fetch';
@@ -48,7 +49,6 @@ const ModalUpgradePending = props => {
   const [refreshActiveItem, setRefreshActiveItem] = useState(false);
   const [successInUpgrade, setSuccessInUpgrade] = useState(false);
 
-  
   // initialize Web3 providers and create token contract instance
   useEffect(() => {
     if (state.userStatus >= 4) {
@@ -58,97 +58,57 @@ const ModalUpgradePending = props => {
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
 
-      const biconomy = new Biconomy(
-        new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
-        {
-          apiKey: Global.KEYS.BICONOMY_API_1,
-          debug: true,
-        }
-      );
+      const biconomy = new Biconomy(new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL), {
+        apiKey: Global.KEYS.BICONOMY_API_1,
+        debug: true
+      });
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
 
       const spenderAddress = Global.ADDRESSES.ICE_REGISTRANT_ADDRESS;
       setSpenderAddress(spenderAddress);
 
-      const tokenContractICE = new getWeb3.eth.Contract(
-        ABI_CHILD_TOKEN_ICE,
-        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ICE
-      );
+      const tokenContractICE = new getWeb3.eth.Contract(ABI_CHILD_TOKEN_ICE, Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ICE);
       setTokenContractICE(tokenContractICE);
 
-      const tokenContractDGLight = new getWeb3.eth.Contract(
-        ABI_DG_LIGHT_TOKEN,
-        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DG_LIGHT
-      );
+      const tokenContractDGLight = new getWeb3.eth.Contract(ABI_DG_LIGHT_TOKEN, Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DG_LIGHT);
       setTokenContractDGLight(tokenContractDGLight);
 
       let collectionContract = {};
       let collectionID = 0;
 
       if (props.contractAddress === Global.ADDRESSES.COLLECTION_V2_ADDRESS) {
-        collectionContract = new getWeb3.eth.Contract(
-          ABI_COLLECTION_V2,
-          Global.ADDRESSES.COLLECTION_V2_ADDRESS
-        );
+        collectionContract = new getWeb3.eth.Contract(ABI_COLLECTION_V2, Global.ADDRESSES.COLLECTION_V2_ADDRESS);
         collectionID = 10;
       } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_PH_ADDRESS) {
-        collectionContract = new getWeb3.eth.Contract(
-          ABI_COLLECTION_PH,
-          Global.ADDRESSES.COLLECTION_PH_ADDRESS
-        );
+        collectionContract = new getWeb3.eth.Contract(ABI_COLLECTION_PH, Global.ADDRESSES.COLLECTION_PH_ADDRESS);
         collectionID = 12;
       } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_LINENS_ADDRESS) {
-        collectionContract = new getWeb3.eth.Contract(
-          ABI_COLLECTION_LINENS,
-          Global.ADDRESSES.COLLECTION_LINENS_ADDRESS
-        );
+        collectionContract = new getWeb3.eth.Contract(ABI_COLLECTION_LINENS, Global.ADDRESSES.COLLECTION_LINENS_ADDRESS);
         collectionID = 13;
       } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS) {
-        collectionContract = new getWeb3.eth.Contract(
-          ABI_COLLECTION_BOMBER,
-          Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS
-        );
+        collectionContract = new getWeb3.eth.Contract(ABI_COLLECTION_BOMBER, Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS);
         collectionID = 14;
-      } else if (
-        props.contractAddress === Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS
-      ) {
-        collectionContract = new getWeb3.eth.Contract(
-          ABI_COLLECTION_CRYPTO_DRIP,
-          Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS
-        );
+      } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS) {
+        collectionContract = new getWeb3.eth.Contract(ABI_COLLECTION_CRYPTO_DRIP, Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS);
         collectionID = 16;
-      } else if (
-        props.contractAddress === Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS
-      ) {
-        collectionContract = new getWeb3.eth.Contract(
-          ABI_COLLECTION_FOUNDING_FATHERS,
-          Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS
-        );
+      } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS) {
+        collectionContract = new getWeb3.eth.Contract(ABI_COLLECTION_FOUNDING_FATHERS, Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS);
         collectionID = 17;
       } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_JOKER_ADDRESS) {
-        collectionContract = new getWeb3.eth.Contract(
-          ABI_COLLECTION_JOKER,
-          Global.ADDRESSES.COLLECTION_JOKER_ADDRESS
-        );
+        collectionContract = new getWeb3.eth.Contract(ABI_COLLECTION_JOKER, Global.ADDRESSES.COLLECTION_JOKER_ADDRESS);
         collectionID = 18;
       } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_CHEF_ADDRESS) {
-        collectionContract = new getWeb3.eth.Contract(
-          ABI_COLLECTION_CHEF,
-          Global.ADDRESSES.COLLECTION_CHEF_ADDRESS
-        );
+        collectionContract = new getWeb3.eth.Contract(ABI_COLLECTION_CHEF, Global.ADDRESSES.COLLECTION_CHEF_ADDRESS);
         collectionID = 19;
       } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_BEACH_ADDRESS) {
-        collectionContract = new getWeb3.eth.Contract(
-          ABI_COLLECTION_BEACH,
-          Global.ADDRESSES.COLLECTION_BEACH_ADDRESS
-        );
+        collectionContract = new getWeb3.eth.Contract(ABI_COLLECTION_BEACH, Global.ADDRESSES.COLLECTION_BEACH_ADDRESS);
         collectionID = 20;
       } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_AIRLINE_ADDRESS) {
-        collectionContract = new getWeb3.eth.Contract(
-          ABI_COLLECTION_AIRLINE,
-          Global.ADDRESSES.COLLECTION_AIRLINE_ADDRESS
-        );
+        collectionContract = new getWeb3.eth.Contract(ABI_COLLECTION_AIRLINE, Global.ADDRESSES.COLLECTION_AIRLINE_ADDRESS);
         collectionID = 21;
+      } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_POET_ADDRESS) {
+        collectionContract = new getWeb3.eth.Contract(ABI_COLLECTION_POET, Global.ADDRESSES.COLLECTION_POET_ADDRESS);
+        collectionID = 22;
       }
 
       setCollectionContract(collectionContract);
@@ -193,9 +153,7 @@ const ModalUpgradePending = props => {
   // get NFT authorization state based on props.tokenId
   useEffect(() => {
     if (state.nftAuthorizations.length) {
-      const result = state.nftAuthorizations.find(
-        item => item.tokenId === props.tokenId
-      );
+      const result = state.nftAuthorizations.find(item => item.tokenId === props.tokenId);
       console.log('NFT auth status: ' + result.authStatus);
 
       setAuthStatusNFT(result.authStatus);
@@ -209,7 +167,7 @@ const ModalUpgradePending = props => {
       // update global state iceWearableUpdatedSuccess
       dispatch({
         type: 'ice_wearable_update_success',
-        data: false,
+        data: false
       });
       refresh();
       props.setUpgrade(3);
@@ -242,7 +200,6 @@ const ModalUpgradePending = props => {
     setActiveItem(active);
   }, [refreshActiveItem]);
 
-  
   // helper functions
 
   function refresh() {
@@ -250,14 +207,14 @@ const ModalUpgradePending = props => {
     const refreshTokenAmounts = !state.refreshTokenAmounts;
     dispatch({
       type: 'refresh_token_amounts',
-      data: refreshTokenAmounts,
+      data: refreshTokenAmounts
     });
 
     // update global state wearables data
     const refreshWearable = !state.refreshWearable;
     dispatch({
       type: 'refresh_wearable_items',
-      data: refreshWearable,
+      data: refreshWearable
     });
 
     // dispatch({
@@ -269,7 +226,7 @@ const ModalUpgradePending = props => {
     const refreshBalances = !state.refreshBalances;
     dispatch({
       type: 'refresh_balances',
-      data: refreshBalances,
+      data: refreshBalances
     });
   }
 
@@ -284,7 +241,7 @@ const ModalUpgradePending = props => {
           console.log('ICE clicked!');
           metaTransactionToken('ICE');
         },
-        trackEvent: 'ICE AUTHORIZATION CLICKED',
+        trackEvent: 'ICE AUTHORIZATION CLICKED'
       },
       {
         step: 'DGLight',
@@ -295,7 +252,7 @@ const ModalUpgradePending = props => {
           console.log('DG clicked!');
           metaTransactionToken('DGLight');
         },
-        trackEvent: 'DG AUTHORIZATION CLICKED',
+        trackEvent: 'DG AUTHORIZATION CLICKED'
       },
       {
         step: 'NFT',
@@ -306,7 +263,7 @@ const ModalUpgradePending = props => {
           console.log('NFT clicked!');
           metaTransactionNFT();
         },
-        trackEvent: 'NFT AUTHORIZATION CLICKED',
+        trackEvent: 'NFT AUTHORIZATION CLICKED'
       },
       {
         step: 'WEARABLE',
@@ -317,8 +274,8 @@ const ModalUpgradePending = props => {
           console.log('Wearable clicked!');
           upgradeToken();
         },
-        trackEvent: 'CONFIRM UPGRADE CLICKED',
-      },
+        trackEvent: 'CONFIRM UPGRADE CLICKED'
+      }
     ];
 
     status.sort((a, b) => {
@@ -369,11 +326,7 @@ const ModalUpgradePending = props => {
                   console.log('circle clicked', item);
                 }}
               />
-              {item.step !== 'WEARABLE' && (
-                <ActionLine
-                  previousAction={item.authState ? 'done' : 'initial'}
-                />
-              )}
+              {item.step !== 'WEARABLE' && <ActionLine previousAction={item.authState ? 'done' : 'initial'} />}
             </Aux>
           ))}
       </div>
@@ -404,26 +357,11 @@ const ModalUpgradePending = props => {
     if (type === 'help') {
       return (
         <span className={styles.button_help}>
-          <svg
-            width="22"
-            height="20"
-            viewBox="0 -1 22 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlnsXlink="http://www.w3.org/1999/xlink"
-          >
+          <svg width="22" height="20" viewBox="0 -1 22 20" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
             <rect width="22" height="20" fill="url(#pattern0)" />
             <defs>
-              <pattern
-                id="pattern0"
-                patternContentUnits="objectBoundingBox"
-                width="1"
-                height="1"
-              >
-                <use
-                  xlinkHref="#image0"
-                  transform="translate(0.0965909) scale(0.00378788 0.00416667)"
-                />
+              <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                <use xlinkHref="#image0" transform="translate(0.0965909) scale(0.00378788 0.00416667)" />
               </pattern>
               <image
                 id="image0"
@@ -439,13 +377,7 @@ const ModalUpgradePending = props => {
     } else if (type === 'close') {
       return (
         <span className={styles.button_close}>
-          <svg
-            width="12"
-            height="12"
-            viewBox="0 0 12 12"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M0.464355 9.65869C0.0952148 10.0344 0.0754395 10.7266 0.477539 11.1221C0.879639 11.5242 1.56519 11.511 1.94092 11.1353L5.65869 7.41748L9.36987 11.1287C9.75879 11.5242 10.4312 11.5176 10.8267 11.1155C11.2288 10.72 11.2288 10.0476 10.8398 9.65869L7.12866 5.94751L10.8398 2.22974C11.2288 1.84082 11.2288 1.16846 10.8267 0.772949C10.4312 0.37085 9.75879 0.37085 9.36987 0.759766L5.65869 4.47095L1.94092 0.753174C1.56519 0.384033 0.873047 0.364258 0.477539 0.766357C0.0820312 1.16846 0.0952148 1.854 0.464355 2.22974L4.18213 5.94751L0.464355 9.65869Z"
               fill="white"
@@ -473,23 +405,13 @@ const ModalUpgradePending = props => {
     }
 
     try {
-      console.log(
-        'Authorize ' + token + ' amount: ' + Global.CONSTANTS.MAX_AMOUNT
-      );
+      console.log('Authorize ' + token + ' amount: ' + Global.CONSTANTS.MAX_AMOUNT);
       console.log('Spender address: ' + spenderAddress);
 
       // get function signature and send Biconomy API meta-transaction
-      let functionSignature = tokenContract.methods
-        .approve(spenderAddress, Global.CONSTANTS.MAX_AMOUNT)
-        .encodeABI();
+      let functionSignature = tokenContract.methods.approve(spenderAddress, Global.CONSTANTS.MAX_AMOUNT).encodeABI();
 
-      const txHash = await MetaTx.executeMetaTransaction(
-        MetaTxNumber,
-        functionSignature,
-        tokenContract,
-        state.userAddress,
-        web3
-      );
+      const txHash = await MetaTx.executeMetaTransaction(MetaTxNumber, functionSignature, tokenContract, state.userAddress, web3);
 
       if (txHash === false) {
         setLoading(false);
@@ -502,7 +424,7 @@ const ModalUpgradePending = props => {
         const refresh = !state.refreshTokenAuths;
         dispatch({
           type: 'refresh_token_auths',
-          data: refresh,
+          data: refresh
         });
 
         setLoading(false);
@@ -525,17 +447,9 @@ const ModalUpgradePending = props => {
 
     try {
       // get function signature and send Biconomy API meta-transaction
-      let functionSignature = collectionContract.methods
-        .approve(Global.ADDRESSES.ICE_REGISTRANT_ADDRESS, props.tokenId)
-        .encodeABI();
+      let functionSignature = collectionContract.methods.approve(Global.ADDRESSES.ICE_REGISTRANT_ADDRESS, props.tokenId).encodeABI();
 
-      const txHash = await MetaTx.executeMetaTransaction(
-        collectionID,
-        functionSignature,
-        collectionContract,
-        state.userAddress,
-        web3
-      );
+      const txHash = await MetaTx.executeMetaTransaction(collectionID, functionSignature, collectionContract, state.userAddress, web3);
 
       if (txHash === false) {
         setLoading(false);
@@ -549,7 +463,7 @@ const ModalUpgradePending = props => {
         const refresh = !state.refreshNFTAuths;
         dispatch({
           type: 'refresh_nft_auths',
-          data: refresh,
+          data: refresh
         });
 
         setLoading(false);
@@ -627,22 +541,16 @@ const ModalUpgradePending = props => {
             display: 'flex',
             justifyContent: 'center',
             textAlign: 'center',
-            flexDirection: 'column',
+            flexDirection: 'column'
           }}
         >
           <div className={styles.upgrade_container}>
             <p className={styles.header}>
-              <img
-                className={styles.logo}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png"
-              />
+              <img className={styles.logo} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png" />
               Authorize & Upgrade
             </p>
 
-            <p className={styles.description}>
-              To upgrade your wearable, you will have to complete 4 transactions
-              in MetaMask.
-            </p>
+            <p className={styles.description}>To upgrade your wearable, you will have to complete 4 transactions in MetaMask.</p>
 
             {/* {authButtons()} */}
             {populateButtons()}
