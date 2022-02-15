@@ -1,3 +1,7 @@
+/* eslint-disable unused-imports/no-unused-vars-ts */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable react/react-in-jsx-scope */
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '@/store';
 import { Modal, Button } from 'semantic-ui-react';
@@ -12,22 +16,10 @@ import Spinner from 'components/lottieAnimation/animations/spinner';
 import Web3 from 'web3';
 import cn from 'classnames';
 
-///////////////////////////////////////
+/// ////////////////////////////////////
 // to create a redelegation modal, just pass the redelegation prop
-//////////////////////////////////////
-const ModalDelegate = ({
-  tokenId,
-  address,
-  imgSrc,
-  rank,
-  bonus,
-  description,
-  contractAddress,
-  buttonName,
-  redelegation,
-  redelegateAddress,
-  setUpgrade,
-}) => {
+/// ///////////////////////////////////
+const ModalDelegate = props => {
   // fetch user's wallet address from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -40,11 +32,11 @@ const ModalDelegate = ({
   const [web3, setWeb3] = useState({});
   const [errorMsg, setErrorMsg] = useState('');
 
-  
   useEffect(() => {
     if (state.userStatus >= 4) {
       // initialize Web3 providers and create token contract instance
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+
       setWeb3(web3);
 
       const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
@@ -55,24 +47,13 @@ const ModalDelegate = ({
       // );
       // setCollectionV2Contract(collectionV2Contract);
 
-      const collectionV2Contract = new maticWeb3.eth.Contract(
-        ABI_COLLECTION_V2,
-        Global.ADDRESSES.COLLECTION_V2_ADDRESS
-      );
-      const collectionV2Contract2 = new maticWeb3.eth.Contract(
-        ABI_COLLECTION_PH,
-        Global.ADDRESSES.COLLECTION_PH_ADDRESS
-      );
+      const collectionV2Contract = new maticWeb3.eth.Contract(ABI_COLLECTION_V2, Global.ADDRESSES.COLLECTION_V2_ADDRESS);
+      const collectionV2Contract2 = new maticWeb3.eth.Contract(ABI_COLLECTION_PH, Global.ADDRESSES.COLLECTION_PH_ADDRESS);
 
       const collectionArray = [];
-      collectionArray.push([
-        collectionV2Contract,
-        Global.ADDRESSES.COLLECTION_V2_ADDRESS,
-      ]);
-      collectionArray.push([
-        collectionV2Contract2,
-        Global.ADDRESSES.COLLECTION_PH_ADDRESS,
-      ]);
+
+      collectionArray.push([collectionV2Contract, Global.ADDRESSES.COLLECTION_V2_ADDRESS]);
+      collectionArray.push([collectionV2Contract2, Global.ADDRESSES.COLLECTION_PH_ADDRESS]);
       setCollectionArray(collectionArray);
     }
   }, [state.userStatus]);
@@ -80,27 +61,19 @@ const ModalDelegate = ({
   // if this is a redelegation modal, set the "entered address" i.e the delegatee address as the previously delegated one
   // also close the upgrade modal invoking the setUpgrade function
   useEffect(() => {
-    if (redelegation) {
-      setEnteredAddress(redelegateAddress);
+    if (props.redelegation) {
+      setEnteredAddress(props.redelegateAddress);
       setOpen(true);
     }
   }, []);
-
-  
 
   async function hasDataByAddress(address) {
     const tokenId = 0;
 
     const tokenById = collectionArray.map(async (item, index) => {
       try {
-        for (
-          let nIndex = 0;
-          nIndex < Global.CONSTANTS.MAX_DELEGATION_COUNT;
-          nIndex++
-        ) {
-          const tokenId = await collectionArray[index][0].methods
-            .tokenOfOwnerByIndex(address, nIndex)
-            .call();
+        for (let nIndex = 0; nIndex < Global.CONSTANTS.MAX_DELEGATION_COUNT; nIndex++) {
+          const tokenId = await collectionArray[index][0].methods.tokenOfOwnerByIndex(address, nIndex).call();
 
           if (parseInt(tokenId) > 0) {
             return true;
@@ -112,6 +85,7 @@ const ModalDelegate = ({
 
       return tokenId;
     });
+
     await Promise.all(tokenById);
 
     return false;
@@ -122,8 +96,10 @@ const ModalDelegate = ({
     let isDelegated = false;
 
     setClicked(true);
+
     // if any index has data then we should show error
     const hasData = await hasDataByAddress(address);
+
     if (hasData) {
       errorMsg = 'This user already owns a wearable and cannot be delegated to';
       isDelegated = true;
@@ -134,15 +110,12 @@ const ModalDelegate = ({
       delegationInfo.incomingDelegations.forEach((item, i) => {
         if (item) {
           const tokenOwner = item.tokenOwner.toLowerCase();
+
           console.log('Entered address incoming delegator: ' + tokenOwner);
 
           // if entered address has delegated wearables and the delegator is not me
-          if (
-            tokenOwner !== '' &&
-            tokenOwner !== state.userAddress.toLowerCase()
-          ) {
-            errorMsg =
-              'This user already has a wearable delegated to them, they can undelegate to receive yours';
+          if (tokenOwner !== '' && tokenOwner !== state.userAddress.toLowerCase()) {
+            errorMsg = 'This user already has a wearable delegated to them, they can undelegate to receive yours';
             isDelegated = true;
           }
         } else {
@@ -153,6 +126,7 @@ const ModalDelegate = ({
 
     setClicked(false);
     setErrorMsg(errorMsg);
+
     return isDelegated;
   }
 
@@ -160,20 +134,15 @@ const ModalDelegate = ({
     return (
       <div className={styles.wear_box}>
         <div className={styles.wear_box_purple}>
-          <img src={imgSrc} />
+          <img src={props.imgSrc} />
         </div>
         <div className={styles.card_body}>
-          <div className={styles.card}>Rank {rank}</div>
+          <div className={styles.card}>Rank {props.rank}</div>
           <div className={styles.card}>
-            {bonus}
-            <img
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
-              className={styles.img_card}
-            />
+            {props.bonus}
+            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png" className={styles.img_card} />
           </div>
-          <div className={styles.card}>
-            {description?.split(' ').at(-1).replace('/', ' of ')}
-          </div>
+          <div className={styles.card}>{props.description?.split(' ').at(-1).replace('/', ' of ')}</div>
         </div>
       </div>
     );
@@ -189,7 +158,7 @@ const ModalDelegate = ({
           <div className={styles.benefit_list}>
             <ul>
               <li>Let another player Play-to-Earn with your item</li>
-              <li>Earn {Math.round(state.delegatorSplits[rank - 1] * 100)}% of all ICE profits from their gameplay</li>
+              <li>Earn {Math.round(state.delegatorSplits[props.rank - 1] * 100)}% of all ICE profits from their gameplay</li>
               <li>NFT stays in your wallet & undelegate any time</li>
             </ul>
           </div>
@@ -202,22 +171,16 @@ const ModalDelegate = ({
             <div className={styles.card_area_body}>
               <div className={styles.card}>
                 <div className={styles.info}>You Earn</div>
-                {Math.round(state.delegatorSplits[rank - 1] * 100)}%
-                <img
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
-                  className={styles.img_card1}
-                />
+                {Math.round(state.delegatorSplits[props.rank - 1] * 100)}%
+                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png" className={styles.img_card1} />
               </div>
             </div>
 
             <div className={styles.card_area_body}>
               <div className={styles.card}>
                 <div className={styles.info}>They Earn</div>
-                {Math.round((1 - state.delegatorSplits[rank - 1]) * 100)}%
-                <img
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
-                  className={styles.img_card2}
-                />
+                {Math.round((1 - state.delegatorSplits[props.rank - 1]) * 100)}%
+                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png" className={styles.img_card2} />
               </div>
             </div>
           </div>
@@ -244,9 +207,7 @@ const ModalDelegate = ({
 
                   if (evt.target.value.length > 0) {
                     if (web3.utils.isAddress(evt.target.value)) {
-                      const isDelegated = await checkDelegatedStatus(
-                        evt.target.value
-                      );
+                      const isDelegated = await checkDelegatedStatus(evt.target.value);
 
                       // check to see if anyone has already delegated to this address
                       if (!isDelegated) {
@@ -273,26 +234,11 @@ const ModalDelegate = ({
     if (type === 'help') {
       return (
         <span className={styles.button_help}>
-          <svg
-            width="22"
-            height="20"
-            viewBox="0 -1 22 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlnsXlink="http://www.w3.org/1999/xlink"
-          >
+          <svg width="22" height="20" viewBox="0 -1 22 20" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
             <rect width="22" height="20" fill="url(#pattern0)" />
             <defs>
-              <pattern
-                id="pattern0"
-                patternContentUnits="objectBoundingBox"
-                width="1"
-                height="1"
-              >
-                <use
-                  xlinkHref="#image0"
-                  transform="translate(0.0965909) scale(0.00378788 0.00416667)"
-                />
+              <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                <use xlinkHref="#image0" transform="translate(0.0965909) scale(0.00378788 0.00416667)" />
               </pattern>
               <image
                 id="image0"
@@ -308,13 +254,7 @@ const ModalDelegate = ({
     } else if (type === 'close') {
       return (
         <span className={styles.button_close} onClick={() => setOpen(false)}>
-          <svg
-            width="12"
-            height="12"
-            viewBox="0 0 12 12"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M0.464355 9.65869C0.0952148 10.0344 0.0754395 10.7266 0.477539 11.1221C0.879639 11.5242 1.56519 11.511 1.94092 11.1353L5.65869 7.41748L9.36987 11.1287C9.75879 11.5242 10.4312 11.5176 10.8267 11.1155C11.2288 10.72 11.2288 10.0476 10.8398 9.65869L7.12866 5.94751L10.8398 2.22974C11.2288 1.84082 11.2288 1.16846 10.8267 0.772949C10.4312 0.37085 9.75879 0.37085 9.36987 0.759766L5.65869 4.47095L1.94092 0.753174C1.56519 0.384033 0.873047 0.364258 0.477539 0.766357C0.0820312 1.16846 0.0952148 1.854 0.464355 2.22974L4.18213 5.94751L0.464355 9.65869Z"
               fill="white"
@@ -326,18 +266,14 @@ const ModalDelegate = ({
   }
 
   async function delegateNFT() {
-    console.log('Delegate token ID: ' + tokenId);
+    console.log('Delegate token ID: ' + props.tokenId);
     console.log('Delegate address: ' + enteredAddress);
-    console.log('Collection address: ' + contractAddress);
+    console.log('Collection address: ' + props.contractAddress);
 
     if (enteredAddress) {
       setClicked(true);
 
-      const json = await Fetch.DELEGATE_NFT(
-        enteredAddress,
-        tokenId,
-        contractAddress
-      );
+      const json = await Fetch.DELEGATE_NFT(enteredAddress, props.tokenId, props.contractAddress);
 
       if (json.status) {
         console.log('NFT delegation request: ' + json.result);
@@ -364,25 +300,14 @@ const ModalDelegate = ({
     <Aux>
       {!success ? (
         <Modal
-          className={cn(
-            styles.delegate_modal,
-            redelegation ? styles.redelegation : styles.new_delegation
-          )}
+          className={cn(styles.delegate_modal, props.redelegation ? styles.redelegation : styles.new_delegation)}
           onClose={() => setOpen(false)}
           onOpen={() => setOpen(true)}
           open={open}
           close
           trigger={
-            <Button
-              className={
-                redelegation
-                  ? styles.button_trigger_redelegation
-                  : rank === 5
-                    ? styles.open_button_fullWidth
-                    : styles.open_button
-              }
-            >
-              {buttonName}
+            <Button className={props.redelegation ? styles.button_trigger_redelegation : props.rank === 5 ? styles.open_button_fullWidth : styles.open_button}>
+              {props.buttonName}
             </Button>
           }
         >
@@ -391,19 +316,13 @@ const ModalDelegate = ({
             {modalButtons('help')}
           </div>
 
-          {redelegation ? (
+          {props.redelegation ? (
             <div className={styles.redelegation_body}>
               <h2 className={styles.redelegate_title}>Redelegate Wearable</h2>
               <p className={styles.redelegation_description}>
                 You previously delegated to{' '}
-                <a
-                  href={`https://polygonscan.com/address/${redelegateAddress}`}
-                  target="_blank"
-                >
-                  {`${redelegateAddress?.slice(
-                    0,
-                    4
-                  )}...${redelegateAddress?.substr(-4, 4)}`}
+                <a href={`https://polygonscan.com/address/${props.redelegateAddress}`} target="_blank" rel="noreferrer">
+                  {`${props.redelegateAddress?.slice(0, 4)}...${props.redelegateAddress?.substr(-4, 4)}`}
                 </a>
                 {'. '}
                 Would you like to redelegate your upgraded wearable?
@@ -413,19 +332,13 @@ const ModalDelegate = ({
                 <div className={styles.card}>
                   <div className={styles.info}>You Earn</div>
                   30%
-                  <img
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
-                    className={styles.img_card1}
-                  />
+                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png" className={styles.img_card1} />
                 </div>
 
                 <div className={styles.card}>
                   <div className={styles.info}>They Earn</div>
                   70%
-                  <img
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png"
-                    className={styles.img_card2}
-                  />
+                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631105861/diamond_1_1_mvgaa8.png" className={styles.img_card2} />
                 </div>
               </div>
 
@@ -439,7 +352,7 @@ const ModalDelegate = ({
                   }}
                   disabled={errorMsg === '' ? false : true}
                 >
-                  {redelegation ? "Redelegate Wearable" : buttonName}
+                  {props.redelegation ? 'Redelegate Wearable' : props.buttonName}
                 </Button>
               ) : (
                 <Button className={styles.button_redelegate} disabled={true}>
@@ -466,7 +379,7 @@ const ModalDelegate = ({
                         }}
                         disabled={errorMsg === '' && enteredAddress ? false : true}
                       >
-                        {buttonName}
+                        {props.buttonName}
                       </Button>
                     ) : (
                       <Button className={styles.button_upgrade} disabled={true}>
@@ -477,10 +390,7 @@ const ModalDelegate = ({
                     <Button
                       className={styles.button_close}
                       onClick={() => {
-                        window.open(
-                          'https://ice.decentral.games/ice-nft-wearables',
-                          '_blank'
-                        );
+                        window.open('https://ice.decentral.games/ice-nft-wearables', '_blank');
                       }}
                     >
                       Learn More
@@ -488,18 +398,16 @@ const ModalDelegate = ({
                   </div>
                 </div>
 
-                {errorMsg !== '' && (
-                  <div className={styles.delegateInfo}>{errorMsg}</div>
-                )}
+                {errorMsg !== '' && <div className={styles.delegateInfo}>{errorMsg}</div>}
               </div>
             </div>
           )}
         </Modal>
       ) : (
         <ModalSuccessDelegation
-          buttonName={buttonName}
-          address={enteredAddress ? enteredAddress : `${redelegateAddress?.slice(0, 4)}...${redelegateAddress?.substr(-4, 4)}`}
-          rank={rank}
+          buttonName={props.buttonName}
+          address={enteredAddress ? enteredAddress : `${props.redelegateAddress?.slice(0, 4)}...${props.redelegateAddress?.substr(-4, 4)}`}
+          rank={props.rank}
         />
       )}
     </Aux>

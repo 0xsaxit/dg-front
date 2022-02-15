@@ -89,10 +89,15 @@
     .menu_items_to_hide {
       display: flex;
       align-items: center;
-
-      @include mq($until: medium) {
+      
+      @media screen and (min-width: 400px) and (max-width: 415px){
+        margin-left: -40px;
+      }
+      @media screen and (max-width: 399px){
         margin-left: auto;
-
+      }
+      
+      @include mq($until: medium) {
         svg {
           path {
             fill: #777e90;
@@ -121,7 +126,12 @@
       }
 
       svg {
-        margin-left: 56px;
+        @media screen and (max-width: 400px) {
+          margin-left: -32px;
+        }
+        @media screen and (min-width: 400px) {
+          margin-left: 56px;
+        }
         cursor: pointer;
       }
     }
