@@ -443,13 +443,9 @@ const Governance = props => {
             </h5>
             <p className={cn('mb-3', styles.staking_subfooter)}>
               Swap {stakeType === 'Stake' ? '' : 'x'}DG for{' '}
-              {stakeType === 'Stake' ? 'x' : ''}DG directly on Quickswap
-            </p>
-            <img
-              className={styles.polygon_ellipse}
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1639565799/Ellipse_16_rmqkzi.jpg"
-              alt="Polygon"
-            />
+              {stakeType === 'Stake' ? 'x' : ''}DG directly on Uniswap
+            </p>              
+            <img className={styles.uniswap_ellipse} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636428353/uniswap_tkdx8e.png" alt="uniswap" />
 
             <div className={styles.description}>
               <h4 className={styles.gray}>
@@ -469,12 +465,12 @@ const Governance = props => {
               className={styles.button}
               href={
                 stakeType === 'Stake'
-                  ? 'https://quickswap.exchange/#/swap?inputCurrency=0xef938b6da8576a896f6E0321ef80996F4890f9c4&outputCurrency=0xc6480Da81151B2277761024599E8Db2Ad4C388C8'
-                  : 'https://quickswap.exchange/#/swap?inputCurrency=0xc6480Da81151B2277761024599E8Db2Ad4C388C8&outputCurrency=0xef938b6da8576a896f6E0321ef80996F4890f9c4 '
+                  ? 'https://app.uniswap.org/#/swap?inputCurrency=0xef938b6da8576a896f6E0321ef80996F4890f9c4&outputCurrency=0xc6480Da81151B2277761024599E8Db2Ad4C388C8&chain=polygon'
+                  : 'https://app.uniswap.org/#/swap?inputCurrency=0xc6480Da81151B2277761024599E8Db2Ad4C388C8&outputCurrency=0xef938b6da8576a896f6E0321ef80996F4890f9c4&chain=polygon'
               }
               target="_blank"
             >
-              Swap for {stakeType === 'Stake' ? 'x' : ''}DG on Quickswap&nbsp;
+              Swap for {stakeType === 'Stake' ? 'x' : ''}DG on Uniswap&nbsp;
               <img
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636424323/TransBgArrow_ukntvi.png"
                 alt=""
