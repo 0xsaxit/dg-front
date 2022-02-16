@@ -114,7 +114,7 @@ const ModalLogin = () => {
       const responseStatus = await Fetch.USER_STATUS(userAddress, '');
       const jsonStatus = await responseStatus.json();
 
-      if (!jsonStatus.status) return false;
+      if (jsonStatus?.status == undefined || jsonStatus.status == -1 ) return false;
 
       return jsonStatus.status;
     } catch {

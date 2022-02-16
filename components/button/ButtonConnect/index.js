@@ -358,9 +358,7 @@ const ButtonConnect = (props) => {
 
       await upateVerified(jsonStatus.status);
 
-      if (!jsonStatus.status) {
-        return false;
-      }
+      if (jsonStatus?.status == undefined || jsonStatus.status == -1 ) return false;
 
       return jsonStatus.status;
     } catch {
