@@ -19,7 +19,7 @@ export interface IceRewardsType {
 
 const IceRewards: FC<IceRewardsType> = ({ className = '' } : IceRewardsType): ReactElement => {
   // dispatch user's ICE amounts to the Context API store
-  const [state, dispatch] = useContext(GlobalContext);
+  const [ state, dispatch ] = useContext<any>(GlobalContext);
 
   const isTablet = useMediaQuery('(min-width: 1200px)');
   const isMobile = useMediaQuery('(min-width: 576px)');
@@ -158,7 +158,6 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' } : IceRewardsType): Re
       }
     })();
   }, [state.userStatus]);
-
   
   // helper functions
   function formatPrice(balanceDG, units): string {
@@ -168,7 +167,6 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' } : IceRewardsType): Re
 
     return balanceAdjusted;
   }
-
   
   // get Remaining Time
   function getRemainingTime(): number {
@@ -210,6 +208,7 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' } : IceRewardsType): Re
           type: 'refresh_ice_amounts',
           data: refresh,
         });
+
         msg = 'ICE claimed successfully!';
         setTotalICE(0);
       } else {
@@ -436,10 +435,10 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' } : IceRewardsType): Re
                     </Table.Body>
                   </Table>
                 </>
-                :
-                <div style={{ marginTop: '50px' }}>
-                  <EmptyResultAnimation />
-                </div>
+              :
+              <div style={{ marginTop: '50px' }}>
+                <EmptyResultAnimation />
+              </div>
             }
           </div>
 

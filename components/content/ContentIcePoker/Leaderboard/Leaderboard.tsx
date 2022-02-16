@@ -88,7 +88,7 @@ const Leaderboard: FC<LeaderboardType> = ({ className = '' }: LeaderboardType): 
             </abbr>
           </div>
           <div className={styles.winnings}>
-            <abbr>{Number((Number(personalRecord.myScore) / 1000000000000000000).toFixed(0)).toLocaleString()}</abbr>
+            <abbr>{(Number(personalRecord.myScore) / 1000000000000000000).toFixed(0).toLocaleString()}</abbr>
             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635212177/FREE_Coin_c08hyk.png" alt="ice" />
           </div>
         </div>
@@ -131,7 +131,7 @@ const Leaderboard: FC<LeaderboardType> = ({ className = '' }: LeaderboardType): 
                           </abbr>
                         </Table.Cell>
                         <Table.Cell className={styles.winnings}>
-                          <abbr>{Number((Number(row.winnings) / 1000000000000000000).toFixed(0)).toLocaleString()}</abbr>
+                          <abbr>{(Number(row.winnings) / 1000000000000000000).toFixed(0).toLocaleString()}</abbr>
                           <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635212177/FREE_Coin_c08hyk.png" alt="ice" />
                         </Table.Cell>
                       </Table.Row>
