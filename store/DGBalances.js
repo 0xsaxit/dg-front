@@ -67,6 +67,7 @@ function DGBalances() {
   const [maticWethContract, setMaticWethContract] = useState({});
   const [instances, setInstances] = useState(false);
   const [web3Provider, setWeb3Provider] = useState(null);
+  const [mainnetWeb3Provider, setMainnetWeb3Provider] = useState(null);
 
   let interval = {};
   let currentTime = 0;
@@ -78,6 +79,7 @@ function DGBalances() {
     const mainnetWeb3 = new Web3(Global.CONSTANTS.MAINNET_URL); // pass Matic provider URL to Web3 constructor
     const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
     setWeb3Provider(web3);
+    setMainnetWeb3Provider(mainnetWeb3);
 
     // this is for mining DG
     const pointerContract = await Transactions.pointerContract(maticWeb3);
@@ -88,7 +90,7 @@ function DGBalances() {
     setPointerContractNew(pointerContractNew);
 
     // set up dg token contract (same for both pools)
-    const DGTokenContract = await Transactions.DGTokenContract(web3);
+    const DGTokenContract = await Transactions.DGTokenContract(mainnetWeb3);
     setDGTokenContract(DGTokenContract);
 
     // set up dg token contract (same for both pools)
@@ -115,19 +117,19 @@ function DGBalances() {
     );
     setDGLightMaticContract(DGLightMaticContract);
 
-    const DAI_BPT = new web3.eth.Contract(
+    const DAI_BPT = new mainnetWeb3.eth.Contract(
       ABI_DG_TOKEN,
       Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DAI
     );
     setDAI_BPT(DAI_BPT);
 
-    const ETH_UNI = new web3.eth.Contract(
+    const ETH_UNI = new mainnetWeb3.eth.Contract(
       ABI_DG_TOKEN,
       Global.ADDRESSES.UNISWAP_ADDRESS_WETH
     );
     setETH_UNI(ETH_UNI);
 
-    const DG_MANA = new web3.eth.Contract(
+    const DG_MANA = new mainnetWeb3.eth.Contract(
       ABI_DG_TOKEN,
       Global.ADDRESSES.ROOT_TOKEN_ADDRESS_MANA
     );
@@ -163,34 +165,34 @@ function DGBalances() {
     );
     setMaticWethContract(maticWethContract);
 
-    const stakingContractPool1 = await Transactions.stakingContractPool1(web3);
+    const stakingContractPool1 = await Transactions.stakingContractPool1(mainnetWeb3);
     setStakingContractPool1(stakingContractPool1);
 
-    const stakingContractPool2 = await Transactions.stakingContractPool2(web3);
+    const stakingContractPool2 = await Transactions.stakingContractPool2(mainnetWeb3);
     setStakingContractPool2(stakingContractPool2);
 
-    const keeperContract = await Transactions.keeperContract(web3);
+    const keeperContract = await Transactions.keeperContract(mainnetWeb3);
     setKeeperContract(keeperContract);
 
-    const townHallGovernance = await Transactions.townHallGovernance(web3);
+    const townHallGovernance = await Transactions.townHallGovernance(mainnetWeb3);
     setTownHallGovernance(townHallGovernance);
 
     const stakeContractGovernance =
-      await Transactions.stakingContractGovernance(web3);
+      await Transactions.stakingContractGovernance(mainnetWeb3);
     setStakeContractGovernance(stakeContractGovernance);
 
-    const BPTContract1 = await Transactions.BPTContract1(web3);
+    const BPTContract1 = await Transactions.BPTContract1(mainnetWeb3);
     setBPTContract1(BPTContract1);
 
-    const BPTContract2 = await Transactions.BPTContract2(web3);
+    const BPTContract2 = await Transactions.BPTContract2(mainnetWeb3);
     setBPTContract2(BPTContract2);
 
     const stakingContractUniswap = await Transactions.stakingContractUniswap(
-      web3
+      mainnetWeb3
     );
     setStakingContractUniswap(stakingContractUniswap);
 
-    const uniswapContract = await Transactions.uniswapContract(web3);
+    const uniswapContract = await Transactions.uniswapContract(mainnetWeb3);
     setUniswapContract(uniswapContract);
 
     setInstances(true); // contract instantiation complete
@@ -199,6 +201,8 @@ function DGBalances() {
   useEffect(() => {
     if (state.userStatus >= 4) {
       fetchData();
+    } else {
+      setInstances(false);
     }
   }, [state.userStatus]);
 
@@ -219,24 +223,21 @@ function DGBalances() {
   useEffect(() => {
     if (instances) {
       (async function () {
-        // update global state unclaimed DG points balances
-        const tokenBalances = await getTokenBalances();
+        const [tokenBalances, DGGameplayCollected, balancesStaking]= await Promise.all([
+          getTokenBalances(), // update global state unclaimed DG points balances
+          getDGGameplayCollected(), // get historical gameplay collected amount
+          getBalancesStaking() // update global state staking DG and balancer pool tokens
+        ]);
 
         dispatch({
           type: 'dg_balances',
           data: tokenBalances,
         });
 
-        // get historical gameplay collected amount
-        const DGGameplayCollected = await getDGGameplayCollected();
-
         dispatch({
           type: 'dg_gameplay_collected',
           data: DGGameplayCollected,
         });
-
-        // update global state staking DG and balancer pool tokens
-        const balancesStaking = await getBalancesStaking();
 
         dispatch({
           type: 'staking_balances',
@@ -275,7 +276,7 @@ function DGBalances() {
   
   async function getTokenBalances() {
     try {
-      const batch = new web3Provider.BatchRequest();
+      const batch = new mainnetWeb3Provider.BatchRequest();
       const batchPromises = makeBatchedPromises(batch, [
         [DGTokenContract.methods.balanceOf(Global.ADDRESSES.BP_TOKEN_ADDRESS_2), bigNumberResult(3)],
         [DGTokenContract.methods.balanceOf(Global.ADDRESSES.BP_TOKEN_ADDRESS_1), bigNumberResult(3)],
@@ -563,7 +564,7 @@ function DGBalances() {
   
   async function getBalancesStaking() {
     try {
-      const batch = new web3Provider.BatchRequest();
+      const batch = new mainnetWeb3Provider.BatchRequest();
       const batchPromises = makeBatchedPromises(batch, [
         [BPTContract1.methods.balanceOf(Global.ADDRESSES.DG_STAKING_BALANCER_ADDRESS_1), bigNumberResult(4)],
         [BPTContract2.methods.balanceOf(Global.ADDRESSES.DG_STAKING_BALANCER_ADDRESS_2), bigNumberResult(4)],
