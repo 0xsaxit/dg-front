@@ -80,7 +80,7 @@ const ModalMint = props => {
             ) : null}
 
             <div className={styles.card}>
-              {state.tokenAmounts.WETH_COST_AMOUNT} {state.mintToken}
+              {state.mintToken === 'ETH'? Number(state.tokenAmounts.WETH_COST_AMOUNT).toFixed(2) : Number(state.tokenAmounts.WETH_COST_AMOUNT).toFixed(0)} {state.mintToken}
               <img src={state.mintToken === 'ETH' ? Images.ETH_CIRCLE : Images.ICE_CIRCLE} className={styles.img_card2} />
             </div>
 

@@ -21,6 +21,8 @@ import ABI_ICEToken from '../components/ABI/ABIICEToken';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
 import Fetch from '../common/Fetch';
+import BigNumber from 'bignumber.js';
+
 
 function ICEAttributes() {
   // dispatch user's token authorization status to the Context API store
@@ -468,7 +470,9 @@ function ICEAttributes() {
   async function getTokenAmounts() {
     try {
       const wethConstAmount = await ICERegistrantContract.methods.mintingPrice().call();
-      const WETH_COST_AMOUNT = wethConstAmount / Global.CONSTANTS.FACTOR;
+      const amountAdjusted = new BigNumber(wethConstAmount).div(new BigNumber(10).pow(Global.CONSTANTS.TOKEN_DECIMALS)).toFixed(2);
+      const WETH_COST_AMOUNT = amountAdjusted;
+      console.log("WETH AMOUNT: " + wethConstAmount +" " + WETH_COST_AMOUNT)
 
       const levelsData1 = await ICERegistrantContract.methods.levels('1').call();
       const DG_MOVE_AMOUNT = levelsData1[2] / Global.CONSTANTS.FACTOR;
