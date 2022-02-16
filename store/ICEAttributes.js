@@ -350,7 +350,7 @@ function ICEAttributes() {
       (async function () {
         try {
           const iceAmounts = await getICEAmounts();
-          iceAmounts.ICE_AVAILABLE_AMOUNT = parseInt(iceAmounts.ICE_AVAILABLE_AMOUNT);
+          iceAmounts.ICE_AVAILABLE_AMOUNT = iceAmounts.ICE_AVAILABLE_AMOUNT;
           iceAmounts.ICE_CLAIM_AMOUNT = parseInt(iceAmounts.ICE_CLAIM_AMOUNT);
 
           dispatch({
@@ -531,8 +531,9 @@ function ICEAttributes() {
   async function getICEAmounts() {
     try {
       const ICE_AVAILABLE_AMOUNT = await iceTokenContract.methods.balanceOf(state.userAddress).call();
-      const ICE_AMOUNT_ADJUSTED = (ICE_AVAILABLE_AMOUNT / Global.CONSTANTS.FACTOR).toString();
-
+      const amountAdjusted = new BigNumber(ICE_AVAILABLE_AMOUNT).div(new BigNumber(10).pow(Global.CONSTANTS.TOKEN_DECIMALS));
+      const ICE_AMOUNT_ADJUSTED = parseFloat(amountAdjusted);
+      
       console.log('Available ICE amount: ' + ICE_AMOUNT_ADJUSTED);
 
       const json = await Fetch.CLAIM_REWARDS_AMOUNT();

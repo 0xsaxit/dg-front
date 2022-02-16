@@ -88,7 +88,7 @@ const ModalMint = props => {
               <div className={styles.green_check}>
                 {state.mintToken === 'ETH' ?
                   Number(state.userBalances[2][3]).toFixed(3)
-                  : Number(state.iceAmounts.ICE_AVAILABLE_AMOUNT).toFixed(0)} {state.mintToken} Available
+                  : Number(state.iceAmounts.ICE_AVAILABLE_AMOUNT).toFixed(2)} {state.mintToken} Available
                 &nbsp;
                 <svg
                   width="9"
@@ -105,7 +105,7 @@ const ModalMint = props => {
               </div>
             ) : (
               <div className={styles.description}>
-                {Number(state.mintToken === 'ETH' ? state.userBalances[2][3] : state.iceAmounts.ICE_AVAILABLE_AMOUNT).toFixed(3)} {state.mintToken} Available
+                {Number(state.mintToken === 'ETH' ? state.userBalances[2][3] : state.iceAmounts.ICE_AVAILABLE_AMOUNT).toFixed(2)} {state.mintToken} Available
               </div>
             )}
 
