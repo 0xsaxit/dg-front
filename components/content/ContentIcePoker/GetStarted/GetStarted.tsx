@@ -1,6 +1,6 @@
 import React, { FC, ReactElement, useState } from 'react';
 import { Button } from 'semantic-ui-react';
-import FirstStep from './1firstStep/FirstStep';
+import FirstStep from './1FirstStep/FirstStep';
 import SecondStep from './2SecondStep/SecondStep';
 import ThirdStep from './3ThirdStep/ThirdStep';
 import FourthStep from './4FourthStep/FourthStep';
