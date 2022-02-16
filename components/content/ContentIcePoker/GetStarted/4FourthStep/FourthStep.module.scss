@@ -50,27 +50,11 @@
       border: 1px solid #2a2a2a;
       border-radius: 16px;
 
-      .tag {
-        position: absolute;
-        top: -12px;
-        font-family: 'Larsseit-Regular';
-        font-size: 12px;
-        color: #ffffff !important;
-        background: #1f1f1f;
-        padding: 2px 6px;
-        border-radius: 4px;
-      }
-
       .box_title {
         display: flex;
         justify-content: center;
         align-items: center;
 
-        img {
-          width: 24px;
-          height: 22px;
-          margin-right: 8px;
-        }
         h1 {
           font-size: 20px;
           line-height: 27px;
@@ -81,50 +65,7 @@
       }
 
       img {
-        width: 60px;
-      }
-
-      .content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        padding-left: 0px;
-        padding-right: 0px;
-
-        .network {
-          width: 72px;
-        }
-
-        .rpcURL {
-          width: 130px;
-        }
-
-        .chainID {
-          width: 50px;
-        }
-
-        .border_div {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 36px;
-          width: 100%;
-          font-family: 'Larsseit-Medium';
-          font-size: 14px;
-          color: #ffffff !important;
-          border-radius: 8px;
-          border: 1px solid #2a2a2a;
-        }
-
-        p {
-          font-size: 10px;
-          line-height: 14px;
-          font-family: 'Larsseit-Light';
-          text-align: center;
-          color: rgba(255, 255, 255, 0.5) !important;
-          margin-bottom: 6px;
-        }
+        width: 200px;
       }
 
       .button_div {
@@ -148,7 +89,7 @@
           transition: 0.2s ease-in;
 
           img {
-            width: 17px;
+            width: 18px;
             height: 18px;
             margin-right: 10px;
             margin-top: -1px;
@@ -169,15 +110,6 @@
             transition: 0.2s ease-in;
           }
         }
-
-        .firstButton {
-          margin-left: 0px;
-          margin-right: 5px;
-        }
-        .secondButton {
-          margin-left: 5px;
-          margin-right: 0px;
-        }
       }
     }
   }
@@ -197,7 +129,6 @@
     .title {
       h1 {
         font-size: 20px;
-        line-height: 24px;
       }
       p {
         font-size: 15px;
@@ -210,34 +141,19 @@
         width: calc(100% - 20px) !important;
 
         .box_title {
-          img {
-            width: 20px;
-            height: 19px;
-          }
           h1 {
             font-size: 18px;
           }
         }
+        .button_div {
+          button {
+            font-size: 11px;
 
-        .content {
-          .network {
-            width: 27%;
-          }
-
-          .rpcURL {
-            width: 50%;
-          }
-
-          .chainID {
-            width: 18%;
-          }
-
-          .border_div {
-            font-size: 12px;
-          }
-
-          p {
-            font-size: 9px;
+            img {
+              width: 17px;
+              height: 17px;
+              margin-top: 0px;
+            }
           }
         }
       }
@@ -250,18 +166,8 @@
         width: calc(100% - 20px) !important;
 
         .box_title {
-          img {
-            width: 18px;
-            height: 17px;
-          }
           h1 {
             font-size: 15px;
-          }
-        }
-
-        .content {
-          p {
-            font-size: 8px;
           }
         }
       }
@@ -269,6 +175,7 @@
   }
 }
 
+/* Firefox < 16 */
 @keyframes fadein {
   from {
     opacity: 0;

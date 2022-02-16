@@ -1,12 +1,16 @@
-import React, { useState } from 'react'
+import React, { FC, ReactElement, useState } from 'react';
 import { Button } from 'semantic-ui-react';
-import FirstStep from './1firstStep'
-import SecondStep from './2secondStep'
-import ThirdStep from './3thirdStep'
-import ForthStep from './4forthStep'
+import FirstStep from './1firstStep/FirstStep'
+import SecondStep from './2SecondStep/SecondStep'
+import ThirdStep from './3ThirdStep/ThirdStep'
+import ForthStep from './4FourthStep/FourthStep'
 import styles from './GetStarted.module.scss'
 
-const GetStarted = () => {
+export interface GetStartedType {
+  className?: string;
+}
+
+const GetStarted: FC<GetStartedType> = ({ className = '' } : GetStartedType): ReactElement => {
     const [currentStep, setCurrentStep] = useState(1);
     const steps = ["Connect Wallet", "Getting ICE Wearable", "DCL Account Creation", "Play"];
 

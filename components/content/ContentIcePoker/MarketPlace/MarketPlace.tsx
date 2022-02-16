@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { FC, ReactElement, useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '@/store';
 import ModalMintWearable from 'components/modal/ModalMintWearable';
 import ModalLoginICE from 'components/modal/ModalLoginICE';
@@ -13,7 +13,11 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import CheckMintableModal from 'components/modal/CheckMintableModal';
 
-const MarketPlace = () => {
+export interface MarketplaceType {
+  className?: string;
+}
+
+const MarketPlace: FC<MarketplaceType> = ({ className = '' } : MarketplaceType): ReactElement => {
   // dispatch new user status to Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -551,14 +555,14 @@ const MarketPlace = () => {
   ];
 
   // helper functions
-  function updatePreviewLevel(previewIndex, activeId) {
+  function updatePreviewLevel(previewIndex, activeId): void {
     let levels = previewLevel;
     levels[previewIndex] = activeId;
 
     setPreviewLevel([].concat(levels));
   }
 
-  function useWindowSize() {
+  function useWindowSize(): { width: any; height: any; } {
     // Initialize state with undefined width/height so server and client renders match
     // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
     const [windowSize, setWindowSize] = useState({
@@ -566,18 +570,18 @@ const MarketPlace = () => {
       height: undefined
     });
 
+    // Handler to call on window resize
+    function handleResize(): void {
+      // Set window width/height to state
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    }
+
     useEffect(() => {
       // only execute all the code below in client side
       if (typeof window !== 'undefined') {
-        // Handler to call on window resize
-        function handleResize() {
-          // Set window width/height to state
-          setWindowSize({
-            width: window.innerWidth,
-            height: window.innerHeight
-          });
-        }
-
         // Add event listener
         window.addEventListener('resize', handleResize);
 
@@ -591,7 +595,7 @@ const MarketPlace = () => {
     return windowSize;
   }
 
-  function CarouselNextArrow(props) {
+  function CarouselNextArrow(props): ReactElement {
     const { className, onClick } = props;
     return (
       <div className={className} onClick={onClick}>
@@ -600,7 +604,7 @@ const MarketPlace = () => {
     );
   }
 
-  function CarouselPrevArrow(props) {
+  function CarouselPrevArrow(props): ReactElement {
     const { className, onClick } = props;
     return (
       <div className={className} onClick={onClick}>
@@ -609,7 +613,7 @@ const MarketPlace = () => {
     );
   }
 
-  function getCarousel() {
+  function getCarousel(): ReactElement {
     const size = useWindowSize();
     const settings = {
       className: 'slider variable-width',
