@@ -271,7 +271,7 @@ const CheckMintableModal = props => {
               {!checkEnoughETHorICE() ? (
                 <>
                   <span className={styles.dg_insufficient}>
-                  {state.mintToken ==='ETH'? Number(state.userBalances[2][3]).toFixed(3) : Number(state.iceAmounts.ICE_AVAILABLE_AMOUNT).toFixed(0)} {state.mintToken} Available &nbsp;
+                  {state.mintToken ==='ETH'? Number(state.userBalances[2][3]).toFixed(3) : Number(state.iceAmounts.ICE_AVAILABLE_AMOUNT).toFixed(2)} {state.mintToken} Available &nbsp;
                   </span><br/>
                   (On Polygon)
                 </>) : (
