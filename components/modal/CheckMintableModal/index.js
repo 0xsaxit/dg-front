@@ -379,9 +379,9 @@ const CheckMintableModal = props => {
         if (token === 'ICE') {
           tokenContract = tokenContractICE;
           MetaTxNumber = 8;
-        } else if (token === 'DGLight') {
+        } else {
           tokenContract = tokenContractETH;
-          MetaTxNumber = 15;
+          MetaTxNumber = 6;
         }
 
 

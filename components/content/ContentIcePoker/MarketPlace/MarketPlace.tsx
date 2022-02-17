@@ -685,7 +685,11 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
               <h3>
                 {wearable.title}
 
+<<<<<<< HEAD:components/content/ContentIcePoker/MarketPlace/MarketPlace.tsx
                 {index === 0 && state.userLoggedIn && <CheckMintableModal />}
+=======
+                {index === 0 && <CheckMintableModal />}
+>>>>>>> staging:components/content/ContentIcePoker/MarketPlace/MarketPlace.js
               </h3>
 
               <Slider {...settings}>
