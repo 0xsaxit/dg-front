@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { FC, ReactElement, useState, useEffect, useContext } from 'react';
 import moment from 'moment';
 import { GlobalContext } from '../../../../store';
 import { Table, Button } from 'semantic-ui-react';
@@ -13,9 +13,13 @@ import ModalIceBreakdown from 'components/modal/ModalIceBreakDown';
 import LoadingAnimation from 'components/lottieAnimation/animations/LoadingAnimation';
 import HourglassAnimation from 'components/lottieAnimation/animations/hourglass'
 
-const IceRewards = () => {
+export interface IceRewardsType {
+  className?: string;
+}
+
+const IceRewards: FC<IceRewardsType> = ({ className = '' } : IceRewardsType): ReactElement => {
   // dispatch user's ICE amounts to the Context API store
-  const [state, dispatch] = useContext(GlobalContext);
+  const [ state, dispatch ] = useContext<any>(GlobalContext);
 
   const isTablet = useMediaQuery('(min-width: 1200px)');
   const isMobile = useMediaQuery('(min-width: 576px)');
@@ -39,7 +43,7 @@ const IceRewards = () => {
   }, [state.iceAmounts]);
 
   useEffect(() => {
-    (async () => {
+    (async (): Promise<void> => {
       let json = await Fetch.ICE_AMOUNTS(state.userAddress);
       setTotalICE(json.totalUnclaimedAmount);
     })();
@@ -47,7 +51,7 @@ const IceRewards = () => {
 
   useEffect(() => {
     let id = setInterval(() => {
-      var remainingTime = getRemainingTime() / 60;
+      let remainingTime = getRemainingTime() / 60;
 
       // Set Remain Time Text
       if (remainingTime >= 60) {
@@ -60,112 +64,112 @@ const IceRewards = () => {
     return () => clearInterval(id);
   });
 
-  useEffect(async () => {
-    if (state.userStatus) {
-      setLoading(true);
+  useEffect(() => {
+    (async (): Promise<void> => {
+      if (state.userStatus) {
+        setLoading(true);
 
-      // Get Gameplay Reports from the API
-      let response = await Fetch.GAMEPLAY_REPORTS();
-      console.log(response);
+        // Get Gameplay Reports from the API
+        let response = await Fetch.GAMEPLAY_REPORTS();
+        console.log(response);
 
-      // Set xAxis
-      let xAxis = [];
-      let today = new Date().toUTCString();
-      const todayMoment = moment.utc(new Date(today).toUTCString());
-      for (var i = 0; i < response.length; i++) {
-        xAxis.push(moment.utc(response[i].day).format('M/D'));
-      }
-      setStatsUSDX(xAxis);
+        // Set xAxis
+        let xAxis = [];
+        let today = new Date().toUTCString();
+        const todayMoment = moment.utc(new Date(today).toUTCString());
+        for (let i = 0; i < response.length; i++) {
+          xAxis.push(moment.utc(response[i].day).format('M/D'));
+        }
+        setStatsUSDX(xAxis);
 
-      // Set yAxis
-      let datasets = [
-        {
-          label: 'Gameplay',
-          data: [0, 0, 0, 0, 0, 0, 0],
-          backgroundColor: ['#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF'],
-          barThickness: 20,
-          borderWidth: 2,
-          borderRadius: 10,
-        },
-        {
-          label: 'Delegation',
-          data: [0, 0, 0, 0, 0, 0, 0],
-          backgroundColor: ['#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5'],
-          barThickness: 20,
-          borderWidth: 2,
-          borderRadius: 10,
-        },
-      ];
+        // Set yAxis
+        let datasets = [
+          {
+            label: 'Gameplay',
+            data: [0, 0, 0, 0, 0, 0, 0],
+            backgroundColor: ['#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF'],
+            barThickness: 20,
+            borderWidth: 2,
+            borderRadius: 10,
+          },
+          {
+            label: 'Delegation',
+            data: [0, 0, 0, 0, 0, 0, 0],
+            backgroundColor: ['#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5'],
+            barThickness: 20,
+            borderWidth: 2,
+            borderRadius: 10,
+          },
+        ];
 
-      var i, j, totalIceEarned = 0, totalXpEarned = 0, history = [];
-      for (i = response.length - 1; i >= 0; i--) {
-        var gamePlayIceEarned = 0, gamePlayXpEarned = 0, delegationIceEarned = 0, delegationXpEarned = 0;
-        const day = moment.utc(new Date(response[i].day));
-        const xAxisIndex = day.diff(todayMoment, 'days') + 7;
+        let i: number, j: number, totalIceEarned = 0, totalXpEarned = 0, history = [];
+        for (let i = response.length - 1; i >= 0; i--) {
+          let gamePlayIceEarned = 0, gamePlayXpEarned = 0, delegationIceEarned = 0, delegationXpEarned = 0;
+          const day = moment.utc(new Date(response[i].day));
+          const xAxisIndex = day.diff(todayMoment, 'days') + 7;
 
-        // get GamePlay
-        if (response[i].gameplay && Object.keys(response[i].gameplay).length !== 0) {
-          gamePlayIceEarned += response[i].gameplay.iceEarnedPlayer;
-          if (!response[i].gameplay.wearableSnapshot.delegatorAddress) {
-            gamePlayXpEarned = response[i].gameplay.xpEarned;
+          // get GamePlay
+          if (response[i].gameplay && Object.keys(response[i].gameplay).length !== 0) {
+            gamePlayIceEarned += response[i].gameplay.iceEarnedPlayer;
+            if (!response[i].gameplay.wearableSnapshot.delegatorAddress) {
+              gamePlayXpEarned = response[i].gameplay.xpEarned;
+            }
+          }
+          // get Delegation
+          for (j = 0; j < response[i].delegation.length; j++) {
+            delegationIceEarned += response[i].delegation[j].iceEarnedDelegator;
+            delegationXpEarned += response[i].delegation[j].xpEarned;
+          }
+          totalIceEarned += gamePlayIceEarned + delegationIceEarned;
+          totalXpEarned += gamePlayXpEarned + delegationXpEarned;
+
+          // set yAxis data
+          datasets[0].data[xAxisIndex] = gamePlayIceEarned;
+          datasets[1].data[xAxisIndex] = delegationIceEarned;
+
+          // add Gameplay history
+          if (gamePlayIceEarned !== 0 || gamePlayXpEarned !== 0) {
+            history.push({
+              date: moment.utc(response[i].day).format('MM/DD/YY'),
+              type: 'Gameplay',
+              iceEarned: gamePlayIceEarned,
+              xpEarned: gamePlayXpEarned,
+              records: Object.keys(response[i].gameplay).length !== 0 ? [].concat(response[i].gameplay) : []
+            })
+          }
+
+          // add Delegation history
+          if (delegationIceEarned !== 0 || delegationXpEarned !== 0) {
+            history.push({
+              date: moment.utc(response[i].day).format('MM/DD/YY'),
+              type: 'Delegation',
+              iceEarned: delegationIceEarned,
+              xpEarned: delegationXpEarned,
+              records: response[i].delegation
+            })
           }
         }
-        // get Delegation
-        for (j = 0; j < response[i].delegation.length; j++) {
-          delegationIceEarned += response[i].delegation[j].iceEarnedDelegator;
-          delegationXpEarned += response[i].delegation[j].xpEarned;
-        }
-        totalIceEarned += gamePlayIceEarned + delegationIceEarned;
-        totalXpEarned += gamePlayXpEarned + delegationXpEarned;
 
-        // set yAxis data
-        datasets[0].data[xAxisIndex] = gamePlayIceEarned;
-        datasets[1].data[xAxisIndex] = delegationIceEarned;
-
-        // add Gameplay history
-        if (gamePlayIceEarned !== 0 || gamePlayXpEarned !== 0) {
-          history.push({
-            date: moment.utc(response[i].day).format('MM/DD/YY'),
-            type: 'Gameplay',
-            iceEarned: gamePlayIceEarned,
-            xpEarned: gamePlayXpEarned,
-            records: Object.keys(response[i].gameplay).length !== 0 ? [].concat(response[i].gameplay) : []
-          })
-        }
-
-        // add Delegation history
-        if (delegationIceEarned !== 0 || delegationXpEarned !== 0) {
-          history.push({
-            date: moment.utc(response[i].day).format('MM/DD/YY'),
-            type: 'Delegation',
-            iceEarned: delegationIceEarned,
-            xpEarned: delegationXpEarned,
-            records: response[i].delegation
-          })
-        }
+        setIceEarned(totalIceEarned);
+        setXpEarned(totalXpEarned);
+        setStatsUSDY(datasets);
+        setHistory(history);
+        setLoading(false);
       }
-
-      setIceEarned(totalIceEarned);
-      setXpEarned(totalXpEarned);
-      setStatsUSDY(datasets);
-      setHistory(history);
-      setLoading(false);
-    }
+    })();
   }, [state.userStatus]);
-
   
   // helper functions
-  function formatPrice(balanceDG, units) {
+  function formatPrice(balanceDG, units): string {
     const balanceAdjusted = Number(balanceDG)
       .toFixed(units)
       .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
     return balanceAdjusted;
   }
-
   
   // get Remaining Time
-  function getRemainingTime() {
+  function getRemainingTime(): number {
     const today = new Date();
     const todayUTC = new Date(
       today.getUTCFullYear(),
@@ -184,7 +188,7 @@ const IceRewards = () => {
     return (tomorrowUTC.getTime() - todayUTC.getTime()) / 1000;
   }
 
-  async function claimTokens() {
+  async function claimTokens(): Promise<void> {
     console.log('Claiming ICE Rewards: ' + state.iceAmounts.ICE_CLAIM_AMOUNT);
     setClicked(true);
 
@@ -204,6 +208,7 @@ const IceRewards = () => {
           type: 'refresh_ice_amounts',
           data: refresh,
         });
+
         msg = 'ICE claimed successfully!';
         setTotalICE(0);
       } else {
@@ -219,7 +224,7 @@ const IceRewards = () => {
       setClicked(false);
     }
 
-    dispatch({
+    dispatch({ 
       type: 'show_toastMessage',
       data: msg,
     });
@@ -430,10 +435,10 @@ const IceRewards = () => {
                     </Table.Body>
                   </Table>
                 </>
-                :
-                <div style={{ marginTop: '50px' }}>
-                  <EmptyResultAnimation />
-                </div>
+              :
+              <div style={{ marginTop: '50px' }}>
+                <EmptyResultAnimation />
+              </div>
             }
           </div>
 

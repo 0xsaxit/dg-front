@@ -42,24 +42,24 @@ module.exports = {
       return ''; // Must return <string | string[] | Promise<string | string[]>
     }
     // return filenames.map((filename) => `eslint --cache --fix ${filename}`);
-  },
-  '*.{scss,css,sass}': filenames => {
-    // Auto format all .html files with Prettier
-
-    const hasFiles = filenames.length > 0;
-    if (hasFiles) {
-      const files = filenames.map(filename => `"${filename}"`).join(' ');
-
-      // This returns the command to run all the files as a single command, and it's very fast.
-      const command = `${envProd} stylelint --fix ${files}`;
-      console.log('Running command: ', command);
-
-      return [command, gitAdd + files];
-    } else {
-      return ''; // Must return <string | string[] | Promise<string | string[]>
-    }
-
-    // This returns the command to run each file as an individual command, but it very slow.
-    // return filenames.map((filename) => `${envProd} prettier --write -- ${filename}`);
   }
+  // ,'*.{scss,css,sass}': filenames => {
+  //   // Auto format all .html files with Prettier
+  //
+  //   const hasFiles = filenames.length > 0;
+  //   if (hasFiles) {
+  //     const files = filenames.map(filename => `"${filename}"`).join(' ');
+  //
+  //     // This returns the command to run all the files as a single command, and it's very fast.
+  //     const command = `${envProd} stylelint --fix ${files}`;
+  //     console.log('Running command: ', command);
+  //
+  //     return [command, gitAdd + files];
+  //   } else {
+  //     return ''; // Must return <string | string[] | Promise<string | string[]>
+  //   }
+  //
+  //   // This returns the command to run each file as an individual command, but it very slow.
+  //   // return filenames.map((filename) => `${envProd} prettier --write -- ${filename}`);
+  // }
 };
