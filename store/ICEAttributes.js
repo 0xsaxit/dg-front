@@ -185,7 +185,7 @@ function ICEAttributes() {
 
   // anytime user mints/updates/activates an NFT this code will execute
   useEffect(() => {
-    if (instances) {
+    if (instances && state.userStatus >= 4) {
       async function fetchData() {
         if (!state.iceWearableItems || state.iceWearableItems.length === 0) {
           dispatch({
@@ -219,11 +219,11 @@ function ICEAttributes() {
 
       fetchData();
     }
-  }, [instances, state.refreshWearable]);
+  }, [instances, state.refreshWearable, state.userStatus]);
 
   // anytime user undelegates an NFT this code will execute
   useEffect(() => {
-    if (instances) {
+    if (instances && state.userStatus >= 4) {
       (async function () {
         dispatch({
           type: 'ice_delegated_items_loading',
@@ -247,74 +247,88 @@ function ICEAttributes() {
         });
       })();
     }
-  }, [instances, state.refreshDelegation]);
+  }, [instances, state.refreshDelegation, state.userStatus]);
 
   // anytime user mints/upgrades/activates NFTs on /ice pages this code will execute
   useEffect(() => {
-    if (instances) {
+    if (instances && state.userStatus >= 4) {
       (async function () {
         // update global state wearables limit amounts for each collection
-        const itemLimits11 = await getItemLimits(10);
+        const [
+          itemLimits11,
+          itemLimits10,
+          itemLimits9,
+          itemLimits8,
+          itemLimits7,
+          itemLimits6,
+          itemLimits5,
+          itemLimits4,
+          itemLimits3,
+          itemLimits2,
+          itemLimits1
+        ] = await Promise.all([
+          getItemLimits(10),
+          getItemLimits(9),
+          getItemLimits(8),
+          getItemLimits(7),
+          getItemLimits(6),
+          getItemLimits(5),
+          getItemLimits(4),
+          getItemLimits(3),
+          getItemLimits(2),
+          getItemLimits(1),
+          getItemLimits(0)
+        ]);
         dispatch({
           type: 'item_limits_11',
           data: itemLimits11
         });
 
-        const itemLimits10 = await getItemLimits(9);
         dispatch({
           type: 'item_limits_10',
           data: itemLimits10
         });
 
-        const itemLimits9 = await getItemLimits(8);
         dispatch({
           type: 'item_limits_9',
           data: itemLimits9
         });
 
-        const itemLimits8 = await getItemLimits(7);
         dispatch({
           type: 'item_limits_8',
           data: itemLimits8
         });
 
-        const itemLimits7 = await getItemLimits(6);
         dispatch({
           type: 'item_limits_7',
           data: itemLimits7
         });
 
-        const itemLimits6 = await getItemLimits(5);
         dispatch({
           type: 'item_limits_6',
           data: itemLimits6
         });
 
-        const itemLimits5 = await getItemLimits(4);
         dispatch({
           type: 'item_limits_5',
           data: itemLimits5
         });
 
-        const itemLimits4 = await getItemLimits(3);
         dispatch({
           type: 'item_limits_4',
           data: itemLimits4
         });
 
-        const itemLimits3 = await getItemLimits(2);
         dispatch({
           type: 'item_limits_3',
           data: itemLimits3
         });
 
-        const itemLimits2 = await getItemLimits(1);
         dispatch({
           type: 'item_limits_2',
           data: itemLimits2
         });
 
-        const itemLimits1 = await getItemLimits(0);
         dispatch({
           type: 'item_limits_1',
           data: itemLimits1
@@ -342,11 +356,11 @@ function ICEAttributes() {
         console.log('Token status updates completed!');
       })();
     }
-  }, [instances, state.refreshTokenAmounts]);
+  }, [instances, state.refreshTokenAmounts, state.userStatus]);
 
   // anytime user claims ICE rewards this code will execute
   useEffect(() => {
-    if (instances) {
+    if (instances && state.userStatus >= 4) {
       (async function () {
         try {
           const iceAmounts = await getICEAmounts();
@@ -364,11 +378,11 @@ function ICEAttributes() {
         }
       })();
     }
-  }, [instances, state.refreshBalances, state.refreshICEAmounts]);
+  }, [instances, state.refreshBalances, state.refreshICEAmounts, state.userStatus]);
 
   // anytime user authorizes tokens on /ice pages this code will execute
   useEffect(() => {
-    if (instances) {
+    if (instances && state.userStatus >= 4) {
       (async function () {
         const tokenAuths = await getTokenAuthorizations();
 
@@ -384,11 +398,11 @@ function ICEAttributes() {
         console.log('Token authorizations updates completed!');
       })();
     }
-  }, [instances, state.refreshTokenAuths]);
+  }, [instances, state.refreshTokenAuths, state.userStatus]);
 
   // anytime user authorizes NFTs on /ice pages this code will execute
   useEffect(() => {
-    if (instances && state.iceWearableItems.length) {
+    if (instances && state.iceWearableItems.length && state.userStatus >= 4) {
       (async function () {
         let authArray = [];
 
@@ -412,7 +426,7 @@ function ICEAttributes() {
         });
       })();
     }
-  }, [instances, state.iceWearableItems, state.refreshNFTAuths]);
+  }, [instances, state.iceWearableItems, state.refreshNFTAuths, state.userStatus]);
 
   async function getItemLimits(index) {
     const collectionAddress = collectionArray[index][1];
