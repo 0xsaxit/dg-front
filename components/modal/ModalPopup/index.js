@@ -271,41 +271,17 @@ const ModalPopup = () => {
               </Button>
             </Link>
 
-            <span
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                marginTop: '12px',
-              }}
-            >
-              <Link href="/account">
-                <Button
-                  className={
-                    binance
-                      ? 'account-deposit-button binance'
-                      : 'account-deposit-button'
-                  }
-                >
-                  Deposit
-                </Button>
-              </Link>
-
-              <Link href="/account">
-                <Button className="account-withdraw-button">Withdraw</Button>
-              </Link>
-            </span>
-
             <Link href="/account">
               <p className="account-dropdown-item" style={{ marginTop: '8px' }}>
                 {' '}
                 My Account{' '}
               </p>
             </Link>
-            <Link href="/account/ice">
-              <p className="account-dropdown-item"> ICE Poker </p>
-            </Link>
             <Link href="/account/items">
               <p className="account-dropdown-item"> My Items </p>
+            </Link>
+            <Link href="/account/balances">
+              <p className="account-dropdown-item"> Balances </p>
             </Link>
             <Link href="/account/history">
               <p className="account-dropdown-item"> Gameplay History </p>
