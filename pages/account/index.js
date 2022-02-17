@@ -21,7 +21,7 @@ const Account = () => {
       />
 
       {state.userStatus ? (
-        <AccountData dataType={'balances'} />
+        <AccountData dataType="ice" />
       ) : (
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '200px' }}>
           <FoxAnimation />

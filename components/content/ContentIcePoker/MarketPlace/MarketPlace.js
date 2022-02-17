@@ -5,10 +5,10 @@ import ModalLoginICE from 'components/modal/ModalLoginICE';
 import Spinner from 'components/lottieAnimation/animations/spinner_updated';
 import { Button, Popup } from 'semantic-ui-react';
 import cn from 'classnames';
+import Slider from 'react-slick';
 import 'react-multi-carousel/lib/styles.css';
 import styles from './MarketPlace.module.scss';
 import Global from '../../../Constants';
-import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import CheckMintableModal from 'components/modal/CheckMintableModal';
@@ -707,7 +707,7 @@ const MarketPlace = () => {
                     <div className={styles.wear_box_purple}>
                       <div className={styles.fullDiv}>
                         <div className={styles.imgDiv}>
-                          <img className={styles.img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640051/p2e_enabled_wgqui5.svg" />
+                          <img className={styles.img} src="/images/ice_enabled.svg" />
                           <Popup
                             trigger={<img className={styles.tooltip} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg" />}
                             position="top left"
@@ -717,7 +717,7 @@ const MarketPlace = () => {
                             <Popup.Content className={styles.tooltipContent}>
                               <img className={styles.popup_info} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg" />
                               <p className={styles.popup_content}>
-                                P2E Enabled (aka Play-to-Earn)
+                                ICE Enabled
                                 <br /> wearables allow you to earn real
                                 <br /> cash value from free-to-play ICE
                                 <br /> poker tables.
