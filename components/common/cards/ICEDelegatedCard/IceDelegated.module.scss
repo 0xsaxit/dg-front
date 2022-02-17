@@ -11,16 +11,16 @@
 
   .title {
     font-size: 24px !important;
-    font-family: Larsseit-Extrabold;
-    color: white;
+    font-family: "Larsseit-Extrabold";
+    color: #ffffff;
     margin-bottom: 4px;
     text-align: left;
   }
 
   .meta {
     font-size: 16px;
-    font-family: Larsseit-Medium;
-    color: white;
+    font-family: "Larsseit-Medium";
+    color: #ffffff;
     opacity: 0.6;
     text-align: left;
   }
@@ -87,7 +87,7 @@
         box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
 
-        font-family: Larsseit-Regular;
+        font-family: "Larsseit-Regular";
         font-style: normal;
         font-size: 12px;
         font-weight: 700;
@@ -109,11 +109,11 @@
   }
 
   .card_meta {
-    font-family: Larsseit-Medium;
+    font-family: "Larsseit-Medium";
     font-style: normal;
-    font-size: 12px;
+    font-size: 18px;
     line-height: 16px;
-    color: #ffffff;
+    color: #ffb5b5;
     opacity: 0.6;
     margin-top: 14px;
   }
@@ -122,7 +122,7 @@
     margin-top: 15px;
 
     p {
-      font-family: Larsseit-Bold;
+      font-family: "Larsseit-Bold";
       font-style: normal;
       font-size: 24px;
       line-height: 28px;
@@ -137,11 +137,11 @@
 
     .upgrade_button {
       background-color: #006eff !important;
-      color: white !important;
+      color: #ffffff !important;
       height: 43px;
       border-radius: 10px !important;
       width: 100%;
-      font-family: Larsseit-Bold !important;
+      font-family: "Larsseit-Bold" !important;
       font-size: 14px !important;
       line-height: 22px !important;
     }
@@ -155,7 +155,7 @@
       background: #2a2a2a;
       border-radius: 10px;
 
-      font-family: Larsseit-Regular;
+      font-family: "Larsseit-Regular";
       font-size: 14px;
       line-height: 27px;
       text-align: center;

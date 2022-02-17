@@ -114,7 +114,7 @@ const ModalLoginBinance = () => {
 
       const jsonStatus = await Fetch.USER_STATUS(userAddress, '');
 
-      if (!jsonStatus.status) return false;
+      if (jsonStatus?.status == undefined || jsonStatus.status == -1 ) return false;
 
       return jsonStatus.status;
     } catch {

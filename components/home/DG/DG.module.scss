@@ -744,18 +744,23 @@
         justify-content: center;
         transform: scale(0.9);
         margin-top: 10px;
+        flex-direction: column;
 
         .earn_dg_button {
           height: 50px;
-          width: 200px;
+          width: 100%;
           font-size: 17px;
           line-height: 20px;
+          margin-left: 0;
+          margin-right: 0;
+          margin-bottom: 16px;
         }
         .play_button {
           height: 50px;
-          width: 170px;
+          width: 100%;
           font-size: 17px;
           line-height: 0px;
+          margin: 0;
         }
       }
     }
