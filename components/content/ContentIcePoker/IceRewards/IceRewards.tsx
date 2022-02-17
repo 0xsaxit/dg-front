@@ -11,46 +11,45 @@ import FoxAnimation from 'components/lottieAnimation/animations/fox';
 import EmptyResultAnimation from 'components/lottieAnimation/animations/emptyResult';
 import ModalIceBreakdown from 'components/modal/ModalIceBreakDown';
 import LoadingAnimation from 'components/lottieAnimation/animations/LoadingAnimation';
-import HourglassAnimation from 'components/lottieAnimation/animations/hourglass'
+import HourglassAnimation from 'components/lottieAnimation/animations/hourglass';
 
 export interface IceRewardsType {
   className?: string;
 }
 
-const IceRewards: FC<IceRewardsType> = ({ className = '' } : IceRewardsType): ReactElement => {
+const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): ReactElement => {
   // dispatch user's ICE amounts to the Context API store
   const [ state, dispatch ] = useContext<any>(GlobalContext);
 
   const isTablet = useMediaQuery('(min-width: 1200px)');
-  const isMobile = useMediaQuery('(min-width: 576px)');
 
   // define local variables
-  const [clicked, setClicked] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [payoutTime, setPayoutTime] = useState('--');
-  const [totalICE, setTotalICE] = useState(0);
-  const [statsUSDX, setStatsUSDX] = useState([]);
-  const [statsUSDY, setStatsUSDY] = useState([]);
+  const [totalIce, setTotalIce] = useState(0);
+  const [statsUsdx, setStatsUsdx] = useState([]);
+  const [statsUsdy, setStatsUsdy] = useState([]);
   const [iceEarned, setIceEarned] = useState(0);
   const [xpEarned, setXpEarned] = useState(0);
   const [iceRewardHistory, setHistory] = useState([]);
   const [showBreakDown, setShowingBreakDown] = useState(-1);
 
-  
   // after claiming rewards this code gets executed
   useEffect(() => {
-    setClicked(false);
+    setIsClicked(false);
   }, [state.iceAmounts]);
 
   useEffect(() => {
     (async (): Promise<void> => {
-      let json = await Fetch.ICE_AMOUNTS(state.userAddress);
-      setTotalICE(json.totalUnclaimedAmount);
+      const json = await Fetch.ICE_AMOUNTS(state.userAddress);
+
+      setTotalIce(json.totalUnclaimedAmount);
     })();
-  }, [totalICE]);
+  }, [totalIce]);
 
   useEffect(() => {
-    let id = setInterval(() => {
+    const id = setInterval(() => {
       let remainingTime = getRemainingTime() / 60;
 
       // Set Remain Time Text
@@ -61,48 +60,53 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' } : IceRewardsType): Re
         setPayoutTime(Math.floor(remainingTime) + 'min');
       }
     }, 1000);
+
     return () => clearInterval(id);
   });
 
   useEffect(() => {
     (async (): Promise<void> => {
       if (state.userStatus) {
-        setLoading(true);
+        setIsLoading(true);
 
         // Get Gameplay Reports from the API
-        let response = await Fetch.GAMEPLAY_REPORTS();
+        const response = await Fetch.GAMEPLAY_REPORTS();
+
         console.log(response);
 
         // Set xAxis
-        let xAxis = [];
-        let today = new Date().toUTCString();
+        const xAxis = [];
+        const today = new Date().toUTCString();
         const todayMoment = moment.utc(new Date(today).toUTCString());
+
         for (let i = 0; i < response.length; i++) {
           xAxis.push(moment.utc(response[i].day).format('M/D'));
         }
-        setStatsUSDX(xAxis);
+
+        setStatsUsdx(xAxis);
 
         // Set yAxis
-        let datasets = [
+        const datasets = [
           {
-            label: 'Gameplay',
-            data: [0, 0, 0, 0, 0, 0, 0],
+            label:           'Gameplay',
+            data:            [0, 0, 0, 0, 0, 0, 0],
             backgroundColor: ['#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF'],
-            barThickness: 20,
-            borderWidth: 2,
-            borderRadius: 10,
+            barThickness:    20,
+            borderWidth:     2,
+            borderRadius:    10,
           },
           {
-            label: 'Delegation',
-            data: [0, 0, 0, 0, 0, 0, 0],
+            label:           'Delegation',
+            data:            [0, 0, 0, 0, 0, 0, 0],
             backgroundColor: ['#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5'],
-            barThickness: 20,
-            borderWidth: 2,
-            borderRadius: 10,
+            barThickness:    20,
+            borderWidth:     2,
+            borderRadius:    10,
           },
         ];
 
         let i: number, j: number, totalIceEarned = 0, totalXpEarned = 0, history = [];
+
         for (let i = response.length - 1; i >= 0; i--) {
           let gamePlayIceEarned = 0, gamePlayXpEarned = 0, delegationIceEarned = 0, delegationXpEarned = 0;
           const day = moment.utc(new Date(response[i].day));
@@ -111,15 +115,18 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' } : IceRewardsType): Re
           // get GamePlay
           if (response[i].gameplay && Object.keys(response[i].gameplay).length !== 0) {
             gamePlayIceEarned += response[i].gameplay.iceEarnedPlayer;
+
             if (!response[i].gameplay.wearableSnapshot.delegatorAddress) {
               gamePlayXpEarned = response[i].gameplay.xpEarned;
             }
           }
+
           // get Delegation
           for (j = 0; j < response[i].delegation.length; j++) {
             delegationIceEarned += response[i].delegation[j].iceEarnedDelegator;
             delegationXpEarned += response[i].delegation[j].xpEarned;
           }
+
           totalIceEarned += gamePlayIceEarned + delegationIceEarned;
           totalXpEarned += gamePlayXpEarned + delegationXpEarned;
 
@@ -130,48 +137,48 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' } : IceRewardsType): Re
           // add Gameplay history
           if (gamePlayIceEarned !== 0 || gamePlayXpEarned !== 0) {
             history.push({
-              date: moment.utc(response[i].day).format('MM/DD/YY'),
-              type: 'Gameplay',
+              date:      moment.utc(response[i].day).format('MM/DD/YY'),
+              type:      'Gameplay',
               iceEarned: gamePlayIceEarned,
-              xpEarned: gamePlayXpEarned,
-              records: Object.keys(response[i].gameplay).length !== 0 ? [].concat(response[i].gameplay) : []
-            })
+              xpEarned:  gamePlayXpEarned,
+              records:   Object.keys(response[i].gameplay).length !== 0 ? [].concat(response[i].gameplay) : []
+            });
           }
 
           // add Delegation history
           if (delegationIceEarned !== 0 || delegationXpEarned !== 0) {
             history.push({
-              date: moment.utc(response[i].day).format('MM/DD/YY'),
-              type: 'Delegation',
+              date:      moment.utc(response[i].day).format('MM/DD/YY'),
+              type:      'Delegation',
               iceEarned: delegationIceEarned,
-              xpEarned: delegationXpEarned,
-              records: response[i].delegation
-            })
+              xpEarned:  delegationXpEarned,
+              records:   response[i].delegation
+            });
           }
         }
 
         setIceEarned(totalIceEarned);
         setXpEarned(totalXpEarned);
-        setStatsUSDY(datasets);
+        setStatsUsdy(datasets);
         setHistory(history);
-        setLoading(false);
+        setIsLoading(false);
       }
     })();
   }, [state.userStatus]);
-  
+
   // helper functions
-  function formatPrice(balanceDG, units): string {
-    const balanceAdjusted = Number(balanceDG)
+  function formatPrice(balanceDg, units): string {
+    const balanceAdjusted = Number(balanceDg)
       .toFixed(units)
       .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
     return balanceAdjusted;
   }
-  
+
   // get Remaining Time
   function getRemainingTime(): number {
     const today = new Date();
-    const todayUTC = new Date(
+    const todayUtc = new Date(
       today.getUTCFullYear(),
       today.getUTCMonth(),
       today.getUTCDate(),
@@ -179,18 +186,19 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' } : IceRewardsType): Re
       today.getUTCMinutes(),
       today.getUTCSeconds()
     );
-    const tomorrowUTC = new Date(todayUTC.getTime());
-    tomorrowUTC.setDate(tomorrowUTC.getDate() + 1);
-    tomorrowUTC.setHours(0);
-    tomorrowUTC.setMinutes(0);
-    tomorrowUTC.setSeconds(0);
+    const tomorrowUtc = new Date(todayUtc.getTime());
 
-    return (tomorrowUTC.getTime() - todayUTC.getTime()) / 1000;
+    tomorrowUtc.setDate(tomorrowUtc.getDate() + 1);
+    tomorrowUtc.setHours(0);
+    tomorrowUtc.setMinutes(0);
+    tomorrowUtc.setSeconds(0);
+
+    return (tomorrowUtc.getTime() - todayUtc.getTime()) / 1000;
   }
 
   async function claimTokens(): Promise<void> {
     console.log('Claiming ICE Rewards: ' + state.iceAmounts.ICE_CLAIM_AMOUNT);
-    setClicked(true);
+    setIsClicked(true);
 
     let msg = '';
 
@@ -202,29 +210,29 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' } : IceRewardsType): Re
         console.log('Claim ICE transaction hash: ' + json.txHash);
 
         // update global state ice amounts
-        const refresh = !state.refreshICEAmounts;
+        const doesRefresh = !state.refreshICEAmounts;
 
         dispatch({
           type: 'refresh_ice_amounts',
-          data: refresh,
+          data: doesRefresh,
         });
 
         msg = 'ICE claimed successfully!';
-        setTotalICE(0);
+        setTotalIce(0);
       } else {
         console.log('Claim ICE rewards request error: ' + json.reason);
         msg = 'ICE claimed failed!';
 
-        setClicked(false);
+        setIsClicked(false);
       }
     } catch (error) {
       console.log(error); // API request timeout error
       msg = 'ICE claimed failed!';
 
-      setClicked(false);
+      setIsClicked(false);
     }
 
-    dispatch({ 
+    dispatch({
       type: 'show_toastMessage',
       data: msg,
     });
@@ -255,24 +263,24 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' } : IceRewardsType): Re
 
                 <div>
                   <div className={styles.lower_value}>
-                    <p className={styles.ICE_value}>{totalICE}</p>
+                    <p className={styles.ICE_value}>{totalIce}</p>
                     <img
                       style={{ marginTop: '-4px' }}
                       src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
                     />
                   </div>
                   <p className={styles.price}>
-                    ${formatPrice(totalICE * state.DGPrices.ice, 2)}
+                    ${formatPrice(totalIce * state.DGPrices.ice, 2)}
                   </p>
                 </div>
 
                 <Button
                   className={cn(styles.claim_ICE, styles.lower_button)}
                   onClick={() => claimTokens()}
-                  disabled={clicked}
+                  disabled={isClicked}
                 >
-                  {!clicked ? (
-                    <>Claim {formatPrice(totalICE, 0)} ICE</>
+                  {!isClicked ? (
+                    <>Claim {formatPrice(totalIce, 0)} ICE</>
                   ) : (
                     <LoadingAnimation />
                   )}
@@ -285,7 +293,7 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' } : IceRewardsType): Re
                 <h1>ICE Earned (past 7 Days - UTC)</h1>
               </div>
               <div className={styles.graph}>
-                {loading ?
+                {isLoading ?
                   <div style={{ marginTop: '50px' }}>
                     <HourglassAnimation />
                   </div>
@@ -294,15 +302,15 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' } : IceRewardsType): Re
                     <Bar
                       height={180}
                       data={{
-                        labels: statsUSDX,
-                        datasets: statsUSDY,
+                        labels:   statsUsdx,
+                        datasets: statsUsdy,
                       }}
                       options={{
                         maintainAspectRatio: false,
-                        cornerRadius: 10,
-                        title: { display: false },
-                        legend: { display: false },
-                        scales: {
+                        cornerRadius:        10,
+                        title:               { display: false },
+                        legend:              { display: false },
+                        scales:              {
                           xAxes: [
                             {
                               stacked: true,
@@ -311,11 +319,11 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' } : IceRewardsType): Re
                           yAxes: [
                             {
                               stacked: true,
-                              ticks: {
-                                autoSkip: true,
+                              ticks:   {
+                                autoSkip:        true,
                                 autoSkipPadding: 25,
-                                maxRotation: 0,
-                                minRotation: 0,
+                                maxRotation:     0,
+                                minRotation:     0,
                               },
                             },
                           ],
@@ -356,7 +364,7 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' } : IceRewardsType): Re
             <div className={styles.title}>
               <h1>ICE Reward History</h1>
             </div>
-            {loading ?
+            {isLoading ?
               <Table fixed unstackable style={{ marginBottom: '0px' }}>
                 <Table.Header>
                   <Table.Row>
@@ -395,11 +403,9 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' } : IceRewardsType): Re
                     <Table.Body>
                       {iceRewardHistory.map((row, i) => {
                         let style = '';
-                        {
-                          i % 2 === 0
-                            ? (style = 'rgba(255, 255, 255, 0.08)')
-                            : (style = 'black');
-                        }
+
+                        { i % 2 === 0 ? (style = 'rgba(255, 255, 255, 0.08)') : (style = 'black'); }
+
                         return (
                           <Table.Row key={i} style={{ background: style }}>
                             {isTablet && (
@@ -435,10 +441,10 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' } : IceRewardsType): Re
                     </Table.Body>
                   </Table>
                 </>
-              :
-              <div style={{ marginTop: '50px' }}>
-                <EmptyResultAnimation />
-              </div>
+                :
+                <div style={{ marginTop: '50px' }}>
+                  <EmptyResultAnimation />
+                </div>
             }
           </div>
 

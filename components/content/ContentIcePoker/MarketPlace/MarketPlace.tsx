@@ -13,19 +13,24 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import CheckMintableModal from 'components/modal/CheckMintableModal';
 
+export interface ButtonProps {
+  className?: string;
+  onClick(): void;
+}
+
 export interface MarketPlaceType {
   className?: string;
 }
 
 const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): ReactElement => {
   // dispatch new user status to Context API store
-  const [state, dispatch] = useContext(GlobalContext);
+  const [state] = useContext(GlobalContext);
 
   // define local variables
   const [previewLevel, setPreviewLevel] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
   const wearables = [
     {
-      title: 'ICE Poet',
+      title:   'ICE Poet',
       address: Global.ADDRESSES.COLLECTION_POET_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1644863904/ICE%20Poet%20Fit/Fit_1_bzdlbm.png',
@@ -73,7 +78,7 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
       }
     },
     {
-      title: 'ICE Airlines',
+      title:   'ICE Airlines',
       address: Global.ADDRESSES.COLLECTION_AIRLINE_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1643990279/ICE%20Airline/Male_1_y5pwpl.png',
@@ -106,7 +111,7 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
         ],
         PilotPants: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1643943935/ICE%20Airline/lowerbody_m_1_jmsfwd.png',
-          "Pilot Pants",
+          'Pilot Pants',
           'ICE Airlines',
           'Legs',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1643943935/ICE%20Airline/lowerbody_m_1_jmsfwd.png'
@@ -121,7 +126,7 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
       }
     },
     {
-      title: 'ICE Beach Club',
+      title:   'ICE Beach Club',
       address: Global.ADDRESSES.COLLECTION_BEACH_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159133/Male_1_nbm1oh.png',
@@ -169,7 +174,7 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
       }
     },
     {
-      title: 'ICE Chef',
+      title:   'ICE Chef',
       address: Global.ADDRESSES.COLLECTION_CHEF_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686037/Fit1_ehvzqa.png',
@@ -195,14 +200,14 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
         ],
         ChefTop: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/upperbody_m_1_llgrz7.png',
-          "Chef's Top",
+          'Chef\'s Top',
           'ICE Chef',
           'Torso',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/upperbody_m_1_llgrz7.png'
         ],
         ChefApron: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686095/lowerbody_m_1_u7mlil.png',
-          "Chef's Apron",
+          'Chef\'s Apron',
           'ICE Chef',
           'Legs',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686095/lowerbody_m_1_u7mlil.png'
@@ -217,7 +222,7 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
       }
     },
     {
-      title: 'ICE Joker',
+      title:   'ICE Joker',
       address: Global.ADDRESSES.COLLECTION_JOKER_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569807/Fit_1_zw1bwd.png',
@@ -236,7 +241,7 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
         ],
         JokerCap: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/hat1_qpw84y.jpg',
-          `Cap'N'Bells`,
+          'Cap\'N\'Bells',
           'ICE Joker',
           'Head',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/hat1_qpw84y.jpg'
@@ -265,7 +270,7 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
       }
     },
     {
-      title: 'Founding Fathers',
+      title:   'Founding Fathers',
       address: Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_1_fvhl6y.png',
@@ -313,7 +318,7 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
       }
     },
     {
-      title: 'Crypto Drip',
+      title:   'Crypto Drip',
       address: Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984404/CryptoDrip_Level_1_nbpz6x.png',
@@ -361,7 +366,7 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
       }
     },
     {
-      title: 'Bomber',
+      title:   'Bomber',
       address: Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1637107740/Bomber%20Fit/Bomber_1_aqjlun.png',
@@ -409,7 +414,7 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
       }
     },
     {
-      title: 'Linen',
+      title:   'Linen',
       address: Global.ADDRESSES.COLLECTION_LINENS_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1637088369/Linens_1_hqogna.png',
@@ -457,7 +462,7 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
       }
     },
     {
-      title: 'Party Host',
+      title:   'Party Host',
       address: Global.ADDRESSES.COLLECTION_PH_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1636054316/Level_1_Hugh_mwzapj.png',
@@ -505,7 +510,7 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
       }
     },
     {
-      title: 'DG Suit',
+      title:   'DG Suit',
       address: Global.ADDRESSES.COLLECTION_V2_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_1_h5zizs.png',
@@ -555,26 +560,27 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
   ];
 
   // helper functions
-  function updatePreviewLevel(previewIndex, activeId) {
-    let levels = previewLevel;
+  function updatePreviewLevel(previewIndex, activeId): void {
+    const levels = previewLevel;
+
     levels[previewIndex] = activeId;
 
     setPreviewLevel([].concat(levels));
   }
 
-  function useWindowSize() {
+  function useWindowSize(): { width: any; height: any } {
     // Initialize state with undefined width/height so server and client renders match
     // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
     const [windowSize, setWindowSize] = useState({
-      width: undefined,
+      width:  undefined,
       height: undefined
     });
 
     // Handler to call on window resize
-    function handleResize() {
+    function handleResize(): void {
       // Set window width/height to state
       setWindowSize({
-        width: window.innerWidth,
+        width:  window.innerWidth,
         height: window.innerHeight
       });
     }
@@ -582,7 +588,6 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
     useEffect(() => {
       // only execute all the code below in client side
       if (typeof window !== 'undefined') {
-
         // Add event listener
         window.addEventListener('resize', handleResize);
 
@@ -593,11 +598,13 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
         return () => window.removeEventListener('resize', handleResize);
       }
     }, []); // Empty array ensures that effect is only run on mount
+
     return windowSize;
   }
 
-  function CarouselNextArrow(props) {
+  function CarouselNextArrow(props: ButtonProps): ReactElement {
     const { className, onClick } = props;
+
     return (
       <div className={className} onClick={onClick}>
         <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1638236358/Right_Chevron_3x_cxt9x8.png" alt="nextArrow" />
@@ -605,8 +612,9 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
     );
   }
 
-  function CarouselPrevArrow(props) {
+  function CarouselPrevArrow(props: ButtonProps): ReactElement {
     const { className, onClick } = props;
+
     return (
       <div className={className} onClick={onClick}>
         <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1638236358/Right_Chevron_3x_cxt9x8.png" alt="nextArrow" />
@@ -614,39 +622,34 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
     );
   }
 
-  function getCarousel() {
+  function getCarousel(props: ButtonProps): ReactElement {
     const size = useWindowSize();
     const settings = {
-      className: 'slider variable-width',
-      dots: false,
-      infinite: false,
-      swipeToSlide: true,
+      className:     'slider variable-width',
+      dots:          false,
+      infinite:      false,
+      swipeToSlide:  true,
       variableWidth: true,
-      slidesToShow: size.width <= 499 ? 1 : size.width <= 1040 ? Math.floor((size.width - 120) / 300) : Math.min(Math.floor((size.width - 300) / 300), 6),
-      nextArrow: <CarouselNextArrow />,
-      prevArrow: <CarouselPrevArrow />
+      slidesToShow:  size.width <= 499 ? 1 : size.width <= 1040 ? Math.floor((size.width - 120) / 300) : Math.min(Math.floor((size.width - 300) / 300), 6),
+      nextArrow:     <CarouselNextArrow onClick = {() => props.onClick && props.onClick()} />,
+      prevArrow:     <CarouselPrevArrow onClick = {() => props.onClick && props.onClick()} />
     };
 
-    const checkSoldOutStatus = (itemList, maxMint) => {
-      return itemList.some(item => item[0] - maxMint != 0);
-    };
+    const checkSoldOutStatus = (itemList, maxMint): ReactElement => itemList.some(item => item[0] - maxMint !== 0);
 
-    const buyOnSecondaryButton = () => {
-      return <Button className={styles.wearable_button}>Buy on Secondary</Button>;
-    };
+    const buyOnSecondaryButton = (): ReactElement => <Button className={styles.wearable_button}>Buy on Secondary</Button>;
 
-    const soldOutButton = () => {
-      return (
-        <Button disabled className={styles.sold_button}>
+    const soldOutButton = (): ReactElement => (
+      <Button disabled className={styles.sold_button}>
           Sold Out
-        </Button>
-      );
-    };
+      </Button>
+    );
 
     return (
       <section>
         {wearables.map((wearable, index) => {
           let itemLimits;
+
           if (index === 0) {
             itemLimits = state.itemLimits11;
           } else if (index === 1) {
@@ -672,6 +675,7 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
           }
 
           let maxMintCounts = 0;
+
           if (state.appConfig && state.appConfig.maxMintCounts) {
             Object.keys(state.appConfig.maxMintCounts).map(address => {
               if (address === wearable?.address?.toLowerCase()) {
@@ -756,6 +760,7 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
                         // Logged In States
                         if (state.userLoggedIn) {
                           console.log('state.userLoggedIn', state.userLoggedIn);
+
                           if (state.userStatus >= 4 && itemLimits[i][0] < 0) {
                             // Items still loading, display spinner
                             return (
@@ -782,6 +787,7 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
                                 />
                               </div>
                             );
+
                             // Minting Disabled States
                           } else if (maxMintCounts !== 0 && maxMintCounts - itemLimits[i][0] >= 0 && maxMintCounts - itemLimits[i][0] < 1) {
                             return (
@@ -791,9 +797,10 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
                                 target="_blank"
                                 style={{
                                   width: '100%'
-                                }}
+                                }} rel="noreferrer"
                               >
                                 {
+
                                   // Show "Buy on Secondary" if all items in series are sold out, otherwise show "Sold Out" button
                                   checkSoldOutStatus(itemLimits.slice(0, -1), maxMintCounts) ? soldOutButton() : buyOnSecondaryButton()
                                 }
@@ -853,13 +860,13 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
 
           <p className={styles.marketplace_p}>
             ICE Wearables give you table access to free to play, play-to-earn poker. Learn more by{' '}
-            <a href="https://ice.decentral.games/" target="_blank">
+            <a href="https://ice.decentral.games/" target="_blank" rel="noreferrer">
               clicking here.
             </a>
           </p>
         </div>
 
-        <div className={styles.outter_games_container}>{getCarousel()}</div>
+        <div className={styles.outter_games_container}>{getCarousel(null)}</div>
         {/* {openCheckEligibility && <CheckMintableModal />} */}
       </span>
     </div>
