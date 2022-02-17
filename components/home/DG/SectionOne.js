@@ -79,10 +79,11 @@ function SectionOne(props) {
                 color="blue"
                 className={styles.play_button}
                 onClick={() => setShowingGamePlay(true)}
+                disabled={mobile}
                 // href="https://play.decentraland.org/?position=-118%2C135&realm=dg"
                 target="_blank"
               >
-                Play Now
+                Play Now {mobile ? '(Desktop Only)': ''}
               </Button>
             </span>
           </div>

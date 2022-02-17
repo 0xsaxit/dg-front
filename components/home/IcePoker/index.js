@@ -1,15 +1,13 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useMediaQuery } from 'hooks';
-
-import Home from '../../content/ContentIcePoker/Home';
-import GetStarted from '../../content/ContentIcePoker/GetStarted';
+import Home from '../../content/ContentIcePoker/Home/Home';
+import GetStarted from '../../content/ContentIcePoker/GetStarted/GetStarted';
 import MarketPlace from '../../content/ContentIcePoker/MarketPlace/MarketPlace';
-import Leaderboard from '../../content/ContentIcePoker/Leaderboard';
-import IceRewards from '../../content/ContentIcePoker/IceRewards';
+import Leaderboard from '../../content/ContentIcePoker/Leaderboard/Leaderboard';
+import IceRewards from '../../content/ContentIcePoker/IceRewards/IceRewards';
 import DelegationDashboard from '../../content/ContentIcePoker/Delegation/DelegationDashboard';
-import MyAccount from '../../content/ContentIcePoker/MyAccount';
-
+import MyAccount from '../../content/ContentIcePoker/MyAccount/MyAccount';
 import styles from './IcePoker.module.scss';
 
 const IcePoker = props => {
@@ -142,7 +140,7 @@ const IcePoker = props => {
                   </div>
                 </Link>
 
-                <Link href="/account/ice">
+                <Link href="/account">
                   <div className={styles.menu_item} style={{ marginTop: '2px' }}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
@@ -295,7 +293,7 @@ const IcePoker = props => {
                   </div>
                 </Link>
 
-                <Link href="/account/ice">
+                <Link href="/account">
                   <div className={iceState === 'account' ? styles.menu_item_active : styles.menu_item}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path

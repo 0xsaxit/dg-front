@@ -41,10 +41,13 @@ function NFTSPOAPS() {
 
         let poaps = [];
         let k;
-        for (k = 0; k < json_1.length; k++) {
-          if (json_1[k].event.name.includes('Decentral Games')
-            || json_1[k].event.name.includes('BAYC')) {
-            poaps.push(json_1[k].event);
+
+        if (json_1) {
+          for (k = 0; k < json_1.length; k++) {
+            if (json_1[k].event.name.includes('Decentral Games')
+              || json_1[k].event.name.includes('BAYC')) {
+              poaps.push(json_1[k].event);
+            }
           }
         }
 
