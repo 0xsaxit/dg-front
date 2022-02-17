@@ -10,14 +10,16 @@ export interface HomeType {
 const Home: FC<HomeType> = ({ className = '' }: HomeType): ReactElement => {
   return (
     <div className={styles.main_wrapper}>
-      <video
-        src="https://res.cloudinary.com/dnzambf4m/video/upload/q_auto:best/v1634761194/Web_Landing_2_1_gqgruf.webm"
+      <video 
+        autoPlay 
+        muted 
         className={styles.home_video}
-        type="video/mp4"
-        frameBorder="0"
-        autoPlay={true}
-        muted
-      ></video>
+       >
+        <source
+          src="https://res.cloudinary.com/dnzambf4m/video/upload/q_auto:best/v1634761194/Web_Landing_2_1_gqgruf.webm"
+          type="video/mp4"
+        />
+      </video>
 
       <div className={styles.lower_section}>
         <div className={styles.button_section}>
@@ -36,8 +38,6 @@ const Home: FC<HomeType> = ({ className = '' }: HomeType): ReactElement => {
         <a href="https://ice.decentral.games" target="_blank">
           <p
             className={styles.wp_text}
-            href="https://ice.decentral.games"
-            target="_blank"
           >
             Read Whitepaper
             <svg
