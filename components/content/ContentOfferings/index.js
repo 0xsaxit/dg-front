@@ -305,7 +305,7 @@ const ContentOfferings = props => {
                     <div className={styles.imgDiv}>
                       <img
                         className={styles.img}
-                        src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631640051/p2e_enabled_wgqui5.svg"
+                        src="/images/ice_enabled.svg"
                       />
                       <Popup
                         trigger={
@@ -324,7 +324,7 @@ const ContentOfferings = props => {
                             src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631640045/ICE_Info_bbiag6.svg"
                           />
                           <p className={styles.popup_content}>
-                            P2E Enabled (aka Play-to-Earn)
+                            ICE Enabled
                             <br /> wearables allow you to earn real
                             <br /> cash value from free-to-play ICE
                             <br /> poker tables.

@@ -199,14 +199,6 @@ const AccountData = props => {
         <div className={cn('account-other-tabs', styles.account_other_tabs)} id="account-mobile-tabs" style={{ marginTop: '0px' }}>
           <div className="ml-0">
             <span className="account-other-p d-flex justify-content-center">
-              {dataType === 'balances' ? (
-                <span className={cn('account-hover', 'active', styles.account_hover)}>Balances</span>
-              ) : (
-                <Link href="/account">
-                  <span className={cn('account-hover', styles.account_hover)}>Balances</span>
-                </Link>
-              )}
-
               {dataType === 'ice' ? (
                 <span className={cn('account-hover', 'active', styles.account_hover)}>&nbsp;&nbsp;ICE&nbsp;&nbsp;</span>
               ) : state.dgLoading ? (
@@ -222,7 +214,7 @@ const AccountData = props => {
                   &nbsp;&nbsp;ICE&nbsp;&nbsp;
                 </span>
               ) : (
-                <Link href="/account/ice">
+                <Link href="/account">
                   <span className={cn('account-hover', styles.account_hover)}>&nbsp;&nbsp;ICE&nbsp;&nbsp;</span>
                 </Link>
               )}
@@ -244,6 +236,14 @@ const AccountData = props => {
               ) : (
                 <Link href="/account/items">
                   <span className={cn('account-hover', styles.account_hover)}>My Items</span>
+                </Link>
+              )}
+
+              {dataType === 'balances' ? (
+                <span className={cn('account-hover', 'active', styles.account_hover)}>Balances</span>
+              ) : (
+                <Link href="/account/balances">
+                  <span className={cn('account-hover', styles.account_hover)}>Balances</span>
                 </Link>
               )}
 
