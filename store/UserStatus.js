@@ -95,7 +95,7 @@ function UserStatus() {
       const jsonStatus = await Fetch.USER_STATUS(userAddress, '');
       await upateVerified(jsonStatus.status);
 
-      if (!jsonStatus.status) return false;
+      if (jsonStatus?.status == undefined || jsonStatus.status == -1 ) return false;
 
       return jsonStatus.status;
     } catch (e) {
