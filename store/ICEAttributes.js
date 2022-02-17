@@ -223,7 +223,7 @@ function ICEAttributes() {
 
   // anytime user undelegates an NFT this code will execute
   useEffect(() => {
-    if (instances) {
+    if (instances && state.userStatus >= 4) {
       (async function () {
         dispatch({
           type: 'ice_delegated_items_loading',
@@ -247,7 +247,7 @@ function ICEAttributes() {
         });
       })();
     }
-  }, [instances, state.refreshDelegation]);
+  }, [instances, state.refreshDelegation, state.userStatus]);
 
   // anytime user mints/upgrades/activates NFTs on /ice pages this code will execute
   useEffect(() => {
@@ -360,7 +360,7 @@ function ICEAttributes() {
 
   // anytime user claims ICE rewards this code will execute
   useEffect(() => {
-    if (instances) {
+    if (instances && state.userStatus >= 4) {
       (async function () {
         try {
           const iceAmounts = await getICEAmounts();
@@ -378,11 +378,11 @@ function ICEAttributes() {
         }
       })();
     }
-  }, [instances, state.refreshBalances, state.refreshICEAmounts]);
+  }, [instances, state.refreshBalances, state.refreshICEAmounts, state.userStatus]);
 
   // anytime user authorizes tokens on /ice pages this code will execute
   useEffect(() => {
-    if (instances) {
+    if (instances && state.userStatus >= 4) {
       (async function () {
         const tokenAuths = await getTokenAuthorizations();
 
@@ -398,11 +398,11 @@ function ICEAttributes() {
         console.log('Token authorizations updates completed!');
       })();
     }
-  }, [instances, state.refreshTokenAuths]);
+  }, [instances, state.refreshTokenAuths, state.userStatus]);
 
   // anytime user authorizes NFTs on /ice pages this code will execute
   useEffect(() => {
-    if (instances && state.iceWearableItems.length) {
+    if (instances && state.iceWearableItems.length && state.userStatus >= 4) {
       (async function () {
         let authArray = [];
 
@@ -426,7 +426,7 @@ function ICEAttributes() {
         });
       })();
     }
-  }, [instances, state.iceWearableItems, state.refreshNFTAuths]);
+  }, [instances, state.iceWearableItems, state.refreshNFTAuths, state.userStatus]);
 
   async function getItemLimits(index) {
     const collectionAddress = collectionArray[index][1];
