@@ -5,19 +5,19 @@ import ModalLoginICE from 'components/modal/ModalLoginICE';
 import Spinner from 'components/lottieAnimation/animations/spinner_updated';
 import { Button, Popup } from 'semantic-ui-react';
 import cn from 'classnames';
+import Slider from 'react-slick';
 import 'react-multi-carousel/lib/styles.css';
 import styles from './MarketPlace.module.scss';
 import Global from '../../../Constants';
-import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import CheckMintableModal from 'components/modal/CheckMintableModal';
 
-export interface MarketplaceType {
+export interface MarketPlaceType {
   className?: string;
 }
 
-const MarketPlace: FC<MarketplaceType> = ({ className = '' } : MarketplaceType): ReactElement => {
+const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): ReactElement => {
   // dispatch new user status to Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -555,14 +555,14 @@ const MarketPlace: FC<MarketplaceType> = ({ className = '' } : MarketplaceType):
   ];
 
   // helper functions
-  function updatePreviewLevel(previewIndex, activeId): void {
+  function updatePreviewLevel(previewIndex, activeId) {
     let levels = previewLevel;
     levels[previewIndex] = activeId;
 
     setPreviewLevel([].concat(levels));
   }
 
-  function useWindowSize(): { width: any; height: any; } {
+  function useWindowSize() {
     // Initialize state with undefined width/height so server and client renders match
     // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
     const [windowSize, setWindowSize] = useState({
@@ -571,7 +571,7 @@ const MarketPlace: FC<MarketplaceType> = ({ className = '' } : MarketplaceType):
     });
 
     // Handler to call on window resize
-    function handleResize(): void {
+    function handleResize() {
       // Set window width/height to state
       setWindowSize({
         width: window.innerWidth,
@@ -582,6 +582,7 @@ const MarketPlace: FC<MarketplaceType> = ({ className = '' } : MarketplaceType):
     useEffect(() => {
       // only execute all the code below in client side
       if (typeof window !== 'undefined') {
+
         // Add event listener
         window.addEventListener('resize', handleResize);
 
@@ -595,7 +596,7 @@ const MarketPlace: FC<MarketplaceType> = ({ className = '' } : MarketplaceType):
     return windowSize;
   }
 
-  function CarouselNextArrow(props): ReactElement {
+  function CarouselNextArrow(props) {
     const { className, onClick } = props;
     return (
       <div className={className} onClick={onClick}>
@@ -604,7 +605,7 @@ const MarketPlace: FC<MarketplaceType> = ({ className = '' } : MarketplaceType):
     );
   }
 
-  function CarouselPrevArrow(props): ReactElement {
+  function CarouselPrevArrow(props) {
     const { className, onClick } = props;
     return (
       <div className={className} onClick={onClick}>
@@ -613,7 +614,7 @@ const MarketPlace: FC<MarketplaceType> = ({ className = '' } : MarketplaceType):
     );
   }
 
-  function getCarousel(): ReactElement {
+  function getCarousel() {
     const size = useWindowSize();
     const settings = {
       className: 'slider variable-width',
@@ -711,7 +712,7 @@ const MarketPlace: FC<MarketplaceType> = ({ className = '' } : MarketplaceType):
                     <div className={styles.wear_box_purple}>
                       <div className={styles.fullDiv}>
                         <div className={styles.imgDiv}>
-                          <img className={styles.img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640051/p2e_enabled_wgqui5.svg" />
+                          <img className={styles.img} src="/images/ice_enabled.svg" />
                           <Popup
                             trigger={<img className={styles.tooltip} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg" />}
                             position="top left"
@@ -721,7 +722,7 @@ const MarketPlace: FC<MarketplaceType> = ({ className = '' } : MarketplaceType):
                             <Popup.Content className={styles.tooltipContent}>
                               <img className={styles.popup_info} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg" />
                               <p className={styles.popup_content}>
-                                P2E Enabled (aka Play-to-Earn)
+                                ICE Enabled
                                 <br /> wearables allow you to earn real
                                 <br /> cash value from free-to-play ICE
                                 <br /> poker tables.
