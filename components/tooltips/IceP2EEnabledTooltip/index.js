@@ -17,7 +17,7 @@ const IceP2EEnabledTooltip = () => {
         >
           <Popup.Content className={styles.tooltipContent}>
             <img className={styles.popup_info} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631640045/ICE_Info_bbiag6.svg" />
-            <p className={styles.popup_content}>ICE Enabled<br/> wearables allow you to earn real<br/> cash value from free-to-play ICE<br/> poker tables.</p>
+            <p className={styles.popup_content}>ICE enabled wearables allow <br/> you to earn realcash value from <br/> free-to-play ICE poker tables.</p>
           </Popup.Content>
         </Popup>
       </div>
