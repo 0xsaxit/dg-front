@@ -16,7 +16,7 @@ enum TimePeriods {
 }
 
 export interface GamePlayType {
-  chipsEarned: number;
+  chipsWon: number;
   leaderboardPercentile: number;
   checkedIn: number;
   numChallengesCompleted: number;
@@ -34,7 +34,7 @@ const IceSearchTool: FC<IceSearchToolType> = ({ className = '' }: IceSearchToolT
   const [time, setTime] = useState(TimePeriods.Weekly);
   const [isLoading, setIsLoading] = useState(false);
   const [gameReports, setGameReports] = useState([]);
-  const [gamePlay, setGamePlay] = useState({ chipsEarned: 0, leaderboardPercentile: 0, checkedIn: 0, numChallengesCompleted: 0 });
+  const [gamePlay, setGamePlay] = useState({ chipsWon: 0, leaderboardPercentile: 0, checkedIn: 0, numChallengesCompleted: 0 });
   const [searchAddress, updateSearchAddress] = useState('');
   const [searchBoxValue, updateSearchBoxValue] = useState('');
   const [isShowingHistory, setShowingHistory] = useState(false);
@@ -45,7 +45,7 @@ const IceSearchTool: FC<IceSearchToolType> = ({ className = '' }: IceSearchToolT
         setIsLoading(false);
         updateSearchAddress('');
         setGameReports([]);
-        setGamePlay({ chipsEarned: 0, leaderboardPercentile: 0, checkedIn: 0, numChallengesCompleted: 0 });
+        setGamePlay({ chipsWon: 0, leaderboardPercentile: 0, checkedIn: 0, numChallengesCompleted: 0 });
       } else {
         setIsLoading(true);
         updateSearchAddress(searchBoxValue);
@@ -54,7 +54,7 @@ const IceSearchTool: FC<IceSearchToolType> = ({ className = '' }: IceSearchToolT
         const response = await Fetch.GAMEPLAY_REPORTS(searchBoxValue, time);
 
         const gamePlay = {
-          chipsEarned:            0,
+          chipsWon:               0,
           leaderboardPercentile:  0,
           checkedIn:              0,
           numChallengesCompleted: 0
@@ -62,7 +62,7 @@ const IceSearchTool: FC<IceSearchToolType> = ({ className = '' }: IceSearchToolT
 
         for (let i = 0; i < response.length; i++) {
           if (response[i] && Object.keys(response[i].gameplay).length > 0 && Object.getPrototypeOf(response[i]) === Object.prototype) {
-            gamePlay.chipsEarned += response[i].gameplay.chipsEarned;
+            gamePlay.chipsWon += response[i].gameplay.chipsWon ? response[i].gameplay.chipsWon : 0;
             gamePlay.leaderboardPercentile += response[i].gameplay.leaderboardPercentile;
             gamePlay.checkedIn += 1;
             gamePlay.numChallengesCompleted += response[i].gameplay.numChallengesCompleted;
@@ -208,7 +208,7 @@ const IceSearchTool: FC<IceSearchToolType> = ({ className = '' }: IceSearchToolT
                 {/* Net Chips Score */}
                 <Table.Cell style={{ width: '200px' }}>
                   <div className={styles.net_chips_score} style={{ textAlign: 'center' }}>
-                    {gamePlay.chipsEarned.toLocaleString()}
+                    {gamePlay.chipsWon.toLocaleString()}
                     <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635212177/FREE_Coin_c08hyk.png" alt="chips" />
                   </div>
                 </Table.Cell>
@@ -269,7 +269,7 @@ const IceSearchTool: FC<IceSearchToolType> = ({ className = '' }: IceSearchToolT
         </section>
       ) : (
         <>
-          {state.userStatus >= 28 ? (
+          {state.userStatus < 28 ? (
             <section className={styles.playerLookUp}>
               {playerLookUpHeader()}
               {searchBox()}

@@ -125,7 +125,7 @@ const ModalIceSearchToolHistory: FC<ModalIceSearchToolHistoryType> = ({
                         })}
                       </div>
                       <div className={styles.net_chips_score}>
-                        {report.gameplay.chipsEarned}
+                        {report.gameplay.chipsWon ? report.gameplay.chipsWon : 0}
                         <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635212177/FREE_Coin_c08hyk.png" alt="chips" />
                       </div>
                       <div className={styles.tier} style={{ paddingLeft: '65px', textAlign: 'left' }}>
