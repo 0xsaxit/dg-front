@@ -24,7 +24,7 @@ const Fetch = {
 
   TREASURY_STATS_NUMBERS: period => {
     return call(
-      `${API_BASE_URL}/admin/getTreasuryBalanceHistory/${period}`,
+      `${API_BASE_URL_PROD_OR_LOCALHOST_ONLY}/admin/getTreasuryBalanceHistory/${period}`,
       'GET',
       false
     );
