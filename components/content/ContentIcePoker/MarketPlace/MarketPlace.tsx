@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { FC, ReactElement, useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '@/store';
 import ModalMintWearable from 'components/modal/ModalMintWearable';
 import ModalLoginICE from 'components/modal/ModalLoginICE';
@@ -13,7 +13,11 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import CheckMintableModal from 'components/modal/CheckMintableModal';
 
-const MarketPlace = () => {
+export interface MarketPlaceType {
+  className?: string;
+}
+
+const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): ReactElement => {
   // dispatch new user status to Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -566,17 +570,18 @@ const MarketPlace = () => {
       height: undefined
     });
 
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    }
+
     useEffect(() => {
       // only execute all the code below in client side
       if (typeof window !== 'undefined') {
-        // Handler to call on window resize
-        function handleResize() {
-          // Set window width/height to state
-          setWindowSize({
-            width: window.innerWidth,
-            height: window.innerHeight
-          });
-        }
 
         // Add event listener
         window.addEventListener('resize', handleResize);
