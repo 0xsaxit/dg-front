@@ -5,9 +5,9 @@ import { useMediaQuery } from 'hooks';
 import Home from '../../content/ContentIcePoker/Home';
 import GetStarted from '../../content/ContentIcePoker/GetStarted';
 import MarketPlace from '../../content/ContentIcePoker/MarketPlace/MarketPlace';
-import Leaderboard from '../../content/ContentIcePoker/Leaderboard';
+import Leaderboard from '../../content/ContentIcePoker/Leaderboard/Leaderboard';
+import IceRewards from '../../content/ContentIcePoker/IceRewards/IceRewards';
 import SearchTool from '../../content/ContentIcePoker/SearchTool/SearchTool';
-import IceRewards from '../../content/ContentIcePoker/IceRewards';
 import DelegationDashboard from '../../content/ContentIcePoker/Delegation/DelegationDashboard';
 import MyAccount from '../../content/ContentIcePoker/MyAccount';
 

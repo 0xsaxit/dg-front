@@ -11,7 +11,7 @@ import ABI_COLLECTION_PH from '../components/ABI/ABICollectionPH';
 import ABI_COLLECTION_LINENS from '../components/ABI/ABICollectionLinens';
 import ABI_COLLECTION_BOMBER from '../components/ABI/ABICollectionBomber';
 import ABI_COLLECTION_CRYPTO_DRIP from '../components/ABI/ABICollectionCryptoDrip.json';
-import ABI_COLLECTION_FOUNDER_FATHER from '../components/ABI/ABICollectionFounderFather.json';
+import ABI_COLLECTION_FOUNDING_FATHER from '../components/ABI/ABICollectionFoundingFather.json';
 import ABI_COLLECTION_JOKER from '../components/ABI/ABICollectionJoker.json';
 import ABI_COLLECTION_CHEF from '../components/ABI/ABICollectionChef.json';
 import ABI_COLLECTION_BEACH from '../components/ABI/ABICollectionBeach.json';
@@ -21,6 +21,7 @@ import ABI_ICEToken from '../components/ABI/ABIICEToken';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
 import Fetch from '../common/Fetch';
+import BigNumber from 'bignumber.js';
 
 function ICEAttributes() {
   // dispatch user's token authorization status to the Context API store
@@ -57,7 +58,7 @@ function ICEAttributes() {
         const collectionV2Contract3 = new maticWeb3.eth.Contract(ABI_COLLECTION_LINENS, Global.ADDRESSES.COLLECTION_LINENS_ADDRESS);
         const collectionV2Contract4 = new maticWeb3.eth.Contract(ABI_COLLECTION_BOMBER, Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS);
         const collectionV2Contract5 = new maticWeb3.eth.Contract(ABI_COLLECTION_CRYPTO_DRIP, Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS);
-        const collectionV2Contract6 = new maticWeb3.eth.Contract(ABI_COLLECTION_FOUNDER_FATHER, Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS);
+        const collectionV2Contract6 = new maticWeb3.eth.Contract(ABI_COLLECTION_FOUNDING_FATHER, Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS);
         const collectionV2Contract7 = new maticWeb3.eth.Contract(ABI_COLLECTION_JOKER, Global.ADDRESSES.COLLECTION_JOKER_ADDRESS);
         const collectionV2Contract8 = new maticWeb3.eth.Contract(ABI_COLLECTION_CHEF, Global.ADDRESSES.COLLECTION_CHEF_ADDRESS);
         const collectionV2Contract9 = new maticWeb3.eth.Contract(ABI_COLLECTION_BEACH, Global.ADDRESSES.COLLECTION_BEACH_ADDRESS);
@@ -90,12 +91,13 @@ function ICEAttributes() {
           // [2, 12, 16, 20, 7],
         ]);
         collectionArray.push([collectionV2Contract5, Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS, [0, 5, 10, 15, 20]]);
-        collectionArray.push([collectionV2Contract6, Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS, [0, 5, 10, 15, 20]]);
+        collectionArray.push([collectionV2Contract6, Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS, [0, 5, 10, 15, 20]]);
         collectionArray.push([collectionV2Contract7, Global.ADDRESSES.COLLECTION_JOKER_ADDRESS, [0, 5, 10, 15, 20]]);
         collectionArray.push([collectionV2Contract8, Global.ADDRESSES.COLLECTION_CHEF_ADDRESS, [0, 5, 10, 15, 20]]);
         collectionArray.push([collectionV2Contract9, Global.ADDRESSES.COLLECTION_BEACH_ADDRESS, [0, 5, 10, 15, 20]]);
         collectionArray.push([collectionV2Contract10, Global.ADDRESSES.COLLECTION_AIRLINE_ADDRESS, [0, 5, 10, 15, 20]]);
         collectionArray.push([collectionV2Contract11, Global.ADDRESSES.COLLECTION_POET_ADDRESS, [0, 5, 10, 15, 20]]);
+
         setCollectionArray(collectionArray);
 
         const IceTokenContract = new maticWeb3.eth.Contract(ABI_ICEToken, Global.ADDRESSES.ICE_TOKEN_ADDRESS);
@@ -285,7 +287,7 @@ function ICEAttributes() {
       (async function () {
         try {
           const iceAmounts = await getICEAmounts();
-          iceAmounts.ICE_AVAILABLE_AMOUNT = parseInt(iceAmounts.ICE_AVAILABLE_AMOUNT);
+          iceAmounts.ICE_AVAILABLE_AMOUNT = iceAmounts.ICE_AVAILABLE_AMOUNT;
           iceAmounts.ICE_CLAIM_AMOUNT = parseInt(iceAmounts.ICE_CLAIM_AMOUNT);
 
           dispatch({
@@ -406,7 +408,9 @@ function ICEAttributes() {
   async function getTokenAmounts() {
     try {
       const wethConstAmount = await ICERegistrantContract.methods.mintingPrice().call();
-      const WETH_COST_AMOUNT = wethConstAmount / Global.CONSTANTS.FACTOR;
+      const amountAdjusted = new BigNumber(wethConstAmount).div(new BigNumber(10).pow(Global.CONSTANTS.TOKEN_DECIMALS)).toFixed(2);
+      const WETH_COST_AMOUNT = amountAdjusted;
+      console.log('WETH AMOUNT: ' + wethConstAmount + ' ' + WETH_COST_AMOUNT);
 
       const levelsData1 = await ICERegistrantContract.methods.levels('1').call();
       const DG_MOVE_AMOUNT = levelsData1[2] / Global.CONSTANTS.FACTOR;
@@ -464,7 +468,8 @@ function ICEAttributes() {
   async function getICEAmounts() {
     try {
       const ICE_AVAILABLE_AMOUNT = await iceTokenContract.methods.balanceOf(state.userAddress).call();
-      const ICE_AMOUNT_ADJUSTED = (ICE_AVAILABLE_AMOUNT / Global.CONSTANTS.FACTOR).toString();
+      const amountAdjusted = new BigNumber(ICE_AVAILABLE_AMOUNT).div(new BigNumber(10).pow(Global.CONSTANTS.TOKEN_DECIMALS));
+      const ICE_AMOUNT_ADJUSTED = parseFloat(amountAdjusted);
 
       console.log('Available ICE amount: ' + ICE_AMOUNT_ADJUSTED);
 

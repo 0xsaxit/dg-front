@@ -32,7 +32,7 @@ const ModalLoginICE = () => {
 
         dispatch({
           type: 'network_id',
-          data: networkID,
+          data: networkID
         });
       })();
     }
@@ -61,9 +61,9 @@ const ModalLoginICE = () => {
           method: 'wallet_requestPermissions',
           params: [
             {
-              eth_accounts: {},
-            },
-          ],
+              eth_accounts: {}
+            }
+          ]
         });
       } else {
         // otherwise do the usual
@@ -71,9 +71,9 @@ const ModalLoginICE = () => {
           method: 'eth_requestAccounts',
           params: [
             {
-              eth_accounts: {},
-            },
-          ],
+              eth_accounts: {}
+            }
+          ]
         });
       }
 
@@ -81,13 +81,13 @@ const ModalLoginICE = () => {
 
       // track MetaMask connect event
       analytics.track('Connected MetaMask', {
-        userAddress: userAddress,
+        userAddress: userAddress
       });
 
       // dispatch user address to the Context API store
       dispatch({
         type: 'user_address',
-        data: userAddress,
+        data: userAddress
       });
 
       // set global user status based on value stored in database
@@ -116,20 +116,20 @@ const ModalLoginICE = () => {
       // update global state user status after fetch is complete
       dispatch({
         type: 'update_status',
-        data: value,
+        data: value
       });
     } else {
       // update global state user status immediately
       dispatch({
         type: 'update_status',
-        data: value,
+        data: value
       });
     }
 
     // user will be updated either way, but only if response is truthy (line 98)
     dispatch({
       type: 'set_userLoggedIn',
-      data: true,
+      data: true
     });
   }
 
@@ -143,7 +143,7 @@ const ModalLoginICE = () => {
       const responseStatus = await Fetch.USER_STATUS(userAddress, '');
       const jsonStatus = await responseStatus.json();
 
-      if (!jsonStatus.status) return false;
+      if (jsonStatus?.status == undefined || jsonStatus.status == -1) return false;
 
       return jsonStatus.status;
     } catch {
@@ -162,28 +162,17 @@ const ModalLoginICE = () => {
           onOpen={() => setOpen(true)}
           open={open}
           close
-          trigger={
-            <Button className={styles.wearable_button}>Connect Metamask</Button>
-          }
+          trigger={<Button className={styles.wearable_button}>Connect Metamask</Button>}
         >
           <div
             style={{
               marginTop: '-72px',
               marginBottom: '58px',
-              marginLeft: '-38px',
+              marginLeft: '-38px'
             }}
           >
-            <span
-              className={styles.button_close}
-              onClick={() => setOpen(false)}
-            >
-              <svg
-                width="12"
-                height="12"
-                viewBox="0 0 12 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+            <span className={styles.button_close} onClick={() => setOpen(false)}>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M0.464355 9.65869C0.0952148 10.0344 0.0754395 10.7266 0.477539 11.1221C0.879639 11.5242 1.56519 11.511 1.94092 11.1353L5.65869 7.41748L9.36987 11.1287C9.75879 11.5242 10.4312 11.5176 10.8267 11.1155C11.2288 10.72 11.2288 10.0476 10.8398 9.65869L7.12866 5.94751L10.8398 2.22974C11.2288 1.84082 11.2288 1.16846 10.8267 0.772949C10.4312 0.37085 9.75879 0.37085 9.36987 0.759766L5.65869 4.47095L1.94092 0.753174C1.56519 0.384033 0.873047 0.364258 0.477539 0.766357C0.0820312 1.16846 0.0952148 1.854 0.464355 2.22974L4.18213 5.94751L0.464355 9.65869Z"
                   fill="white"
@@ -208,10 +197,7 @@ const ModalLoginICE = () => {
                 Connect MetaMask
               </span>
             </button>
-            <a
-              href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
-              target="_blank"
-            >
+            <a href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask" target="_blank">
               <button className={styles.need_help}>Need Help?</button>
             </a>
           </div>
@@ -223,28 +209,17 @@ const ModalLoginICE = () => {
           onOpen={() => setOpen(true)}
           open={open}
           close
-          trigger={
-            <Button className={styles.wearable_button}>Connect Metamask</Button>
-          }
+          trigger={<Button className={styles.wearable_button}>Connect Metamask</Button>}
         >
           <div
             style={{
               marginTop: '-72px',
               marginBottom: '58px',
-              marginLeft: '-38px',
+              marginLeft: '-38px'
             }}
           >
-            <span
-              className={styles.button_close}
-              onClick={() => setOpen(false)}
-            >
-              <svg
-                width="12"
-                height="12"
-                viewBox="0 0 12 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+            <span className={styles.button_close} onClick={() => setOpen(false)}>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M0.464355 9.65869C0.0952148 10.0344 0.0754395 10.7266 0.477539 11.1221C0.879639 11.5242 1.56519 11.511 1.94092 11.1353L5.65869 7.41748L9.36987 11.1287C9.75879 11.5242 10.4312 11.5176 10.8267 11.1155C11.2288 10.72 11.2288 10.0476 10.8398 9.65869L7.12866 5.94751L10.8398 2.22974C11.2288 1.84082 11.2288 1.16846 10.8267 0.772949C10.4312 0.37085 9.75879 0.37085 9.36987 0.759766L5.65869 4.47095L1.94092 0.753174C1.56519 0.384033 0.873047 0.364258 0.477539 0.766357C0.0820312 1.16846 0.0952148 1.854 0.464355 2.22974L4.18213 5.94751L0.464355 9.65869Z"
                   fill="white"
@@ -254,21 +229,10 @@ const ModalLoginICE = () => {
           </div>
           <div>
             <h1 className={styles.title}>Download Brave</h1>
-            <Button
-              className={styles.busd_button}
-              href="https://brave.com/"
-              target="_blank"
-            >
+            <Button className={styles.busd_button} href="https://brave.com/" target="_blank">
               <span style={{ display: 'flex', justifyContent: 'center' }}>
                 Brave Browser
-                <svg
-                  style={{ margin: '15px 0px 0px 18px' }}
-                  width="18"
-                  height="18"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg style={{ margin: '15px 0px 0px 18px' }} width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M17.6152 13.2617V2.50879C17.6152 1.50977 16.9385 0.822266 15.9287 0.822266H5.16504C4.21973 0.822266 3.51074 1.54199 3.51074 2.40137C3.51074 3.26074 4.24121 3.92676 5.1543 3.92676H9.21484L12.5342 3.80859L10.6758 5.46289L1.28711 14.8623C0.932617 15.2168 0.739258 15.6357 0.739258 16.0654C0.739258 16.9033 1.52344 17.6982 2.37207 17.6982C2.80176 17.6982 3.20996 17.5049 3.5752 17.1504L12.9746 7.76172L14.6396 5.90332L14.5 9.10449V13.2725C14.5 14.1963 15.166 14.916 16.0254 14.916C16.8955 14.916 17.6152 14.1855 17.6152 13.2617Z"
                     fill="white"
@@ -284,11 +248,7 @@ const ModalLoginICE = () => {
                 Metamask{' '}
               </a>{' '}
               Enabled browsers. For more instructions on how to set up Metamask,{' '}
-              <a
-                className="modal-a"
-                href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
-                target="_blank"
-              >
+              <a className="modal-a" href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask" target="_blank">
                 {' '}
                 click here{' '}
               </a>
@@ -303,28 +263,17 @@ const ModalLoginICE = () => {
           onOpen={() => setOpen(true)}
           open={open}
           close
-          trigger={
-            <Button className={styles.wearable_button}>Connect Metamask</Button>
-          }
+          trigger={<Button className={styles.wearable_button}>Connect Metamask</Button>}
         >
           <div
             style={{
               marginTop: '-72px',
               marginBottom: '58px',
-              marginLeft: '-38px',
+              marginLeft: '-38px'
             }}
           >
-            <span
-              className={styles.button_close}
-              onClick={() => setOpen(false)}
-            >
-              <svg
-                width="12"
-                height="12"
-                viewBox="0 0 12 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+            <span className={styles.button_close} onClick={() => setOpen(false)}>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M0.464355 9.65869C0.0952148 10.0344 0.0754395 10.7266 0.477539 11.1221C0.879639 11.5242 1.56519 11.511 1.94092 11.1353L5.65869 7.41748L9.36987 11.1287C9.75879 11.5242 10.4312 11.5176 10.8267 11.1155C11.2288 10.72 11.2288 10.0476 10.8398 9.65869L7.12866 5.94751L10.8398 2.22974C11.2288 1.84082 11.2288 1.16846 10.8267 0.772949C10.4312 0.37085 9.75879 0.37085 9.36987 0.759766L5.65869 4.47095L1.94092 0.753174C1.56519 0.384033 0.873047 0.364258 0.477539 0.766357C0.0820312 1.16846 0.0952148 1.854 0.464355 2.22974L4.18213 5.94751L0.464355 9.65869Z"
                   fill="white"
@@ -334,21 +283,11 @@ const ModalLoginICE = () => {
           </div>
           <div>
             <h1 className={styles.title}>Download Metamask</h1>
-            <a
-              href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
-              target="_blank"
-            >
+            <a href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask" target="_blank">
               <Button className={styles.busd_button}>
                 <span style={{ display: 'flex', justifyContent: 'center' }}>
                   Set Up Metamask
-                  <svg
-                    style={{ margin: '15px 0px 0px 18px' }}
-                    width="18"
-                    height="18"
-                    viewBox="0 0 18 18"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
+                  <svg style={{ margin: '15px 0px 0px 18px' }} width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M17.6152 13.2617V2.50879C17.6152 1.50977 16.9385 0.822266 15.9287 0.822266H5.16504C4.21973 0.822266 3.51074 1.54199 3.51074 2.40137C3.51074 3.26074 4.24121 3.92676 5.1543 3.92676H9.21484L12.5342 3.80859L10.6758 5.46289L1.28711 14.8623C0.932617 15.2168 0.739258 15.6357 0.739258 16.0654C0.739258 16.9033 1.52344 17.6982 2.37207 17.6982C2.80176 17.6982 3.20996 17.5049 3.5752 17.1504L12.9746 7.76172L14.6396 5.90332L14.5 9.10449V13.2725C14.5 14.1963 15.166 14.916 16.0254 14.916C16.8955 14.916 17.6152 14.1855 17.6152 13.2617Z"
                       fill="white"

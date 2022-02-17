@@ -26,6 +26,7 @@
 
     .balance_column {
       .balance_row {
+        
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -165,7 +166,11 @@
 
             @media screen and (max-width: 600px) {
               position: absolute;
-              top: 0px;
+
+              @media screen and (min-width: 576px) {
+                top: 0px;
+              }
+ 
               right: -10px;
               min-width: 200px;
             }
@@ -262,6 +267,10 @@
           height: 32px;
         }
 
+        @include mq($until: small) {
+          align-items: center;
+        }
+        
         @include mq($until: medium) {
           padding: 15px 25px;
 
@@ -285,7 +294,9 @@
             position: relative;
 
             .text_wrapper {
-              margin-top: -3px;
+              @media screen and (min-width: 600px) {
+                margin-top: -3px;
+              }
 
               p:first-child {
                 font-size: 20px;

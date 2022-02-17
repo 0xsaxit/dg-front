@@ -1,11 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-expressions */
-/* eslint-disable react/prop-types */
-/* eslint-disable @typescript-eslint/no-use-before-define */
-/* eslint-disable unused-imports/no-unused-vars-ts */
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable no-undef */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-/* eslint-disable react/react-in-jsx-scope */
 import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import cn from 'classnames';
@@ -35,20 +27,10 @@ export const assignToken = async (dispatch, accountSwitch = false) => {
 
     const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
-    const msg = web3.utils.utf8ToHex(
-      `Decentral Games Login\nTimestamp: ${timestamp}`
-    );
-    const signature = await web3.eth.personal.sign(
-      msg,
-      window.ethereum?.selectedAddress,
-      null
-    );
+    const msg = web3.utils.utf8ToHex(`Decentral Games Login\nTimestamp: ${timestamp}`);
+    const signature = await web3.eth.personal.sign(msg, window.ethereum?.selectedAddress, null);
 
-    const token = await call(
-      `${API_BASE_URL}/authentication/getWebAuthToken?address=${userAddress}&signature=${signature}&timestamp=${timestamp}`,
-      'GET',
-      false
-    );
+    const token = await call(`${API_BASE_URL}/authentication/getWebAuthToken?address=${userAddress}&signature=${signature}&timestamp=${timestamp}`, 'GET', false);
 
     localStorage.setItem('token', token);
 
@@ -57,7 +39,7 @@ export const assignToken = async (dispatch, accountSwitch = false) => {
 
     dispatch({
       type: 'set_userLoggedIn',
-      data: true,
+      data: true
     });
 
     if (accountSwitch) {
@@ -66,7 +48,7 @@ export const assignToken = async (dispatch, accountSwitch = false) => {
   }
 };
 
-const ButtonConnect = (props) => {
+const ButtonConnect = props => {
   // dispatch new user status to Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -85,7 +67,7 @@ const ButtonConnect = (props) => {
           if (window.ethereum?.selectedAddress) {
             dispatch({
               type: 'user_address',
-              data: window.ethereum?.selectedAddress,
+              data: window.ethereum?.selectedAddress
             });
           }
 
@@ -139,11 +121,11 @@ const ButtonConnect = (props) => {
     setLoading(false);
   });
 
-  const connectWallet = async (dispatch) => {
+  const connectWallet = async dispatch => {
     if (window.ethereum) {
       dispatch({
         type: 'update_status',
-        data: 3,
+        data: 3
       });
       connectDesktopWallet(dispatch);
     } else {
@@ -151,13 +133,14 @@ const ButtonConnect = (props) => {
     }
   };
 
-  const getWalletConnectProvider = () => new WalletConnectProvider({
-    rpc:     constants.MATIC_RPC,
-    chainId: constants.MATIC_CHAIN_ID,
-    qrcode:  false,
-  });
+  const getWalletConnectProvider = () =>
+    new WalletConnectProvider({
+      rpc: constants.MATIC_RPC,
+      chainId: constants.MATIC_CHAIN_ID,
+      qrcode: false
+    });
 
-  const connectMobileWallet = async (dispatch) => {
+  const connectMobileWallet = async dispatch => {
     const provider = getWalletConnectProvider();
 
     if (provider.connector.connected) {
@@ -171,9 +154,7 @@ const ButtonConnect = (props) => {
 
       console.log('Display URI: ' + uri);
 
-      const formattedURI = `https://metamask.app.link/wc?uri=${encodeURIComponent(
-        uri
-      )}`;
+      const formattedURI = `https://metamask.app.link/wc?uri=${encodeURIComponent(uri)}`;
 
       window.location.replace(formattedURI);
     });
@@ -208,7 +189,7 @@ const ButtonConnect = (props) => {
   //   );
   // };
 
-  const connectDesktopWallet = async (dispatch) => {
+  const connectDesktopWallet = async dispatch => {
     if (metamaskEnabled) {
       // the only way to be able to click on this button with a user status >= 4 is to have clicked in the "disconnect" button in ModalPopUp
       if (state.userStatus >= 4) {
@@ -218,9 +199,9 @@ const ButtonConnect = (props) => {
           method: 'wallet_requestPermissions',
           params: [
             {
-              eth_accounts: {},
-            },
-          ],
+              eth_accounts: {}
+            }
+          ]
         });
       } else {
         // otherwise do the usual
@@ -228,9 +209,9 @@ const ButtonConnect = (props) => {
           method: 'eth_requestAccounts',
           params: [
             {
-              eth_accounts: {},
-            },
-          ],
+              eth_accounts: {}
+            }
+          ]
         });
       }
 
@@ -238,7 +219,7 @@ const ButtonConnect = (props) => {
 
       // track MetaMask connect event
       analytics.track('Connected MetaMask', {
-        userAddress: userAddress,
+        userAddress: userAddress
       });
 
       await assignToken(dispatch);
@@ -246,7 +227,7 @@ const ButtonConnect = (props) => {
       // dispatch user address to the Context API store
       dispatch({
         type: 'user_address',
-        data: userAddress,
+        data: userAddress
       });
 
       // set global user status based on value stored in database
@@ -274,9 +255,9 @@ const ButtonConnect = (props) => {
           method: 'wallet_requestPermissions',
           params: [
             {
-              eth_accounts: {},
-            },
-          ],
+              eth_accounts: {}
+            }
+          ]
         });
       } else {
         // otherwise do the usual
@@ -284,9 +265,9 @@ const ButtonConnect = (props) => {
           method: 'eth_requestAccounts',
           params: [
             {
-              eth_accounts: {},
-            },
-          ],
+              eth_accounts: {}
+            }
+          ]
         });
       }
 
@@ -294,7 +275,7 @@ const ButtonConnect = (props) => {
 
       // track MetaMask connect event
       analytics.track('Connected MetaMask', {
-        userAddress: userAddress,
+        userAddress: userAddress
       });
 
       await assignToken(dispatch);
@@ -302,7 +283,7 @@ const ButtonConnect = (props) => {
       // dispatch user address to the Context API store
       dispatch({
         type: 'user_address',
-        data: userAddress,
+        data: userAddress
       });
 
       // set global user status based on value stored in database
@@ -328,32 +309,28 @@ const ButtonConnect = (props) => {
       // update global state user status after fetch is complete
       dispatch({
         type: 'update_status',
-        data: value,
+        data: value
       });
     } else {
       // update global state user status immediately
       dispatch({
         type: 'update_status',
-        data: value,
+        data: value
       });
     }
 
     // user will be updated either way, but only if response is truthy (line 150)
     dispatch({
       type: 'set_userLoggedIn',
-      data: true,
+      data: true
     });
   }
 
   async function upateVerified(arg) {
-    if (
-      arg > 0 &&
-      arg < 20 &&
-      window.location.hostname.includes(Global.CONSTANTS.VERIFY_URL)
-    ) {
+    if (arg > 0 && arg < 20 && window.location.hostname.includes(Global.CONSTANTS.VERIFY_URL)) {
       dispatch({
         type: 'user_verify',
-        data: false,
+        data: false
       });
     }
   }
@@ -366,9 +343,7 @@ const ButtonConnect = (props) => {
 
       await upateVerified(jsonStatus.status);
 
-      if (!jsonStatus.status) {
-        return false;
-      }
+      if (jsonStatus?.status == undefined || jsonStatus.status == -1) return false;
 
       return jsonStatus.status;
     } catch {
@@ -383,71 +358,61 @@ const ButtonConnect = (props) => {
 
   return (
     <Aux>
-      {props.showAlternateButton ?
-
+      {props.showAlternateButton ? (
         // eslint-disable-next-line react/react-in-jsx-scope
         <Button
           onClick={() => openMetaMask()}
           style={{
-            background:   '#006EFF',
-            height:       '64px',
+            background: '#006EFF',
+            height: '64px',
             borderRadius: '16px',
-            width:        '171px',
-            color:        'white',
-            fontSize:     '23px',
-            fontFamily:   'Larsseit-Bold',
-            alignSelf:    'center',
-            marginLeft:   '4px',
+            width: '171px',
+            color: 'white',
+            fontSize: '23px',
+            fontFamily: 'Larsseit-Bold',
+            alignSelf: 'center',
+            marginLeft: '4px'
           }}
         >
           Connect
         </Button>
-        : metamaskEnabled ?
-
-          // eslint-disable-next-line react/react-in-jsx-scope
-          <div className={styles.main_right_panel}>
-            <Button
-              color="blue"
-              className={cn(
-
-                // AMNESIA_COMMENT: amnesia_button class should be removed after we are done with amnesia
-                state.isAmnesiaPage && styles.amnesia_button,
-                styles.metamask_button,
-                binance ? styles.binance_top : ''
-              )}
-
-              // onClick={() => openMetaMask()}
-              onClick={() => {
-                connectWallet(dispatch);
-              }}
-            >
-              <img
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png"
-                className={styles.metamask_icon}
-              />
-              {tablet ? 'Connect' : 'Connect MetaMask'}
-            </Button>
-            {isPhone && (<a
-              href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
-              target="_blank"
-              className={styles.get_metamask} rel="noreferrer"
-            >
+      ) : metamaskEnabled ? (
+        // eslint-disable-next-line react/react-in-jsx-scope
+        <div className={styles.main_right_panel}>
+          <Button
+            color="blue"
+            className={cn(
+              // AMNESIA_COMMENT: amnesia_button class should be removed after we are done with amnesia
+              state.isAmnesiaPage && styles.amnesia_button,
+              styles.metamask_button,
+              binance ? styles.binance_top : ''
+            )}
+            // onClick={() => openMetaMask()}
+            onClick={() => {
+              connectWallet(dispatch);
+            }}
+          >
+            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png" className={styles.metamask_icon} />
+            {tablet ? 'Connect' : 'Connect MetaMask'}
+          </Button>
+          {isPhone && (
+            <a href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask" target="_blank" className={styles.get_metamask} rel="noreferrer">
               ?
-            </a>)}
-          </div>
-          :
-          <div className={styles.main_right_panel}>
-            <ModalLoginTop />
+            </a>
+          )}
+        </div>
+      ) : (
+        <div className={styles.main_right_panel}>
+          <ModalLoginTop />
 
-            {/* Help Button */}
-            {isPhone &&
-            (<a
-              href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
-              target="_blank"
-              className={styles.get_metamask} rel="noreferrer"
-            >?</a>)}
-          </div>
-      }
+          {/* Help Button */}
+          {isPhone && (
+            <a href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask" target="_blank" className={styles.get_metamask} rel="noreferrer">
+              ?
+            </a>
+          )}
+        </div>
+      )}
     </Aux>
   );
 };

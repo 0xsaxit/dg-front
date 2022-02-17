@@ -24,11 +24,7 @@ const Governance = props => {
   const [loading, setLoading] = useState(false);
   const [approving, setApproving] = useState(false);
   const [ratio, setRatio] = useState(0);
-  const {
-    BALANCE_ROOT_DG_LIGHT: dgAmount,
-    BALANCE_CHILD_DG_LIGHT: maticDGAmount,
-    BALANCE_CHILD_TOKEN_XDG: maticXDGAmount,
-  } = state.DGBalances;
+  const { BALANCE_ROOT_DG_LIGHT: dgAmount, BALANCE_CHILD_DG_LIGHT: maticDGAmount, BALANCE_CHILD_TOKEN_XDG: maticXDGAmount } = state.DGBalances;
 
   const { BALANCE_USER_GOVERNANCE: xDGAmount } = state.stakingBalances;
 
@@ -44,19 +40,17 @@ const Governance = props => {
   }
 
   const handleAmountInputChange = e => {
-
     let enteredValue = Number(e.target.value);
 
-    if (e.key !== "Backspace") {
+    if (e.key !== 'Backspace') {
       if (e.target.value.includes('.')) {
         if (e.target.value.split('.')[1].length >= 3) {
-          enteredValue = roundDownDecimals(e.target.value)
+          enteredValue = roundDownDecimals(e.target.value);
         }
       }
     }
 
     setAmountInput(enteredValue);
-
   };
 
   useEffect(() => {
@@ -64,15 +58,9 @@ const Governance = props => {
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
       async function fetchData() {
-        const [_DGLightTokenContract, _DGTownHallContract] = await Promise.all([
-          Transactions.DGLightTokenContract(web3),
-          Transactions.DGTownHallContract(web3),
-        ]);
+        const [_DGLightTokenContract, _DGTownHallContract] = await Promise.all([Transactions.DGLightTokenContract(web3), Transactions.DGTownHallContract(web3)]);
 
-        const [balance, _ratio] = [
-          await _DGTownHallContract.methods.innerSupply().call(),
-          await _DGTownHallContract.methods.outsidAmount(1000000).call(),
-        ];
+        const [balance, _ratio] = [await _DGTownHallContract.methods.innerSupply().call(), await _DGTownHallContract.methods.outsidAmount(1000000).call()];
 
         setDGLightTokenContract(_DGLightTokenContract);
         setDGTownHallContract(_DGTownHallContract);
@@ -94,9 +82,7 @@ const Governance = props => {
     const { amountAdjusted, amountToString } = props.getAmounts(amountInput);
 
     try {
-      const amountAllowance = await DGLightTokenContract.methods
-        .allowance(userAddress, DGTownHallContract._address)
-        .call();
+      const amountAllowance = await DGLightTokenContract.methods.allowance(userAddress, DGTownHallContract._address).call();
 
       if (Number(amountAllowance) < amountAdjusted) {
         await DGLightTokenContract.methods
@@ -111,7 +97,7 @@ const Governance = props => {
 
         dispatch({
           type: 'show_toastMessage',
-          data: 'DG approved successfully!',
+          data: 'DG approved successfully!'
         });
       }
 
@@ -130,11 +116,11 @@ const Governance = props => {
 
       dispatch({
         type: 'refresh_balances',
-        data: refresh,
+        data: refresh
       });
       dispatch({
         type: 'show_toastMessage',
-        data: 'DG staked successfully!',
+        data: 'DG staked successfully!'
       });
     } catch (error) {
       setLoading(false);
@@ -142,7 +128,7 @@ const Governance = props => {
 
       dispatch({
         type: 'show_toastMessage',
-        data: 'Failed to stake DG!',
+        data: 'Failed to stake DG!'
       });
     }
   };
@@ -151,9 +137,7 @@ const Governance = props => {
     const { amountAdjusted, amountToString } = props.getAmounts(amountInput);
 
     try {
-      const amountAllowance = await DGLightTokenContract.methods
-        .allowance(userAddress, DGTownHallContract._address)
-        .call();
+      const amountAllowance = await DGLightTokenContract.methods.allowance(userAddress, DGTownHallContract._address).call();
 
       if (Number(amountAllowance) < amountAdjusted) {
         await DGLightTokenContract.methods
@@ -169,7 +153,7 @@ const Governance = props => {
 
         dispatch({
           type: 'show_toastMessage',
-          data: 'DG approved successfully!',
+          data: 'DG approved successfully!'
         });
       }
 
@@ -188,11 +172,11 @@ const Governance = props => {
 
       dispatch({
         type: 'refresh_balances',
-        data: refresh,
+        data: refresh
       });
       dispatch({
         type: 'show_toastMessage',
-        data: 'DG unstaked successfully!',
+        data: 'DG unstaked successfully!'
       });
     } catch (error) {
       setLoading(false);
@@ -200,7 +184,7 @@ const Governance = props => {
 
       dispatch({
         type: 'show_toastMessage',
-        data: 'Failed to unstake DG!',
+        data: 'Failed to unstake DG!'
       });
     }
   };
@@ -209,31 +193,20 @@ const Governance = props => {
     <div className={styles.governanace_main_wrapper}>
       <h1 className={styles.welcome_text}>Welcome to DG Governance</h1>
       <p className={styles.welcome_content}>
-        When you stake DG in governance, you receive xDG, a token which
-        represents your share in the governance. In return, you can make
-        proposals and vote on the future of the DAO, earn autocompounding APR,
-        and get access to ICE Wearable mints.
+        When you stake DG in governance, you receive xDG, a token which represents your share in the governance. In return, you can make proposals and vote on the future of the
+        DAO, earn autocompounding APR, and get access to ICE Wearable mints.
       </p>
       <div className={styles.governance_stake_overview}>
-        <h1 className={cn(styles.staking_header, 'mb-3')}>
-          Governance Staking Overview
-        </h1>
+        <h1 className={cn(styles.staking_header, 'mb-3')}>Governance Staking Overview</h1>
         <div className="row">
           <div className="col-md-4">
-            <h6 className={cn('mb-1', styles.staking_subfooter)}>
-              Your Total xDG
-            </h6>
+            <h6 className={cn('mb-1', styles.staking_subfooter)}>Your Total xDG</h6>
             <div className="d-flex mb-1 align-items-center">
               <div className={styles.item_value}>
                 {xDGAmount !== undefined && maticXDGAmount !== undefined ? (
                   <>
-                    {props.formatPrice(
-                      parseFloat(xDGAmount) + parseFloat(maticXDGAmount)
-                    )}
-                    <img
-                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637260602/grayLogo_ojx2hi.png"
-                      alt="xDG"
-                    />
+                    {props.formatPrice(parseFloat(xDGAmount) + parseFloat(maticXDGAmount))}
+                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637260602/grayLogo_ojx2hi.png" alt="xDG" />
                   </>
                 ) : (
                   <Spinner width={33} height={33} />
@@ -241,37 +214,21 @@ const Governance = props => {
               </div>
             </div>
             <p className={styles.staking_subfooter}>
-              {xDGAmount !== undefined &&
-                maticXDGAmount !== undefined &&
-                xDGPrice ? (
-                `$${props.formatPrice(
-                  (parseFloat(xDGAmount) + parseFloat(maticXDGAmount)) *
-                  xDGPrice,
-                  2
-                )}`
+              {xDGAmount !== undefined && maticXDGAmount !== undefined && xDGPrice ? (
+                `$${props.formatPrice((parseFloat(xDGAmount) + parseFloat(maticXDGAmount)) * xDGPrice, 2)}`
               ) : (
                 <Spinner width={20} height={20} />
               )}
             </p>
           </div>
           <div className="col-md-4">
-            <h6 className={cn('mb-1', styles.staking_subfooter)}>
-              Your Equivalent DG Value
-            </h6>
+            <h6 className={cn('mb-1', styles.staking_subfooter)}>Your Equivalent DG Value</h6>
             <div className="d-flex mb-1 align-items-center">
               <div className={styles.item_value}>
-                {xDGAmount !== undefined &&
-                  maticXDGAmount !== undefined &&
-                  ratio ? (
+                {xDGAmount !== undefined && maticXDGAmount !== undefined && ratio ? (
                   <>
-                    {props.formatPrice(
-                      (parseFloat(xDGAmount) + parseFloat(maticXDGAmount)) *
-                      ratio
-                    )}
-                    <img
-                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png"
-                      alt="DG"
-                    />
+                    {props.formatPrice((parseFloat(xDGAmount) + parseFloat(maticXDGAmount)) * ratio)}
+                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
                   </>
                 ) : (
                   <Spinner width={33} height={33} />
@@ -279,33 +236,19 @@ const Governance = props => {
               </div>
             </div>
             <p className={styles.staking_subfooter}>
-              {xDGAmount !== undefined &&
-                maticXDGAmount !== undefined &&
-                ratio &&
-                xDGPrice ? (
-                `$${props.formatPrice(
-                  (parseFloat(xDGAmount) + parseFloat(maticXDGAmount)) *
-                  ratio *
-                  xDGPrice,
-                  2
-                )}`
+              {xDGAmount !== undefined && maticXDGAmount !== undefined && ratio && xDGPrice ? (
+                `$${props.formatPrice((parseFloat(xDGAmount) + parseFloat(maticXDGAmount)) * ratio * xDGPrice, 2)}`
               ) : (
                 <Spinner width={20} height={20} />
               )}
             </p>
           </div>
           <div className="col-md-4">
-            <h6 className={cn('mb-1', styles.staking_subfooter)}>
-              Staking APR
-            </h6>
+            <h6 className={cn('mb-1', styles.staking_subfooter)}>Staking APR</h6>
             <div className="mb-1">
-              <div className={styles.item_value}>
-                {apy ? `${apy}%` : <Spinner width={33} height={33} />}
-              </div>
+              <div className={styles.item_value}>{apy ? `${apy}%` : <Spinner width={33} height={33} />}</div>
             </div>
-            <p className={styles.staking_subfooter}>
-              1 xDG = {props.formatPrice(ratio, 3)} DG
-            </p>
+            <p className={styles.staking_subfooter}>1 xDG = {props.formatPrice(ratio, 3)} DG</p>
           </div>
         </div>
       </div>
@@ -336,8 +279,7 @@ const Governance = props => {
               <i class="ethereum icon"></i>&nbsp;{stakeType} on ETH Mainnet
             </h5>
             <p className={cn('mb-3', styles.staking_subfooter)}>
-              {stakeType} your {stakeType === 'Stake' ? '' : 'x'}DG in
-              governance and receive {stakeType === 'Unstake' ? '' : 'x'}DG
+              {stakeType} your {stakeType === 'Stake' ? '' : 'x'}DG in governance and receive {stakeType === 'Unstake' ? '' : 'x'}DG
             </p>
             <div className={styles.content}>
               <img
@@ -356,14 +298,13 @@ const Governance = props => {
                 onChange={handleAmountInputChange}
                 style={{
                   minWidth: `${5 + (amountInput.toString().length + 1) * 12}px`,
-                  maxWidth: `${5 + (amountInput.toString().length + 1) * 12}px`,
+                  maxWidth: `${5 + (amountInput.toString().length + 1) * 12}px`
                 }}
               />
 
               <Button
                 className={styles.max_button}
                 onClick={() => {
-
                   if (stakeType === 'Stake') {
                     setAmountInput(roundDownDecimals(dgAmount));
                   } else {
@@ -376,18 +317,8 @@ const Governance = props => {
             </div>
 
             <div className={styles.description}>
-              <h4
-                className={
-                  Number(amountInput) <=
-                    Number(stakeType === 'Stake' ? dgAmount : xDGAmount)
-                    ? styles.success
-                    : styles.error
-                }
-              >
-                {roundDownDecimals(
-                  stakeType === 'Stake' ? dgAmount : xDGAmount,
-                  3
-                )}
+              <h4 className={Number(amountInput) <= Number(stakeType === 'Stake' ? dgAmount : xDGAmount) ? styles.success : styles.error}>
+                {roundDownDecimals(stakeType === 'Stake' ? dgAmount : xDGAmount, 3)}
                 &nbsp;{stakeType === 'Stake' ? '' : 'x'}DG Available to&nbsp;
                 {stakeType}
               </h4>
@@ -406,28 +337,14 @@ const Governance = props => {
                 }
                 setAmountInput('');
               }}
-              disabled={
-                approving ||
-                  loading ||
-                  Number(amountInput) <= 0 ||
-                  Number(amountInput) >
-                  (stakeType === 'Stake' ? Number(dgAmount) : xDGAmount)
-                  ? true
-                  : false
-              }
+              disabled={approving || loading || Number(amountInput) <= 0 || Number(amountInput) > (stakeType === 'Stake' ? Number(dgAmount) : xDGAmount) ? true : false}
             >
               {approving || loading ? <Spinner width={33} height={33} /> : null}
               &nbsp;
-              {approving || loading
-                ? ''
-                : `${stakeType} ${amountInput > 0 ? amountInput : ''} ${stakeType === 'Unstake' ? 'x' : ''
-                }DG`}
+              {approving || loading ? '' : `${stakeType} ${amountInput > 0 ? amountInput : ''} ${stakeType === 'Unstake' ? 'x' : ''}DG`}
             </Button>
             <span>
-              You Will Receive{' '}
-              {stakeType === 'Stake'
-                ? props.formatPrice(Number(amountInput) / ratio, 3)
-                : props.formatPrice(Number(amountInput) * ratio, 3)}{' '}
+              You Will Receive {stakeType === 'Stake' ? props.formatPrice(Number(amountInput) / ratio, 3) : props.formatPrice(Number(amountInput) * ratio, 3)}{' '}
               {stakeType === 'Stake' ? 'x' : ''}DG
             </span>
           </div>
@@ -435,28 +352,17 @@ const Governance = props => {
         <div className={styles.staking_inner}>
           <div className={styles.contract_div}>
             <h5 className={cn(styles.staking_header, 'mb-1')}>
-              <img
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634606779/polygon_rsgtjk.png"
-                alt="polygon"
-              />
+              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1634606779/polygon_rsgtjk.png" alt="polygon" />
               &nbsp; {stakeType} on Polygon
             </h5>
             <p className={cn('mb-3', styles.staking_subfooter)}>
-              Swap {stakeType === 'Stake' ? '' : 'x'}DG for{' '}
-              {stakeType === 'Stake' ? 'x' : ''}DG directly on Quickswap
+              Swap {stakeType === 'Stake' ? '' : 'x'}DG for {stakeType === 'Stake' ? 'x' : ''}DG directly on Uniswap
             </p>
-            <img
-              className={styles.polygon_ellipse}
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1639565799/Ellipse_16_rmqkzi.jpg"
-              alt="Polygon"
-            />
+            <img className={styles.uniswap_ellipse} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636428353/uniswap_tkdx8e.png" alt="uniswap" />
 
             <div className={styles.description}>
               <h4 className={styles.gray}>
-                {props.formatPrice(
-                  stakeType === 'Stake' ? maticDGAmount : maticXDGAmount,
-                  3
-                )}
+                {props.formatPrice(stakeType === 'Stake' ? maticDGAmount : maticXDGAmount, 3)}
                 &nbsp;{stakeType === 'Stake' ? '' : 'x'}DG Available to&nbsp;
                 {stakeType}
               </h4>
@@ -469,29 +375,22 @@ const Governance = props => {
               className={styles.button}
               href={
                 stakeType === 'Stake'
-                  ? 'https://quickswap.exchange/#/swap?inputCurrency=0xef938b6da8576a896f6E0321ef80996F4890f9c4&outputCurrency=0xc6480Da81151B2277761024599E8Db2Ad4C388C8'
-                  : 'https://quickswap.exchange/#/swap?inputCurrency=0xc6480Da81151B2277761024599E8Db2Ad4C388C8&outputCurrency=0xef938b6da8576a896f6E0321ef80996F4890f9c4 '
+                  ? 'https://app.uniswap.org/#/swap?inputCurrency=0xef938b6da8576a896f6E0321ef80996F4890f9c4&outputCurrency=0xc6480Da81151B2277761024599E8Db2Ad4C388C8&chain=polygon'
+                  : 'https://app.uniswap.org/#/swap?inputCurrency=0xc6480Da81151B2277761024599E8Db2Ad4C388C8&outputCurrency=0xef938b6da8576a896f6E0321ef80996F4890f9c4&chain=polygon'
               }
               target="_blank"
             >
-              Swap for {stakeType === 'Stake' ? 'x' : ''}DG on Quickswap&nbsp;
-              <img
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636424323/TransBgArrow_ukntvi.png"
-                alt=""
-              />
+              Swap for {stakeType === 'Stake' ? 'x' : ''}DG on Uniswap&nbsp;
+              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1636424323/TransBgArrow_ukntvi.png" alt="" />
             </Button>
           </div>
         </div>
       </div>
 
       <div className={styles.staking_footer}>
-        <h5 className={cn(styles.staking_header, 'mb-2')}>
-          What If I’m Still Staked in the Old Governance?
-        </h5>
+        <h5 className={cn(styles.staking_header, 'mb-2')}>What If I’m Still Staked in the Old Governance?</h5>
         <p className={cn('mb-1', styles.staking_subfooter)}>
-          DG has migrated to a new token. To claim your (Old) $DG from
-          governance, go to our{' '}
-          <Link href="/dg/migration">Token Migration</Link> page.
+          DG has migrated to a new token. To claim your (Old) $DG from governance, go to our <Link href="/dg/migration">Token Migration</Link> page.
         </p>
       </div>
     </div>

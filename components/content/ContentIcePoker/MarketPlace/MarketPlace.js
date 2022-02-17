@@ -102,8 +102,8 @@ const MarketPlace = () => {
         ],
         PilotPants: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1643943935/ICE%20Airline/lowerbody_m_1_jmsfwd.png',
-          'Boardies',
           'Pilot Pants',
+          'ICE Airlines',
           'Legs',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1643943935/ICE%20Airline/lowerbody_m_1_jmsfwd.png'
         ],
@@ -262,7 +262,7 @@ const MarketPlace = () => {
     },
     {
       title: 'Founding Fathers',
-      address: Global.ADDRESSES.COLLECTION_Founding_FATHERS_ADDRESS,
+      address: Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_1_fvhl6y.png',
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_2_pqzdsy.png',
