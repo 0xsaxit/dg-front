@@ -142,7 +142,7 @@ const IcePoker = props => {
                   </div>
                 </Link>
 
-                <Link href="/account/ice">
+                <Link href="/account">
                   <div className={styles.menu_item} style={{ marginTop: '2px' }}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
@@ -295,7 +295,7 @@ const IcePoker = props => {
                   </div>
                 </Link>
 
-                <Link href="/account/ice">
+                <Link href="/account">
                   <div className={iceState === 'account' ? styles.menu_item_active : styles.menu_item}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path

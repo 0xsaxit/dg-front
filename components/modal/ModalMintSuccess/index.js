@@ -109,7 +109,7 @@ const ModalMintSuccess = props => {
         </div>
 
         <div className={styles.buttons}>
-          <Link href="/account/ice">
+          <Link href="/account">
             <Button className={styles.primary}>View in My Account</Button>
           </Link>
           <Button className={styles.none} onClick={() => setOpen(false)}>
