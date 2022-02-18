@@ -31,7 +31,8 @@ async function switchMaticNetwork(): Promise<void> {
   }
 }
 
-async function switchNetwork(): Promise<void> {
+{
+  /* async function switchNetwork(): Promise<void> {
   // Check if MetaMask is installed
   if (window.ethereum) {
     try {
@@ -64,6 +65,7 @@ async function switchNetwork(): Promise<void> {
     // if no window.ethereum then MetaMask is not installed
     alert('MetaMask is not installed. Please consider installing it');
   }
+} */
 }
 
 export interface FirstStepType {
@@ -91,7 +93,7 @@ const FirstStep: FC<FirstStepType> = ({ className = '' }: FirstStepType): ReactE
             }}
           >
             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1634606779/chrome_ytab9e.png" alt="chrome" />
-              Chrome
+            Chrome
           </Button>
           <Button
             className={styles.secondButton}
@@ -100,7 +102,7 @@ const FirstStep: FC<FirstStepType> = ({ className = '' }: FirstStepType): ReactE
             }}
           >
             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1634606779/firefox_ky0stl.png" alt="firefox" />
-              Firefox
+            Firefox
           </Button>
         </div>
       </div>
@@ -131,7 +133,7 @@ const FirstStep: FC<FirstStepType> = ({ className = '' }: FirstStepType): ReactE
               switchMaticNetwork();
             }}
           >
-              Add Polygon
+            Add Polygon
           </Button>
         </div>
       </div>

@@ -13,6 +13,11 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import CheckMintableModal from 'components/modal/CheckMintableModal';
 
+export interface ButtonProps {
+  className?: string;
+  onClick(): void;
+}
+
 export interface MarketPlaceType {
   className?: string;
 }
@@ -563,7 +568,7 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
     setPreviewLevel([].concat(levels));
   }
 
-  function useWindowSize(): any {
+  function useWindowSize(): { width: any; height: any } {
     // Initialize state with undefined width/height so server and client renders match
     // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
     const [windowSize, setWindowSize] = useState({
@@ -597,23 +602,27 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
     return windowSize;
   }
 
-  function CarouselNextArrow(propsArg): ReactElement {
+  function CarouselNextArrow(props: ButtonProps): ReactElement {
+    const { className, onClick } = props;
+
     return (
-      <div className={propsArg.className} onClick={propsArg.onClick}>
+      <div className={className} onClick={onClick}>
         <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1638236358/Right_Chevron_3x_cxt9x8.png" alt="nextArrow" />
       </div>
     );
   }
 
-  function CarouselPrevArrow(propsArg): ReactElement {
+  function CarouselPrevArrow(props: ButtonProps): ReactElement {
+    const { className, onClick } = props;
+
     return (
-      <div className={propsArg.className} onClick={propsArg.onClick}>
+      <div className={className} onClick={onClick}>
         <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1638236358/Right_Chevron_3x_cxt9x8.png" alt="nextArrow" />
       </div>
     );
   }
 
-  function getCarousel(): ReactElement {
+  function getCarousel(props: ButtonProps): ReactElement {
     const size = useWindowSize();
     const settings = {
       className:     'slider variable-width',
@@ -622,25 +631,19 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
       swipeToSlide:  true,
       variableWidth: true,
       slidesToShow:  size.width <= 499 ? 1 : size.width <= 1040 ? Math.floor((size.width - 120) / 300) : Math.min(Math.floor((size.width - 300) / 300), 6),
-      nextArrow:     <CarouselNextArrow />,
-      prevArrow:     <CarouselPrevArrow />
+      nextArrow:     <CarouselNextArrow onClick={() => props.onClick && props.onClick()} />,
+      prevArrow:     <CarouselPrevArrow onClick={() => props.onClick && props.onClick()} />
     };
 
-    function checkSoldOutStatus(itemList, maxMint): any {
-      return itemList.some(item => item[0] - maxMint !== 0);
-    }
+    const checkSoldOutStatus = (itemList, maxMint): ReactElement => itemList.some(item => item[0] - maxMint !== 0);
 
-    function buyOnSecondaryButton(): ReactElement {
-      return <Button className={styles.wearable_button}>Buy on Secondary</Button>;
-    }
+    const buyOnSecondaryButton = (): ReactElement => <Button className={styles.wearable_button}>Buy on Secondary</Button>;
 
-    function soldOutButton(): ReactElement {
-      return (
-        <Button disabled className={styles.sold_button}>
-          Sold Out
-        </Button>
-      );
-    }
+    const soldOutButton = (): ReactElement => (
+      <Button disabled className={styles.sold_button}>
+        Sold Out
+      </Button>
+    );
 
     return (
       <section>
@@ -792,7 +795,8 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
                                 target="_blank"
                                 style={{
                                   width: '100%'
-                                }} rel="noreferrer"
+                                }}
+                                rel="noreferrer"
                               >
                                 {
 
@@ -861,7 +865,7 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
           </p>
         </div>
 
-        <div className={styles.outter_games_container}>{getCarousel()}</div>
+        <div className={styles.outter_games_container}>{getCarousel(null)}</div>
         {/* {openCheckEligibility && <CheckMintableModal />} */}
       </span>
     </div>

@@ -24,8 +24,8 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): Rea
   const isTablet = useMediaQuery('(min-width: 1200px)');
 
   // define local variables
-  const [isClicked, setClicked] = useState(false);
-  const [isLoading, setLoading] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [payoutTime, setPayoutTime] = useState('--');
   const [totalIce, setTotalIce] = useState(0);
   const [statsUsdx, setStatsUsdx] = useState([]);
@@ -37,7 +37,7 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): Rea
 
   // after claiming rewards this code gets executed
   useEffect(() => {
-    setClicked(false);
+    setIsClicked(false);
   }, [state.iceAmounts]);
 
   useEffect(() => {
@@ -81,7 +81,7 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): Rea
   useEffect(() => {
     (async (): Promise<void> => {
       if (state.userStatus) {
-        setLoading(true);
+        setIsLoading(true);
 
         // Get Gameplay Reports from the API
         const response = await Fetch.GAMEPLAY_REPORTS();
@@ -120,8 +120,8 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): Rea
         let i: number,
           j: number,
           totalIceEarned = 0,
-          totalXpEarned = 0;
-        const history = [];
+          totalXpEarned = 0,
+          history = [];
 
         for (i = response.length - 1; i >= 0; i--) {
           let gamePlayIceEarned = 0,
@@ -180,7 +180,7 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): Rea
         setXpEarned(totalXpEarned);
         setStatsUsdy(datasets);
         setHistory(history);
-        setLoading(false);
+        setIsLoading(false);
       }
     })();
   }, [state.userStatus]);
@@ -195,7 +195,7 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): Rea
   }
 
   async function claimTokens(): Promise<void> {
-    setClicked(true);
+    setIsClicked(true);
 
     let msg = '';
 
@@ -204,11 +204,11 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): Rea
 
       if (json.status) {
         // update global state ice amounts
-        const isRefresh = !state.refreshICEAmounts;
+        const doesRefresh = !state.refreshICEAmounts;
 
         dispatch({
           type: 'refresh_ice_amounts',
-          data: isRefresh
+          data: doesRefresh
         });
 
         msg = 'ICE claimed successfully!';
@@ -216,12 +216,12 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): Rea
       } else {
         msg = 'ICE claimed failed!';
 
-        setClicked(false);
+        setIsClicked(false);
       }
     } catch (error) {
       msg = 'ICE claimed failed!';
 
-      setClicked(false);
+      setIsClicked(false);
     }
 
     dispatch({

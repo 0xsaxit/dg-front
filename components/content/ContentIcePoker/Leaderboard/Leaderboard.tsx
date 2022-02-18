@@ -29,7 +29,7 @@ const Leaderboard: FC<LeaderboardType> = ({ className = '' }: LeaderboardType): 
   const [time, setTime] = useState('Weekly');
 
   useEffect(() => {
-    if (Object.keys(state.gameRecords).length !== 0) {
+    if (state.gameRecords && Object.keys(state.gameRecords).length !== 0) {
       if (time === 'Weekly') {
         setGameRecords(state.gameRecords.weekly.poker.chips);
         setPersonalRecord(state.gameRecords.weekly.poker.personalChipsData);
