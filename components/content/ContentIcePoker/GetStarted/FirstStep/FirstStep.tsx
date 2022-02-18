@@ -24,14 +24,15 @@ async function switchMaticNetwork(): Promise<void> {
     const tx = await ethereum.request({ method: 'wallet_addEthereumChain', params: data }).catch();
 
     if (tx) {
-      console.log(tx);
+      // console.log(tx);
     }
   } catch (error) {
     console.error(error);
   }
 }
 
-{/* async function switchNetwork(): Promise<void> {
+{
+  /* async function switchNetwork(): Promise<void> {
   // Check if MetaMask is installed
   if (window.ethereum) {
     try {
@@ -49,7 +50,7 @@ async function switchMaticNetwork(): Promise<void> {
             params: [
               {
                 chainId: '0x38',
-                rpcUrl: 'https://explorer.matic.network/'
+                rpcUrl:  'https://explorer.matic.network/'
               }
             ]
           });
@@ -57,20 +58,22 @@ async function switchMaticNetwork(): Promise<void> {
           console.error(addError);
         }
       }
+
       console.error(error);
     }
   } else {
     // if no window.ethereum then MetaMask is not installed
     alert('MetaMask is not installed. Please consider installing it');
   }
-} */}
+} */
+}
 
 export interface FirstStepType {
   className?: string;
 }
 
 const FirstStep: FC<FirstStepType> = ({ className = '' }: FirstStepType): ReactElement => (
-  <div className={styles.main_wrapper}>
+  <div className={`first-step component ${className} ${styles.main_wrapper}`}>
     <div className={styles.title}>
       <h1>Create Metamask Wallet</h1>
       <p>Your Metamask Wallet is your gateway to ICE Poker, the metaverse, and beyond</p>

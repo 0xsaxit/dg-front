@@ -19,7 +19,7 @@ export interface IceRewardsType {
 
 const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): ReactElement => {
   // dispatch user's ICE amounts to the Context API store
-  const [ state, dispatch ] = useContext<any>(GlobalContext);
+  const [state, dispatch] = useContext<any>(GlobalContext);
 
   const isTablet = useMediaQuery('(min-width: 1200px)');
 
@@ -48,6 +48,20 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): Rea
     })();
   }, [totalIce]);
 
+  // get Remaining Time
+  function getRemainingTime(): number {
+    const today = new Date();
+    const todayUtc = new Date(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate(), today.getUTCHours(), today.getUTCMinutes(), today.getUTCSeconds());
+    const tomorrowUtc = new Date(todayUtc.getTime());
+
+    tomorrowUtc.setDate(tomorrowUtc.getDate() + 1);
+    tomorrowUtc.setHours(0);
+    tomorrowUtc.setMinutes(0);
+    tomorrowUtc.setSeconds(0);
+
+    return (tomorrowUtc.getTime() - todayUtc.getTime()) / 1000;
+  }
+
   useEffect(() => {
     const id = setInterval(() => {
       let remainingTime = getRemainingTime() / 60;
@@ -72,8 +86,6 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): Rea
         // Get Gameplay Reports from the API
         const response = await Fetch.GAMEPLAY_REPORTS();
 
-        console.log(response);
-
         // Set xAxis
         const xAxis = [];
         const today = new Date().toUTCString();
@@ -93,7 +105,7 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): Rea
             backgroundColor: ['#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF', '#B0E6FF'],
             barThickness:    20,
             borderWidth:     2,
-            borderRadius:    10,
+            borderRadius:    10
           },
           {
             label:           'Delegation',
@@ -101,14 +113,21 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): Rea
             backgroundColor: ['#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5', '#5EBFF5'],
             barThickness:    20,
             borderWidth:     2,
-            borderRadius:    10,
-          },
+            borderRadius:    10
+          }
         ];
 
-        let i: number, j: number, totalIceEarned = 0, totalXpEarned = 0, history = [];
+        let i: number,
+          j: number,
+          totalIceEarned = 0,
+          totalXpEarned = 0,
+          history = [];
 
-        for (let i = response.length - 1; i >= 0; i--) {
-          let gamePlayIceEarned = 0, gamePlayXpEarned = 0, delegationIceEarned = 0, delegationXpEarned = 0;
+        for (i = response.length - 1; i >= 0; i--) {
+          let gamePlayIceEarned = 0,
+            gamePlayXpEarned = 0,
+            delegationIceEarned = 0,
+            delegationXpEarned = 0;
           const day = moment.utc(new Date(response[i].day));
           const xAxisIndex = day.diff(todayMoment, 'days') + 7;
 
@@ -175,29 +194,7 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): Rea
     return balanceAdjusted;
   }
 
-  // get Remaining Time
-  function getRemainingTime(): number {
-    const today = new Date();
-    const todayUtc = new Date(
-      today.getUTCFullYear(),
-      today.getUTCMonth(),
-      today.getUTCDate(),
-      today.getUTCHours(),
-      today.getUTCMinutes(),
-      today.getUTCSeconds()
-    );
-    const tomorrowUtc = new Date(todayUtc.getTime());
-
-    tomorrowUtc.setDate(tomorrowUtc.getDate() + 1);
-    tomorrowUtc.setHours(0);
-    tomorrowUtc.setMinutes(0);
-    tomorrowUtc.setSeconds(0);
-
-    return (tomorrowUtc.getTime() - todayUtc.getTime()) / 1000;
-  }
-
   async function claimTokens(): Promise<void> {
-    console.log('Claiming ICE Rewards: ' + state.iceAmounts.ICE_CLAIM_AMOUNT);
     setIsClicked(true);
 
     let msg = '';
@@ -206,27 +203,22 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): Rea
       const json = await Fetch.CLAIM_REWARDS();
 
       if (json.status) {
-        console.log('Claim ICE rewards request successful');
-        console.log('Claim ICE transaction hash: ' + json.txHash);
-
         // update global state ice amounts
         const doesRefresh = !state.refreshICEAmounts;
 
         dispatch({
           type: 'refresh_ice_amounts',
-          data: doesRefresh,
+          data: doesRefresh
         });
 
         msg = 'ICE claimed successfully!';
         setTotalIce(0);
       } else {
-        console.log('Claim ICE rewards request error: ' + json.reason);
         msg = 'ICE claimed failed!';
 
         setIsClicked(false);
       }
     } catch (error) {
-      console.log(error); // API request timeout error
       msg = 'ICE claimed failed!';
 
       setIsClicked(false);
@@ -234,12 +226,12 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): Rea
 
     dispatch({
       type: 'show_toastMessage',
-      data: msg,
+      data: msg
     });
   }
 
   return (
-    <>
+    <section className={`ice-rewards component ${className}`}>
       {!state.userStatus ? (
         <div className={styles.fullWidth}>
           <FoxAnimation />
@@ -264,26 +256,13 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): Rea
                 <div>
                   <div className={styles.lower_value}>
                     <p className={styles.ICE_value}>{totalIce}</p>
-                    <img
-                      style={{ marginTop: '-4px' }}
-                      src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
-                    />
+                    <img style={{ marginTop: '-4px' }} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" />
                   </div>
-                  <p className={styles.price}>
-                    ${formatPrice(totalIce * state.DGPrices.ice, 2)}
-                  </p>
+                  <p className={styles.price}>${formatPrice(totalIce * state.DGPrices.ice, 2)}</p>
                 </div>
 
-                <Button
-                  className={cn(styles.claim_ICE, styles.lower_button)}
-                  onClick={() => claimTokens()}
-                  disabled={isClicked}
-                >
-                  {!isClicked ? (
-                    <>Claim {formatPrice(totalIce, 0)} ICE</>
-                  ) : (
-                    <LoadingAnimation />
-                  )}
+                <Button className={cn(styles.claim_ICE, styles.lower_button)} onClick={() => claimTokens()} disabled={isClicked}>
+                  {!isClicked ? <>Claim {formatPrice(totalIce, 0)} ICE</> : <LoadingAnimation />}
                 </Button>
               </div>
             </div>
@@ -293,17 +272,17 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): Rea
                 <h1>ICE Earned (past 7 Days - UTC)</h1>
               </div>
               <div className={styles.graph}>
-                {isLoading ?
+                {isLoading ? (
                   <div style={{ marginTop: '50px' }}>
                     <HourglassAnimation />
                   </div>
-                  :
+                ) : (
                   <>
                     <Bar
                       height={180}
                       data={{
                         labels:   statsUsdx,
-                        datasets: statsUsdy,
+                        datasets: statsUsdy
                       }}
                       options={{
                         maintainAspectRatio: false,
@@ -313,7 +292,7 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): Rea
                         scales:              {
                           xAxes: [
                             {
-                              stacked: true,
+                              stacked: true
                             }
                           ],
                           yAxes: [
@@ -323,13 +302,13 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): Rea
                                 autoSkip:        true,
                                 autoSkipPadding: 25,
                                 maxRotation:     0,
-                                minRotation:     0,
-                              },
-                            },
-                          ],
+                                minRotation:     0
+                              }
+                            }
+                          ]
                         },
                         elements: {
-                          point: { radius: 10 },
+                          point: { radius: 10 }
                         }
                       }}
                     />
@@ -356,7 +335,7 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): Rea
                       </div>
                     </div>
                   </>
-                }
+                )}
               </div>
             </div>
           </div>
@@ -364,7 +343,7 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): Rea
             <div className={styles.title}>
               <h1>ICE Reward History</h1>
             </div>
-            {isLoading ?
+            {isLoading ? (
               <Table fixed unstackable style={{ marginBottom: '0px' }}>
                 <Table.Header>
                   <Table.Row>
@@ -372,91 +351,64 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): Rea
                   </Table.Row>
                 </Table.Header>
               </Table>
-              : iceRewardHistory && iceRewardHistory.length > 0 ?
-                <>
-                  <Table fixed unstackable style={{ marginBottom: '0px' }}>
-                    <Table.Header>
-                      <Table.Row>
-                        {isTablet && (
-                          <Table.HeaderCell style={{ width: '15%' }}>
-                            Date
-                          </Table.HeaderCell>
-                        )}
-                        <Table.HeaderCell style={{ width: '18%' }}>
-                          Type
-                        </Table.HeaderCell>
-                        <Table.HeaderCell style={{ width: '18%' }}>
-                          ICE Earned
-                        </Table.HeaderCell>
-                        <Table.HeaderCell style={{ width: '18%' }}>
-                          XP Earned
-                        </Table.HeaderCell>
-                        {isTablet && (
-                          <Table.HeaderCell style={{ width: '30%' }}>
-                            Breakdown
-                          </Table.HeaderCell>
-                        )}
-                      </Table.Row>
-                    </Table.Header>
-                  </Table>
-                  <Table fixed unstackable>
-                    <Table.Body>
-                      {iceRewardHistory.map((row, i) => {
-                        let style = '';
+            ) : iceRewardHistory && iceRewardHistory.length > 0 ? (
+              <>
+                <Table fixed unstackable style={{ marginBottom: '0px' }}>
+                  <Table.Header>
+                    <Table.Row>
+                      {isTablet && <Table.HeaderCell style={{ width: '15%' }}>Date</Table.HeaderCell>}
+                      <Table.HeaderCell style={{ width: '18%' }}>Type</Table.HeaderCell>
+                      <Table.HeaderCell style={{ width: '18%' }}>ICE Earned</Table.HeaderCell>
+                      <Table.HeaderCell style={{ width: '18%' }}>XP Earned</Table.HeaderCell>
+                      {isTablet && <Table.HeaderCell style={{ width: '30%' }}>Breakdown</Table.HeaderCell>}
+                    </Table.Row>
+                  </Table.Header>
+                </Table>
+                <Table fixed unstackable>
+                  <Table.Body>
+                    {iceRewardHistory.map((row, i) => {
+                      let style = '';
 
-                        { i % 2 === 0 ? (style = 'rgba(255, 255, 255, 0.08)') : (style = 'black'); }
+                      {
+                        i % 2 === 0 ? (style = 'rgba(255, 255, 255, 0.08)') : (style = 'black');
+                      }
 
-                        return (
-                          <Table.Row key={i} style={{ background: style }}>
-                            {isTablet && (
-                              <Table.Cell style={{ width: '15%' }}>
-                                {row.date}
-                              </Table.Cell>
-                            )}
-                            <Table.Cell style={{ width: '18%' }}>
-                              {row.type}
+                      return (
+                        <Table.Row key={i} style={{ background: style }}>
+                          {isTablet && <Table.Cell style={{ width: '15%' }}>{row.date}</Table.Cell>}
+                          <Table.Cell style={{ width: '18%' }}>{row.type}</Table.Cell>
+                          <Table.Cell className={styles.iceEarned} style={{ width: '18%' }}>
+                            <div className={styles.earnedDiv}>{row.iceEarned.toLocaleString()}</div>
+                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
+                          </Table.Cell>
+                          <Table.Cell className={styles.xpEarned} style={{ width: '18%' }}>
+                            <div className={styles.earnedDiv}>{row.xpEarned.toLocaleString()}</div>
+                            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_XP_ICN_f9w2se.svg" alt="xp" />
+                          </Table.Cell>
+                          {isTablet && (
+                            <Table.Cell style={{ width: '30%', textAlign: 'right' }}>
+                              <Button className={styles.breakdown} onClick={() => setShowingBreakDown(i)} disabled={row.records && row.records.length > 0 ? false : true}>
+                                See Complete Breakdown
+                              </Button>
                             </Table.Cell>
-                            <Table.Cell className={styles.iceEarned} style={{ width: '18%' }}>
-                              <div className={styles.earnedDiv}>{row.iceEarned.toLocaleString()}</div>
-                              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
-                            </Table.Cell>
-                            <Table.Cell className={styles.xpEarned} style={{ width: '18%' }}>
-                              <div className={styles.earnedDiv}>{row.xpEarned.toLocaleString()}</div>
-                              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_XP_ICN_f9w2se.svg" alt="xp" />
-                            </Table.Cell>
-                            {isTablet && (
-                              <Table.Cell style={{ width: '30%', textAlign: 'right' }}>
-                                <Button
-                                  className={styles.breakdown}
-                                  onClick={() => setShowingBreakDown(i)}
-                                  disabled={row.records && row.records.length > 0 ? false : true}
-                                >
-                                  See Complete Breakdown
-                                </Button>
-                              </Table.Cell>
-                            )}
-                          </Table.Row>
-                        );
-                      })}
-                    </Table.Body>
-                  </Table>
-                </>
-                :
-                <div style={{ marginTop: '50px' }}>
-                  <EmptyResultAnimation />
-                </div>
-            }
+                          )}
+                        </Table.Row>
+                      );
+                    })}
+                  </Table.Body>
+                </Table>
+              </>
+            ) : (
+              <div style={{ marginTop: '50px' }}>
+                <EmptyResultAnimation />
+              </div>
+            )}
           </div>
 
-          {showBreakDown !== -1 ? (
-            <ModalIceBreakdown
-              history={iceRewardHistory[showBreakDown]}
-              setShowingBreakDown={setShowingBreakDown}
-            />
-          ) : null}
+          {showBreakDown !== -1 ? <ModalIceBreakdown history={iceRewardHistory[showBreakDown]} setShowingBreakDown={setShowingBreakDown} /> : null}
         </div>
       )}
-    </>
+    </section>
   );
 };
 

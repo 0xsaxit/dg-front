@@ -21,7 +21,7 @@ const Leaderboard: FC<LeaderboardType> = ({ className = '' }: LeaderboardType): 
   const [gameRecords, setGameRecords] = useState([]);
   const initialPersonalRecordState: PersonalRecord = {
     myScore: 0,
-    myRank:  'N/A',
+    myRank:  'N/A'
   };
   const [personalRecord, setPersonalRecord] = useState(initialPersonalRecordState);
 
@@ -29,7 +29,7 @@ const Leaderboard: FC<LeaderboardType> = ({ className = '' }: LeaderboardType): 
   const [time, setTime] = useState('Weekly');
 
   useEffect(() => {
-    if (Object.keys(state.gameRecords).length !== 0) {
+    if (state.gameRecords && Object.keys(state.gameRecords).length !== 0) {
       if (time === 'Weekly') {
         setGameRecords(state.gameRecords.weekly.poker.chips);
         setPersonalRecord(state.gameRecords.weekly.poker.personalChipsData);
@@ -44,15 +44,13 @@ const Leaderboard: FC<LeaderboardType> = ({ className = '' }: LeaderboardType): 
   }, [state.gameRecords, time]);
 
   return (
-    <div className={styles.main_wrapper}>
-      {!state.userStatus ?
+    <div className={`ice-leaderboard component ${className} ${styles.main_wrapper}`}>
+      {!state.userStatus ? (
         <FoxAnimation />
-        :
+      ) : (
         <>
           <div className={styles.title}>
-            <h1>
-              ICE Poker Leaderboard
-            </h1>
+            <h1>ICE Poker Leaderboard</h1>
           </div>
 
           <div className={styles.time_div}>
@@ -88,10 +86,7 @@ const Leaderboard: FC<LeaderboardType> = ({ className = '' }: LeaderboardType): 
             </div>
             <div className={styles.user_info}>
               <img src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`} alt="avatar" />
-              <abbr>
-                {state.userInfo.name === null || state.userInfo.name === '' ? 'Unnamed'
-                  : state.userInfo.name}
-              </abbr>
+              <abbr>{state.userInfo.name === null || state.userInfo.name === '' ? 'Unnamed' : state.userInfo.name}</abbr>
             </div>
             <div className={styles.winnings}>
               <abbr>{(Number(personalRecord.myScore) / 1000000000000000000).toFixed(0).toLocaleString()}</abbr>
@@ -103,39 +98,29 @@ const Leaderboard: FC<LeaderboardType> = ({ className = '' }: LeaderboardType): 
             <Table fixed unstackable>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell>
-                  Player
-                  </Table.HeaderCell>
-                  <Table.HeaderCell>
-                  Total CHIP Winnings
-                  </Table.HeaderCell>
+                  <Table.HeaderCell>Player</Table.HeaderCell>
+                  <Table.HeaderCell>Total CHIP Winnings</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
             </Table>
 
-            {gameRecords && gameRecords.length > 0 ?
+            {gameRecords && gameRecords.length > 0 ? (
               <Table fixed unstackable>
                 <Table.Body>
                   {gameRecords.map((row, i) => {
                     let style = '';
 
                     {
-                      i % 2 === 0
-                        ? (style = 'rgba(255, 255, 255, 0.08)')
-                        : (style = 'black');
+                      i % 2 === 0 ? (style = 'rgba(255, 255, 255, 0.08)') : (style = 'black');
                     }
 
                     return (
                       <Table.Row key={i} style={{ background: style }}>
                         <Table.Cell className={styles.user_info}>
-                          {row.address === state.userAddress ?
-                            <StarAnimation />
-                            : null}
+                          {row.address === state.userAddress ? <StarAnimation /> : null}
                           <abbr>{i + 1}</abbr>
                           <img src={row.imageURL} alt="avatar" />
-                          <abbr className={row.address === state.userAddress ? styles.active : null}>
-                            {row.name}
-                          </abbr>
+                          <abbr className={row.address === state.userAddress ? styles.active : null}>{row.name}</abbr>
                         </Table.Cell>
                         <Table.Cell className={styles.winnings}>
                           <abbr>{(Number(row.winnings) / 1000000000000000000).toFixed(0).toLocaleString()}</abbr>
@@ -146,12 +131,12 @@ const Leaderboard: FC<LeaderboardType> = ({ className = '' }: LeaderboardType): 
                   })}
                 </Table.Body>
               </Table>
-              :
+            ) : (
               <NoResult />
-            }
+            )}
           </div>
         </>
-      }
+      )}
     </div>
   );
 };

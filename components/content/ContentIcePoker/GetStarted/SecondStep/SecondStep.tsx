@@ -8,7 +8,7 @@ export interface SecondStepType {
 }
 
 const SecondStep: FC<SecondStepType> = ({ className = '' }: SecondStepType): ReactElement => (
-  <div className={styles.main_wrapper}>
+  <div className={`second-step component ${className} ${styles.main_wrapper}`}>
     <div className={styles.title}>
       <h1>Get 1 ICE Wearable To Start Playing</h1>
       <p>Two methods to acquiring an ICE NFT Wearable</p>

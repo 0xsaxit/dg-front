@@ -178,6 +178,13 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
     }
   }
 
+  function updateDelegationName(index, nickname): void {
+    const tempDelegations = [].concat(filteredDelegations);
+
+    tempDelegations[index].nickname = nickname;
+    setFilteredDelegations(tempDelegations);
+  }
+
   async function handleEditNickNameClick(index: number, nickName): Promise<void> {
     if (editingNickNameIndex !== index) {
       saveEditingNickNameIndex(index);
@@ -195,13 +202,6 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
         nickNameInputRef.current.input.focus();
       }, 200);
     }
-  }
-
-  function updateDelegationName(index, nickname): void {
-    const tempDelegations = [].concat(filteredDelegations);
-
-    tempDelegations[index].nickname = nickname;
-    setFilteredDelegations(tempDelegations);
   }
 
   async function saveUpdatedTitle(): Promise<void> {
@@ -252,7 +252,7 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
                 saveUpdatedNickName();
               }
             }}
-            onBlur={e => {
+            onBlur={() => {
               saveUpdatedNickName();
             }}
             disabled={index !== editingNickNameIndex}
@@ -260,14 +260,16 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
         ) : (
           <h1 onClick={() => setShowingBreakDown(index)}>{nickName.length > 12 ? nickName.substr(0, 10) + '...' : nickName}</h1>
         )}
-        {state.userStatus >= 28 && <img
-          className={styles.edit}
-          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1643126922/edit_p53oml.png"
-          alt="edit"
-          onClick={() => {
-            handleEditNickNameClick(index, nickName);
-          }}
-        />}
+        {state.userStatus >= 28 && (
+          <img
+            className={styles.edit}
+            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1643126922/edit_p53oml.png"
+            alt="edit"
+            onClick={() => {
+              handleEditNickNameClick(index, nickName);
+            }}
+          />
+        )}
       </div>
     );
   }
@@ -296,7 +298,7 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
                           saveUpdatedTitle();
                         }
                       }}
-                      onBlur={e => {
+                      onBlur={() => {
                         saveUpdatedTitle();
                       }}
                       disabled={!isEditingTitle}
@@ -304,14 +306,16 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
                   ) : (
                     <h1>{title.length > 24 ? title.substr(0, 24) + '...' : title}</h1>
                   )}
-                  {state.userStatus >= 28 && <img
-                    className={styles.edit}
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1643126922/edit_p53oml.png"
-                    alt="edit"
-                    onClick={() => {
-                      handleEditTitleClick();
-                    }}
-                  />}
+                  {state.userStatus >= 28 && (
+                    <img
+                      className={styles.edit}
+                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1643126922/edit_p53oml.png"
+                      alt="edit"
+                      onClick={() => {
+                        handleEditTitleClick();
+                      }}
+                    />
+                  )}
                 </div>
 
                 {/* Filter by Timeline */}
@@ -400,7 +404,7 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
                         <Table.Header>
                           <Table.Row>
                             <Table.HeaderCell style={{ width: '50px' }} />
-                            <Table.HeaderCell style={{ width: '200px' }}>Player Address</Table.HeaderCell>
+                            <Table.HeaderCell style={{ width: '250px' }}>Player Address</Table.HeaderCell>
                           </Table.Row>
                         </Table.Header>
 
@@ -417,7 +421,7 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
                             }
 
                             return (
-                              <Table.Row key={i} style={{ background: style, width: '250px' }}>
+                              <Table.Row key={i} style={{ background: style }}>
                                 <Table.Cell style={{ width: '50px' }}>{i + 1}</Table.Cell>
                                 <Table.Cell className={styles.user_info}>
                                   <section>
@@ -425,7 +429,7 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
                                     {row.currentDelegations.some(delegation => delegation.checkInStatus) && (
                                       <img className={styles.check_in} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627301200/Green_Check_iahexg.png" alt="check in" />
                                     )}
-                                    { nickNameInfo(row, i)}
+                                    {nickNameInfo(row, i)}
                                   </section>
                                 </Table.Cell>
                               </Table.Row>

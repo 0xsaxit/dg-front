@@ -8,9 +8,7 @@ export interface MyAccountType {
 const MyAccount: FC<MyAccountType> = ({ className = '' }: MyAccountType): ReactElement => (
   <div className={styles.main_wrapper}>
     <div className={styles.title}>
-      <h1>
-          MyAccount
-      </h1>
+      <h1>MyAccount</h1>
     </div>
   </div>
 );
