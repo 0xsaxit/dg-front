@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { FC, ReactElement, useState, useContext } from 'react';
+import { GlobalContext } from '@/store';
 import cn from 'classnames';
 import Global from 'components/Constants';
 import { Icon, Segment } from 'semantic-ui-react';
@@ -6,26 +7,34 @@ import Aux from 'components/_Aux';
 import styles from './Referrals.module.scss';
 import ModalBreakdown from 'components/modal/ModalBreakdown';
 
-function Referrals({ state }) {
+declare let analytics: any;
+
+export interface ReferralsType {
+  className?: string;
+}
+
+const Referrals: FC<ReferralsType> = ({ className = '' }: ReferralsType): ReactElement => {
+  // get user's transaction history from the Context API store
+  const [state] = useContext(GlobalContext);
+
   // define local variables
-  const [copied, setCopied] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
   const [isToastShow, setIsToastShow] = useState(false);
 
   const coins = ['mana', 'dai', 'usdt', 'atri', 'eth'];
   let totalAmount = 0;
 
-  
   coins.map((coin) => {
     totalAmount += +Number(
       state.DGPrices[coin] * state.DGBreakdown[coin]
     ).toFixed(3);
   });
 
-  const onCopy = () => {
+  function onCopy(): void {
     navigator.clipboard.writeText(
       Global.CONSTANTS.BASE_URL + '/' + state.userInfo.id
     );
-    setCopied(true);
+    setIsCopied(true);
     setIsToastShow(true);
 
     setTimeout(() => {
@@ -34,7 +43,7 @@ function Referrals({ state }) {
 
     // track 'Affiliate Link' button click event
     analytics.track('Clicked AFFILIATE LINK button');
-  };
+  }
 
   return (
     <Aux>
@@ -69,7 +78,7 @@ function Referrals({ state }) {
               </span>
               <Icon
                 className={styles.affiliate_icon}
-                name={!copied ? 'clone outline' : 'check'}
+                name={!isCopied ? 'clone outline' : 'check'}
               />
             </span>
           </div>
@@ -84,7 +93,7 @@ function Referrals({ state }) {
         </div>
         <span className="d-flex justify-content-between align-items-center mb-4">
           <h3 className="mb-0">
-            {!!state.DGBalances.BALANCE_AFFILIATES.length
+            {state.DGBalances.BALANCE_AFFILIATES.length
               ? 'Your referrals'
               : 'No Referrals Yet'}
           </h3>
@@ -105,13 +114,14 @@ function Referrals({ state }) {
             {state.DGBalances.BALANCE_AFFILIATES.map(
               (affiliate, affiliateIndex) => {
                 let amount = 0;
+
                 coins.map((coin) => {
                   amount += +(
                     Number(state.DGPrices[coin]) * Number(affiliate[coin])
                   ).toFixed(3);
                 });
 
-                return !!affiliate['address'] ? (
+                return affiliate['address'] ? (
                   <div
                     className={cn(
                       'd-flex justify-content-between align-items-center mb-2',
@@ -127,13 +137,11 @@ function Referrals({ state }) {
                         <div className={cn('me-2', styles.total_price)}>
                           $
                           {coins
-                            .reduce((total, coin) => {
-                              return (
-                                Number(total) +
+                            .reduce((total, coin) => (
+                              Number(total) +
                                 Number(affiliate[coin]) *
                                 Number(state.DGPrices[coin])
-                              );
-                            }, 0)
+                            ), 0)
                             .toFixed(3)}
                         </div>
                         <ModalBreakdown
@@ -158,6 +166,6 @@ function Referrals({ state }) {
       </div>
     </Aux>
   );
-}
+};
 
 export default Referrals;
