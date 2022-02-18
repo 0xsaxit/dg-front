@@ -79,7 +79,7 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
         }
 
         // Get Delegation Breakdown from the API
-        const response = await Fetch.DELEGATION_BREAKDOWN(period);
+        const response = await Fetch.DELEGATION_BREAKDOWN(period, '0xC65F7c7D76EE888Ddcc554e78C0beBAbA0A11cBd');
 
         if (response && response.length > 0) {
           response.sort(function (a, b) {
@@ -512,6 +512,23 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
                                 />
                               </svg>
                             </Table.HeaderCell>
+                            <Table.HeaderCell style={{ width: '200px' }} onClick={() => tableHeaderClicked('totalNetChipsScore')}>
+                              Net Chips Score
+                              <svg
+                                style={{ opacity: `${sortingName === 'totalNetChipsScore' ? 1 : 0}` }}
+                                className={sortingOrder === 'inc' ? styles.inc : styles.dec}
+                                width="13"
+                                height="16"
+                                viewBox="0 0 13 16"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M6.49219 0.875C5.78906 0.875 5.32031 1.36719 5.32031 2.09375V10.6016L5.39062 12.2969L3.92188 10.5938L2.14062 8.8125C1.92969 8.60156 1.65625 8.44531 1.30469 8.44531C0.671875 8.44531 0.1875 8.90625 0.1875 9.57812C0.1875 9.88281 0.3125 10.1719 0.554688 10.4219L5.625 15.5C5.84375 15.7188 6.17188 15.8516 6.49219 15.8516C6.8125 15.8516 7.14062 15.7188 7.35938 15.5L12.4375 10.4219C12.6797 10.1719 12.8047 9.88281 12.8047 9.57812C12.8047 8.90625 12.3203 8.44531 11.6875 8.44531C11.3359 8.44531 11.0625 8.60156 10.8438 8.8125L9.0625 10.5938L7.59375 12.2969L7.67188 10.6016V2.09375C7.67188 1.36719 7.19531 0.875 6.49219 0.875Z"
+                                  fill="white"
+                                />
+                              </svg>
+                            </Table.HeaderCell>
                             <Table.HeaderCell style={{ width: '230px' }} onClick={() => tableHeaderClicked('avgLeaderboardTier')}>
                               Avg.Leaderboard Tier
                               <svg
@@ -624,6 +641,14 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
                                 {/* Finished Challenges */}
                                 <Table.Cell style={{ width: '220px' }}>
                                   {row.stats.totalChallengesCompleted} of {row.stats.totalChallengesAssigned}
+                                </Table.Cell>
+
+                                {/* Net Chips Score */}
+                                <Table.Cell style={{ width: '200px' }}>
+                                  <div className={styles.netChipsScore} style={{ textAlign: 'center' }}>
+                                    {row.stats.totalChipsEarned ? row.stats.totalChipsEarned : '- -'}
+                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635212177/FREE_Coin_c08hyk.png" alt="ice" />
+                                  </div>
                                 </Table.Cell>
 
                                 {/* Avg.Leaderboard Tier */}

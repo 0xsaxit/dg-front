@@ -1,5 +1,5 @@
 .breakdown_modal {
-    width: 940px !important;
+    width: 1100px !important;
     max-height: 560px !important;
     padding: 40px 10px 25px 48px;
 
@@ -153,6 +153,18 @@
                     top: 0px;
                     left: 20px;
                     margin-right: 10px;
+                }
+            }
+            .netChipsScore {
+                position: relative;
+                width: 150px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    width: 25px;
+                    margin-left: 5px;
                 }
             }
             .xpEarned {

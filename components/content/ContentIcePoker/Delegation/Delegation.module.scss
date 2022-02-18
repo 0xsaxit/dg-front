@@ -333,6 +333,21 @@
                     }
                 }
 
+                .netChipsScore {
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 200px;
+
+                    img {
+                        position: relative;
+                        width: 20px;
+                        top: 1px;
+                        left: 6px;
+                    }
+                }
+
                 .tier {
                     position: relative;
                     width: 180px;
@@ -383,18 +398,18 @@
         overflow-x: scroll !important;
 
         table {
-            width: 1680px !important;
+            width: 1880px !important;
         }
 
         thead {
             tr {
-                width: 1680px !important;
+                width: 1880px !important;
             }
         }
 
         tbody {
             tr {
-                width: 1680px !important;
+                width: 1880px !important;
                 border-bottom-left-radius: 0px !important;
                 border-top-left-radius: 0px !important;
             }
