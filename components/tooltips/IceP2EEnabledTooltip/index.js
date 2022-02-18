@@ -6,7 +6,7 @@ const IceP2EEnabledTooltip = () => {
   return (
     <div className={styles.fullDiv}>
       <div className={styles.imgDiv}>
-        <img className={styles.img} src="/images/ice_enabled.svg" />
+        <img className={styles.img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1645146487/iceenabledbanner_jvzh8u.svg" />
         <Popup
           trigger={<img className={styles.tooltip} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631640045/ICE_Info_bbiag6.svg" />}
           position="top left"
