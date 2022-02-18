@@ -91,7 +91,7 @@ const IceWearableCard: FC<IceWearableCardType> = ({ item, delegation, className 
                   disabled={!isEditingNickName}
                 />
               ) : (
-                <h1 onClick={() => setShowingBreakDown(1)}>Delegated To {nickName.length > 8 ? nickName.substr(0, 8) + '...' : nickName}</h1>
+                <h1 onClick={() => setShowingBreakDown(1)}>Delegated To {nickName.length > 12 ? nickName.substr(0, 12) + '...' : nickName}</h1>
               )}
 
               <img
