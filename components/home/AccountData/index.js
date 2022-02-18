@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { GlobalContext } from '@/store';
 import Link from 'next/link';
 import Spinner from 'components/Spinner';
-import ContentAccount from 'components/content/ContentAccount';
+import ContentAccount from '@/components/content/ContentAccount/ContentAccount';
 import Aux from 'components/_Aux';
 import styles from './AccountData.module.scss';
 import AccountTooltip from 'components/tooltips/AccountTooltip';
