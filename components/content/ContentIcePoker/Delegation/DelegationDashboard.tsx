@@ -646,7 +646,7 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
                                 {/* Net Chips Score */}
                                 <Table.Cell style={{ width: '200px' }}>
                                   <div className={styles.netChipsScore} style={{ textAlign: 'center' }}>
-                                    +10,029
+                                    {row.stats.totalChipsEarned ? row.stats.totalChipsEarned : '- -'}
                                     <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635212177/FREE_Coin_c08hyk.png" alt="ice" />
                                   </div>
                                 </Table.Cell>
