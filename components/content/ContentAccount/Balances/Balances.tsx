@@ -1,9 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { FC, ReactElement, useContext, useEffect, useState } from 'react';
 import { Button } from 'semantic-ui-react';
-import { RampInstantSDK } from '@ramp-network/ramp-instant-sdk';
 import { GlobalContext } from '@/store';
 import Images from 'common/Images';
-import Global from 'components/Constants';
 import ModalAcceptMANA from 'components/modal/ModalAccept/MANA';
 import ModalAcceptDAI from 'components/modal/ModalAccept/DAI';
 import ModalAcceptETH from 'components/modal/ModalAccept/ETH';
@@ -12,7 +10,15 @@ import ModalDepositPolygon from 'components/modal/ModalDepositPolygon';
 import styles from './Balances.module.scss';
 import Fetch from '../../../../common/Fetch';
 
-const connext = {
+declare let analytics: any;
+
+export interface BalancesType {
+  className?: string;
+  state?: any;
+}
+
+// deprecated connext bridge code
+{/* const connext = {
   routerPublicID: Global.KEYS.CONNEXT_PUBLIC_ID,
   chainProviderInfura:
     'https://mainnet.infura.io/v3/e4f516197160473789e87e73f59d65b6',
@@ -23,21 +29,21 @@ const connext = {
   assetID_2_DAI: Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DAI,
   assetID_1_USDT: Global.ADDRESSES.ROOT_TOKEN_ADDRESS_USDT,
   assetID_2_USDT: Global.ADDRESSES.CHILD_TOKEN_ADDRESS_USDT,
-};
+}; */}
 
-const Balances = (props) => {
+const Balances: FC<BalancesType> = ({ className = '' }: BalancesType): ReactElement => {
   // get token balances from the Context API store
-  const [state, dispatch] = useContext(GlobalContext);
+  const [state, dispatch] = useContext<any>(GlobalContext);
 
   // define local variables
   const [event, setEvent] = useState('');
   const [txHash, setTxHash] = useState('');
   const [amount, setAmount] = useState(0);
   const buttonPlay = document.getElementById('play-now-button-balances');
-  const [depositModal, setShowingDepositModal] = useState(false);
+  const [isShowingDepositModal, setIsShowingDepositModal] = useState(false);
 
-  function formatPrice(balanceDG, units) {
-    const priceFormatted = Number(balanceDG)
+  function formatPrice(balanceDg, units): string {
+    const priceFormatted = Number(balanceDg)
       .toFixed(units)
       .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
@@ -46,15 +52,14 @@ const Balances = (props) => {
 
   useEffect(() => {
     if (state.dgLoading === 1) {
-      console.log("Pending transfer ... ");
-    } else if (state.dgLoading === 1) {
-      console.log("Transfer completed ... ");
+      console.log('Pending transfer ... ');
     } else {
-      console.log("Transfer Default Setting ... ");
+      console.log('Transfer Default Setting ... ');
     }
   }, [state.dgLoading]);
 
-  useEffect(() => {
+  // more deprecated connext doe
+  {/* useEffect(() => {
     const fetchResumeModel = async () => {
       const lockID = state.openModal.lockID;
       const resumeID = state.openModal.resumeID;
@@ -72,9 +77,9 @@ const Balances = (props) => {
       } else if (lockID == 6) {
         setResumeModal6(resumeID);
       } else {
-        console.log("UnExpected lockID ...");
+        console.log('UnExpected lockID ...');
       }
-    }
+    };
 
     if (state.dgShow) {
       fetchResumeModel();
@@ -84,7 +89,7 @@ const Balances = (props) => {
         data: false,
       });
     }
-  }, [state.dgShow]);
+  }, [state.dgShow]); */}
 
   // send tracking data to Segment
   useEffect(() => {
@@ -95,7 +100,6 @@ const Balances = (props) => {
 
   // refresh user token balances and post transaction to database
   useEffect(() => {
-
     if (event !== '' && txHash !== '' && amount !== 0) {
       console.log('Event type: ' + event);
 
@@ -111,8 +115,8 @@ const Balances = (props) => {
 
       // post transaction to database
       console.log('Posting Connext transaction to db: ' + event);
-      console.log("TxHash: ", txHash);
-      console.log("Amount: ", amount);
+      console.log('TxHash: ', txHash);
+      console.log('Amount: ', amount);
 
       Fetch.POST_HISTORY(
         state.userAddress,
@@ -131,7 +135,9 @@ const Balances = (props) => {
     }
   }, [event, txHash, amount]);
 
-  const rampDAI = new RampInstantSDK({
+  // deprecated ramp sdk code
+  {/*
+    const rampDAI = new RampInstantSDK({
     hostAppName: 'Buy DAI Directly',
     hostLogoUrl:
       'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1618335593/COIN_-_DAI_kbvlhx.png',
@@ -142,9 +148,9 @@ const Balances = (props) => {
     hostLogoUrl:
       'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1618335594/COIN_-_ETH_ji9yyj.png',
     swapAsset: 'MATIC_ETH',
-  });
+  }); */}
 
-  function Balances() {
+  function Balances(): ReactElement {
     return (
       <section>
 
@@ -153,7 +159,7 @@ const Balances = (props) => {
           <div className={styles.balance_column}>
             <span className={styles.float_left}>
               <span className={styles.img_left}>
-                <img src={Images[`PLAY_CIRCLE`]} />
+                <img src={Images['PLAY_CIRCLE']} />
               </span>
               <span className={styles.balance_column_header}>
                 <p className={styles.bold_text}>Free Play</p>
@@ -174,7 +180,7 @@ const Balances = (props) => {
                   </Button>
                 ) : (
                   <Button className={styles.topUp} onClick={() => {
-                    window.open("https://play.decentraland.org/?position=-118%2C135&realm=dg", "_blank");
+                    window.open('https://play.decentraland.org/?position=-118%2C135&realm=dg', '_blank');
                   }}>
                     Play Now
                   </Button>
@@ -187,7 +193,7 @@ const Balances = (props) => {
           <div className={styles.balance_column}>
             <span className={styles.float_left}>
               <span className={styles.img_left}>
-                <img src={Images[`MANA_CIRCLE`]} />
+                <img src={Images['MANA_CIRCLE']} />
               </span>
               <span className={styles.balance_column_header}>
                 <p className={styles.bold_text}>Decentraland</p>
@@ -197,7 +203,7 @@ const Balances = (props) => {
 
             <div className={styles.float_right}>
               <span className={styles.balance_column_header}>
-                <p className={styles.bold_text}>{parseInt(state.userBalances[1][1]).toLocaleString()} MANA</p>
+                <p className={styles.bold_text}>{parseInt(state.userBalances[1][1], 2).toLocaleString()} MANA</p>
                 <p className={styles.bold_text}>${formatPrice(state.userBalances[1][1] * state.DGPrices.mana, 2)}</p>
               </span>
 
@@ -207,7 +213,7 @@ const Balances = (props) => {
                     <Button
                       className={styles.temp_deposit}
                       onClick={() => {
-                        setShowingDepositModal(true)
+                        setIsShowingDepositModal(true);
                       }}
                     >
                       Deposit & withdraw
@@ -218,7 +224,7 @@ const Balances = (props) => {
                 )}
                 <Button
                   className={styles.newLink}
-                  href="https://www.binance.com/en/trade/MANA_ETH"
+                  href="https://quickswap.exchange/#/swap?outputCurrency=0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4"
                   target="_blank"
                 >
                   Buy
@@ -234,7 +240,7 @@ const Balances = (props) => {
           <div className={styles.balance_column}>
             <span className={styles.float_left}>
               <span className={styles.img_left}>
-                <img src={Images[`DAI_CIRCLE`]} />
+                <img src={Images['DAI_CIRCLE']} />
               </span>
               <span className={styles.balance_column_header}>
                 <p className={styles.bold_text}>Dai</p>
@@ -245,7 +251,7 @@ const Balances = (props) => {
             <div className={styles.float_right}>
               <span className={styles.balance_column_header}>
                 <p className={styles.bold_text}>
-                  {parseInt(state.userBalances[0][1]).toLocaleString()} DAI
+                  {parseInt(state.userBalances[0][1], 2).toLocaleString()} DAI
                 </p>
                 <p className={styles.bold_text}>${formatPrice(state.userBalances[0][1] * state.DGPrices.dai, 2)}</p>
               </span>
@@ -256,7 +262,7 @@ const Balances = (props) => {
                     <Button
                       className={styles.temp_deposit}
                       onClick={() => {
-                        setShowingDepositModal(true)
+                        setIsShowingDepositModal(true);
                       }}
                     >
                       Deposit & withdraw
@@ -267,7 +273,8 @@ const Balances = (props) => {
                 )}
                 <Button
                   className={styles.newLink}
-                  onClick={() => rampDAI.show()}
+                  href="https://quickswap.exchange/#/swap?outputCurrency=0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063"
+                  target="_blank"
                 >
                   Buy
                   <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -283,7 +290,7 @@ const Balances = (props) => {
           <div className={styles.balance_column}>
             <span className={styles.float_left}>
               <span className={styles.img_left}>
-                <img src={Images[`ETH_CIRCLE`]} />
+                <img src={Images['ETH_CIRCLE']} />
               </span>
               <span className={styles.balance_column_header}>
                 <p className={styles.bold_text}>Ethereum</p>
@@ -303,7 +310,7 @@ const Balances = (props) => {
                     <Button
                       className={styles.temp_deposit}
                       onClick={() => {
-                        setShowingDepositModal(true)
+                        setIsShowingDepositModal(true);
                       }}
                     >
                       Deposit & withdraw
@@ -314,7 +321,8 @@ const Balances = (props) => {
                 )}
                 <Button
                   className={styles.newLink}
-                  onClick={() => rampETH.show()}
+                  href="https://quickswap.exchange/#/swap?outputCurrency=0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619"
+                  target="_blank"
                 >
                   Buy
                   <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -324,7 +332,6 @@ const Balances = (props) => {
               </div>
             </div>
           </div>
-
 
           {/* ////// ICE ////// */}
           <div className={styles.balance_column}>
@@ -340,7 +347,7 @@ const Balances = (props) => {
 
             <div className={styles.float_right}>
               <span className={styles.balance_column_header}>
-                <p className={styles.bold_text}>{parseInt(state.iceAmounts.ICE_AVAILABLE_AMOUNT).toLocaleString()} ICE</p>
+                <p className={styles.bold_text}>{parseInt(state.iceAmounts.ICE_AVAILABLE_AMOUNT, 2).toLocaleString()} ICE</p>
                 <p className={styles.bold_text}>${formatPrice(state.iceAmounts.ICE_AVAILABLE_AMOUNT * state.DGPrices.ice, 2)}</p>
               </span>
 
@@ -350,7 +357,7 @@ const Balances = (props) => {
                     <Button
                       className={styles.temp_deposit}
                       onClick={() => {
-                        setShowingDepositModal(true)
+                        setIsShowingDepositModal(true);
                       }}
                     >
                       Deposit & withdraw
@@ -376,20 +383,13 @@ const Balances = (props) => {
         </div>
 
         <ModalDepositPolygon
-          show={depositModal}
+          show={isShowingDepositModal}
           close={() => {
-            setShowingDepositModal(false);
+            setIsShowingDepositModal(false);
           }}
         />
       </section>
     );
-  }
-
-  // set modal state and event type
-  function setStateAndEvent(number, state, type) {
-    if (type) {
-      setEvent(type);
-    }
   }
 
   return Balances();
