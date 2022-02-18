@@ -307,7 +307,7 @@ const AccountData = (props) => {
                     >
                       ICE
                     </span>
-                  ) : (<Link href="/account/ice">
+                  ) : (<Link href="/account">
                     <span className={cn("account-hover", styles.account_hover)}>
                       ICE
                   </span>
