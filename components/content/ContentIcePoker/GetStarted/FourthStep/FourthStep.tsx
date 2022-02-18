@@ -7,7 +7,7 @@ export interface FourthStepType {
 }
 
 const FourthStep: FC<FourthStepType> = ({ className = '' }: FourthStepType): ReactElement => (
-  <div className={styles.main_wrapper}>
+  <div className={`fourth-step component ${className} ${styles.main_wrapper}`}>
     <div className={styles.title}>
       <h1>Play ICE Poker!</h1>
       <p>Two ways to play ICE Poker</p>

@@ -178,6 +178,13 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
     }
   }
 
+  function updateDelegationName(index, nickname): void {
+    const tempDelegations = [].concat(filteredDelegations);
+
+    tempDelegations[index].nickname = nickname;
+    setFilteredDelegations(tempDelegations);
+  }
+
   async function handleEditNickNameClick(index: number, nickName): Promise<void> {
     if (editingNickNameIndex !== index) {
       saveEditingNickNameIndex(index);
@@ -195,13 +202,6 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
         nickNameInputRef.current.input.focus();
       }, 200);
     }
-  }
-
-  function updateDelegationName(index, nickname): void {
-    const tempDelegations = [].concat(filteredDelegations);
-
-    tempDelegations[index].nickname = nickname;
-    setFilteredDelegations(tempDelegations);
   }
 
   async function saveUpdatedTitle(): Promise<void> {
@@ -252,7 +252,7 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
                 saveUpdatedNickName();
               }
             }}
-            onBlur={e => {
+            onBlur={() => {
               saveUpdatedNickName();
             }}
             disabled={index !== editingNickNameIndex}
@@ -298,7 +298,7 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
                           saveUpdatedTitle();
                         }
                       }}
-                      onBlur={e => {
+                      onBlur={() => {
                         saveUpdatedTitle();
                       }}
                       disabled={!isEditingTitle}

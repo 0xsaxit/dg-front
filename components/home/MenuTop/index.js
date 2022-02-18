@@ -42,8 +42,8 @@ const MenuTop = () => {
     if (state.userStatus >= 4) {
       ReactGA.event({
         category: 'Logged In',
-        action:   'User Logged In',
-        label:    'Home Page',
+        action: 'User Logged In',
+        label: 'Home Page'
       });
     }
   }, [state.userStatus]);
@@ -108,7 +108,7 @@ const MenuTop = () => {
   function setAffiliateState() {
     dispatch({
       type: 'affiliate_address',
-      data: localStorage.getItem('ref'),
+      data: localStorage.getItem('ref')
     });
   }
 
@@ -130,11 +130,11 @@ const MenuTop = () => {
     // update "login" status in store and LS
     dispatch({
       type: 'set_userLoggedIn',
-      data: false,
+      data: false
     });
 
     dispatch({
-      type: 'set_initialState',
+      type: 'set_initialState'
     });
 
     //clear localstorage
@@ -148,14 +148,12 @@ const MenuTop = () => {
       <Link href="/">
         <img
           className={cn(
-
             // AMNESIA_COMMENT: remove the amnesia logo class
             styles.menu_logo,
             state.isAmnesiaPage && styles.amnesia_logo
           )}
           alt="Decentral Games Logo"
           src={
-
             // AMNESIA_COMMENT: remove the amnesia logo
             state.isAmnesiaPage
               ? 'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632943973/amnesia/amnesia_dg_logo_uvqb6x.png'
@@ -168,14 +166,12 @@ const MenuTop = () => {
         <Link href="/">
           <img
             className={cn(
-
               // AMNESIA_COMMENT: remove the amnesia logo class
               styles.menu_logo,
               state.isAmnesiaPage && styles.amnesia_logo
             )}
             alt="Decentral Games Logo"
             src={
-
               // AMNESIA_COMMENT: remove the amnesia logo
               state.isAmnesiaPage
                 ? 'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632943973/amnesia/amnesia_dg_logo_uvqb6x.png'
@@ -226,11 +222,7 @@ const MenuTop = () => {
           )}
 
           {!isTablet && (
-            <a
-              href="https://ice.decentral.games"
-              id="docs-top-menu"
-              target="_blank" rel="noreferrer"
-            >
+            <a href="https://ice.decentral.games" id="docs-top-menu" target="_blank" rel="noreferrer">
               <Menu.Item className={styles.menu_style}>
                 {/* {t('navMenu.DOCS')} */}
                 Docs
@@ -256,17 +248,13 @@ const MenuTop = () => {
       <div className={styles.menu_items_to_hide}>
         {isMobile && (
           <Link href={'/ice'}>
-            <Menu.Item className={styles.menu_style}>
-              ICE Poker
-            </Menu.Item>
+            <Menu.Item className={styles.menu_style}>ICE Poker</Menu.Item>
           </Link>
         )}
 
         {isMobile && (
           <Link href="/dg">
-            <Menu.Item className={styles.menu_style}>
-              DAO
-            </Menu.Item>
+            <Menu.Item className={styles.menu_style}>DAO</Menu.Item>
           </Link>
         )}
 
@@ -311,12 +299,7 @@ const MenuTop = () => {
         )}
 
         {isTablet && (
-          <a
-            href="https://ice.decentral.games"
-            id="docs-top-menu"
-            className="d-flex"
-            target="_blank" rel="noreferrer"
-          >
+          <a href="https://ice.decentral.games" id="docs-top-menu" className="d-flex" target="_blank" rel="noreferrer">
             <Menu.Item className={styles.menu_style}>
               {/* {t('navMenu.DOCS')} */}
               Docs
@@ -335,7 +318,7 @@ const MenuTop = () => {
           <span className={styles.right_menu_items}>
             {state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID && <ButtonSwitchNetwork />}
             {state.networkID === Global.CONSTANTS.PARENT_NETWORK_ID && isSquished ? <ModalInfo /> : null}
-            {!isPhone && (<ModalPopup />) }
+            {!isPhone && <ModalPopup />}
           </span>
         )}
         {(state.userStatus < 3 || !state.userLoggedIn) && (
@@ -355,26 +338,19 @@ const MenuTop = () => {
       <span>
         <div
           className={cn(
-
             // AMNESIA_COMMENT: amnesia header class should be removed after we are done with amnesia
-            state.isAmnesiaPage &&
-              scrollState === 'top' &&
-              !open &&
-              styles.amnesia_header,
+            state.isAmnesiaPage && scrollState === 'top' && !open && styles.amnesia_header,
             styles.dashboard_menu_container,
-            open || scrollState !== 'top' || router.asPath !== '/'
-              ? styles.dark
-              : ''
+            open || scrollState !== 'top' || router.asPath !== '/' ? styles.dark : ''
           )}
         >
           <MessageToast />
-          {isPhone? (
+          {isPhone ? (
             <Menu className={cn(styles.menu_container)}>
               {DGLogo()}
               {balancesAndButtons()}
               {shownOrHiddenItems()}
             </Menu>
-
           ) : (
             <Menu className={cn(styles.menu_container)}>
               {DGLogo()}

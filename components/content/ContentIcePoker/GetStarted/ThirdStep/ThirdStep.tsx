@@ -7,7 +7,7 @@ export interface ThirdStepType {
 }
 
 const ThirdStep: FC<ThirdStepType> = ({ className = '' }: ThirdStepType): ReactElement => (
-  <div className={styles.main_wrapper}>
+  <div className={`third-step component ${className} ${styles.main_wrapper}`}>
     <div className={styles.title}>
       <h1>Create Decentraland Avatar</h1>
       <p>For metaverse poker, you’ll need a metaverse avatar</p>

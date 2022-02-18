@@ -8,16 +8,18 @@ const IceP2EEnabledTooltip = () => {
       <div className={styles.imgDiv}>
         <img className={styles.img} src="/images/ice_enabled.svg" />
         <Popup
-          trigger={
-            <img className={styles.tooltip} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631640045/ICE_Info_bbiag6.svg" />
-          }
-          position='top left'
+          trigger={<img className={styles.tooltip} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631640045/ICE_Info_bbiag6.svg" />}
+          position="top left"
           hideOnScroll={true}
-          className={cn("p2e_enabled_tooltip", styles.popup)}
+          className={cn('p2e_enabled_tooltip', styles.popup)}
         >
           <Popup.Content className={styles.tooltipContent}>
             <img className={styles.popup_info} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631640045/ICE_Info_bbiag6.svg" />
-            <p className={styles.popup_content}>ICE enabled wearables allow<br/> you to earn real cash value from<br/> free-to-play ICE poker tables.</p>
+            <p className={styles.popup_content}>
+              ICE enabled wearables allow
+              <br /> you to earn real cash value from
+              <br /> free-to-play ICE poker tables.
+            </p>
           </Popup.Content>
         </Popup>
       </div>

@@ -631,8 +631,8 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
       swipeToSlide:  true,
       variableWidth: true,
       slidesToShow:  size.width <= 499 ? 1 : size.width <= 1040 ? Math.floor((size.width - 120) / 300) : Math.min(Math.floor((size.width - 300) / 300), 6),
-      nextArrow:     <CarouselNextArrow onClick = {() => props.onClick && props.onClick()} />,
-      prevArrow:     <CarouselPrevArrow onClick = {() => props.onClick && props.onClick()} />
+      nextArrow:     <CarouselNextArrow onClick={() => props.onClick && props.onClick()} />,
+      prevArrow:     <CarouselPrevArrow onClick={() => props.onClick && props.onClick()} />
     };
 
     const checkSoldOutStatus = (itemList, maxMint): ReactElement => itemList.some(item => item[0] - maxMint !== 0);
@@ -641,7 +641,7 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
 
     const soldOutButton = (): ReactElement => (
       <Button disabled className={styles.sold_button}>
-          Sold Out
+        Sold Out
       </Button>
     );
 
@@ -759,8 +759,6 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
                       {(() => {
                         // Logged In States
                         if (state.userLoggedIn) {
-                          console.log('state.userLoggedIn', state.userLoggedIn);
-
                           if (state.userStatus >= 4 && itemLimits[i][0] < 0) {
                             // Items still loading, display spinner
                             return (
@@ -797,7 +795,8 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
                                 target="_blank"
                                 style={{
                                   width: '100%'
-                                }} rel="noreferrer"
+                                }}
+                                rel="noreferrer"
                               >
                                 {
 

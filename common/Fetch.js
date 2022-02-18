@@ -7,8 +7,7 @@ const { publicRuntimeConfig } = getConfig();
 const { APP_ENV } = publicRuntimeConfig;
 
 // APP_ENV must be set in the .env.{environment} files
-export const API_BASE_URL =
-  ApiUrlsByAppEnv[APP_ENV] || 'https://api.decentral.games';
+export const API_BASE_URL = ApiUrlsByAppEnv[APP_ENV] || 'https://api.decentral.games';
 
 const API_BASE_URL_PROD_OR_LOCALHOST_ONLY = APP_ENV === 'localhost' ? ApiUrlsByAppEnv['localhost'] : ApiUrlsByAppEnv['production'];
 
@@ -16,18 +15,13 @@ console.log('APP_ENV (NODE_ENV): ', APP_ENV);
 console.log('API_BASE_URL: ', API_BASE_URL);
 
 const Fetch = {
-  
   // GET API calls (no wallet address necessary)
   APP_CONFIG: () => {
     return call(`${API_BASE_URL}/admin/getAppConfig`, 'GET');
   },
 
   TREASURY_STATS_NUMBERS: period => {
-    return call(
-      `${API_BASE_URL_PROD_OR_LOCALHOST_ONLY}/admin/getTreasuryBalanceHistory/${period}`,
-      'GET',
-      false
-    );
+    return call(`${API_BASE_URL_PROD_OR_LOCALHOST_ONLY}/admin/getTreasuryBalanceHistory/${period}`, 'GET', false);
   },
 
   EVENTS: () => {
@@ -47,32 +41,19 @@ const Fetch = {
   },
 
   MINT_TOKEN: (itemId, collectionAddr) => {
-    return call(
-      `${API_BASE_URL}/ice/mintToken/${itemId}/${collectionAddr}`,
-      'GET'
-    );
+    return call(`${API_BASE_URL}/ice/mintToken/${itemId}/${collectionAddr}`, 'GET');
   },
 
   DG_GOVERNANCE_SUPPLY_GECKO: () => {
-    return call(
-      `https://api.coingecko.com/api/v3/coins/decentral-games-governance`,
-      'GET',
-      false
-    );
+    return call(`https://api.coingecko.com/api/v3/coins/decentral-games-governance`, 'GET', false);
   },
 
   UPGRADE_TOKEN: (tokenId, collectionAddr) => {
-    return call(
-      `${API_BASE_URL}/ice/upgradeToken/${tokenId}/${collectionAddr}`,
-      'GET'
-    );
+    return call(`${API_BASE_URL}/ice/upgradeToken/${tokenId}/${collectionAddr}`, 'GET');
   },
 
   GET_METADATA_FROM_TOKEN_URI: (contractAddr, tokenId) => {
-    return call(
-      `${API_BASE_URL}/ice/getMetadata/${contractAddr}/${tokenId}`,
-      'GET'
-    );
+    return call(`${API_BASE_URL}/ice/getMetadata/${contractAddr}/${tokenId}`, 'GET');
   },
 
   CLAIM_REWARDS: () => {
@@ -91,47 +72,32 @@ const Fetch = {
   //   return call(`${API_BASE_URL}/ice/getRewardsConfig`, 'GET');
   // },
 
-  
   // GET API calls (wallet address necessary)
   PLAYER_INFO: address => {
     return call(`${API_BASE_URL}/admin/getUser?address=${address}`, 'GET');
   },
 
   POKER_DATA: address => {
-    return call(
-      `${API_BASE_URL}/admin/getPokerHandHistory?address=${address}`,
-      'GET'
-    );
+    return call(`${API_BASE_URL}/admin/getPokerHandHistory?address=${address}`, 'GET');
   },
 
   ICE_AMOUNTS: address => {
-    return call(
-      `${API_BASE_URL}/ice/getUnclaimedRewardsAmount?address=${address}`,
-      'GET'
-    );
+    return call(`${API_BASE_URL}/ice/getUnclaimedRewardsAmount?address=${address}`, 'GET');
   },
 
   UPDATE_FREE_PLAYER_BALANCE: (amount, address) => {
-    return call(
-      `${API_BASE_URL}/admin/updateUserBalances?freePlayAmountChange=${amount}&user=${address}`,
-      'GET'
-    );
+    return call(`${API_BASE_URL}/admin/updateUserBalances?freePlayAmountChange=${amount}&user=${address}`, 'GET');
   },
 
   UPDATE_ICE_CHIP_BALANCE: (amount, address) => {
-    return call(
-      `${API_BASE_URL}/admin/updateUserBalances?iceChipsAmountChange=${amount}&user=${address}`,
-      'GET'
-    );
+    return call(`${API_BASE_URL}/admin/updateUserBalances?iceChipsAmountChange=${amount}&user=${address}`, 'GET');
   },
 
-  
   // GET API calls (wallet address optional)
   DELEGATE_INFO: address => {
     return call(`${API_BASE_URL}/ice/delegateInfo?address=${address}`, 'GET');
   },
 
-  
   // POST API calls (no wallet address necessary)
   VERIFY_TOKEN: async () => {
     return await call(`${API_BASE_URL}/authentication/verifyToken`, 'POST', true, {}, true);
@@ -143,7 +109,7 @@ const Fetch = {
 
   REGISTER: affiliate => {
     return call(`${API_BASE_URL}/order/webRegister`, 'POST', true, {
-      affiliate,
+      affiliate
     });
   },
 
@@ -151,7 +117,7 @@ const Fetch = {
     return call(`${API_BASE_URL}/ice/delegateToken`, 'POST', true, {
       delegateAddress,
       tokenId,
-      contractAddress,
+      contractAddress
     });
   },
 
@@ -160,15 +126,14 @@ const Fetch = {
       tokenOwner,
       delegateAddress,
       tokenId,
-      contractAddress,
+      contractAddress
     });
   },
 
-  
   // POST API calls (wallet address necessary)
   UPDATE_TOKEN_ARRAY: (address, index) => {
     return call(`${API_BASE_URL}/order/updateTokenArray`, 'POST', true, {
-      index,
+      index
     });
   },
 
@@ -179,14 +144,14 @@ const Fetch = {
   HISTORY_DATA: address => {
     return call(`${API_BASE_URL}/order/getHistory`, 'POST', true, {
       limit: 99999, // call all of the data
-      page: 1,
+      page: 1
     });
   },
 
   PLAY_DATA: address => {
     return call(`${API_BASE_URL}/order/getPlayInfo`, 'POST', true, {
       limit: 99999, // call all of the data
-      page: 1,
+      page: 1
     });
   },
 
@@ -196,19 +161,14 @@ const Fetch = {
       type,
       state,
       txHash,
-      step,
+      step
     });
   },
 
   GET_WEARABLE_INVENTORY: address => {
-    return call(
-      `${API_BASE_URL}/ice/getWearableInventory?address=${address}`,
-      'GET',
-      true
-    );
+    return call(`${API_BASE_URL}/ice/getWearableInventory?address=${address}`, 'GET', true);
   },
 
-  
   // third-party API calls
   NFTS_1: address => {
     return call(
@@ -227,51 +187,27 @@ const Fetch = {
   },
 
   AVATAR_IMAGE: address => {
-    return call(
-      `https://peer.decentraland.org/lambdas/profile/${address}`,
-      'GET',
-      false
-    );
+    return call(`https://peer.decentraland.org/lambdas/profile/${address}`, 'GET', false);
   },
 
   PROPOSALS: () => {
-    return call(
-      `https://hub.snapshot.page/api/decentralgames.eth/proposals`,
-      'GET',
-      false
-    );
+    return call(`https://hub.snapshot.page/api/decentralgames.eth/proposals`, 'GET', false);
   },
 
   MANA_PRICE: () => {
-    return call(
-      `https://api.coingecko.com/api/v3/coins/decentraland`,
-      'GET',
-      false
-    );
+    return call(`https://api.coingecko.com/api/v3/coins/decentraland`, 'GET', false);
   },
 
   ETH_PRICE: () => {
-    return call(
-      `https://api.coingecko.com/api/v3/coins/ethereum`,
-      'GET',
-      false
-    );
+    return call(`https://api.coingecko.com/api/v3/coins/ethereum`, 'GET', false);
   },
 
   ICE_PRICE: () => {
-    return call(
-      `https://api.coingecko.com/api/v3/coins/decentral-games-ice`,
-      'GET',
-      false
-    );
+    return call(`https://api.coingecko.com/api/v3/coins/decentral-games-ice`, 'GET', false);
   },
 
   OLD_DG_PRICE: () => {
-    return call(
-      `https://api.coingecko.com/api/v3/simple/price?ids=decentral-games-old&vs_currencies=usd`,
-      'GET',
-      false
-    );
+    return call(`https://api.coingecko.com/api/v3/simple/price?ids=decentral-games-old&vs_currencies=usd`, 'GET', false);
   },
 
   ATRI_PRICE: () => {
@@ -279,11 +215,7 @@ const Fetch = {
   },
 
   DG_SUPPLY_GECKO: () => {
-    return call(
-      `https://api.coingecko.com/api/v3/coins/decentral-games`,
-      'GET',
-      false
-    );
+    return call(`https://api.coingecko.com/api/v3/coins/decentral-games`, 'GET', false);
   },
 
   // ICE_PRICE: () => {
@@ -291,11 +223,7 @@ const Fetch = {
   // },
 
   LAND_PRICE: () => {
-    return call(
-      `https://nonfungible.com/api/v4/market/summary/decentraland?daily=true&filter=[{"id":"nftTicker","value":"LAND"},{"id":"saleType","value":""}]`,
-      'GET',
-      false
-    );
+    return call(`https://nonfungible.com/api/v4/market/summary/decentraland?daily=true&filter=[{"id":"nftTicker","value":"LAND"},{"id":"saleType","value":""}]`, 'GET', false);
   },
 
   POAPS: address => {
@@ -321,7 +249,7 @@ const Fetch = {
     });
   },
 
-  EDIT_DELEGATION_GUILDNAME: async (guildName) => {
+  EDIT_DELEGATION_GUILDNAME: async guildName => {
     return await call(`${API_BASE_URL_PROD_OR_LOCALHOST_ONLY}/ice/editDelegation`, 'PATCH', true, {
       guildName: guildName
     });
@@ -331,9 +259,13 @@ const Fetch = {
    * End delegation APIS using `API_BASE_URL_PROD_OR_LOCALHOST_ONLY`
   /******************************************************/
 
-  GAMEPLAY_REPORTS: (address) => {
+  GAMEPLAY_REPORTS: (address, interval) => {
     if (address) {
-      return call(`${API_BASE_URL_PROD_OR_LOCALHOST_ONLY}/ice/getGameplayReports/?address=${address}`, 'GET');
+      if (interval) {
+        return call(`${API_BASE_URL_PROD_OR_LOCALHOST_ONLY}/ice/getGameplayReports/?address=${address}&interval=${interval}`, 'GET');
+      } else {
+        return call(`${API_BASE_URL_PROD_OR_LOCALHOST_ONLY}/ice/getGameplayReports/?address=${address}`, 'GET');
+      }
     } else {
       return call(`${API_BASE_URL_PROD_OR_LOCALHOST_ONLY}/ice/getGameplayReports`, 'GET');
     }
@@ -341,7 +273,6 @@ const Fetch = {
 
   GET_FRONTPAGE_STATS: () => {
     return call(`${API_BASE_URL}/admin/getFrontPageStats`, 'GET', false);
-
   }
 };
 
