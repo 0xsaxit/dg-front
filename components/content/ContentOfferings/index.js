@@ -305,7 +305,7 @@ const ContentOfferings = props => {
                     <div className={styles.imgDiv}>
                       <img
                         className={styles.img}
-                        src="/images/ice_enabled.svg"
+                        src="https://res.cloudinary.com/dnzambf4m/image/upload/v1645146487/iceenabledbanner_jvzh8u.svg"
                       />
                       <Popup
                         trigger={
