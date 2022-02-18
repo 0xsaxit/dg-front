@@ -121,73 +121,43 @@ const ButtonConnect = props => {
     setLoading(false);
   });
 
-  const connectWallet = async dispatch => {
-    if (window.ethereum) {
-      dispatch({
-        type: 'update_status',
-        data: 3
-      });
-      connectDesktopWallet(dispatch);
-    } else {
-      connectMobileWallet(dispatch);
-    }
-  };
-
-  const getWalletConnectProvider = () =>
-    new WalletConnectProvider({
-      rpc: constants.MATIC_RPC,
-      chainId: constants.MATIC_CHAIN_ID,
-      qrcode: false
+  const getWalletConnectProvider = () => {
+    return new WalletConnectProvider({
+      rpc: Global.constants.MATIC_RPC,
+      chainId: Global.constants.MATIC_CHAIN_ID,
+      qrcodeModalOptions: {
+        mobileLinks: ['rainbow', 'metamask', 'ledger', 'argent', 'trust']
+      }
     });
+  };
 
   const connectMobileWallet = async dispatch => {
+    window.localStorage.removeItem('walletconnect');
     const provider = getWalletConnectProvider();
-
-    if (provider.connector.connected) {
-      provider.close(); // close any existing connection
-    }
-
+    provider.updateRpcUrl(Global.constants.MATIC_CHAIN_ID);
     const web3 = new Web3(provider);
-
-    provider.connector.on('display_uri', (err, payload) => {
-      const uri = payload.params[0];
-
-      console.log('Display URI: ' + uri);
-
-      const formattedURI = `https://metamask.app.link/wc?uri=${encodeURIComponent(uri)}`;
-
-      window.location.replace(formattedURI);
+    dispatch({
+      type: 'web3_provider',
+      data: web3
     });
 
-    provider.connector.on('connect', async (err, payload) => {
-      console.log('Wallet connected:', payload);
-
-      const { accounts } = payload.params[0];
+    provider.on('accountsChanged', async accounts => {
       const address = accounts[0];
+      console.log('Wallet connected:', address);
 
-      await assignToken(dispatch, web3, address);
-
-      provider.close();
+      // dispatch({
+      //   type: 'update_status',
+      //   data: 2,
+      // });
+      updateStatus(4, true);
     });
 
-    provider.connector.on('transport_error', () => {
-      console.log('transport_error');
-
-      provider.close();
-    });
-
-    await provider.enable();
-    provider.updateRpcUrl(constants.MATIC_CHAIN_ID);
+    try {
+      await provider.enable();
+    } catch {
+      console.log('Error connecting to wallet');
+    }
   };
-
-  // const connectDesktopWallet = async (dispatch: any) => {
-  //   await window.ethereum.request({ method: 'eth_requestAccounts' }); // open MetaMask for login
-  //   await assignToken(
-  //     dispatch,
-  //     new Web3(window.ethereum),
-  //     window.ethereum.selectedAddress
-  //   );
-  // };
 
   const connectDesktopWallet = async dispatch => {
     if (metamaskEnabled) {
@@ -240,6 +210,18 @@ const ButtonConnect = props => {
       } else {
         updateStatus(4, true);
       }
+    }
+  };
+
+  const connectWallet = async dispatch => {
+    if (window.ethereum) {
+      // dispatch({
+      //   type: 'update_status',
+      //   data: 3,
+      // });
+      connectDesktopWallet(dispatch);
+    } else {
+      connectMobileWallet(dispatch);
     }
   };
 

@@ -4,7 +4,7 @@ import AccountData from '../../components/home/AccountData';
 import Layout from '../../components/Layout.js';
 import Header from '../../components/Header';
 import Global from '../../components/Constants';
-import FoxAnimation from '../../components/lottieAnimation/animations/fox'
+import FoxAnimation from '../../components/lottieAnimation/animations/fox';
 import Images from '../../common/Images';
 
 const Ice = () => {
@@ -13,14 +13,10 @@ const Ice = () => {
 
   return (
     <Layout>
-      <Header
-        title={Global.CONSTANTS.TITLE + ' | Account | ICE'}
-        description={Global.CONSTANTS.DESCRIPTION}
-        image={Images.SOCIAL_SHARE}
-      />
+      <Header title={Global.CONSTANTS.TITLE + ' | Account | ICE'} description={Global.CONSTANTS.DESCRIPTION} image={Images.SOCIAL_SHARE} />
 
       {state.userStatus ? (
-        <AccountData dataType={'ice'} />
+        <AccountData dataType="balances" />
       ) : (
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '200px' }}>
           <FoxAnimation />

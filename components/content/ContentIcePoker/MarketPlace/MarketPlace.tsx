@@ -1,27 +1,31 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { FC, ReactElement, useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '@/store';
 import ModalMintWearable from 'components/modal/ModalMintWearable';
 import ModalLoginICE from 'components/modal/ModalLoginICE';
 import Spinner from 'components/lottieAnimation/animations/spinner_updated';
 import { Button, Popup } from 'semantic-ui-react';
 import cn from 'classnames';
+import Slider from 'react-slick';
 import 'react-multi-carousel/lib/styles.css';
 import styles from './MarketPlace.module.scss';
 import Global from '../../../Constants';
-import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import CheckMintableModal from 'components/modal/CheckMintableModal';
 
-const MarketPlace = () => {
+export interface MarketPlaceType {
+  className?: string;
+}
+
+const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): ReactElement => {
   // dispatch new user status to Context API store
-  const [state, dispatch] = useContext(GlobalContext);
+  const [state] = useContext(GlobalContext);
 
   // define local variables
   const [previewLevel, setPreviewLevel] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
   const wearables = [
     {
-      title: 'ICE Poet',
+      title:   'ICE Poet',
       address: Global.ADDRESSES.COLLECTION_POET_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1644863904/ICE%20Poet%20Fit/Fit_1_bzdlbm.png',
@@ -69,7 +73,7 @@ const MarketPlace = () => {
       }
     },
     {
-      title: 'ICE Airlines',
+      title:   'ICE Airlines',
       address: Global.ADDRESSES.COLLECTION_AIRLINE_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1643990279/ICE%20Airline/Male_1_y5pwpl.png',
@@ -117,7 +121,7 @@ const MarketPlace = () => {
       }
     },
     {
-      title: 'ICE Beach Club',
+      title:   'ICE Beach Club',
       address: Global.ADDRESSES.COLLECTION_BEACH_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1643159133/Male_1_nbm1oh.png',
@@ -165,7 +169,7 @@ const MarketPlace = () => {
       }
     },
     {
-      title: 'ICE Chef',
+      title:   'ICE Chef',
       address: Global.ADDRESSES.COLLECTION_CHEF_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686037/Fit1_ehvzqa.png',
@@ -191,14 +195,14 @@ const MarketPlace = () => {
         ],
         ChefTop: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/upperbody_m_1_llgrz7.png',
-          "Chef's Top",
+          'Chef\'s Top',
           'ICE Chef',
           'Torso',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686096/upperbody_m_1_llgrz7.png'
         ],
         ChefApron: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686095/lowerbody_m_1_u7mlil.png',
-          "Chef's Apron",
+          'Chef\'s Apron',
           'ICE Chef',
           'Legs',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1642686095/lowerbody_m_1_u7mlil.png'
@@ -213,7 +217,7 @@ const MarketPlace = () => {
       }
     },
     {
-      title: 'ICE Joker',
+      title:   'ICE Joker',
       address: Global.ADDRESSES.COLLECTION_JOKER_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569807/Fit_1_zw1bwd.png',
@@ -232,7 +236,7 @@ const MarketPlace = () => {
         ],
         JokerCap: [
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/hat1_qpw84y.jpg',
-          `Cap'N'Bells`,
+          'Cap\'N\'Bells',
           'ICE Joker',
           'Head',
           'https://res.cloudinary.com/dnzambf4m/image/upload/v1641569824/hat1_qpw84y.jpg'
@@ -261,7 +265,7 @@ const MarketPlace = () => {
       }
     },
     {
-      title: 'Founding Fathers',
+      title:   'Founding Fathers',
       address: Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1640116036/Fit_1_fvhl6y.png',
@@ -309,7 +313,7 @@ const MarketPlace = () => {
       }
     },
     {
-      title: 'Crypto Drip',
+      title:   'Crypto Drip',
       address: Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1638984404/CryptoDrip_Level_1_nbpz6x.png',
@@ -357,7 +361,7 @@ const MarketPlace = () => {
       }
     },
     {
-      title: 'Bomber',
+      title:   'Bomber',
       address: Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1637107740/Bomber%20Fit/Bomber_1_aqjlun.png',
@@ -405,7 +409,7 @@ const MarketPlace = () => {
       }
     },
     {
-      title: 'Linen',
+      title:   'Linen',
       address: Global.ADDRESSES.COLLECTION_LINENS_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1637088369/Linens_1_hqogna.png',
@@ -453,7 +457,7 @@ const MarketPlace = () => {
       }
     },
     {
-      title: 'Party Host',
+      title:   'Party Host',
       address: Global.ADDRESSES.COLLECTION_PH_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1636054316/Level_1_Hugh_mwzapj.png',
@@ -501,7 +505,7 @@ const MarketPlace = () => {
       }
     },
     {
-      title: 'DG Suit',
+      title:   'DG Suit',
       address: Global.ADDRESSES.COLLECTION_V2_ADDRESS,
       preview: [
         'https://res.cloudinary.com/dnzambf4m/image/upload/v1633727889/Fit_1_h5zizs.png',
@@ -551,33 +555,34 @@ const MarketPlace = () => {
   ];
 
   // helper functions
-  function updatePreviewLevel(previewIndex, activeId) {
-    let levels = previewLevel;
+  function updatePreviewLevel(previewIndex, activeId): void {
+    const levels = previewLevel;
+
     levels[previewIndex] = activeId;
 
     setPreviewLevel([].concat(levels));
   }
 
-  function useWindowSize() {
+  function useWindowSize(): any {
     // Initialize state with undefined width/height so server and client renders match
     // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
     const [windowSize, setWindowSize] = useState({
-      width: undefined,
+      width:  undefined,
       height: undefined
     });
+
+    // Handler to call on window resize
+    function handleResize(): void {
+      // Set window width/height to state
+      setWindowSize({
+        width:  window.innerWidth,
+        height: window.innerHeight
+      });
+    }
 
     useEffect(() => {
       // only execute all the code below in client side
       if (typeof window !== 'undefined') {
-        // Handler to call on window resize
-        function handleResize() {
-          // Set window width/height to state
-          setWindowSize({
-            width: window.innerWidth,
-            height: window.innerHeight
-          });
-        }
-
         // Add event listener
         window.addEventListener('resize', handleResize);
 
@@ -588,60 +593,60 @@ const MarketPlace = () => {
         return () => window.removeEventListener('resize', handleResize);
       }
     }, []); // Empty array ensures that effect is only run on mount
+
     return windowSize;
   }
 
-  function CarouselNextArrow(props) {
-    const { className, onClick } = props;
+  function CarouselNextArrow(propsArg): ReactElement {
     return (
-      <div className={className} onClick={onClick}>
+      <div className={propsArg.className} onClick={propsArg.onClick}>
         <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1638236358/Right_Chevron_3x_cxt9x8.png" alt="nextArrow" />
       </div>
     );
   }
 
-  function CarouselPrevArrow(props) {
-    const { className, onClick } = props;
+  function CarouselPrevArrow(propsArg): ReactElement {
     return (
-      <div className={className} onClick={onClick}>
+      <div className={propsArg.className} onClick={propsArg.onClick}>
         <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1638236358/Right_Chevron_3x_cxt9x8.png" alt="nextArrow" />
       </div>
     );
   }
 
-  function getCarousel() {
+  function getCarousel(): ReactElement {
     const size = useWindowSize();
     const settings = {
-      className: 'slider variable-width',
-      dots: false,
-      infinite: false,
-      swipeToSlide: true,
+      className:     'slider variable-width',
+      dots:          false,
+      infinite:      false,
+      swipeToSlide:  true,
       variableWidth: true,
-      slidesToShow: size.width <= 499 ? 1 : size.width <= 1040 ? Math.floor((size.width - 120) / 300) : Math.min(Math.floor((size.width - 300) / 300), 6),
-      nextArrow: <CarouselNextArrow />,
-      prevArrow: <CarouselPrevArrow />
+      slidesToShow:  size.width <= 499 ? 1 : size.width <= 1040 ? Math.floor((size.width - 120) / 300) : Math.min(Math.floor((size.width - 300) / 300), 6),
+      nextArrow:     <CarouselNextArrow />,
+      prevArrow:     <CarouselPrevArrow />
     };
 
-    const checkSoldOutStatus = (itemList, maxMint) => {
-      return itemList.some(item => item[0] - maxMint != 0);
-    };
+    function checkSoldOutStatus(itemList, maxMint): any {
+      return itemList.some(item => item[0] - maxMint !== 0);
+    }
 
-    const buyOnSecondaryButton = () => {
+    function buyOnSecondaryButton(): ReactElement {
       return <Button className={styles.wearable_button}>Buy on Secondary</Button>;
-    };
+    }
 
-    const soldOutButton = () => {
+    function soldOutButton(): ReactElement {
       return (
         <Button disabled className={styles.sold_button}>
           Sold Out
         </Button>
       );
-    };
+    }
 
     return (
       <section>
         {wearables.map((wearable, index) => {
           let itemLimits;
+
           if (index === 0) {
             itemLimits = state.itemLimits11;
           } else if (index === 1) {
@@ -667,6 +672,7 @@ const MarketPlace = () => {
           }
 
           let maxMintCounts = 0;
+
           if (state.appConfig && state.appConfig.maxMintCounts) {
             Object.keys(state.appConfig.maxMintCounts).map(address => {
               if (address === wearable?.address?.toLowerCase()) {
@@ -707,7 +713,7 @@ const MarketPlace = () => {
                     <div className={styles.wear_box_purple}>
                       <div className={styles.fullDiv}>
                         <div className={styles.imgDiv}>
-                          <img className={styles.img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640051/p2e_enabled_wgqui5.svg" />
+                          <img className={styles.img} src="/images/ice_enabled.svg" />
                           <Popup
                             trigger={<img className={styles.tooltip} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg" />}
                             position="top left"
@@ -717,7 +723,7 @@ const MarketPlace = () => {
                             <Popup.Content className={styles.tooltipContent}>
                               <img className={styles.popup_info} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg" />
                               <p className={styles.popup_content}>
-                                P2E Enabled (aka Play-to-Earn)
+                                ICE Enabled
                                 <br /> wearables allow you to earn real
                                 <br /> cash value from free-to-play ICE
                                 <br /> poker tables.
@@ -750,7 +756,6 @@ const MarketPlace = () => {
                       {(() => {
                         // Logged In States
                         if (state.userLoggedIn) {
-                          console.log('state.userLoggedIn', state.userLoggedIn);
                           if (state.userStatus >= 4 && itemLimits[i][0] < 0) {
                             // Items still loading, display spinner
                             return (
@@ -777,6 +782,7 @@ const MarketPlace = () => {
                                 />
                               </div>
                             );
+
                             // Minting Disabled States
                           } else if (maxMintCounts !== 0 && maxMintCounts - itemLimits[i][0] >= 0 && maxMintCounts - itemLimits[i][0] < 1) {
                             return (
@@ -786,9 +792,10 @@ const MarketPlace = () => {
                                 target="_blank"
                                 style={{
                                   width: '100%'
-                                }}
+                                }} rel="noreferrer"
                               >
                                 {
+
                                   // Show "Buy on Secondary" if all items in series are sold out, otherwise show "Sold Out" button
                                   checkSoldOutStatus(itemLimits.slice(0, -1), maxMintCounts) ? soldOutButton() : buyOnSecondaryButton()
                                 }
@@ -848,7 +855,7 @@ const MarketPlace = () => {
 
           <p className={styles.marketplace_p}>
             ICE Wearables give you table access to free to play, play-to-earn poker. Learn more by{' '}
-            <a href="https://ice.decentral.games/" target="_blank">
+            <a href="https://ice.decentral.games/" target="_blank" rel="noreferrer">
               clicking here.
             </a>
           </p>

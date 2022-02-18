@@ -590,8 +590,9 @@ img.avatar-picture-binance {
   background-color: #1f1f1f;
   padding: 30px;
   margin-top: 15px;
-  border: 0px solid white;
+  border: 1px solid #2A2A2A;
   transform: scale(0.9);
+  border-radius: 24px !important;
 }
 
 .account-address {
@@ -735,13 +736,16 @@ img.avatar-picture-binance {
   font-size: 20px !important;
   font-family: Larsseit-Medium !important;
   margin: 0;
-  padding-top: 16px;
+  padding-top: 12px;
+  padding-left: 20px;
+  padding-bottom: 12px;
   transition: all linear 0.1s;
 
   &:hover {
     cursor: pointer;
-    opacity: 70%;
     transition: all linear 0.1s;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
   }
 }
 
