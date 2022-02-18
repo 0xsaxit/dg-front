@@ -8,7 +8,7 @@ import Aux from '@/components/_Aux';
 import LoadingAnimation from 'components/lottieAnimation/animations/LoadingAnimation';
 
 export interface BalancesType {
-  className?: String;
+  className?: string;
 }
 
 const Balances: FC<BalancesType> = ({ className = '' }: BalancesType): ReactElement => {
