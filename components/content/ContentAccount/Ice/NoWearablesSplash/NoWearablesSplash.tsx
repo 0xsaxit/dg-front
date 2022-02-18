@@ -1,7 +1,12 @@
+import React, { FC, ReactElement } from 'react';
 import { Button } from 'semantic-ui-react';
 import styles from './NoWearablesSplash.module.scss';
 
-const NoWearablesSplash = () => (
+export interface NoWearablesSplashType {
+  className?: string;
+}
+
+const NoWearablesSplash: FC<NoWearablesSplashType> = ({ className = '' }: NoWearablesSplashType): ReactElement => (
   <div className={styles.ice}>
     <div className={styles.ice_container}>
       <img
