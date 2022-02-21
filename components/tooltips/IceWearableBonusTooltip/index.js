@@ -1,4 +1,3 @@
-
 import { Popup } from 'semantic-ui-react';
 import styles from './IceWearableBonusTooltip.module.scss';
 
@@ -18,15 +17,8 @@ const IceWearInfo = props => {
         className={styles.popup}
       >
         <Popup.Content className="iceWearableBonusTooltip">
-          <img
-            className="info"
-            src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631640045/ICE_Info_bbiag6.svg"
-          />
-          <p>
-            This is your wearable ICE bonus.
-            <br />
-            Ranges vary between rank levels.
-          </p>
+          <img className="info" src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631640045/ICE_Info_bbiag6.svg" />
+          <p>This is your wearable ICE bonus. Ranges vary between rank levels.</p>
           <div className="row">
             <div className="col-6 itemDiv">
               <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631126880/Group_199_kx1det.png" />
