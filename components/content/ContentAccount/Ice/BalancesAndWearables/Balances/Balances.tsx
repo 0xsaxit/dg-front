@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import React, { FC, ReactElement, useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '@/store';
 import cn from 'classnames';
 import { Button } from 'semantic-ui-react';
@@ -7,33 +7,37 @@ import Fetch from '@/common/Fetch';
 import Aux from '@/components/_Aux';
 import LoadingAnimation from 'components/lottieAnimation/animations/LoadingAnimation';
 
-const Balances = () => {
+export interface BalancesType {
+  className?: string;
+}
+
+const Balances: FC<BalancesType> = ({ className = '' }: BalancesType): ReactElement => {
   // dispatch user's ICE amounts to the Context API store
-  const [state, dispatch] = useContext(GlobalContext);
+  const [state, dispatch] = useContext<any>(GlobalContext);
 
   // define local variables
-  const [clicked, setClicked] = useState(false);
-  const [totalICE, setTotalICE] = useState(0);
+  const [isClicked, setIsClicked] = useState(false);
+  const [totalIce, setTotalIce] = useState(0);
 
   const balenceItems = [
     {
-      icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg',
-      name: 'ICE',
-      type: 'ICE',
+      icon:  'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg',
+      name:  'ICE',
+      type:  'ICE',
       model: formatPrice(state.iceAmounts.ICE_AVAILABLE_AMOUNT, 0),
       price: formatPrice(state.iceAmounts.ICE_AVAILABLE_AMOUNT * state.DGPrices.ice, 2)
     },
     {
-      icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_XP_ICN_f9w2se.svg',
-      name: 'Gameplay XP',
-      type: 'XP',
+      icon:  'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_XP_ICN_f9w2se.svg',
+      name:  'Gameplay XP',
+      type:  'XP',
       model: formatPrice(state.userInfo.balanceXP, 0),
       price: '0.00'
     },
     {
-      icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631325895/dgNewLogo_hkvlps.png',
-      name: 'Decentral Games',
-      type: 'DG',
+      icon:  'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631325895/dgNewLogo_hkvlps.png',
+      name:  'Decentral Games',
+      type:  'DG',
       model: formatPrice(state.DGBalances.BALANCE_CHILD_DG_LIGHT, 0),
       price: formatPrice(state.DGBalances.BALANCE_CHILD_DG_LIGHT * state.DGPrices.dg, 2)
     }
@@ -43,18 +47,18 @@ const Balances = () => {
     (async () => {
       const json = await Fetch.ICE_AMOUNTS(state.userAddress);
 
-      setTotalICE(json.totalUnclaimedAmount);
+      setTotalIce(json.totalUnclaimedAmount);
     })();
-  }, [totalICE]);
+  }, [totalIce]);
 
   // after claiming rewards this code gets executed
   useEffect(() => {
-    setClicked(false);
+    setIsClicked(false);
   }, [state.iceAmounts]);
 
   // helper functions
-  function formatPrice(balanceDG, units) {
-    const balanceAdjusted = Number(balanceDG)
+  function formatPrice(balanceDg, units): string {
+    const balanceAdjusted = Number(balanceDg)
       .toFixed(units)
       .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
@@ -66,11 +70,11 @@ const Balances = () => {
       const json = await Fetch.ICE_AMOUNTS(state.userAddress);
       const unclaimed = json.totalUnclaimedAmount;
 
-      setTotalICE(formatPrice(unclaimed, 0));
+      setTotalIce(Number(formatPrice(unclaimed, 0)));
     })();
   }, []);
 
-  function content() {
+  function content(): ReactElement {
     return (
       <div className={cn('col-lg-8 col-md-12 col-sm-12 col-xs-12', styles.balance_column)}>
         {balenceItems.map((item, index) => (
@@ -107,7 +111,7 @@ const Balances = () => {
     );
   }
 
-  function buyToken(type) {
+  function buyToken(type): ReactElement {
     return (
       <Aux>
         {type === 'DG' ? (
@@ -123,7 +127,7 @@ const Balances = () => {
     );
   }
 
-  function arrow() {
+  function arrow(): ReactElement {
     return (
       <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -134,22 +138,26 @@ const Balances = () => {
     );
   }
 
-  function claimBox() {
+  function claimBox(): ReactElement {
     return (
       <div className={styles.reward}>
         <p className={styles.reward_header}>Play-to-Earn Rewards</p>
 
         <div className={styles.reward_value}>
-          <p className={styles.DG_value}>{totalICE}</p>
-          <img style={{ marginTop: '-4px' }} src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" />
+          <p className={styles.DG_value}>{totalIce}</p>
+          <img
+            style={{ marginTop: '-4px' }}
+            src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
+          />
         </div>
-        <p className={styles.price}>${formatPrice(totalICE * state.DGPrices.ice, 2)}</p>
-
+        <p className={styles.price}>
+          ${formatPrice(totalIce * state.DGPrices.ice, 2)}
+        </p>
         <p className={styles.p_text}>ICE Earnings vary based on your total equipped wearables, wearable ranks, and your placement in daily ICE Poker tournaments.</p>
 
-        {!clicked ? (
+        {!isClicked ? (
           <Button className={styles.claim_button} onClick={() => claimTokens()}>
-            Claim {formatPrice(totalICE, 0)} ICE
+            Claim {formatPrice(totalIce, 0)} ICE
           </Button>
         ) : (
           <Button className={styles.claim_button} disabled>
@@ -160,9 +168,9 @@ const Balances = () => {
     );
   }
 
-  async function claimTokens() {
+  async function claimTokens(): Promise<void> {
     console.log('Claiming ICE Rewards: ' + state.iceAmounts.ICE_CLAIM_AMOUNT);
-    setClicked(true);
+    setIsClicked(true);
 
     // Show Toast Message
     let msg = '';
@@ -175,20 +183,20 @@ const Balances = () => {
         console.log('Claim ICE transaction hash: ' + json.txHash);
 
         // update global state ice amounts
-        const refresh = !state.refreshICEAmounts;
+        const doesRefresh = !state.refreshICEAmounts;
 
         dispatch({
           type: 'refresh_ice_amounts',
-          data: refresh
+          data: doesRefresh,
         });
 
         // Show Toast Message
         msg = 'ICE claimed successfully!';
-        setTotalICE(0);
+        setTotalIce(0);
       } else {
         console.log('Claim ICE rewards request error: ' + json.reason);
         msg = 'ICE claimed failed!';
-        setClicked(false);
+        setIsClicked(false);
       }
 
       dispatch({
@@ -203,7 +211,7 @@ const Balances = () => {
         data: msg
       });
 
-      setClicked(false);
+      setIsClicked(false);
     }
   }
 
