@@ -27,6 +27,7 @@ const ModalDelegate = props => {
   const [clicked, setClicked] = useState(false);
   const [success, setSuccess] = useState(false);
   const [open, setOpen] = useState(false);
+  const [enteredNickname, setEnteredNickname] = useState('');
   const [enteredAddress, setEnteredAddress] = useState('');
   const [collectionArray, setCollectionArray] = useState([]);
   const [web3, setWeb3] = useState({});
@@ -224,6 +225,25 @@ const ModalDelegate = props => {
                 }}
               />
             </div>
+            {state.userStatus >= 28 ? (
+              <div className={styles.inputcard}>
+                Nickname:
+                <input
+                  className={styles.input}
+                  maxLength="42"
+                  placeholder="Type Player Nickname Here"
+                  onChange={async evt => {
+                    setErrorMsg('');
+
+                    if (evt.target.value.length > 0) {
+                      setEnteredNickname(evt.target.value);
+                    } else {
+                      setEnteredNickname('');
+                    }
+                  }}
+                />
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
@@ -268,12 +288,13 @@ const ModalDelegate = props => {
   async function delegateNFT() {
     console.log('Delegate token ID: ' + props.tokenId);
     console.log('Delegate address: ' + enteredAddress);
+    console.log('Delegate Nickname: ' + enteredNickname);
     console.log('Collection address: ' + props.contractAddress);
 
     if (enteredAddress) {
       setClicked(true);
 
-      const json = await Fetch.DELEGATE_NFT(enteredAddress, props.tokenId, props.contractAddress);
+      const json = await Fetch.DELEGATE_NFT(enteredAddress, enteredNickname, props.tokenId, props.contractAddress);
 
       if (json.status) {
         console.log('NFT delegation request: ' + json.result);

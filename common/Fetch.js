@@ -113,7 +113,7 @@ const Fetch = {
     });
   },
 
-  DELEGATE_NFT: (delegateAddress, tokenId, contractAddress) => {
+  DELEGATE_NFT: (delegateAddress, delegateNickname, tokenId, contractAddress) => {
     return call(`${API_BASE_URL}/ice/delegateToken`, 'POST', true, {
       delegateAddress,
       tokenId,
