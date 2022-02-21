@@ -22,7 +22,7 @@ import styles from './ModalUpgradePending.module.scss';
 import MetamaskAction, { ActionLine } from 'components/common/MetamaskAction';
 import Global from '../../Constants';
 import Aux from '../../_Aux';
-import { Loader } from 'semantic-ui-react';
+import LoadingAnimation from 'components/lottieAnimation/animations/LoadingAnimation';
 
 const ModalUpgradePending = props => {
   // fetch tokenAmounts data from the Context API store
@@ -347,7 +347,7 @@ const ModalUpgradePending = props => {
         >
           <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png" />
 
-          {!loading && mexaStatus ? activeItem.text : <Loader />}
+          {!loading && mexaStatus ? activeItem.text : <LoadingAnimation />}
         </Button>
       );
     }

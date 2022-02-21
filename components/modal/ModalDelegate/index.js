@@ -12,7 +12,7 @@ import Global from '../../Constants';
 import Aux from '../../_Aux';
 import ABI_COLLECTION_V2 from '../../../components/ABI/ABICollectionV2';
 import ABI_COLLECTION_PH from '../../../components/ABI/ABICollectionPH';
-import Spinner from 'components/lottieAnimation/animations/spinner';
+import LoadingAnimation from 'components/lottieAnimation/animations/LoadingAnimation';
 import Web3 from 'web3';
 import cn from 'classnames';
 
@@ -383,7 +383,7 @@ const ModalDelegate = props => {
                       </Button>
                     ) : (
                       <Button className={styles.button_upgrade} disabled={true}>
-                        <Spinner />
+                        <LoadingAnimation />
                       </Button>
                     )}
 
