@@ -20,7 +20,7 @@ const CONSTANTS = {
   ACTIVE_PERIOD: 43200, // user account active period: 3600 === 1 hour // 43200
   MAINNET_URL: 'https://mainnet.infura.io/v3/1a359efdd4d04d89b5c1b63de776d444',
   MATIC_NETWORK_ID: 137, // Mumbai: 80001, Mainnet: 137
-  MATIC_URL: 'https://rpc-mainnet.maticvigil.com/v1/03db49966edbf82fb60cb4e04b2c3b4fec306219', // 'https://rpc-mainnet.matic.network',
+  MATIC_URL: 'https://matic-mainnet.chainstacklabs.co', // 'https://rpc-mainnet.matic.network',
   MATIC_EXPLORER: 'https://explorer-mainnet.maticvigil.com',
   TITLE: 'Decentral Games',
   DESCRIPTION: 'Free to play, play to earn gaming in the metaverse. Play ICE Poker, trade NFTs, vote in the DAO, and earn real value from your favorite games.',
