@@ -113,12 +113,24 @@ const Fetch = {
     });
   },
 
-  DELEGATE_NFT: (delegateAddress, tokenId, contractAddress) => {
-    return call(`${API_BASE_URL}/ice/delegateToken`, 'POST', true, {
-      delegateAddress,
-      tokenId,
-      contractAddress
-    });
+  DELEGATE_NFT: (delegateAddress, tokenId, contractAddress, delegateNickname) => {
+    return call(
+      `${API_BASE_URL}/ice/delegateToken`,
+      'POST',
+      true,
+      delegateNickname
+        ? {
+            delegateAddress,
+            tokenId,
+            contractAddress,
+            delegateNickname
+          }
+        : {
+            delegateAddress,
+            tokenId,
+            contractAddress
+          }
+    );
   },
 
   UNDELEGATE_NFT: (tokenOwner, delegateAddress, tokenId, contractAddress) => {

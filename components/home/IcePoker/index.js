@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { GlobalContext } from '@/store';
 import Link from 'next/link';
 import { useMediaQuery } from 'hooks';
 import Home from '../../content/ContentIcePoker/Home/Home';
@@ -13,6 +14,8 @@ import styles from './IcePoker.module.scss';
 
 const IcePoker = props => {
   const iceState = props.iceState;
+  const [state, dispatch] = useContext(GlobalContext);
+
 
   // Responsive
   const isMobile = useMediaQuery('(max-width: 1040px)');
@@ -274,7 +277,8 @@ const IcePoker = props => {
                   </div>
                 </Link>
 
-                <Link href="/ice/search">
+                {state.userStatus >= 28 && 
+                  <Link href="/ice/search">
                   <div className={iceState === 'search' ? styles.menu_item_active : styles.menu_item}>
                     <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
@@ -295,7 +299,7 @@ const IcePoker = props => {
 
                     <div className={styles.menu_title}>Search Tool</div>
                   </div>
-                </Link>
+                </Link>}
 
                 <Link href="/ice/claim">
                   <div className={iceState === 'iceRewards' ? styles.menu_item_active : styles.menu_item}>

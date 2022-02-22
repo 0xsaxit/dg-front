@@ -20,9 +20,9 @@ function UserBalances() {
 
   useEffect(() => {
 
-    if (state.userStatus >= 4) {
+    if (state.userStatus >= 4 && !!state.appConfig.polygonRPC) {
       web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
-      maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
+      maticWeb3 = new Web3(state.appConfig.polygonRPC); // pass Matic provider URL to Web3 constructor
       binance = new Web3('https://bsc-dataseed1.binance.org:443');
 
       async function fetchData() {
@@ -38,7 +38,7 @@ function UserBalances() {
 
       fetchData();
     }
-  }, [state.userStatus, state.refreshTokens]);
+  }, [state.userStatus, state.refreshTokens, state.appConfig.polygonRPC]);
 
 
   useEffect(() => {
