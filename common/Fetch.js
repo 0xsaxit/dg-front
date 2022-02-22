@@ -285,6 +285,10 @@ const Fetch = {
 
   GET_FRONTPAGE_STATS: () => {
     return call(`${API_BASE_URL}/admin/getFrontPageStats`, 'GET', false);
+  },
+
+  GET_UNCLAIMED_REWARDS_AMOUNT: (address)=> {
+    return call(`${API_BASE_URL}/xdg/getUnclaimedRewardsAmount?address=${address}`, 'GET');
   }
 };
 
