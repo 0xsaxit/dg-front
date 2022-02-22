@@ -172,12 +172,12 @@ function DGBalances() {
   }
 
   useEffect(() => {
-    if (state.userStatus >= 4) {
+    if (state.userStatus >= 4 && !!state.appConfig.polygonRPC) {
       fetchData();
     } else {
       setInstances(false);
     }
-  }, [state.userStatus]);
+  }, [state.userStatus, state.appConfig.polygonRPC]);
 
   useEffect(async () => {
     if (state.userStatus >= 4) {
