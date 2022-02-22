@@ -30,11 +30,11 @@ function AdminBalances() {
     if (state.userStatus === 28) {
       // web3 = new Web3(state.walletProvider); // pass MetaMask provider to Web3 constructor
 
-      const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
+      const maticWeb3 = new Web3(state.appConfig.polygonRPC); // pass Matic provider URL to Web3 constructor
       setMaticWeb3(maticWeb3);
 
       (async () => {
-        // maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
+        // maticWeb3 = new Web3(state.appConfig.polygonRPC); // pass Matic provider URL to Web3 constructor
 
         const parentContract = await Transactions.treasuryContract(maticWeb3);
         setParentContract(parentContract);

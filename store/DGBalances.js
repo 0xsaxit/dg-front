@@ -75,7 +75,7 @@ function DGBalances() {
   async function fetchData() {
     const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
     const mainnetWeb3 = new Web3(Global.CONSTANTS.MAINNET_URL); // pass Matic provider URL to Web3 constructor
-    const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
+    const maticWeb3 = new Web3(state.appConfig.polygonRPC); // pass Matic provider URL to Web3 constructor
     setWeb3Provider(web3);
     setMainnetWeb3Provider(mainnetWeb3);
 

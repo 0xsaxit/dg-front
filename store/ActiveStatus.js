@@ -32,11 +32,11 @@ function ActiveStatus() {
         // initialize Web3 providers and create treasury contract instance
         const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
         setWeb3(web3);
-        const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
+        const maticWeb3 = new Web3(state.appConfig.polygonRPC); // pass Matic provider URL to Web3 constructor
         setMaticWeb3(maticWeb3);
 
         const biconomy = new Biconomy(
-          new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
+          new Web3.providers.HttpProvider(state.appConfig.polygonRPC),
           {
             apiKey: Global.KEYS.BICONOMY_API_1,
             debug: true,

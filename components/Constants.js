@@ -38,7 +38,6 @@ const CONSTANTS = {
   MINT_STATUS: 29, // minimum userStatus level for minting wearables (we can replace with appConfig variable when it's available)
   APR_NUMBER: 26071500, // APR constant number,
   TOKEN_DECIMALS: 18, // the decimals of register contract,
-  MATIC_RPC: { 137: 'https://polygon-rpc.com' },
   MATIC_CHAIN_ID: 137
 };
 

@@ -40,7 +40,7 @@ const ModalDelegate = props => {
 
       setWeb3(web3);
 
-      const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
+      const maticWeb3 = new Web3(state.appConfig.polygonRPC); // pass Matic provider URL to Web3 constructor
 
       // const collectionV2Contract = new maticWeb3.eth.Contract(
       //   ABI_COLLECTION_V2,
