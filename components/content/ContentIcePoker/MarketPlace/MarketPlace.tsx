@@ -688,7 +688,6 @@ const MarketPlace: FC<MarketPlaceType> = ({ className = '' }: MarketPlaceType): 
             <section key={index} className={styles.wearable_section}>
               <h3>
                 {wearable.title}
-
                 {index === 0 && state.userLoggedIn && <CheckMintableModal />}
               </h3>
 
