@@ -123,8 +123,10 @@ const ButtonConnect = props => {
 
   const getWalletConnectProvider = () => {
     return new WalletConnectProvider({
-      rpc: Global.constants.MATIC_RPC,
-      chainId: Global.constants.MATIC_CHAIN_ID,
+      rpc: {
+        [Global.CONSTANTS.MATIC_CHAIN_ID]: state.appConfig.polygonRPC
+      },
+      chainId: Global.CONSTANTS.MATIC_CHAIN_ID,
       qrcodeModalOptions: {
         mobileLinks: ['rainbow', 'metamask', 'ledger', 'argent', 'trust']
       }
@@ -134,7 +136,7 @@ const ButtonConnect = props => {
   const connectMobileWallet = async dispatch => {
     window.localStorage.removeItem('walletconnect');
     const provider = getWalletConnectProvider();
-    provider.updateRpcUrl(Global.constants.MATIC_CHAIN_ID);
+    provider.updateRpcUrl(Global.CONSTANTS.MATIC_CHAIN_ID);
     const web3 = new Web3(provider);
     dispatch({
       type: 'web3_provider',
