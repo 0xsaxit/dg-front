@@ -349,7 +349,13 @@ const CheckMintableModal = props => {
       setLoading(true);
       setErrorText(null);
 
-      // get function signature and send Biconomy API meta-transaction
+        if (token === 'ICE') {
+          tokenContract = tokenContractICE;
+          MetaTxNumber = 8;
+        } else {
+          tokenContract = tokenContractETH;
+          MetaTxNumber = 6;
+        }
 
       let functionSignature = tokenContract.methods.approve(spenderAddress, Global.CONSTANTS.MAX_AMOUNT).encodeABI();
 
