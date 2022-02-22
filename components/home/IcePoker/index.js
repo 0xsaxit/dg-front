@@ -277,7 +277,7 @@ const IcePoker = props => {
                   </div>
                 </Link>
 
-                {state.userStatus > 28 && 
+                {state.userStatus >= 28 && 
                   <Link href="/ice/search">
                   <div className={iceState === 'search' ? styles.menu_item_active : styles.menu_item}>
                     <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
