@@ -38,7 +38,7 @@ function ICEAttributes() {
 
   useEffect(() => {
     if (state.userStatus >= 4) {
-      const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
+      const maticWeb3 = new Web3(state.appConfig.polygonRPC); // pass Matic provider URL to Web3 constructor
 
       async function fetchData() {
         const ICERegistrantContract = new maticWeb3.eth.Contract(ABI_ICE_REGISTRANT, Global.ADDRESSES.ICE_REGISTRANT_ADDRESS);
