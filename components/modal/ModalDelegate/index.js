@@ -233,8 +233,6 @@ const ModalDelegate = props => {
                   maxLength="42"
                   placeholder="Type Player Nickname Here"
                   onChange={async evt => {
-                    setErrorMsg('');
-
                     if (evt.target.value.length > 0) {
                       setEnteredNickname(evt.target.value);
                     } else {
@@ -294,7 +292,7 @@ const ModalDelegate = props => {
     if (enteredAddress) {
       setClicked(true);
 
-      const json = await Fetch.DELEGATE_NFT(enteredAddress, enteredNickname, props.tokenId, props.contractAddress);
+      const json = await Fetch.DELEGATE_NFT(enteredAddress, props.tokenId, props.contractAddress, enteredNickname);
 
       if (json.status) {
         console.log('NFT delegation request: ' + json.result);
