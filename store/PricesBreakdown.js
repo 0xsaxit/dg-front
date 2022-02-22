@@ -53,7 +53,7 @@ function PricesBreakdown() {
 
   // this is for affiliates
   useEffect(() => {
-    if (state.userStatus >= 4) {
+    if (state.userStatus >= 4 && !!state.appConfig.polygonRPC) {
       const maticWeb3 = new Web3(state.appConfig.polygonRPC); // pass Matic provider URL to Web3 constructor
 
       (async () => {
@@ -107,7 +107,7 @@ function PricesBreakdown() {
         });
       })();
     }
-  }, [state.userStatus]);
+  }, [state.userStatus, state.appConfig.polygonRPC]);
 
   return null;
 }

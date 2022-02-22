@@ -27,7 +27,7 @@ function AdminBalances() {
 
   
   useEffect(() => {
-    if (state.userStatus === 28) {
+    if (state.userStatus === 28 && !!state.appConfig.polygonRPC) {
       // web3 = new Web3(state.walletProvider); // pass MetaMask provider to Web3 constructor
 
       const maticWeb3 = new Web3(state.appConfig.polygonRPC); // pass Matic provider URL to Web3 constructor
@@ -72,7 +72,7 @@ function AdminBalances() {
         setInstances(true); // contract instantiation complete
       })();
     }
-  }, [state.userStatus]);
+  }, [state.userStatus, state.appConfig.polygonRPC]);
 
   useEffect(() => {
     if (instances) {
