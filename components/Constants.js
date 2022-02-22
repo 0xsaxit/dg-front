@@ -1,45 +1,45 @@
 // third-party public API keys
 const KEYS = {
-  BICONOMY_API_1: 'iW9B13586.996fe1e6-5969-40cb-b986-6ea37cfeec8f',
-  BICONOMY_API_2: 'A7mK3_ymC.92264b6e-1289-4e01-9f5f-6b53de2c69d4',
-  TRANSAK_API: '6f2cd88d-b241-4cdb-8f1a-a034cda14bf6',
-  GOOGLE_ANALYTICS: 'UA-146057069-1',
-  BUTTER_TOKEN: 'd7d6d8425656d3cfe5f45d7a0a3a8470ef09d434',
+  BICONOMY_API_1:    'iW9B13586.996fe1e6-5969-40cb-b986-6ea37cfeec8f',
+  BICONOMY_API_2:    'A7mK3_ymC.92264b6e-1289-4e01-9f5f-6b53de2c69d4',
+  TRANSAK_API:       '6f2cd88d-b241-4cdb-8f1a-a034cda14bf6',
+  GOOGLE_ANALYTICS:  'UA-146057069-1',
+  BUTTER_TOKEN:      'd7d6d8425656d3cfe5f45d7a0a3a8470ef09d434',
   SEGMENT_WRITE_KEY: 'pK03oncLYCxY1DJtTmnJnuwLByq2RlAb',
   CONNEXT_PUBLIC_ID: 'vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np'
 };
 
 // common constant values
 const CONSTANTS = {
-  BASE_URL: 'https://decentral.games',
-  MAX_AMOUNT: '115792089237316195423570985008687907853269984665640564039457584007913129639935',
-  GAS_LIMIT: '3000000', // was '900000'
-  GAS_AMOUNT: '80000000000', // was '20000000000'
-  FACTOR: 1000000000000000000, // ETH-to-WEI multiplication factor
-  PARENT_NETWORK_ID: 1, // 1: Mainnet, 3: Ropsten, 5: Goerli
-  ACTIVE_PERIOD: 43200, // user account active period: 3600 === 1 hour // 43200
-  MAINNET_URL: 'https://mainnet.infura.io/v3/1a359efdd4d04d89b5c1b63de776d444',
-  MATIC_NETWORK_ID: 137, // Mumbai: 80001, Mainnet: 137
-  MATIC_URL: 'https://matic-mainnet.chainstacklabs.co', // 'https://rpc-mainnet.matic.network',
-  MATIC_EXPLORER: 'https://explorer-mainnet.maticvigil.com',
-  TITLE: 'Decentral Games',
-  DESCRIPTION: 'Free to play, play to earn gaming in the metaverse. Play ICE Poker, trade NFTs, vote in the DAO, and earn real value from your favorite games.',
-  DISCORD_URL: 'https://discord.gg/cvbSNzY',
-  SOCIAL_HANDLE: 'decentralgames',
-  MAX_ITEM_COUNT: 70, // maximum number of tokenOfOwner indexes to query on the accessories contract ********** was 10 **********
+  BASE_URL:             'https://decentral.games',
+  MAX_AMOUNT:           '115792089237316195423570985008687907853269984665640564039457584007913129639935',
+  GAS_LIMIT:            '3000000', // was '900000'
+  GAS_AMOUNT:           '80000000000', // was '20000000000'
+  FACTOR:               1000000000000000000, // ETH-to-WEI multiplication factor
+  PARENT_NETWORK_ID:    1, // 1: Mainnet, 3: Ropsten, 5: Goerli
+  ACTIVE_PERIOD:        43200, // user account active period: 3600 === 1 hour // 43200
+  MAINNET_URL:          'https://mainnet.infura.io/v3/1a359efdd4d04d89b5c1b63de776d444',
+  MATIC_NETWORK_ID:     137, // Mumbai: 80001, Mainnet: 137
+  MATIC_URL:            'https://polygon-rpc.com', // 'https://rpc-mainnet.matic.network',
+  MATIC_EXPLORER:       'https://explorer-mainnet.maticvigil.com',
+  TITLE:                'Decentral Games',
+  DESCRIPTION:          'Free to play, play to earn gaming in the metaverse. Play ICE Poker, trade NFTs, vote in the DAO, and earn real value from your favorite games.',
+  DISCORD_URL:          'https://discord.gg/cvbSNzY',
+  SOCIAL_HANDLE:        'decentralgames',
+  MAX_ITEM_COUNT:       70, // maximum number of tokenOfOwner indexes to query on the accessories contract ********** was 10 **********
   MAX_DELEGATION_COUNT: 5, // maximum number of delegated NFTs a user can have
-  VERIFY_URL: 'staging.decentral.games',
-  WETH_MINT_AMOUNT: 0.25, // amount of WETH required for minting
-  ICE_MINT_AMOUNT: 8000, // amount of ICE required for minting
-  DG_STAKED_AMOUNT: 1, // amount of DG user is required to have staked in order to mint wearable
-  XDG_STAKED_AMOUNT: 1000, // amount of DG user is required to have staked in order to mint wearable
-  POOLING_TIME_OUT: 8000, // API endpoint request pool interval (milliseconds)
-  POOLING_LIMIT_COUNT: 6, // attempt to call API endpoint this number of times
-  MINT_STATUS: 29, // minimum userStatus level for minting wearables (we can replace with appConfig variable when it's available)
-  APR_NUMBER: 26071500, // APR constant number,
-  TOKEN_DECIMALS: 18, // the decimals of register contract,
-  MATIC_RPC: {137: 'https://polygon-rpc.com'},
-  MATIC_CHAIN_ID: 137,
+  VERIFY_URL:           'staging.decentral.games',
+  WETH_MINT_AMOUNT:     0.25, // amount of WETH required for minting
+  ICE_MINT_AMOUNT:      8000, // amount of ICE required for minting
+  DG_STAKED_AMOUNT:     1, // amount of DG user is required to have staked in order to mint wearable
+  XDG_STAKED_AMOUNT:    1000, // amount of DG user is required to have staked in order to mint wearable
+  POOLING_TIME_OUT:     8000, // API endpoint request pool interval (milliseconds)
+  POOLING_LIMIT_COUNT:  6, // attempt to call API endpoint this number of times
+  MINT_STATUS:          29, // minimum userStatus level for minting wearables (we can replace with appConfig variable when it's available)
+  APR_NUMBER:           26071500, // APR constant number,
+  TOKEN_DECIMALS:       18, // the decimals of register contract,
+  MATIC_RPC:            { 137: 'https://polygon-rpc.com' },
+  MATIC_CHAIN_ID:       137,
 };
 
 // wallet and contract addresses
