@@ -190,7 +190,7 @@ const MenuTop = () => {
       <div className={cn(styles.mobile_menu, open ? styles.open : '')}>
         <span className="d-flex flex-column w-100">
           {!isMobile && (
-            <Link href={'/account/ice'}>
+            <Link href={'/account'}>
               <Menu.Item className={styles.menu_style}>My Account</Menu.Item>
             </Link>
           )}
