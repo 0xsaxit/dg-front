@@ -79,7 +79,7 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
         }
 
         // Get Delegation Breakdown from the API
-        const response = await Fetch.DELEGATION_BREAKDOWN(period, '0xC65F7c7D76EE888Ddcc554e78C0beBAbA0A11cBd');
+        const response = await Fetch.DELEGATION_BREAKDOWN(period);
 
         if (response && response.length > 0) {
           response.sort(function (a, b) {
