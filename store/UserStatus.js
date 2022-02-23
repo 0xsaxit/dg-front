@@ -19,12 +19,12 @@ function UserStatus() {
           // set user status to 3 to denote fetching user status, and dispatch the user address
           dispatch({
             type: 'update_status',
-            data: 3,
+            data: 3
           });
 
           dispatch({
             type: 'user_address',
-            data: userAddress,
+            data: userAddress
           });
 
           // fetch user status
@@ -36,12 +36,12 @@ function UserStatus() {
             if (response) {
               dispatch({
                 type: 'update_status',
-                data: response,
+                data: response
               });
             } else {
               dispatch({
                 type: 'update_status',
-                data: 0,
+                data: 0
               });
             }
           }
@@ -73,14 +73,10 @@ function UserStatus() {
   // }
 
   async function upateVerified(arg) {
-    if (
-      arg > 0 &&
-      arg < 20 &&
-      window.location.hostname.includes(Global.CONSTANTS.VERIFY_URL)
-    ) {
+    if (arg > 0 && arg < 20 && window.location.hostname.includes(Global.CONSTANTS.VERIFY_URL)) {
       dispatch({
         type: 'user_verify',
-        data: false,
+        data: false
       });
     }
   }
@@ -95,7 +91,7 @@ function UserStatus() {
       const jsonStatus = await Fetch.USER_STATUS(userAddress, '');
       await upateVerified(jsonStatus.status);
 
-      if (jsonStatus?.status == undefined || jsonStatus.status == -1 ) return false;
+      if (jsonStatus?.status == undefined || jsonStatus.status == -1) return false;
 
       return jsonStatus.status;
     } catch (e) {

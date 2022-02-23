@@ -23,7 +23,6 @@ import Transactions from '../common/Transactions';
 import Fetch from '../common/Fetch';
 import BigNumber from 'bignumber.js';
 
-
 function ICEAttributes() {
   // dispatch user's token authorization status to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -38,8 +37,8 @@ function ICEAttributes() {
   const [iceTokenContract, setIceTokenContract] = useState({});
 
   useEffect(() => {
-    if (state.userStatus >= 4) {
-      const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
+    if (state.userStatus >= 4 && !!state.appConfig.polygonRPC) {
+      const maticWeb3 = new Web3(state.appConfig.polygonRPC); // pass Matic provider URL to Web3 constructor
 
       async function fetchData() {
         const ICERegistrantContract = new maticWeb3.eth.Contract(ABI_ICE_REGISTRANT, Global.ADDRESSES.ICE_REGISTRANT_ADDRESS);
@@ -54,51 +53,17 @@ function ICEAttributes() {
         const ICEMaticContract = new maticWeb3.eth.Contract(ABI_CHILD_TOKEN_ICE, Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ICE);
         setICEMaticContract(ICEMaticContract);
 
-        const collectionV2Contract = new maticWeb3.eth.Contract(
-          ABI_COLLECTION_V2,
-          Global.ADDRESSES.COLLECTION_V2_ADDRESS
-        );
-        const collectionV2Contract2 = new maticWeb3.eth.Contract(
-          ABI_COLLECTION_PH,
-          Global.ADDRESSES.COLLECTION_PH_ADDRESS
-        );
-        const collectionV2Contract3 = new maticWeb3.eth.Contract(
-          ABI_COLLECTION_LINENS,
-          Global.ADDRESSES.COLLECTION_LINENS_ADDRESS
-        );
-        const collectionV2Contract4 = new maticWeb3.eth.Contract(
-          ABI_COLLECTION_BOMBER,
-          Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS
-        );
-        const collectionV2Contract5 = new maticWeb3.eth.Contract(
-          ABI_COLLECTION_CRYPTO_DRIP,
-          Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS
-        );
-        const collectionV2Contract6 = new maticWeb3.eth.Contract(
-          ABI_COLLECTION_FOUNDING_FATHER,
-          Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS
-        );
-        const collectionV2Contract7 = new maticWeb3.eth.Contract(
-          ABI_COLLECTION_JOKER,
-          Global.ADDRESSES.COLLECTION_JOKER_ADDRESS
-        );
-        const collectionV2Contract8 = new maticWeb3.eth.Contract(
-          ABI_COLLECTION_CHEF,
-          Global.ADDRESSES.COLLECTION_CHEF_ADDRESS
-        );
-        const collectionV2Contract9 = new maticWeb3.eth.Contract(
-          ABI_COLLECTION_BEACH,
-          Global.ADDRESSES.COLLECTION_BEACH_ADDRESS
-        );
-        const collectionV2Contract10 = new maticWeb3.eth.Contract(
-          ABI_COLLECTION_AIRLINE,
-          Global.ADDRESSES.COLLECTION_AIRLINE_ADDRESS
-        );
-        const collectionV2Contract11 = new maticWeb3.eth.Contract(
-          ABI_COLLECTION_POET, 
-          Global.ADDRESSES.COLLECTION_POET_ADDRESS
-        );
-
+        const collectionV2Contract = new maticWeb3.eth.Contract(ABI_COLLECTION_V2, Global.ADDRESSES.COLLECTION_V2_ADDRESS);
+        const collectionV2Contract2 = new maticWeb3.eth.Contract(ABI_COLLECTION_PH, Global.ADDRESSES.COLLECTION_PH_ADDRESS);
+        const collectionV2Contract3 = new maticWeb3.eth.Contract(ABI_COLLECTION_LINENS, Global.ADDRESSES.COLLECTION_LINENS_ADDRESS);
+        const collectionV2Contract4 = new maticWeb3.eth.Contract(ABI_COLLECTION_BOMBER, Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS);
+        const collectionV2Contract5 = new maticWeb3.eth.Contract(ABI_COLLECTION_CRYPTO_DRIP, Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS);
+        const collectionV2Contract6 = new maticWeb3.eth.Contract(ABI_COLLECTION_FOUNDING_FATHER, Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS);
+        const collectionV2Contract7 = new maticWeb3.eth.Contract(ABI_COLLECTION_JOKER, Global.ADDRESSES.COLLECTION_JOKER_ADDRESS);
+        const collectionV2Contract8 = new maticWeb3.eth.Contract(ABI_COLLECTION_CHEF, Global.ADDRESSES.COLLECTION_CHEF_ADDRESS);
+        const collectionV2Contract9 = new maticWeb3.eth.Contract(ABI_COLLECTION_BEACH, Global.ADDRESSES.COLLECTION_BEACH_ADDRESS);
+        const collectionV2Contract10 = new maticWeb3.eth.Contract(ABI_COLLECTION_AIRLINE, Global.ADDRESSES.COLLECTION_AIRLINE_ADDRESS);
+        const collectionV2Contract11 = new maticWeb3.eth.Contract(ABI_COLLECTION_POET, Global.ADDRESSES.COLLECTION_POET_ADDRESS);
 
         const collectionArray = [];
         collectionArray.push([
@@ -125,41 +90,13 @@ function ICEAttributes() {
           [20, 12, 16, 2, 7]
           // [2, 12, 16, 20, 7],
         ]);
-        collectionArray.push([
-          collectionV2Contract5,
-          Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS,
-          [0, 5, 10, 15, 20],
-        ]);
-        collectionArray.push([
-          collectionV2Contract6,
-          Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS,
-          [0, 5, 10, 15, 20],
-        ]);
-        collectionArray.push([
-          collectionV2Contract7,
-          Global.ADDRESSES.COLLECTION_JOKER_ADDRESS,
-          [0, 5, 10, 15, 20],
-        ]);
-        collectionArray.push([
-          collectionV2Contract8,
-          Global.ADDRESSES.COLLECTION_CHEF_ADDRESS,
-          [0, 5, 10, 15, 20],
-        ]);
-        collectionArray.push([
-          collectionV2Contract9,
-          Global.ADDRESSES.COLLECTION_BEACH_ADDRESS,
-          [0, 5, 10, 15, 20],
-        ]);
-        collectionArray.push([
-          collectionV2Contract10,
-          Global.ADDRESSES.COLLECTION_AIRLINE_ADDRESS,
-          [0, 5, 10, 15, 20],
-        ]);
-        collectionArray.push([
-          collectionV2Contract11, 
-          Global.ADDRESSES.COLLECTION_POET_ADDRESS, 
-          [0, 5, 10, 15, 20]
-        ]);
+        collectionArray.push([collectionV2Contract5, Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS, [0, 5, 10, 15, 20]]);
+        collectionArray.push([collectionV2Contract6, Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS, [0, 5, 10, 15, 20]]);
+        collectionArray.push([collectionV2Contract7, Global.ADDRESSES.COLLECTION_JOKER_ADDRESS, [0, 5, 10, 15, 20]]);
+        collectionArray.push([collectionV2Contract8, Global.ADDRESSES.COLLECTION_CHEF_ADDRESS, [0, 5, 10, 15, 20]]);
+        collectionArray.push([collectionV2Contract9, Global.ADDRESSES.COLLECTION_BEACH_ADDRESS, [0, 5, 10, 15, 20]]);
+        collectionArray.push([collectionV2Contract10, Global.ADDRESSES.COLLECTION_AIRLINE_ADDRESS, [0, 5, 10, 15, 20]]);
+        collectionArray.push([collectionV2Contract11, Global.ADDRESSES.COLLECTION_POET_ADDRESS, [0, 5, 10, 15, 20]]);
 
         setCollectionArray(collectionArray);
 
@@ -171,7 +108,7 @@ function ICEAttributes() {
 
       fetchData();
     }
-  }, [state.userStatus]);
+  }, [state.userStatus, state.appConfig.polygonRPC]);
 
   useEffect(async () => {
     if (instances) {
@@ -254,31 +191,21 @@ function ICEAttributes() {
     if (instances && state.userStatus >= 4) {
       (async function () {
         // update global state wearables limit amounts for each collection
-        const [
-          itemLimits11,
-          itemLimits10,
-          itemLimits9,
-          itemLimits8,
-          itemLimits7,
-          itemLimits6,
-          itemLimits5,
-          itemLimits4,
-          itemLimits3,
-          itemLimits2,
-          itemLimits1
-        ] = await Promise.all([
-          getItemLimits(10),
-          getItemLimits(9),
-          getItemLimits(8),
-          getItemLimits(7),
-          getItemLimits(6),
-          getItemLimits(5),
-          getItemLimits(4),
-          getItemLimits(3),
-          getItemLimits(2),
-          getItemLimits(1),
-          getItemLimits(0)
-        ]);
+        const [itemLimits11, itemLimits10, itemLimits9, itemLimits8, itemLimits7, itemLimits6, itemLimits5, itemLimits4, itemLimits3, itemLimits2, itemLimits1] = await Promise.all(
+          [
+            getItemLimits(10),
+            getItemLimits(9),
+            getItemLimits(8),
+            getItemLimits(7),
+            getItemLimits(6),
+            getItemLimits(5),
+            getItemLimits(4),
+            getItemLimits(3),
+            getItemLimits(2),
+            getItemLimits(1),
+            getItemLimits(0)
+          ]
+        );
         dispatch({
           type: 'item_limits_11',
           data: itemLimits11
@@ -487,7 +414,7 @@ function ICEAttributes() {
       const wethConstAmount = await ICERegistrantContract.methods.mintingPrice().call();
       const amountAdjusted = new BigNumber(wethConstAmount).div(new BigNumber(10).pow(Global.CONSTANTS.TOKEN_DECIMALS)).toFixed(2);
       const WETH_COST_AMOUNT = amountAdjusted;
-      console.log("WETH AMOUNT: " + wethConstAmount +" " + WETH_COST_AMOUNT)
+      console.log('WETH AMOUNT: ' + wethConstAmount + ' ' + WETH_COST_AMOUNT);
 
       const levelsData1 = await ICERegistrantContract.methods.levels('1').call();
       const DG_MOVE_AMOUNT = levelsData1[2] / Global.CONSTANTS.FACTOR;
@@ -547,7 +474,7 @@ function ICEAttributes() {
       const ICE_AVAILABLE_AMOUNT = await iceTokenContract.methods.balanceOf(state.userAddress).call();
       const amountAdjusted = new BigNumber(ICE_AVAILABLE_AMOUNT).div(new BigNumber(10).pow(Global.CONSTANTS.TOKEN_DECIMALS));
       const ICE_AMOUNT_ADJUSTED = parseFloat(amountAdjusted);
-      
+
       console.log('Available ICE amount: ' + ICE_AMOUNT_ADJUSTED);
 
       const json = await Fetch.CLAIM_REWARDS_AMOUNT();

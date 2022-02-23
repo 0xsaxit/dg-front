@@ -28,18 +28,17 @@ const CONSTANTS = {
   SOCIAL_HANDLE:        'decentralgames',
   MAX_ITEM_COUNT:       70, // maximum number of tokenOfOwner indexes to query on the accessories contract ********** was 10 **********
   MAX_DELEGATION_COUNT: 5, // maximum number of delegated NFTs a user can have
-  VERIFY_URL:           'staging.decentral.games',
-  WETH_MINT_AMOUNT:     0.25, // amount of WETH required for minting
-  ICE_MINT_AMOUNT:      8000, // amount of ICE required for minting
-  DG_STAKED_AMOUNT:     1, // amount of DG user is required to have staked in order to mint wearable
-  XDG_STAKED_AMOUNT:    1000, // amount of DG user is required to have staked in order to mint wearable
-  POOLING_TIME_OUT:     8000, // API endpoint request pool interval (milliseconds)
-  POOLING_LIMIT_COUNT:  6, // attempt to call API endpoint this number of times
-  MINT_STATUS:          29, // minimum userStatus level for minting wearables (we can replace with appConfig variable when it's available)
-  APR_NUMBER:           26071500, // APR constant number,
-  TOKEN_DECIMALS:       18, // the decimals of register contract,
-  MATIC_RPC:            { 137: 'https://polygon-rpc.com' },
-  MATIC_CHAIN_ID:       137,
+  VERIFY_URL: 'staging.decentral.games',
+  WETH_MINT_AMOUNT: 0.25, // amount of WETH required for minting
+  ICE_MINT_AMOUNT: 8000, // amount of ICE required for minting
+  DG_STAKED_AMOUNT: 1, // amount of DG user is required to have staked in order to mint wearable
+  XDG_STAKED_AMOUNT: 1000, // amount of DG user is required to have staked in order to mint wearable
+  POOLING_TIME_OUT: 8000, // API endpoint request pool interval (milliseconds)
+  POOLING_LIMIT_COUNT: 6, // attempt to call API endpoint this number of times
+  MINT_STATUS: 29, // minimum userStatus level for minting wearables (we can replace with appConfig variable when it's available)
+  APR_NUMBER: 26071500, // APR constant number,
+  TOKEN_DECIMALS: 18, // the decimals of register contract,
+  MATIC_CHAIN_ID: 137
 };
 
 // wallet and contract addresses

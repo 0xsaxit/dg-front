@@ -63,6 +63,8 @@
       .delegated {
         display: flex;
         align-items: center;
+        justify-content: center;
+        width: calc(100% - 40px);
         position: absolute;
         top: -60px;
         left: 20px;

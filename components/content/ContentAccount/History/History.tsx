@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import React, { FC, ReactElement, useEffect, useState, useContext } from 'react';
+import { GlobalContext } from '@/store';
 import cn from 'classnames';
 import moment from 'moment';
 import { useMediaQuery } from 'hooks';
@@ -10,8 +11,14 @@ import { Modal, Button, Grid, Table } from 'semantic-ui-react';
 import Aux from 'components/_Aux';
 import styles from './History.module.scss';
 
-function History({ state }) {
+export interface HistoryType {
+  className?: string;
+  state?: any;
+}
+
+const History: FC<HistoryType> = ({ className = '' }: HistoryType): ReactElement => {
   // get user's transaction history from the Context API store
+  const [state] = useContext(GlobalContext);
   const [dataHistory, dataPlay, dataPoker] = state.transactions;
 
   const isWideScreen = useMediaQuery('(min-width: 1010px)');
@@ -20,7 +27,7 @@ function History({ state }) {
 
   // define local variables
   const [openId, setOpenId] = useState(null);
-  const transactions = dataHistory == "false" ? [] : (
+  const transactions = dataHistory === 'false' ? [] : (
     dataHistory.filter(
       h =>
         get(h, 'type', '').includes('Deposit') ||
@@ -28,11 +35,11 @@ function History({ state }) {
     )
   );
 
-  console.log("->Data History: ", dataHistory);
-  console.log("->Transactions: ", transactions);
+  console.log('->Data History: ', dataHistory);
+  console.log('->Transactions: ', transactions);
 
   const newPokerData = dataPoker.map(poker => {
-    const userInfoPlayIDs = map(
+    const userInfoPlayIds = map(
       poker.tableData,
       'playerHandData.userPlayInfoID'
     );
@@ -40,19 +47,25 @@ function History({ state }) {
     return {
       ...poker,
       betAmount: sumBy(dataPlay, o => {
-        if (userInfoPlayIDs.includes(o._id)) return o.betAmount;
-        return 0;
+        if (userInfoPlayIds.includes(o._id)) {
+          return o.betAmount;
+        } else {
+          return 0;
+        }
       }),
       amountWin: sumBy(dataPlay, o => {
-        if (userInfoPlayIDs.includes(o._id)) return o.amountWin;
-        return 0;
+        if (userInfoPlayIds.includes(o._id)) {
+          return o.amountWin;
+        } else {
+          return 0;
+        }
       }),
       gameType: 9,
       coinName: 'PLAY',
     };
   });
 
-  console.log("->NewPokerData: ", newPokerData);
+  console.log('->NewPokerData: ', newPokerData);
 
   const playData = [
     ...(dataPlay === 'false'
@@ -61,14 +74,13 @@ function History({ state }) {
         p =>
           get(p, 'gameType', 0) < 10 &&
           get(p, 'gameType', 0) !== 9 &&
-          p.txid != ''
+          p.txid !== ''
       )),
     ...newPokerData,
-  ].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  ].sort((a, b) => Number(new Date(b.createdAt)) - Number(new Date(a.createdAt)));
 
   console.log('->PlayData: ', playData);
 
-  
   useEffect(() => {
     console.log('->State.transactions[0]: ', state.transactions[0]);
   }, [state.transactions]);
@@ -167,7 +179,7 @@ function History({ state }) {
                     )}
                     <span
                       style={{
-                        display: 'flex',
+                        display:        'flex',
                         justifyContent: 'space-between',
                       }}
                     >
@@ -184,34 +196,34 @@ function History({ state }) {
                         </h2>
                         {row.type.includes('DAI') ||
                           row.type.includes('USDT') ? (
-                          <h3
-                            className={styles.row_date}
-                            style={{ textAlign: 'right' }}
-                          >
-                            ${(amount * state.DGPrices.dai).toFixed(2)}
-                          </h3>
-                        ) : row.type.includes('MANA') ? (
-                          <h3
-                            className={styles.row_date}
-                            style={{ textAlign: 'right' }}
-                          >
-                            ${(amount * state.DGPrices.mana).toFixed(2)}
-                          </h3>
-                        ) : row.type.includes('ETH') ? (
-                          <h3
-                            className={styles.row_date}
-                            style={{ textAlign: 'right' }}
-                          >
-                            ${(amount * state.DGPrices.eth).toFixed(2)}
-                          </h3>
-                        ) : (
-                          <h3
-                            className={styles.row_date}
-                            style={{ textAlign: 'right' }}
-                          >
-                            ${(amount * state.DGPrices.atri).toFixed(2)}
-                          </h3>
-                        )}
+                            <h3
+                              className={styles.row_date}
+                              style={{ textAlign: 'right' }}
+                            >
+                            ${(Number(amount) * state.DGPrices.dai).toFixed(2)}
+                            </h3>
+                          ) : row.type.includes('MANA') ? (
+                            <h3
+                              className={styles.row_date}
+                              style={{ textAlign: 'right' }}
+                            >
+                            ${(Number(amount) * state.DGPrices.mana).toFixed(2)}
+                            </h3>
+                          ) : row.type.includes('ETH') ? (
+                            <h3
+                              className={styles.row_date}
+                              style={{ textAlign: 'right' }}
+                            >
+                            ${(Number(amount) * state.DGPrices.eth).toFixed(2)}
+                            </h3>
+                          ) : (
+                            <h3
+                              className={styles.row_date}
+                              style={{ textAlign: 'right' }}
+                            >
+                              ${(Number(amount) * state.DGPrices.atri).toFixed(2)}
+                            </h3>
+                          )}
                       </span>
                     </span>
                   </div>
@@ -265,6 +277,7 @@ function History({ state }) {
               const amount = row.betAmount / Global.CONSTANTS.FACTOR;
               const result = row.amountWin / Global.CONSTANTS.FACTOR;
               let action = '';
+
               if (row.gameType === 1) {
                 action = 'Slots';
               } else if (row.gameType === 8 || row.gameType === 2) {
@@ -278,6 +291,7 @@ function History({ state }) {
               }
 
               let style = '';
+
               {
                 i % 2 === 0
                   ? (style = 'rgba(255, 255, 255, 0.08)')
@@ -285,7 +299,7 @@ function History({ state }) {
               }
 
               return (
-                <Table fixed unstackable>
+                <Table key={i} fixed unstackable>
                   <Table.Body key={i}>
                     <Table.Row style={{ background: style }}>
                       <Table.Cell style={{ width: '140px' }}>
@@ -297,77 +311,77 @@ function History({ state }) {
                             <img
                               src={Images.DAI_CIRCLE}
                               style={{
-                                width: '21px',
-                                marginRight: '8px',
+                                width:         '21px',
+                                marginRight:   '8px',
                                 verticalAlign: 'middle',
-                                marginTop: '-4px',
-                                borderRadius: '100%',
+                                marginTop:     '-4px',
+                                borderRadius:  '100%',
                               }}
                             />
                           ) : row.coinName === 'MANA' ? (
                             <img
                               src={Images.MANA_CIRCLE}
                               style={{
-                                width: '21px',
-                                marginRight: '8px',
+                                width:         '21px',
+                                marginRight:   '8px',
                                 verticalAlign: 'middle',
-                                marginTop: '-4px',
-                                borderRadius: '100%',
+                                marginTop:     '-4px',
+                                borderRadius:  '100%',
                               }}
                             />
                           ) : row.coinName === 'USDT' ? (
                             <img
                               src={Images.USDT_CIRCLE}
                               style={{
-                                width: '21px',
-                                marginRight: '8px',
+                                width:         '21px',
+                                marginRight:   '8px',
                                 verticalAlign: 'middle',
-                                marginTop: '-4px',
-                                borderRadius: '100%',
+                                marginTop:     '-4px',
+                                borderRadius:  '100%',
                               }}
                             />
                           ) : row.coinName === 'ATRI' ? (
                             <img
                               src={Images.ATRI_CIRCLE}
                               style={{
-                                width: '21px',
-                                marginRight: '8px',
+                                width:         '21px',
+                                marginRight:   '8px',
                                 verticalAlign: 'middle',
-                                marginTop: '-4px',
-                                borderRadius: '100%',
+                                marginTop:     '-4px',
+                                borderRadius:  '100%',
                               }}
                             />
                           ) : row.coinName === 'ETH' ? (
                             <img
                               src={Images.ETH_CIRCLE}
                               style={{
-                                width: '21px',
-                                marginRight: '8px',
+                                width:         '21px',
+                                marginRight:   '8px',
                                 verticalAlign: 'middle',
-                                marginTop: '-4px',
-                                borderRadius: '100%',
+                                marginTop:     '-4px',
+                                borderRadius:  '100%',
                               }}
                             />
                           ) : row.coinName === 'ICE' ? (
                             <img
                               src={Images.ICE_CIRCLE}
                               style={{
-                                width: '21px',
-                                marginRight: '8px',
+                                width:         '21px',
+                                marginRight:   '8px',
                                 verticalAlign: 'middle',
-                                marginTop: '-4px',
-                                borderRadius: '100%',
+                                marginTop:     '-4px',
+                                borderRadius:  '100%',
                               }}
                             />
                           ) : (
                             <img
                               src={Images.PLAY_CIRCLE}
                               style={{
-                                width: '21px',
-                                marginRight: '8px',
+                                width:         '21px',
+                                marginRight:   '8px',
                                 verticalAlign: 'middle',
-                                marginTop: '-4px',
-                                borderRadius: '100%',
+                                marginTop:     '-4px',
+                                borderRadius:  '100%',
                               }}
                             />
                           )}
@@ -391,77 +405,77 @@ function History({ state }) {
                           <img
                             src={Images.DAI_CIRCLE}
                             style={{
-                              width: '21px',
-                              marginRight: '8px',
+                              width:         '21px',
+                              marginRight:   '8px',
                               verticalAlign: 'middle',
-                              marginTop: '-4px',
-                              borderRadius: '100%',
+                              marginTop:     '-4px',
+                              borderRadius:  '100%',
                             }}
                           />
                         ) : row.coinName === 'MANA' ? (
                           <img
                             src={Images.MANA_CIRCLE}
                             style={{
-                              width: '21px',
-                              marginRight: '8px',
+                              width:         '21px',
+                              marginRight:   '8px',
                               verticalAlign: 'middle',
-                              marginTop: '-4px',
-                              borderRadius: '100%',
+                              marginTop:     '-4px',
+                              borderRadius:  '100%',
                             }}
                           />
                         ) : row.coinName === 'USDT' ? (
                           <img
                             src={Images.USDT_CIRCLE}
                             style={{
-                              width: '21px',
-                              marginRight: '8px',
+                              width:         '21px',
+                              marginRight:   '8px',
                               verticalAlign: 'middle',
-                              marginTop: '-4px',
-                              borderRadius: '100%',
+                              marginTop:     '-4px',
+                              borderRadius:  '100%',
                             }}
                           />
                         ) : row.coinName === 'ATRI' ? (
                           <img
                             src={Images.ATRI_CIRCLE}
                             style={{
-                              width: '21px',
-                              marginRight: '8px',
+                              width:         '21px',
+                              marginRight:   '8px',
                               verticalAlign: 'middle',
-                              marginTop: '-4px',
-                              borderRadius: '100%',
+                              marginTop:     '-4px',
+                              borderRadius:  '100%',
                             }}
                           />
                         ) : row.coinName === 'ETH' ? (
                           <img
                             src={Images.ETH_CIRCLE}
                             style={{
-                              width: '21px',
-                              marginRight: '8px',
+                              width:         '21px',
+                              marginRight:   '8px',
                               verticalAlign: 'middle',
-                              marginTop: '-4px',
-                              borderRadius: '100%',
+                              marginTop:     '-4px',
+                              borderRadius:  '100%',
                             }}
                           />
                         ) : row.coinName === 'ICE' ? (
                           <img
                             src={Images.ICE_CIRCLE}
                             style={{
-                              width: '21px',
-                              marginRight: '8px',
+                              width:         '21px',
+                              marginRight:   '8px',
                               verticalAlign: 'middle',
-                              marginTop: '-4px',
-                              borderRadius: '100%',
+                              marginTop:     '-4px',
+                              borderRadius:  '100%',
                             }}
                           />
                         ) : (
                           <img
                             src={Images.PLAY_CIRCLE}
                             style={{
-                              width: '21px',
-                              marginRight: '8px',
+                              width:         '21px',
+                              marginRight:   '8px',
                               verticalAlign: 'middle',
-                              marginTop: '-4px',
-                              borderRadius: '100%',
+                              marginTop:     '-4px',
+                              borderRadius:  '100%',
                             }}
                           />
                         )}
@@ -485,7 +499,7 @@ function History({ state }) {
                       )}
                       <Table.Cell
                         style={{
-                          width: isMobile ? 220 : 120,
+                          width:     isMobile ? 220 : 120,
                           textAlign: 'right',
                         }}
                       >
@@ -536,50 +550,44 @@ function History({ state }) {
                                 >
                                   <div className={styles.your_hand}>
                                     <p className={styles.subtitle}>Your Hand</p>
-                                    {(row.tableData || []).map(item => {
-                                      return (
-                                        <div className={styles.hand_row}>
-                                          {get(
-                                            item,
-                                            'playerHandData.hand',
-                                            []
-                                          ).map(card => {
-                                            return (
-                                              <img
-                                                src={
-                                                  poker[card[1] - 1][card[0]]
-                                                }
-                                              />
-                                            );
-                                          })}
-                                        </div>
-                                      );
-                                    })}
+                                    {(row.tableData || []).map(item => (
+                                      <div key={item} className={styles.hand_row}>
+                                        {get(
+                                          item,
+                                          'playerHandData.hand',
+                                          []
+                                        ).map(card => (
+                                          <img
+                                            key={card}
+                                            src={
+                                              poker[card[1] - 1][card[0]]
+                                            }
+                                          />
+                                        ))}
+                                      </div>
+                                    ))}
                                   </div>
                                   <div className={styles.table_cards}>
                                     <p className={styles.subtitle}>
                                       Table Cards
                                     </p>
-                                    {(row.tableData || []).map(item => {
-                                      return (
-                                        <div className={styles.hand_row_2}>
-                                          {item.communityCards.map(card => {
-                                            return (
-                                              <img
-                                                src={
-                                                  poker[card[1] - 1][card[0]]
-                                                }
-                                              />
-                                            );
-                                          })}
-                                        </div>
-                                      );
-                                    })}
+                                    {(row.tableData || []).map(item => (
+                                      <div key={item} className={styles.hand_row_2}>
+                                        {item.communityCards.map(card => (
+                                          <img
+                                            key={card}
+                                            src={
+                                              poker[card[1] - 1][card[0]]
+                                            }
+                                          />
+                                        ))}
+                                      </div>
+                                    ))}
                                   </div>
                                   <div className={styles.pay_out}>
                                     <p className={styles.subtitle}>Payout</p>
                                     {(row.tableData || []).map(item => {
-                                      const userPlayInfoID = get(
+                                      const userPlayInfoId = get(
                                         item,
                                         'playerHandData.userPlayInfoID',
                                         ''
@@ -588,7 +596,7 @@ function History({ state }) {
                                       const amountWin =
                                         get(
                                           dataPlay.filter(
-                                            play => play._id === userPlayInfoID
+                                            play => play._id === userPlayInfoId
                                           ),
                                           '0.amountWin',
                                           0
@@ -597,14 +605,14 @@ function History({ state }) {
                                       const betAmount =
                                         get(
                                           dataPlay.filter(
-                                            play => play._id === userPlayInfoID
+                                            play => play._id === userPlayInfoId
                                           ),
                                           '0.betAmount',
                                           0
                                         ) / Global.CONSTANTS.FACTOR;
 
                                       return (
-                                        <p className={styles.pay_out_call}>
+                                        <p key={item} className={styles.pay_out_call}>
                                           {row.coinName === 'DAI' ? (
                                             <img src={Images.DAI_CIRCLE} />
                                           ) : row.coinName === 'MANA' ? (
@@ -722,6 +730,6 @@ function History({ state }) {
       </div>
     </Aux>
   );
-}
+};
 
 export default History;

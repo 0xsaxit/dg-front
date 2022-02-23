@@ -73,7 +73,7 @@ const ModalIceAuth = props => {
       setWeb3(web3);
 
       const biconomy = new Biconomy(
-        new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
+        new Web3.providers.HttpProvider(state.appConfig.polygonRPC),
         {
           apiKey: Global.KEYS.BICONOMY_API_1,
           debug: true,

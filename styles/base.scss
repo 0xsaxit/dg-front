@@ -736,9 +736,7 @@ img.avatar-picture-binance {
   font-size: 20px !important;
   font-family: Larsseit-Medium !important;
   margin: 0;
-  padding-top: 12px;
-  padding-left: 20px;
-  padding-bottom: 12px;
+  padding: 12px 0px 12px 20px;
   transition: all linear 0.1s;
 
   &:hover {
@@ -746,6 +744,7 @@ img.avatar-picture-binance {
     transition: all linear 0.1s;
     background: rgba(255, 255, 255, 0.04);
     border-radius: 12px;
+    margin-right: 4px;
   }
 }
 

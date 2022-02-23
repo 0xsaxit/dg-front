@@ -1,9 +1,10 @@
 @import "styles/base.scss";
 
 .info_modal {
+  transform: scale(0.95);
 	width: 480px !important;
 	padding: 30px 30px 40px 30px;
-	margin-top: 24px !important;
+	margin-top: 36px !important;
 
 	.button_close {
 		color: white;

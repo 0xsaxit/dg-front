@@ -15,7 +15,7 @@ const GetStarted: FC<GetStartedType> = ({ className = '' }: GetStartedType): Rea
   const steps = ['Connect Wallet', 'Getting ICE Wearable', 'DCL Account Creation', 'Play'];
 
   return (
-    <div className={styles.main_wrapper}>
+    <div className={`get-started component ${className} ${styles.main_wrapper}`}>
       <div className={styles.header_steps}>
         {steps.map((step, index) => (
           <div key={index} style={{ display: 'flex', justifyContent: 'center' }}>
