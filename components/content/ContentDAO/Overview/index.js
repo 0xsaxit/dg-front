@@ -65,6 +65,7 @@ const Overview = props => {
 
   const [totalClaimedAmount, setTotalClaimedAmount] = useState(0);
   const [totalUnclaimedAmount, setTotalUnclaimedAmount] = useState(0);
+  const [xdgClicked, setXdgClicked] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -339,22 +340,44 @@ const Overview = props => {
 
   async function updateAmountForClaim() {
     // update user status in database
-    const {totalClaimedAmount: amount1, totalUnclaimedAmount: amount2} = await Fetch.GET_UNCLAIMED_REWARDS_AMOUNT(state.userAddress);
+    const { totalClaimedAmount: amount1, totalUnclaimedAmount: amount2 } = await Fetch.XDG_CLAIM_REWARDS_AMOUNT(state.userAddress);
 
     console.log(amount1);
     console.log(amount2);
 
-    setTotalClaimedAmount(10);
-    setTotalUnclaimedAmount(500);
+    setTotalClaimedAmount(amount1);
+    setTotalUnclaimedAmount(amount2);
   }
 
   async function claimRewards() {
-    // call api for claim
+    let msg = '';
+
+    setXdgClicked(true);
+
+    try {
+      const json = await Fetch.XDG_CLAIM_REWARDS();
+
+      if (json.status) {
+        console.log('Claim xDG rewards request successful');
+        msg = 'xDG claimed successful!';
+      } else {
+        console.log('Claim xDG rewards request error: ' + json.reason);
+        msg = 'xDG claimed failed!';
+      }
+
+      setXdgClicked(false);
+    } catch (error) {
+      console.log(error); // API request timeout error
+      msg = 'API request timeout error';
+      setXdgClicked(false);
+    }
 
     dispatch({
       type: 'show_toastMessage',
-      data: 'You got 500 xDG Reward!'
+      data: msg
     });
+
+    await updateAmountForClaim();
   }
 
   const weekly = {
@@ -760,8 +783,9 @@ const Overview = props => {
               onClick={async ()=> {
                 await claimRewards();
               }}
+              disabled={totalUnclaimedAmount>0? false: true}
             >
-              Claim {totalUnclaimedAmount} xDG
+              { !xdgClicked ? (`Claim ${totalUnclaimedAmount} xDG`) : (<Loader active inline size="small" className="treasury-loader" />) }
             </Button>
             <div className={styles.lower_xdg_text}>
               See Governance Proposal
