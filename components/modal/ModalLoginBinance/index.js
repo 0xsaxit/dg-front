@@ -17,7 +17,6 @@ const ModalLoginBinance = () => {
   const [metamaskEnabled, setMetamaskEnabled] = useState(false);
   const [safari, setSafari] = useState(false);
 
-  
   // using Safari browser
   useEffect(() => {
     if (window.safari !== undefined) {
@@ -35,7 +34,7 @@ const ModalLoginBinance = () => {
 
         dispatch({
           type: 'network_id',
-          data: networkID,
+          data: networkID
         });
       })();
     }
@@ -59,13 +58,13 @@ const ModalLoginBinance = () => {
 
       // track MetaMask connect event
       analytics.track('Connected MetaMask', {
-        userAddress: userAddress,
+        userAddress: userAddress
       });
 
       // dispatch user address to the Context API store
       dispatch({
         type: 'user_address',
-        data: userAddress,
+        data: userAddress
       });
 
       // set global user status based on value stored in database
@@ -94,13 +93,13 @@ const ModalLoginBinance = () => {
       // update global state user status after fetch is complete
       dispatch({
         type: 'update_status',
-        data: value,
+        data: value
       });
     } else {
       // update global state user status immediately
       dispatch({
         type: 'update_status',
-        data: value,
+        data: value
       });
     }
   }
@@ -114,7 +113,7 @@ const ModalLoginBinance = () => {
 
       const jsonStatus = await Fetch.USER_STATUS(userAddress, '');
 
-      if (jsonStatus?.status == undefined || jsonStatus.status == -1 ) return false;
+      if (jsonStatus?.status == undefined || jsonStatus.status == -1) return false;
 
       return jsonStatus.status;
     } catch {
@@ -133,11 +132,7 @@ const ModalLoginBinance = () => {
           onOpen={() => setOpen(true)}
           open={open}
           close
-          trigger={
-            <button className={cn('btn', styles.play_now_modal_binance)}>
-              Play Now
-            </button>
-          }
+          trigger={<button className={cn('btn', styles.play_now_modal_binance)}>Play Now</button>}
         >
           <div style={{ margin: '-68px 0px 50px -40px' }}>
             <span className="mailchimp-close" onClick={() => setOpen(false)}>
@@ -163,16 +158,11 @@ const ModalLoginBinance = () => {
             <p className={styles.subtitle}>
               {' '}
               We currently only support{' '}
-              <a
-                className="modal-a"
-                href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
-                target="_blank"
-              >
+              <a className="modal-a" href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask" target="_blank">
                 {' '}
                 Metamask wallets{' '}
               </a>
-              . We will never have access to your private keys and we can not
-              access your funds without your direct confirmation.{' '}
+              . We will never have access to your private keys and we can not access your funds without your direct confirmation.{' '}
             </p>
             {/*<p className={styles.subtitle_2}>
                 {' '}
@@ -188,11 +178,7 @@ const ModalLoginBinance = () => {
           onOpen={() => setOpen(true)}
           open={open}
           close
-          trigger={
-            <button className={cn('btn btn-primary', styles.play_now_modal)}>
-              Play Now
-            </button>
-          }
+          trigger={<button className={cn('btn btn-primary', styles.play_now_modal)}>Play Now</button>}
         >
           <div style={{ margin: '-68px 0px 50px -40px' }}>
             <span className="mailchimp-close" onClick={() => setOpen(false)}>
@@ -201,17 +187,10 @@ const ModalLoginBinance = () => {
           </div>
           <div>
             <h1 className={styles.title}>Download Brave</h1>
-            <button
-              className={cn('btn btn-primary w-100', styles.busd_button)}
-              href="https://brave.com/"
-              target="_blank"
-            >
+            <button className={cn('btn btn-primary w-100', styles.busd_button)} href="https://brave.com/" target="_blank">
               <span style={{ display: 'flex', justifyContent: 'center' }}>
                 Brave Browser
-                <Icon
-                  style={{ fontSize: '20px', padding: '3px 0px 0px 18px' }}
-                  name="external alternate"
-                />
+                <Icon style={{ fontSize: '20px', padding: '3px 0px 0px 18px' }} name="external alternate" />
               </span>
             </button>
             <p className={styles.subtitle}>
@@ -222,11 +201,7 @@ const ModalLoginBinance = () => {
                 Metamask{' '}
               </a>{' '}
               Enabled browsers. For more instructions on how to set up Metamask,{' '}
-              <a
-                className="modal-a"
-                href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
-                target="_blank"
-              >
+              <a className="modal-a" href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask" target="_blank">
                 {' '}
                 click here{' '}
               </a>
@@ -241,13 +216,7 @@ const ModalLoginBinance = () => {
           onOpen={() => setOpen(true)}
           open={open}
           close
-          trigger={
-            <button
-              className={cn('btn btn-primary', styles.play_now_modal_binance)}
-            >
-              Play Now
-            </button>
-          }
+          trigger={<button className={cn('btn btn-primary', styles.play_now_modal_binance)}>Play Now</button>}
         >
           <div style={{ margin: '-68px 0px 50px -40px' }}>
             <span className="mailchimp-close" onClick={() => setOpen(false)}>
@@ -264,10 +233,7 @@ const ModalLoginBinance = () => {
             >
               <span style={{ display: 'flex', justifyContent: 'center' }}>
                 Set Up MetaMask
-                <Icon
-                  style={{ fontSize: '20px', padding: '3px 0px 0px 18px' }}
-                  name="external alternate"
-                />
+                <Icon style={{ fontSize: '20px', padding: '3px 0px 0px 18px' }} name="external alternate" />
               </span>
             </button>
             <p className={styles.subtitle}>

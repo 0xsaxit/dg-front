@@ -337,6 +337,39 @@
   display: flex;
   flex-direction: column;
 
+  .lower_xdg_amount {
+    font-family: Larsseit-Bold;
+    font-style: normal;
+    font-size: 41px;
+    line-height: 120%;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .lower_xdg_usd {
+    font-family: Larsseit-Bold;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 27px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .lower_xdg_text {
+    font-family: Larsseit-Bold;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 27px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 14px;
+  }
+
   .lower_header {
     font-family: Larsseit-Bold;
     font-size: 20px;
@@ -385,6 +418,10 @@
   }
 
   .lower_button {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    
     margin-top: 20px;
     width: 100%;
     background: #006eff;
