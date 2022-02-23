@@ -56,12 +56,22 @@ const Fetch = {
     return call(`${API_BASE_URL}/ice/getMetadata/${contractAddr}/${tokenId}`, 'GET');
   },
 
+  // ICE Claim Reward
+  CLAIM_REWARDS_AMOUNT: () => {
+    return call(`${API_BASE_URL}/ice/getUnclaimedRewardsAmount`, 'GET');
+  },
+
   CLAIM_REWARDS: () => {
     return call(`${API_BASE_URL}/ice/claimRewards`, 'GET');
   },
 
-  CLAIM_REWARDS_AMOUNT: () => {
-    return call(`${API_BASE_URL}/ice/getUnclaimedRewardsAmount`, 'GET');
+  // xDG Claim Reward
+  XDG_CLAIM_REWARDS_AMOUNT: (address)=> {
+    return call(`${API_BASE_URL}/xdg/getUnclaimedRewardsAmount?address=${address}`, 'GET');
+  },
+
+  XDG_CLAIM_REWARDS: (address) => {
+    return call(`${API_BASE_URL}/xdg/claimRewards`, 'GET');
   },
 
   GET_REWARDS_CONFIG: () => {
@@ -286,10 +296,6 @@ const Fetch = {
   GET_FRONTPAGE_STATS: () => {
     return call(`${API_BASE_URL}/admin/getFrontPageStats`, 'GET', false);
   },
-
-  GET_UNCLAIMED_REWARDS_AMOUNT: (address)=> {
-    return call(`${API_BASE_URL}/xdg/getUnclaimedRewardsAmount?address=${address}`, 'GET');
-  }
 };
 
 export default Fetch;
