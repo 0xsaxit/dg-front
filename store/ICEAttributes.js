@@ -285,8 +285,8 @@ function ICEAttributes() {
       (async function () {
         try {
           const iceAmounts = await getICEAmounts();
-          iceAmounts.ICE_AVAILABLE_AMOUNT = parseInt(iceAmounts.ICE_AVAILABLE_AMOUNT);
-          iceAmounts.ICE_CLAIM_AMOUNT = parseInt(iceAmounts.ICE_CLAIM_AMOUNT);
+          iceAmounts.ICE_AVAILABLE_AMOUNT = iceAmounts?.ICE_AVAILABLE_AMOUNT;
+          iceAmounts.ICE_CLAIM_AMOUNT = parseInt(iceAmounts?.ICE_CLAIM_AMOUNT);
 
           dispatch({
             type: 'ice_amounts',
