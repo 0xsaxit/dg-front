@@ -147,32 +147,22 @@ const CheckMintableModal = props => {
   }
 
   function checkBalance() {
-<<<<<<< HEAD
-    if(authStatus && checkEnoughETHorICE() && (
-      state.stakingBalances?.BALANCE_USER_GOVERNANCE_OLD >=Global.CONSTANTS.DG_STAKED_AMOUNT ||
-      xDG >=Global.CONSTANTS.XDG_STAKED_AMOUNT)) {
-        return true;
-      } else {
-        return false;
-      }
-=======
     if (
       authStatus &&
       checkEnoughETHorICE() &&
-      (state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD >= Global.CONSTANTS.DG_STAKED_AMOUNT || xDG >= Global.CONSTANTS.XDG_STAKED_AMOUNT)
+      (state.stakingBalances?.BALANCE_USER_GOVERNANCE_OLD >= Global.CONSTANTS.DG_STAKED_AMOUNT || xDG >= Global.CONSTANTS.XDG_STAKED_AMOUNT)
     ) {
       return true;
     } else {
       return false;
     }
->>>>>>> testing
   }
 
   function checkEnoughETHorICE() {
     if (state.mintToken === 'ETH') {
       return parseFloat(state.userBalances[2][3]) < mintingPrice ? false : true;
     } else {
-      return parseFloat(state.iceAmounts.ICE_AVAILABLE_AMOUNT) < mintingPrice ? false : true;
+      return parseFloat(state.iceAmounts?.ICE_AVAILABLE_AMOUNT) < mintingPrice ? false : true;
     }
   }
 
@@ -226,7 +216,7 @@ const CheckMintableModal = props => {
               {!checkEnoughETHorICE() ? (
                 <>
                   <span className={styles.dg_insufficient}>
-                    {state.mintToken === 'ETH' ? Number(state.userBalances[2][3]).toFixed(3) : Number(state.iceAmounts.ICE_AVAILABLE_AMOUNT).toFixed(2)} {state.mintToken} Available
+                    {state.mintToken === 'ETH' ? Number(state.userBalances[2][3]).toFixed(3) : Number(state.iceAmounts?.ICE_AVAILABLE_AMOUNT).toFixed(2)} {state.mintToken} Available
                     &nbsp;
                   </span>
                   <br />
@@ -235,7 +225,7 @@ const CheckMintableModal = props => {
               ) : (
                 <>
                   <span className={styles.dg_available}>
-                    {state.mintToken === 'ETH' ? Number(state.userBalances[2][3]).toFixed(3) : Number(state.iceAmounts.ICE_AVAILABLE_AMOUNT).toFixed(0)} {state.mintToken}{' '}
+                    {state.mintToken === 'ETH' ? Number(state.userBalances[2][3]).toFixed(3) : Number(state.iceAmounts?.ICE_AVAILABLE_AMOUNT).toFixed(0)} {state.mintToken}{' '}
                     Available&nbsp;
                     <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
@@ -299,16 +289,9 @@ const CheckMintableModal = props => {
               </svg>
             </div>
 
-<<<<<<< HEAD
-              <div className={styles.dg_desc}>
-              { state.stakingBalances?.BALANCE_USER_GOVERNANCE_OLD >=Global.CONSTANTS.DG_STAKED_AMOUNT ||
-                xDG >=Global.CONSTANTS.XDG_STAKED_AMOUNT ?
-                (<span className={styles.dg_available}>
-=======
             <div className={styles.dg_desc}>
-              {state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD >= Global.CONSTANTS.DG_STAKED_AMOUNT || xDG >= Global.CONSTANTS.XDG_STAKED_AMOUNT ? (
+              {state.stakingBalances?.BALANCE_USER_GOVERNANCE_OLD >= Global.CONSTANTS.DG_STAKED_AMOUNT || xDG >= Global.CONSTANTS.XDG_STAKED_AMOUNT ? (
                 <span className={styles.dg_available}>
->>>>>>> testing
                   You Have Enough Staked&nbsp;
                   <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path

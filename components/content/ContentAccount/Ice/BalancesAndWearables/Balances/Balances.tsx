@@ -24,8 +24,8 @@ const Balances: FC<BalancesType> = ({ className = '' }: BalancesType): ReactElem
       icon:  'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg',
       name:  'ICE',
       type:  'ICE',
-      model: formatPrice(state.iceAmounts.ICE_AVAILABLE_AMOUNT, 0),
-      price: formatPrice(state.iceAmounts.ICE_AVAILABLE_AMOUNT * state.DGPrices.ice, 2)
+      model: formatPrice(state.iceAmounts?.ICE_AVAILABLE_AMOUNT, 0),
+      price: formatPrice(state.iceAmounts?.ICE_AVAILABLE_AMOUNT * state.DGPrices.ice, 2)
     },
     {
       icon:  'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_XP_ICN_f9w2se.svg',
@@ -169,7 +169,7 @@ const Balances: FC<BalancesType> = ({ className = '' }: BalancesType): ReactElem
   }
 
   async function claimTokens(): Promise<void> {
-    console.log('Claiming ICE Rewards: ' + state.iceAmounts.ICE_CLAIM_AMOUNT);
+    console.log('Claiming ICE Rewards: ' + state.iceAmounts?.ICE_CLAIM_AMOUNT);
     setIsClicked(true);
 
     // Show Toast Message

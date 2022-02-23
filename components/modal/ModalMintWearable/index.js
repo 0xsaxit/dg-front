@@ -67,7 +67,7 @@ const ModalMint = props => {
         </span>*/}
         <div className={styles.card_area}>
           <div className={styles.card_area_body}>
-            {(state.mintToken === 'ETH' ? state.userBalances[2][3] : state.iceAmounts.ICE_AVAILABLE_AMOUNT) < state.tokenAmounts.WETH_COST_AMOUNT ? (
+            {(state.mintToken === 'ETH' ? state.userBalances[2][3] : state.iceAmounts?.ICE_AVAILABLE_AMOUNT) < state.tokenAmounts.WETH_COST_AMOUNT ? (
               <span>
                 Not Enough
                 {state.mintToken === 'ETH' ? <IceMintETHTooltip /> : <IceMintIceTooltip />}
@@ -79,9 +79,9 @@ const ModalMint = props => {
               <img src={state.mintToken === 'ETH' ? Images.ETH_CIRCLE : Images.ICE_CIRCLE} className={styles.img_card2} />
             </div>
 
-            {(state.mintToken === 'ETH' ? state.userBalances[2][3] : state.iceAmounts.ICE_AVAILABLE_AMOUNT) >= state.tokenAmounts.WETH_COST_AMOUNT ? (
+            {(state.mintToken === 'ETH' ? state.userBalances[2][3] : state.iceAmounts?.ICE_AVAILABLE_AMOUNT) >= state.tokenAmounts.WETH_COST_AMOUNT ? (
               <div className={styles.green_check}>
-                {state.mintToken === 'ETH' ? Number(state.userBalances[2][3]).toFixed(3) : Number(state.iceAmounts.ICE_AVAILABLE_AMOUNT).toFixed(2)} {state.mintToken} Available
+                {state.mintToken === 'ETH' ? Number(state.userBalances[2][3]).toFixed(3) : Number(state.iceAmounts?.ICE_AVAILABLE_AMOUNT).toFixed(2)} {state.mintToken} Available
                 &nbsp;
                 <svg width="9" height="8" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -92,7 +92,7 @@ const ModalMint = props => {
               </div>
             ) : (
               <div className={styles.description}>
-                {Number(state.mintToken === 'ETH' ? state.userBalances[2][3] : state.iceAmounts.ICE_AVAILABLE_AMOUNT).toFixed(2)} {state.mintToken} Available
+                {Number(state.mintToken === 'ETH' ? state.userBalances[2][3] : state.iceAmounts?.ICE_AVAILABLE_AMOUNT).toFixed(2)} {state.mintToken} Available
               </div>
             )}
 
@@ -180,16 +180,8 @@ const ModalMint = props => {
   function buttons() {
     return (
       <div className={styles.button_area}>
-<<<<<<< HEAD
-        {((state.mintToken === 'ETH' ? state.userBalances[2][3] : state.iceAmounts.ICE_AVAILABLE_AMOUNT) <
-          state.tokenAmounts.WETH_COST_AMOUNT) ||
-          (state.stakingBalances?.BALANCE_USER_GOVERNANCE_OLD <
-            Global.CONSTANTS.DG_STAKED_AMOUNT &&
-            xDG < Global.CONSTANTS.XDG_STAKED_AMOUNT) ? (
-=======
-        {(state.mintToken === 'ETH' ? state.userBalances[2][3] : state.iceAmounts.ICE_AVAILABLE_AMOUNT) < state.tokenAmounts.WETH_COST_AMOUNT ||
-        (state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD < Global.CONSTANTS.DG_STAKED_AMOUNT && xDG < Global.CONSTANTS.XDG_STAKED_AMOUNT) ? (
->>>>>>> testing
+        {(state.mintToken === 'ETH' ? state.userBalances[2][3] : state.iceAmounts?.ICE_AVAILABLE_AMOUNT) < state.tokenAmounts.WETH_COST_AMOUNT ||
+        (state.stakingBalances?.BALANCE_USER_GOVERNANCE_OLD < Global.CONSTANTS.DG_STAKED_AMOUNT && xDG < Global.CONSTANTS.XDG_STAKED_AMOUNT) ? (
           <Button className={styles.button_upgrade} disabled={true}>
             Mint Wearable
           </Button>
