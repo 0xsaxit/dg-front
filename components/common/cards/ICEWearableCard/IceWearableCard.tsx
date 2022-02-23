@@ -91,17 +91,18 @@ const IceWearableCard: FC<IceWearableCardType> = ({ item, delegation, className 
                   disabled={!isEditingNickName}
                 />
               ) : (
-                <h1 onClick={() => setShowingBreakDown(1)}>Delegated To {nickName.length > 8 ? nickName.substr(0, 8) + '...' : nickName}</h1>
+                <h1 onClick={() => setShowingBreakDown(1)}>Delegated To {nickName.length > 12 ? nickName.substr(0, 12) + '...' : nickName}</h1>
               )}
 
-              <img
-                className={styles.edit}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1643126922/edit_p53oml.png"
-                alt="edit"
-                onClick={() => {
-                  handleEditNickNameClick();
-                }}
-              />
+              {state.userStatus>=28 && 
+                <img
+                  className={styles.edit}
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1643126922/edit_p53oml.png"
+                  alt="edit"
+                  onClick={() => {
+                    handleEditNickNameClick();
+                  }}
+                />}
             </div>
           ) : null}
           <div className={styles.card}>{`Rank ${rank}`}</div>

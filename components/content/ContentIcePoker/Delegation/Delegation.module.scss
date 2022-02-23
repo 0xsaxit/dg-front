@@ -172,7 +172,7 @@
                     display: flex;
                     justify-content: left;
                     align-items: center;
-                    width: 200px;
+                    width: 250px;
 
                     section {
                         position: relative;
@@ -333,6 +333,21 @@
                     }
                 }
 
+                .netChipsScore {
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 200px;
+
+                    img {
+                        position: relative;
+                        width: 20px;
+                        top: 1px;
+                        left: 6px;
+                    }
+                }
+
                 .tier {
                     position: relative;
                     width: 180px;
@@ -364,11 +379,11 @@
     }
 
     .fixed {
-        width: 250px;
+        width: 300px;
 
         tbody {
             tr {
-                width: 250px !important;
+                width: 300px !important;
                 border-right: 2px solid rgba(255, 255, 255, 0.1);
                 border-bottom-right-radius: 0px !important;
                 border-top-right-radius: 0px !important;
@@ -383,18 +398,18 @@
         overflow-x: scroll !important;
 
         table {
-            width: 1680px !important;
+            width: 1880px !important;
         }
 
         thead {
             tr {
-                width: 1680px !important;
+                width: 1880px !important;
             }
         }
 
         tbody {
             tr {
-                width: 1680px !important;
+                width: 1880px !important;
                 border-bottom-left-radius: 0px !important;
                 border-top-left-radius: 0px !important;
             }
@@ -432,11 +447,17 @@
             margin-bottom: 0px;
         }
 
-        .fixed {
-        }
-
         .scroll {
             width: calc(100vw - 315px) !important;
+            max-width: calc(100vw - 430px) !important;
+            margin-left: 0px;
+        }
+    }
+
+    @include mq($until: 500px) {
+        .scroll {
+            width: calc(100vw - 100px) !important;
+            max-width: calc(100vw - 100px) !important;
             margin-left: 0px;
         }
     }

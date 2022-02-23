@@ -30,7 +30,6 @@
 
 .new_delegation {
   width: 818px !important;
-  height: 529px !important;
 }
 
 .redelegation {
@@ -482,6 +481,9 @@
 @include mq($until: medium) {
   .open_button {
     font-size: 15px !important;
+    display: none !important;
+  }
+  .open_button_fullWidth {
     display: none !important;
   }
 }

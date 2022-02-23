@@ -22,7 +22,7 @@ class EmptyResultAnimation extends Component {
                     src="https://res.cloudinary.com/dnzambf4m/image/upload/v1642685731/image_jnqaxd.png"
                 />
                 <div className={styles.title}>
-                    More Wearable
+                    More Wearables. More Players.
                 </div>
 
                 <div className={styles.desc}>

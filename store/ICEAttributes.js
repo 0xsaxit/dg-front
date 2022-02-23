@@ -11,7 +11,7 @@ import ABI_COLLECTION_PH from '../components/ABI/ABICollectionPH';
 import ABI_COLLECTION_LINENS from '../components/ABI/ABICollectionLinens';
 import ABI_COLLECTION_BOMBER from '../components/ABI/ABICollectionBomber';
 import ABI_COLLECTION_CRYPTO_DRIP from '../components/ABI/ABICollectionCryptoDrip.json';
-import ABI_COLLECTION_FOUNDER_FATHER from '../components/ABI/ABICollectionFounderFather.json';
+import ABI_COLLECTION_FOUNDING_FATHER from '../components/ABI/ABICollectionFoundingFather.json';
 import ABI_COLLECTION_JOKER from '../components/ABI/ABICollectionJoker.json';
 import ABI_COLLECTION_CHEF from '../components/ABI/ABICollectionChef.json';
 import ABI_COLLECTION_BEACH from '../components/ABI/ABICollectionBeach.json';
@@ -21,6 +21,7 @@ import ABI_ICEToken from '../components/ABI/ABIICEToken';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
 import Fetch from '../common/Fetch';
+import BigNumber from 'bignumber.js';
 
 function ICEAttributes() {
   // dispatch user's token authorization status to the Context API store
@@ -36,8 +37,8 @@ function ICEAttributes() {
   const [iceTokenContract, setIceTokenContract] = useState({});
 
   useEffect(() => {
-    if (state.userStatus >= 4) {
-      const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
+    if (state.userStatus >= 4 && !!state.appConfig.polygonRPC) {
+      const maticWeb3 = new Web3(state.appConfig.polygonRPC); // pass Matic provider URL to Web3 constructor
 
       async function fetchData() {
         const ICERegistrantContract = new maticWeb3.eth.Contract(ABI_ICE_REGISTRANT, Global.ADDRESSES.ICE_REGISTRANT_ADDRESS);
@@ -57,7 +58,7 @@ function ICEAttributes() {
         const collectionV2Contract3 = new maticWeb3.eth.Contract(ABI_COLLECTION_LINENS, Global.ADDRESSES.COLLECTION_LINENS_ADDRESS);
         const collectionV2Contract4 = new maticWeb3.eth.Contract(ABI_COLLECTION_BOMBER, Global.ADDRESSES.COLLECTION_BOMBER_ADDRESS);
         const collectionV2Contract5 = new maticWeb3.eth.Contract(ABI_COLLECTION_CRYPTO_DRIP, Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS);
-        const collectionV2Contract6 = new maticWeb3.eth.Contract(ABI_COLLECTION_FOUNDER_FATHER, Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS);
+        const collectionV2Contract6 = new maticWeb3.eth.Contract(ABI_COLLECTION_FOUNDING_FATHER, Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS);
         const collectionV2Contract7 = new maticWeb3.eth.Contract(ABI_COLLECTION_JOKER, Global.ADDRESSES.COLLECTION_JOKER_ADDRESS);
         const collectionV2Contract8 = new maticWeb3.eth.Contract(ABI_COLLECTION_CHEF, Global.ADDRESSES.COLLECTION_CHEF_ADDRESS);
         const collectionV2Contract9 = new maticWeb3.eth.Contract(ABI_COLLECTION_BEACH, Global.ADDRESSES.COLLECTION_BEACH_ADDRESS);
@@ -90,12 +91,13 @@ function ICEAttributes() {
           // [2, 12, 16, 20, 7],
         ]);
         collectionArray.push([collectionV2Contract5, Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS, [0, 5, 10, 15, 20]]);
-        collectionArray.push([collectionV2Contract6, Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS, [0, 5, 10, 15, 20]]);
+        collectionArray.push([collectionV2Contract6, Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS, [0, 5, 10, 15, 20]]);
         collectionArray.push([collectionV2Contract7, Global.ADDRESSES.COLLECTION_JOKER_ADDRESS, [0, 5, 10, 15, 20]]);
         collectionArray.push([collectionV2Contract8, Global.ADDRESSES.COLLECTION_CHEF_ADDRESS, [0, 5, 10, 15, 20]]);
         collectionArray.push([collectionV2Contract9, Global.ADDRESSES.COLLECTION_BEACH_ADDRESS, [0, 5, 10, 15, 20]]);
         collectionArray.push([collectionV2Contract10, Global.ADDRESSES.COLLECTION_AIRLINE_ADDRESS, [0, 5, 10, 15, 20]]);
         collectionArray.push([collectionV2Contract11, Global.ADDRESSES.COLLECTION_POET_ADDRESS, [0, 5, 10, 15, 20]]);
+
         setCollectionArray(collectionArray);
 
         const IceTokenContract = new maticWeb3.eth.Contract(ABI_ICEToken, Global.ADDRESSES.ICE_TOKEN_ADDRESS);
@@ -106,7 +108,7 @@ function ICEAttributes() {
 
       fetchData();
     }
-  }, [state.userStatus]);
+  }, [state.userStatus, state.appConfig.polygonRPC]);
 
   useEffect(async () => {
     if (instances) {
@@ -120,7 +122,7 @@ function ICEAttributes() {
 
   // anytime user mints/updates/activates an NFT this code will execute
   useEffect(() => {
-    if (instances) {
+    if (instances && state.userStatus >= 4) {
       async function fetchData() {
         if (!state.iceWearableItems || state.iceWearableItems.length === 0) {
           dispatch({
@@ -154,11 +156,11 @@ function ICEAttributes() {
 
       fetchData();
     }
-  }, [instances, state.refreshWearable]);
+  }, [instances, state.refreshWearable, state.userStatus]);
 
   // anytime user undelegates an NFT this code will execute
   useEffect(() => {
-    if (instances) {
+    if (instances && state.userStatus >= 4) {
       (async function () {
         dispatch({
           type: 'ice_delegated_items_loading',
@@ -182,74 +184,78 @@ function ICEAttributes() {
         });
       })();
     }
-  }, [instances, state.refreshDelegation]);
+  }, [instances, state.refreshDelegation, state.userStatus]);
 
   // anytime user mints/upgrades/activates NFTs on /ice pages this code will execute
   useEffect(() => {
-    if (instances) {
+    if (instances && state.userStatus >= 4) {
       (async function () {
         // update global state wearables limit amounts for each collection
-        const itemLimits11 = await getItemLimits(10);
+        const [itemLimits11, itemLimits10, itemLimits9, itemLimits8, itemLimits7, itemLimits6, itemLimits5, itemLimits4, itemLimits3, itemLimits2, itemLimits1] = await Promise.all(
+          [
+            getItemLimits(10),
+            getItemLimits(9),
+            getItemLimits(8),
+            getItemLimits(7),
+            getItemLimits(6),
+            getItemLimits(5),
+            getItemLimits(4),
+            getItemLimits(3),
+            getItemLimits(2),
+            getItemLimits(1),
+            getItemLimits(0)
+          ]
+        );
         dispatch({
           type: 'item_limits_11',
           data: itemLimits11
         });
 
-        const itemLimits10 = await getItemLimits(9);
         dispatch({
           type: 'item_limits_10',
           data: itemLimits10
         });
 
-        const itemLimits9 = await getItemLimits(8);
         dispatch({
           type: 'item_limits_9',
           data: itemLimits9
         });
 
-        const itemLimits8 = await getItemLimits(7);
         dispatch({
           type: 'item_limits_8',
           data: itemLimits8
         });
 
-        const itemLimits7 = await getItemLimits(6);
         dispatch({
           type: 'item_limits_7',
           data: itemLimits7
         });
 
-        const itemLimits6 = await getItemLimits(5);
         dispatch({
           type: 'item_limits_6',
           data: itemLimits6
         });
 
-        const itemLimits5 = await getItemLimits(4);
         dispatch({
           type: 'item_limits_5',
           data: itemLimits5
         });
 
-        const itemLimits4 = await getItemLimits(3);
         dispatch({
           type: 'item_limits_4',
           data: itemLimits4
         });
 
-        const itemLimits3 = await getItemLimits(2);
         dispatch({
           type: 'item_limits_3',
           data: itemLimits3
         });
 
-        const itemLimits2 = await getItemLimits(1);
         dispatch({
           type: 'item_limits_2',
           data: itemLimits2
         });
 
-        const itemLimits1 = await getItemLimits(0);
         dispatch({
           type: 'item_limits_1',
           data: itemLimits1
@@ -277,11 +283,11 @@ function ICEAttributes() {
         console.log('Token status updates completed!');
       })();
     }
-  }, [instances, state.refreshTokenAmounts]);
+  }, [instances, state.refreshTokenAmounts, state.userStatus]);
 
   // anytime user claims ICE rewards this code will execute
   useEffect(() => {
-    if (instances) {
+    if (instances && state.userStatus >= 4) {
       (async function () {
         try {
           const iceAmounts = await getICEAmounts();
@@ -299,11 +305,11 @@ function ICEAttributes() {
         }
       })();
     }
-  }, [instances, state.refreshBalances, state.refreshICEAmounts]);
+  }, [instances, state.refreshBalances, state.refreshICEAmounts, state.userStatus]);
 
   // anytime user authorizes tokens on /ice pages this code will execute
   useEffect(() => {
-    if (instances) {
+    if (instances && state.userStatus >= 4) {
       (async function () {
         const tokenAuths = await getTokenAuthorizations();
 
@@ -319,11 +325,11 @@ function ICEAttributes() {
         console.log('Token authorizations updates completed!');
       })();
     }
-  }, [instances, state.refreshTokenAuths]);
+  }, [instances, state.refreshTokenAuths, state.userStatus]);
 
   // anytime user authorizes NFTs on /ice pages this code will execute
   useEffect(() => {
-    if (instances && state.iceWearableItems.length) {
+    if (instances && state.iceWearableItems.length && state.userStatus >= 4) {
       (async function () {
         let authArray = [];
 
@@ -347,7 +353,7 @@ function ICEAttributes() {
         });
       })();
     }
-  }, [instances, state.iceWearableItems, state.refreshNFTAuths]);
+  }, [instances, state.iceWearableItems, state.refreshNFTAuths, state.userStatus]);
 
   async function getItemLimits(index) {
     const collectionAddress = collectionArray[index][1];
@@ -406,7 +412,9 @@ function ICEAttributes() {
   async function getTokenAmounts() {
     try {
       const wethConstAmount = await ICERegistrantContract.methods.mintingPrice().call();
-      const WETH_COST_AMOUNT = wethConstAmount / Global.CONSTANTS.FACTOR;
+      const amountAdjusted = new BigNumber(wethConstAmount).div(new BigNumber(10).pow(Global.CONSTANTS.TOKEN_DECIMALS)).toFixed(2);
+      const WETH_COST_AMOUNT = amountAdjusted;
+      console.log('WETH AMOUNT: ' + wethConstAmount + ' ' + WETH_COST_AMOUNT);
 
       const levelsData1 = await ICERegistrantContract.methods.levels('1').call();
       const DG_MOVE_AMOUNT = levelsData1[2] / Global.CONSTANTS.FACTOR;
@@ -464,7 +472,8 @@ function ICEAttributes() {
   async function getICEAmounts() {
     try {
       const ICE_AVAILABLE_AMOUNT = await iceTokenContract.methods.balanceOf(state.userAddress).call();
-      const ICE_AMOUNT_ADJUSTED = (ICE_AVAILABLE_AMOUNT / Global.CONSTANTS.FACTOR).toString();
+      const amountAdjusted = new BigNumber(ICE_AVAILABLE_AMOUNT).div(new BigNumber(10).pow(Global.CONSTANTS.TOKEN_DECIMALS));
+      const ICE_AMOUNT_ADJUSTED = parseFloat(amountAdjusted);
 
       console.log('Available ICE amount: ' + ICE_AMOUNT_ADJUSTED);
 

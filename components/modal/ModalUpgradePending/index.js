@@ -14,7 +14,7 @@ import ABI_COLLECTION_CHEF from '../../../components/ABI/ABICollectionChef';
 import ABI_COLLECTION_BEACH from '../../../components/ABI/ABICollectionBeach';
 import ABI_COLLECTION_AIRLINE from '../../../components/ABI/ABICollectionAirline';
 import ABI_COLLECTION_POET from '../../../components/ABI/ABICollectionPoet';
-import ABI_COLLECTION_FOUNDING_FATHERS from '../../../components/ABI/ABICollectionFounderFather';
+import ABI_COLLECTION_FOUNDING_FATHERS from '../../../components/ABI/ABICollectionFoundingFather';
 import MetaTx from '../../../common/MetaTx';
 import Fetch from '../../../common/Fetch';
 import { Modal, Button } from 'semantic-ui-react';
@@ -22,7 +22,7 @@ import styles from './ModalUpgradePending.module.scss';
 import MetamaskAction, { ActionLine } from 'components/common/MetamaskAction';
 import Global from '../../Constants';
 import Aux from '../../_Aux';
-import { Loader } from 'semantic-ui-react';
+import LoadingAnimation from 'components/lottieAnimation/animations/LoadingAnimation';
 
 const ModalUpgradePending = props => {
   // fetch tokenAmounts data from the Context API store
@@ -58,7 +58,7 @@ const ModalUpgradePending = props => {
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
 
-      const biconomy = new Biconomy(new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL), {
+      const biconomy = new Biconomy(new Web3.providers.HttpProvider(state.appConfig.polygonRPC), {
         apiKey: Global.KEYS.BICONOMY_API_1,
         debug: true
       });
@@ -91,8 +91,8 @@ const ModalUpgradePending = props => {
       } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS) {
         collectionContract = new getWeb3.eth.Contract(ABI_COLLECTION_CRYPTO_DRIP, Global.ADDRESSES.COLLECTION_CRYPTO_DRIP_ADDRESS);
         collectionID = 16;
-      } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS) {
-        collectionContract = new getWeb3.eth.Contract(ABI_COLLECTION_FOUNDING_FATHERS, Global.ADDRESSES.COLLECTION_FOUNDER_FATHERS_ADDRESS);
+      } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS) {
+        collectionContract = new getWeb3.eth.Contract(ABI_COLLECTION_FOUNDING_FATHERS, Global.ADDRESSES.COLLECTION_FOUNDING_FATHERS_ADDRESS);
         collectionID = 17;
       } else if (props.contractAddress === Global.ADDRESSES.COLLECTION_JOKER_ADDRESS) {
         collectionContract = new getWeb3.eth.Contract(ABI_COLLECTION_JOKER, Global.ADDRESSES.COLLECTION_JOKER_ADDRESS);
@@ -347,7 +347,7 @@ const ModalUpgradePending = props => {
         >
           <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1620331579/metamask-fox_szuois.png" />
 
-          {!loading && mexaStatus ? activeItem.text : <Loader />}
+          {!loading && mexaStatus ? activeItem.text : <LoadingAnimation />}
         </Button>
       );
     }

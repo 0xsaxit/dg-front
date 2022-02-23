@@ -29,13 +29,13 @@ const ButtonPlayNow = () => {
 
       // track MetaMask connect event
       analytics.track('Connected MetaMask', {
-        userAddress: userAddress,
+        userAddress: userAddress
       });
 
       // dispatch user address to the Context API store
       dispatch({
         type: 'user_address',
-        data: userAddress,
+        data: userAddress
       });
 
       // set global user status based on value stored in database
@@ -64,13 +64,13 @@ const ButtonPlayNow = () => {
       // update global state user status after fetch is complete
       dispatch({
         type: 'update_status',
-        data: value,
+        data: value
       });
     } else {
       // update global state user status immediately
       dispatch({
         type: 'update_status',
-        data: value,
+        data: value
       });
     }
   }
@@ -84,7 +84,7 @@ const ButtonPlayNow = () => {
 
       const jsonStatus = await Fetch.USER_STATUS(userAddress, '');
 
-      if (!jsonStatus.status) return false;
+      if (jsonStatus?.status == undefined || jsonStatus.status == -1) return false;
 
       return jsonStatus.status;
     } catch {
@@ -97,14 +97,7 @@ const ButtonPlayNow = () => {
   return (
     <Aux>
       {metamaskEnabled ? (
-        <Button
-          id="mobile-button-hide"
-          content="Play Now"
-          color="blue"
-          className="play-button verify"
-          style={{ padding: '0 0 0 0' }}
-          onClick={() => openMetaMask()}
-        />
+        <Button id="mobile-button-hide" content="Play Now" color="blue" className="play-button verify" style={{ padding: '0 0 0 0' }} onClick={() => openMetaMask()} />
       ) : null}
     </Aux>
   );

@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { GlobalContext } from '@/store';
 import Link from 'next/link';
 import Spinner from 'components/Spinner';
-import ContentAccount from 'components/content/ContentAccount';
+import ContentAccount from '@/components/content/ContentAccount/ContentAccount';
 import Aux from 'components/_Aux';
 import styles from './AccountData.module.scss';
 import AccountTooltip from 'components/tooltips/AccountTooltip';
@@ -199,14 +199,6 @@ const AccountData = props => {
         <div className={cn('account-other-tabs', styles.account_other_tabs)} id="account-mobile-tabs" style={{ marginTop: '0px' }}>
           <div className="ml-0">
             <span className="account-other-p d-flex justify-content-center">
-              {dataType === 'balances' ? (
-                <span className={cn('account-hover', 'active', styles.account_hover)}>Balances</span>
-              ) : (
-                <Link href="/account">
-                  <span className={cn('account-hover', styles.account_hover)}>Balances</span>
-                </Link>
-              )}
-
               {dataType === 'ice' ? (
                 <span className={cn('account-hover', 'active', styles.account_hover)}>&nbsp;&nbsp;ICE&nbsp;&nbsp;</span>
               ) : state.dgLoading ? (
@@ -222,13 +214,13 @@ const AccountData = props => {
                   &nbsp;&nbsp;ICE&nbsp;&nbsp;
                 </span>
               ) : (
-                <Link href="/account/ice">
+                <Link href="/account">
                   <span className={cn('account-hover', styles.account_hover)}>&nbsp;&nbsp;ICE&nbsp;&nbsp;</span>
                 </Link>
               )}
 
               {dataType === 'items' ? (
-                <span className={cn('account-hover', 'active', styles.account_hover)}>Your Items</span>
+                <span className={cn('account-hover', 'active', styles.account_hover)}>My Items</span>
               ) : state.dgLoading ? (
                 <span
                   className={cn('account-hover', styles.account_hover)}
@@ -239,11 +231,19 @@ const AccountData = props => {
                     });
                   }}
                 >
-                  Your Items
+                  My Items
                 </span>
               ) : (
                 <Link href="/account/items">
-                  <span className={cn('account-hover', styles.account_hover)}>Your Items - x</span>
+                  <span className={cn('account-hover', styles.account_hover)}>My Items</span>
+                </Link>
+              )}
+
+              {dataType === 'balances' ? (
+                <span className={cn('account-hover', 'active', styles.account_hover)}>Balances</span>
+              ) : (
+                <Link href="/account/balances">
+                  <span className={cn('account-hover', styles.account_hover)}>Balances</span>
                 </Link>
               )}
 

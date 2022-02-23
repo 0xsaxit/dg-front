@@ -8,7 +8,7 @@ import ABI_ICE_LP from '../components/ABI/ABILiquidityICE';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
 
-const bigNumberResult = (digits) => (result) => {
+const bigNumberResult = digits => result => {
   if (digits) {
     return BigNumber(result).div(Global.CONSTANTS.FACTOR).toFixed(3);
   } else {
@@ -18,7 +18,7 @@ const bigNumberResult = (digits) => (result) => {
 
 const makeBatchedPromises = (batch, promisesAndResultHandlers) => {
   const batchedPromises = promisesAndResultHandlers.map(
-    (methodAndHandler) =>
+    methodAndHandler =>
       new Promise((resolve, reject) => {
         batch.add(
           methodAndHandler[0].call.request({}, 'latest', (error, result) => {
@@ -50,7 +50,7 @@ function DGBalances() {
   const [DGMaticContract, setDGMaticContract] = useState({});
 
   const [XDGMaticContract, setXDGMaticContract] = useState({});
-  const [XDGMainContract, setXDGMainContract] = useState({}); 
+  const [XDGMainContract, setXDGMainContract] = useState({});
 
   const [DGLightMaticContract, setDGLightMaticContract] = useState({});
   const [BPTContract1, setBPTContract1] = useState({});
@@ -67,17 +67,17 @@ function DGBalances() {
   const [maticWethContract, setMaticWethContract] = useState({});
   const [instances, setInstances] = useState(false);
   const [web3Provider, setWeb3Provider] = useState(null);
+  const [mainnetWeb3Provider, setMainnetWeb3Provider] = useState(null);
 
   let interval = {};
   let currentTime = 0;
 
-  
-
   async function fetchData() {
     const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
     const mainnetWeb3 = new Web3(Global.CONSTANTS.MAINNET_URL); // pass Matic provider URL to Web3 constructor
-    const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
+    const maticWeb3 = new Web3(state.appConfig.polygonRPC); // pass Matic provider URL to Web3 constructor
     setWeb3Provider(web3);
+    setMainnetWeb3Provider(mainnetWeb3);
 
     // this is for mining DG
     const pointerContract = await Transactions.pointerContract(maticWeb3);
@@ -88,13 +88,11 @@ function DGBalances() {
     setPointerContractNew(pointerContractNew);
 
     // set up dg token contract (same for both pools)
-    const DGTokenContract = await Transactions.DGTokenContract(web3);
+    const DGTokenContract = await Transactions.DGTokenContract(mainnetWeb3);
     setDGTokenContract(DGTokenContract);
 
     // set up dg token contract (same for both pools)
-    const DGLightTokenContract = await Transactions.DGLightTokenContract(
-      mainnetWeb3
-    );
+    const DGLightTokenContract = await Transactions.DGLightTokenContract(mainnetWeb3);
     setDGLightTokenContract(DGLightTokenContract);
 
     // matic contract to get DG balance on matic chain for modal
@@ -110,27 +108,16 @@ function DGBalances() {
     // setXDGMainContract(XDGMainContract);
 
     // matic contract to get DGLight balance on matic chain for modal
-    const DGLightMaticContract = await Transactions.DGLightTokenContract(
-      maticWeb3
-    );
+    const DGLightMaticContract = await Transactions.DGLightTokenContract(maticWeb3);
     setDGLightMaticContract(DGLightMaticContract);
 
-    const DAI_BPT = new web3.eth.Contract(
-      ABI_DG_TOKEN,
-      Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DAI
-    );
+    const DAI_BPT = new mainnetWeb3.eth.Contract(ABI_DG_TOKEN, Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DAI);
     setDAI_BPT(DAI_BPT);
 
-    const ETH_UNI = new web3.eth.Contract(
-      ABI_DG_TOKEN,
-      Global.ADDRESSES.UNISWAP_ADDRESS_WETH
-    );
+    const ETH_UNI = new mainnetWeb3.eth.Contract(ABI_DG_TOKEN, Global.ADDRESSES.UNISWAP_ADDRESS_WETH);
     setETH_UNI(ETH_UNI);
 
-    const DG_MANA = new web3.eth.Contract(
-      ABI_DG_TOKEN,
-      Global.ADDRESSES.ROOT_TOKEN_ADDRESS_MANA
-    );
+    const DG_MANA = new mainnetWeb3.eth.Contract(ABI_DG_TOKEN, Global.ADDRESSES.ROOT_TOKEN_ADDRESS_MANA);
     setMANA_BPT(DG_MANA);
 
     // const MATIC_MANA = new maticWeb3.eth.Contract(
@@ -145,62 +132,52 @@ function DGBalances() {
     // );
     // setMaticDAIContract(maticDAIContract);
 
-    const maticICEContract = new maticWeb3.eth.Contract(
-      ABI_CHILD_TOKEN_MANA,
-      Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ICE
-    );
+    const maticICEContract = new maticWeb3.eth.Contract(ABI_CHILD_TOKEN_MANA, Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ICE);
     setIceContract(maticICEContract);
 
-    const maticLPContract = new maticWeb3.eth.Contract(
-      ABI_ICE_LP,
-      '0x9e3880647C07BA13E65663DE29783eCD96Ec21dE'
-    );
+    const maticLPContract = new maticWeb3.eth.Contract(ABI_ICE_LP, '0x9e3880647C07BA13E65663DE29783eCD96Ec21dE');
     setMaticLPContract(maticLPContract);
 
-    const maticWethContract = new maticWeb3.eth.Contract(
-      ABI_CHILD_TOKEN_MANA,
-      '0x7ceb23fd6bc0add59e62ac25578270cff1b9f619'
-    );
+    const maticWethContract = new maticWeb3.eth.Contract(ABI_CHILD_TOKEN_MANA, '0x7ceb23fd6bc0add59e62ac25578270cff1b9f619');
     setMaticWethContract(maticWethContract);
 
-    const stakingContractPool1 = await Transactions.stakingContractPool1(web3);
+    const stakingContractPool1 = await Transactions.stakingContractPool1(mainnetWeb3);
     setStakingContractPool1(stakingContractPool1);
 
-    const stakingContractPool2 = await Transactions.stakingContractPool2(web3);
+    const stakingContractPool2 = await Transactions.stakingContractPool2(mainnetWeb3);
     setStakingContractPool2(stakingContractPool2);
 
-    const keeperContract = await Transactions.keeperContract(web3);
+    const keeperContract = await Transactions.keeperContract(mainnetWeb3);
     setKeeperContract(keeperContract);
 
-    const townHallGovernance = await Transactions.townHallGovernance(web3);
+    const townHallGovernance = await Transactions.townHallGovernance(mainnetWeb3);
     setTownHallGovernance(townHallGovernance);
 
-    const stakeContractGovernance =
-      await Transactions.stakingContractGovernance(web3);
+    const stakeContractGovernance = await Transactions.stakingContractGovernance(mainnetWeb3);
     setStakeContractGovernance(stakeContractGovernance);
 
-    const BPTContract1 = await Transactions.BPTContract1(web3);
+    const BPTContract1 = await Transactions.BPTContract1(mainnetWeb3);
     setBPTContract1(BPTContract1);
 
-    const BPTContract2 = await Transactions.BPTContract2(web3);
+    const BPTContract2 = await Transactions.BPTContract2(mainnetWeb3);
     setBPTContract2(BPTContract2);
 
-    const stakingContractUniswap = await Transactions.stakingContractUniswap(
-      web3
-    );
+    const stakingContractUniswap = await Transactions.stakingContractUniswap(mainnetWeb3);
     setStakingContractUniswap(stakingContractUniswap);
 
-    const uniswapContract = await Transactions.uniswapContract(web3);
+    const uniswapContract = await Transactions.uniswapContract(mainnetWeb3);
     setUniswapContract(uniswapContract);
 
     setInstances(true); // contract instantiation complete
   }
 
   useEffect(() => {
-    if (state.userStatus >= 4) {
+    if (state.userStatus >= 4 && !!state.appConfig.polygonRPC) {
       fetchData();
+    } else {
+      setInstances(false);
     }
-  }, [state.userStatus]);
+  }, [state.userStatus, state.appConfig.polygonRPC]);
 
   useEffect(async () => {
     if (state.userStatus >= 4) {
@@ -210,7 +187,7 @@ function DGBalances() {
 
       dispatch({
         type: 'refresh_balances',
-        data: refresh,
+        data: refresh
       });
     }
   }, [state.networkID]);
@@ -219,28 +196,25 @@ function DGBalances() {
   useEffect(() => {
     if (instances) {
       (async function () {
-        // update global state unclaimed DG points balances
-        const tokenBalances = await getTokenBalances();
+        const [tokenBalances, DGGameplayCollected, balancesStaking] = await Promise.all([
+          getTokenBalances(), // update global state unclaimed DG points balances
+          getDGGameplayCollected(), // get historical gameplay collected amount
+          getBalancesStaking() // update global state staking DG and balancer pool tokens
+        ]);
 
         dispatch({
           type: 'dg_balances',
-          data: tokenBalances,
+          data: tokenBalances
         });
-
-        // get historical gameplay collected amount
-        const DGGameplayCollected = await getDGGameplayCollected();
 
         dispatch({
           type: 'dg_gameplay_collected',
-          data: DGGameplayCollected,
+          data: DGGameplayCollected
         });
-
-        // update global state staking DG and balancer pool tokens
-        const balancesStaking = await getBalancesStaking();
 
         dispatch({
           type: 'staking_balances',
-          data: balancesStaking,
+          data: balancesStaking
         });
       })();
     }
@@ -259,7 +233,7 @@ function DGBalances() {
 
             dispatch({
               type: 'refresh_balances',
-              data: refresh,
+              data: refresh
             });
           })();
 
@@ -272,10 +246,9 @@ function DGBalances() {
     }
   }, [state.stakeTime]);
 
-  
   async function getTokenBalances() {
     try {
-      const batch = new web3Provider.BatchRequest();
+      const batch = new mainnetWeb3Provider.BatchRequest();
       const batchPromises = makeBatchedPromises(batch, [
         [DGTokenContract.methods.balanceOf(Global.ADDRESSES.BP_TOKEN_ADDRESS_2), bigNumberResult(3)],
         [DGTokenContract.methods.balanceOf(Global.ADDRESSES.BP_TOKEN_ADDRESS_1), bigNumberResult(3)],
@@ -314,21 +287,9 @@ function DGBalances() {
         getICEBalanceLP(),
         getUSDCBalanceLP(),
         getWETH(),
-        Transactions.balanceOfToken(
-          DGMaticContract,
-          state.userAddress,
-          3
-        ),
-        Transactions.balanceOfToken(
-          DGLightMaticContract,
-          state.userAddress,
-          3
-        ),
-        Transactions.balanceOfToken(
-          XDGMaticContract,
-          state.userAddress,
-          3
-        )
+        Transactions.balanceOfToken(DGMaticContract, state.userAddress, 3),
+        Transactions.balanceOfToken(DGLightMaticContract, state.userAddress, 3),
+        Transactions.balanceOfToken(XDGMaticContract, state.userAddress, 3)
       ]);
 
       const [
@@ -344,10 +305,8 @@ function DGBalances() {
         BALANCE_STAKING_BALANCER_1,
         BALANCE_STAKING_BALANCER_2,
         BALANCE_STAKING_GOVERNANCE,
-        BALANCE_STAKING_UNISWAP,
-
+        BALANCE_STAKING_UNISWAP
       ] = balances;
-
 
       return {
         BALANCE_BP_DG_1: BALANCE_BP_DG_1,
@@ -382,7 +341,7 @@ function DGBalances() {
 
         ICE_BALANCE_LP: ICE_BALANCE_LP,
         USDC_BALANCE_LP: USDC_BALANCE_LP,
-        BALANCE_WETH_WEARABLES: BALANCE_WETH_WEARABLES,
+        BALANCE_WETH_WEARABLES: BALANCE_WETH_WEARABLES
       };
     } catch (error) {
       console.error('Token balances error: ', error);
@@ -392,9 +351,7 @@ function DGBalances() {
   // get user's DG points balance from smart contract for gameplay mining
   async function getWETH() {
     try {
-      const amount = await maticWethContract.methods
-        .balanceOf('0x3c383B7Ffd5d2bF24EBd1fc8509ceFa9b7D1976f')
-        .call();
+      const amount = await maticWethContract.methods.balanceOf('0x3c383B7Ffd5d2bF24EBd1fc8509ceFa9b7D1976f').call();
 
       const pointsAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
 
@@ -407,9 +364,7 @@ function DGBalances() {
   // get user's DG points balance from smart contract for gameplay mining
   async function getDGBalanceGameplay() {
     try {
-      const amount = await pointerContract.methods
-        .pointsBalancer(state.userAddress)
-        .call();
+      const amount = await pointerContract.methods.pointsBalancer(state.userAddress).call();
 
       const pointsAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
 
@@ -425,10 +380,10 @@ function DGBalances() {
       const events = await DGMaticContract.getPastEvents('Transfer', {
         filter: {
           to: state.userAddress,
-          from: Global.ADDRESSES.DG_POINTER_CONTRACT_ADDRESS_NEW,
+          from: Global.ADDRESSES.DG_POINTER_CONTRACT_ADDRESS_NEW
         },
         fromBlock: 7564153, // 16890328,
-        toBlock: 'latest',
+        toBlock: 'latest'
       });
 
       let valueAdjusted = 0;
@@ -436,9 +391,7 @@ function DGBalances() {
         const value = events[0].returnValues.value;
         valueAdjusted = (value / Global.CONSTANTS.FACTOR).toFixed(3);
 
-        console.log(
-          'Returned gameplay rewards collected value: ' + valueAdjusted
-        );
+        console.log('Returned gameplay rewards collected value: ' + valueAdjusted);
       } else {
         console.log('No gameplay rewards collected thus far');
       }
@@ -452,12 +405,7 @@ function DGBalances() {
   // get user's DG points balance from smart contract for gameplay mining
   async function getDGBalanceGameplayV2() {
     try {
-      const amount = await pointerContractNew.methods
-        .pointsBalancer(
-          state.userAddress,
-          Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DG
-        )
-        .call();
+      const amount = await pointerContractNew.methods.pointsBalancer(state.userAddress, Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DG).call();
 
       const pointsAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
 
@@ -470,9 +418,7 @@ function DGBalances() {
   // get user's DG unclaimed balance from smart contract for keeping funds
   async function getDGBalanceKeeper() {
     try {
-      const amount = await keeperContract.methods
-        .availableBalance(state.userAddress)
-        .call();
+      const amount = await keeperContract.methods.availableBalance(state.userAddress).call();
       const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
 
       return balanceAdjusted;
@@ -550,7 +496,7 @@ function DGBalances() {
           dai: amountDai._profits[index] / Global.CONSTANTS.FACTOR,
           usdt: amountUSDT._profits[index] / Global.CONSTANTS.FACTOR,
           atri: amountAtri._profits[index] / Global.CONSTANTS.FACTOR,
-          eth: amountEth._profits[index] / Global.CONSTANTS.FACTOR,
+          eth: amountEth._profits[index] / Global.CONSTANTS.FACTOR
         };
       });
 
@@ -560,10 +506,9 @@ function DGBalances() {
     }
   }
 
-  
   async function getBalancesStaking() {
     try {
-      const batch = new web3Provider.BatchRequest();
+      const batch = new mainnetWeb3Provider.BatchRequest();
       const batchPromises = makeBatchedPromises(batch, [
         [BPTContract1.methods.balanceOf(Global.ADDRESSES.DG_STAKING_BALANCER_ADDRESS_1), bigNumberResult(4)],
         [BPTContract2.methods.balanceOf(Global.ADDRESSES.DG_STAKING_BALANCER_ADDRESS_2), bigNumberResult(4)],
@@ -578,7 +523,7 @@ function DGBalances() {
         [townHallGovernance.methods.balanceOf(state.userAddress), bigNumberResult(0)],
         [uniswapContract.methods.balanceOf(Global.ADDRESSES.DG_STAKING_UNISWAP_ADDRESS), bigNumberResult(4)],
         [stakingContractUniswap.methods.balanceOf(state.userAddress), bigNumberResult(0)],
-        [uniswapContract.methods.balanceOf(state.userAddress), bigNumberResult(0)],
+        [uniswapContract.methods.balanceOf(state.userAddress), bigNumberResult(0)]
       ]);
       batch.execute();
 
@@ -613,7 +558,7 @@ function DGBalances() {
         BALANCE_USER_GOVERNANCE: BALANCE_USER_GOVERNANCE,
         BALANCE_CONTRACT_UNISWAP: BALANCE_CONTRACT_UNISWAP,
         BALANCE_STAKED_UNISWAP: BALANCE_STAKED_UNISWAP,
-        BALANCE_WALLET_UNISWAP: BALANCE_WALLET_UNISWAP,
+        BALANCE_WALLET_UNISWAP: BALANCE_WALLET_UNISWAP
       };
     } catch (error) {
       console.log('Staking balances error: ' + error);

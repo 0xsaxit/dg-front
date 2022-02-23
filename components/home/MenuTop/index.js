@@ -1,13 +1,8 @@
-/* eslint-disable no-undef */
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-/* eslint-disable spaced-comment */
-/* eslint-disable react/react-in-jsx-scope */
 import { useState, useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import cn from 'classnames';
-import { Menu } from 'semantic-ui-react';
+import { Grid, Menu } from 'semantic-ui-react';
 import { GlobalContext } from '@/store';
 import { useMediaQuery } from 'hooks';
 import ModalInfo from 'components/modal/ModalInfo';
@@ -32,7 +27,7 @@ const MenuTop = () => {
   const [state, dispatch] = useContext(GlobalContext);
   const isTablet = useMediaQuery('(min-width: 1040px)');
   const isMobile = useMediaQuery('(min-width: 786px)');
-  const isPhone = useMediaQuery('(max-width: 400px)');
+  const isPhone = useMediaQuery('(max-width: 415px)');
   const isSquished = useMediaQuery('(min-width: 920px)');
   const [open, setOpen] = useState(false);
   const [utm, setUtm] = useState('');
@@ -47,8 +42,8 @@ const MenuTop = () => {
     if (state.userStatus >= 4) {
       ReactGA.event({
         category: 'Logged In',
-        action:   'User Logged In',
-        label:    'Home Page',
+        action: 'User Logged In',
+        label: 'Home Page'
       });
     }
   }, [state.userStatus]);
@@ -113,7 +108,7 @@ const MenuTop = () => {
   function setAffiliateState() {
     dispatch({
       type: 'affiliate_address',
-      data: localStorage.getItem('ref'),
+      data: localStorage.getItem('ref')
     });
   }
 
@@ -131,6 +126,21 @@ const MenuTop = () => {
     setAffiliateState();
   }, [ref]);
 
+  const disconnect = () => {
+    // update "login" status in store and LS
+    dispatch({
+      type: 'set_userLoggedIn',
+      data: false
+    });
+
+    dispatch({
+      type: 'set_initialState'
+    });
+
+    //clear localstorage
+    localStorage.clear();
+  };
+
   // helper functions
 
   function DGLogo() {
@@ -138,14 +148,12 @@ const MenuTop = () => {
       <Link href="/">
         <img
           className={cn(
-
             // AMNESIA_COMMENT: remove the amnesia logo class
             styles.menu_logo,
             state.isAmnesiaPage && styles.amnesia_logo
           )}
           alt="Decentral Games Logo"
           src={
-
             // AMNESIA_COMMENT: remove the amnesia logo
             state.isAmnesiaPage
               ? 'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632943973/amnesia/amnesia_dg_logo_uvqb6x.png'
@@ -158,14 +166,12 @@ const MenuTop = () => {
         <Link href="/">
           <img
             className={cn(
-
               // AMNESIA_COMMENT: remove the amnesia logo class
               styles.menu_logo,
               state.isAmnesiaPage && styles.amnesia_logo
             )}
             alt="Decentral Games Logo"
             src={
-
               // AMNESIA_COMMENT: remove the amnesia logo
               state.isAmnesiaPage
                 ? 'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1632943973/amnesia/amnesia_dg_logo_uvqb6x.png'
@@ -216,16 +222,20 @@ const MenuTop = () => {
           )}
 
           {!isTablet && (
-            <a
-              href="https://ice.decentral.games"
-              id="docs-top-menu"
-              target="_blank" rel="noreferrer"
-            >
+            <a href="https://ice.decentral.games" id="docs-top-menu" target="_blank" rel="noreferrer">
               <Menu.Item className={styles.menu_style}>
                 {/* {t('navMenu.DOCS')} */}
                 Docs
               </Menu.Item>
             </a>
+          )}
+
+          {isPhone && state.userLoggedIn && (
+            <Link href="/">
+              <Menu.Item className={styles.menu_style} onClick={disconnect}>
+                Disconnect
+              </Menu.Item>
+            </Link>
           )}
         </span>
       </div>
@@ -237,19 +247,105 @@ const MenuTop = () => {
     return (
       <div className={styles.menu_items_to_hide}>
         {isMobile && (
-          <Link href={'/ice'}>
-            <Menu.Item className={styles.menu_style}>
-              ICE Poker
-            </Menu.Item>
-          </Link>
+          <section className={styles.menu_item_single}>
+            <Link href={'/ice'}>
+              <Menu.Item className={styles.menu_style}>ICE Poker</Menu.Item>
+            </Link>
+            <div className={styles.navigation_submenu} style={{ width: '480px' }}>
+              <section className={styles.grid}>
+                <div className={styles.grid_component}>
+                  <Link href={'/ice'}>
+                    <a>
+                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1645180391/Home_Icon_fxnyp8.png" alt="dashboard" />
+                      <div className={styles.submenu_description}>
+                        <h1 className={styles.title}>ICE Dashboard</h1>
+                        <p className={styles.sub_title}>Manage all things ICE</p>
+                      </div>
+                    </a>
+                  </Link>
+                  <Link href={'/ice/marketplace'}>
+                    <a>
+                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1645180391/image_65_hzpbvu.png" alt="marketplace" />
+                      <div className={styles.submenu_description}>
+                        <h1 className={styles.title}>Marketplace</h1>
+                        <p className={styles.sub_title}>Explore our offerings</p>
+                      </div>
+                    </a>
+                  </Link>
+                </div>
+                <div className={styles.grid_component}>
+                  <Link href={'/account/items'}>
+                    <a>
+                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1645180391/image_63_rm0hba.png" alt="my items" />
+                      <div className={styles.submenu_description}>
+                        <h1 className={styles.title}>My Items</h1>
+                        <p className={styles.sub_title}>See your wallet's items</p>
+                      </div>
+                    </a>
+                  </Link>
+                  <Link href={'/ice/start'}>
+                    <a>
+                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1645180391/image_62_nmwv3c.png" alt="my items" />
+                      <div className={styles.submenu_description}>
+                        <h1 className={styles.title}>Get Started</h1>
+                        <p className={styles.sub_title}>For brand new users</p>
+                      </div>
+                    </a>
+                  </Link>
+                </div>
+              </section>
+            </div>
+          </section>
         )}
 
         {isMobile && (
-          <Link href="/dg">
-            <Menu.Item className={styles.menu_style}>
-              DAO
-            </Menu.Item>
-          </Link>
+          <section className={styles.menu_item_single}>
+            <Link href="/dg">
+              <Menu.Item className={styles.menu_style}>DAO</Menu.Item>
+            </Link>
+            <div className={styles.navigation_submenu} style={{ width: '535px' }}>
+              <section className={styles.grid}>
+                <div className={styles.grid_component}>
+                  <Link href={'/dg'}>
+                    <a>
+                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1645180391/Home_Icon_1_n50ko4.png" alt="DAO" />
+                      <div className={styles.submenu_description}>
+                        <h1 className={styles.title}>DAO Dashboard</h1>
+                        <p className={styles.sub_title}>Overview the DAO</p>
+                      </div>
+                    </a>
+                  </Link>
+                  <Link href={'/dg/treasury'}>
+                    <a>
+                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1645180391/image_69_v6rszv.png" alt="treasury" />
+                      <div className={styles.submenu_description}>
+                        <h1 className={styles.title}>Treasury</h1>
+                        <p className={styles.sub_title}>Explore our assets</p>
+                      </div>
+                    </a>
+                  </Link>
+                </div>
+                <div className={styles.grid_component}>
+                  <Link href={'/dg/governance'}>
+                    <a>
+                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1645180391/image_63_1_ypath5.png" alt="staking" />
+                      <div className={styles.submenu_description}>
+                        <h1 className={styles.title}>Governance Staking</h1>
+                        <p className={styles.sub_title}>Stake your DG for xDG</p>
+                      </div>
+                    </a>
+                  </Link>
+                  <a href="https://snapshot.org/#/decentralgames.eth" target="_blank">
+                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1645180391/image_66_egowyq.png" alt="proposals" />
+                    <div className={styles.submenu_description}>
+                      <h1 className={styles.title}>Proposals</h1>
+                      <p className={styles.sub_title}>Vote on proposals in snapshot</p>
+                    </div>
+                  </a>
+                </div>
+              </section>
+            </div>
+          </section>
         )}
 
         {!isTablet && (
@@ -293,12 +389,7 @@ const MenuTop = () => {
         )}
 
         {isTablet && (
-          <a
-            href="https://ice.decentral.games"
-            id="docs-top-menu"
-            className="d-flex"
-            target="_blank" rel="noreferrer"
-          >
+          <a href="https://ice.decentral.games" id="docs-top-menu" className="d-flex" target="_blank" rel="noreferrer">
             <Menu.Item className={styles.menu_style}>
               {/* {t('navMenu.DOCS')} */}
               Docs
@@ -317,7 +408,7 @@ const MenuTop = () => {
           <span className={styles.right_menu_items}>
             {state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID && <ButtonSwitchNetwork />}
             {state.networkID === Global.CONSTANTS.PARENT_NETWORK_ID && isSquished ? <ModalInfo /> : null}
-            <ModalPopup />
+            {!isPhone && <ModalPopup />}
           </span>
         )}
         {(state.userStatus < 3 || !state.userLoggedIn) && (
@@ -337,26 +428,19 @@ const MenuTop = () => {
       <span>
         <div
           className={cn(
-
             // AMNESIA_COMMENT: amnesia header class should be removed after we are done with amnesia
-            state.isAmnesiaPage &&
-              scrollState === 'top' &&
-              !open &&
-              styles.amnesia_header,
+            state.isAmnesiaPage && scrollState === 'top' && !open && styles.amnesia_header,
             styles.dashboard_menu_container,
-            open || scrollState !== 'top' || router.asPath !== '/'
-              ? styles.dark
-              : ''
+            open || scrollState !== 'top' || router.asPath !== '/' ? styles.dark : ''
           )}
         >
           <MessageToast />
-          {isPhone? (
+          {isPhone ? (
             <Menu className={cn(styles.menu_container)}>
               {DGLogo()}
               {balancesAndButtons()}
               {shownOrHiddenItems()}
             </Menu>
-
           ) : (
             <Menu className={cn(styles.menu_container)}>
               {DGLogo()}
