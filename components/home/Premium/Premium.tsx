@@ -102,7 +102,7 @@ const Premium: FC<PremiumType> = ({ className = '' }: PremiumType): ReactElement
             <div className={styles.card_area}>
               <div className={styles.card_area_body}>
                 <div className={styles.card}>
-                  {activeWearables.length} Wearable{activeWearables.length > 1 ? 'S' : ''}
+                  {activeWearables.length} Wearable{activeWearables.length > 1 ? 's' : ''}
                   <img className={styles.img_wearables} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1645450156/Group_2_bcwugs.png" alt="wearables" />
                 </div>
 
