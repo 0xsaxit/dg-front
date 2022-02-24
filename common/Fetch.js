@@ -188,7 +188,7 @@ const Fetch = {
   },
 
   GET_WEARABLE_INVENTORY: address => {
-    return call(`${API_BASE_URL}/ice/getWearableInventory?address=${address}`, 'GET', true);
+    return call(`${API_BASE_URL}/ice/causeError/getWearableInventory?address=${address}`, 'GET', true);
   },
 
   // third-party API calls
@@ -258,9 +258,9 @@ const Fetch = {
 
   DELEGATION_BREAKDOWN: (time, address) => {
     if (address) {
-      return call(`${API_BASE_URL_PROD_OR_LOCALHOST_ONLY}/ice/getDelegationBreakdown/${time}?address=${address}`, 'GET');
+      return call(`${API_BASE_URL_PROD_OR_LOCALHOST_ONLY}/ice/causeError/getDelegationBreakdown/${time}?address=${address}`, 'GET');
     } else {
-      return call(`${API_BASE_URL_PROD_OR_LOCALHOST_ONLY}/ice/getDelegationBreakdown/${time}`, 'GET');
+      return call(`${API_BASE_URL_PROD_OR_LOCALHOST_ONLY}/ice/causeError/getDelegationBreakdown/${time}`, 'GET');
     }
   },
 

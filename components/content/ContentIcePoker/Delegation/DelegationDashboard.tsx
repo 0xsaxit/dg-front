@@ -28,7 +28,7 @@ export interface DelegationDashboardType {
 
 const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: DelegationDashboardType): ReactElement => {
   // get delegation data from the Context API store
-  const [state] = useContext(GlobalContext);
+  const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
   const [isLoading, setIsLoading] = useState(true);
@@ -77,32 +77,42 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
         } else {
           period = TimePeriods.All;
         }
+        
+        try {
+          const response = await Fetch.DELEGATION_BREAKDOWN(period);
 
-        // Get Delegation Breakdown from the API
-        const response = await Fetch.DELEGATION_BREAKDOWN(period);
-
-        if (response && response.length > 0) {
-          response.sort(function (a, b) {
-            return b.stats.avgIceEarned - a.stats.avgIceEarned;
-          });
-
-          for (let i = 0; i < response.length; i++) {
-            response[i].breakdown.sort(function (a, b) {
-              return Number(new Date(b.gameplayDay)) - Number(new Date(a.gameplayDay));
+          if (response && response.length > 0) {
+            response.sort(function (a, b) {
+              return b.stats.avgIceEarned - a.stats.avgIceEarned;
             });
+
+            for (let i = 0; i < response.length; i++) {
+              response[i].breakdown.sort(function (a, b) {
+                return Number(new Date(b.gameplayDay)) - Number(new Date(a.gameplayDay));
+              });
+            }
           }
+
+          const delegationData = response && response.length > 0 ? response : [];
+
+          // Used for display
+          setFilteredDelegations(delegationData);
+
+          // Used as the raw source for filtering
+          setRawDelegations(delegationData);
+
+          // Default filter status
+          setDelegationStatusFilter(DelegationStates.Active);
+          
+        } catch(error) {
+          console.log("Error fetching delegation info: " +error)
+          
+          dispatch({
+              type: 'show_toastMessage',
+              data: 'Error fetching delegation info, please try again.',
+          });
         }
-
-        const delegationData = response && response.length > 0 ? response : [];
-
-        // Used for display
-        setFilteredDelegations(delegationData);
-
-        // Used as the raw source for filtering
-        setRawDelegations(delegationData);
-
-        // Default filter status
-        setDelegationStatusFilter(DelegationStates.Active);
+        // Get Delegation Breakdown from the API
 
         setIsLoading(false);
       }
@@ -124,25 +134,26 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
     setFilteredDelegations(filteredDelegations);
 
     /* Sorting needs to happen after Delegate Filtering hook */
-    const orderingData = [].concat(filteredDelegations);
+    if(filteredDelegations){
+      const orderingData = [].concat(filteredDelegations);
 
-    if (orderingData && orderingData.length > 0) {
-      orderingData.sort(function (a, b) {
-        if (sortingName === 'dailyICE') {
-          return sortingOrder === 'dec' ? b.stats.avgIceEarned - a.stats.avgIceEarned : a.stats.avgIceEarned - b.stats.avgIceEarned;
-        } else if (sortingName === 'iceEarned') {
-          return sortingOrder === 'dec' ? b.stats.totalIceEarned - a.stats.totalIceEarned : a.stats.totalIceEarned - b.stats.totalIceEarned;
-        } else if (sortingName === 'daysCheckedIn') {
-          return sortingOrder === 'dec' ? b.stats.daysCheckedIn - a.stats.daysCheckedIn : a.stats.daysCheckedIn - b.stats.daysCheckedIn;
-        } else if (sortingName === 'totalChallengesCompleted') {
-          return sortingOrder === 'dec' ? b.stats.totalChallengesCompleted - a.stats.totalChallengesCompleted : a.stats.totalChallengesCompleted - b.stats.totalChallengesCompleted;
-        } else if (sortingName === 'avgLeaderboardTier' || sortingName === 'avgLeaderboardMultiplier') {
-          return sortingOrder === 'inc' ? b.stats.avgLeaderboardTier - a.stats.avgLeaderboardTier : a.stats.avgLeaderboardTier - b.stats.avgLeaderboardTier;
-        }
-      });
+      if (orderingData && orderingData.length > 0) {
+        orderingData.sort(function (a, b) {
+          if (sortingName === 'dailyICE') {
+            return sortingOrder === 'dec' ? b.stats.avgIceEarned - a.stats.avgIceEarned : a.stats.avgIceEarned - b.stats.avgIceEarned;
+          } else if (sortingName === 'iceEarned') {
+            return sortingOrder === 'dec' ? b.stats.totalIceEarned - a.stats.totalIceEarned : a.stats.totalIceEarned - b.stats.totalIceEarned;
+          } else if (sortingName === 'daysCheckedIn') {
+            return sortingOrder === 'dec' ? b.stats.daysCheckedIn - a.stats.daysCheckedIn : a.stats.daysCheckedIn - b.stats.daysCheckedIn;
+          } else if (sortingName === 'totalChallengesCompleted') {
+            return sortingOrder === 'dec' ? b.stats.totalChallengesCompleted - a.stats.totalChallengesCompleted : a.stats.totalChallengesCompleted - b.stats.totalChallengesCompleted;
+          } else if (sortingName === 'avgLeaderboardTier' || sortingName === 'avgLeaderboardMultiplier') {
+            return sortingOrder === 'inc' ? b.stats.avgLeaderboardTier - a.stats.avgLeaderboardTier : a.stats.avgLeaderboardTier - b.stats.avgLeaderboardTier;
+          }
+        });
+      }
+      setFilteredDelegations(orderingData);
     }
-
-    setFilteredDelegations(orderingData);
   }, [sortingName, sortingOrder, delegationStatusFilter]);
 
   const defaultImgs = [

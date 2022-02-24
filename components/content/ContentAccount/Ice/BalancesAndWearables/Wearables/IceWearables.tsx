@@ -19,9 +19,20 @@ const IceWearables: FC<IceWearablesType> = ({ className = '' }: IceWearablesType
   useEffect(() => {
     (async (): Promise<void> => {
       // Get Delegation Breakdown from the API
-      const response = await Fetch.DELEGATION_BREAKDOWN('week');
+      
+      try {
+        const response = await Fetch.DELEGATION_BREAKDOWN('week');
 
-      setDelegations(response && response.length > 0 ? response : []);
+        setDelegations(response && response.length > 0 ? response : []);
+      } catch (error) {
+        console.log('Error fetching delegation info: ' + error);
+        
+        dispatch({
+            type: 'show_toastMessage',
+            data: 'Error fetching delegation info, please try again.',
+        });
+      }
+      
     })();
   }, [state.userLoggedIn]);
 

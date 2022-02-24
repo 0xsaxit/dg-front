@@ -157,6 +157,11 @@ function ICEAttributes() {
         }
         catch(error){
           console.log("Error fetching ice wearables: " + error)
+          
+          dispatch({
+              type: 'show_toastMessage',
+              data: 'Error fetching ice wearables, please try again.',
+          });
         }
       }
 
@@ -194,6 +199,11 @@ function ICEAttributes() {
         } 
         catch (error){
           console.log("Error fetching ice wearables: " + error)
+          
+          dispatch({
+              type: 'show_toastMessage',
+              data: 'Error fetching ice wearables, please try again.',
+          });
         }
       }
       
@@ -317,6 +327,11 @@ function ICEAttributes() {
           console.log('ICE amount updates completed!');
         } catch (error) {
           console.log('ICE Amounts not found: ' + error);
+          
+          dispatch({
+              type: 'show_toastMessage',
+              data: 'Error fetching ice amounts, please try again.',
+          });
         }
       })();
     }
@@ -342,6 +357,7 @@ function ICEAttributes() {
         }
         catch(error){
           console.log("Token authorizations failed: " + error)
+          
         }
         
       })();
@@ -487,6 +503,11 @@ function ICEAttributes() {
       };
     } catch (error) {
       console.log('Get token amounts error: ' + error);
+      
+      dispatch({
+          type: 'show_toastMessage',
+          data: 'Error fetching token amounts, please try again.',
+      });
     }
   }
 
@@ -509,6 +530,11 @@ function ICEAttributes() {
       };
     } catch (error) {
       console.log('Get ICE amounts error: ' + error);
+      
+      dispatch({
+          type: 'show_toastMessage',
+          data: 'Error fetching ice amounts, please try again.',
+      });
     }
   }
 

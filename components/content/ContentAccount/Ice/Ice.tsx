@@ -20,9 +20,19 @@ const Ice: FC<IceType> = ({ className = '' }: IceType): ReactElement => {
 
   useEffect(() => {
     (async () => {
-      const json = await Fetch.ICE_AMOUNTS(state.userAddress);
+      try{
+        const json = await Fetch.ICE_AMOUNTS(state.userAddress);
 
-      setTotalIce(json.totalUnclaimedAmount);
+        setTotalIce(json.totalUnclaimedAmount);
+      } catch (error) {
+        console.log("Error fetching ice amounts :" + error);
+        
+        dispatch({
+            type: 'show_toastMessage',
+            data: 'Error fetching ice amounts, please try again.',
+        });
+      }
+      
     })();
   }, [totalIce]);
 
