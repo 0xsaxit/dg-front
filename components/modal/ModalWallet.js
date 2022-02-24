@@ -56,7 +56,7 @@ const ModalWallet = () => {
       trigger={
         <span className="right-menu-items">
           <a 
-            href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
+            href="https://metamask.io/faqs/"
             target="_blank"
             className={menuStyle[0]}
           > 
