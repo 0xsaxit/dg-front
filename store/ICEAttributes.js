@@ -123,66 +123,81 @@ function ICEAttributes() {
   // anytime user mints/updates/activates an NFT this code will execute
   useEffect(() => {
     if (instances && state.userStatus >= 4) {
-      async function fetchData() {
-        if (!state.iceWearableItems || state.iceWearableItems.length === 0) {
+      async function fetchWearables() {
+        
+        try { 
+          if (!state.iceWearableItems || state.iceWearableItems.length === 0) {
+            dispatch({
+              type: 'ice_wearable_items_loading',
+              data: true
+            });
+          }
+
+          let iceWearableItems = await Fetch.GET_WEARABLE_INVENTORY(state.userAddress);
+          iceWearableItems.sort((a, b) => {
+            return a.tokenId - b.tokenId;
+          });
+
+          for (var i = 0; i < iceWearableItems.length; i++) {
+            const collectionContract = collectionArray.find(collection => collection[1].toLowerCase() === iceWearableItems[i].contractAddress.toLowerCase());
+            iceWearableItems[i].index = i;
+            iceWearableItems[i].collection = collectionContract[0];
+          }
+
+          console.log('iceWearableItems: ', iceWearableItems);
+
+          dispatch({
+            type: 'ice_wearable_items',
+            data: iceWearableItems
+          });
           dispatch({
             type: 'ice_wearable_items_loading',
-            data: true
+            data: false
           });
         }
-
-        let iceWearableItems = await Fetch.GET_WEARABLE_INVENTORY(state.userAddress);
-        iceWearableItems.sort((a, b) => {
-          return a.tokenId - b.tokenId;
-        });
-
-        for (var i = 0; i < iceWearableItems.length; i++) {
-          const collectionContract = collectionArray.find(collection => collection[1].toLowerCase() === iceWearableItems[i].contractAddress.toLowerCase());
-          iceWearableItems[i].index = i;
-          iceWearableItems[i].collection = collectionContract[0];
+        catch(error){
+          console.log("Error fetching ice wearables: " + error)
         }
-
-        console.log('iceWearableItems: ', iceWearableItems);
-
-        dispatch({
-          type: 'ice_wearable_items',
-          data: iceWearableItems
-        });
-        dispatch({
-          type: 'ice_wearable_items_loading',
-          data: false
-        });
       }
 
-      fetchData();
+      fetchWearables();
     }
   }, [instances, state.refreshWearable, state.userStatus]);
 
   // anytime user undelegates an NFT this code will execute
   useEffect(() => {
     if (instances && state.userStatus >= 4) {
-      (async function () {
-        dispatch({
-          type: 'ice_delegated_items_loading',
-          data: true
-        });
-        let iceDelegatedItems = [];
+      async function fetchDelegatedWearables() {
+        try{
+          
+          dispatch({
+            type: 'ice_delegated_items_loading',
+            data: true
+          });
+          
+          let iceDelegatedItems = [];
+          
+          const wearableInventory = await Fetch.GET_WEARABLE_INVENTORY(state.userAddress);
+          wearableInventory.forEach((wearable, i) => {
+            if (wearable.delegationStatus.delegatedTo === state.userAddress) iceDelegatedItems.push(wearable);
+          });
 
-        const wearableInventory = await Fetch.GET_WEARABLE_INVENTORY(state.userAddress);
-
-        wearableInventory.forEach((wearable, i) => {
-          if (wearable.delegationStatus.delegatedTo === state.userAddress) iceDelegatedItems.push(wearable);
-        });
-
-        dispatch({
-          type: 'ice_delegated_items',
-          data: iceDelegatedItems
-        });
-        dispatch({
-          type: 'ice_delegated_items_loading',
-          data: false
-        });
-      })();
+          dispatch({
+            type: 'ice_delegated_items',
+            data: iceDelegatedItems
+          });
+          dispatch({
+            type: 'ice_delegated_items_loading',
+            data: false
+          });
+          
+        } 
+        catch (error){
+          console.log("Error fetching ice wearables: " + error)
+        }
+      }
+      
+      fetchDelegatedWearables();
     }
   }, [instances, state.refreshDelegation, state.userStatus]);
 
@@ -311,18 +326,24 @@ function ICEAttributes() {
   useEffect(() => {
     if (instances && state.userStatus >= 4) {
       (async function () {
-        const tokenAuths = await getTokenAuthorizations();
+        try{
+          const tokenAuths = await getTokenAuthorizations();
 
-        console.log('Get token authorization: DG_Light: ' + tokenAuths.DG_LIGHT_AUTHORIZATION);
-        console.log('Get token authorization: ICE: ' + tokenAuths.ICE_AUTHORIZATION);
-        console.log('Get token authorization: WETH: ' + tokenAuths.WETH_AUTHORIZATION);
+          console.log('Get token authorization: DG_Light: ' + tokenAuths.DG_LIGHT_AUTHORIZATION);
+          console.log('Get token authorization: ICE: ' + tokenAuths.ICE_AUTHORIZATION);
+          console.log('Get token authorization: WETH: ' + tokenAuths.WETH_AUTHORIZATION);
 
-        dispatch({
-          type: 'token_auths',
-          data: tokenAuths
-        });
+          dispatch({
+            type: 'token_auths',
+            data: tokenAuths
+          });
 
-        console.log('Token authorizations updates completed!');
+          console.log('Token authorizations updates completed!');
+        }
+        catch(error){
+          console.log("Token authorizations failed: " + error)
+        }
+        
       })();
     }
   }, [instances, state.refreshTokenAuths, state.userStatus]);
