@@ -215,7 +215,7 @@ const ModalPopup = () => {
             </Link>
 
             <Link href="/account">
-              <p className="account-dropdown-item" style={{ marginTop: '8px' }}>
+              <p className="account-dropdown-item" style={{ marginTop: '12px' }}>
                 {' '}
                 My Account{' '}
               </p>

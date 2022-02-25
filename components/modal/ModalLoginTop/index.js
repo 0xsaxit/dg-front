@@ -180,7 +180,7 @@ const ModalLogin = () => {
             Metamask wallets{' '}
           </a>
           . For more instructions on how to set up Metamask,{' '}
-          <a className="modal-a" href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask" target="_blank">
+          <a className="modal-a" href="https://metamask.io/faqs/" target="_blank">
             {' '}
             click here{' '}
           </a>

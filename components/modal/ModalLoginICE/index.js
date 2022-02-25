@@ -197,7 +197,7 @@ const ModalLoginICE = () => {
                 Connect MetaMask
               </span>
             </button>
-            <a href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask" target="_blank">
+            <a href="https://metamask.io/faqs/" target="_blank">
               <button className={styles.need_help}>Need Help?</button>
             </a>
           </div>
@@ -248,7 +248,7 @@ const ModalLoginICE = () => {
                 Metamask{' '}
               </a>{' '}
               Enabled browsers. For more instructions on how to set up Metamask,{' '}
-              <a className="modal-a" href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask" target="_blank">
+              <a className="modal-a" href="https://metamask.io/faqs/" target="_blank">
                 {' '}
                 click here{' '}
               </a>
@@ -283,7 +283,7 @@ const ModalLoginICE = () => {
           </div>
           <div>
             <h1 className={styles.title}>Download Metamask</h1>
-            <a href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask" target="_blank">
+            <a href="https://metamask.io/faqs/" target="_blank">
               <Button className={styles.busd_button}>
                 <span style={{ display: 'flex', justifyContent: 'center' }}>
                   Set Up Metamask
