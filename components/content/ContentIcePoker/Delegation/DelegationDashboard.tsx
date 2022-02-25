@@ -1,5 +1,7 @@
 import React, { FC, ReactElement, useContext, useEffect, useRef, useState } from 'react';
 import AutosizeInput from 'react-input-autosize';
+import { get, isEmpty } from 'lodash';
+import { useRouter } from 'next/router';
 import { GlobalContext } from '@/store';
 import { Button, Table } from 'semantic-ui-react';
 import ModalIceDelegationBreakDown from 'components/modal/ModalIceDelegationBreakDown';
@@ -29,6 +31,8 @@ export interface DelegationDashboardType {
 const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: DelegationDashboardType): ReactElement => {
   // get delegation data from the Context API store
   const [state, dispatch] = useContext<any>(GlobalContext);
+  const router = useRouter();
+
 
   // define local variables
   const [isLoading, setIsLoading] = useState(true);
@@ -79,38 +83,53 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
         }
         
         try {
+        // Get Delegation Breakdown from the API
           const response = await Fetch.DELEGATION_BREAKDOWN(period);
+          const iceWearableItems = await Fetch.GET_WEARABLE_INVENTORY(state.userAddress);
+          const undelegatedItems = iceWearableItems.filter(item => !get(item, 'delegationStatus.delegatedTo', null)).map(item => {
+            return {
+              currentDelegations: [item],
+              stats: {},
+              noSeeHistory: true
+            }
+          });
 
           if (response && response.length > 0) {
             response.sort(function (a, b) {
               return b.stats.avgIceEarned - a.stats.avgIceEarned;
             });
 
-            for (let i = 0; i < response.length; i++) {
-              response[i].breakdown.sort(function (a, b) {
-                return Number(new Date(b.gameplayDay)) - Number(new Date(a.gameplayDay));
-              });
-            }
+              for (let i = 0; i < response.length; i++) {
+                response[i].breakdown.sort(function (a, b) {
+                  return Number(new Date(b.gameplayDay)) - Number(new Date(a.gameplayDay));
+                });
+
+                for (let i = 0; i < response.length; i++) {
+                  response[i].breakdown.sort(function (a, b) {
+                    return Number(new Date(b.gameplayDay)) - Number(new Date(a.gameplayDay));
+                  });
+                }
+              }
+
+              const delegationData = response && response.length > 0 ? response : [];
+
+            // Used for display
+            setFilteredDelegations([...delegationData, ...undelegatedItems]);
+
+            // Used as the raw source for filtering
+            setRawDelegations([...delegationData, ...undelegatedItems]);
+
+            // Default filter status
+            setDelegationStatusFilter(DelegationStates.Active);
+            
           }
-
-          const delegationData = response && response.length > 0 ? response : [];
-
-          // Used for display
-          setFilteredDelegations(delegationData);
-
-          // Used as the raw source for filtering
-          setRawDelegations(delegationData);
-
-          // Default filter status
-          setDelegationStatusFilter(DelegationStates.Active);
-          
         } catch(error) {
-          console.log("Error fetching delegation info: " +error)
-          
-          dispatch({
-              type: 'show_toastMessage',
-              data: 'Error fetching delegation info, please try again.',
-          });
+            console.log("Error fetching delegation info: " +error)
+            
+            dispatch({
+                type: 'show_toastMessage',
+                data: 'Error fetching delegation info, please try again.',
+            });
         }
         // Get Delegation Breakdown from the API
 
@@ -134,25 +153,43 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
     setFilteredDelegations(filteredDelegations);
 
     /* Sorting needs to happen after Delegate Filtering hook */
-    if(filteredDelegations){
-      const orderingData = [].concat(filteredDelegations);
+    
+    const orderingData = [].concat(filteredDelegations);
 
-      if (orderingData && orderingData.length > 0) {
-        orderingData.sort(function (a, b) {
-          if (sortingName === 'dailyICE') {
+    if (orderingData && orderingData.length > 0) {
+      orderingData.sort(function (a, b) {
+        if (sortingName === 'dailyICE') {
+          if (!isEmpty(a.stats)) {
             return sortingOrder === 'dec' ? b.stats.avgIceEarned - a.stats.avgIceEarned : a.stats.avgIceEarned - b.stats.avgIceEarned;
-          } else if (sortingName === 'iceEarned') {
-            return sortingOrder === 'dec' ? b.stats.totalIceEarned - a.stats.totalIceEarned : a.stats.totalIceEarned - b.stats.totalIceEarned;
-          } else if (sortingName === 'daysCheckedIn') {
-            return sortingOrder === 'dec' ? b.stats.daysCheckedIn - a.stats.daysCheckedIn : a.stats.daysCheckedIn - b.stats.daysCheckedIn;
-          } else if (sortingName === 'totalChallengesCompleted') {
-            return sortingOrder === 'dec' ? b.stats.totalChallengesCompleted - a.stats.totalChallengesCompleted : a.stats.totalChallengesCompleted - b.stats.totalChallengesCompleted;
-          } else if (sortingName === 'avgLeaderboardTier' || sortingName === 'avgLeaderboardMultiplier') {
-            return sortingOrder === 'inc' ? b.stats.avgLeaderboardTier - a.stats.avgLeaderboardTier : a.stats.avgLeaderboardTier - b.stats.avgLeaderboardTier;
+          } else {
+            return sortingOrder === 'dec' ? 100000 : -100000;
           }
-        });
-      }
-      setFilteredDelegations(orderingData);
+        } else if (sortingName === 'iceEarned') {
+          if (!isEmpty(a.stats)) {
+            return sortingOrder === 'dec' ? b.stats.totalIceEarned - a.stats.totalIceEarned : a.stats.totalIceEarned - b.stats.totalIceEarned;
+          } else {
+            return sortingOrder === 'dec' ? 100000 : -100000; 
+          }
+        } else if (sortingName === 'daysCheckedIn') {
+          if (!isEmpty(a.stats)) {
+            return sortingOrder === 'dec' ? b.stats.daysCheckedIn - a.stats.daysCheckedIn : a.stats.daysCheckedIn - b.stats.daysCheckedIn;
+          } else {
+            return sortingOrder === 'dec' ? 100000 : -100000;
+          }
+        } else if (sortingName === 'totalChallengesCompleted') {
+          if (!isEmpty(a.stats)) {
+            return sortingOrder === 'dec' ? b.stats.totalChallengesCompleted - a.stats.totalChallengesCompleted : a.stats.totalChallengesCompleted - b.stats.totalChallengesCompleted;
+          } else {
+            return sortingOrder === 'dec' ? 100000 : -100000;
+          }
+        } else if (sortingName === 'avgLeaderboardTier' || sortingName === 'avgLeaderboardMultiplier') {
+          if (!isEmpty(a.stats)) {
+            return sortingOrder === 'inc' ? b.stats.avgLeaderboardTier - a.stats.avgLeaderboardTier : a.stats.avgLeaderboardTier - b.stats.avgLeaderboardTier;
+          } else {
+            return sortingOrder === 'inc' ? -100000 : 100000;
+          }
+        }
+      });
     }
   }, [sortingName, sortingOrder, delegationStatusFilter]);
 
@@ -435,13 +472,23 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
                               <Table.Row key={i} style={{ background: style }}>
                                 <Table.Cell style={{ width: '50px' }}>{i + 1}</Table.Cell>
                                 <Table.Cell className={styles.user_info}>
-                                  <section>
-                                    <img src={row.imageURL} onClick={() => setShowingBreakDown(i)} alt="avatar" />
-                                    {row.currentDelegations.some(delegation => delegation.checkInStatus) && (
-                                      <img className={styles.check_in} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627301200/Green_Check_iahexg.png" alt="check in" />
-                                    )}
-                                    {nickNameInfo(row, i)}
-                                  </section>
+                                  {row.address ? (
+                                    <section>
+                                      <img src={row.imageURL} onClick={() => setShowingBreakDown(i)} alt="avatar" />
+                                      {row.currentDelegations.some(delegation => delegation.checkInStatus) && (
+                                        <img
+                                          className={styles.check_in}
+                                          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627301200/Green_Check_iahexg.png"
+                                          alt="check in"
+                                        />
+                                      )}
+                                      {nickNameInfo(row, i)}
+                                    </section>
+                                  ) : (
+                                    <Button onClick={() => {
+                                      router.push('/account');
+                                    }}>Delegate Wearable</Button>
+                                  )}
                                 </Table.Cell>
                               </Table.Row>
                             );
@@ -630,60 +677,106 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
 
                                 {/* Avg.Daily ICE */}
                                 <Table.Cell style={{ width: '200px' }}>
-                                  <div className={styles.dailyICE} style={{ textAlign: 'center' }}>
-                                    {Math.round(row.stats.avgIceEarned)}
-                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
-                                  </div>
+                                  {row.stats.avgIceEarned !== undefined ? (
+                                    <div className={styles.dailyICE} style={{ textAlign: 'center' }}>
+                                      {Math.round(row.stats.avgIceEarned)}
+                                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
+                                    </div>
+                                  ) : (
+                                    <div className={styles.dailyICE} style={{ textAlign: 'center' }}>
+                                      - -
+                                    </div>
+                                  )}
                                 </Table.Cell>
 
                                 {/* Total ICE Earned */}
                                 <Table.Cell style={{ width: '200px' }}>
-                                  <div className={styles.iceEarned} style={{ textAlign: 'center' }}>
-                                    {Math.round(row.stats.totalIceEarned)}
-                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
-                                  </div>
+                                  {row.stats.totalIceEarned !== undefined ? (
+                                    <div className={styles.iceEarned} style={{ textAlign: 'center' }}>
+                                      {Math.round(row.stats.totalIceEarned)}
+                                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
+                                    </div>
+                                  ) : (
+                                    <div className={styles.iceEarned} style={{ textAlign: 'center' }}>
+                                      - -
+                                    </div>
+                                  )}
                                 </Table.Cell>
 
                                 {/* Check-Ins */}
                                 <Table.Cell style={{ width: '150px' }}>
-                                  {row.stats.daysCheckedIn} of {row.stats.totalPossibleCheckIns}
+                                  {row.stats.daysCheckedIn !== undefined && row.stats.totalPossibleCheckIns !== undefined ? (
+                                    <>
+                                      {row.stats.daysCheckedIn} of {row.stats.totalPossibleCheckIns}
+                                    </>
+                                  ) : (
+                                    <>- -</>
+                                  )}
                                 </Table.Cell>
 
                                 {/* Finished Challenges */}
                                 <Table.Cell style={{ width: '220px' }}>
-                                  {row.stats.totalChallengesCompleted} of {row.stats.totalChallengesAssigned}
+                                  {row.stats.totalChallengesCompleted !== undefined && row.stats.totalChallengesAssigned !== undefined ? (
+                                    <>
+                                      {row.stats.totalChallengesCompleted} of {row.stats.totalChallengesAssigned}
+                                    </>
+                                  ) : (
+                                    <>- -</>
+                                  )}
                                 </Table.Cell>
 
                                 {/* Net Chips Score */}
                                 <Table.Cell style={{ width: '200px' }}>
-                                  <div className={styles.netChipsScore} style={{ textAlign: 'center' }}>
-                                    {row.stats.totalChipsEarned ? row.stats.totalChipsEarned : '- -'}
-                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635212177/FREE_Coin_c08hyk.png" alt="ice" />
-                                  </div>
+                                  {row.stats.totalChipsEarned !== undefined ? (
+                                    <div className={styles.netChipsScore} style={{ textAlign: 'center' }}>
+                                      {row.stats.totalChipsEarned ? row.stats.totalChipsEarned : '- -'}
+                                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1635212177/FREE_Coin_c08hyk.png" alt="ice" />
+                                    </div>
+                                  ) : (
+                                    <div className={styles.netChipsScore} style={{ textAlign: 'center' }}>
+                                      - -
+                                    </div>
+                                  )}
                                 </Table.Cell>
 
                                 {/* Avg.Leaderboard Tier */}
                                 <Table.Cell style={{ width: '230px' }}>
-                                  <div className={styles.tier} style={{ textAlign: 'center' }}>
-                                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175017/cup_w68eni.png" alt="xp" />
-                                    {row.stats.avgLeaderboardTier + 5 <= 50
-                                      ? `Top ${Math.round(row.stats.avgLeaderboardTier) + 5}%`
-                                      : `Bottom ${100 - Math.round(row.stats.avgLeaderboardTier)}%`}
-                                  </div>
+                                  {row.stats.avgLeaderboardTier !== undefined ? (
+                                    <div className={styles.tier} style={{ textAlign: 'center' }}>
+                                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175017/cup_w68eni.png" alt="xp" />
+                                      {row.stats.avgLeaderboardTier + 5 <= 50
+                                        ? `Top ${Math.round(row.stats.avgLeaderboardTier) + 5}%`
+                                        : `Bottom ${100 - Math.round(row.stats.avgLeaderboardTier)}%`}
+                                    </div>
+                                  ) : (
+                                    <div className={styles.tier} style={{ textAlign: 'center' }}>
+                                      - -
+                                    </div>
+                                  )}
                                 </Table.Cell>
 
                                 {/* Avg.Leaderboard Multiplier */}
                                 <Table.Cell style={{ width: '260px' }}>
-                                  <div className={styles.tier} style={{ textAlign: 'center' }}>
-                                    {!!multiplierMap.length && multiplierMap[Math.floor(row.stats.avgLeaderboardTier / 5)]}x
-                                  </div>
+                                  {row.stats.avgLeaderboardTier !== undefined && !!multiplierMap.length ? (
+                                    <div className={styles.tier} style={{ textAlign: 'center' }}>
+                                      {!!multiplierMap.length && multiplierMap[Math.floor(row.stats.avgLeaderboardTier / 5)]}x
+                                    </div>
+                                  ) : (
+                                    <div className={styles.tier} style={{ textAlign: 'center' }}>
+                                      - -
+                                    </div>
+                                  )}
                                 </Table.Cell>
 
                                 {/* History */}
                                 <Table.Cell style={{ width: '170px' }}>
-                                  <Button className={styles.breakdown} onClick={() => setShowingBreakDown(i)}>
-                                    See History
-                                  </Button>
+                                  {!row.noSeeHistory ? (
+                                    <Button className={styles.breakdown} onClick={() => setShowingBreakDown(i)}>
+                                      See History
+                                    </Button>
+                                  ) : (
+                                    <></>
+                                  )}
                                 </Table.Cell>
                               </Table.Row>
                             );
