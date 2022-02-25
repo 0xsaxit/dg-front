@@ -12,7 +12,7 @@ export interface IceWearablesType {
 
 const IceWearables: FC<IceWearablesType> = ({ className = '' }: IceWearablesType): ReactElement => {
   // define local variables
-  const [state, dispatch] = useContext(GlobalContext);
+  const [state, dispatch] = useContext<any>(GlobalContext);
   const [delegations, setDelegations] = useState([]);
   const activeWearables = state.iceWearableItems.filter(item => item.isActivated && item.bonus > 0);
 
