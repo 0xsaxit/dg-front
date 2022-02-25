@@ -13,7 +13,7 @@ export interface IceType {
 
 const Ice: FC<IceType> = ({ className = '' }: IceType): ReactElement => {
   // get user's transaction history from the Context API store
-  const [state] = useContext(GlobalContext);
+  const [state, dispatch] = useContext<any>(GlobalContext);
 
   // define local variables
   const [totalIce, setTotalIce] = useState(0);

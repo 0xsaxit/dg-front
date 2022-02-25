@@ -28,7 +28,7 @@ export interface DelegationDashboardType {
 
 const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: DelegationDashboardType): ReactElement => {
   // get delegation data from the Context API store
-  const [state, dispatch] = useContext(GlobalContext);
+  const [state, dispatch] = useContext<any>(GlobalContext);
 
   // define local variables
   const [isLoading, setIsLoading] = useState(true);
