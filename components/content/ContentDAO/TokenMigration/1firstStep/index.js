@@ -62,7 +62,7 @@ const FirstStep = (props) => {
     }, [state.userStatus]);
 
     async function unstake() {
-        const amount = BigNumber(state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD || 0)
+        const amount = BigNumber(state.stakingBalances?.BALANCE_USER_GOVERNANCE_OLD || 0)
             .times(Global.CONSTANTS.FACTOR).toFixed();
 
         console.log('Call withdraw() function to unstake tokens');
@@ -158,7 +158,7 @@ const FirstStep = (props) => {
                                     </div>
                                     <div className={styles.center_content}>
                                         <div>
-                                            {props.formatNumber(state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD || 0, 4)}
+                                            {props.formatNumber(state.stakingBalances?.BALANCE_USER_GOVERNANCE_OLD || 0, 4)}
                                             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
                                         </div>
                                     </div>
@@ -181,7 +181,7 @@ const FirstStep = (props) => {
                                                 }}
                                             >
                                                 <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" alt="metamask" />
-                                                Unstake {props.formatNumber(state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD || 0, 4)} $DG
+                                                Unstake {props.formatNumber(state.stakingBalances?.BALANCE_USER_GOVERNANCE_OLD || 0, 4)} $DG
                                             </Button>
                                         }
                                     </div>
@@ -216,7 +216,7 @@ const FirstStep = (props) => {
                                     </div>
                                     <div className={styles.center_content}>
                                         <div>
-                                            {props.formatNumber(state.DGBalances.BALANCE_STAKING_GOVERNANCE || 0, 4)}
+                                            {props.formatNumber(state.DGBalances?.BALANCE_STAKING_GOVERNANCE || 0, 4)}
                                             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" alt="DG" />
                                         </div>
                                     </div>
@@ -240,7 +240,7 @@ const FirstStep = (props) => {
                                                 }}
                                             >
                                                 <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" alt="metamask" />
-                                                Claim {props.formatNumber(state.DGBalances.BALANCE_STAKING_GOVERNANCE || 0, 4)} $DG
+                                                Claim {props.formatNumber(state.DGBalances?.BALANCE_STAKING_GOVERNANCE || 0, 4)} $DG
                                             </Button>
                                         }
                                     </div>

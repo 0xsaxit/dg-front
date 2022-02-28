@@ -101,7 +101,7 @@ const Gameplay = props => {
           <p className={styles.lower_header}>Claim $DG Rewards</p>
           <div className={styles.lower_value}>
             <p className={styles.DG_value}>
-              {props.formatPrice(state.DGBalances.BALANCE_MINING_DG_V2, 3)}
+              {props.formatPrice(state.DGBalances?.BALANCE_MINING_DG_V2, 3)}
             </p>
             <img
               style={{ marginTop: '-4px' }}
@@ -109,7 +109,7 @@ const Gameplay = props => {
             />
           </div>
           <p className={styles.price}>
-            ${(price * state.DGBalances.BALANCE_MINING_DG_V2).toFixed(2)}
+            ${(price * state.DGBalances?.BALANCE_MINING_DG_V2).toFixed(2)}
           </p>
 
           <p className={styles.lower_text}>
@@ -119,10 +119,10 @@ const Gameplay = props => {
 
           <Button
             className={cn(styles.claim_DG, styles.lower_button)}
-            disabled={!Number(state.DGBalances.BALANCE_MINING_DG_V2)}
+            disabled={!Number(state.DGBalances?.BALANCE_MINING_DG_V2)}
             onClick={() => metaTransaction()}
           >
-            Claim {props.formatPrice(state.DGBalances.BALANCE_MINING_DG_V2, 3)}{' '}
+            Claim {props.formatPrice(state.DGBalances?.BALANCE_MINING_DG_V2, 3)}{' '}
             $DG
           </Button>
         </div>

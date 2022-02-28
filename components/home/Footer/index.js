@@ -17,8 +17,8 @@ const Footer = () => {
     '(min-width: 768px) and (max-width: 1200px)'
   );
   // const { t, i18n } = useTranslation();
-  const DGBalances = state.DGBalances.BALANCE_STAKING_UNISWAP;
-  const DGStakingBalances = state.stakingBalances.BALANCE_STAKED_UNISWAP;
+  const DGBalances = state.DGBalances?.BALANCE_STAKING_UNISWAP;
+  const DGStakingBalances = state.stakingBalances?.BALANCE_STAKED_UNISWAP;
 
   
   useEffect(() => {

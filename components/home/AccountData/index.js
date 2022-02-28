@@ -35,18 +35,15 @@ const AccountData = props => {
 
   // useEffect(() => {
   //   const one = Number(state.DGGameplayCollected);
-  //   const two = Number(state.DGBalances.BALANCE_MINING_DG_V2);
+  //   const two = Number(state.DGBalances?.BALANCE_MINING_DG_V2);
   //   const temp = Number(one + two);
   //   setDGMined(temp);
-  // }, [state.DGGameplayCollected, state.DGBalances.BALANCE_MINING_DG_V2]);
+  // }, [state.DGGameplayCollected, state.DGBalances?.BALANCE_MINING_DG_V2]);
 
   useEffect(() => {
     (async () => {
       try {
         let json = await Fetch.ICE_AMOUNTS(state.userAddress);
-
-        console.log('---> ICE_AMOUNTS FAILING <---');
-        console.log(json);
 
         const unclaimed = json.totalUnclaimedAmount;
         const claimed = json.totalClaimedAmount;
@@ -267,7 +264,7 @@ const AccountData = props => {
                 </Link>
               )}
 
-              {!!state.DGBalances.BALANCE_AFFILIATES.length &&
+              {!!state.DGBalances?.BALANCE_AFFILIATES.length &&
                 (dataType === 'referrals' ? (
                   <span className={cn('account-hover', 'active', styles.account_hover)}>Referrals</span>
                 ) : state.dgLoading ? (

@@ -361,9 +361,9 @@ const FifthStep = (props) => {
                                         <div className={styles.description}>
                                             <h4
                                                 className={direct ? styles.active : null}
-                                                onClick={() => { direct ? DGAmountChange(state.DGBalances.BALANCE_CHILD_DG) : null }}
+                                                onClick={() => { direct ? DGAmountChange(state.DGBalances?.BALANCE_CHILD_DG) : null }}
                                             >
-                                                {props.formatNumber(state.DGBalances.BALANCE_CHILD_DG || 0, 4)} DG (Old) {direct ? 'Detected!' : 'Total'}
+                                                {props.formatNumber(state.DGBalances?.BALANCE_CHILD_DG || 0, 4)} DG (Old) {direct ? 'Detected!' : 'Total'}
                                             </h4>
                                             <p>On Polygon</p>
                                         </div>
@@ -402,9 +402,9 @@ const FifthStep = (props) => {
                                         <div className={styles.description}>
                                             <h4
                                                 className={!direct ? styles.active : null}
-                                                onClick={() => { !direct ? DGLightAmountChange(state.DGBalances.BALANCE_CHILD_DG_LIGHT) : null }}
+                                                onClick={() => { !direct ? DGLightAmountChange(state.DGBalances?.BALANCE_CHILD_DG_LIGHT) : null }}
                                             >
-                                                {props.formatNumber(state.DGBalances.BALANCE_CHILD_DG_LIGHT || 0, 2)} New DG {!direct ? 'Detected!' : 'Total'}
+                                                {props.formatNumber(state.DGBalances?.BALANCE_CHILD_DG_LIGHT || 0, 2)} New DG {!direct ? 'Detected!' : 'Total'}
                                             </h4>
                                             <p>On Polygon</p>
                                         </div>
@@ -550,7 +550,7 @@ const FifthStep = (props) => {
                                 <h1>
                                     Swap for xDG to Earn {
                                         props.formatNumber(
-                                            Global.CONSTANTS.APR_NUMBER / state.stakingBalances.BALANCE_CONTRACT_TOWNHALL * 100,
+                                            Global.CONSTANTS.APR_NUMBER / state.stakingBalances?.BALANCE_CONTRACT_TOWNHALL * 100,
                                             2
                                         )
                                     }% APR

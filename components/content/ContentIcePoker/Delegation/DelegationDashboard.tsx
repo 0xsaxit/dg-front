@@ -32,8 +32,10 @@ export interface DelegationDashboardType {
 
 const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: DelegationDashboardType): ReactElement => {
   // get delegation data from the Context API store
-  const [state] = useContext(GlobalContext);
+  const [state, dispatch] = useContext<any>(GlobalContext);
   const router = useRouter();
+
+
   // define local variables
   const [isLoading, setIsLoading] = useState(true);
   const [time, setTime] = useState(TimePeriods.Weekly);
@@ -81,40 +83,57 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
         } else {
           period = TimePeriods.All;
         }
-
+        
+        try {
         // Get Delegation Breakdown from the API
-        const response = await Fetch.DELEGATION_BREAKDOWN(period);
-        const iceWearableItems = await Fetch.GET_WEARABLE_INVENTORY(state.userAddress);
-        const undelegatedItems = iceWearableItems.filter(item => !get(item, 'delegationStatus.delegatedTo', null)).map(item => {
-          return {
-            currentDelegations: [item],
-            stats: {},
-            noSeeHistory: true
-          }
-        });
-
-        if (response && response.length > 0) {
-          response.sort(function (a, b) {
-            return b.stats.avgIceEarned - a.stats.avgIceEarned;
+          const response = await Fetch.DELEGATION_BREAKDOWN(period);
+          const iceWearableItems = await Fetch.GET_WEARABLE_INVENTORY(state.userAddress);
+          const undelegatedItems = iceWearableItems.filter(item => !get(item, 'delegationStatus.delegatedTo', null)).map(item => {
+            return {
+              currentDelegations: [item],
+              stats: {},
+              noSeeHistory: true
+            }
           });
 
-          for (let i = 0; i < response.length; i++) {
-            response[i].breakdown.sort(function (a, b) {
-              return Number(new Date(b.gameplayDay)) - Number(new Date(a.gameplayDay));
+          if (response && response.length > 0) {
+            response.sort(function (a, b) {
+              return b.stats.avgIceEarned - a.stats.avgIceEarned;
             });
+
+              for (let i = 0; i < response.length; i++) {
+                response[i].breakdown.sort(function (a, b) {
+                  return Number(new Date(b.gameplayDay)) - Number(new Date(a.gameplayDay));
+                });
+
+                for (let i = 0; i < response.length; i++) {
+                  response[i].breakdown.sort(function (a, b) {
+                    return Number(new Date(b.gameplayDay)) - Number(new Date(a.gameplayDay));
+                  });
+                }
+              }
+
+              const delegationData = response && response.length > 0 ? response : [];
+
+            // Used for display
+            setFilteredDelegations([...delegationData, ...undelegatedItems]);
+
+            // Used as the raw source for filtering
+            setRawDelegations([...delegationData, ...undelegatedItems]);
+
+            // Default filter status
+            setDelegationStatusFilter(DelegationStates.Active);
+            
           }
+        } catch(error) {
+            console.log("Error fetching delegation info: " +error)
+            
+            dispatch({
+                type: 'show_toastMessage',
+                data: 'Error fetching delegation info, please try again.',
+            });
         }
-
-        const delegationData = response && response.length > 0 ? response : [];
-
-        // Used for display
-        setFilteredDelegations([...delegationData, ...undelegatedItems]);
-
-        // Used as the raw source for filtering
-        setRawDelegations([...delegationData, ...undelegatedItems]);
-
-        // Default filter status
-        setDelegationStatusFilter(DelegationStates.Active);
+        // Get Delegation Breakdown from the API
 
         setIsLoading(false);
       }
@@ -136,6 +155,7 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
     setFilteredDelegations(filteredDelegations);
 
     /* Sorting needs to happen after Delegate Filtering hook */
+    
     const orderingData = [].concat(filteredDelegations);
 
     if (orderingData && orderingData.length > 0) {
@@ -173,8 +193,6 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
         }
       });
     }
-
-    setFilteredDelegations(orderingData);
   }, [sortingName, sortingOrder, delegationStatusFilter]);
 
   const defaultImgs = [
