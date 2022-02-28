@@ -246,7 +246,7 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): Rea
 
               <div className={styles.lower}>
                 <div className={styles.lower_header}>
-                  <h1>Play-to-Earn ICE Rewards</h1>
+                  <h1>ICE Poker Rewards</h1>
                   <p>
                     Payouts at midnight UTC daily&nbsp;
                     <abbr>(in {payoutTime})</abbr>

@@ -8,6 +8,7 @@ import ModalIceDelegationBreakDown from 'components/modal/ModalIceDelegationBrea
 import FoxAnimation from 'components/lottieAnimation/animations/fox';
 import HourglassAnimation from 'components/lottieAnimation/animations/hourglass';
 import EmptyResultAnimation from 'components/lottieAnimation/animations/emptyResult';
+import WearableButton from 'components/common/cards/ICEWearableCard/WearableButton';
 import Fetch from 'common/Fetch';
 import styles from './Delegation.module.scss';
 import cn from 'classnames';
@@ -435,7 +436,7 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
                         <Table.Header>
                           <Table.Row>
                             <Table.HeaderCell style={{ width: '50px' }} />
-                            <Table.HeaderCell style={{ width: '250px' }}>Player Address</Table.HeaderCell>
+                            <Table.HeaderCell style={{ width: '300px' }}>Player Address</Table.HeaderCell>
                           </Table.Row>
                         </Table.Header>
 
@@ -468,9 +469,7 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
                                       {nickNameInfo(row, i)}
                                     </section>
                                   ) : (
-                                    <Button onClick={() => {
-                                      router.push('/account');
-                                    }}>Delegate Wearable</Button>
+                                    <WearableButton item={row.currentDelegations[0]} />
                                   )}
                                 </Table.Cell>
                               </Table.Row>
