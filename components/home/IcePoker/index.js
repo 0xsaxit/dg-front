@@ -16,7 +16,6 @@ const IcePoker = props => {
   const iceState = props.iceState;
   const [state, dispatch] = useContext(GlobalContext);
 
-
   // Responsive
   const isMobile = useMediaQuery('(max-width: 1040px)');
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -211,7 +210,7 @@ const IcePoker = props => {
                         fill={iceState === 'home' ? 'white' : '#808080'}
                       />
                     </svg>
-                    <div className={styles.menu_title}>Home</div>
+                    <div className={styles.menu_title}>ICE Dashboard</div>
                   </div>
                 </Link>
 
@@ -277,29 +276,30 @@ const IcePoker = props => {
                   </div>
                 </Link>
 
-                {state.userStatus >= 28 && 
+                {state.userStatus >= 28 && (
                   <Link href="/ice/search">
-                  <div className={iceState === 'search' ? styles.menu_item_active : styles.menu_item}>
-                    <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M11.0874 19.5847C15.5057 19.5847 19.0874 16.0029 19.0874 11.5847C19.0874 7.16638 15.5057 3.58466 11.0874 3.58466C6.66912 3.58466 3.0874 7.16638 3.0874 11.5847C3.0874 16.0029 6.66912 19.5847 11.0874 19.5847Z"
-                        stroke={iceState === 'search' ? 'white' : '#808080'}
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                      <path
-                        d="M21.0873 21.5847L16.7373 17.2346"
-                        stroke={iceState === 'search' ? 'white' : '#808080'}
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
+                    <div className={iceState === 'search' ? styles.menu_item_active : styles.menu_item}>
+                      <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M11.0874 19.5847C15.5057 19.5847 19.0874 16.0029 19.0874 11.5847C19.0874 7.16638 15.5057 3.58466 11.0874 3.58466C6.66912 3.58466 3.0874 7.16638 3.0874 11.5847C3.0874 16.0029 6.66912 19.5847 11.0874 19.5847Z"
+                          stroke={iceState === 'search' ? 'white' : '#808080'}
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M21.0873 21.5847L16.7373 17.2346"
+                          stroke={iceState === 'search' ? 'white' : '#808080'}
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
 
-                    <div className={styles.menu_title}>Search Tool</div>
-                  </div>
-                </Link>}
+                      <div className={styles.menu_title}>Search Tool</div>
+                    </div>
+                  </Link>
+                )}
 
                 <Link href="/ice/claim">
                   <div className={iceState === 'iceRewards' ? styles.menu_item_active : styles.menu_item}>
