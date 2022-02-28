@@ -185,13 +185,13 @@ const initialState = {
     [-1, 20]
   ],
   iceWearableInventoryItems: [],
-  iceWearableInventoryItemsLoading: false,
+  iceWearableInventoryItemsLoading: true,
   iceWearableInventoryItemsSuccess: false,
   iceWearableItems: [],
-  iceWearableItemsLoading: false,
+  iceWearableItemsLoading: true,
   iceWearableUpdatedSuccess: false,
   iceDelegatedItems: [],
-  iceDelegatedItemsLoading: false,
+  iceDelegatedItemsLoading: true,
   nftAuthorizations: [],
   canPurchase: true,
   tokenAmounts: {
