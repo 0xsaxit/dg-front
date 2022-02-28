@@ -141,7 +141,7 @@ const Balances: FC<BalancesType> = ({ className = '' }: BalancesType): ReactElem
   function claimBox(): ReactElement {
     return (
       <div className={styles.reward}>
-        <p className={styles.reward_header}>Play-to-Earn Rewards</p>
+        <p className={styles.reward_header}>ICE Poker Rewards</p>
 
         <div className={styles.reward_value}>
           <p className={styles.DG_value}>{totalIce}</p>
