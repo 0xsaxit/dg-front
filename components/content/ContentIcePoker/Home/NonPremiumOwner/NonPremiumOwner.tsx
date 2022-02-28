@@ -188,7 +188,7 @@ const IceDashboardNonPremium = (props: NonPremiumProps): ReactElement => {
             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1645784053/PNG_1_wu03tm.png" alt="guild" />
             <p>Get access to guild-on-guild leagues that pay out $10k+/mo. Learn more.</p>
             <Button className={styles.blue_button} disabled={true}>
-              Comming Soon
+              Coming Soon
             </Button>
           </div>
         </div>

@@ -314,7 +314,7 @@ const IceDashboardPremium = (props: PremiumProps): ReactElement => {
             </Button>
 
             <Button className={styles.blue_button} disabled={true}>
-              Comming Soon
+              Coming Soon
             </Button>
           </div>
         </div>
