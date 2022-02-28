@@ -11,6 +11,7 @@ import EmptyResultAnimation from 'components/lottieAnimation/animations/emptyRes
 import Fetch from 'common/Fetch';
 import styles from './Delegation.module.scss';
 import cn from 'classnames';
+import { userInfo } from 'os';
 
 enum DelegationStates {
   All = 'All Delegates',
@@ -767,14 +768,34 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
                       </Table>
                     </div>
                   </div>
-                  <div className={styles.more_wearable}>
-                    <div className={styles.title}>More Wearables. More Players.</div>
-                    <div className={styles.desc}>Acquire more ICE Wearables to expand your roster of poker players.</div>
+                  { state.userStatus >= 28 && state.DGBalances.BALANCE_CHILD_TOKEN_XDG > state.iceWearableItems.length * 1000 ? (
+                    <div className={styles.lock_wearable}>
+                      <div className={styles.lock_title}>
+                        Manage Your Guild, Effortlessly
+                      </div>
 
-                    <Button className={styles.grey_button} href="/ice/marketplace">
-                      Browse Wearables
-                    </Button>
-                  </div>
+                      <div className={styles.lock_desc}>
+                        Manage your guild all in one place. View and sort your players’ by historical leaderboard tiers, ICE earnings, total check-ins, net chips, and more.
+                      </div>
+
+                      <Button className={styles.lock_button} href="https://decentral.games/premium" target="_blank">
+                        Unlock Premium
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className={styles.more_wearable}>
+                      <div className={styles.title}>
+                        More Wearables. More Players.
+                      </div>
+                      <div className={styles.desc}>
+                        Acquire more ICE Wearables to expand your roster of poker players.
+                      </div>
+
+                      <Button className={styles.grey_button} href="/ice/marketplace">
+                        Browse Wearables
+                      </Button>
+                    </div>
+                  )}
                 </>
               );
             } else {
