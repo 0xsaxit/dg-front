@@ -193,7 +193,7 @@ const CheckMintableModal = props => {
                   <CheckMintTooltip staking={false} />
                 </div>
               )}
-              {state.mintToken === 'ETH' ? Number(mintingPrice).toFixed(2) : Number(mintingPrice).toFixed(0)} {state.mintToken}
+              {state.mintToken === 'ETH' ? Number(mintingPrice).toFixed(2) : Number(mintingPrice).toFixed(2)} {state.mintToken}
               {state.mintToken === 'ETH' ? (
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="11.8125" cy="12" r="11.6875" fill="#EFEFEF" />
@@ -225,7 +225,7 @@ const CheckMintableModal = props => {
               ) : (
                 <>
                   <span className={styles.dg_available}>
-                    {state.mintToken === 'ETH' ? Number(state.userBalances[2][3]).toFixed(3) : Number(state.iceAmounts?.ICE_AVAILABLE_AMOUNT).toFixed(0)} {state.mintToken}{' '}
+                    {state.mintToken === 'ETH' ? Number(state.userBalances[2][3]).toFixed(3) : Number(state.iceAmounts.ICE_AVAILABLE_AMOUNT).toFixed(2)} {state.mintToken}{' '}
                     Available&nbsp;
                     <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
