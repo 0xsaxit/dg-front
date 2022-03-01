@@ -225,7 +225,7 @@ const ModalDelegate = props => {
                 }}
               />
             </div>
-            {state.userStatus >= 28 ? (
+            {state.DGBalances.BALANCE_CHILD_TOKEN_XDG > state.iceWearableItems.length * 1000 ? (
               <div className={styles.inputcard}>
                 Nickname:
                 <input
