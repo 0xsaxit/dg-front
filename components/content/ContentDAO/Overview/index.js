@@ -250,10 +250,10 @@ const Overview = props => {
   }, [state.treasuryNumbers, dgTreasury]);
 
   useEffect(() => {
-    if (state.userStatus && state.stakingBalances.BALANCE_USER_GOVERNANCE > 0) {
+    if (state.userStatus && state.stakingBalances?.BALANCE_USER_GOVERNANCE > 0) {
       setVisible(false);
     }
-  }, [state.userStatus, state.stakingBalances.BALANCE_USER_GOVERNANCE]);
+  }, [state.userStatus, state.stakingBalances?.BALANCE_USER_GOVERNANCE]);
 
   // helper functions
   function getWeeklyChange() {

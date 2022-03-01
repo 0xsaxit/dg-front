@@ -284,7 +284,7 @@ const ThirdStep = (props) => {
             </div>
 
             <div className={styles.content}>
-                {BigNumber(state.DGBalances.BALANCE_ROOT_DG || 0).isGreaterThan(0) ?
+                {BigNumber(state.DGBalances?.BALANCE_ROOT_DG || 0).isGreaterThan(0) ?
                     (
                         !swapSubmitted ?
                             <div className={styles.box_div}>
@@ -318,9 +318,9 @@ const ThirdStep = (props) => {
                                         <div className={styles.description}>
                                             <h4
                                                 className={direct ? styles.active : null}
-                                                onClick={() => { direct ? DGAmountChange(state.DGBalances.BALANCE_ROOT_DG) : null }}
+                                                onClick={() => { direct ? DGAmountChange(state.DGBalances?.BALANCE_ROOT_DG) : null }}
                                             >
-                                                {props.formatNumber(state.DGBalances.BALANCE_ROOT_DG || 0, 4)} DG (Old) {direct ? 'Detected!' : 'Total'}
+                                                {props.formatNumber(state.DGBalances?.BALANCE_ROOT_DG || 0, 4)} DG (Old) {direct ? 'Detected!' : 'Total'}
                                             </h4>
                                             <p>On ETH {networkInfo.name}</p>
                                         </div>
@@ -358,9 +358,9 @@ const ThirdStep = (props) => {
                                         <div className={styles.description}>
                                             <h4
                                                 className={!direct ? styles.active : null}
-                                                onClick={() => { !direct ? DGLightAmountChange(state.DGBalances.BALANCE_ROOT_DG_LIGHT) : null }}
+                                                onClick={() => { !direct ? DGLightAmountChange(state.DGBalances?.BALANCE_ROOT_DG_LIGHT) : null }}
                                             >
-                                                {props.formatNumber(state.DGBalances.BALANCE_ROOT_DG_LIGHT || 0, 2)} New DG {!direct ? 'Detected!' : 'Total'}
+                                                {props.formatNumber(state.DGBalances?.BALANCE_ROOT_DG_LIGHT || 0, 2)} New DG {!direct ? 'Detected!' : 'Total'}
                                             </h4>
                                             <p>On ETH {networkInfo.name}</p>
                                         </div>

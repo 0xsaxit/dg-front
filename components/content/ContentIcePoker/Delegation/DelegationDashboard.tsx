@@ -12,6 +12,7 @@ import WearableButton from 'components/common/cards/ICEWearableCard/WearableButt
 import Fetch from 'common/Fetch';
 import styles from './Delegation.module.scss';
 import cn from 'classnames';
+import { userInfo } from 'os';
 
 enum DelegationStates {
   All = 'All Delegates',
@@ -31,8 +32,10 @@ export interface DelegationDashboardType {
 
 const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: DelegationDashboardType): ReactElement => {
   // get delegation data from the Context API store
-  const [state] = useContext(GlobalContext);
+  const [state, dispatch] = useContext<any>(GlobalContext);
   const router = useRouter();
+
+
   // define local variables
   const [isLoading, setIsLoading] = useState(true);
   const [time, setTime] = useState(TimePeriods.Weekly);
@@ -80,40 +83,57 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
         } else {
           period = TimePeriods.All;
         }
-
+        
+        try {
         // Get Delegation Breakdown from the API
-        const response = await Fetch.DELEGATION_BREAKDOWN(period);
-        const iceWearableItems = await Fetch.GET_WEARABLE_INVENTORY(state.userAddress);
-        const undelegatedItems = iceWearableItems.filter(item => !get(item, 'delegationStatus.delegatedTo', null)).map(item => {
-          return {
-            currentDelegations: [item],
-            stats: {},
-            noSeeHistory: true
-          }
-        });
-
-        if (response && response.length > 0) {
-          response.sort(function (a, b) {
-            return b.stats.avgIceEarned - a.stats.avgIceEarned;
+          const response = await Fetch.DELEGATION_BREAKDOWN(period);
+          const iceWearableItems = await Fetch.GET_WEARABLE_INVENTORY(state.userAddress);
+          const undelegatedItems = iceWearableItems.filter(item => !get(item, 'delegationStatus.delegatedTo', null)).map(item => {
+            return {
+              currentDelegations: [item],
+              stats: {},
+              noSeeHistory: true
+            }
           });
 
-          for (let i = 0; i < response.length; i++) {
-            response[i].breakdown.sort(function (a, b) {
-              return Number(new Date(b.gameplayDay)) - Number(new Date(a.gameplayDay));
+          if (response && response.length > 0) {
+            response.sort(function (a, b) {
+              return b.stats.avgIceEarned - a.stats.avgIceEarned;
             });
+
+              for (let i = 0; i < response.length; i++) {
+                response[i].breakdown.sort(function (a, b) {
+                  return Number(new Date(b.gameplayDay)) - Number(new Date(a.gameplayDay));
+                });
+
+                for (let i = 0; i < response.length; i++) {
+                  response[i].breakdown.sort(function (a, b) {
+                    return Number(new Date(b.gameplayDay)) - Number(new Date(a.gameplayDay));
+                  });
+                }
+              }
+
+              const delegationData = response && response.length > 0 ? response : [];
+
+            // Used for display
+            setFilteredDelegations([...delegationData, ...undelegatedItems]);
+
+            // Used as the raw source for filtering
+            setRawDelegations([...delegationData, ...undelegatedItems]);
+
+            // Default filter status
+            setDelegationStatusFilter(DelegationStates.Active);
+            
           }
+        } catch(error) {
+            console.log("Error fetching delegation info: " +error)
+            
+            dispatch({
+                type: 'show_toastMessage',
+                data: 'Error fetching delegation info, please try again.',
+            });
         }
-
-        const delegationData = response && response.length > 0 ? response : [];
-
-        // Used for display
-        setFilteredDelegations([...delegationData, ...undelegatedItems]);
-
-        // Used as the raw source for filtering
-        setRawDelegations([...delegationData, ...undelegatedItems]);
-
-        // Default filter status
-        setDelegationStatusFilter(DelegationStates.Active);
+        // Get Delegation Breakdown from the API
 
         setIsLoading(false);
       }
@@ -135,6 +155,7 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
     setFilteredDelegations(filteredDelegations);
 
     /* Sorting needs to happen after Delegate Filtering hook */
+    
     const orderingData = [].concat(filteredDelegations);
 
     if (orderingData && orderingData.length > 0) {
@@ -172,8 +193,6 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
         }
       });
     }
-
-    setFilteredDelegations(orderingData);
   }, [sortingName, sortingOrder, delegationStatusFilter]);
 
   const defaultImgs = [
@@ -766,14 +785,34 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
                       </Table>
                     </div>
                   </div>
-                  <div className={styles.more_wearable}>
-                    <div className={styles.title}>More Wearables. More Players.</div>
-                    <div className={styles.desc}>Acquire more ICE Wearables to expand your roster of poker players.</div>
+                  { state.userStatus >= 28 && state.DGBalances.BALANCE_CHILD_TOKEN_XDG > state.iceWearableItems.length * 1000 ? (
+                    <div className={styles.lock_wearable}>
+                      <div className={styles.lock_title}>
+                        Manage Your Guild, Effortlessly
+                      </div>
 
-                    <Button className={styles.grey_button} href="/ice/marketplace">
-                      Browse Wearables
-                    </Button>
-                  </div>
+                      <div className={styles.lock_desc}>
+                        Manage your guild all in one place. View and sort your players’ by historical leaderboard tiers, ICE earnings, total check-ins, net chips, and more.
+                      </div>
+
+                      <Button className={styles.lock_button} href="https://decentral.games/premium" target="_blank">
+                        Unlock Premium
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className={styles.more_wearable}>
+                      <div className={styles.title}>
+                        More Wearables. More Players.
+                      </div>
+                      <div className={styles.desc}>
+                        Acquire more ICE Wearables to expand your roster of poker players.
+                      </div>
+
+                      <Button className={styles.grey_button} href="/ice/marketplace">
+                        Browse Wearables
+                      </Button>
+                    </div>
+                  )}
                 </>
               );
             } else {
