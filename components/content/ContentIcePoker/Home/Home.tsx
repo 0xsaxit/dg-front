@@ -21,8 +21,8 @@ const IceHome = (props: HomeProps): ReactElement => {
   const [step, setStep] = useState(0);
 
   useEffect(() => {
-    setIsLoading(state.iceWearableItemsLoading || state.iceDelegatedItemsLoading ? true : false);
-  }, [state.iceWearableItemsLoading, state.iceDelegatedItemsLoading]);
+    setIsLoading(state.iceWearableItemsLoading || state.iceDelegatedItemsLoading || state.DGBalancesLoading || state.stakingBalancesLoading ? true : false);
+  }, [state.iceWearableItemsLoading, state.iceDelegatedItemsLoading, state.DGBalancesLoading, state.stakingBalancesLoading]);
 
   useEffect(() => {
     // Get Active Wearables, Delegate Wearables

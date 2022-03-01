@@ -4,13 +4,22 @@ import { GlobalContext } from '@/store';
 import Fetch from '@/common/Fetch';
 import cn from 'classnames';
 import { Button } from 'semantic-ui-react';
+import Images from 'common/Images';
 import LoadingAnimation from 'components/lottieAnimation/animations/LoadingAnimation';
+import Spinner from 'components/lottieAnimation/animations/spinner_updated';
 import styles from './PremiumOwner.module.scss';
 
 enum TimePeriods {
   Weekly = 'week',
   Monthly = 'month',
   All = 'all'
+}
+
+interface PlayerStats {
+  chipsWon: number;
+  leaderboardPercentile: number;
+  checkedIn: number;
+  numChallengesCompleted: number;
 }
 
 export interface PremiumProps {
@@ -23,12 +32,100 @@ const IceDashboardPremium = (props: PremiumProps): ReactElement => {
   const router = useRouter();
 
   // define local variables
+  const [isLoadingDelegations, setIsLoadingDelegations] = useState(true);
+  const [delegations, setDelegations] = useState([]);
+  const [isLoadingPlayerStats, setIsLoadingPlayerStats] = useState(true);
+  const [gameReports, setGameReports] = useState([]);
+  const initialPlayerStats: PlayerStats = {
+    chipsWon:               0,
+    leaderboardPercentile:  0,
+    checkedIn:              0,
+    numChallengesCompleted: 0
+  };
+  const [playerStats, setPlayerStats] = useState(initialPlayerStats);
   const [time, setTime] = useState(TimePeriods.Weekly);
   const [isClaimClicked, setIsClaimClicked] = useState(false);
   const [totalIce, setTotalIce] = useState(0);
   const [totalUnclaimedAmount, setTotalUnclaimedAmount] = useState(0);
   const [isXdgClicked, setIsXdgClicked] = useState(false);
   const { xDG: xDgPrice } = state.DGPrices;
+
+  useEffect(() => {
+    (async (): Promise<void> => {
+      if (state.userLoggedIn) {
+        setIsLoadingDelegations(true);
+
+        try {
+          // Get Delegation Breakdown from the API
+          const response = await Fetch.DELEGATION_BREAKDOWN('week');
+
+          if (response && response.length > 0) {
+            response.sort(function (a, b) {
+              return b.stats.avgIceEarned - a.stats.avgIceEarned;
+            });
+
+            for (let i = 0; i < response.length; i++) {
+              response[i].breakdown.sort(function (a, b) {
+                return Number(new Date(b.gameplayDay)) - Number(new Date(a.gameplayDay));
+              });
+
+              for (let i = 0; i < response.length; i++) {
+                response[i].breakdown.sort(function (a, b) {
+                  return Number(new Date(b.gameplayDay)) - Number(new Date(a.gameplayDay));
+                });
+              }
+            }
+
+            const delegationData = response && response.length > 0 ? response : [];
+
+            // Used for display
+            setDelegations(delegationData);
+          }
+        } catch (error) {
+          dispatch({
+            type: 'show_toastMessage',
+            data: 'Error fetching delegation info, please try again.'
+          });
+        }
+
+        setIsLoadingDelegations(false);
+      }
+    })();
+  }, [state.userLoggedIn]);
+
+  async function getGameplay(): Promise<void> {
+    setIsLoadingPlayerStats(true);
+
+    if (state.userLoggedIn) {
+      // Get Gameplay Reports from the API
+      const response = await Fetch.GAMEPLAY_REPORTS(state.userAddress, time);
+
+      const playerStats: PlayerStats = {
+        chipsWon:               0,
+        leaderboardPercentile:  0,
+        checkedIn:              0,
+        numChallengesCompleted: 0
+      };
+
+      for (let i = 0; i < response.length; i++) {
+        if (response[i] && Object.keys(response[i].gameplay).length > 0 && Object.getPrototypeOf(response[i]) === Object.prototype) {
+          playerStats.chipsWon += response[i].gameplay.chipsWon ? response[i].gameplay.chipsWon : 0;
+          playerStats.leaderboardPercentile += response[i].gameplay.leaderboardPercentile;
+          playerStats.checkedIn += 1;
+          playerStats.numChallengesCompleted += response[i].gameplay.numChallengesCompleted;
+        }
+      }
+
+      setGameReports(response);
+      setPlayerStats(playerStats);
+    }
+
+    setIsLoadingPlayerStats(false);
+  }
+
+  useEffect(() => {
+    getGameplay();
+  }, [time]);
 
   async function updateAmountForClaim(): Promise<void> {
     // update user status in database
@@ -139,6 +236,78 @@ const IceDashboardPremium = (props: PremiumProps): ReactElement => {
     await updateAmountForClaim();
   }
 
+  function displayNickName(delegation): string {
+    return delegation.nickname
+      ? delegation.nickname.length > 10
+        ? delegation.nickname.substr(0, 9) + '...'
+        : delegation.nickname
+      : delegation.address.substr(0, 5) + '...' + delegation.address.substr(delegation.address.length - 4, delegation.address.length);
+  }
+
+  function firstTopDelegateRender(rank): ReactElement {
+    return (
+      <>
+        <div className={styles.avatar}>
+          {delegations && delegations.length >= rank ? (
+            <img src={delegations[rank - 1].imageURL} alt="avatar" />
+          ) : (
+            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1645784053/Player_Image_a7ymml.png" alt="avatar" />
+          )}
+          <span>{rank}</span>
+        </div>
+
+        <h1 className={styles.name}>{delegations && delegations.length >= rank ? displayNickName(delegations[rank - 1]) : <>Empty Slot</>}</h1>
+
+        <div className={styles.earned_ice}>
+          {delegations && delegations.length >= rank ? Math.round(delegations[rank - 1].stats.avgIceEarned) : 0}
+          <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" />
+        </div>
+
+        {rank > 3 ? (
+          <div className={styles.more}>
+            <svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1L4 4.5L1 8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
+        ) : null}
+      </>
+    );
+  }
+
+  function restTopDelegateRender(rank): ReactElement {
+    return (
+      <div className={delegations && delegations.length >= rank ? styles.player : cn(styles.player, styles.empty)}>
+        <div className={styles.number}>{rank}</div>
+        <div className={styles.avatar}>
+          {delegations && delegations.length >= rank ? (
+            <img src={delegations[rank - 1].imageURL} alt="avatar" />
+          ) : (
+            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1645784053/Player_Image_a7ymml.png" alt="avatar" />
+          )}
+        </div>
+
+        {delegations && delegations.length >= rank ? (
+          <>
+            <div className={styles.detail}>
+              <div className={styles.address}>{displayNickName(delegations[rank - 1])}</div>
+              <div className={styles.ice}>
+                {Math.round(delegations[rank - 1].stats.avgIceEarned)}
+                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
+              </div>
+            </div>
+            <div className={styles.more}>
+              <svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L4 4.5L1 8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
+          </>
+        ) : (
+          <div className={styles.empty_slot}>Empty Slot</div>
+        )}
+      </div>
+    );
+  }
+
   return (
     <section className={cn('row', styles.main_wrapper)}>
       <div className={cn('col-xl-8', styles.overview_container)}>
@@ -148,155 +317,42 @@ const IceDashboardPremium = (props: PremiumProps): ReactElement => {
         </div>
 
         <div className={styles.top_delegates}>
-          <h1 className={styles.title}>Top Delegates</h1>
-          <div className={styles.top_section}>
-            <div className={styles.second}>
-              <div className={styles.avatar}>
-                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1645784053/Player_Image_a7ymml.png" alt="avatar" />
-                <span>2</span>
-              </div>
-              <h1 className={styles.name}>Example</h1>
-              <div className={styles.earned_ice}>
-                500
-                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" />
-              </div>
+          {isLoadingDelegations ? (
+            <div className={styles.spinner_wrapper}>
+              <img src={Images.LOADING_SPINNER} />
             </div>
-            <div className={styles.first}>
-              <div className={styles.avatar}>
-                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1645784053/Player_Image_a7ymml.png" alt="avatar" />
-                <span>1</span>
+          ) : (
+            <>
+              <h1 className={styles.title}>Top Delegates</h1>
+              <div className={styles.top_section}>
+                <div className={styles.second}>{firstTopDelegateRender(2)}</div>
+                <div className={styles.first}>{firstTopDelegateRender(1)}</div>
+                <div className={styles.third}>{firstTopDelegateRender(3)}</div>
               </div>
-              <h1 className={styles.name}>Example</h1>
-              <div className={styles.earned_ice}>
-                1000
-                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" />
-              </div>
-            </div>
-            <div className={styles.third}>
-              <div className={styles.avatar}>
-                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1645784053/Player_Image_a7ymml.png" alt="avatar" />
-                <span>3</span>
-              </div>
-              <h1 className={styles.name}>Example</h1>
-              <div className={styles.earned_ice}>
-                400
-                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" />
-              </div>
-            </div>
-          </div>
 
-          <div className={styles.players_section}>
-            <div className={styles.row}>
-              <div className={styles.player}>
-                <div className={styles.number}>4</div>
-                <div className={styles.avatar}>
-                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1645784053/Player_Image_a7ymml.png" alt="avatar" />
+              <div className={styles.players_section}>
+                <div className={styles.row}>
+                  {restTopDelegateRender(4)}
+                  {restTopDelegateRender(5)}
+                  {restTopDelegateRender(6)}
                 </div>
-                <div className={styles.detail}>
-                  <div className={styles.address}>0x192ds...as3s</div>
-                  <div className={styles.ice}>
-                    380
-                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
-                  </div>
-                </div>
-                <div className={styles.more}>
-                  <svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 1L4 4.5L1 8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+                <div className={styles.row} style={{ marginLeft: '30px' }}>
+                  {restTopDelegateRender(7)}
+                  {restTopDelegateRender(8)}
+                  {restTopDelegateRender(9)}
                 </div>
               </div>
-              <div className={styles.player}>
-                <div className={styles.number}>5</div>
-                <div className={styles.avatar}>
-                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1645784053/Player_Image_a7ymml.png" alt="avatar" />
-                </div>
-                <div className={styles.detail}>
-                  <div className={styles.address}>0x192ds...as3s</div>
-                  <div className={styles.ice}>
-                    380
-                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
-                  </div>
-                </div>
-                <div className={styles.more}>
-                  <svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 1L4 4.5L1 8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-              </div>
-              <div className={styles.player}>
-                <div className={styles.number}>6</div>
-                <div className={styles.avatar}>
-                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1645784053/Player_Image_a7ymml.png" alt="avatar" />
-                </div>
-                <div className={styles.detail}>
-                  <div className={styles.address}>0x192ds...as3s</div>
-                  <div className={styles.ice}>
-                    380
-                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
-                  </div>
-                </div>
-                <div className={styles.more}>
-                  <svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 1L4 4.5L1 8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div className={styles.row} style={{ marginLeft: '30px' }}>
-              <div className={styles.player}>
-                <div className={styles.number}>7</div>
-                <div className={styles.avatar}>
-                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1645784053/Player_Image_a7ymml.png" alt="avatar" />
-                </div>
-                <div className={styles.detail}>
-                  <div className={styles.address}>0x192ds...as3s</div>
-                  <div className={styles.ice}>
-                    380
-                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
-                  </div>
-                </div>
-                <div className={styles.more}>
-                  <svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 1L4 4.5L1 8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-              </div>
-              <div className={styles.player}>
-                <div className={styles.number}>8</div>
-                <div className={styles.avatar}>
-                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1645784053/Player_Image_a7ymml.png" alt="avatar" />
-                </div>
-                <div className={styles.detail}>
-                  <div className={styles.address}>0x192ds...as3s</div>
-                  <div className={styles.ice}>
-                    380
-                    <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
-                  </div>
-                </div>
-                <div className={styles.more}>
-                  <svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 1L4 4.5L1 8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-              </div>
-              <div className={cn(styles.player, styles.empty)}>
-                <div className={styles.number}>9</div>
-                <div className={styles.avatar}>
-                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1645784053/Player_Image_a7ymml.png" alt="avatar" />
-                </div>
-                <div className={styles.empty_slot}>Empty Slot</div>
-              </div>
-            </div>
-          </div>
 
-          <Button
-            className={styles.grey_button}
-            onClick={() => {
-              router.push('/ice/delegation');
-            }}
-          >
-            See Dashboard
-          </Button>
+              <Button
+                className={styles.grey_button}
+                onClick={() => {
+                  router.push('/ice/delegation');
+                }}
+              >
+                See Dashboard
+              </Button>
+            </>
+          )}
         </div>
 
         <div className={styles.guild_league}>
@@ -358,7 +414,17 @@ const IceDashboardPremium = (props: PremiumProps): ReactElement => {
               </div>
               <div className={styles.stats_balance}>
                 <p className={styles.title}>Average Leaderboard</p>
-                <p className={styles.amount}>Top 15%</p>
+                <p className={styles.amount}>
+                  {isLoadingPlayerStats ? (
+                    <Spinner width={24} height={24} />
+                  ) : playerStats.checkedIn === 0 ? (
+                    'Bottom 100%'
+                  ) : playerStats.leaderboardPercentile / playerStats.checkedIn + 5 <= 50 ? (
+                    `Top ${Math.round(playerStats.leaderboardPercentile / playerStats.checkedIn) + 5}%`
+                  ) : (
+                    `Bottom ${100 - Math.round(playerStats.leaderboardPercentile / playerStats.checkedIn)}%`
+                  )}
+                </p>
               </div>
             </div>
             <div className={styles.stats_box}>
@@ -368,7 +434,7 @@ const IceDashboardPremium = (props: PremiumProps): ReactElement => {
               </div>
               <div className={styles.stats_balance}>
                 <p className={styles.title}>Net Chips</p>
-                <p className={styles.amount}>+3,982</p>
+                <p className={styles.amount}>{isLoadingPlayerStats ? <Spinner width={24} height={24} /> : playerStats.chipsWon}</p>
               </div>
             </div>
             <div className={styles.stats_box}>
@@ -378,7 +444,15 @@ const IceDashboardPremium = (props: PremiumProps): ReactElement => {
               </div>
               <div className={styles.stats_balance}>
                 <p className={styles.title}>Finished Challenges</p>
-                <p className={styles.amount}>22 of 26</p>
+                <p className={styles.amount}>
+                  {isLoadingPlayerStats ? (
+                    <Spinner width={24} height={24} />
+                  ) : (
+                    <>
+                      {playerStats.numChallengesCompleted} of {3 * gameReports.length}
+                    </>
+                  )}
+                </p>
               </div>
             </div>
           </div>

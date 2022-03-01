@@ -58,6 +58,18 @@
             margin-left: 26px;
         }
 
+        .spinner_wrapper {
+            width: 100%;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 50px;
+            }
+        }
+
         .title {
             font-family: "Larsseit-Bold";
             font-size: 24px;
@@ -124,12 +136,12 @@
                     display: flex;
                     justify-content: center;
                     font-family: "Larsseit-Bold";
-                    font-size: 10px;
+                    font-size: 11px;
                     line-height: 12px;
                     color: rgba(255, 255, 255, 0.5) !important;
 
                     img {
-                        width: 10px;
+                        width: 11px;
                         margin-left: 3px;
                         margin-top: -2px;
                     }
@@ -187,12 +199,12 @@
                     display: flex;
                     justify-content: center;
                     font-family: "Larsseit-Bold";
-                    font-size: 10px;
+                    font-size: 11px;
                     line-height: 12px;
                     color: rgba(255, 255, 255, 0.5) !important;
 
                     img {
-                        width: 10px;
+                        width: 11px;
                         margin-left: 3px;
                         margin-top: -2px;
                     }
@@ -250,7 +262,7 @@
                     display: flex;
                     justify-content: center;
                     font-family: "Larsseit-Bold";
-                    font-size: 10px;
+                    font-size: 11px;
                     line-height: 12px;
                     color: rgba(255, 255, 255, 0.5) !important;
 
@@ -270,6 +282,8 @@
             margin-top: 20px;
 
             .row {
+                width: 180px;
+
                 .player {
                     display: flex;
                     align-items: center;
@@ -295,7 +309,7 @@
                         }
                     }
                     .detail {
-                        width: 125px;
+                        width: 115px;
                         padding-left: 18px;
                         color: #fff !important;
 
@@ -309,12 +323,13 @@
                             display: flex;
                             align-items: center;
                             font-family: "Larsseit-Regular";
-                            font-size: 9px;
+                            font-size: 11px;
                             line-height: 12px;
                             color: rgba(255, 255, 255, 0.5) !important;
 
                             img {
-                                width: 10px;
+                                width: 11px;
+                                margin-top: -3px;
                                 margin-left: 3px;
                             }
                         }
