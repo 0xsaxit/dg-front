@@ -302,10 +302,10 @@ const Overview = props => {
       <div className={styles.blue_container}>
         <div className={styles.blue_text}>
           <p className={styles.blue_header}>
-            Stake $DG to earn <br /> and ‘Be The House’
+            Stake DG to earn, <br /> govern, and more
           </p>
           <p className={styles.blue_lower}>
-            By staking $DG, you can govern the <br/> treasury, add proposals, and earn yield.
+            By staking DG, you can govern the <br/> treasury, add proposals, and earn yield.
           </p>
           <Button
             className={styles.blue_button}
