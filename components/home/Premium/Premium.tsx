@@ -12,9 +12,14 @@ export interface PremiumType {
 
 const Premium: FC<PremiumType> = ({ className = '' }: PremiumType): ReactElement => {
   const [state] = useContext(GlobalContext);
+  const [isLoading, setIsLoading] = useState(true);
   const [premiumStatus, setPremiumStatus] = useState(-1); // 0: not enough xDG, 1: enough xDG, 2: no wearable
   const [xdgTotal, setXdgTotal] = useState(0);
   const [activeWearables, setActiveWearables] = useState([]);
+
+  useEffect(() => {
+    setIsLoading(state.iceWearableItemsLoading || state.DGBalancesLoading || state.stakingBalancesLoading ? true : false);
+  }, [state.iceWearableItemsLoading, state.DGBalancesLoading, state.stakingBalancesLoading]);
 
   useEffect(() => {
     // Get Active Wearables
@@ -61,7 +66,7 @@ const Premium: FC<PremiumType> = ({ className = '' }: PremiumType): ReactElement
     <section className={`premium component ${className} ${styles.premium}`}>
       {!state.userLoggedIn ? (
         <FoxAnimation />
-      ) : premiumStatus === -1 ? (
+      ) : isLoading ? (
         <div className={styles.spinner_wrapper}>
           <img src={Images.LOADING_SPINNER} />
         </div>

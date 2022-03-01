@@ -5,12 +5,20 @@ import Fetch from '@/common/Fetch';
 import cn from 'classnames';
 import { Button } from 'semantic-ui-react';
 import LoadingAnimation from 'components/lottieAnimation/animations/LoadingAnimation';
+import Spinner from 'components/lottieAnimation/animations/spinner_updated';
 import styles from './NonPremiumOwner.module.scss';
 
 enum TimePeriods {
   Weekly = 'week',
   Monthly = 'month',
   All = 'all'
+}
+
+interface PlayerStats {
+  chipsWon: number;
+  leaderboardPercentile: number;
+  checkedIn: number;
+  numChallengesCompleted: number;
 }
 
 export interface NonPremiumProps {
@@ -23,12 +31,55 @@ const IceDashboardNonPremium = (props: NonPremiumProps): ReactElement => {
   const router = useRouter();
 
   // define local variables
+  const [isLoadingPlayerStats, setIsLoadingPlayerStats] = useState(true);
+  const [gameReports, setGameReports] = useState([]);
+  const initialPlayerStats: PlayerStats = {
+    chipsWon:               0,
+    leaderboardPercentile:  0,
+    checkedIn:              0,
+    numChallengesCompleted: 0
+  };
+  const [playerStats, setPlayerStats] = useState(initialPlayerStats);
   const [time, setTime] = useState(TimePeriods.Weekly);
   const [isClaimClicked, setIsClaimClicked] = useState(false);
   const [totalIce, setTotalIce] = useState(0);
   const [totalUnclaimedAmount, setTotalUnclaimedAmount] = useState(0);
   const [isXdgClicked, setIsXdgClicked] = useState(false);
   const { xDG: xDgPrice } = state.DGPrices;
+
+  async function getGameplay(): Promise<void> {
+    setIsLoadingPlayerStats(true);
+
+    if (state.userLoggedIn) {
+      // Get Gameplay Reports from the API
+      const response = await Fetch.GAMEPLAY_REPORTS(state.userAddress, time);
+
+      const playerStats: PlayerStats = {
+        chipsWon:               0,
+        leaderboardPercentile:  0,
+        checkedIn:              0,
+        numChallengesCompleted: 0
+      };
+
+      for (let i = 0; i < response.length; i++) {
+        if (response[i] && Object.keys(response[i].gameplay).length > 0 && Object.getPrototypeOf(response[i]) === Object.prototype) {
+          playerStats.chipsWon += response[i].gameplay.chipsWon ? response[i].gameplay.chipsWon : 0;
+          playerStats.leaderboardPercentile += response[i].gameplay.leaderboardPercentile;
+          playerStats.checkedIn += 1;
+          playerStats.numChallengesCompleted += response[i].gameplay.numChallengesCompleted;
+        }
+      }
+
+      setGameReports(response);
+      setPlayerStats(playerStats);
+    }
+
+    setIsLoadingPlayerStats(false);
+  }
+
+  useEffect(() => {
+    getGameplay();
+  }, [time]);
 
   async function updateAmountForClaim(): Promise<void> {
     // update user status in database
@@ -232,7 +283,17 @@ const IceDashboardNonPremium = (props: NonPremiumProps): ReactElement => {
               </div>
               <div className={styles.stats_balance}>
                 <p className={styles.title}>Average Leaderboard</p>
-                <p className={styles.amount}>Top 15%</p>
+                <p className={styles.amount}>
+                  {isLoadingPlayerStats ? (
+                    <Spinner width={24} height={24} />
+                  ) : playerStats.checkedIn === 0 ? (
+                    'Bottom 100%'
+                  ) : playerStats.leaderboardPercentile / playerStats.checkedIn + 5 <= 50 ? (
+                    `Top ${Math.round(playerStats.leaderboardPercentile / playerStats.checkedIn) + 5}%`
+                  ) : (
+                    `Bottom ${100 - Math.round(playerStats.leaderboardPercentile / playerStats.checkedIn)}%`
+                  )}
+                </p>
               </div>
             </div>
             <div className={styles.stats_box}>
@@ -242,7 +303,7 @@ const IceDashboardNonPremium = (props: NonPremiumProps): ReactElement => {
               </div>
               <div className={styles.stats_balance}>
                 <p className={styles.title}>Net Chips</p>
-                <p className={styles.amount}>+3,982</p>
+                <p className={styles.amount}>{isLoadingPlayerStats ? <Spinner width={24} height={24} /> : playerStats.chipsWon}</p>
               </div>
             </div>
             <div className={styles.stats_box}>
@@ -252,7 +313,15 @@ const IceDashboardNonPremium = (props: NonPremiumProps): ReactElement => {
               </div>
               <div className={styles.stats_balance}>
                 <p className={styles.title}>Finished Challenges</p>
-                <p className={styles.amount}>22 of 26</p>
+                <p className={styles.amount}>
+                  {isLoadingPlayerStats ? (
+                    <Spinner width={24} height={24} />
+                  ) : (
+                    <>
+                      {playerStats.numChallengesCompleted} of {3 * gameReports.length}
+                    </>
+                  )}
+                </p>
               </div>
             </div>
           </div>

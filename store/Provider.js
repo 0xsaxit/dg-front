@@ -47,6 +47,7 @@ const initialState = {
     blackjack: [0, 0, 0, 0, 0, 0, '']
   },
   usersList: [],
+  DGBalancesLoading: true,
   DGBalances: {
     BALANCE_BP_DG_1: 0,
     BALANCE_BP_DG_2: 0,
@@ -93,6 +94,7 @@ const initialState = {
   wearables: [],
   poaps: [],
   eventsData: undefined,
+  stakingBalancesLoading: true,
   stakingBalances: {
     BALANCE_CONTRACT_BPT_1: 0,
     BALANCE_CONTRACT_BPT_2: 0,
@@ -372,6 +374,12 @@ const reducer = (state, action) => {
         usersList: action.data
       };
 
+    case 'dg_balances_loading':
+      return {
+        ...state,
+        DGBalancesLoading: action.data
+      };
+
     case 'dg_balances':
       return {
         ...state,
@@ -382,6 +390,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         DGGameplayCollected: action.data
+      };
+
+    case 'staking_balances_loading':
+      return {
+        ...state,
+        stakingBalancesLoading: action.data
       };
 
     case 'staking_balances':

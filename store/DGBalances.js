@@ -196,6 +196,16 @@ function DGBalances() {
   useEffect(() => {
     if (instances) {
       (async function () {
+        dispatch({
+          type: 'dg_balances_loading',
+          data: true
+        });
+
+        dispatch({
+          type: 'staking_balances_loading',
+          data: true
+        });
+
         const [tokenBalances, DGGameplayCollected, balancesStaking] = await Promise.all([
           getTokenBalances(), // update global state unclaimed DG points balances
           getDGGameplayCollected(), // get historical gameplay collected amount
@@ -215,6 +225,16 @@ function DGBalances() {
         dispatch({
           type: 'staking_balances',
           data: balancesStaking
+        });
+
+        dispatch({
+          type: 'dg_balances_loading',
+          data: false
+        });
+
+        dispatch({
+          type: 'staking_balances_loading',
+          data: false
         });
       })();
     }
