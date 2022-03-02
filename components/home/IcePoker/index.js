@@ -106,6 +106,22 @@ const IcePoker = props => {
                   </div>
                 </Link>
 
+                <Link href="/ice/delegation">
+                  <div className={styles.menu_item} style={{ marginTop: '2px' }}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z"
+                        stroke={iceState === 'delegation' ? 'white' : '#808080'}
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path d="M3 9H21" stroke={iceState === 'delegation' ? 'white' : '#808080'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M9 21V9" stroke={iceState === 'delegation' ? 'white' : '#808080'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </div>
+                </Link>
+
                 <Link href="/ice/leaderboard">
                   <div className={styles.menu_item} style={{ marginTop: '2px' }}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -157,22 +173,6 @@ const IcePoker = props => {
                         strokeLinecap="round"
                         strokeLinejoin="round"
                       />
-                    </svg>
-                  </div>
-                </Link>
-
-                <Link href="/ice/delegation">
-                  <div className={styles.menu_item} style={{ marginTop: '2px' }}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z"
-                        stroke={iceState === 'delegation' ? 'white' : '#808080'}
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path d="M3 9H21" stroke={iceState === 'delegation' ? 'white' : '#808080'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M9 21V9" stroke={iceState === 'delegation' ? 'white' : '#808080'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
                 </Link>
@@ -274,6 +274,24 @@ const IcePoker = props => {
                   </div>
                 </Link>
 
+                <Link href="/ice/delegation">
+                  <div className={iceState === 'delegation' ? styles.menu_item_active : styles.menu_item}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z"
+                        stroke={iceState === 'delegation' ? 'white' : '#808080'}
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path d="M3 9H21" stroke={iceState === 'delegation' ? 'white' : '#808080'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M9 21V9" stroke={iceState === 'delegation' ? 'white' : '#808080'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+
+                    <div className={styles.menu_title}>Delegation Stats</div>
+                  </div>
+                </Link>
+
                 <Link href="/ice/leaderboard">
                   <div className={iceState === 'leaderboard' ? styles.menu_item_active : styles.menu_item}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -285,7 +303,7 @@ const IcePoker = props => {
                       />
                     </svg>
 
-                    <div className={styles.menu_title}>Leaderboard</div>
+                    <div className={styles.menu_title}>Player Leaderboard</div>
                   </div>
                 </Link>
 
@@ -311,7 +329,6 @@ const IcePoker = props => {
                     <div className={styles.menu_title}>Search Tool</div>
                   </div>
                 </Link>
-                
 
                 <Link href="/ice/claim">
                   <div className={iceState === 'iceRewards' ? styles.menu_item_active : styles.menu_item}>
@@ -332,25 +349,7 @@ const IcePoker = props => {
                       />
                     </svg>
 
-                    <div className={styles.menu_title}>Claim ICE Rewards</div>
-                  </div>
-                </Link>
-
-                <Link href="/ice/delegation">
-                  <div className={iceState === 'delegation' ? styles.menu_item_active : styles.menu_item}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z"
-                        stroke={iceState === 'delegation' ? 'white' : '#808080'}
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path d="M3 9H21" stroke={iceState === 'delegation' ? 'white' : '#808080'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M9 21V9" stroke={iceState === 'delegation' ? 'white' : '#808080'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-
-                    <div className={styles.menu_title}>Delegation Stats</div>
+                    <div className={styles.menu_title}>ICE Rewards</div>
                   </div>
                 </Link>
 

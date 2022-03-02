@@ -244,6 +244,10 @@
                         font-size: 15px;
                         line-height: 22px;
                         color: #ffffff;
+
+                        abbr {
+                            letter-spacing: 2px;
+                        }
                     }
                 }
             }
@@ -293,7 +297,7 @@
                 font-family: "Larsseit-Bold";
                 font-size: 14px;
                 width: 100%;
-                background: #006EFF;
+                background: #006eff;
                 color: white;
                 transition: 0.2s ease-in !important;
                 border-radius: 10px;
@@ -303,7 +307,7 @@
                 &:active,
                 &:focus {
                     opacity: 0.6;
-                    background: #006EFF !important;
+                    background: #006eff !important;
                     color: white !important;
                     filter: none !important;
                     transition: 0.2s ease-in;

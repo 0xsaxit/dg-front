@@ -418,7 +418,7 @@ const IceDashboardPremium = (props: PremiumProps): ReactElement => {
                   {isLoadingPlayerStats ? (
                     <Spinner width={24} height={24} />
                   ) : playerStats.checkedIn === 0 ? (
-                    'Bottom 100%'
+                    <abbr>--</abbr>
                   ) : playerStats.leaderboardPercentile / playerStats.checkedIn + 5 <= 50 ? (
                     `Top ${Math.round(playerStats.leaderboardPercentile / playerStats.checkedIn) + 5}%`
                   ) : (
@@ -434,7 +434,7 @@ const IceDashboardPremium = (props: PremiumProps): ReactElement => {
               </div>
               <div className={styles.stats_balance}>
                 <p className={styles.title}>Net Chips</p>
-                <p className={styles.amount}>{isLoadingPlayerStats ? <Spinner width={24} height={24} /> : playerStats.chipsWon}</p>
+                <p className={styles.amount}>{isLoadingPlayerStats ? <Spinner width={24} height={24} /> : playerStats.checkedIn === 0 ? <abbr>--</abbr> : playerStats.chipsWon}</p>
               </div>
             </div>
             <div className={styles.stats_box}>
@@ -447,6 +447,8 @@ const IceDashboardPremium = (props: PremiumProps): ReactElement => {
                 <p className={styles.amount}>
                   {isLoadingPlayerStats ? (
                     <Spinner width={24} height={24} />
+                  ) : playerStats.checkedIn === 0 ? (
+                    <abbr>--</abbr>
                   ) : (
                     <>
                       {playerStats.numChallengesCompleted} of {3 * gameReports.length}
