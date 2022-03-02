@@ -24,20 +24,20 @@ const Premium: FC<PremiumType> = ({ className = '' }: PremiumType): ReactElement
   useEffect(() => {
     // Get Active Wearables
     const wearables = state.iceWearableItems.filter(item => item.isActivated && item.bonus > 0);
+    const delegatedWearables = state.iceDelegatedItems;
 
     setActiveWearables(wearables);
 
     // Get xDG Balances
     const xdgTotal = parseFloat(state.stakingBalances.BALANCE_USER_GOVERNANCE) + parseFloat(state.DGBalances.BALANCE_CHILD_TOKEN_XDG);
-
     setXdgTotal(xdgTotal);
 
-    if (wearables && wearables.length > 0) {
-      setPremiumStatus(xdgTotal < wearables.length * 1000 ? 0 : 1);
+    if (wearables && wearables.length > 0 && !delegatedWearables) {
+      setPremiumStatus(state.userIsPremium ? 0 : 1);
     } else {
       setPremiumStatus(2);
     }
-  }, [state.iceWearableItems, state.stakingBalances.BALANCE_USER_GOVERNANCE, state.DGBalances.BALANCE_CHILD_TOKEN_XDG]);
+  }, [state.iceWearableItems, state.userIsPremium]);
 
   const premiumDescription = [
     {

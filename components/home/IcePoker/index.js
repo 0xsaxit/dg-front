@@ -33,7 +33,8 @@ const IcePoker = props => {
         data: userIsPremium
       });
     }
-  }, [state.iceWearableItemsLoading, state.DGBalancesLoading, state.stakingBalancesLoading]);
+    
+  }, [state.iceWearableItemsLoading, state.DGBalancesLoading, state.stakingBalancesLoading, state.iceDelegatedItemsLoading]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
