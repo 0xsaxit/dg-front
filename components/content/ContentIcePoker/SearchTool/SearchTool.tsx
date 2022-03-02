@@ -269,7 +269,7 @@ const IceSearchTool: FC<IceSearchToolType> = ({ className = '' }: IceSearchToolT
         </section>
       ) : (
         <>
-          {state.userStatus >= 28 ? (
+          {state.userIsPremium ? (
             <section className={styles.playerLookUp}>
               {playerLookUpHeader()}
               {searchBox()}

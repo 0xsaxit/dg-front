@@ -10,6 +10,7 @@ const initialState = {
   },
   userStatus: 0,
   userAddress: '',
+  userIsPremium: undefined,
   userInfo: {
     name: '',
     id: 0,
@@ -300,6 +301,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         userInfo: action.data
+      };
+      
+    case 'user_is_premium':
+      return {
+        ...state,
+        userIsPremium: action.data
       };
 
     case 'update_balances':

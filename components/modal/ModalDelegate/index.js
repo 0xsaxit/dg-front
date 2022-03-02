@@ -225,7 +225,7 @@ const ModalDelegate = props => {
                 }}
               />
             </div>
-            {state.userStatus >= 28 ? (
+            {state.userIsPremium ? (
               <div className={styles.inputcard}>
                 Nickname:
                 <input

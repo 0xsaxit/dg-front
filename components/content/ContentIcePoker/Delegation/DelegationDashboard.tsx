@@ -310,7 +310,7 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
         ) : (
           <h1 onClick={() => setShowingBreakDown(index)}>{nickName.length > 12 ? nickName.substr(0, 10) + '...' : nickName}</h1>
         )}
-        {state.userStatus >= 28 && (
+        {state.userIsPremium && (
           <img
             className={styles.edit}
             src="https://res.cloudinary.com/dnzambf4m/image/upload/v1643126922/edit_p53oml.png"
@@ -356,7 +356,7 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
                   ) : (
                     <h1>{title.length > 24 ? title.substr(0, 24) + '...' : title}</h1>
                   )}
-                  {state.userStatus >= 28 && (
+                  {state.userIsPremium && (
                     <img
                       className={styles.edit}
                       src="https://res.cloudinary.com/dnzambf4m/image/upload/v1643126922/edit_p53oml.png"
@@ -398,7 +398,7 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
 
                 {/* Filter by Active Delegation Status */}
                 {(() => {
-                  if (state.userStatus >= 28) {
+                  if (state.DGBalances.BALANCE_CHILD_TOKEN_XDG > state.iceWearableItems.length * 1000) {
                     return (
                       <div className={cn(styles.filter_pills, styles.delegation_status)}>
                         <div
@@ -785,7 +785,7 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
                       </Table>
                     </div>
                   </div>
-                  { state.userStatus >= 28 && state.DGBalances.BALANCE_CHILD_TOKEN_XDG > state.iceWearableItems.length * 1000 ? (
+                  { state.userIsPremium ? (
                     <div className={styles.lock_wearable}>
                       <div className={styles.lock_title}>
                         Manage Your Guild, Effortlessly
