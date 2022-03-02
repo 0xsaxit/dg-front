@@ -269,7 +269,7 @@ const IceSearchTool: FC<IceSearchToolType> = ({ className = '' }: IceSearchToolT
         </section>
       ) : (
         <>
-          {state.DGBalances.BALANCE_CHILD_TOKEN_XDG > state.iceWearableItems.length * 1000 ? (
+          {state.userIsPremium ? (
             <section className={styles.playerLookUp}>
               {playerLookUpHeader()}
               {searchBox()}
