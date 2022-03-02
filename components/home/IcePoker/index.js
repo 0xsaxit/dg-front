@@ -23,12 +23,11 @@ const IcePoker = props => {
   useEffect(() => {
     setMobileOpen(!isMobile);
   }, [isMobile]);
-  
+
   useEffect(() => {
-    let userIsPremium = (state.DGBalances.BALANCE_CHILD_TOKEN_XDG > state.iceWearableItems.length * 1000) && !state.iceDelegatedItems;
-    console.log(userIsPremium)
-    
-    if (typeof state.userIsPremium === "undefined" && !state.iceWearableItemsLoading && !state.DGBalancesLoading && !state.stakingBalancesLoading) {
+    let userIsPremium = parseFloat(state.stakingBalances.BALANCE_USER_GOVERNANCE) + parseFloat(state.DGBalances.BALANCE_CHILD_TOKEN_XDG) >= state.iceWearableItems.length * 1000;
+
+    if (!state.iceWearableItemsLoading && !state.DGBalancesLoading && !state.stakingBalancesLoading) {
       dispatch({
         type: 'user_is_premium',
         data: userIsPremium

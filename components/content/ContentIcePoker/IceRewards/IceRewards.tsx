@@ -9,7 +9,7 @@ import styles from './IceRewards.module.scss';
 import Fetch from '../../../../common/Fetch';
 import FoxAnimation from 'components/lottieAnimation/animations/fox';
 import EmptyResultAnimation from 'components/lottieAnimation/animations/emptyResult';
-import ModalIceBreakdown from 'components/modal/ModalIceBreakDown';
+import ModalIceBreakdown from '@/components/modal/ModalIceBreakDown/ModalIceBreakDown';
 import LoadingAnimation from 'components/lottieAnimation/animations/LoadingAnimation';
 import HourglassAnimation from 'components/lottieAnimation/animations/hourglass';
 
