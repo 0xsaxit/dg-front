@@ -84,7 +84,7 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): Rea
         setIsLoading(true);
 
         // Get Gameplay Reports from the API
-        const response = await Fetch.GAMEPLAY_REPORTS('0xC65F7c7D76EE888Ddcc554e78C0beBAbA0A11cBd');
+        const response = await Fetch.GAMEPLAY_REPORTS();
 
         // Set xAxis
         const xAxis = [];
