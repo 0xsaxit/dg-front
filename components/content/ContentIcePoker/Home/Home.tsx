@@ -40,7 +40,7 @@ const IceHome = (props: HomeProps): ReactElement => {
     }
 
     // Delegate
-    if (activeWearables.length === 0 && delegatedWearables.length > 0) {
+    if (delegatedWearables.length > 0) {
       setStep(1);
 
       return;
