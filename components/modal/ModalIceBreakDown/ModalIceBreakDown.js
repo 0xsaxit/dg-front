@@ -1,13 +1,8 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import { Modal } from 'semantic-ui-react';
 import styles from './ModalIceBreakDown.module.scss';
 
-export interface ModalIceBreakDownType {
-  content?: any;
-}
-
-const ModalIceBreakDown = (props: ModalIceBreakDownType): ReactElement => {
-  const history = props.history;
+const ModalIceBreakDown = ({ history, setShowingBreakdown }) => {
   const defaultImgs = [
     'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png',
     'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png',
@@ -16,7 +11,7 @@ const ModalIceBreakDown = (props: ModalIceBreakDownType): ReactElement => {
     'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png'
   ];
 
-  function displayNickName(record): string {
+  function displayNickName(record) {
     return record.delegateNickname
       ? record.delegateNickname.length > 10
         ? record.delegateNickname.substr(0, 9) + '...'
@@ -29,12 +24,12 @@ const ModalIceBreakDown = (props: ModalIceBreakDownType): ReactElement => {
       <Modal
         className={styles.breakdown_modal}
         onClose={() => {
-          props.setShowingBreakDown(-1);
+          setShowingBreakDown(-1);
         }}
         open={true}
         close
       >
-        <div className={styles.close_icon} onClick={() => props.setShowingBreakDown(-1)}>
+        <div className={styles.close_icon} onClick={() => setShowingBreakDown(-1)}>
           <span className={styles.button_close}>
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -71,7 +66,7 @@ const ModalIceBreakDown = (props: ModalIceBreakDownType): ReactElement => {
                             <img src={`${record.wearableSnapshot.wearableData[i].image}`} />
                             <div className={styles.rank}> {record.wearableSnapshot.wearableData[i].rank} </div>
                             <div className={styles.bottomInfo}>
-                                +{record.wearableSnapshot.wearableData[i].bonus}%
+                              +{record.wearableSnapshot.wearableData[i].bonus}%
                               <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
                             </div>
                           </div>
@@ -81,7 +76,7 @@ const ModalIceBreakDown = (props: ModalIceBreakDownType): ReactElement => {
                           <div key={i} className={styles.nft}>
                             <img src={`${def}`} />
                             <div className={styles.bottomInfo} style={{ opacity: 0.6 }}>
-                                +0%
+                              +0%
                               <img src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" alt="ice" />
                             </div>
                           </div>

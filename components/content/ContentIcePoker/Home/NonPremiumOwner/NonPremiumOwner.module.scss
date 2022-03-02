@@ -15,7 +15,7 @@
     }
 
     @include mq($until: 499px) {
-        display: none;
+        // display: none;
     }
 
     .container_left {
