@@ -9,7 +9,7 @@ import styles from './IceRewards.module.scss';
 import Fetch from '../../../../common/Fetch';
 import FoxAnimation from 'components/lottieAnimation/animations/fox';
 import EmptyResultAnimation from 'components/lottieAnimation/animations/emptyResult';
-import ModalIceBreakdown from 'components/modal/ModalIceBreakDown';
+import ModalIceBreakdown from '@/components/modal/ModalIceBreakDown/ModalIceBreakDown';
 import LoadingAnimation from 'components/lottieAnimation/animations/LoadingAnimation';
 import HourglassAnimation from 'components/lottieAnimation/animations/hourglass';
 
@@ -84,7 +84,7 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): Rea
         setIsLoading(true);
 
         // Get Gameplay Reports from the API
-        const response = await Fetch.GAMEPLAY_REPORTS();
+        const response = await Fetch.GAMEPLAY_REPORTS('0xC65F7c7D76EE888Ddcc554e78C0beBAbA0A11cBd');
 
         // Set xAxis
         const xAxis = [];
