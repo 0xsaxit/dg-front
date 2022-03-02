@@ -136,7 +136,7 @@ const IceDashboardNewbie = (props: NewbieProps): ReactElement => {
     <section className={cn('row', styles.main_wrapper)}>
       <div className={cn('col-xl-8', styles.overview_container)}>
         <div className={styles.container_left}>
-          <p className={styles.welcome_text}>Welcome</p>
+          <p className={styles.welcome_text}>Welcome!</p>
           <h1 className={styles.dashboard_text}>Your ICE Dashboard</h1>
         </div>
 
