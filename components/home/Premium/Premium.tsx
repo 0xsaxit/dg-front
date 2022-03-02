@@ -104,7 +104,7 @@ const Premium: FC<PremiumType> = ({ className = '' }: PremiumType): ReactElement
           </div>
 
           <div className={styles.required_area}>
-            {premiumStatus === 0 ? (
+            {premiumStatus != 2 ? (
               <div className={styles.card_area}>
                 <div className={styles.card_area_body}>
                   <div className={styles.card}>
@@ -169,7 +169,6 @@ const Premium: FC<PremiumType> = ({ className = '' }: PremiumType): ReactElement
                 </div>
               </div>
             ): null}
-
             {premiumStatus === 0 ? (
               <Link href="/dg/governance">
                 <Button className={styles.button}>
