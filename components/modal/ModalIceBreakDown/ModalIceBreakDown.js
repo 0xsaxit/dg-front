@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal } from 'semantic-ui-react';
 import styles from './ModalIceBreakDown.module.scss';
 
-const ModalIceBreakDown = ({ history, setShowingBreakdown }) => {
+const ModalIceBreakDown = ({ history, setShowingBreakDown }) => {
   const defaultImgs = [
     'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png',
     'https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,w_210,q_auto:good/v1637175172/playerStatsItemBg_mhds5h.png',
