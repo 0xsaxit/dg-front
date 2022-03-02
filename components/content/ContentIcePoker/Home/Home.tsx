@@ -28,10 +28,7 @@ const IceHome = (props: HomeProps): ReactElement => {
     // Get Active Wearables, Delegate Wearables
     const activeWearables = state.iceWearableItems.filter(item => item.isActivated && item.bonus > 0);
     const delegatedWearables = state.iceDelegatedItems;
-
-    // Get xDG Balances
-    const xdgTotal = parseFloat(state.stakingBalances.BALANCE_USER_GOVERNANCE) + parseFloat(state.DGBalances.BALANCE_CHILD_TOKEN_XDG);
-
+    
     // Newbie
     if (activeWearables.length === 0 && delegatedWearables.length === 0) {
       setStep(0);
@@ -47,10 +44,10 @@ const IceHome = (props: HomeProps): ReactElement => {
     }
 
     if (activeWearables.length > 0) {
-      // Non-Premium, Premium
-      setStep(xdgTotal < activeWearables.length * 1000 ? 2 : 3);
+      // Premium, Non-Premium
+      setStep(state.userIsPremium ? 3 : 2);
     }
-  }, [state.iceWearableItems, state.iceDelegatedItems, state.stakingBalances.BALANCE_USER_GOVERNANCE, state.DGBalances.BALANCE_CHILD_TOKEN_XDG]);
+  }, [state.iceWearableItems, state.iceDelegatedItems, state.userIsPremium]);
 
   return (
     <section className={styles.home}>
