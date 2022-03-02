@@ -785,7 +785,22 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
                       </Table>
                     </div>
                   </div>
-                  { state.userIsPremium ? (
+                  { state.userIsPremium ? 
+                    (
+                      <div className={styles.more_wearable}>
+                        <div className={styles.title}>
+                          More Wearables. More Players.
+                        </div>
+                        <div className={styles.desc}>
+                          Acquire more ICE Wearables to expand your roster of poker players.
+                        </div>
+
+                        <Button className={styles.grey_button} href="/ice/marketplace">
+                          Browse Wearables
+                        </Button>
+                      </div>
+                    )
+                    : (
                     <div className={styles.lock_wearable}>
                       <div className={styles.lock_title}>
                         Manage Your Guild, Effortlessly
@@ -799,20 +814,7 @@ const DelegationDashboard: FC<DelegationDashboardType> = ({ className = '' }: De
                         Unlock Premium
                       </Button>
                     </div>
-                  ) : (
-                    <div className={styles.more_wearable}>
-                      <div className={styles.title}>
-                        More Wearables. More Players.
-                      </div>
-                      <div className={styles.desc}>
-                        Acquire more ICE Wearables to expand your roster of poker players.
-                      </div>
-
-                      <Button className={styles.grey_button} href="/ice/marketplace">
-                        Browse Wearables
-                      </Button>
-                    </div>
-                  )}
+                  ) }
                 </>
               );
             } else {
