@@ -32,12 +32,12 @@ const Premium: FC<PremiumType> = ({ className = '' }: PremiumType): ReactElement
     const xdgTotal = parseFloat(state.stakingBalances.BALANCE_USER_GOVERNANCE) + parseFloat(state.DGBalances.BALANCE_CHILD_TOKEN_XDG);
     setXdgTotal(xdgTotal);
 
-    if (wearables && wearables.length > 0 && !delegatedWearables) {
-      setPremiumStatus(state.userIsPremium ? 0 : 1);
+    if (wearables && wearables.length > 0 && delegatedWearables.length == 0) {
+      setPremiumStatus(xdgTotal < wearables.length * 1000 ? 0 : 1);
     } else {
       setPremiumStatus(2);
     }
-  }, [state.iceWearableItems, state.userIsPremium]);
+  }, [state.iceWearableItems, state.userIsPremium,state.stakingBalances.BALANCE_USER_GOVERNANCE, state.DGBalances.BALANCE_CHILD_TOKEN_XDG]);
 
   const premiumDescription = [
     {
@@ -104,69 +104,71 @@ const Premium: FC<PremiumType> = ({ className = '' }: PremiumType): ReactElement
           </div>
 
           <div className={styles.required_area}>
-            <div className={styles.card_area}>
-              <div className={styles.card_area_body}>
-                <div className={styles.card}>
-                  {activeWearables.length} Wearable{activeWearables.length > 1 ? 's' : ''}
-                  <img className={styles.img_wearables} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1645450156/Group_2_bcwugs.png" alt="wearables" />
-                </div>
+            {premiumStatus === 0 ? (
+              <div className={styles.card_area}>
+                <div className={styles.card_area_body}>
+                  <div className={styles.card}>
+                    {activeWearables.length} Wearable{activeWearables.length > 1 ? 's' : ''}
+                    <img className={styles.img_wearables} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1645450156/Group_2_bcwugs.png" alt="wearables" />
+                  </div>
 
-                <div className={styles.description}>
-                  You own {activeWearables.length} wearable{activeWearables.length > 1 ? 's' : ''}
-                </div>
-              </div>
-
-              <div className={styles.icon}>
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M11.198 0.845999H7.876L5.83 4.19L3.806 0.845999H0.484L3.894 6.324L0.352 12H3.674L5.83 8.414L8.008 12H11.33L7.788 6.324L11.198 0.845999Z" fill="white" />
-                </svg>
-              </div>
-
-              <div className={styles.card_area_body}>
-                <div className={styles.card}>
-                  1000 xDG
-                  <img className={styles.img_wearables} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637260602/grayLogo_ojx2hi.png" alt="xDG" />
-                </div>
-
-                <div className={styles.description}>xDG Required per Wearable</div>
-              </div>
-
-              <div className={styles.icon}>
-                <svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9.702 0.802H0.638V3.266H9.702V0.802ZM9.702 5.378H0.638V7.842H9.702V5.378Z" fill="white" />
-                </svg>
-              </div>
-
-              <div className={styles.card_area_body}>
-                {premiumStatus === 0 ? <span className={styles.not_enough}>Not Enough</span> : null}
-
-                <div className={styles.card}>
-                  {activeWearables.length * 1000} xDG
-                  <img className={styles.img_wearables} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637260602/grayLogo_ojx2hi.png" alt="xDG" />
-                </div>
-
-                {premiumStatus === 0 ? (
                   <div className={styles.description}>
-                    {Math.floor(xdgTotal)} xDG Held <br />
-                    <abbr>(On Polygon & ETH)</abbr>
+                    You own {activeWearables.length} wearable{activeWearables.length > 1 ? 's' : ''}
                   </div>
-                ) : (
-                  <div className={styles.greenCheck}>
-                    <>
-                      {Math.floor(xdgTotal)} xDG Held
-                      <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M4.26904 10.0044C4.64502 10.0044 4.94043 9.85938 5.14453 9.55859L10.145 1.93701C10.29 1.7168 10.3491 1.50732 10.3491 1.31396C10.3491 0.792969 9.95166 0.40625 9.41455 0.40625C9.04932 0.40625 8.81836 0.540527 8.59277 0.889648L4.24756 7.74316L2.04541 5.0415C1.84131 4.79443 1.61572 4.68701 1.3042 4.68701C0.761719 4.68701 0.369629 5.07373 0.369629 5.6001C0.369629 5.83643 0.439453 6.04053 0.643555 6.27148L3.41504 9.60156C3.646 9.87549 3.91455 10.0044 4.26904 10.0044Z"
-                          fill="#67DD6C"
-                        />
-                      </svg>
-                      <br />
-                    </>
-                    <abbr>(On Polygon & ETH)</abbr>
+                </div>
+
+                <div className={styles.icon}>
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.198 0.845999H7.876L5.83 4.19L3.806 0.845999H0.484L3.894 6.324L0.352 12H3.674L5.83 8.414L8.008 12H11.33L7.788 6.324L11.198 0.845999Z" fill="white" />
+                  </svg>
+                </div>
+
+                <div className={styles.card_area_body}>
+                  <div className={styles.card}>
+                    1000 xDG
+                    <img className={styles.img_wearables} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637260602/grayLogo_ojx2hi.png" alt="xDG" />
                   </div>
-                )}
+
+                  <div className={styles.description}>xDG Required per Wearable</div>
+                </div>
+
+                <div className={styles.icon}>
+                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.702 0.802H0.638V3.266H9.702V0.802ZM9.702 5.378H0.638V7.842H9.702V5.378Z" fill="white" />
+                  </svg>
+                </div>
+
+                <div className={styles.card_area_body}>
+                  {premiumStatus === 0 ? <span className={styles.not_enough}>Not Enough</span> : null}
+
+                  <div className={styles.card}>
+                    {activeWearables.length * 1000} xDG
+                    <img className={styles.img_wearables} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1637260602/grayLogo_ojx2hi.png" alt="xDG" />
+                  </div>
+
+                  {premiumStatus === 0 ? (
+                    <div className={styles.description}>
+                      {Math.floor(xdgTotal)} xDG Held <br />
+                      <abbr>(On Polygon & ETH)</abbr>
+                    </div>
+                  ) : (
+                    <div className={styles.greenCheck}>
+                      <>
+                        {Math.floor(xdgTotal)} xDG Held
+                        <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M4.26904 10.0044C4.64502 10.0044 4.94043 9.85938 5.14453 9.55859L10.145 1.93701C10.29 1.7168 10.3491 1.50732 10.3491 1.31396C10.3491 0.792969 9.95166 0.40625 9.41455 0.40625C9.04932 0.40625 8.81836 0.540527 8.59277 0.889648L4.24756 7.74316L2.04541 5.0415C1.84131 4.79443 1.61572 4.68701 1.3042 4.68701C0.761719 4.68701 0.369629 5.07373 0.369629 5.6001C0.369629 5.83643 0.439453 6.04053 0.643555 6.27148L3.41504 9.60156C3.646 9.87549 3.91455 10.0044 4.26904 10.0044Z"
+                            fill="#67DD6C"
+                          />
+                        </svg>
+                        <br />
+                      </>
+                      <abbr>(On Polygon & ETH)</abbr>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
+            ): null}
 
             {premiumStatus === 0 ? (
               <Link href="/dg/governance">
