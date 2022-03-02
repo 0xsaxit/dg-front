@@ -1,6 +1,6 @@
 import { useEffect, useContext, useState } from 'react';
 import Link from 'next/link';
-import { Popup, Button } from 'semantic-ui-react';
+import { Popup, Button, Transition } from 'semantic-ui-react';
 import { GlobalContext } from '@/store';
 import Global from 'components/Constants';
 import { useRouter } from 'next/router';
@@ -20,7 +20,8 @@ const ModalPopup = () => {
   const [isToastShow, setIsToastShow] = useState(false);
 
   const [visibleStatus, setVisibleStatus] = useState(false);
-
+  const [open, setOpen] = useState(true);
+  
   useEffect(() => {
     const showStatus = () => {
       setVisibleStatus(true);
@@ -84,6 +85,7 @@ const ModalPopup = () => {
     } else {
       setBinance(false);
     }
+    setOpen(false);
   }, []);
 
   useEffect(() => {
@@ -100,11 +102,23 @@ const ModalPopup = () => {
 
   return (
     <div>
+      <Transition
+        visible={open}
+        animation="fade"
+        duration={1500}
+      >
+
       <Popup
-        pinned
         on="click"
         position="bottom right"
         className="account-popup"
+        onClose={()=>{
+          setOpen(false);
+        }}
+        onOpen={()=>{
+          setOpen(true);
+        }}
+        open={open}
         trigger={
           <div>
             {visibleStatus > 0 && state.dgLoading > 0 && (
@@ -152,6 +166,11 @@ const ModalPopup = () => {
                 marginRight: 0,
                 zIndex: 1
               }}
+              // onClick={()=> {
+              //   // setIsOpen(!isOpen);
+              //   console.log(isOpen? "Closed ++++++++++++++++ " : "Opened +++++++++++++++++ ");
+              //   setIsOpen(!isOpen);
+              // }}
             >
               <span>
                 <svg style={{ marginRight: '6px', marginBottom: '-2px' }} width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -247,6 +266,8 @@ const ModalPopup = () => {
           </span>
         </span>
       </Popup>
+
+      </Transition>
 
       {copied ? (
         <div className={copied ? 'copied-toast show' : 'copied-toast'}>
