@@ -225,7 +225,7 @@ const ModalDelegate = props => {
                 }}
               />
             </div>
-            {state.DGBalances.BALANCE_CHILD_TOKEN_XDG > state.iceWearableItems.length * 1000 ? (
+            {state.userIsPremium ? (
               <div className={styles.inputcard}>
                 Nickname:
                 <input
