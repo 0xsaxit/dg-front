@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { GlobalContext } from '@/store';
 import Fetch from '@/common/Fetch';
 import cn from 'classnames';
-import { Button } from 'semantic-ui-react';
+import { Loader, Button } from 'semantic-ui-react';
 import LoadingAnimation from 'components/lottieAnimation/animations/LoadingAnimation';
 import Spinner from 'components/lottieAnimation/animations/spinner_updated';
 import styles from './Delegate.module.scss';
@@ -416,6 +416,35 @@ const IceDashboardDelegate = (props: DelegateProps): ReactElement => {
             Play Now
           </Button>
         </div>
+        
+        <div className={styles.lower}>
+          <p className={styles.lower_header}>
+            Claim xDG Airdrop
+          </p>
+          <div className={styles.lower_xdg_amount}>
+            {totalUnclaimedAmount}
+            <svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="20.5" r="20" fill="#424242"/>
+              <path d="M12.8487 13.368L10.2072 10.7331C14.9062 5.91481 23.3304 5.01792 29.1555 10.2867C35.1404 15.6982 35.1573 24.886 29.4966 30.3411C23.6546 35.972 14.9643 35.1094 10.2142 30.2151L12.8458 27.5854C12.8749 27.6109 12.9161 27.6434 12.9562 27.6817C13.4269 28.1032 13.9027 28.5194 14.4356 28.8631C15.3891 29.4799 16.4392 29.9327 17.5425 30.2029C19.8262 30.7588 22.2329 30.4942 24.3409 29.4552C25.2633 29.0002 26.1105 28.4066 26.8528 27.6951C28.5407 26.0792 29.6101 23.9247 29.876 21.6043C30.0372 20.1788 29.8901 18.7354 29.4448 17.3716C28.9996 16.0078 28.2664 14.7553 27.295 13.6989C25.9336 12.2186 24.2688 11.2393 22.3194 10.7499C20.069 10.1989 17.6972 10.4408 15.6047 11.4349C14.6678 11.8704 13.8102 12.459 13.0672 13.1764C13.0091 13.2345 12.9446 13.2926 12.8824 13.346C12.872 13.3545 12.8607 13.3619 12.8487 13.368Z" fill="white"/>
+              <path d="M24.8021 22.8246L22.4861 20.5095H29.0793C29.1543 23.8881 26.9468 27.9523 22.5134 29.2648C20.3692 29.8974 18.0675 29.7259 16.041 28.7825C14.0144 27.8391 12.4025 26.1888 11.5081 24.1416C10.6138 22.0945 10.4985 19.7915 11.1841 17.6654C11.8696 15.5393 13.3087 13.7366 15.231 12.596C19.1857 10.2507 23.8213 11.3299 26.3605 13.9689L23.7214 16.6015C22.7435 15.639 21.5477 15.1177 20.1589 15.048C19.0357 14.9858 17.922 15.284 16.9806 15.8991C16.2732 16.3514 15.6804 16.9613 15.2489 17.6811C14.8173 18.4009 14.5586 19.2108 14.4932 20.0473C14.4279 20.8838 14.5575 21.724 14.872 22.502C15.1865 23.28 15.6773 23.9745 16.3058 24.531C16.9343 25.0875 17.6834 25.4909 18.4943 25.7093C19.3051 25.9278 20.1556 25.9554 20.979 25.79C21.8023 25.6247 22.5761 25.2708 23.2394 24.7563C23.9028 24.2417 24.4377 23.5805 24.8021 22.8246Z" fill="white"/>
+            </svg>
+          </div>
+          <div className={styles.lower_xdg_usd}>
+            ${(totalUnclaimedAmount * xDgPrice).toFixed(2)}
+          </div>
+          <Button
+            className={styles.lower_button}
+            onClick={async ()=> {
+              await claimRewards();
+            }}
+            disabled={totalUnclaimedAmount>0? false: true}
+          >
+            { !isXdgClicked ? (`Claim ${totalUnclaimedAmount} xDG`) : (<Loader active inline size="small" className="treasury-loader" />) }
+          </Button>
+          <a className={styles.lower_xdg_text} target="_blank" href="https://snapshot.org/#/decentralgames.eth/proposal/0xa5933d9cf0621e2f0b0db7e8eacd069f7398cb599b16d9ee1bce81b41bea50e7" >
+            See Governance Proposal
+          </a>
+        </div>
 
         <div className={styles.lower}>
           <p className={styles.lower_header}>Claim ICE Rewards</p>
@@ -522,7 +551,9 @@ const IceDashboardDelegate = (props: DelegateProps): ReactElement => {
               />
             </svg>
           </div>
-          <div className={styles.lower_xdg_usd}>${formatPrice(totalUnclaimedAmount * xDgPrice, 2)}</div>
+          <div className={styles.lower_xdg_usd}>
+            ${formatPrice(totalUnclaimedAmount * xDgPrice, 2)}
+          </div>
 
           <Button
             className={styles.lower_button}
@@ -533,7 +564,6 @@ const IceDashboardDelegate = (props: DelegateProps): ReactElement => {
           >
             {!isXdgClicked ? `Claim ${totalUnclaimedAmount} xDG` : <LoadingAnimation />}
           </Button>
-
           <div
             className={styles.lower_xdg_text}
             onClick={() => {
