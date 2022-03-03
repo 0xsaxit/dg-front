@@ -9,7 +9,7 @@ import styles from './IceRewards.module.scss';
 import Fetch from '../../../../common/Fetch';
 import FoxAnimation from 'components/lottieAnimation/animations/fox';
 import EmptyResultAnimation from 'components/lottieAnimation/animations/emptyResult';
-import ModalIceBreakdown from 'components/modal/ModalIceBreakDown';
+import ModalIceBreakdown from '@/components/modal/ModalIceBreakDown/ModalIceBreakDown';
 import LoadingAnimation from 'components/lottieAnimation/animations/LoadingAnimation';
 import HourglassAnimation from 'components/lottieAnimation/animations/hourglass';
 
@@ -246,7 +246,7 @@ const IceRewards: FC<IceRewardsType> = ({ className = '' }: IceRewardsType): Rea
 
               <div className={styles.lower}>
                 <div className={styles.lower_header}>
-                  <h1>Play-to-Earn ICE Rewards</h1>
+                  <h1>ICE Poker Rewards</h1>
                   <p>
                     Payouts at midnight UTC daily&nbsp;
                     <abbr>(in {payoutTime})</abbr>

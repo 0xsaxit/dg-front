@@ -85,7 +85,7 @@ const ModalMintActivation = props => {
               />
               <div className={styles.round_desc}>
                 {state.tokenAmounts.WETH_COST_AMOUNT} ETH +{' '}
-                {state.stakingBalances.BALANCE_USER_GOVERNANCE} DG Staked
+                {state.stakingBalances?.BALANCE_USER_GOVERNANCE} DG Staked
               </div>
             </div>
             <div className={styles.logo}>

@@ -380,7 +380,7 @@ const ButtonConnect = props => {
             {tablet ? 'Connect' : 'Connect MetaMask'}
           </Button>
           {isPhone && (
-            <a href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask" target="_blank" className={styles.get_metamask} rel="noreferrer">
+            <a href="https://metamask.io/faqs/" target="_blank" className={styles.get_metamask} rel="noreferrer">
               ?
             </a>
           )}
@@ -391,7 +391,7 @@ const ButtonConnect = props => {
 
           {/* Help Button */}
           {isPhone && (
-            <a href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask" target="_blank" className={styles.get_metamask} rel="noreferrer">
+            <a href="https://metamask.io/faqs/" target="_blank" className={styles.get_metamask} rel="noreferrer">
               ?
             </a>
           )}
