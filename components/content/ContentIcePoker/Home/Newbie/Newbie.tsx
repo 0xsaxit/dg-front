@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { GlobalContext } from '@/store';
 import Fetch from '@/common/Fetch';
 import cn from 'classnames';
-import { Button } from 'semantic-ui-react';
+import { Loader, Button } from 'semantic-ui-react';
 import LoadingAnimation from 'components/lottieAnimation/animations/LoadingAnimation';
 import styles from './Newbie.module.scss';
 
@@ -218,7 +218,7 @@ const IceDashboardNewbie = (props: NewbieProps): ReactElement => {
             </svg>
           </div>
           <div className={styles.lower_xdg_usd}>
-          ${(totalUnclaimedAmount * xDG).toFixed(2)}
+          ${(totalUnclaimedAmount * xDgPrice).toFixed(2)}
           </div>
           <Button
             className={styles.lower_button}
@@ -227,9 +227,9 @@ const IceDashboardNewbie = (props: NewbieProps): ReactElement => {
             }}
             disabled={totalUnclaimedAmount>0? false: true}
           >
-            { !xdgClicked ? (`Claim ${totalUnclaimedAmount} xDG`) : (<Loader active inline size="small" className="treasury-loader" />) }
+            { !isXdgClicked ? (`Claim ${totalUnclaimedAmount} xDG`) : (<Loader active inline size="small" className="treasury-loader" />) }
           </Button>
-          <a className={styles.lower_xdg_text} href="https://snapshot.org/#/decentralgames.eth/proposal/0xa5933d9cf0621e2f0b0db7e8eacd069f7398cb599b16d9ee1bce81b41bea50e7" >
+          <a className={styles.lower_xdg_text} target="_blank" href="https://snapshot.org/#/decentralgames.eth/proposal/0xa5933d9cf0621e2f0b0db7e8eacd069f7398cb599b16d9ee1bce81b41bea50e7" >
             See Governance Proposal
           </a>
         </div>
