@@ -787,12 +787,13 @@ const Overview = props => {
             >
               { !xdgClicked ? (`Claim ${totalUnclaimedAmount} xDG`) : (<Loader active inline size="small" className="treasury-loader" />) }
             </Button>
-            <div className={styles.lower_xdg_text}>
+            <a className={styles.lower_xdg_text} href="https://snapshot.org/#/decentralgames.eth/proposal/0xa5933d9cf0621e2f0b0db7e8eacd069f7398cb599b16d9ee1bce81b41bea50e7" >
               See Governance Proposal
-            </div>
+            </a>
           </div>
         </div>
       </div>
+      
 
       <div className={styles.treasury_container_mobile}>
         <div className={styles.treasury_header}>
