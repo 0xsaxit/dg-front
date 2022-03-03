@@ -86,8 +86,8 @@ const IceWearableCard: FC<IceWearableCardType> = ({ item, delegation, className 
               ) : (
                 <h1 onClick={() => setShowingBreakDown(1)}>Delegated To {nickName.length > 12 ? nickName.substr(0, 12) + '...' : nickName}</h1>
               )}
-
-              {state.userStatus>=28 && 
+              
+              {state.userIsPremium && 
                 <img
                   className={styles.edit}
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1643126922/edit_p53oml.png"
