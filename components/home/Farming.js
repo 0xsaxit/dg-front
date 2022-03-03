@@ -27,8 +27,8 @@ const Farming = props => {
   const [amountInput, setAmountInput] = useState('10000000000000000000');
 
   const DGState = props.DGState;
-  const DGBalances = state.DGBalances.BALANCE_STAKING_UNISWAP;
-  const DGStakingBalances = state.stakingBalances.BALANCE_STAKED_UNISWAP;
+  const DGBalances = state.DGBalances?.BALANCE_STAKING_UNISWAP;
+  const DGStakingBalances = state.stakingBalances?.BALANCE_STAKED_UNISWAP;
 
   
   useEffect(() => {
@@ -255,11 +255,11 @@ const Farming = props => {
           <span style={{ display: 'flex', flexDirection: 'column' }}>
             <p>
               BPT balance in contract:{' '}
-              {formatPrice(state.stakingBalances.BALANCE_CONTRACT_BPT_1, 3)}
+              {formatPrice(state.stakingBalances?.BALANCE_CONTRACT_BPT_1, 3)}
             </p>
             <p>
               DG balance in contract:{' '}
-              {formatPrice(state.stakingBalances.BALANCE_CONTRACT_DG_1, 3)}
+              {formatPrice(state.stakingBalances?.BALANCE_CONTRACT_DG_1, 3)}
             </p>
             <p>Current reward amount: {currenReward}</p>
             <p>Reward period finish time: {finishTime}</p>

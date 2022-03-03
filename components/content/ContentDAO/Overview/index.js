@@ -250,10 +250,10 @@ const Overview = props => {
   }, [state.treasuryNumbers, dgTreasury]);
 
   useEffect(() => {
-    if (state.userStatus && state.stakingBalances.BALANCE_USER_GOVERNANCE > 0) {
+    if (state.userStatus && state.stakingBalances?.BALANCE_USER_GOVERNANCE > 0) {
       setVisible(false);
     }
-  }, [state.userStatus, state.stakingBalances.BALANCE_USER_GOVERNANCE]);
+  }, [state.userStatus, state.stakingBalances?.BALANCE_USER_GOVERNANCE]);
 
   // helper functions
   function getWeeklyChange() {
@@ -302,10 +302,10 @@ const Overview = props => {
       <div className={styles.blue_container}>
         <div className={styles.blue_text}>
           <p className={styles.blue_header}>
-            Stake $DG to earn <br /> and ‘Be The House’
+            Stake DG to earn, <br /> govern, and more
           </p>
           <p className={styles.blue_lower}>
-            By staking $DG, you can govern the <br/> treasury, add proposals, and earn yield.
+            By staking DG, you can govern the <br/> treasury, add proposals, and earn yield.
           </p>
           <Button
             className={styles.blue_button}
@@ -787,12 +787,13 @@ const Overview = props => {
             >
               { !xdgClicked ? (`Claim ${totalUnclaimedAmount} xDG`) : (<Loader active inline size="small" className="treasury-loader" />) }
             </Button>
-            <div className={styles.lower_xdg_text}>
+            <a className={styles.lower_xdg_text} target="_blank" href="https://snapshot.org/#/decentralgames.eth/proposal/0xa5933d9cf0621e2f0b0db7e8eacd069f7398cb599b16d9ee1bce81b41bea50e7" >
               See Governance Proposal
-            </div>
+            </a>
           </div>
         </div>
       </div>
+      
 
       <div className={styles.treasury_container_mobile}>
         <div className={styles.treasury_header}>

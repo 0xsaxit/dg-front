@@ -30,8 +30,8 @@ const ForthStep = (props) => {
     };
 
     useEffect(() => {
-        setAvailableStake(state.DGBalances.BALANCE_ROOT_DG_LIGHT);
-    }, [state.DGBalances.BALANCE_ROOT_DG_LIGHT])
+        setAvailableStake(state.DGBalances?.BALANCE_ROOT_DG_LIGHT);
+    }, [state.DGBalances?.BALANCE_ROOT_DG_LIGHT])
 
     function handleStakeAmountChange(e) {
         setStakeAmount(Number(e.target.value));
@@ -187,7 +187,7 @@ const ForthStep = (props) => {
                                     <h1>
                                         New DG Gov Staking <abbr>({
                                             props.formatNumber(
-                                                Global.CONSTANTS.APR_NUMBER / state.stakingBalances.BALANCE_CONTRACT_TOWNHALL * 100,
+                                                Global.CONSTANTS.APR_NUMBER / state.stakingBalances?.BALANCE_CONTRACT_TOWNHALL * 100,
                                                 2
                                             )
                                         }% APR)</abbr>

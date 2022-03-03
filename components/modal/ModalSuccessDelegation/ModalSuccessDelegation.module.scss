@@ -7,11 +7,12 @@
   font-family: Larsseit-Bold;
   font-size: 14px;
   border-radius: 10px !important;
+  width: calc(50% - 8px) !important;
 }
 
 .success_modal {
   width: 480px !important;
-  height: 454px !important;
+  height: 435px !important;
   background: black !important;
   border-radius: 16px !important;
   padding: 40px;
@@ -179,5 +180,21 @@
         }
       }
     }
+  }
+}
+
+
+@media screen and (max-width: 1000px) {
+  .open_button {
+    font-size: 13px !important;
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+  }
+}
+
+@include mq($until: medium) {
+  .open_button {
+    font-size: 15px !important;
+    display: none !important;
   }
 }

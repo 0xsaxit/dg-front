@@ -101,7 +101,7 @@ const ModalBreakdown = ({ breakdown = {}, totalAmount, address = null }) => {
         !address ? (
           <button
             disabled={
-              !state.DGBalances.BALANCE_AFFILIATES.length || !totalAmount
+              !state.DGBalances?.BALANCE_AFFILIATES.length || !totalAmount
             }
             className={cn('btn btn-primary', styles.claim_button_amount)}
           >
