@@ -347,8 +347,8 @@ const Balances: FC<BalancesType> = ({ className = '' }: BalancesType): ReactElem
 
             <div className={styles.float_right}>
               <span className={styles.balance_column_header}>
-                <p className={styles.bold_text}>{parseInt(state.iceAmounts.ICE_AVAILABLE_AMOUNT, 2).toLocaleString()} ICE</p>
-                <p className={styles.bold_text}>${formatPrice(state.iceAmounts.ICE_AVAILABLE_AMOUNT * state.DGPrices.ice, 2)}</p>
+                <p className={styles.bold_text}>{parseInt(state.iceAmounts?.ICE_AVAILABLE_AMOUNT, 2).toLocaleString()} ICE</p>
+                <p className={styles.bold_text}>${formatPrice(state.iceAmounts?.ICE_AVAILABLE_AMOUNT * state.DGPrices.ice, 2)}</p>
               </span>
 
               <div>

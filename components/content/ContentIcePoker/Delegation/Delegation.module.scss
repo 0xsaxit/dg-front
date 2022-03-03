@@ -172,7 +172,7 @@
                     display: flex;
                     justify-content: left;
                     align-items: center;
-                    width: 250px;
+                    width: 300px;
 
                     section {
                         position: relative;
@@ -379,11 +379,11 @@
     }
 
     .fixed {
-        width: 300px;
+        width: 350px;
 
         tbody {
             tr {
-                width: 300px !important;
+                width: 350px !important;
                 border-right: 2px solid rgba(255, 255, 255, 0.1);
                 border-bottom-right-radius: 0px !important;
                 border-top-right-radius: 0px !important;
@@ -463,6 +463,57 @@
     }
 }
 
+.lock_wearable {
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    background: transparent;
+    // border: 1px solid #2a2a2a;
+    // box-sizing: border-box;
+    // border-radius: 16px;
+    // // padding: 32px 40px 32px 40px;
+
+    width: 526px;
+    margin: 0 auto;
+
+    .lock_title {
+        font-family: Larsseit-Bold;
+        font-style: normal;
+        font-size: 24px;
+        line-height: 33px;
+        text-align: center;
+        letter-spacing: -0.7px;
+        color: #FFFFFF;
+        margin-bottom: 8px;
+    }
+
+    .lock_desc {
+        font-family: Larsseit-Regular;
+        font-style: normal;
+        font-size: 16px;
+        line-height: 22px;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 16px;
+    }
+
+    .lock_button {
+        font-family: Larsseit-Bold;
+        font-style: normal;
+        font-size: 17px;
+        line-height: 24px;
+        text-align: center;
+        color: #FFFFFF;
+        background: #006EFF;
+        border-radius: 12px;
+        width: 180px;
+        height: 48px;
+        margin: auto;
+    }
+}
+
 .more_wearable {
     display: flex;
     justify-content: center;
@@ -486,6 +537,7 @@
         color: #ffffff;
     }
 
+   
     .desc {
         margin-top: 8px;
         margin-bottom: 16px;
@@ -498,6 +550,7 @@
         color: rgba(255, 255, 255, 0.5);
     }
 
+   
     .grey_button {
         font-family: Larsseit-Bold;
         font-style: normal;
@@ -511,4 +564,6 @@
         padding: 11px 75px 11px 75px;
         margin: 0 auto;
     }
+
+
 }

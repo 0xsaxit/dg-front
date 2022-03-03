@@ -31,13 +31,13 @@ const ContentAirdrop = (props) => {
   }, [state.userStatus]);
 
   useEffect(() => {
-    if (props.price && state.DGBalances.BALANCE_KEEPER_DG) {
-      const tokenUSD = Number(props.price * state.DGBalances.BALANCE_KEEPER_DG);
+    if (props.price && state.DGBalances?.BALANCE_KEEPER_DG) {
+      const tokenUSD = Number(props.price * state.DGBalances?.BALANCE_KEEPER_DG);
       const tokenUSDFormatted = props.formatPrice(tokenUSD, 2);
 
       setTokenUSD(tokenUSDFormatted);
     }
-  }, [props.price, state.DGBalances.BALANCE_KEEPER_DG]);
+  }, [props.price, state.DGBalances?.BALANCE_KEEPER_DG]);
 
   
   // claim DG tokens from keeper contract
@@ -72,9 +72,9 @@ const ContentAirdrop = (props) => {
           <p className={styles.airdrop_title}>Unclaimed Airdropped $DG</p>
 
           <span className={styles.earned_span}>
-            {state.DGBalances.BALANCE_KEEPER_DG ? (
+            {state.DGBalances?.BALANCE_KEEPER_DG ? (
               <p className={styles.earned_amount}>
-                {props.formatPrice(state.DGBalances.BALANCE_KEEPER_DG, 3)}
+                {props.formatPrice(state.DGBalances?.BALANCE_KEEPER_DG, 3)}
               </p>
             ) : (
               <Loader
@@ -95,19 +95,19 @@ const ContentAirdrop = (props) => {
             />
           </span>
 
-          {Number(state.DGBalances.BALANCE_KEEPER_DG) ? (
+          {Number(state.DGBalances?.BALANCE_KEEPER_DG) ? (
             <span>
               <Button
                 className={styles.airdrop_button} 
                 onClick={() => scrapeMyTokens()}
               >
-                Claim {props.formatPrice(state.DGBalances.BALANCE_KEEPER_DG, 3)} $DG
+                Claim {props.formatPrice(state.DGBalances?.BALANCE_KEEPER_DG, 3)} $DG
               </Button>
             </span>
           ) : (
             <span style={{ display: 'flex', justifyContent: 'center' }}>
               <Button className={styles.airdrop_button} disabled>
-                Claim {props.formatPrice(state.DGBalances.BALANCE_KEEPER_DG, 3)} $DG
+                Claim {props.formatPrice(state.DGBalances?.BALANCE_KEEPER_DG, 3)} $DG
               </Button>
             </span>
           )}

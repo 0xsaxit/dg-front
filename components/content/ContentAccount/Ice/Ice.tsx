@@ -13,16 +13,26 @@ export interface IceType {
 
 const Ice: FC<IceType> = ({ className = '' }: IceType): ReactElement => {
   // get user's transaction history from the Context API store
-  const [state] = useContext(GlobalContext);
+  const [state, dispatch] = useContext<any>(GlobalContext);
 
   // define local variables
   const [totalIce, setTotalIce] = useState(0);
 
   useEffect(() => {
     (async () => {
-      const json = await Fetch.ICE_AMOUNTS(state.userAddress);
+      try{
+        const json = await Fetch.ICE_AMOUNTS(state.userAddress);
 
-      setTotalIce(json.totalUnclaimedAmount);
+        setTotalIce(json.totalUnclaimedAmount);
+      } catch (error) {
+        console.log("Error fetching ice amounts :" + error);
+        
+        dispatch({
+            type: 'show_toastMessage',
+            data: 'Error fetching ice amounts, please try again.',
+        });
+      }
+      
     })();
   }, [totalIce]);
 

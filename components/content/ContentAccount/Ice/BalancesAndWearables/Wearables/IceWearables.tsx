@@ -12,16 +12,27 @@ export interface IceWearablesType {
 
 const IceWearables: FC<IceWearablesType> = ({ className = '' }: IceWearablesType): ReactElement => {
   // define local variables
-  const [state] = useContext(GlobalContext);
+  const [state, dispatch] = useContext<any>(GlobalContext);
   const [delegations, setDelegations] = useState([]);
   const activeWearables = state.iceWearableItems.filter(item => item.isActivated && item.bonus > 0);
 
   useEffect(() => {
     (async (): Promise<void> => {
       // Get Delegation Breakdown from the API
-      const response = await Fetch.DELEGATION_BREAKDOWN('week');
+      
+      try {
+        const response = await Fetch.DELEGATION_BREAKDOWN('week');
 
-      setDelegations(response && response.length > 0 ? response : []);
+        setDelegations(response && response.length > 0 ? response : []);
+      } catch (error) {
+        console.log('Error fetching delegation info: ' + error);
+        
+        dispatch({
+            type: 'show_toastMessage',
+            data: 'Error fetching delegation info, please try again.',
+        });
+      }
+      
     })();
   }, [state.userLoggedIn]);
 

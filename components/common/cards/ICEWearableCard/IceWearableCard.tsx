@@ -5,15 +5,11 @@ import IceP2EEnabledTooltip from 'components/tooltips/IceP2EEnabledTooltip';
 import IceNeedToActivateTooltip from 'components/tooltips/IceNeedToActivateTooltip';
 import IceWearableBonusTooltip from 'components/tooltips/IceWearableBonusTooltip';
 import IceCheckedInTooltip from 'components/tooltips/IceCheckedInTooltip';
-import ModalDelegate from '@/components/modal/ModalDelegate';
-import ModalWithdrawDelegation from 'components/modal/ModalWithdrawDelegation';
-import ActivateWearableModal from 'components/modal/ActivateWearableModal';
-import NeedMoreDGActivateModal from 'components/modal/NeedMoreDGActivateModal';
-import ModalWearable from 'components/modal/ModalWearable';
 import ModalIceDelegationBreakDown from 'components/modal/ModalIceDelegationBreakDown';
 import Fetch from 'common/Fetch';
 import styles from './IceWearable.module.scss';
 import Aux from '../../../_Aux';
+import WearableButton from './WearableButton';
 
 export interface IceWearableCardType {
   item: any;
@@ -29,12 +25,9 @@ const IceWearableCard: FC<IceWearableCardType> = ({ item, delegation, className 
   const [pastNickName, savePastNickName] = useState(null);
   const [isEditingNickName, saveIsEditingNickName] = useState(false);
 
-  const buttonDelegate = 'Delegate';
-  const buttonUndelegate = 'Undelegate';
-  const { name, description, rank, image, imageUpgrade, tokenId, checkInStatus, contractAddress, isActivated, itemId } = item;
+  const { name, description, rank, image, checkInStatus, isActivated } = item;
   const bonus = '+' + item.bonus + '%';
   const delegateAddress = item.delegationStatus.delegatedTo || '';
-  const delegationStatus = item.delegationStatus.isQueuedForUndelegationByDelegatee || item.delegationStatus.isQueuedForUndelegationByOwner;
   const nickNameInputRef = useRef<AutosizeInput>(null);
 
   async function saveUpdatedNickName(): Promise<void> {
@@ -93,8 +86,8 @@ const IceWearableCard: FC<IceWearableCardType> = ({ item, delegation, className 
               ) : (
                 <h1 onClick={() => setShowingBreakDown(1)}>Delegated To {nickName.length > 12 ? nickName.substr(0, 12) + '...' : nickName}</h1>
               )}
-
-              {state.userStatus>=28 && 
+              
+              {state.userIsPremium && 
                 <img
                   className={styles.edit}
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1643126922/edit_p53oml.png"
@@ -125,54 +118,7 @@ const IceWearableCard: FC<IceWearableCardType> = ({ item, delegation, className 
           <div className={styles.wear_box}>
             {imageAndDescription()}
 
-            <div className={styles.button_area}>
-              {!isActivated ? (
-                state.DGBalances.BALANCE_CHILD_DG_LIGHT < state.tokenAmounts.DG_MOVE_AMOUNT ? (
-                  <NeedMoreDGActivateModal />
-                ) : (
-                  <ActivateWearableModal tokenId={tokenId} itemId={itemId} contractAddress={contractAddress} />
-                )
-              ) : (
-                <span className={rank !== 5 ? 'w-100 d-flex justify-content-between' : 'w-100 d-flex justify-content-center'}>
-                  {delegateAddress === '' ? (
-                    <ModalDelegate
-                      tokenId={tokenId}
-                      contractAddress={contractAddress}
-                      imgSrc={image}
-                      rank={rank}
-                      bonus={bonus}
-                      description={description}
-                      buttonName={buttonDelegate}
-                    />
-                  ) : (
-                    <ModalWithdrawDelegation
-                      checkInStatus={checkInStatus}
-                      delegationStatus={delegationStatus}
-                      tokenId={tokenId}
-                      contractAddress={contractAddress}
-                      tokenOwner={state.userAddress}
-                      delegateAddress={delegateAddress}
-                      rank={rank}
-                      buttonName={buttonUndelegate}
-                    />
-                  )}
-                  {rank < 5 && (
-                    <ModalWearable
-                      tokenId={tokenId}
-                      contractAddress={contractAddress}
-                      itemId={itemId}
-                      imgSrc={image}
-                      imgUpgradeSrc={imageUpgrade}
-                      rank={rank}
-                      bonus={bonus}
-                      description={description}
-                      name={name.split('(ICE')[0].trim()}
-                      delegateAddress={delegateAddress}
-                    />
-                  )}
-                </span>
-              )}
-            </div>
+            <WearableButton item={item} />
           </div>
         </div>
       </div>

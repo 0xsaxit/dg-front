@@ -93,7 +93,7 @@ const Referrals: FC<ReferralsType> = ({ className = '' }: ReferralsType): ReactE
         </div>
         <span className="d-flex justify-content-between align-items-center mb-4">
           <h3 className="mb-0">
-            {state.DGBalances.BALANCE_AFFILIATES.length
+            {state.DGBalances?.BALANCE_AFFILIATES.length
               ? 'Your referrals'
               : 'No Referrals Yet'}
           </h3>
@@ -107,11 +107,11 @@ const Referrals: FC<ReferralsType> = ({ className = '' }: ReferralsType): ReactE
           <Segment
             className={styles.segment}
             loading={
-              !!state.DGBalances.BALANCE_AFFILIATES.length &&
-              !state.DGBalances.BALANCE_AFFILIATES[0]['address']
+              !!state.DGBalances?.BALANCE_AFFILIATES.length &&
+              !state.DGBalances?.BALANCE_AFFILIATES[0]['address']
             }
           >
-            {state.DGBalances.BALANCE_AFFILIATES.map(
+            {state.DGBalances?.BALANCE_AFFILIATES.map(
               (affiliate, affiliateIndex) => {
                 let amount = 0;
 

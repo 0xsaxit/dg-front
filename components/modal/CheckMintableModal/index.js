@@ -96,10 +96,10 @@ const CheckMintableModal = props => {
   }, [state.tokenAuths]);
 
   useEffect(() => {
-    const xdgTotal = parseFloat(state.stakingBalances.BALANCE_USER_GOVERNANCE) + parseFloat(state.DGBalances.BALANCE_CHILD_TOKEN_XDG);
+    const xdgTotal = parseFloat(state.stakingBalances?.BALANCE_USER_GOVERNANCE) + parseFloat(state.DGBalances?.BALANCE_CHILD_TOKEN_XDG);
 
     setXDG(xdgTotal);
-  }, [state.stakingBalances.BALANCE_USER_GOVERNANCE, state.DGBalances.BALANCE_CHILD_TOKEN_XDG]);
+  }, [state.stakingBalances?.BALANCE_USER_GOVERNANCE, state.DGBalances?.BALANCE_CHILD_TOKEN_XDG]);
 
   // helper functions
 
@@ -150,7 +150,7 @@ const CheckMintableModal = props => {
     if (
       authStatus &&
       checkEnoughETHorICE() &&
-      (state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD >= Global.CONSTANTS.DG_STAKED_AMOUNT || xDG >= Global.CONSTANTS.XDG_STAKED_AMOUNT)
+      (state.stakingBalances?.BALANCE_USER_GOVERNANCE_OLD >= Global.CONSTANTS.DG_STAKED_AMOUNT || xDG >= Global.CONSTANTS.XDG_STAKED_AMOUNT)
     ) {
       return true;
     } else {
@@ -162,7 +162,7 @@ const CheckMintableModal = props => {
     if (state.mintToken === 'ETH') {
       return parseFloat(state.userBalances[2][3]) < mintingPrice ? false : true;
     } else {
-      return parseFloat(state.iceAmounts.ICE_AVAILABLE_AMOUNT) < mintingPrice ? false : true;
+      return parseFloat(state.iceAmounts?.ICE_AVAILABLE_AMOUNT) < mintingPrice ? false : true;
     }
   }
 
@@ -193,7 +193,7 @@ const CheckMintableModal = props => {
                   <CheckMintTooltip staking={false} />
                 </div>
               )}
-              {state.mintToken === 'ETH' ? Number(mintingPrice).toFixed(2) : Number(mintingPrice).toFixed(0)} {state.mintToken}
+              {state.mintToken === 'ETH' ? Number(mintingPrice).toFixed(2) : Number(mintingPrice).toFixed(2)} {state.mintToken}
               {state.mintToken === 'ETH' ? (
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="11.8125" cy="12" r="11.6875" fill="#EFEFEF" />
@@ -216,7 +216,7 @@ const CheckMintableModal = props => {
               {!checkEnoughETHorICE() ? (
                 <>
                   <span className={styles.dg_insufficient}>
-                    {state.mintToken === 'ETH' ? Number(state.userBalances[2][3]).toFixed(3) : Number(state.iceAmounts.ICE_AVAILABLE_AMOUNT).toFixed(2)} {state.mintToken} Available
+                    {state.mintToken === 'ETH' ? Number(state.userBalances[2][3]).toFixed(3) : Number(state.iceAmounts?.ICE_AVAILABLE_AMOUNT).toFixed(2)} {state.mintToken} Available
                     &nbsp;
                   </span>
                   <br />
@@ -225,7 +225,7 @@ const CheckMintableModal = props => {
               ) : (
                 <>
                   <span className={styles.dg_available}>
-                    {state.mintToken === 'ETH' ? Number(state.userBalances[2][3]).toFixed(3) : Number(state.iceAmounts.ICE_AVAILABLE_AMOUNT).toFixed(0)} {state.mintToken}{' '}
+                    {state.mintToken === 'ETH' ? Number(state.userBalances[2][3]).toFixed(3) : Number(state.iceAmounts.ICE_AVAILABLE_AMOUNT).toFixed(2)} {state.mintToken}{' '}
                     Available&nbsp;
                     <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
@@ -290,7 +290,7 @@ const CheckMintableModal = props => {
             </div>
 
             <div className={styles.dg_desc}>
-              {state.stakingBalances.BALANCE_USER_GOVERNANCE_OLD >= Global.CONSTANTS.DG_STAKED_AMOUNT || xDG >= Global.CONSTANTS.XDG_STAKED_AMOUNT ? (
+              {state.stakingBalances?.BALANCE_USER_GOVERNANCE_OLD >= Global.CONSTANTS.DG_STAKED_AMOUNT || xDG >= Global.CONSTANTS.XDG_STAKED_AMOUNT ? (
                 <span className={styles.dg_available}>
                   You Have Enough Staked&nbsp;
                   <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">

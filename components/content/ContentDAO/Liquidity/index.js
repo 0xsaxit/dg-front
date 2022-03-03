@@ -43,7 +43,7 @@ const Liquidity = props => {
             <p className={styles.lower_header}>Claim $DG Rewards</p>
             <div className={styles.lower_value}>
               <p className={styles.DG_value}>
-                {props.formatPrice(state.DGBalances.BALANCE_STAKING_UNISWAP, 3)}
+                {props.formatPrice(state.DGBalances?.BALANCE_STAKING_UNISWAP, 3)}
               </p>
               <img
                 style={{ marginTop: '-4px' }}
@@ -52,7 +52,7 @@ const Liquidity = props => {
             </div>
             <p className={styles.price}>
               $
-              {(props.price * state.DGBalances.BALANCE_STAKING_UNISWAP).toFixed(
+              {(props.price * state.DGBalances?.BALANCE_STAKING_UNISWAP).toFixed(
                 2
               )}
             </p>
@@ -62,7 +62,7 @@ const Liquidity = props => {
             </p>
 
             <span>
-              {Number(state.DGBalances.BALANCE_STAKING_UNISWAP) ? (
+              {Number(state.DGBalances?.BALANCE_STAKING_UNISWAP) ? (
                 <Button
                   className={styles.lower_button}
                   onClick={() => {
@@ -102,9 +102,9 @@ const Liquidity = props => {
             <p className={styles.apy_text}>Your DG Staked</p>
             <p className={styles.apy_percent}>
               { }
-              {props.formatPrice(state.stakingBalances.BALANCE_STAKED_UNISWAP, 3)}
+              {props.formatPrice(state.stakingBalances?.BALANCE_STAKED_UNISWAP, 3)}
               <br />
-              <abbr>${props.formatPrice(state.stakingBalances.BALANCE_STAKED_UNISWAP * state.DGPrices.dg, 2)}</abbr>
+              <abbr>${props.formatPrice(state.stakingBalances?.BALANCE_STAKED_UNISWAP * state.DGPrices.dg, 2)}</abbr>
             </p>
 
             <div style={{ display: 'flex', width: '80%' }}>
@@ -167,7 +167,7 @@ const Liquidity = props => {
                 <Button
                   className={styles.max_button}
                   onClick={() => {
-                    setAmountInput(props.formatPrice(state.stakingBalances.BALANCE_STAKED_UNISWAP, 3));
+                    setAmountInput(props.formatPrice(state.stakingBalances?.BALANCE_STAKED_UNISWAP, 3));
                   }}
                 >
                   MAX
@@ -181,7 +181,7 @@ const Liquidity = props => {
                     props.withdrawal(stakingContractUniswap, amountInput);
                     setAmountInput('');
                   }}
-                  disabled={amountInput <= 0 || parseFloat(amountInput.toString(), 10) > state.stakingBalances.BALANCE_STAKED_UNISWAP ? true : false}
+                  disabled={amountInput <= 0 || parseFloat(amountInput.toString(), 10) > state.stakingBalances?.BALANCE_STAKED_UNISWAP ? true : false}
                 >
                   Unstake {amountInput > 0 ? amountInput : ''} DG
                 </Button>

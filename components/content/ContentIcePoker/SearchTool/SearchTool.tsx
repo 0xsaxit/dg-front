@@ -1,4 +1,5 @@
 import React, { FC, ReactElement, useContext, useState } from 'react';
+import { useRouter } from 'next/router';
 import { GlobalContext } from '@/store';
 import { Button, Table } from 'semantic-ui-react';
 import FoxAnimation from 'components/lottieAnimation/animations/fox';
@@ -29,6 +30,7 @@ export interface IceSearchToolType {
 const IceSearchTool: FC<IceSearchToolType> = ({ className = '' }: IceSearchToolType): ReactElement => {
   // get delegation data from the Context API store
   const [state] = useContext(GlobalContext);
+  const router = useRouter();
 
   // define local variables
   const [time, setTime] = useState(TimePeriods.Weekly);
@@ -92,7 +94,14 @@ const IceSearchTool: FC<IceSearchToolType> = ({ className = '' }: IceSearchToolT
           Unlock the ICE Poker player database to <br />
           discover and compare new potential delegates
         </p>
-        <Button className={styles.blue_button}>Unlock Premium</Button>
+        <Button
+          className={styles.blue_button}
+          onClick={() => {
+            router.push('/premium');
+          }}
+        >
+          Unlock Premium
+        </Button>
       </section>
     );
   }
@@ -269,7 +278,7 @@ const IceSearchTool: FC<IceSearchToolType> = ({ className = '' }: IceSearchToolT
         </section>
       ) : (
         <>
-          {state.userStatus >= 28 ? (
+          {state.userIsPremium ? (
             <section className={styles.playerLookUp}>
               {playerLookUpHeader()}
               {searchBox()}
