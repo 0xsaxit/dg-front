@@ -480,7 +480,7 @@ const IceDashboardPremium = (props: PremiumProps): ReactElement => {
             Claim xDG Airdrop
           </p>
           <div className={styles.lower_xdg_amount}>
-            0 //{totalUnclaimedAmount}
+            {totalUnclaimedAmount}
             <svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="20" cy="20.5" r="20" fill="#424242"/>
               <path d="M12.8487 13.368L10.2072 10.7331C14.9062 5.91481 23.3304 5.01792 29.1555 10.2867C35.1404 15.6982 35.1573 24.886 29.4966 30.3411C23.6546 35.972 14.9643 35.1094 10.2142 30.2151L12.8458 27.5854C12.8749 27.6109 12.9161 27.6434 12.9562 27.6817C13.4269 28.1032 13.9027 28.5194 14.4356 28.8631C15.3891 29.4799 16.4392 29.9327 17.5425 30.2029C19.8262 30.7588 22.2329 30.4942 24.3409 29.4552C25.2633 29.0002 26.1105 28.4066 26.8528 27.6951C28.5407 26.0792 29.6101 23.9247 29.876 21.6043C30.0372 20.1788 29.8901 18.7354 29.4448 17.3716C28.9996 16.0078 28.2664 14.7553 27.295 13.6989C25.9336 12.2186 24.2688 11.2393 22.3194 10.7499C20.069 10.1989 17.6972 10.4408 15.6047 11.4349C14.6678 11.8704 13.8102 12.459 13.0672 13.1764C13.0091 13.2345 12.9446 13.2926 12.8824 13.346C12.872 13.3545 12.8607 13.3619 12.8487 13.368Z" fill="white"/>
@@ -488,7 +488,7 @@ const IceDashboardPremium = (props: PremiumProps): ReactElement => {
             </svg>
           </div>
           <div className={styles.lower_xdg_usd}>
-            ${props.formatPrice(totalUnclaimedAmount * xDG, 2)}
+            ${(totalUnclaimedAmount * xDG).toFixed(2)}
           </div>
           <Button
             className={styles.lower_button}
